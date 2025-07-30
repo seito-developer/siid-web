@@ -1,0 +1,24 @@
+/* Vector */
+.HamburgerMenu {
+    width: 18px;
+    height: 12px;
+    position: relative;
+
+    > span {
+        width: 100%;
+        border-top: 2px solid #000;
+        position: absolute;
+        left: 0;
+        right: 0;
+
+        &:nth-child(1) {
+            top: 0;
+        }
+        &:nth-child(2) {
+            top: 5px;
+        }
+        &:nth-child(3) {
+            bottom: 0;
+        }
+    }
+}

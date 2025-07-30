@@ -1,0 +1,30 @@
+.Navigation {
+
+}
+.Navigation__Button {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 0;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 20px;
+    width: 156.56px;
+    height: 52px;
+    background: #FFFFFF;
+    border-radius: 70px;
+    cursor: pointer;
+    transition: transform 0.25s ease-in-out;
+    transform-origin: center;
+    &:hover {
+        transform: scale(1.05) translateX(-50%);
+    }
+}
+
+.Navigation__Item {
+    display: flex;
+    align-items: center;
+}

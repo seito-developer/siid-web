@@ -1,18 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins, Noto_Sans_JP } from "next/font/google";
 import 'sanitize.css';
 import 'sanitize.css/forms.css';
 import 'sanitize.css/typography.css';
+import '../styles/globals.css';
+import Navigation from "@/components/Navigation/Navigation";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const notoSansJP = Noto_Sans_JP({
+  variable: "--font-noto-sans-jp",
+  // subsets: ["latin", "japanese"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const poppins = Poppins({
+  variable: "--font-poppins",
+  weight: ["400", "700"],
+  // subsets: ["latin"],
+  // subsets: ["english", "japanese"],
 });
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,9 +31,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${poppins.variable} ${notoSansJP.variable}`}>
+        <Navigation />
         {children}
       </body>
     </html>
   );
 }
+
