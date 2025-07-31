@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import styles from "./Navigation.module.css";
 import Logo from "@/components/Logo/Logo";
-import HamburgerMenu from "@/components/HamburgerMenu/HamburgerMenu";
-import Menu from "@/components/Menu/Menu";
+import HamburgerMenu from "@/components/Navigation/HamburgerMenu/HamburgerMenu";
+import Menu from "@/components/Navigation/Menu/Menu";
 
 export default function Navigation() {
   const [isActive, setIsActive] = useState(false);

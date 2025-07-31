@@ -1,0 +1,23 @@
+.ScrollDown {
+    width: 38px;
+    background: var(--main);
+    padding: 10px;
+    line-height: 1;
+    text-align: center;
+    border-radius: 8px;
+    > span {
+        display: block;
+        margin: 0 auto;
+        color: #fff;
+        margin-bottom: 5px;
+        writing-mode: sideways-rl;
+        font-family: var(--font-bagor);
+        font-size: 12px;
+        letter-spacing: .1em;
+    }
+    > svg {
+        display: block;
+        margin: 0 auto;
+        transform: translateX(-2px);
+    }
+}

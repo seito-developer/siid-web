@@ -1,8 +1,11 @@
+import Hero from "@/components/Hero/Hero";
+
 export default function Home() {
   return (
     <div>
+      
       <main>
-        <h1>Hello</h1>
+        <Hero />
         <ul>
           <li>Test</li>
           <li>Test</li>
@@ -12,3 +15,4 @@ export default function Home() {
     </div>
   );
 }
+
