@@ -22,3 +22,13 @@ export const snsItems = [
         height: 30,
     }
 ];
+
+export const snsFooterItems = [
+    {
+        icon: "xWhite",
+        url: 'https://x.com/seito_horiguchi',
+        width: 24,
+        height: 24,
+    },
+    ...snsItems.slice(1)
+];

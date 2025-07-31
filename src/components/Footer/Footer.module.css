@@ -1,0 +1,24 @@
+.Footer {
+    padding: 10px 20px;
+    margin-bottom: 60px;
+}
+
+.Footer__Inner {
+    background: var(--text);
+    border-radius: 16px;
+    padding: 30px;
+    position: relative;
+}
+
+.Footer__ContactButton {
+    position: absolute;
+    right: 30px;
+    top: -40px;
+    transform: rotate(4.4deg);
+}
+
+.Footer__Pagetop {
+    position: absolute;
+    top: 90px;
+    right: 20px;
+}

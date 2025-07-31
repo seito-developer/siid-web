@@ -25,4 +25,24 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  border-bottom: 8px solid var(--main);
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    width: 8px;
+    height: 100%;
+  }
+  &::before {
+    border-left: 8px solid var(--main);
+    left: 0;
+  }
+  &::after {
+    border-right: 8px solid var(--main);
+    right: 0;
+  }
 }

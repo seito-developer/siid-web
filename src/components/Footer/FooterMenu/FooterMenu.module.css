@@ -1,0 +1,68 @@
+.FooterMenu {
+}
+.FooterMenu__MainList {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    list-style: none;
+    padding: 0;
+}
+.FooterMenu__MainItem {
+    > a {
+        color: #fff;
+        display: block;
+        text-decoration: none;
+    }
+}
+
+.FooterMenu__Ja {
+    display: block;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+}
+
+.FooterMenu__SubList {
+    padding: 0;
+    list-style: none;
+}
+.FooterMenu__SubItem {
+    font-size: 13px;
+    > a {
+        display: block;
+        color: #fff;
+    }
+}
+
+.FooterMenu__SnsList {
+    padding: 0;
+    display: flex;
+    gap: 10px;
+
+    > li:nth-child(1) {
+        path {
+            fill: #fff;
+        }
+    }
+}
+
+.FooterMenu__OtherLinks {
+    margin-top: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 20;
+    padding: 0;
+}
+.FooterMenu__OtherLinkItem {
+    font-size: 12px;
+    > a {
+        color: #fff;
+    }
+}
+.FooterMenu__Copyright {
+    font-size: 11px;
+    color: #fff;
+    text-align: center;
+    display: block;
+}
