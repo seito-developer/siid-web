@@ -8,6 +8,9 @@
     > a {
         display: block;
         text-decoration: none;
+        &:hover {
+            background: #eee;
+        }
     }
 }
 
@@ -34,6 +37,9 @@
     > a {
         display: block;
         color: var(--text);
+        &:hover {
+            background: #eee;
+        }
     }
 }
 
@@ -42,4 +48,14 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+}
+
+.Menu__SnsItem {
+    > a {
+        display: block;
+        transition: transform 0.25s ease-in-out;
+        &:hover {
+            transform: translateY(-3px);
+        }
+    }
 }

@@ -13,7 +13,7 @@
         opacity: 1;
     }
     .Navigation__ButtonBack {
-        width: calc(100% - 40px);
+        width: calc(100% - 40px) !important;
         height: 448px;
     }
   }
@@ -51,11 +51,14 @@
 }
 
 .Navigation__ButtonContainer {
-    position: fixed;
+  position: fixed;
   z-index: calc(var(--maxZ) - 1);
   transform: translateX(-50%);
   left: 50%;
   bottom: 30px;
+  &:hover + .Navigation__ButtonBack {
+    width: 180px;
+  }
 }
 .Navigation__Button {
   border: 0;
@@ -72,9 +75,7 @@
   transition: transform 0.25s ease-in-out;
   transform-origin: center;
   margin: 0 auto;
-  &:hover {
-    transform: scale(1.05);
-  }
+  
 }
 .Navigation__ButtonBack {
     position: fixed;
@@ -86,7 +87,12 @@
   width: 156.56px;
   height: 52px;
   background: #ffffff;
-  transition: width 0.25s ease-in-out, height 0.25s ease-in-out;
+  transition: width 0.25s ease-in-out, height 0.25s ease-in-out, padding 0.25s ease-in-out;
+  
+  &:has(.isActive){
+    width: calc(100% - 40px);
+    height: 448px;
+  }
 }
 
 .Navigation__Item {

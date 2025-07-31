@@ -2,6 +2,7 @@
     position: relative;
     border: 0;
     cursor: pointer;
+    transition: transform 0.25s ease-in-out;
     > span {
         position: absolute;
         z-index: 2;
@@ -18,5 +19,9 @@
     > svg {
         position: relative;
         z-index: 1;
+    }
+
+    &:hover {
+        transform: rotate(-5deg);
     }
 }

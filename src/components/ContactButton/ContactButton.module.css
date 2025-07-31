@@ -13,6 +13,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: transform 0.25s ease-in-out;
+
+    &:hover {
+        transform: rotate(-5deg);
+    }
 }
 
 .ContactButton__En {

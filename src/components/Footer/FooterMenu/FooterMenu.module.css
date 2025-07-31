@@ -12,6 +12,9 @@
         color: #fff;
         display: block;
         text-decoration: none;
+        &:hover {
+            background: #2f2323;
+        }
     }
 }
 
@@ -31,6 +34,9 @@
     > a {
         display: block;
         color: #fff;
+        &:hover {
+            background: #2f2323;
+        }
     }
 }
 
@@ -42,6 +48,14 @@
     > li:nth-child(1) {
         path {
             fill: #fff;
+        }
+    }
+
+    a {
+        display: block;
+        transition: transform 0.25s ease-in-out;
+        &:hover {
+            transform: translateY(-3px);
         }
     }
 }
@@ -58,6 +72,9 @@
     font-size: 12px;
     > a {
         color: #fff;
+        &:hover {
+            text-decoration: none;
+        }
     }
 }
 .FooterMenu__Copyright {
