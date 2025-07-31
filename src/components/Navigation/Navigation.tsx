@@ -5,6 +5,7 @@ import styles from "./Navigation.module.css";
 import Logo from "@/components/Logo/Logo";
 import HamburgerMenu from "@/components/Navigation/HamburgerMenu/HamburgerMenu";
 import Menu from "@/components/Navigation/Menu/Menu";
+import ContactButton from "../ContactButton/ContactButton";
 
 export default function Navigation() {
   const [isActive, setIsActive] = useState(false);
@@ -12,6 +13,9 @@ export default function Navigation() {
   return (
     <nav className={`${styles.Navigation} ${isActive ? styles.isActive : ""}`}>
         <div className={styles.Navigation__Container}>
+            <div className={styles.Navigation__ContactButton}>
+                <ContactButton />
+            </div>
             <div>
                 <Menu />
             </div>
@@ -26,7 +30,7 @@ export default function Navigation() {
                     <Logo />
                 </div>
                 <div className={styles.Navigation__Item}>
-                    <HamburgerMenu />
+                    <HamburgerMenu isActive={isActive} />
                 </div>
             </button>
         </div>
@@ -35,4 +39,3 @@ export default function Navigation() {
     </nav>
   );
 }
-
