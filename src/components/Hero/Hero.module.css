@@ -42,3 +42,12 @@
         height: auto;
     }
 }
+
+@media screen and (min-width: 1280px) {
+    .Hero__MainCopy {
+        svg {
+            width: 75vw;
+            height: auto;
+        }
+    }
+}
