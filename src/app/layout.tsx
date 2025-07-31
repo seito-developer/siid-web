@@ -5,6 +5,7 @@ import 'sanitize.css/forms.css';
 import 'sanitize.css/typography.css';
 import '../styles/globals.css';
 import Navigation from "@/components/Navigation/Navigation";
+import Icons from "@/components/Icons/Icons";
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
@@ -32,6 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${notoSansJP.variable}`}>
+        <Icons />
         <Navigation />
         {children}
       </body>

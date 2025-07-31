@@ -1,5 +1,11 @@
-.Menu {
-    a {
+.Menu {}
+.Menu__MainList {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.Menu__MainItem {
+    > a {
         display: block;
         text-decoration: none;
     }
@@ -18,4 +24,22 @@
     font-weight: 700;
     font-size: 16px;
     color: var(--text);
+}
+
+
+/* Careerコース Career+FullSupportEditionコース Career+VIPEditionコース */
+.Menu__SubList {}
+.Menu__SubItem {
+    font-size: 13px;
+    > a {
+        display: block;
+        color: var(--text);
+    }
+}
+
+.Menu__SnsList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }

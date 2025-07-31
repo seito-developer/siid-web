@@ -10,22 +10,28 @@ export default function Navigation() {
   const [isActive, setIsActive] = useState(false);
   
   return (
-    <nav className={styles.Navigation}>
-      <button
-        type="button"
-        className={styles.Navigation__Button}
-        onClick={() => setIsActive(!isActive)}
-      >
-        <div className={styles.Navigation__Item}>
-          <Logo />
+    <nav className={`${styles.Navigation} ${isActive ? styles.isActive : ""}`}>
+        <div className={styles.Navigation__Container}>
+            <div>
+                <Menu />
+            </div>
         </div>
-        <div className={styles.Navigation__Item}>
-          <HamburgerMenu />
+        <div className={styles.Navigation__ButtonContainer}>
+            <button
+                type="button"
+                className={styles.Navigation__Button}
+                onClick={() => setIsActive(!isActive)}
+            >
+                <div className={styles.Navigation__Item}>
+                    <Logo />
+                </div>
+                <div className={styles.Navigation__Item}>
+                    <HamburgerMenu />
+                </div>
+            </button>
         </div>
-      </button>
-      <div className="menu">
-        <Menu />Menu
-      </div>
+        <div className={styles.Navigation__ButtonBack} />
+        <div className={styles.Navigation__Closer} onClick={() => setIsActive(false)} />
     </nav>
   );
 }
