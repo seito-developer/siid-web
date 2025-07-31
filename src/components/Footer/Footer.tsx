@@ -4,6 +4,7 @@ import styles from './Footer.module.css';
 import Logo from '../Logo/Logo';
 import ContactButton from '../ContactButton/ContactButton';
 import Pagetop from './Pagetop/Pagetop';
+import Corner, { CornerPosition } from '../Corner/Corner';
 
 export default function Footer() {
   return (
@@ -18,6 +19,8 @@ export default function Footer() {
                 <Pagetop />
             </div>
         </div>
+        <Corner bottom='-60px' left="8px" position={CornerPosition.BOTTOM_LEFT} />
+        <Corner bottom='-60px' right="8px" position={CornerPosition.BOTTOM_RIGHT} />
     </footer>
   )
 }

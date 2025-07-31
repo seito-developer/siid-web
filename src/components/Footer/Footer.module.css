@@ -1,6 +1,7 @@
 .Footer {
     padding: 10px 20px;
     margin-bottom: 60px;
+    position: relative;
 }
 
 .Footer__Inner {

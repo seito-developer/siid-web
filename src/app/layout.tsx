@@ -7,7 +7,6 @@ import '../styles/globals.css';
 import Navigation from "@/components/Navigation/Navigation";
 import Icons from "@/components/Icons/Icons";
 import Footer from "@/components/Footer/Footer";
-import Corner, { CornerPosition } from "@/components/Corner/Corner";
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
@@ -38,8 +37,7 @@ export default function RootLayout({
         <Footer />
 
 
-          <Corner bottom='-20px' left="8px" position={CornerPosition.BOTTOM_LEFT} />
-          <Corner bottom='-20px' right="8px" position={CornerPosition.BOTTOM_RIGHT} />
+          
       </body>
     </html>
   );
