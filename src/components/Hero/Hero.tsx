@@ -8,12 +8,20 @@ import styles from "./Hero.module.css";
 export default function Hero() {
   return (
     <div className={styles.Hero}>
-        <HeroMainCopy />
-        <HeroSubCopy />
-        <HeroBackLogo />
-        <div className={styles.Hero__ScrollDown}>
-          <ScrollDown />
+      <div className={styles.Hero__Copy}>
+        <div className={styles.Hero__MainCopy}>
+          <HeroMainCopy />
+        </div>  
+        <div className={styles.Hero__SubCopy}>
+          <HeroSubCopy />
         </div>
+      </div>
+      <div className={styles.Hero__BackLogo}>
+        <HeroBackLogo />
+      </div>
+      <div className={styles.Hero__ScrollDown}>
+        <ScrollDown />
+      </div>
     </div>
   );
 }
