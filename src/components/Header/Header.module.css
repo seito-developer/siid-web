@@ -1,0 +1,31 @@
+.Header {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+}
+.Header__RightCorner {
+    content: '';
+    display: block;
+    width: 138px;
+    height: 98px;
+    background: var(--main);
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+}
+.Header__Logo {
+    width: 100px;
+    height: auto;
+    background: var(--main);
+    padding: 20px 10px;
+    border-radius: 0 0 16px 0;
+    position: relative;
+}
+.Header__Contact {
+    position: absolute;
+    z-index: 2;
+    right: 20px;
+    top: 20px;
+    transform: rotate(4.4deg);
+}

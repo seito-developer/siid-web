@@ -1,11 +1,11 @@
 .Navigation {
   position: fixed;
   bottom: 0;
-  width: 100%;
-  height: 100vh;
-
+  z-index: var(--maxZ);
+  
   &.isActive {
-    position: fixed;
+    width: 100%;
+    height: 100vh;
 
     .Navigation__Closer,
     .Navigation__Container {
@@ -42,6 +42,14 @@
   transform: scale(0);
   transition: transform 0s, opacity 0.25s 0.25s ease-in-out;
 }
+
+.Navigation__ContactButton {
+  position: absolute;
+  top: -20px;
+  right: 20px;
+  transform: rotate(4.4deg);
+}
+
 .Navigation__ButtonContainer {
     position: fixed;
   z-index: calc(var(--maxZ) - 1);

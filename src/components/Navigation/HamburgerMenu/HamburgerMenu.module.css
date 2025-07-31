@@ -1,4 +1,3 @@
-/* Vector */
 .HamburgerMenu {
   width: 18px;
   height: 12px;
@@ -10,6 +9,7 @@
     position: absolute;
     left: 0;
     right: 0;
+    transition: transform 0.25s ease-in-out, top 0.25s ease-in-out, bottom 0.25s ease-in-out, opacity 0.25s ease-in-out;
 
     &:nth-child(1) {
       top: 0;
@@ -21,20 +21,18 @@
       bottom: 0;
     }
   }
-}
 
-.isActive {
-  .HamburgerMenu {
+  &.isActive {
     > span {
       &:nth-child(1) {
-        transform: rotate(45deg);
+        transform: rotate(30deg);
         top: 5px;
       }
       &:nth-child(2) {
         opacity: 0;
       }
       &:nth-child(3) {
-        transform: rotate(-45deg);
+        transform: rotate(-30deg);
         bottom: 5px;
       }
     }

@@ -1,0 +1,44 @@
+.Hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    border: 8px solid var(--main);
+}
+
+.Hero__ScrollDown {
+    position: absolute;
+    right: -8px;
+    bottom: -8px;
+}
+
+.Hero__Copy {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.Hero__MainCopy {
+    svg {
+        width: 85vw;
+        height: auto;
+    }
+}
+.Hero__SubCopy {
+    margin-top: 2vh;
+    svg {
+        width: 70vw;
+        height: auto;
+    }
+}
+
+.Hero__BackLogo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.2;
+    svg {
+        width: 97vw;
+        height: auto;
+    }
+}
