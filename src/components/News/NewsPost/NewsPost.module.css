@@ -1,7 +1,6 @@
 .NewsPost {
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .NewsPost__date {
@@ -18,7 +17,7 @@
         flex-direction: row;
         gap: 10px;
     }
-    /* .NewsPost__date {
-
-    }  */
+    .NewsPost__date {
+        font-size: 12px;
+    } 
 }
