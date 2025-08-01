@@ -1,0 +1,29 @@
+.Breadcrumb {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 20px 0 20px 10%;
+    margin-left: 8px;
+}
+
+.Breadcrumb__Item {
+    > a {
+        color: var(--main);
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    
+    &:nth-child(1){
+        &::before {
+            display: none;
+        }
+    }
+    &::before {
+        content: "＋";
+        color: var(--main);
+        margin: 0 8px;
+    }
+    /* &:nth-child(1){ */
+}

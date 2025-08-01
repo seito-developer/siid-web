@@ -1,0 +1,32 @@
+.Headline {
+    border-top: 8px solid var(--main);
+    padding-left: 10%;
+    position: relative;
+    border-bottom: 1px dashed var(--text);
+    margin-left: 8px;
+}
+.Headline__Container {
+    background: var(--main);
+    color: #fff;
+    border-radius: 0 0 0 16px;
+    padding: 20px;
+    text-align: right;
+    position: relative;
+}
+.Headline__SubTitle {
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+}
+.Headline__Title {
+    margin: 0;
+    font-weight: bold;
+    font-size: 32px;
+    font-family: var(--font-bagor);
+}
+.Headline__Description {
+    margin: 0;
+    padding: 20px 30px 20px 0;
+    font-size: 12px;
+    font-weight: bold;
+}
