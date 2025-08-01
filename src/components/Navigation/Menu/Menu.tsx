@@ -14,6 +14,7 @@ export default function Menu() {
                     <Link href={item.url}>
                         <span className={styles.Menu__En}>{item.nameEN}</span>
                         <span className={styles.Menu__Ja}>{item.nameJP}</span>
+                        <span className={styles.Menu__Bar} />
                     </Link>
                     {item.subItems && item.subItems.length > 0 && (
                         <ul className={styles.Menu__SubList}>

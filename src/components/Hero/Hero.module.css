@@ -50,13 +50,20 @@
     display: none;
 }
 
+.Hero__Navigation {
+    display: none;
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+}
+
 @media screen and (min-width: 1280px) {
     .Hero__Copy {
         position: absolute;
         z-index: 3;
-        /* top: 50%; */
         left: 40%;
-        /* transform: translate(-50%, -50%); */
     }
 
     .Hero__MainCopy {
@@ -81,16 +88,27 @@
         bottom: 0;
         position: absolute;
     }
+    .Hero__BackLogo {
+        top: auto;
+        left: 50%;
+        transform: translate(-50%, 0);
+        bottom: 0;
+    }
     .Hero__ReskillBanner {
         display: block;
         position: absolute;
+        z-index: 5;
         right: 25px;
         bottom: 150px;
     }
     .Hero__News {
         display: block;
         position: absolute;
+        z-index: 5;
         right: 20px;
         bottom: 20px;
+    }
+    .Hero__Navigation {
+        display: block;
     }
 }

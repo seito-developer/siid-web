@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from "react";
 import styles from "./NavigationSp.module.css";
 import Logo from "@/components/Logo/Logo";

@@ -8,15 +8,8 @@ export default function NavigationPc() {
   return (
     <nav className={styles.NavigationPc}>
       <div className={styles.NavigationPc__Container}>
-        <div className={styles.NavigationPc__ContactButton}>
-          <ContactButton />
-        </div>
-        <div>
-          <Menu />
-        </div>
-      </div>
-      <div className={styles.NavigationPc__ButtonContainer}>
         <Logo />
+        <Menu />
       </div>
     </nav>
   )
