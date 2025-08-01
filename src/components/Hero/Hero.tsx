@@ -10,6 +10,8 @@ import styles from "./Hero.module.css";
 import useIsPc from "@/hooks/useIsPc";
 import HeroSubCopyPc from "./HeroSubCopy/HeroSubCopyPc";
 import Corner, { CornerPosition } from "../Corner/Corner";
+import News from "../News/News";
+import ReskillBanner from "../ReskillBanner/ReskillBanner";
 
 export default function Hero() {
   const isPc = useIsPc();
@@ -31,6 +33,7 @@ export default function Hero() {
         <ScrollDown />
       </div>
       { isPc && 
+      <>
         <div className={styles.Hero__RigtBottomCorner}>
           <Corner
             width="16px"
@@ -40,6 +43,13 @@ export default function Hero() {
             position={CornerPosition.BOTTOM_RIGHT}
           />
         </div>
+        <div className={styles.Hero__News}>
+          <News />
+        </div>
+        <div className={styles.Hero__ReskillBanner}>
+          <ReskillBanner />
+        </div>
+        </>
       }
     </div>
   );

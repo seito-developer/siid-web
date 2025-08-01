@@ -45,10 +45,30 @@
     }
 }
 
+.Hero__News,
+.Hero__ReskillBanner {
+    display: none;
+}
+
 @media screen and (min-width: 1280px) {
+    .Hero__Copy {
+        position: absolute;
+        z-index: 3;
+        /* top: 50%; */
+        left: 40%;
+        /* transform: translate(-50%, -50%); */
+    }
+
     .Hero__MainCopy {
         svg {
-            width: 75vw;
+            width: 65vw;
+            height: auto;
+        }
+    }
+    .Hero__SubCopy {
+        margin-top: 2vh;
+        svg {
+            width: 60vw;
             height: auto;
         }
     }
@@ -60,5 +80,17 @@
         right: 0;
         bottom: 0;
         position: absolute;
+    }
+    .Hero__ReskillBanner {
+        display: block;
+        position: absolute;
+        right: 25px;
+        bottom: 150px;
+    }
+    .Hero__News {
+        display: block;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
     }
 }
