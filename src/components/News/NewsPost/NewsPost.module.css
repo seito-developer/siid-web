@@ -1,24 +1,24 @@
-.NewsArticle {
+.NewsPost {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 5px;
 }
 
-.NewsArticle__date {
+.NewsPost__date {
     font-size: 11px;
 }
 
-.NewsArticle__title {
+.NewsPost__title {
     font-size: 12px;
+    margin: 0;
 }
 
 @media screen and (min-width: 1280px) {
-    .NewsArticle {
+    .NewsPost {
         flex-direction: row;
         gap: 10px;
     }
-    /* .NewsArticle__date {
+    /* .NewsPost__date {
 
     }  */
 }
