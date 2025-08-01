@@ -1,0 +1,12 @@
+.ReskillBanner {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+@media screen and (min-width: 1280px) {
+    .ReskillBanner {
+        width: 310px;
+        height: 259px;
+    }
+}
