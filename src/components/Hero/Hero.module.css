@@ -52,4 +52,13 @@
             height: auto;
         }
     }
+    .Hero__ScrollDown {
+        right: auto;
+        left: 0;
+    }
+    .Hero__RigtBottomCorner {
+        right: 0;
+        bottom: 0;
+        position: absolute;
+    }
 }

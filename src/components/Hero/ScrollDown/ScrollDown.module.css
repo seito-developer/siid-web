@@ -3,7 +3,7 @@
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-5px);
+        transform: translateY(-3px);
     }
     100% {
         transform: translateY(0);
@@ -33,5 +33,20 @@
         display: block;
         margin-left: -2px;
         animation: identifier 2s ease-in-out infinite;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .ScrollDown {
+        border-radius: 0 40px 0 0;
+        padding: 20px;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        > span {
+            font-size: 14px;
+            writing-mode: horizontal-tb;
+        }
     }
 }

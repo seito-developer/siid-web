@@ -7,6 +7,7 @@ import '../styles/globals.css';
 import Navigation from "@/components/Navigation/Navigation";
 import Icons from "@/components/Icons/Icons";
 import Footer from "@/components/Footer/Footer";
+import ContentsArea from "@/components/ContentsArea/ContentsArea";
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
@@ -33,8 +34,8 @@ export default async function RootLayout({
       <body className={`${poppins.variable} ${notoSansJP.variable}`}>
         <Icons />
         <Navigation />
-        {children}
-        <Footer />          
+        <ContentsArea>{children}</ContentsArea>
+        <Footer />
       </body>
     </html>
   );

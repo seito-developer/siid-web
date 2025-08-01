@@ -1,41 +1,14 @@
 'use client';
 
 import React, { useState } from "react";
-import styles from "./Navigation.module.css";
-import Logo from "@/components/Logo/Logo";
-import HamburgerMenu from "@/components/Navigation/HamburgerMenu/HamburgerMenu";
-import Menu from "@/components/Navigation/Menu/Menu";
-import ContactButton from "../ContactButton/ContactButton";
+import useIsPc from "@/hooks/useIsPc";
+import NavigationSp from "./NavigationSp/NavigationSp";
+import NavigationPc from "./NavigationPc/NavigationPc";
 
 export default function Navigation() {
-  const [isActive, setIsActive] = useState(false);
+  const isPc = useIsPc();
   
   return (
-    <nav className={`${styles.Navigation} ${isActive ? styles.isActive : ""}`}>
-        <div className={styles.Navigation__Container}>
-            <div className={styles.Navigation__ContactButton}>
-                <ContactButton />
-            </div>
-            <div>
-                <Menu />
-            </div>
-        </div>
-        <div className={styles.Navigation__ButtonContainer}>
-            <button
-                type="button"
-                className={styles.Navigation__Button}
-                onClick={() => setIsActive(!isActive)}
-            >
-                <div className={styles.Navigation__Item}>
-                    <Logo />
-                </div>
-                <div className={styles.Navigation__Item}>
-                    <HamburgerMenu isActive={isActive} />
-                </div>
-            </button>
-        </div>
-        <div className={styles.Navigation__ButtonBack} />
-        <div className={styles.Navigation__Closer} onClick={() => setIsActive(false)} />
-    </nav>
+    <>{isPc ? <NavigationPc /> : <NavigationSp />}</>
   );
 }

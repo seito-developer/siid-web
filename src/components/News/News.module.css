@@ -1,0 +1,18 @@
+.News {
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.News__Title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-family: var(--font-poppins);
+}
+
+.News__List {
+    list-style: none;
+    padding: 0;
+}

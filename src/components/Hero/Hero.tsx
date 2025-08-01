@@ -9,6 +9,7 @@ import ScrollDown from "./ScrollDown/ScrollDown";
 import styles from "./Hero.module.css";
 import useIsPc from "@/hooks/useIsPc";
 import HeroSubCopyPc from "./HeroSubCopy/HeroSubCopyPc";
+import Corner, { CornerPosition } from "../Corner/Corner";
 
 export default function Hero() {
   const isPc = useIsPc();
@@ -29,6 +30,17 @@ export default function Hero() {
       <div className={styles.Hero__ScrollDown}>
         <ScrollDown />
       </div>
+      { isPc && 
+        <div className={styles.Hero__RigtBottomCorner}>
+          <Corner
+            width="16px"
+            height="16px"
+            bottom="0"
+            right="0"
+            position={CornerPosition.BOTTOM_RIGHT}
+          />
+        </div>
+      }
     </div>
   );
 }

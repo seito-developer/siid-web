@@ -1,0 +1,24 @@
+.NewsArticle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+.NewsArticle__date {
+    font-size: 11px;
+}
+
+.NewsArticle__title {
+    font-size: 12px;
+}
+
+@media screen and (min-width: 1280px) {
+    .NewsArticle {
+        flex-direction: row;
+        gap: 10px;
+    }
+    /* .NewsArticle__date {
+
+    }  */
+}
