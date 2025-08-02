@@ -1,0 +1,184 @@
+.LoadingScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.LoadingScreen.fadeOut {
+  opacity: 0;
+}
+
+.LoadingScreen__Content {
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+.LoadingScreen__Logo {
+  margin-bottom: 3rem;
+  animation: slideInUp 1s ease-out;
+}
+
+.LoadingScreen__LogoText {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, #ffffff, #f0f0f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.LoadingScreen__LogoSubtext {
+  font-size: 1rem;
+  opacity: 0.9;
+  letter-spacing: 0.1em;
+}
+
+.LoadingScreen__Animation {
+  margin: 2rem 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.LoadingScreen__Dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.LoadingScreen__Dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  animation: bounce 1.4s ease-in-out infinite both;
+}
+
+.LoadingScreen__Progress {
+  margin-top: 2rem;
+  width: 300px;
+  max-width: 80vw;
+}
+
+.LoadingScreen__ProgressBar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.LoadingScreen__ProgressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffffff, #f0f0f0);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.LoadingScreen__ProgressText {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.LoadingScreen__Particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.LoadingScreen__Particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+  to {
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px) rotate(180deg);
+    opacity: 0.8;
+  }
+}
+
+@media (max-width: 768px) {
+  .LoadingScreen__LogoText {
+    font-size: 3rem;
+  }
+  
+  .LoadingScreen__LogoSubtext {
+    font-size: 0.9rem;
+  }
+  
+  .LoadingScreen__Progress {
+    width: 250px;
+  }
+}
