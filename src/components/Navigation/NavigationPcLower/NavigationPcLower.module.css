@@ -31,10 +31,7 @@
 }
 
 .NavigationPcLower__Menu {
-  position: relative;
-  padding: 18px 20px 18px;
-  background: #fff;
-  border-radius: 40px;
+  padding-top: 15px;
 }
 
 @media screen and (min-width: 1280px) {

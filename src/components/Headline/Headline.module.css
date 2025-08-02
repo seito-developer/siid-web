@@ -1,15 +1,15 @@
 .Headline {
     border-top: 8px solid var(--main);
-    padding-left: 10%;
     position: relative;
     border-bottom: 1px dashed var(--text);
     margin-left: 8px;
 }
 .Headline__Container {
+    margin-left: 32px;
     background: var(--main);
     color: #fff;
     border-radius: 0 0 0 16px;
-    padding: 20px;
+    padding: 25px 35px 35px;
     text-align: right;
     position: relative;
 }
@@ -26,7 +26,19 @@
 }
 .Headline__Description {
     margin: 0;
-    padding: 20px 30px 20px 0;
+    padding: 20px 30px 20px 32px;
     font-size: 12px;
     font-weight: bold;
+}
+
+@media screen and (min-width: 1280px) {
+    .Headline__Container {
+        margin-left: 712px;
+        padding: 95px 60px 110px;
+    }
+    .Headline__Description {
+        margin-top: -165px;
+        padding-left: 65px;
+        max-width: 712px;
+    }
 }

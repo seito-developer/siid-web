@@ -75,6 +75,11 @@
 }
 
 @media screen and (min-width: 1280px) {
+    .Menu {
+        padding: 10px 20px;
+        background: #fff;
+        border-radius: 40px;
+    }
     .Menu__MainList {
         flex-direction: row;
         gap: 30px;
