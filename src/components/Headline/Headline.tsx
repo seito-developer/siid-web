@@ -1,6 +1,8 @@
-import React from "react";
-import styles from "./Headline.module.css";
-import Corner, { CornerPosition } from "../Corner/Corner";
+import React from 'react';
+
+import Corner, { CornerPosition } from '../Corner/Corner';
+
+import styles from './Headline.module.css';
 
 type Props = {
   subTitle: string;

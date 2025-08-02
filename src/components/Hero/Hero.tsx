@@ -1,18 +1,24 @@
-"use client";
+'use client';
 
-import React from "react";
-import HeroMainCopy from "./HeroMainCopy/HeroMainCopy";
-import HeroMainCopyPc from "./HeroMainCopy/HeroMainCopyPc";
-import HeroSubCopy from "./HeroSubCopy/HeroSubCopy";
-import HeroBackLogo from "./HeroBackLogo";
-import ScrollDown from "./ScrollDown/ScrollDown";
-import styles from "./Hero.module.css";
-import useIsPc from "@/hooks/useIsPc";
-import HeroSubCopyPc from "./HeroSubCopy/HeroSubCopyPc";
-import Corner, { CornerPosition } from "../Corner/Corner";
-import News from "../News/News";
-import ReskillBanner from "../ReskillBanner/ReskillBanner";
-import NavigationPc from "../Navigation/NavigationPc/NavigationPc";
+import React from 'react';
+
+import useIsPc from '@/hooks/useIsPc';
+
+import Corner, { CornerPosition } from '../Corner/Corner';
+import NavigationPc from '../Navigation/NavigationPc/NavigationPc';
+import News from '../News/News';
+import ReskillBanner from '../ReskillBanner/ReskillBanner';
+
+import styles from './Hero.module.css';
+import HeroBackLogo from './HeroBackLogo';
+import HeroMainCopy from './HeroMainCopy/HeroMainCopy';
+import HeroMainCopyPc from './HeroMainCopy/HeroMainCopyPc';
+import HeroSubCopy from './HeroSubCopy/HeroSubCopy';
+import HeroSubCopyPc from './HeroSubCopy/HeroSubCopyPc';
+import ScrollDown from './ScrollDown/ScrollDown';
+
+
+
 
 export default function Hero() {
   const isPc = useIsPc();

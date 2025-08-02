@@ -1,10 +1,12 @@
-import ContentsArea from "@/components/ContentsArea/ContentsArea";
-import Headline from "@/components/Headline/Headline";
-import styles from "./Courses.module.css";
-import { Metadata } from "next";
-import Breadcrumb, { BreadcrumbProps } from "@/components/Breadcrumb/Breadcrumb";
-import { commonTitle, pages } from "@/constants/meta";
-import { handleStringHTML } from "@/utils/helper";
+import { Metadata } from 'next';
+
+import Breadcrumb, { BreadcrumbProps } from '@/components/Breadcrumb/Breadcrumb';
+import ContentsArea from '@/components/ContentsArea/ContentsArea';
+import Headline from '@/components/Headline/Headline';
+import { commonTitle, pages } from '@/constants/meta';
+import { handleStringHTML } from '@/utils/helper';
+
+import styles from './Courses.module.css';
 
 export const metadata: Metadata = {
   title: `${pages.courses.name.ja} | ${commonTitle}`,
@@ -27,10 +29,10 @@ export default function Courses() {
       />
       <Breadcrumb breadcrumb={breadcrumb} />
       <ContentsArea>
-        <div style={{ height: "1000px" }}>
+        <div style={{ height: '1000px' }}>
           Contents Area
         </div>
       </ContentsArea>
     </div>
-  )
+  );
 }

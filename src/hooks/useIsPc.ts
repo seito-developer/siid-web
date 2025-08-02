@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { BREAK_POINT } from "@/constants/common";
+import { useEffect, useState } from 'react';
+
+import { BREAK_POINT } from '@/constants/common';
 
 // ウィンドウサイズが1279px以下の場合にtrueを返す
 export default function useIsPc() {
@@ -14,11 +15,11 @@ export default function useIsPc() {
     handleResize();
 
     // リサイズイベントリスナーの登録
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     // クリーンアップ
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 

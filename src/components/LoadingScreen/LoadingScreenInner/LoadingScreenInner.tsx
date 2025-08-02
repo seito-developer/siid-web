@@ -1,7 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import LoadingScreen from "../LoadingScreen";
+import { useEffect, useState } from 'react';
+
+import LoadingScreen from '../LoadingScreen';
 
 export default function LoadingScreenInner() {
   const [isMounted, setIsMounted] = useState(false);
@@ -24,14 +25,14 @@ export default function LoadingScreenInner() {
       }, remainingTime);
     };
 
-    if (document.readyState === "complete") {
+    if (document.readyState === 'complete') {
       handleLoad();
     } else {
-      window.addEventListener("load", handleLoad);
+      window.addEventListener('load', handleLoad);
     }
 
     return () => {
-      window.removeEventListener("load", handleLoad);
+      window.removeEventListener('load', handleLoad);
     };
   }, []);
 
@@ -39,7 +40,7 @@ export default function LoadingScreenInner() {
     setIsVisible(false);
   };
 
-  if (!isMounted || !isVisible) return null;
+  if (!isMounted || !isVisible) {return null;}
 
   return (
     <LoadingScreen 

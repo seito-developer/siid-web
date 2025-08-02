@@ -1,8 +1,12 @@
-import Link from "next/link";
-import React from "react";
-import styles from "./Menu.module.css";
-import { menuItems } from "@/constants/menuItems";
-import { snsItems } from "@/constants/snsItems";
+import React from 'react';
+
+import Link from 'next/link';
+
+
+import { menuItems } from '@/constants/menuItems';
+import { snsItems } from '@/constants/snsItems';
+
+import styles from './Menu.module.css';
 
 export default function Menu({ modifierClass }: { modifierClass?: string }) {
   return (

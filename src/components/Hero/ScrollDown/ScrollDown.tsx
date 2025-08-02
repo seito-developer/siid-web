@@ -1,9 +1,11 @@
-"use client";
+'use client';
 
-import React from "react";
-import styles from "./ScrollDown.module.css";
-import Corner, { CornerPosition } from "@/components/Corner/Corner";
-import useIsPc from "@/hooks/useIsPc";
+import React from 'react';
+
+import Corner, { CornerPosition } from '@/components/Corner/Corner';
+import useIsPc from '@/hooks/useIsPc';
+
+import styles from './ScrollDown.module.css';
 
 export default function ScrollDown() {
   const isPc = useIsPc();
@@ -12,7 +14,7 @@ export default function ScrollDown() {
     <div className={styles.ScrollDown}>
       <span>Scroll down</span>
       <svg width={19} height={19}>
-        <use href={`#scrollArrow`} />
+        <use href={'#scrollArrow'} />
       </svg>
       {isPc ? (
         <>

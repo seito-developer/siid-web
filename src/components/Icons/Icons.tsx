@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-const Icons = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
+function Icons() {
+  return <svg xmlns="http://www.w3.org/2000/svg" style={{ display: 'none' }}>
     <symbol id="smallArrow" viewBox="0 0 7 9" fill="none">
       <path
         d="M1 8C1 8 3.22222 4.9375 6 4.5C3.22222 4.0625 1 1 1 1"
@@ -110,7 +110,7 @@ const Icons = () => (
         />
       </symbol>
     </g>
-  </svg>
-);
+  </svg>;
+}
 
 export default Icons;

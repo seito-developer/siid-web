@@ -1,8 +1,10 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import Logo from "@/components/Logo/Logo";
-import styles from "./LoadingScreen.module.css";
+import React, { useEffect, useState } from 'react';
+
+import Logo from '@/components/Logo/Logo';
+
+import styles from './LoadingScreen.module.css';
 
 interface LoadingScreenProps {
   shouldStartFadeOut?: boolean;
@@ -49,7 +51,7 @@ export default function LoadingScreen({ shouldStartFadeOut, onComplete }: Loadin
   }, [shouldStartFadeOut]);
 
 
-  if (!isVisible) return null;
+  if (!isVisible) {return null;}
 
   return (
     <div className={`${styles.LoadingScreen} ${isFadingOut ? styles.isFadeOut : ''}`}>
@@ -65,7 +67,7 @@ export default function LoadingScreen({ shouldStartFadeOut, onComplete }: Loadin
         
         <div className={styles.LoadingScreen__Animation}>
           <div className={styles.LoadingScreen__Dots}>
-            {[...Array(3)].map((_, i) => (
+            {[...Array(3)].map((_item, i) => (
               <div
                 key={i}
                 className={styles.LoadingScreen__Dot}
@@ -88,14 +90,14 @@ export default function LoadingScreen({ shouldStartFadeOut, onComplete }: Loadin
         </div>
 
         <div className={styles.LoadingScreen__Particles}>
-          {[...Array(20)].map((_, i) => (
+          {[...Array(20)].map((_item, i) => (
             <div
               key={i}
               className={styles.LoadingScreen__Particle}
               style={{
                 left: `${Math.random() * 100}%`,
                 animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 2}s`
+                animationDuration: `${2 + Math.random() * 2}s`,
               }}
             />
           ))}

@@ -1,7 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import { NewsPostProps } from "./NewsPost/NewsPost";
+import { useEffect, useRef, useState } from 'react';
+
+import { NewsPostProps } from './NewsPost/NewsPost';
 
 /**
  * Custom hook to manage news articles navigation and touch events.
@@ -16,13 +17,13 @@ const useNews = (posts: NewsPostProps[]) => {
   const touchEndX = useRef(0);
 
   const nextArticle = () => {
-    if (isAnimating) return;
+    if (isAnimating) {return;}
     setIsAnimating(true);
     setCurrentIndex((prev) => (prev + 1) % posts.length);
   };
 
   const prevArticle = () => {
-    if (isAnimating) return;
+    if (isAnimating) {return;}
     setIsAnimating(true);
     setCurrentIndex((prev) => (prev - 1 + posts.length) % posts.length);
   };
@@ -36,7 +37,7 @@ const useNews = (posts: NewsPostProps[]) => {
   };
 
   const handleTouchEnd = () => {
-    if (!touchStartX.current || !touchEndX.current) return;
+    if (!touchStartX.current || !touchEndX.current) {return;}
 
     const distance = touchStartX.current - touchEndX.current;
     const isLeftSwipe = distance > 50;

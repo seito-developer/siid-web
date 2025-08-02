@@ -1,0 +1,23 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "files.associations": {
+    "*.css": "css"
+  },
+  "emmet.includeLanguages": {
+    "typescript": "html",
+    "typescriptreact": "html"
+  },
+  "eslint.workingDirectories": ["src"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact", 
+    "typescript",
+    "typescriptreact"
+  ]
+}

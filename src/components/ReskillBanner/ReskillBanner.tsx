@@ -1,5 +1,6 @@
-import React from "react";
-import styles from "./ReskillBanner.module.css";
+import React from 'react';
+
+import styles from './ReskillBanner.module.css';
 
 export default function ReskillBanner() {
   return (

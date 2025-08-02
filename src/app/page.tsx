@@ -1,13 +1,16 @@
-import Header from "@/components/Header/Header";
-import Hero from "@/components/Hero/Hero";
-import News from "@/components/News/News";
-import ReskillBanner from "@/components/ReskillBanner/ReskillBanner";
-import LoadingScreenInner from "@/components/LoadingScreen/LoadingScreenInner/LoadingScreenInner";
-import styles from "./Home.module.css";
-import HomeLayout from "./homeLayout";
-import { Metadata } from "next";
-import { commonTitle, pages,  } from "@/constants/meta";
-import { handleStringHTML } from "@/utils/helper";
+import { Metadata } from 'next';
+
+import Header from '@/components/Header/Header';
+import Hero from '@/components/Hero/Hero';
+import LoadingScreenInner from '@/components/LoadingScreen/LoadingScreenInner/LoadingScreenInner';
+import News from '@/components/News/News';
+import ReskillBanner from '@/components/ReskillBanner/ReskillBanner';
+import { commonTitle, pages  } from '@/constants/meta';
+import { handleStringHTML } from '@/utils/helper';
+
+import styles from './Home.module.css';
+import HomeLayout from './homeLayout';
+
 
 export const metadata: Metadata = {
   title: commonTitle,
@@ -33,7 +36,7 @@ export default function Home() {
               <ReskillBanner />
             </div>
 
-            <div style={{ height: "1000px" }}>
+            <div style={{ height: '1000px' }}>
               Contents Area
             </div>
           </div>

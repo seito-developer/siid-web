@@ -1,7 +1,10 @@
-import React from 'react'
-import styles from './NavigationPc.module.css'
-import Menu from '../Menu/Menu'
-import Logo from '@/components/Logo/Logo'
+import React from 'react';
+
+import Logo from '@/components/Logo/Logo';
+
+import Menu from '../Menu/Menu';
+
+import styles from './NavigationPc.module.css';
 
 export default function NavigationPc() {
   return (
@@ -11,5 +14,5 @@ export default function NavigationPc() {
         <Menu />
       </div>
     </nav>
-  )
+  );
 }
