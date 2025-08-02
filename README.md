@@ -278,6 +278,36 @@ npm start
 
 # Lint実行
 npm run lint
+
+# TypeScriptチェック
+npm run typecheck
+```
+
+## ⚠️ 開発時の必須チェック
+
+**developまたはmainブランチにマージする前に必ずLintとTypeScriptチェックを実行してください。**
+
+```bash
+# 必須: コミット前にLintチェック
+npm run lint
+
+# 必須: コミット前にTypeScriptチェック
+npm run typecheck
+```
+
+### GitHub Actionsによる自動チェック
+
+- developまたはmainブランチへのPR時に自動的にLintとTypeScriptチェックが実行されます
+- **Lintエラーがある場合、PRマージが自動的に拒否されます**
+- 事前にローカルでチェックを行い、エラーを修正してからPRを作成してください
+
+### Lintエラーの修正方法
+
+```bash
+# 自動修正可能なエラーを修正
+npm run lint -- --fix
+
+# 修正できないエラーは手動で対応が必要です
 ```
 
 ## 📋 開発時の注意点
