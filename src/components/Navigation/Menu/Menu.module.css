@@ -101,4 +101,12 @@
     .Menu__Bar {
         display: block;
     }
+    .Menu__Ja {
+        font-size: 10px;
+    }
+    .Menu.isLower {
+        .Menu__SubList {
+            display: block;
+        }
+    }
 }

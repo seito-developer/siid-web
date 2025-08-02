@@ -1,0 +1,45 @@
+.NavigationPcLower {
+  display: none;
+  border-top: 8px solid var(--main);
+  border-left: 8px solid var(--main);
+  width: 100%;
+  position: fixed;
+  z-index: var(--maxZ);
+  left: 0;
+  top: 0;
+}
+
+.NavigationPcLower__Container {
+  display: flex;
+  align-items: center;
+  /* gap: 40px; */
+  align-content: space-between;
+  position: relative;
+  padding-bottom: 40px;
+  gap: 30px;
+}
+
+.NavigationPcLower__logo {
+  position: relative;
+
+  > a {
+    display: inline-block;
+    background: var(--main);
+    border-radius: 0 0 40px 0;
+    padding: 20px 35px 30px 20px;
+  }
+}
+
+.NavigationPcLower__Menu {
+  position: relative;
+  padding: 18px 20px 18px;
+  background: #fff;
+  border-radius: 40px;
+}
+
+@media screen and (min-width: 1280px) {
+  .NavigationPcLower {
+    /* background: #fff; */
+    display: block;
+  }
+}

@@ -6,6 +6,7 @@ import Icons from "@/components/Icons/Icons";
 import Footer from "@/components/Footer/Footer";
 import NavigationSp from "@/components/Navigation/NavigationSp/NavigationSp";
 import { notoSansJp, poppins } from "@/constants/common";
+import NavigationPcLower from '@/components/Navigation/NavigationPcLower/NavigationPcLower';
 
 export default async function RootLayout({
   children,
@@ -17,6 +18,7 @@ export default async function RootLayout({
       <body className={`${poppins.variable} ${notoSansJp.variable}`}>
         <Icons />
         <NavigationSp />
+        <NavigationPcLower />
         {children}
         <Footer />
       </body>
