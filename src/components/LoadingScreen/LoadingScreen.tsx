@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Logo from "@/components/Logo/Logo";
 import styles from "./LoadingScreen.module.css";
 
 interface LoadingScreenProps {
@@ -51,10 +52,12 @@ export default function LoadingScreen({ shouldStartFadeOut, onComplete }: Loadin
   if (!isVisible) return null;
 
   return (
-    <div className={`${styles.LoadingScreen} ${isFadingOut ? styles.fadeOut : ''}`}>
+    <div className={`${styles.LoadingScreen} ${isFadingOut ? styles.isFadeOut : ''}`}>
       <div className={styles.LoadingScreen__Content}>
         <div className={styles.LoadingScreen__Logo}>
-          <div className={styles.LoadingScreen__LogoText}>SiiD</div>
+          <div className={styles.LoadingScreen__LogoComponent}>
+            <Logo width={120} height={32} fill="white" />
+          </div>
           <div className={styles.LoadingScreen__LogoSubtext}>
             ITエンジニア転職 × 生成AI特化
           </div>

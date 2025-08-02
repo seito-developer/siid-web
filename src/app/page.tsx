@@ -2,7 +2,7 @@ import Header from "@/components/Header/Header";
 import Hero from "@/components/Hero/Hero";
 import News from "@/components/News/News";
 import ReskillBanner from "@/components/ReskillBanner/ReskillBanner";
-import ClientLoadingScreen from "@/components/ClientLoadingScreen/ClientLoadingScreen";
+import LoadingScreenInner from "@/components/LoadingScreen/LoadingScreenInner/LoadingScreenInner";
 import styles from "./Home.module.css";
 import HomeLayout from "./homeLayout";
 import { Metadata } from "next";
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <ClientLoadingScreen />
+      <LoadingScreenInner />
       <HomeLayout>
         <div className={styles.Home}>
           <Header />

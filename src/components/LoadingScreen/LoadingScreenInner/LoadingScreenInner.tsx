@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
+import LoadingScreen from "../LoadingScreen";
 
-export default function ClientLoadingScreen() {
+export default function LoadingScreenInner() {
   const [isMounted, setIsMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [shouldStartFadeOut, setShouldStartFadeOut] = useState(false);
