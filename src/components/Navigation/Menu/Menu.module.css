@@ -5,9 +5,11 @@
     gap: 18px;
 }
 .Menu__MainItem {
+    position: relative;
     > a {
         display: block;
         text-decoration: none;
+        color: var(--text);
         &:hover {
             background: #eee;
         }
@@ -15,7 +17,7 @@
 }
 
 .Menu__En {
-/* font-family: 'Poppins'; */
+    font-family: 'Poppins';
     display: block;
     font-weight: 700;
     font-size: 10px;
@@ -29,9 +31,21 @@
     color: var(--text);
 }
 
+.Menu__Bar {
+    transform: scaleX(0);
+    transform-origin: bottom center;
+    transition: transform 0.25s ease-in-out;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 1px solid var(--main);
+}
 
-/* Careerコース Career+FullSupportEditionコース Career+VIPEditionコース */
-.Menu__SubList {}
+.Menu__SubList {
+    display: block;
+}
+
 .Menu__SubItem {
     font-size: 13px;
     > a {
@@ -56,6 +70,48 @@
         transition: transform 0.25s ease-in-out;
         &:hover {
             transform: translateY(-3px);
+        }
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .Menu {
+        padding: 10px 20px;
+        background: #fff;
+        border-radius: 40px;
+    }
+    .Menu__MainList {
+        flex-direction: row;
+        gap: 30px;
+        margin: 0;
+        text-align: center;
+    }
+    .Menu__MainItem {
+        > a {
+            &:hover {
+                background: #fff;
+                .Menu__Bar {
+                    transform: scaleX(1);
+                }
+            }
+        }
+    }
+    .Menu__SnsList {
+        display: none;
+        white-space: nowrap;
+    }
+    .Menu__SubList {
+        display: none;
+    }
+    .Menu__Bar {
+        display: block;
+    }
+    .Menu__Ja {
+        font-size: 10px;
+    }
+    .Menu.isLower {
+        .Menu__SubList {
+            display: block;
         }
     }
 }

@@ -1,0 +1,23 @@
+.NewsPost {
+    display: flex;
+    flex-direction: column;
+}
+
+.NewsPost__date {
+    font-size: 11px;
+}
+
+.NewsPost__title {
+    font-size: 12px;
+    margin: 0;
+}
+
+@media screen and (min-width: 1280px) {
+    .NewsPost {
+        flex-direction: row;
+        gap: 10px;
+    }
+    .NewsPost__date {
+        font-size: 12px;
+    } 
+}

@@ -1,0 +1,20 @@
+.NavigationPc {
+  display: none;
+  background: #fff;
+  border-radius: 40px;
+}
+
+.NavigationPc__Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  margin: 20px;
+  gap: 40px;
+}
+
+@media screen and (min-width: 1280px) {
+  .NavigationPc {
+    display: block;
+  }
+}

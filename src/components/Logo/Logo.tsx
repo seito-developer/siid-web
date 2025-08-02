@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function Logo({ width = 69, height = 18, fill = '#342525' }: { width?: number; height?: number; fill?: string }) {
   return (

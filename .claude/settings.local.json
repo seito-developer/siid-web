@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(rm:*)",
+      "Bash(mv:*)",
+      "Bash(npx eslint:*)",
+      "Bash(mkdir:*)"
+    ],
+    "deny": []
+  }
+}
