@@ -3,21 +3,25 @@ import React from 'react'
 import styles from './FooterMenu.module.css';
 import { menuItems } from '@/constants/menuItems';
 import { snsFooterItems } from '@/constants/snsItems';
+import Logo from '@/components/Logo/Logo';
 
 export default function FooterMenu() {
   return (
     <div className={styles.FooterMenu}>
-        <ul className={styles.FooterMenu__SnsList}>
-            {snsFooterItems.map((snsItem, index) => (
-                <li key={index} className={styles.FooterMenu__SnsItem}>
-                    <Link href={snsItem.url} target="_blank">
-                        <svg width={snsItem.width} height={snsItem.height}>
-                            <use href={`#${snsItem.icon}`} />
-                        </svg>
-                    </Link> 
-                </li>
-            ))}
-        </ul>
+        <div className={styles.FooterMenu__Landmark}>
+            <Logo width={134} height={34} fill='#fff' />
+            <ul className={styles.FooterMenu__SnsList}>
+                {snsFooterItems.map((snsItem, index) => (
+                    <li key={index} className={styles.FooterMenu__SnsItem}>
+                        <Link href={snsItem.url} target="_blank">
+                            <svg width={snsItem.width} height={snsItem.height}>
+                                <use href={`#${snsItem.icon}`} />
+                            </svg>
+                        </Link> 
+                    </li>
+                ))}
+            </ul>
+        </div>
         <ul className={styles.FooterMenu__MainList}>
             {menuItems.map((item, index) => (
                 <li className={styles.FooterMenu__MainItem} key={index}>

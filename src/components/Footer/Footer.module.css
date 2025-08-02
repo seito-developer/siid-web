@@ -1,25 +1,39 @@
 .Footer {
-    padding: 0 20px 10px;
-    margin-bottom: 60px;
-    position: relative;
+  padding: 0 20px 10px;
+  margin-bottom: 60px;
+  position: relative;
 }
 
 .Footer__Inner {
-    background: var(--text);
-    border-radius: 16px;
-    padding: 30px;
-    position: relative;
+  background: var(--text);
+  border-radius: 16px;
+  padding: 30px;
+  position: relative;
 }
 
 .Footer__ContactButton {
-    position: absolute;
-    right: 30px;
-    top: -40px;
-    transform: rotate(4.4deg);
+  position: absolute;
+  right: 30px;
+  top: -40px;
+  transform: rotate(4.4deg);
 }
 
 .Footer__Pagetop {
-    position: absolute;
-    top: 90px;
-    right: 20px;
+  position: absolute;
+  top: 90px;
+  right: 20px;
+}
+
+@media screen and (min-width: 1280px) {
+  .Footer {
+    margin-bottom: 80px;
+  }
+  .Footer__Inner {
+    display: flex;
+    border-radius: 40px;
+    padding: 54px 40px 120px;
+  }
+  .Footer__ContactButton {
+    transform: rotate(-10deg);
+  }
 }

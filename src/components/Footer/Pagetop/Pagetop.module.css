@@ -25,3 +25,9 @@
         transform: rotate(-5deg);
     }
 }
+
+@media screen and (min-width: 1280px) {
+    .Pagetop {
+        display: none;
+    }
+}

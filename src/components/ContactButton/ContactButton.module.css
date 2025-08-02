@@ -1,31 +1,47 @@
 .ContactButton {
-    display: block;
-    width: 158px;
-    height: 110px;
-    background: #E0804C;
-    color: var(--text);
-    border: 1px solid #342525;
-    border-radius: 50%;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 0px 0px 0px 4px #E0804C;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    transition: transform 0.25s ease-in-out;
+  display: block;
+  width: 158px;
+  height: 110px;
+  background: #e0804c;
+  color: var(--text);
+  border: 1px solid #342525;
+  border-radius: 50%;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0px 0px 0px 4px #e0804c;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.25s ease-in-out;
 
-    &:hover {
-        transform: rotate(-5deg);
-    }
+  &:hover {
+    transform: rotate(-5deg);
+  }
 }
 
 .ContactButton__En {
-    display: block;
-    font-size: 10px;
-    font-family: var(--font-poppins);
+  display: block;
+  font-size: 10px;
+  font-family: var(--font-poppins);
 }
 .ContactButton__Jp {
-    display: block;
-    font-size: 16px;
+  display: block;
+  font-size: 16px;
+}
+
+@media screen and (min-width: 1280px) {
+  .ContactButton {
+    &.isFooter {
+      width: 256px;
+      height: 176px;
+
+      .ContactButton__En {
+        font-size: 16px;
+      }
+      .ContactButton__Jp {
+        font-size: 23px;
+      }
+    }
+  }
 }
