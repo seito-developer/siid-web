@@ -6,10 +6,12 @@ import LoadingScreenInner from "@/components/LoadingScreen/LoadingScreenInner/Lo
 import styles from "./Home.module.css";
 import HomeLayout from "./homeLayout";
 import { Metadata } from "next";
+import { commonTitle, pages,  } from "@/constants/meta";
+import { handleStringHTML } from "@/utils/helper";
 
 export const metadata: Metadata = {
-  title: "ITエンジニア転職 × 生成AI特化のプログラミングスクール - SiiD",
-  description: "SiiDは、ITエンジニア転職と生成AIに特化したプログラミングスクールです。実践的なカリキュラムと最新の技術を学び、あなたのキャリアを次のステージへと導きます。",
+  title: commonTitle,
+  description: handleStringHTML(pages.index.description, false),
 };
 
 export default function Home() {

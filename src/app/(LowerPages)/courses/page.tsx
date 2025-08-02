@@ -3,24 +3,27 @@ import Headline from "@/components/Headline/Headline";
 import styles from "./Courses.module.css";
 import { Metadata } from "next";
 import Breadcrumb, { BreadcrumbProps } from "@/components/Breadcrumb/Breadcrumb";
+import { commonTitle, pages } from "@/constants/meta";
+import { handleStringHTML } from "@/utils/helper";
 
 export const metadata: Metadata = {
-  title: "Test | ITエンジニア転職 × 生成AI特化のプログラミングスクール - SiiD",
-  description: "Test SiiDは、ITエンジニア転職と生成AIに特化したプログラミングスクールです。実践的なカリキュラムと最新の技術を学び、あなたのキャリアを次のステージへと導きます。",
+  title: `${pages.courses.name.ja} | ${commonTitle}`,
+  description: handleStringHTML(pages.courses.description, false),
 };
 
+
 const breadcrumb: BreadcrumbProps[] = [
-  { title: "TOP", url: "/" },
-  { title: "コース一覧", url: "/courses" },
+  { title: pages.index.name.ja, url: pages.index.url },
+  { title: pages.courses.name.ja, url: pages.courses.url },
 ];
 
 export default function Courses() {
   return (
     <div className={styles.Courses}>
       <Headline
-        subTitle="コース一覧"
-        title="Courses"
-        description="ここはページのディスクリプションに関する内容が入る想定をしています。PCでは2行、SPでは3行になります。"
+        subTitle={pages.courses.name.ja}
+        title={pages.courses.name.en}
+        description={handleStringHTML(pages.courses.description, true)}
       />
       <Breadcrumb breadcrumb={breadcrumb} />
       <ContentsArea>
