@@ -9,6 +9,7 @@ type Props = {
 };
 
 export default function Headline({ subTitle, title, description }: Props) {
+  
   return (
     <div className={styles.Headline}>
       <header className={styles.Headline__Container}>
@@ -18,7 +19,9 @@ export default function Headline({ subTitle, title, description }: Props) {
         <Corner bottom='-20px' right="8px" position={CornerPosition.TOP_RIGHT} />
       </header>
       <p className={styles.Headline__Description}>{description}</p>
-      <Corner top='0' left="0" position={CornerPosition.TOP_LEFT} />
+      <div className={styles.Headline__Corner}>
+        <Corner top='0' left="0" position={CornerPosition.TOP_LEFT} />
+      </div>
     </div>
   );
 }

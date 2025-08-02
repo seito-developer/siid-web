@@ -24,7 +24,9 @@ export default function Courses() {
       />
       <Breadcrumb breadcrumb={breadcrumb} />
       <ContentsArea>
-        Hello
+        <div style={{ height: "1000px" }}>
+          Contents Area
+        </div>
       </ContentsArea>
     </div>
   )

@@ -32,6 +32,9 @@
 }
 
 @media screen and (min-width: 1280px) {
+    .Headline {
+        border-top: 0;
+    }
     .Headline__Container {
         margin-left: 712px;
         padding: 95px 60px 110px;

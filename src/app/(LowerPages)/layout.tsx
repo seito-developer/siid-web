@@ -7,6 +7,7 @@ import Footer from "@/components/Footer/Footer";
 import NavigationSp from "@/components/Navigation/NavigationSp/NavigationSp";
 import { notoSansJp, poppins } from "@/constants/common";
 import NavigationPcLower from '@/components/Navigation/NavigationPcLower/NavigationPcLower';
+import Corner, { CornerPosition } from '@/components/Corner/Corner';
 
 export default async function RootLayout({
   children,
