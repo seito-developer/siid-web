@@ -2,6 +2,16 @@
 
 ITエンジニア転職 × 生成AI特化のプログラミングスクール「SiiD」のWebサイト開発ドキュメントです。
 
+## デザインデータ
+
+### 全体図イメージ
+<img width="951" height="628" alt="Screenshot 2025-11-22 at 13 07 35" src="https://github.com/user-attachments/assets/d7e93a09-3250-4fe5-ba83-700f246e3da8" />
+
+### Figma
+https://www.figma.com/design/VSf9GA17S6gkc6rq4dfzpu/%E5%90%88%E5%90%8C%E4%BC%9A%E7%A4%BEBugFix%E6%A7%98_%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%B5%E3%82%A4%E3%83%88%E5%88%B6%E4%BD%9C--Copy-?node-id=1-2&p=f&t=iQ1DUi5Rihu20eul-0
+
+※要アクセスリクエスト
+
 ## 🚀 プロジェクト概要
 
 Next.js 15.4.5 + TypeScript + CSS Modulesを使用したモダンなWebアプリケーションです。
