@@ -1,12 +1,19 @@
 .Footer {
-  padding: 0 20px 10px;
-  margin-bottom: 60px;
   position: relative;
+  background: var(--main);
+}
+
+.Footer__Container {
+  padding: 0 20px 20px;
+  background: var(--background);
+  border-radius: 0 0 32px 32px;
+  border: 8px solid var(--main);
+  border-top: 0;
 }
 
 .Footer__Inner {
   background: var(--text);
-  border-radius: 16px;
+  border-radius: 32px;
   padding: 30px;
   position: relative;
 }
@@ -25,9 +32,6 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .Footer {
-    margin-bottom: 80px;
-  }
   .Footer__Inner {
     display: flex;
     border-radius: 40px;
