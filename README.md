@@ -38,10 +38,10 @@ src/
 │   ├── homeLayout.tsx      # ホームページ専用レイアウト
 │   └── Home.module.css     # ホームページスタイル
 ├── components/             # 再利用可能なUIコンポーネント
-│   ├── Header/            
-│   ├── Hero/              
-│   ├── LoadingScreen/     
-│   └── ...                
+│   ├── Header/
+│   ├── Hero/
+│   ├── LoadingScreen/
+│   └── ...
 ├── constants/             # アプリケーション定数
 │   ├── common.ts          # 共通定数
 │   ├── meta.ts           # メタデータ定数
@@ -163,7 +163,7 @@ import useIsPc from '@/hooks/useIsPc';
 
 export default function Component() {
   const isPc = useIsPc();
-  
+
   return (
     <div>
       {isPc ? <PCVersion /> : <MobileVersion />}
