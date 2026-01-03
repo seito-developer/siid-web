@@ -1,0 +1,64 @@
+.CareerPathList {
+  width: 100%;
+}
+
+.CareerPathList__Grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 40px;
+  justify-items: center;
+}
+
+.CareerPath__SurveyLink {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    border: 1px solid var(--text);
+    border-radius: 60px;
+    background-color: var(--text);
+}
+
+.CareerCard__SurveyLinkAnchor {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+}
+
+.CareerCard__SurveyText {
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.CareerPath__SurveyIcon {
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+
+@media screen and (min-width: 1280px) {
+  .CareerPathList {
+    max-width: 1081px;
+  }
+
+  .CareerPathList__Grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 49px;
+    row-gap: 40px;
+    margin-bottom: 60px;
+    justify-items: stretch;
+  }
+
+
+  .CareerCard__SurveyLinkAnchor {
+    padding: 20px 40px;
+   }
+
+  .CareerCard__SurveyText {
+    font-size: 16px;
+    letter-spacing: 0.03em;
+  }
+}
