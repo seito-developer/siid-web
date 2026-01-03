@@ -1,6 +1,9 @@
+import { Suspense } from 'react';
+
 import { Metadata } from 'next';
 
 import Breadcrumb, { BreadcrumbProps } from '@/components/Breadcrumb/Breadcrumb';
+import CareerPathList from '@/components/CareerPath/CareerPathList/CareerPathList';
 import ContentsArea from '@/components/ContentsArea/ContentsArea';
 import Headline from '@/components/Headline/Headline';
 import { commonTitle, pages } from '@/constants/meta';
@@ -28,8 +31,10 @@ export default function CareerPath() {
       />
       <Breadcrumb breadcrumb={breadcrumb} />
       <ContentsArea>
-        <div style={{ height: '1000px' }}>
-          Contents Area
+        <div className={styles.CareerPath__Wrapper}>
+          <Suspense fallback={<div>Loading...</div>}>
+            <CareerPathList />
+          </Suspense>
         </div>
       </ContentsArea>
     </div>
