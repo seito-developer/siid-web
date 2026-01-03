@@ -1,0 +1,341 @@
+.CareerModal__Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.CareerModal__Container {
+  position: relative;
+  width: 100%;
+  max-width: 375px;
+  max-height: 90vh;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow-y: auto;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+}
+
+.CareerModal__Badge {
+    position: absolute;
+    top: 0%;
+    transform: translate(105%, 25%);
+    width: 100%;
+    max-width: 99px;
+    height: 65px;
+    color: #FFFFFF;
+    font-family: var(--font-bagor);
+    text-align: center;
+    background: #342525;
+    border: 1px solid #FFFFFF;
+    border-radius: 50%;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform .25s ease-in-out;
+    display: flex;
+    box-shadow: 0 0 0 4px #342525;
+}
+
+.CareerModal__BadgeText {
+    font-size: 12px;
+}
+
+.CareerModal__BadgeNumber {
+    font-size: 20px;
+}
+
+.CareerModal__Close {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  margin-left: auto;
+  margin-bottom: 12px;
+  cursor: pointer;
+  color: #475499;
+  font-size: 12px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.CareerModal__Content {
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding: 24px 16px;
+  width: 100%;
+}
+
+.CareerModal__Article {
+  width: 100%;
+}
+
+.CareerModal__Header {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.CareerModal__Top {
+  display: flex;
+  flex-direction: column;
+}
+
+.CareerModal__HeaderTop {
+  gap: 12px;
+}
+
+.CareerModal__TitleWrapper {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.CareerModal__Title {
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: #342525;
+  margin-top: 20px;
+}
+
+.CareerModal__InfoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.CareerModal__InfoItem {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  font-weight: 600;
+  color: #342525;
+  line-height: 1.5;
+}
+
+.CareerModal__Label {
+  font-weight: 700;
+  display: inline;
+}
+
+.CareerModal__Course {
+  width: fit-content;
+  padding: 2px 6px;
+  background-color: #E87722;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 3px;
+  color: #342525;
+}
+
+.CareerModal__Text {
+  font-weight: 500;
+  display: inline;
+}
+
+.CareerModal__Line {
+  width: 100%;
+  height: 1px;
+  border: none;
+  background-image: linear-gradient(to right, #000 50%, transparent 50%);
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+  margin: 16px 0;
+}
+
+.CareerModal__DescriptionSection {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.CareerModal__Description {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+  color: #342525;
+  text-align: left;
+  margin: 0;
+}
+
+.CareerModal__ImageSection {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.CareerModal__Image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+.CareerModal__ResultSection {
+  background-color: #4A5891;
+  border-radius: 12px;
+  padding: 20px 16px;
+  color: #fff;
+  width: 100%;
+}
+
+.CareerModal__ResultTitle {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0 0 8px 0;
+  padding-bottom: 8px;
+}
+
+.CareerModal__ResultAchievement {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 12px 0;
+}
+
+.CareerModal__ResultContent {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+
+@media screen and (min-width: 1280px) {
+  .CareerModal__Container {
+    max-width: 1080px;
+    width: 100%;
+    padding: 24px;
+  }
+
+  .CareerModal__Close {
+    font-size: 14px;
+  }
+
+  .CareerModal__Badge {
+    /* left: 490px; */
+    top: 0%;
+    transform: translate(450%, 45%);
+  }
+
+  .CareerModal__Content {
+    padding: 40px 32px;
+  }
+
+  .CareerModal__Top {
+    flex-direction: row;
+    align-items: stretch;
+    margin: 18px 0px 50px;
+  }
+
+
+  .CareerModal__Header {
+    margin-bottom: 20px;
+    max-width: 324px;
+    width: 100%;
+  }
+
+  .CareerModal__HeaderTop {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .CareerModal__TitleWrapper {
+    flex: 1;
+  }
+
+  .CareerModal__Title {
+    font-size: 22px;
+    margin-top: 4px;
+  }
+
+  .CareerModal__Block {
+    margin-top: 17px;
+  }
+
+  .CareerModal__InfoWrapper {
+    flex-shrink: 0;
+    min-width: 548px;
+    width: 100%;
+  }
+
+  .CareerModal__InfoItem {
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+  }
+
+    .CareerModal__Line {
+    display: inline-block;
+    width: 1px;
+    height: auto;
+    align-self: stretch;
+    background-image: linear-gradient(
+      to bottom,
+      #000 50%,
+      transparent 50%
+    );
+    background-size: 1px 8px;
+    background-repeat: repeat-y;
+    margin: 0 32px;
+  }
+
+  .CareerModal__Course {
+   display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 3px;
+  }
+
+  .CareerModal__DescriptionSection {
+    margin-bottom: 20px;
+  }
+
+  .CareerModal__Description {
+    font-size: 14px;
+  }
+
+  .CareerModal__ImageSection {
+    max-width: 657px;
+    width: 100%;
+    margin-inline: auto;
+    margin-bottom: 60px;
+  }
+
+  .CareerModal__ResultSection {
+    padding: 28px 24px;
+  }
+
+  .CareerModal__ResultTitle {
+    font-size: 14px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+  }
+
+  .CareerModal__ResultAchievement {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .CareerModal__ResultContent {
+    font-size: 14px;
+  }
+}
