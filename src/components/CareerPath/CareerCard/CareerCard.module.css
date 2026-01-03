@@ -1,0 +1,189 @@
+.CareerCard {
+  background: #FFFFFF;
+  border: 1px solid var(--text);
+  border-radius: 8px;
+  width: 100%;
+  padding: 20px 16px;
+}
+
+.CareerCard__Image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 452 / 254;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.CareerCard__Header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.CareerCard__Voice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 13%;
+  aspect-ratio: 1 / 0.866;
+  background: var(--main);
+  color: white;
+  clip-path: polygon(
+    50% 0%,
+    100% 25%,
+    100% 75%,
+    50% 100%,
+    0% 75%,
+    0% 25%
+  );
+  padding: 2%;
+}
+
+.CareerCard__VoiceText {
+  font-size: 8px;
+  font-weight: 600;
+  font-family: var(--font-bagor);
+  letter-spacing: 0.04em;
+}
+
+.CareerCard__VoiceNum {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: var(--font-bagor);
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.CareerCard__Title {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  margin: 0;
+}
+
+.CareerCard__Line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(to right, var(--text) 60%, transparent 40%);
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+  margin: 16px 0;
+}
+
+.CareerCard__Description {
+  text-align: left;
+  letter-spacing: 0.1em;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 16px 0;
+}
+
+.CareerCard__Footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.CareerCard__Tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  flex: 1;
+}
+
+.CareerCard__Tag {
+  background-color: #475499;
+  color: #FFFFFF;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.CareerCard__Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--text);
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+  text-decoration: none;
+}
+
+.CareerCard__Button:hover {
+  transform: scale(1.1);
+}
+
+.CareerCard__Icon {
+  width: 11px;
+  height: 11px;
+  filter: brightness(0) invert(1);
+}
+
+@media screen and (min-width: 1280px) {
+  .CareerCard {
+    width: 100%;
+    padding: 28px 24px 32px;
+  }
+
+  .CareerCard__Image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 452 / 254;
+  }
+
+  .CareerCard__Header {
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .CareerCard__VoiceText {
+    font-size: 8px;
+  }
+
+  .CareerCard__VoiceNum {
+    font-size: 20px;
+  }
+
+  .CareerCard__Title {
+    font-size: 20px;
+  }
+
+  .CareerCard__Description {
+    font-size: 15px;
+  }
+
+  .CareerCard__Tag {
+    font-size: 14px;
+  }
+
+  .CareerCard__Footer {
+    justify-content: space-between;
+  }
+
+  .CareerCard__Button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .CareerCard__Icon {
+    width: 14px;
+    height: 14px;
+  }
+}

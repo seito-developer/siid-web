@@ -54,7 +54,7 @@ export default function CareerPathList() {
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('page', page.toString());
-    router.push(`?${params.toString()}`, { scroll: false });
+    router.push(`?${params}`, { scroll: false });
   };
 
   return (
