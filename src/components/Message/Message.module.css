@@ -1,0 +1,120 @@
+.Message {
+  position: relative;
+  margin-top: 32px;
+  padding-block: 136px;
+  color: #fff;
+  &::before {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 16px;
+    background: var(--main);
+    position: absolute;
+    top: 0;
+    left: -28px;
+  }
+  &::after {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 100%;
+    background-color: #475499;
+    position: absolute;
+    top: 0;
+    left: -28px;
+    z-index: -1;
+  }
+}
+
+.Message__Title {
+  font-size: var(--section-en-title-font-size);
+  font-weight: var(--section-en-title-font-weight);
+  line-height: var(--section-en-title-line-height);
+  font-family: var(--font-poppins);
+  margin: 0 0 55px;
+}
+
+.Message__Text {
+  font-size: 20px;
+  line-height: 1.8;
+  margin: 0;
+  white-space: nowrap;
+  & + & {
+    margin-top: 2em;
+  }
+  &:last-child {
+    font-size: 29px;
+  }
+  & svg {
+    transform: translateY(-0.3em);
+    margin-right: 4px;
+    width: 120px;
+    height: auto;
+    &:where(.Message__Text:last-child svg) {
+      transform: translateY(-0.2em);
+      width: 180px;
+    }
+  }
+}
+
+.Message__Logo {
+  width: 100vw;
+  position: absolute;
+  top: 240px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.1;
+  z-index: 0;
+  & svg {
+    width: 100%;
+    height: 100%;
+    fill: #fff;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .Message {
+    margin-top: 0;
+    padding-block: 180px 248px;
+    &::before {
+      content: none;
+    }
+    &::after {
+      left: 0;
+      z-index: 3;
+    }
+  }
+  .Message__Corner {
+    display: none;
+  }
+  .Message__Container {
+    z-index: 4;
+    position: relative;
+    max-width: var(--pc-container-width);
+    margin-inline: auto;
+  }
+  .Message__Title {
+    margin-bottom: 56px;
+  }
+  .Message__Text {
+    font-size: 42px;
+    line-height: 1.53;
+    & + & {
+      margin-top: 1em;
+    }
+    &:last-child {
+      font-size: 72px;
+    }
+    & svg {
+      width: 220px;
+      transform: translateY(0);
+      margin-bottom: 18px;
+      margin-right: 8px;
+      &:where(.Message__Text:last-child svg) {
+        transform: translateY(-0.2em);
+        width: 365px;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

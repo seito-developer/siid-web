@@ -18,7 +18,7 @@ export default async function HomeLayout({
         <Icons />
         <NavigationSp />
         {children}
-        <Footer />          
+        <Footer />
       </body>
     </html>
   );

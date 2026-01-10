@@ -1,0 +1,147 @@
+.Strength {
+  position: relative;
+  margin-block: 116px 80px;
+  &::before {
+    content: '';
+    background-color: #fff;
+    border-radius: 40px 40px 0 0;
+    width: 100vw;
+    height: calc(100% + 140px);
+    display: block;
+    position: absolute;
+    top: -60px;
+    left: -32px;
+  }
+}
+
+.Strength__Container {
+  z-index: 2;
+  position: relative;
+}
+
+.Strength__TitleContainer {
+  border-block: 1px dotted #000;
+}
+
+.Strength__Title {
+  align-items: center;
+  gap: 8px;
+  margin-block: 20px 10px;
+  font-size: 18px;
+  line-height: 140%;
+  display: flex;
+  font-weight: 600;
+}
+
+.Strength__TitleIcon {
+  width: 43px;
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.Strength__TitleText {
+  svg {
+    width: 87px;
+    height: auto;
+    transform: translateY(-2px);
+    margin-right: 4px;
+  }
+}
+
+.Strength__Intro {
+  font-size: 12px;
+  margin-block: 10px 20px;
+  line-height: 160%;
+}
+
+.Strength__ServiceTitle {
+  align-items: center;
+  gap: 8px;
+  margin-block: 18px;
+  font-size: 18px;
+  line-height: 140%;
+  display: flex;
+  font-weight: 600;
+}
+
+.Strength__ServiceTitleIcon {
+  width: 43px;
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.Strength__ServiceIntro {
+  font-size: 12px;
+  margin-bottom: 18px;
+  line-height: 160%;
+}
+
+.Strength__ServiceSections {
+  display: flex;
+  flex-direction: column;
+  row-gap: 14px;
+}
+
+@media screen and (min-width: 1280px) {
+  /* PC用スタイル */
+  .Strength {
+    max-width: var(--pc-container-width);
+    margin-inline: auto;
+    margin-block: -130px 0;
+    padding-bottom: 160px;
+    &::before {
+      border-radius: 40px 40px 0 0;
+      width: calc(100% + 100px);
+      top: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: calc(100% + 70px);
+    }
+  }
+  .Strength__TitleContainer {
+    display: grid;
+    grid-template-columns: 1fr 67%;
+    padding-block: 28px;
+  }
+  .Strength__Title {
+    font-size: 20px;
+    margin-block: 0;
+  }
+  .Strength__TitleIcon {
+    width: 42px;
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .Strength__Intro {
+    margin-block: 0;
+    font-size: 13px;
+    line-height: 180%;
+  }
+  .Strength__ServiceTitleContainer {
+    display: grid;
+    grid-template-columns: 1fr 68.6%;
+    column-gap: 20px;
+    grid-template-rows: auto 1fr;
+    grid-auto-flow: column;
+    padding-block: 30px;
+    border-bottom: 1px dotted #000;
+  }
+  .Strength__ServiceTitle {
+    font-size: 20px;
+    margin-block: 0 14px;
+  }
+  .Strength__ServiceIntro {
+    font-size: 13px;
+    line-height: 180%;
+    margin-block: 0;
+  }
+  .Strength__ServiceSections {
+    grid-row: 1/-1;
+  }
+}

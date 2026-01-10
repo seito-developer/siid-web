@@ -1,0 +1,175 @@
+.SubSupporterCard {
+  position: relative;
+  display: flex;
+  padding-block: 42px 34px;
+  justify-content: space-between;
+  border-top: 1px dashed var(--text);
+}
+
+.SubSupporterCard__Header {
+  justify-content: flex-end;
+  position: relative;
+  width: 51%;
+  display: flex;
+}
+
+.SubSupporterCard__BadgeContainer {
+  position: absolute;
+  top: -26px;
+  left: 0;
+}
+
+.SubSupporterCard__Badge {
+  color: #fff;
+  aspect-ratio: 97 / 111;
+  background-image: url(/images/supporter/supporters/hexagon.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 3px;
+  width: 70px;
+  font-size: 12px;
+  display: flex;
+  position: relative;
+  z-index: 2;
+}
+
+.SubSupporterCard__BadgeLabel {
+  font-size: 8px;
+}
+
+.SubSupporterCard__BadgeNumber {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  font-family: var(--font-poppins);
+}
+
+.SubSupporterCard__EnglishName {
+  text-align: left;
+  color: #567eb4;
+  font-family: Bagor, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+  position: absolute;
+  left: 50%;
+  transform: rotateZ(90deg) translateY(-8px) translateX(-8px);
+  transform-origin: left top;
+}
+
+.SubSupporterCard__Avatar {
+  width: 126px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  transform: translateX(2px);
+}
+
+.SubSupporterCard__NameContainer {
+  width: 43.4%;
+}
+
+.SubSupporterCard__Name {
+  color: #fff;
+  flex-direction: column;
+  row-gap: 8px;
+  margin-block: 0 8px;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+  display: flex;
+  align-items: flex-start;
+}
+
+.SubSupporterCard__NameRole {
+  font-size: 10px;
+  background-color: var(--text);
+  padding: 4px 9px;
+  border-radius: 4px;
+}
+
+.SubSupporterCard__NameText {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 140%;
+}
+
+.SubSupporterCard__Social {
+  display: flex;
+  column-gap: 12px;
+  font-size: 20px;
+}
+
+.SubSupporterCard__SocialIconX {
+  width: 20px;
+  height: auto;
+}
+
+@media screen and (min-width: 1280px) {
+  .SubSupporterCard {
+    padding-left: 40px;
+    border-top: none;
+    flex-direction: column;
+    padding-top: 26px;
+    row-gap: 10px;
+  }
+
+  .SubSupporterCard__Header {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .SubSupporterCard__Badge {
+    width: 84px;
+    row-gap: 2px;
+  }
+
+  .SubSupporterCard__Avatar {
+    width: 194px;
+    margin-left: 52px;
+  }
+
+  .SubSupporterCard__NameContainer {
+    width: 100%;
+  }
+
+  .SubSupporterCard__EnglishName {
+    font-size: 40px;
+    transform: rotateZ(90deg) translateY(-16px) translateX(-8px);
+  }
+
+  .SubSupporterCard__BadgeLabel {
+    font-size: 10px;
+  }
+
+  .SubSupporterCard__BadgeNumber {
+    font-size: 22px;
+  }
+
+  .SubSupporterCard__Name {
+    padding-left: 56px;
+    row-gap: 6px;
+  }
+
+  .SubSupporterCard__Social {
+    position: absolute;
+    right: 30px;
+    top: 0;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+  }
+
+  .SubSupporterCard__SocialIconX {
+    width: 24px;
+  }
+
+  .SubSupporterCard__SocialIconGithub {
+    width: 32px;
+    height: auto;
+  }
+}

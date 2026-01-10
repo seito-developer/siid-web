@@ -34,6 +34,7 @@ body {
     top: 0;
     width: 8px;
     height: 100%;
+    z-index: 1;
   }
   &::before {
     border-left: 8px solid var(--main);

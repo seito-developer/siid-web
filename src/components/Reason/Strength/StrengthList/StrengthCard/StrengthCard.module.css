@@ -1,0 +1,99 @@
+.StrengthCard {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  border-bottom: 1px dotted #000;
+  padding-block: 20px;
+  gap: 6px 22px;
+  &:last-child {
+    border-bottom: 1px dotted #000;
+  }
+}
+
+.StrengthCard__Thumbnails {
+  grid-row: span 2;
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.StrengthCard__Title {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.StrengthCard__List {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2px;
+}
+
+.StrengthCard__Item {
+  padding-left: 1em;
+  font-size: 11px;
+  list-style: none;
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #999292;
+    position: absolute;
+    left: 0;
+    top: 0.8em;
+    transform: translateY(-50%);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .StrengthCard {
+    padding-block: 30px;
+    grid-template-columns: 180px 1fr;
+    grid-template-rows: auto 1fr;
+    row-gap: 18px;
+    position: relative;
+    &:nth-last-child(-n + 2) {
+      border-bottom: none;
+    }
+    &:nth-child(even) {
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -23px;
+        width: 1px;
+        height: 100%;
+        border-left: 1px dotted #000;
+      }
+      &:nth-child(2) {
+        &::before {
+          height: calc(100% - 30px);
+          top: auto;
+          bottom: 0;
+        }
+      }
+      &:last-child {
+        &::before {
+          height: calc(100% - 30px);
+          top: 0;
+        }
+      }
+    }
+  }
+  .StrengthCard__Title {
+    font-size: 18px;
+    line-height: 165%;
+  }
+  .StrengthCard__List {
+    row-gap: 4px;
+  }
+  .StrengthCard__Item {
+    font-size: 12px;
+    line-height: 140%;
+  }
+}

@@ -1,0 +1,33 @@
+.ServiceItem {
+  background-color: #fff;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 14px 6px;
+  border-radius: 8px;
+}
+
+.ServiceItem__Title {
+  text-align: center;
+  align-items: center;
+  margin: 0;
+  font-size: 11px;
+  display: flex;
+  margin-top: -4px;
+  height: 3em;
+}
+
+@media screen and (min-width: 1280px) {
+  .ServiceItem__Icon {
+    width: 60px;
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .ServiceItem__Title {
+    font-size: 12px;
+  }
+}
+
