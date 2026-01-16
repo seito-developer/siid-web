@@ -12,6 +12,7 @@
   --section-en-title-margin: 0 0 8px;
   font-family: var(--font-noto-sans-jp);
   font-weight: 600;
+  overflow: hidden;
 }
 
 .Home__News {

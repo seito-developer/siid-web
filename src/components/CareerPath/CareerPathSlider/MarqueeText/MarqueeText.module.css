@@ -1,0 +1,49 @@
+.MarqueeContainer {
+  width: 100%;
+  overflow: hidden;
+  background-color: #924a8f;
+  padding: 6px 0;
+  position: relative;
+  border-block: 2px solid #000;
+}
+
+.MarqueeContent {
+  display: flex;
+  width: fit-content;
+  animation: marquee 20s linear infinite;
+}
+
+.MarqueeGroup {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.MarqueeItem {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  white-space: nowrap;
+  svg:first-child {
+    width: 105px;
+    height: auto;
+  }
+}
+
+.MarqueeText {
+  font-size: 30px;
+  font-weight: bold;
+  color: #a75884;
+  white-space: nowrap;
+  font-family: var(--font-bagor);
+  font-weight: 400;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

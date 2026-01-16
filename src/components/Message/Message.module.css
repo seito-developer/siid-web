@@ -39,6 +39,7 @@
   line-height: 1.8;
   margin: 0;
   white-space: nowrap;
+  -webkit-text-stroke: 0.4px #fff;
   & + & {
     margin-top: 2em;
   }

@@ -33,6 +33,7 @@
   margin: 0 0 8px;
   white-space: pre-line;
   line-height: 150%;
+  -webkit-text-stroke: 0.2px var(--text);
 }
 
 .BookCard__Publisher,

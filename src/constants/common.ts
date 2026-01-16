@@ -9,5 +9,5 @@ export const notoSansJp = Noto_Sans_JP({
 
 export const poppins = Poppins({
   variable: '--font-poppins',
-  weight: ['400', '600', '700', '900'],
+  weight: ['400', '600', '700', '800', '900'],
 });

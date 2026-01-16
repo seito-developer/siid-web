@@ -1,8 +1,3 @@
-'use client';
-
-// import useIsPc from '@/hooks/useIsPc';
-
-// import Corner, { CornerPosition } from '../Corner/Corner';
 import Logo from '../Logo/Logo';
 
 import Concerns from './Concerns/Concerns';

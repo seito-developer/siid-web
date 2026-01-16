@@ -96,6 +96,7 @@
   font-weight: 600;
   font-size: 18px;
   line-height: 140%;
+  -webkit-text-stroke: 0.5px #fff;
 }
 
 .SubSupporterCard__Social {

@@ -11,6 +11,7 @@
   line-height: 140%;
   margin-block: 14px;
   font-weight: 600;
+  -webkit-text-stroke: 0.2px var(--text);
 }
 
 .Concerns__HeadingIcon {

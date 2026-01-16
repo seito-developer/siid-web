@@ -32,6 +32,7 @@
   font-weight: var(--section-title-font-weight);
   margin: 0 0 62px;
   color: #fff;
+  -webkit-text-stroke: 0.4px #fff;
 }
 
 .Supporter__Decoration {
@@ -136,6 +137,7 @@
   row-gap: 10px;
   color: #fff;
   font-weight: 600;
+  -webkit-text-stroke: 0.1px #fff;
 }
 
 .MainSupporter__NameRole {
@@ -145,6 +147,7 @@
 .MainSupporter__NameText {
   font-size: 24px;
   margin: 0;
+  -webkit-text-stroke: 0.5px #fff;
 }
 
 .MainSupporter__Social {

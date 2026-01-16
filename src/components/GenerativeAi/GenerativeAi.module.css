@@ -41,6 +41,7 @@
   font-size: var(--section-title-font-size);
   font-weight: var(--section-title-font-weight);
   margin: 0 0 20px;
+  -webkit-text-stroke: 0.4px var(--text);
 }
 
 .GenerativeAi__List {
@@ -62,6 +63,7 @@
   font-weight: 600;
   line-height: 140%;
   display: flex;
+  -webkit-text-stroke: 0.2px var(--text);
 }
 
 .GenerativeAi__HeaderIcon {
@@ -112,6 +114,7 @@
   line-height: 130%;
   font-size: 14px;
   margin-block: 0 8px;
+  -webkit-text-stroke: 0.2px var(--text);
 }
 
 .GenerativeAi__ToolDescription {
@@ -156,6 +159,7 @@
 
 .GenerativeAi__ExampleTitleText {
   font-size: 14px;
+  -webkit-text-stroke: 0.2px var(--text);
 }
 
 .GenerativeAi__ExampleIcon {

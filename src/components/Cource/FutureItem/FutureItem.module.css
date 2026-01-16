@@ -1,0 +1,84 @@
+.FutureItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dotted var(--text);
+  padding-block: 12px;
+}
+
+.FutureItem__Number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-image: url(/images/cource/futurelist/futureitem/hexagon.svg);
+  background-size: 100% 100%;
+  aspect-ratio: 1/1;
+  flex-basis: 56px;
+  height: auto;
+  font-family: bagor, sans-serif;
+  font-weight: 400;
+}
+
+.FutureItem__NumberLabel {
+  font-size: 8px;
+  line-height: 165%;
+}
+
+.FutureItem__NumberNumber {
+  font-size: 17px;
+  line-height: 100%;
+}
+
+.FutureItem__Text {
+  font-size: 16px;
+  line-height: 140%;
+  margin-block: 0;
+  flex-basis: 77%;
+  -webkit-text-stroke: 0.2px var(--text);
+}
+
+.FutureItem__SubText {
+  font-size: 12px;
+  font-weight: 500;
+  display: block;
+  line-height: 140%;
+  margin-top: 4px;
+  -webkit-text-stroke: 0px;
+}
+
+@media screen and (min-width: 1280px) {
+  .FutureItem {
+    padding-block: 11px;
+    &:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  .FutureItem__Text {
+    font-size: 20px;
+    flex-basis: 82%;
+  }
+
+  .FutureItem__SubText {
+    font-size: 13px;
+  }
+
+  .FutureItem__Number {
+    flex-basis: 80px;
+    row-gap: 2px;
+  }
+
+  .FutureItem__NumberLabel {
+    font-size: 10px;
+  }
+
+  .FutureItem__NumberNumber {
+    font-size: 22px;
+  }
+}

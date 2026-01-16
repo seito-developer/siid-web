@@ -1,0 +1,200 @@
+.Timeline__Container {
+  overflow-x: auto;
+  padding-block: 18px;
+}
+
+.Timeline {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(296px, 1fr));
+  grid-template-rows: 55px auto;
+  grid-auto-flow: column;
+  row-gap: 20px;
+}
+
+.Timeline__Inner {
+  padding-right: 12px;
+  width: fit-content;
+}
+
+.Timeline__Year {
+  background-color: var(--text);
+  border-radius: 50%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translate(50%, -50%);
+  right: 50%;
+  width: 132px;
+  height: 73px;
+  -webkit-text-stroke: 0.5px #fff;
+  &:where(.Timeline__YearItem:nth-child(1 of .Timeline__YearItem) &) {
+    right: 35%;
+  }
+}
+
+.Timeline__YearText {
+  position: relative;
+  display: block;
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    aspect-ratio: 1 / 1;
+    width: 14px;
+    height: auto;
+    background-image: url('/images/cource/timeline/star.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &::before {
+    left: -24px;
+  }
+  &::after {
+    right: -24px;
+  }
+}
+
+.Timeline__YearItem {
+  background-color: var(--main);
+  color: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    border-top: 1px dashed #fff;
+    left: 0;
+  }
+  &:where(:nth-child(1 of &)) {
+    border-radius: 4px 0 0 4px;
+    &::before {
+      left: 84px;
+    }
+  }
+  &:where(:nth-child(3 of &)) {
+    &::after {
+      content: '';
+      display: block;
+      aspect-ratio: 93 / 248;
+      width: auto;
+      height: 100%;
+      background-image: url('/images/cource/timeline/triangle.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 10;
+    }
+  }
+}
+
+.Timeline__YearLabel {
+  font-size: 13px;
+  line-height: 100%;
+  font-family: var(--font-bagor);
+  font-weight: 400;
+  white-space: pre-line;
+  padding-block: 6px;
+  border-block: 1px solid #fff;
+  margin-left: 12px;
+}
+
+@media (min-width: 1280px) {
+  .Timeline__Container {
+    padding-block: 0;
+  }
+
+  .Timeline {
+    grid-auto-flow: row;
+    grid-template-columns: calc(11.8% + 28px) 1fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 0 5.2%;
+  }
+
+  .Timeline__Inner {
+    padding-right: 0;
+  }
+
+  .Timeline__Year {
+    right: 50%;
+    font-size: 18px;
+    width: 151px;
+    height: 80px;
+    &:where(.Timeline__YearItem:nth-child(1 of .Timeline__YearItem) &) {
+      top: 53%;
+    }
+    &:where(.Timeline__YearItem:nth-child(2 of .Timeline__YearItem) &) {
+      top: 59%;
+    }
+  }
+
+  .Timeline__YearLabel {
+    white-space: inherit;
+    margin-left: 0;
+    font-size: 10px;
+    padding: 8px 10px;
+  }
+
+  .Timeline__YearItem {
+    align-items: flex-start;
+    justify-content: center;
+    margin-inline: 14px;
+    &::before {
+      width: 1px;
+      height: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-top: none;
+      border-left: 1px dashed #fff;
+    }
+    &:where(:nth-child(1 of &)) {
+      padding-top: 10px;
+      border-radius: 4px 4px 0 0;
+      &::before {
+        top: 60px;
+      }
+    }
+    &:where(:nth-child(3 of &)) {
+      &::after {
+        content: '';
+        display: block;
+        aspect-ratio: 248 / 93;
+        width: 100%;
+        height: auto;
+        background-image: url('/images/cource/timeline/triangle-pc.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        right: auto;
+        left: 0;
+        z-index: 10;
+      }
+    }
+  }
+
+  .Timeline__YearText {
+    &::before,
+    &::after {
+      width: 18px;
+    }
+    &::before {
+      left: -29px;
+    }
+    &::after {
+      right: -29px;
+    }
+  }
+}
