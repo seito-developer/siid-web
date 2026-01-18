@@ -83,6 +83,7 @@
 .Message__Text :global(.ch) {
   color: #8189b8;
   -webkit-text-stroke: 0.4px #8189b8;
+  transition: color 120ms linear, -webkit-text-stroke 120ms linear;
 }
 
 .Message__Text :global(.ch.is-on) {
@@ -92,6 +93,7 @@
 
 .Message__Text :global(.ch svg path) {
   fill: #8189b8 !important;
+  transition: fill 120ms linear;
 }
 
 .Message__Text :global(.ch.is-on svg path) {
