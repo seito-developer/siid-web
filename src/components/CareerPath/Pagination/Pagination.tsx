@@ -1,82 +1,73 @@
-'use client';
+import Link from 'next/link';
 
+import { PaginationProps } from '@/types/pagination';
+import { getPaginationNumbers } from '@/utils/pagination';
 
 import styles from './Pagination.module.css';
-
-interface PaginationProps {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-  hasNextPage: boolean;
-  hasPrevPage: boolean;
-}
 
 export default function Pagination({
   currentPage,
   totalPages,
-  onPageChange,
   hasNextPage,
   hasPrevPage,
 }: PaginationProps) {
-  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
-
-  const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handlePrevPage = () => {
-    if (hasPrevPage) {
-      onPageChange(currentPage - 1);
-      scrollTop();
-    }
-  };
-
-  const handleNextPage = () => {
-    if (hasNextPage) {
-      onPageChange(currentPage + 1);
-      scrollTop();
-    }
-  };
+  const pageNumbers = getPaginationNumbers(currentPage, totalPages, 5);
 
   return (
     <div className={styles.pagination}>
       {hasPrevPage && (
-        <button
-          onClick={handlePrevPage}
+        <Link
+          href={`/career-path/${currentPage - 1}`}
           className={styles.arrowButton}
           aria-label="前のページ"
         >
           <svg className={styles.icon}>
-            <use href='#leftArrow'/>
+            <use href="#leftArrow" />
           </svg>
-        </button>
+        </Link>
       )}
 
       <div className={styles.pageNumbers}>
-        {pageNumbers.map((pageNum) => (
-          <span
-            key={pageNum}
-            className={`${styles.pageButton} ${
-              pageNum === currentPage ? styles.pageButtonActive : ''
-            }`}
-            aria-label={`ページ${pageNum}へ移動`}
-            aria-current={pageNum === currentPage ? 'page' : undefined}
-          >
-            {pageNum}
-          </span>
-        ))}
+        {pageNumbers.map((pageNum, index) => {
+          if (pageNum === '...') {
+            return (
+              <span
+                key={`ellipsis-${index}`}
+                className={styles.ellipsis}
+                aria-hidden="true"
+              >
+                …
+              </span>
+            );
+          }
+
+          return (
+            <Link
+              key={pageNum}
+              href={`/career-path/${pageNum}`}
+              className={`${styles.pageButton} ${
+                pageNum === currentPage ? styles.pageButtonActive : ''
+              }`}
+              aria-label={`ページ${pageNum}へ移動`}
+              aria-current={pageNum === currentPage ? 'page' : undefined}
+            >
+              {pageNum}
+            </Link>
+          );
+        })}
       </div>
 
       {hasNextPage && (
-        <button
-          onClick={handleNextPage}
+        <Link
+          href={`/career-path/${currentPage + 1}`}
           className={styles.arrowButton}
           aria-label="次のページ"
+          scroll={true}
         >
           <svg className={styles.icon}>
-            <use href='#rightArrow'/>
+            <use href="#rightArrow" />
           </svg>
-        </button>
+        </Link>
       )}
     </div>
   );
