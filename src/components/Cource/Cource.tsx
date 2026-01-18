@@ -63,7 +63,7 @@ export default function Cource() {
   // 未来の項目データ
   const futureItems = [
     { number: '01', text: '8-12ヶ月でITエンジニアへ' },
-    { number: '02', text: '自分が作りたいアプリを実装させ出来る' },
+    { number: '02', text: '自分が作りたいアプリを実装させられる' },
     { number: '03', text: '困った時に相談できる講師や先輩' },
     { number: '04', text: 'キャリアや経済不安からの脱却' },
     { number: '05', text: 'さまざまなキャリアの選択肢', subText: '（リモートワーク、有名企業、フリーランス、海外、など）' },

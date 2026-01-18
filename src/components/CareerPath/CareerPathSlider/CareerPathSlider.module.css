@@ -8,9 +8,9 @@
   width: calc(100% + 48px);
   margin-left: -24px;
   padding: 20px 0 42px;
+  overflow: hidden;
 }
 
-/* Swiperスライドの幅を固定 */
 .Slider :global(.swiper-slide) {
   width: 310px;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -26,6 +26,28 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  &::before {
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #475499;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 24px;
+  }
+
+  &:where(:global(.swiper-slide):not(:global(.swiper-slide-active)) &) {
+    position: relative;
+
+    &::before {
+      opacity: 0.4;
+    }
+  }
 }
 
 .CardImageLink {
@@ -69,7 +91,6 @@
   color: #fff;
 }
 
-/* コントロール全体 */
 .Controls {
   display: flex;
   align-items: center;
@@ -80,7 +101,6 @@
   z-index: 1;
 }
 
-/* 中央のコントロール（ページネーション + 停止ボタン） */
 .CenterControls {
   display: flex;
   align-items: center;
@@ -88,7 +108,6 @@
   position: relative;
 }
 
-/* ナビゲーションボタン */
 .NavButton {
   background: none;
   border: none;
@@ -98,9 +117,11 @@
   align-items: center;
   justify-content: center;
   position: absolute;
+
   &:nth-child(1 of &) {
     left: calc(50% - 158px);
   }
+
   &:nth-child(2 of &) {
     right: calc(50% - 158px);
   }
@@ -116,43 +137,72 @@
   display: none;
 }
 
-/* カスタムページネーション */
 .CustomPagination {
   display: flex;
-  column-gap: 6px;
+  gap: 6px;
   align-items: center;
+  max-width: 90px;
+  flex-wrap: wrap;
 }
 
 .CustomPagination :global(.swiper-pagination-bullet) {
-  width: 8px;
-  height: 8px;
-  background-color: #fff;
-  opacity: 1;
   border-radius: 50%;
   cursor: pointer;
-  transition: all 0.3s;
   position: relative;
   margin-inline: 0 !important;
-}
+  position: relative;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  opacity: 1;
 
-.CustomPagination :global(.swiper-pagination-bullet-active) {
-  &::before {
-    aspect-ratio: 1 / 1;
-    content: '';
-    display: block;
-    width: calc(100% + 8px);
-    height: auto;
-    border-radius: 50%;
-    border: 2px solid #a75884;
+  svg {
+    display: none;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+  }
+
+  circle {
+    stroke-dasharray: 62.83;
+    stroke-dashoffset: 62.83;
   }
 }
 
-/* 自動再生ボタン */
+.CustomPagination :global(.swiper-pagination-bullet-active) {
+  background: #a75884;
+
+  svg {
+    display: block;
+  }
+}
+
+.CustomPagination :global(.swiper-pagination-bullet-active) {
+  circle {
+    animation: drawCircle 3.4s linear forwards;
+  }
+}
+
+.CustomPagination :global(.swiper-pagination-bullet-active.paused) {
+  circle {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes drawCircle {
+  from {
+    stroke-dashoffset: 62.83;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 .AutoplayButton {
   aspect-ratio: 1 / 1;
   width: 30px;
@@ -167,35 +217,26 @@
   font-size: 14px;
   position: absolute;
   left: calc(100% + 16px);
-  &::before {
-    content: '';
-    display: block;
+
+  svg {
     height: auto;
-  }
-  &.AutoplayButton__Pause {
-    &::before {
-      width: 7px;
-      background-image: url('/images/careerpath/careerpathslider/pause.svg');
-      background-size: 100%;
-      background-repeat: no-repeat;
-      background-position: center;
-      aspect-ratio: 7 / 10;
-    }
-  }
-  &.AutoplayButton__Play {
-    &::before {
-      aspect-ratio: 7 / 10;
-      width: 7px;
-      background-color: var(--text);
-      clip-path: polygon(0 0, 0% 100%, 100% 50%);
-    }
   }
 }
 
-/* Swiperのオーバーフロー設定 */
+.PauseIcon {
+  width: 7px;
+  aspect-ratio: 7 / 10;
+}
+
+.PlayIcon {
+  width: 15px;
+  aspect-ratio: 1 / 1;
+}
+
 .Slider :global(.swiper) {
   overflow: visible;
   position: relative;
+
   &::before {
     content: '';
     aspect-ratio: 1;
@@ -224,6 +265,10 @@
 }
 
 @media (min-width: 1280px) {
+  .SliderWrapper {
+    z-index: 3;
+  }
+
   .Slider {
     padding-bottom: 92px;
   }
@@ -241,8 +286,7 @@
   }
 
   .Slider :global(.swiper-slide):not(:global(.swiper-slide-active)) {
-    transform: translateY(90px) scale(.75);
-    opacity: 0.4;
+    transform: translateY(90px) scale(0.75);
   }
 
   .NavButton {
@@ -252,12 +296,15 @@
     width: 87px;
     height: auto;
     aspect-ratio: 1 / 1;
+
     &:nth-child(1 of &) {
       left: calc(50% - 356px);
     }
+
     &:nth-child(2 of &) {
       right: calc(50% - 356px);
     }
+
     svg {
       width: 100%;
       height: auto;
@@ -276,6 +323,10 @@
     border-radius: 32px;
     padding: 40px 40px 48px;
     row-gap: 14px;
+
+    &::before {
+      border-radius: 32px;
+    }
   }
 
   .CardTitle {
@@ -287,13 +338,20 @@
     padding: 4px 8px;
   }
 
+  .CustomPagination {
+    max-width: none;
+  }
+
   .AutoplayButton {
     width: 20px;
-    &.AutoplayButton__Pause {
-      &::before {
-        width: 5px;
-      }
-    }
+  }
+
+  .PauseIcon {
+    width: 5px;
+  }
+
+  .PlayIcon {
+    scale: 1.5;
   }
 
   .MarqueeTextWrapper {

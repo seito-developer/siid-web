@@ -19,6 +19,7 @@
   height: auto;
   font-family: bagor, sans-serif;
   font-weight: 400;
+  row-gap: 1px;
 }
 
 .FutureItem__NumberLabel {

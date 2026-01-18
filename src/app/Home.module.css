@@ -12,7 +12,6 @@
   --section-en-title-margin: 0 0 8px;
   font-family: var(--font-noto-sans-jp);
   font-weight: 600;
-  overflow: hidden;
 }
 
 .Home__News {
@@ -28,6 +27,66 @@
   padding: 0 32px;
 }
 
+.Home__Supporter {
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: -32px;
+    width: 100vw;
+    height: 50%;
+    background-color: #eeefed;
+    z-index: -1;
+  }
+}
+
+.Home__Cource {
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -32px;
+    width: 100vw;
+    height: 100%;
+    background-color: #eeefed;
+    z-index: 0;
+  }
+}
+
+.Home__CareerPath {
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -32px;
+    width: 100vw;
+    height: 100%;
+    background-color: #eeefed;
+    z-index: 0;
+  }
+}
+
+.Home__Faq {
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -32px;
+    width: 100vw;
+    height: 100%;
+    background-color: #eeefed;
+    z-index: 0;
+  }
+}
+
 @media screen and (min-width: 1280px) {
   .Home {
     --section-title-font-size: 32px;
@@ -35,12 +94,15 @@
     --section-en-title-font-size: 16px;
     --section-en-title-margin: 0 0 10px;
   }
+
   .Home__Hero {
     margin-bottom: 0;
   }
+
   .Home__Contents {
     padding: 0;
     position: relative;
+
     &::before,
     &::after {
       content: '';
@@ -51,22 +113,51 @@
       height: 100%;
       z-index: 2;
     }
+
     &::before {
       border-left: 8px solid #eeefed;
       left: 0;
     }
+
     &::after {
       border-right: 8px solid #eeefed;
       right: 0;
     }
   }
+
   .Home__News {
     display: none;
   }
+
   .Home__ReskillBanner {
     display: none;
   }
+
   .Home__Comparison {
     margin-top: -170px;
+  }
+
+  .Home__Supporter {
+    &::before {
+     left: -8px;
+    }
+  }
+
+  .Home__Cource {
+    &::before {
+      left: -8px;
+    }
+  }
+
+  .Home__CareerPath {
+    &::before {
+      left: -8px;
+    }
+  }
+
+  .Home__Faq {
+    &::before {
+      left: -8px;
+    }
   }
 }

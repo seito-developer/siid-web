@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import CareerPath from '@/components/CareerPath/CareerPath';
 import Comparison from '@/components/Comparison/Comparison';
 import Cource from '@/components/Cource/Cource';
+import Faq from '@/components/Faq/Faq';
 import GenerativeAi from '@/components/GenerativeAi/GenerativeAi';
 import Header from '@/components/Header/Header';
 import Hero from '@/components/Hero/Hero';
@@ -60,6 +61,9 @@ export default function Home() {
             </div>
             <div className={styles.Home__CareerPath}>
               <CareerPath />
+            </div>
+            <div className={styles.Home__Faq}>
+              <Faq />
             </div>
           </div>
         </div>

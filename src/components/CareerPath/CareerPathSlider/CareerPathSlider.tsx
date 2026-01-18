@@ -9,6 +9,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import styles from './CareerPathSlider.module.css';
 import MarqueeText from './MarqueeText/MarqueeText';
+import PauseIcon from './PauseIcon';
+import PlayIcon from './PlayIcon';
 
 import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
@@ -82,20 +84,6 @@ const careerCards: CareerCard[] = [
     title: '文系学生からスタートアップのフロントエンド・インターン内定！',
     tags: ['転職成功', '実務経験', 'キャリアアップ'],
   },
-  {
-    id: 9,
-    youtubeUrl: 'https://www.youtube.com/watch?v=example5',
-    thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '文系学生からスタートアップのフロントエンド・インターン内定！',
-    tags: ['転職成功', '実務経験', 'キャリアアップ'],
-  },
-  {
-    id: 10,
-    youtubeUrl: 'https://www.youtube.com/watch?v=example5',
-    thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '文系学生からスタートアップのフロントエンド・インターン内定！',
-    tags: ['転職成功', '実務経験', 'キャリアアップ'],
-  },
 ];
 
 export default function CareerPathSlider() {
@@ -114,8 +102,18 @@ export default function CareerPathSlider() {
     if (swiperRef.current) {
       if (isAutoplayRunning) {
         swiperRef.current.autoplay.stop();
+        // アクティブなbulletにpausedクラスを追加
+        const activeBullet = document.querySelector(`.${styles.CustomPagination} .swiper-pagination-bullet-active`);
+        if (activeBullet) {
+          activeBullet.classList.add('paused');
+        }
       } else {
         swiperRef.current.autoplay.start();
+        // 全てのbulletからpausedクラスを削除
+        const allBullets = document.querySelectorAll(`.${styles.CustomPagination} .swiper-pagination-bullet`);
+        allBullets.forEach(bullet => {
+          bullet.classList.remove('paused');
+        });
       }
       setIsAutoplayRunning(!isAutoplayRunning);
     }
@@ -138,6 +136,15 @@ export default function CareerPathSlider() {
           pagination={{
             clickable: true,
             el: `.${styles.CustomPagination}`,
+            renderBullet: (index, className) => {
+              return `
+                <span class="${className}">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="#a75884" stroke-width="2" stroke-linecap="round" transform="rotate(-90 12 12)" stroke-dasharray="62.83" stroke-dashoffset="62.83" />
+                  </svg>
+                </span>
+              `;
+            },
           }}
           breakpoints={{
             1280: {
@@ -146,6 +153,23 @@ export default function CareerPathSlider() {
           }}
           onSwiper={swiper => {
             swiperRef.current = swiper;
+          }}
+          onSlideChangeTransitionStart={() => {
+            // 全てのbulletからpausedクラスを削除
+            const allBullets = document.querySelectorAll(`.${styles.CustomPagination} .swiper-pagination-bullet`);
+            allBullets.forEach(bullet => {
+              bullet.classList.remove('paused');
+            });
+
+            // pause中の場合は新しいアクティブなbulletにpausedクラスを追加
+            if (!isAutoplayRunning) {
+              setTimeout(() => {
+                const activeBullet = document.querySelector(`.${styles.CustomPagination} .swiper-pagination-bullet-active`);
+                if (activeBullet) {
+                  activeBullet.classList.add('paused');
+                }
+              }, 10);
+            }
           }}>
           {careerCards.map(card => (
             <SwiperSlide key={card.id}>
@@ -192,7 +216,9 @@ export default function CareerPathSlider() {
           </button>
           <div className={styles.CenterControls}>
             <div className={styles.CustomPagination}></div>
-            <button className={`${styles.AutoplayButton} ${isAutoplayRunning ? styles.AutoplayButton__Pause : styles.AutoplayButton__Play}`} onClick={toggleAutoplay} aria-label={isAutoplayRunning ? '自動再生を停止' : '自動再生を開始'} />
+            <button className={styles.AutoplayButton} onClick={toggleAutoplay} aria-label={isAutoplayRunning ? '自動再生を停止' : '自動再生を開始'}>
+              {isAutoplayRunning ? <PauseIcon className={styles.PauseIcon} /> : <PlayIcon className={styles.PlayIcon} />}
+            </button>
           </div>
           <button className={`${styles.NavButton} ${styles.NavButtonSp}`} onClick={handleNext} aria-label="次のスライド">
             <span>

@@ -5,7 +5,7 @@
 
 .Footer__Container {
   padding: 0 20px 20px;
-  background: var(--background);
+  background: #eeefed;
   border-radius: 0 0 32px 32px;
   border: 8px solid var(--main);
   border-top: 0;
@@ -32,11 +32,44 @@
 }
 
 @media screen and (min-width: 1280px) {
+  .Footer {
+    background-color: #eeefed;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      width: 8px;
+      height: 100%;
+      z-index: 2;
+    }
+
+    &::before {
+      border-left: 8px solid #eeefed;
+      left: 0;
+    }
+
+    &::after {
+      border-right: 8px solid #eeefed;
+      right: 0;
+    }
+  }
+
+  .Footer__Container {
+    border-radius: 0 0 40px 40px;
+    border: 8px solid #eeefed;
+    border-top: 0;
+  }
+
   .Footer__Inner {
     display: flex;
     border-radius: 40px;
     padding: 54px 40px 120px;
   }
+
   .Footer__ContactButton {
     transform: rotate(-10deg);
   }

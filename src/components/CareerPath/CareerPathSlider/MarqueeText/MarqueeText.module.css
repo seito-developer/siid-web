@@ -10,7 +10,7 @@
 .MarqueeContent {
   display: flex;
   width: fit-content;
-  animation: marquee 20s linear infinite;
+  animation: marquee 60s linear infinite;
 }
 
 .MarqueeGroup {

@@ -1,6 +1,7 @@
 .Timeline__Container {
   overflow-x: auto;
   padding-block: 18px;
+  position: relative;
 }
 
 .Timeline {
