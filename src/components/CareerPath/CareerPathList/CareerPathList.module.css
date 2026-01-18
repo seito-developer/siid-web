@@ -10,6 +10,16 @@
   justify-items: center;
 }
 
+.CareerPathList__EmptyCard {
+  visibility: hidden;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid var(--text);
+  border-radius: 28px;
+  padding: 20px 16px;
+  height: 400px;
+}
+
 .CareerPath__SurveyLink {
     width: 100%;
     max-width: 440px;
@@ -36,6 +46,8 @@
 
 .CareerPath__SurveyIcon {
   flex-shrink: 0;
+  width: 24px;
+  height: 24px;
   margin-left: 4px;
 }
 
@@ -44,12 +56,18 @@
     max-width: 1081px;
   }
 
+
+  .CareerPath__SurveyIcon {
+    width: 32px;
+    height: 32px;
+  }
+
   .CareerPathList__Grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 49px;
-    row-gap: 40px;
+    gap: 40px 49px;
     margin-bottom: 60px;
     justify-items: stretch;
+    min-height: 1270px;
   }
 
 

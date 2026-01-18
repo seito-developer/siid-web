@@ -1,26 +1,27 @@
-'use client';
-
-import Image from 'next/image';
-import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 
 import CareerCard from '@/components/CareerPath/CareerCard/CareerCard';
-import CareerModal from '@/components/CareerPath/CareerModal/CareerModal';
+import CareerModalWrapper from '@/components/CareerPath/CareerModalWrapper/CareerModalWrapper';
 import Pagination from '@/components/CareerPath/Pagination/Pagination';
-import { careerPathData } from '@/constants/careerData';
+import { CareerPathData } from '@/types/career';
 import { getCurrentPageData, getPaginationInfo } from '@/utils/pagination';
-
+import { getYouTubeThumbnailUrl } from '@/utils/youtube';
 
 import styles from './CareerPathList.module.css';
 
-const ITEMS_PER_PAGE = 4;
+export const ITEMS_PER_PAGE = 4;
 
-export default function CareerPathList() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+interface CareerPathListProps {
+  careerPathData: CareerPathData[];
+  currentPage: number;
+  modalId: string | null;
+}
 
-  const currentPage = Number(searchParams.get('page')) || 1;
-
-  const modalId = searchParams.get('id');
+export default function CareerPathList({
+  careerPathData,
+  currentPage,
+  modalId,
+}: CareerPathListProps) {
 
   const selectedCareer = modalId
     ? careerPathData.find(item => item.id === modalId)
@@ -38,34 +39,30 @@ export default function CareerPathList() {
     ITEMS_PER_PAGE,
   );
 
-  const handleOpen = (id: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('id', id);
-    router.push(`?${params}`, { scroll: false });
-  };
-
-  const handleClose = () => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete('id');
-    router.push(`?${params}`, { scroll: false });
-  };
-
-
-  const handlePageChange = (page: number) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('page', page.toString());
-    router.push(`?${params}`, { scroll: false });
-  };
+  const emptySlots = ITEMS_PER_PAGE - currentItems.length;
 
   return (
     <>
       <section className={styles.CareerPathList}>
         <div className={styles.CareerPathList__Grid}>
-          {currentItems.map((item) => (
+          {currentItems.map((item, index) => (
             <CareerCard
               key={item.id}
-              {...item}
-              onClick={() => handleOpen(item.id)}
+              id={item.id}
+              voice={item.voice}
+              title={item.title}
+              thumbnailUrl={getYouTubeThumbnailUrl(item.youtubeId)}
+              description={item.description}
+              tags={item.tags}
+              priority={currentPage === 1 && index < 2}
+            />
+          ))}
+
+          {Array.from({ length: emptySlots }).map((_, index) => (
+            <div
+              key={`empty-slot-${index}`}
+              className={styles.CareerPathList__EmptyCard}
+              aria-hidden="true"
             />
           ))}
         </div>
@@ -73,45 +70,30 @@ export default function CareerPathList() {
         <Pagination
           currentPage={currentPage}
           totalPages={paginationInfo.totalPages}
-          onPageChange={handlePageChange}
           hasNextPage={paginationInfo.hasNextPage}
           hasPrevPage={paginationInfo.hasPrevPage}
         />
 
         <div className={styles.CareerPath__SurveyLink}>
-          <a href="#" className={styles.CareerCard__SurveyLinkAnchor}>
-            <span className={styles.CareerCard__SurveyText}>過去の卒業生のアンケート内容はこちら</span>
-            <Image
-              src="/careerPath/page-flip.svg"
-              alt="詳細を見る"
-              width={32}
-              height={32}
-              className={styles.CareerPath__SurveyIcon}
-            />
-          </a>
+          <Link href="#" className={styles.CareerCard__SurveyLinkAnchor}>
+            <span className={styles.CareerCard__SurveyText}>
+              過去の卒業生のアンケート内容はこちら
+            </span>
+
+            <svg width={32} height={32} className={styles.CareerPath__SurveyIcon}>
+              <use href="#page-flip" />
+            </svg>
+          </Link>
         </div>
       </section>
 
-      {
-        selectedCareer && (
-          <CareerModal
-            isOpen={!!modalId}
-            onClose={handleClose}
-            voice={selectedCareer.voice}
-            title={selectedCareer.title}
-            age={selectedCareer.age}
-            sex={selectedCareer.sex}
-            course={selectedCareer.course}
-            reason={selectedCareer.reason}
-            description={selectedCareer.description}
-            imageUrl={selectedCareer.imageUrl}
-            detailTitle={selectedCareer.detailTitle}
-            achievement={selectedCareer.achievement}
-            detailContent={selectedCareer.detailContent}
-          />
-        )
-      }
-
+      {selectedCareer && (
+        <CareerModalWrapper
+          modalId={modalId}
+          currentPage={currentPage}
+          career={selectedCareer}
+        />
+      )}
     </>
   );
 }
