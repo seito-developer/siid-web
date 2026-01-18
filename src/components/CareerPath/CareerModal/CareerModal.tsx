@@ -1,8 +1,7 @@
-'use client';
-
 import { useEffect } from 'react';
 
-import Image from 'next/image';
+
+import { getYouTubeEmbedUrl } from '../../../utils/youtube';
 
 import styles from './CareerModal.module.css';
 
@@ -13,7 +12,7 @@ interface CareerModalProps {
   course: string;
   reason: string;
   description: string;
-  imageUrl: string;
+  youtubeId: string;
   detailTitle: string;
   achievement: string;
   detailContent: string;
@@ -31,7 +30,7 @@ export default function CareerModal({
   course,
   reason,
   description,
-  imageUrl,
+  youtubeId,
   detailTitle,
   achievement,
   detailContent,
@@ -56,17 +55,18 @@ export default function CareerModal({
     return null;
   }
 
-  // const handleBackdropClick = (e: React.MouseEvent) => {
-  //   if (e.target === e.currentTarget) {
-  //     onClose();
-  //   }
-  // };
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
 
   return (
     <div
       className={styles.CareerModal__Overlay}
       role='dialog'
       aria-modal='true'
+      onClick={handleBackdropClick}
     >
       <div className={styles.CareerModal__Container}>
         <div className={styles.CareerModal__Badge}>
@@ -95,7 +95,7 @@ export default function CareerModal({
                   <div className={styles.CareerModal__Block}>
                     <div className={styles.CareerModal__InfoWrapper}>
                       <div className={styles.CareerModal__InfoItem}>
-                        <span>
+                        <span className={styles.CareerModal__Label}>
                           {age}代 {sex}
                         </span>
                       </div>
@@ -132,13 +132,13 @@ export default function CareerModal({
             </div>
 
             <section className={styles.CareerModal__ImageSection}>
-              <Image
-                src={imageUrl}
-                alt={title}
+              <iframe
+                src={getYouTubeEmbedUrl(youtubeId)}
                 className={styles.CareerModal__Image}
-                width={657}
-                height={369}
-                priority
+                title="卒業生インタビュー動画"
+                loading='lazy'
+                allow="encrypted-media; picture-in-picture"
+                allowFullScreen
               />
             </section>
 

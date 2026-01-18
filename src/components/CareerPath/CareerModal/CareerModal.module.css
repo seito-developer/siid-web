@@ -9,13 +9,12 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  padding: 20px;
+  padding: 10px;
 }
 
 .CareerModal__Container {
   position: relative;
   width: 100%;
-  max-width: 375px;
   max-height: 90vh;
   background-color: #fff;
   border-radius: 20px;
@@ -25,33 +24,33 @@
 }
 
 .CareerModal__Badge {
-    position: absolute;
-    top: 0%;
-    transform: translate(105%, 25%);
-    width: 100%;
-    max-width: 99px;
-    height: 65px;
-    color: #FFFFFF;
-    font-family: var(--font-bagor);
-    text-align: center;
-    background: #342525;
-    border: 1px solid #FFFFFF;
-    border-radius: 50%;
-    flex-direction: column;
-    justify-content: center;
-    font-weight: bold;
-    text-decoration: none;
-    transition: transform .25s ease-in-out;
-    display: flex;
-    box-shadow: 0 0 0 4px #342525;
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 99px;
+  height: 65px;
+  color: #FFFFFF;
+  font-family: var(--font-bagor);
+  text-align: center;
+  background: var(--text);
+  border: 1px solid #FFFFFF;
+  border-radius: 50%;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform .25s ease-in-out;
+  display: flex;
+  box-shadow: 0 0 0 4px #342525;
 }
 
 .CareerModal__BadgeText {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .CareerModal__BadgeNumber {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .CareerModal__Close {
@@ -101,12 +100,13 @@
 }
 
 .CareerModal__Title {
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.4;
   letter-spacing: 0.05em;
-  font-weight: 700;
+  font-weight: 900;
   color: #342525;
   margin-top: 20px;
+  -webkit-text-stroke: 0.2px var(--text);
 }
 
 .CareerModal__InfoWrapper {
@@ -119,13 +119,13 @@
   display: flex;
   flex-direction: column;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 900;
   color: #342525;
   line-height: 1.5;
+  -webkit-text-stroke: 0.2px var(--text);
 }
 
 .CareerModal__Label {
-  font-weight: 700;
   display: inline;
 }
 
@@ -133,15 +133,12 @@
   width: fit-content;
   padding: 2px 6px;
   background-color: #E87722;
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 14px;
   border-radius: 3px;
-  color: #342525;
+  color: var(--text);
 }
 
 .CareerModal__Text {
-  font-weight: 500;
   display: inline;
 }
 
@@ -161,13 +158,14 @@
 }
 
 .CareerModal__Description {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.9;
-  letter-spacing: 0.03em;
-  color: #342525;
+  letter-spacing: -0.02em;
+  color: var(--text);
   text-align: left;
   margin: 0;
+  white-space: pre-wrap;
 }
 
 .CareerModal__ImageSection {
@@ -177,21 +175,22 @@
 
 .CareerModal__Image {
   width: 100%;
-  height: auto;
+  aspect-ratio: 16 / 9;
   border-radius: 8px;
   display: block;
+  border: none;
 }
 
 .CareerModal__ResultSection {
-  background-color: #4A5891;
+  background-color: #475499;
   border-radius: 12px;
-  padding: 20px 16px;
+  padding: 40px 16px;
   color: #fff;
   width: 100%;
 }
 
 .CareerModal__ResultTitle {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1.5;
   margin: 0 0 8px 0;
@@ -199,25 +198,26 @@
 }
 
 .CareerModal__ResultAchievement {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.4;
   margin: 0 0 12px 0;
 }
 
 .CareerModal__ResultContent {
-  font-size: 11px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 500;
   line-height: 1.9;
-  letter-spacing: 0.03em;
+  letter-spacing: -0.02em;
   margin: 0;
+  white-space: pre-wrap;
 }
 
 @media screen and (min-width: 1280px) {
   .CareerModal__Container {
-    max-width: 1080px;
+    max-width: 1100px;
     width: 100%;
-    padding: 24px;
+    padding: 18px;
   }
 
   .CareerModal__Close {
@@ -225,9 +225,9 @@
   }
 
   .CareerModal__Badge {
-    /* left: 490px; */
-    top: 0%;
-    transform: translate(450%, 45%);
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .CareerModal__Content {
@@ -237,9 +237,8 @@
   .CareerModal__Top {
     flex-direction: row;
     align-items: stretch;
-    margin: 18px 0px 50px;
+    margin: 18px 20px 50px;
   }
-
 
   .CareerModal__Header {
     margin-bottom: 20px;
@@ -261,6 +260,8 @@
   .CareerModal__Title {
     font-size: 22px;
     margin-top: 4px;
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 
   .CareerModal__Block {
@@ -271,17 +272,18 @@
     flex-shrink: 0;
     min-width: 548px;
     width: 100%;
+    min-height: 100px;
   }
 
   .CareerModal__InfoItem {
     font-size: 14px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 4px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 
-    .CareerModal__Line {
+  .CareerModal__Line {
     display: inline-block;
     width: 1px;
     height: auto;
@@ -293,24 +295,36 @@
     );
     background-size: 1px 8px;
     background-repeat: repeat-y;
-    margin: 0 32px;
+    margin: 0 28px;
   }
 
   .CareerModal__Course {
-   display: inline-flex;
+    display: inline-flex;
     align-items: center;
     width: fit-content;
     padding: 4px 8px;
     font-size: 12px;
     border-radius: 3px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .CareerModal__Text {
+    word-break: break-word;
+    width: 324px;
   }
 
   .CareerModal__DescriptionSection {
     margin-bottom: 20px;
+    min-height: 150px;
   }
 
   .CareerModal__Description {
     font-size: 14px;
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 
   .CareerModal__ImageSection {
@@ -321,21 +335,28 @@
   }
 
   .CareerModal__ResultSection {
-    padding: 28px 24px;
+    padding: 32px 40px;
+    min-height: 350px;
   }
 
   .CareerModal__ResultTitle {
-    font-size: 14px;
+    font-size: 18px;
     margin-bottom: 12px;
     padding-bottom: 12px;
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 
   .CareerModal__ResultAchievement {
-    font-size: 18px;
+    font-size: 22px;
     margin-bottom: 16px;
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 
   .CareerModal__ResultContent {
-    font-size: 14px;
+    font-size: 16px;
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 }
