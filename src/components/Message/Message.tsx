@@ -6,6 +6,7 @@ import Corner, { CornerPosition } from '../Corner/Corner';
 import Logo from '../Logo/Logo';
 
 import styles from './Message.module.css';
+import RevealText from './RevealText';
 
 export default function Message() {
   const isPc = useIsPc();
@@ -20,7 +21,7 @@ export default function Message() {
           <Corner top="16px" right="-24px" position={CornerPosition.TOP_RIGHT} color="#475499" />
         </div>
         <div className={styles.Message__Title}>{'</ Message >'}</div>
-        <p className={styles.Message__Text}>
+        <RevealText className={styles.Message__Text}>
           <Logo fill="#fff" />は{!isPc && <br />}
           プログラミング技術の
           {!isPc && <br />}
@@ -33,15 +34,15 @@ export default function Message() {
           次の一歩をどのように
           <br />
           踏み出すかまでを共に考える。
-        </p>
-        <p className={styles.Message__Text}>
+        </RevealText>
+        <RevealText className={styles.Message__Text}>
           実践的なカリキュラムを通じて<br />コミュニケーション力や
           {!isPc && <br />}
           課題解決力といった
           <br />
           現場で求められるスキルを。
-        </p>
-        <p className={styles.Message__Text}>
+        </RevealText>
+        <RevealText className={styles.Message__Text}>
           一人ひとりに合わせた
           {!isPc && <br />}
           学習設計と
@@ -51,8 +52,8 @@ export default function Message() {
           挑戦と成長の連続を支え、
           <br />
           未来に向かって進む力を育む。
-        </p>
-        <p className={styles.Message__Text}>
+        </RevealText>
+        <RevealText className={styles.Message__Text}>
           <Logo fill="#fff" />
           と共に、
           <br />
@@ -61,7 +62,7 @@ export default function Message() {
           あなたらしい学びと
           <br />
           進み方を見つけよう。
-        </p>
+        </RevealText>
       </div>
     </div>
   );

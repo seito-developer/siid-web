@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import CareerPath from '@/components/CareerPath/CareerPath';
 import Comparison from '@/components/Comparison/Comparison';
 import Cource from '@/components/Cource/Cource';
+import FadeInOnScroll from '@/components/FadeInOnScroll/FadeInOnScroll';
 import Faq from '@/components/Faq/Faq';
 import GenerativeAi from '@/components/GenerativeAi/GenerativeAi';
 import Header from '@/components/Header/Header';
@@ -27,6 +28,7 @@ export default function Home() {
   return (
     <>
       {/* <LoadingScreenInner /> */}
+      <FadeInOnScroll />
       <HomeLayout>
         <div className={styles.Home}>
           <Header />
@@ -44,7 +46,7 @@ export default function Home() {
             <div className={styles.Home__Message}>
               <Message />
             </div>
-            <div className={styles.Home__Comparison}>
+            <div className={`${styles.Home__Comparison} fade-in-scroll`}>
               <Comparison />
             </div>
             <div className={styles.Home__Reason}>
@@ -56,7 +58,7 @@ export default function Home() {
             <div className={styles.Home__Supporter}>
               <Supporter />
             </div>
-            <div className={styles.Home__Cource}>
+            <div className={`${styles.Home__Cource} fade-in-scroll`}>
               <Cource />
             </div>
             <div className={styles.Home__CareerPath}>
