@@ -1,22 +1,27 @@
-'use client';
-
 import Image from 'next/image';
+import Link from 'next/link';
 
-import type { CareerPathData } from '@/types/career';
 
 import styles from './CareerCard.module.css';
 
-interface CareerCardProps extends CareerPathData {
-  onClick: () => void;
+interface CareerCardProps{
+  id: string;
+  voice: string;
+  title: string;
+  thumbnailUrl: string;
+  description: string;
+  tags: string[];
+  priority?: boolean;
 }
 
 export default function CareerCard({
+  id,
   voice,
   title,
   thumbnailUrl,
   description,
   tags,
-  onClick,
+  priority = false,
 }: CareerCardProps) {
   return (
     <article className={styles.CareerCard}>
@@ -26,6 +31,7 @@ export default function CareerCard({
         width={452}
         height={254}
         className={styles.CareerCard__Image}
+        priority={priority}
       />
       <div className={styles.CareerCard__Header}>
         <div className={styles.CareerCard__Voice}>
@@ -46,12 +52,10 @@ export default function CareerCard({
             </span>
           ))}
         </div>
-        <button
+        <Link
+          href={`?id=${id}`}
+          scroll={false}
           className={styles.CareerCard__Button}
-          onClick={(e) => {
-            e.stopPropagation();
-            onClick();
-          }}
         >
           <svg
             className={styles.CareerCard__Icon}
@@ -61,7 +65,7 @@ export default function CareerCard({
           >
             <use href="#rightArrow" />
           </svg>
-        </button>
+        </Link>
       </div>
     </article>
   );
