@@ -1,6 +1,6 @@
 export default function RevealLogo() {
   return (
-    <span className="reveal-logo" style={{ display: 'inline-flex', gap: '0.03em', whiteSpace: 'nowrap', fontSize: '1em' }}>
+    <span className="reveal-logo" role="img" aria-label="SiiD" style={{ display: 'inline-flex', gap: '0.03em', whiteSpace: 'nowrap', fontSize: '1em' }}>
       {/* S (path 1) */}
       <span className="ch" style={{ display: 'inline-block', width: '0.293em' }}>
         <svg style={{ width: '100%', height: 'auto', display: 'block' }} viewBox="0 0 20.2 18" fill="none" xmlns="http://www.w3.org/2000/svg">
