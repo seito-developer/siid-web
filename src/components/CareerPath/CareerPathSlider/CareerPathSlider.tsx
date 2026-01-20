@@ -155,10 +155,18 @@ export default function CareerPathSlider() {
             swiperRef.current = swiper;
           }}
           onSlideChangeTransitionStart={() => {
-            // 全てのbulletからpausedクラスを削除
+            // 全てのbulletからpausedクラスを削除してアニメーションをリセット
             const allBullets = document.querySelectorAll(`.${styles.CustomPagination} .swiper-pagination-bullet`);
             allBullets.forEach(bullet => {
               bullet.classList.remove('paused');
+
+              // アニメーションをリセット
+              const circle = bullet.querySelector('circle');
+              if (circle) {
+                circle.style.animation = 'none';
+                void (bullet as HTMLElement).offsetHeight;
+                circle.style.animation = '';
+              }
             });
 
             // pause中の場合は新しいアクティブなbulletにpausedクラスを追加
