@@ -4,15 +4,15 @@ import useIsPc from '@/hooks/useIsPc';
 
 import Logo from '../../Logo/Logo';
 
-import Circle from './Circle/Circle';
 import styles from './ComparisonTable.module.css';
-import Cross from './Cross/Cross';
-import DoubleCircle from './DoubleCircle/DoubleCircle';
-import Star from './Star/Star';
-import StarBottom from './StarBottom/StarBottom';
-import StarLeft from './StarLeft/StarLeft';
-import StarTop from './StarTop/StarTop';
-import Triangle from './Triangle/Triangle';
+import Circle from './Icons/Circle/Circle';
+import Cross from './Icons/Cross/Cross';
+import DoubleCircle from './Icons/DoubleCircle/DoubleCircle';
+import Star from './Icons/Star/Star';
+import StarBottom from './Icons/StarBottom/StarBottom';
+import StarLeft from './Icons/StarLeft/StarLeft';
+import StarTop from './Icons/StarTop/StarTop';
+import Triangle from './Icons/Triangle/Triangle';
 
 export default function ComparisonTable() {
   const isPc = useIsPc();
@@ -45,9 +45,7 @@ export default function ComparisonTable() {
               <span className={styles.ComparisonTable__PriceNumber}>1</span>
               <span className={styles.ComparisonTable__PriceUnit}>万円〜/月</span>
             </div>
-            <div className={styles.ComparisonTable__Description}>
-              何故こんなに安いのかを言及する{!isPc && <br />}ひとこと
-            </div>
+            <div className={styles.ComparisonTable__Description}>何故こんなに安いのかを言及する{!isPc && <br />}ひとこと</div>
           </div>
           {/* 1ヶ月あたりの受講費用 - 他社A */}
           <div className={styles.ComparisonTable__Cell}>
@@ -228,9 +226,7 @@ export default function ComparisonTable() {
           </div>
 
           {/* アフターサポート - ラベル */}
-          <div className={styles.ComparisonTable__Label}>
-            アフター{!isPc && <br />}サポート
-          </div>
+          <div className={styles.ComparisonTable__Label}>アフター{!isPc && <br />}サポート</div>
           {/* アフターサポート - SiiD */}
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_DoubleCircle}`}>

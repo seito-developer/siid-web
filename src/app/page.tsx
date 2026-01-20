@@ -8,7 +8,7 @@ import Faq from '@/components/Faq/Faq';
 import GenerativeAi from '@/components/GenerativeAi/GenerativeAi';
 import Header from '@/components/Header/Header';
 import Hero from '@/components/Hero/Hero';
-// import LoadingScreenInner from '@/components/LoadingScreen/LoadingScreenInner/LoadingScreenInner';
+import LoadingScreenInner from '@/components/LoadingScreen/LoadingScreenInner/LoadingScreenInner';
 import Message from '@/components/Message/Message';
 import News from '@/components/News/News';
 import Reason from '@/components/Reason/Reason';
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      {/* <LoadingScreenInner /> */}
+      <LoadingScreenInner />
       <FadeInOnScroll />
       <HomeLayout>
         <div className={styles.Home}>

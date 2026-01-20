@@ -85,8 +85,6 @@ export default function Supporter() {
                 <div className={styles.MainSupporter__BadgeNumber}>001</div>
               </div>
 
-              {/* <Image src="/images/supporter/supporters/seito.png" alt="堀口セイト" width={128} height={153} className={styles.MainSupporter__Avatar} /> */}
-
               <div className={styles.MainSupporter__Avatar}></div>
 
               <div className={styles.MainSupporter__EnglishName}>

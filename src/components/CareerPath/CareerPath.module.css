@@ -41,10 +41,6 @@
   display: inline-flex;
 }
 
-.CareerPath__DetailButtonText {
-  white-space: pre-line;
-}
-
 .CareerPath__PoweredBy {
   line-height: 160%;
   color: #848484;
@@ -83,10 +79,6 @@
       width: 24px;
       height: auto;
     }
-  }
-
-  .CareerPath__DetailButtonText {
-    white-space: inherit;
   }
 
   .CareerPath__PoweredBy {

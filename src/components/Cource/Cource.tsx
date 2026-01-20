@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 
 import { COURSES } from '@/constants/courseData';
+import useIsPc from '@/hooks/useIsPc';
 
 import Logo from '../Logo/Logo';
 
@@ -69,6 +70,8 @@ export default function Cource() {
     { number: '05', text: 'さまざまなキャリアの選択肢', subText: '（リモートワーク、有名企業、フリーランス、海外、など）' },
   ];
 
+  const isPc = useIsPc();
+
   return (
     <div className={styles.Cource}>
       <div className={styles.Cource__Container}>
@@ -78,7 +81,7 @@ export default function Cource() {
           <h2 className={styles.Cource__Heading}>コース紹介</h2>
           <div className={styles.Cource__DetailButtonContainer}>
             <a href="#" className={styles.Cource__DetailButton}>
-              <span className={styles.Cource__DetailButtonText}>{'コースの\n詳細を見る'}</span>
+              <span className={styles.Cource__DetailButtonText}>コースの{!isPc && <br />}詳細を見る</span>
               <svg width={11} height={11} fill="none">
                 <use href="#rightArrowWhite" />
               </svg>
@@ -90,7 +93,6 @@ export default function Cource() {
         <div className={styles.Cource__Slider}>
           <div className={styles.Cource__CardStack} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
             {COURSES.map((course, index) => {
-              // 相対的な位置を計算（0: アクティブ, 1: 次, 2: 次の次）
               const position = (index - activeIndex + COURSES.length) % COURSES.length;
 
               return (

@@ -95,9 +95,10 @@
 }
 
 .GenerativeAi__Tools {
-  display: flex;
+  display: grid;
   column-gap: 15px;
   margin-top: 12px;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .GenerativeAi__Tool {
@@ -107,6 +108,7 @@
   padding: 14px 12px;
   display: grid;
   grid-template-rows: auto auto 1fr;
+  grid-template-columns: 1fr;
 }
 
 .GenerativeAi__ToolTitle {
@@ -273,8 +275,6 @@
 
   .GenerativeAi__Tools {
     margin-top: 26px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
   }
 
   .GenerativeAi__Tool {

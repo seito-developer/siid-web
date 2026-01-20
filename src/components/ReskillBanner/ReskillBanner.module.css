@@ -1,14 +1,14 @@
 .ReskillBanner {
     display: block;
-    width: 100%;
+    width: calc(100% + 24px);
     height: auto;
-    scale: 1.07717042;
+    margin-left: -12px;
 }
 
 @media screen and (min-width: 1280px) {
     .ReskillBanner {
         width: 310px;
         height: 259px;
-        scale: 1;
+        margin-left: 0;
     }
 }

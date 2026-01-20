@@ -46,10 +46,6 @@
   display: inline-flex;
 }
 
-.Cource__DetailButtonText {
-  white-space: pre-line;
-}
-
 /* カードスライダー */
 .Cource__Slider {
   position: relative;
@@ -234,16 +230,12 @@
 
   .Cource__DetailButton {
     font-size: 16px;
-    padding: 22px 32px 22px 28px;
+    padding: 22px 32px 22px 32px;
     column-gap: 60px;
     svg {
       width: 24px;
       height: auto;
     }
-  }
-
-  .Cource__DetailButtonText {
-    white-space: inherit;
   }
 
   .Cource__Slider {

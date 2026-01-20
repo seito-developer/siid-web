@@ -5,7 +5,6 @@ import styles from './Reason.module.css';
 import Strength from './Strength/Strength';
 
 export default function Reason() {
-  // const isPc = useIsPc();
   return (
     <div className={styles.Reason}>
       <div className={styles.Reason__HeadingContainer}>
