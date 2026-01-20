@@ -1,6 +1,7 @@
 export default function ReskillBannerPc() {
   return (
-    <svg width="792" height="270" viewBox="0 0 792 270" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="792" height="270" viewBox="0 0 792 270" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Reスキル講座 給付金制度を利用して受講料最大80%オフ! Careerコース（12ヶ月プラン）は経済産業省の第四次産業革命スキル習得講座（通称:リスキル講座）に認定されています。詳細はこちら">
+      <title>Reスキル講座 給付金制度を利用して受講料最大80%オフ! Careerコース（12ヶ月プラン）は経済産業省の第四次産業革命スキル習得講座（通称:リスキル講座）に認定されています。詳細はこちら</title>
       <rect x="1" y="45" width="786" height="199" rx="11" fill="#61C1BE" stroke="#342525" strokeWidth="2" />
       <path d="M324.82 62.9453H320V79.0534H324.82V62.9453Z" fill="#0D6BB0" />
       <path d="M328.247 67.0997L324.074 69.5117L332.284 83.7137L336.456 81.3016L328.247 67.0997Z" fill="#0D6BB0" />

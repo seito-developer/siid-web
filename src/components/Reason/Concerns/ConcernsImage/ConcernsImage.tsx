@@ -1,6 +1,7 @@
 export default function ConcernsImage() {
   return (
-    <svg width="312" height="109" viewBox="0 0 312 109" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="312" height="109" viewBox="0 0 312 109" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="SiiDなら解決します!">
+      <title>SiiDなら解決します!</title>
       <circle cx="238.532" cy="52.4214" r="52.4185" transform="rotate(-4.67863 238.532 52.4214)" fill="#342525" />
       <path d="M234.721 4.35382C261.765 2.14052 285.46 22.039 287.649 48.7902C289.838 75.5413 269.694 99.0266 242.65 101.24C215.606 103.453 191.912 83.5554 189.722 56.8045C187.533 30.0533 207.677 6.56729 234.721 4.35382Z" stroke="white" strokeWidth="0.584897" />
       <g clipPath="url(#clip0_3785_8184)">
