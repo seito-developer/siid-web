@@ -1,5 +1,5 @@
 .Comparison {
-  padding: 60px 0;
+  padding-block: 40px 110px;
   position: relative;
   &::after {
     content: '';

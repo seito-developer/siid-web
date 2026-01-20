@@ -164,8 +164,7 @@
   }
   &:nth-last-child(1 of &) {
     border-bottom: 2px solid #475499;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-radius: 0 0 20px 20px;
   }
 }
 
@@ -228,9 +227,12 @@
 .ComparisonTable__List {
   padding-left: 2.4em;
   padding-right: 1em;
-  line-height: 1.6;
+  line-height: 150%;
   margin-block: 0;
   padding-block: 1em;
+  &:where(.ComparisonTable__Cell_Highlight &) {
+    line-height: 160%;
+  }
 }
 
 .ComparisonTable__Star {
@@ -296,10 +298,6 @@
 
   .ComparisonTable__Cell_Highlight {
     border-inline-width: 3px;
-    &:nth-last-child(1 of &) {
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-    }
   }
 
   .ComparisonTable__Label {

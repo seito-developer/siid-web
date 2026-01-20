@@ -39,56 +39,57 @@ const careerCards: CareerCard[] = [
     id: 2,
     youtubeUrl: 'https://www.youtube.com/watch?v=example2',
     thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '文系学生からスタートアップのフロントエンド・インターン内定！',
-    tags: ['未経験', '転職', 'Webエンジニア'],
+    title: '転職成功！',
+    tags: ['転職'],
   },
   {
     id: 3,
     youtubeUrl: 'https://www.youtube.com/watch?v=example3',
     thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '文系学生からスタートアップのフロントエンド・インターン内定！',
-    tags: ['文系', '社会人', 'フルスタック'],
+    title: '働きながら独学でプログラミングを学び、半年後にフリーランスエンジニアとして独立',
+    tags: ['社会人', '独学', 'フリーランス', '副業'],
   },
   {
     id: 4,
     youtubeUrl: 'https://www.youtube.com/watch?v=example4',
     thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '文系学生からスタートアップのフロントエンド・インターン内定！',
-    tags: ['独学', '短期習得', 'フリーランス'],
+    title: '未経験から3ヶ月でエンジニアデビュー',
+    tags: ['未経験', '短期'],
   },
   {
     id: 5,
     youtubeUrl: 'https://www.youtube.com/watch?v=example5',
     thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '文系学生からスタートアップのフロントエンド・インターン内定！',
-    tags: ['転職成功', '実務経験', 'キャリアアップ'],
+    title: '完全未経験の文系出身者が、オンラインスクールで基礎から応用まで徹底的に学び、念願だった大手IT企業のバックエンドエンジニアとして転職を実現した成功ストーリー',
+    tags: ['未経験', '文系', 'オンラインスクール', '大手企業', 'バックエンド', '転職成功', 'キャリアチェンジ'],
   },
   {
     id: 6,
     youtubeUrl: 'https://www.youtube.com/watch?v=example5',
     thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '文系学生からスタートアップのフロントエンド・インターン内定！',
-    tags: ['転職成功', '実務経験', 'キャリアアップ'],
+    title: '営業職から機械学習エンジニアへキャリアチェンジを実現！AI分野で新たな挑戦',
+    tags: ['転職', 'AI', '機械学習', 'キャリアチェンジ', 'データサイエンス'],
   },
   {
     id: 7,
     youtubeUrl: 'https://www.youtube.com/watch?v=example5',
     thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '文系学生からスタートアップのフロントエンド・インターン内定！',
-    tags: ['転職成功', '実務経験', 'キャリアアップ'],
+    title: 'Web制作スキル習得',
+    tags: ['Web', 'フロントエンド'],
   },
   {
     id: 8,
     youtubeUrl: 'https://www.youtube.com/watch?v=example5',
     thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '文系学生からスタートアップのフロントエンド・インターン内定！',
-    tags: ['転職成功', '実務経験', 'キャリアアップ'],
+    title: '地方在住の主婦が子育てしながらプログラミングを習得し、リモートワークで憧れのWebデザイナー兼フロントエンドエンジニアとして活躍中',
+    tags: ['主婦', 'リモートワーク', 'フロントエンド', 'Webデザイン', '地方', '子育て'],
   },
 ];
 
 // スライダー設定の定数
 const AUTOPLAY_DELAY = 3000; // 3秒
-const CIRCLE_CIRCUMFERENCE = 62.83; // 2πr (r=10)
+const CIRCLE_RADIUS = 8; // インジケーター円の半径
+const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS; // 円周
 
 export default function CareerPathSlider() {
   const [isAutoplayRunning, setIsAutoplayRunning] = useState(true);
@@ -215,7 +216,7 @@ export default function CareerPathSlider() {
               return `
                 <span class="${className}">
                   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" fill="none" stroke="#a75884" stroke-width="2" stroke-linecap="round" transform="rotate(-90 12 12)" stroke-dasharray="62.83" stroke-dashoffset="62.83" />
+                    <circle cx="12" cy="12" r="${CIRCLE_RADIUS}" fill="none" stroke="#a75884" stroke-width="2" stroke-linecap="round" transform="rotate(-90 12 12)" stroke-dasharray="${CIRCLE_CIRCUMFERENCE}" stroke-dashoffset="${CIRCLE_CIRCUMFERENCE}" />
                   </svg>
                 </span>
               `;

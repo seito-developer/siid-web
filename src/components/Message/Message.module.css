@@ -31,7 +31,7 @@
   font-weight: var(--section-en-title-font-weight);
   line-height: var(--section-en-title-line-height);
   font-family: var(--font-poppins);
-  margin: 0 0 55px;
+  margin: 0 0 62px;
 }
 
 .Message__Text {
@@ -57,10 +57,9 @@
     vertical-align: middle;
     transform: translateY(-0.07em);
     margin-right: 8px;
-  }
-
-  &:where(.Message__Text:last-child :global(.reveal-logo)) {
-    font-size: 180px !important;
+    &:where(.Message__Text:last-child :global(.reveal-logo)) {
+      font-size: 180px !important;
+    }
   }
 }
 
@@ -103,7 +102,7 @@
 @media screen and (min-width: 1280px) {
   .Message {
     margin-top: 0;
-    padding-block: 180px 248px;
+    padding-block: 180px 330px;
     &::before {
       content: none;
     }
@@ -132,7 +131,8 @@
     }
     &:last-child {
       font-size: 72px;
-      margin-top: 150px;
+      margin-top: 160px;
+      line-height: 130%;
     }
     & :global(.reveal-logo) {
       font-size: 220px !important;

@@ -147,12 +147,12 @@
 
 .CustomPagination :global(.swiper-pagination-bullet) {
   border-radius: 50%;
-  cursor: pointer;
   position: relative;
   margin-inline: 0 !important;
   position: relative;
-  width: 12px;
-  height: 12px;
+  aspect-ratio: 1 / 1;
+  width: 8px;
+  height: auto;
   background: #fff;
   opacity: 1;
 
@@ -165,11 +165,6 @@
     width: 20px;
     height: 20px;
     pointer-events: none;
-  }
-
-  circle {
-    stroke-dasharray: 62.83;
-    stroke-dashoffset: 62.83;
   }
 }
 

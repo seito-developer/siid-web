@@ -2,7 +2,7 @@
   width: 100%;
   overflow: hidden;
   background-color: #924a8f;
-  padding: 6px 0;
+  padding-block: 6px;
   position: relative;
   border-block: 2px solid #000;
 }
@@ -45,5 +45,11 @@
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 1280px) {
+  .MarqueeContainer {
+    padding-block: 12px;
   }
 }

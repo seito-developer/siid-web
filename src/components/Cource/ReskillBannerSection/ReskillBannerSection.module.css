@@ -1,3 +1,11 @@
 .ReskillBannerSection {
   position: relative;
 }
+
+@media screen and (min-width: 1280px) {
+  .ReskillBannerSection {
+    max-width: 790px;
+    display: block;
+    margin-inline: auto;
+  }
+}

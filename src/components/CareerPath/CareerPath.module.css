@@ -48,7 +48,8 @@
   flex-direction: column;
   font-size: 10px;
   width: fit-content;
-  margin-bottom: 6px;
+  margin-bottom: 18px;
+  position: relative;
 }
 
 .CareerPath__PoweredByLabel {

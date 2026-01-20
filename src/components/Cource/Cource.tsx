@@ -125,25 +125,27 @@ export default function Cource() {
 
         {/* SiiDで手に入る未来 */}
         <div className={styles.Cource__Future}>
-          <h3 className={styles.Cource__FutureHeading}>
-            <Logo fill="#000" />
-            で手に入る未来
-          </h3>
-          <p className={styles.Cource__FutureDescription}>
-            Youtubeだけでは個々の課題にパーソナライズできないとセイト自身が悩んで立ち上げたプログラミングスクール。
-            <br />
-            本物が本気で付き合います。
-            <br />
-            こんな講師から学べるスクールは他に存在し得ないと思います。
-            <br />
-            だからこそ成果を出していただく自信があります。
-          </p>
+          <div className={styles.Cource__FutureInner}>
+            <h3 className={styles.Cource__FutureHeading}>
+              <Logo fill="#000" />
+              で手に入る未来
+            </h3>
+            <p className={styles.Cource__FutureDescription}>
+              Youtubeだけでは個々の課題にパーソナライズできないとセイト自身が悩んで立ち上げたプログラミングスクール。
+              <br />
+              本物が本気で付き合います。
+              <br />
+              こんな講師から学べるスクールは他に存在し得ないと思います。
+              <br />
+              だからこそ成果を出していただく自信があります。
+            </p>
 
-          <ul className={styles.Cource__FutureList}>
-            {futureItems.map((item, index) => (
-              <FutureItem key={index} number={item.number} text={item.text} subText={item.subText} />
-            ))}
-          </ul>
+            <ul className={styles.Cource__FutureList}>
+              {futureItems.map((item, index) => (
+                <FutureItem key={index} number={item.number} text={item.text} subText={item.subText} />
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* タイムラインセクション */}
