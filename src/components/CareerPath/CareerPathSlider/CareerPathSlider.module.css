@@ -181,29 +181,6 @@
   }
 }
 
-.CustomPagination :global(.swiper-pagination-bullet-active) {
-  circle {
-    animation: drawCircle 3.6s linear forwards; /* autoplay delay 3s + speed 0.6s */
-  }
-}
-
-.CustomPagination :global(.swiper-pagination-bullet-active.paused) {
-  circle {
-    animation-play-state: paused;
-  }
-}
-
-@keyframes drawCircle {
-  0% {
-    stroke-dashoffset: 62.83;
-  }
-
-  95%,
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
 .AutoplayButton {
   aspect-ratio: 1 / 1;
   width: 30px;

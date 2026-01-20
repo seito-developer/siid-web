@@ -86,9 +86,17 @@ const careerCards: CareerCard[] = [
   },
 ];
 
+// スライダー設定の定数
+const AUTOPLAY_DELAY = 3000; // 3秒
+const CIRCLE_CIRCUMFERENCE = 62.83; // 2πr (r=10)
+
 export default function CareerPathSlider() {
   const [isAutoplayRunning, setIsAutoplayRunning] = useState(true);
   const swiperRef = useRef<SwiperType | null>(null);
+  const pausedProgressRef = useRef<number>(0); // Pause時の進捗（0-1）を保存
+  const manualTimerRef = useRef<NodeJS.Timeout | null>(null); // 手動タイマー
+  const manualAnimationRef = useRef<number | null>(null); // 手動アニメーション
+  const manualStartTimeRef = useRef<number | null>(null); // 手動アニメーション開始時刻
 
   const handlePrev = () => {
     swiperRef.current?.slidePrev();
@@ -98,24 +106,91 @@ export default function CareerPathSlider() {
     swiperRef.current?.slideNext();
   };
 
+  // インジケーターの進捗を更新
+  const updateIndicatorProgress = (progress: number) => {
+    const activeBullet = document.querySelector(`.${styles.CustomPagination} .swiper-pagination-bullet-active`);
+    const circle = activeBullet?.querySelector('circle') as SVGCircleElement | null;
+
+    if (circle) {
+      // progress: 1（開始）→ 0（終了）なので、反転させる
+      const offset = CIRCLE_CIRCUMFERENCE * progress;
+      circle.style.strokeDashoffset = `${offset}`;
+    }
+  };
+
+  // インジケーターをリセット
+  const resetIndicator = () => {
+    const allBullets = document.querySelectorAll(`.${styles.CustomPagination} .swiper-pagination-bullet`);
+    allBullets.forEach(bullet => {
+      const circle = bullet.querySelector('circle') as SVGCircleElement | null;
+      if (circle) {
+        circle.style.strokeDashoffset = `${CIRCLE_CIRCUMFERENCE}`;
+      }
+    });
+    // pausedProgressRefはリセットしない（Pause状態を保持）
+  };
+
+  const stopManualAnimation = () => {
+    if (manualAnimationRef.current) {
+      cancelAnimationFrame(manualAnimationRef.current);
+      manualAnimationRef.current = null;
+    }
+    if (manualTimerRef.current) {
+      clearTimeout(manualTimerRef.current);
+      manualTimerRef.current = null;
+    }
+    manualStartTimeRef.current = null;
+  };
+
   const toggleAutoplay = () => {
     if (swiperRef.current) {
       if (isAutoplayRunning) {
+        // 手動アニメーションを停止
+        stopManualAnimation();
+
         swiperRef.current.autoplay.stop();
-        // アクティブなbulletにpausedクラスを追加
-        const activeBullet = document.querySelector(`.${styles.CustomPagination} .swiper-pagination-bullet-active`);
-        if (activeBullet) {
-          activeBullet.classList.add('paused');
-        }
+        setIsAutoplayRunning(false);
       } else {
-        swiperRef.current.autoplay.start();
-        // 全てのbulletからpausedクラスを削除
-        const allBullets = document.querySelectorAll(`.${styles.CustomPagination} .swiper-pagination-bullet`);
-        allBullets.forEach(bullet => {
-          bullet.classList.remove('paused');
-        });
+        // 保存された進捗がある場合
+        if (pausedProgressRef.current > 0 && pausedProgressRef.current < 1) {
+          // 残り時間を計算
+          const remainingTime = Math.round(AUTOPLAY_DELAY * pausedProgressRef.current);
+
+          setIsAutoplayRunning(true);
+
+          // 手動アニメーションで進捗を更新
+          const startProgress = pausedProgressRef.current;
+          manualStartTimeRef.current = Date.now();
+
+          const animate = () => {
+            if (!manualStartTimeRef.current) {
+              return;
+            }
+
+            const elapsed = Date.now() - manualStartTimeRef.current;
+            const progress = Math.min(elapsed / remainingTime, 1);
+
+            // percentage: 残り時間の割合（1 → 0）
+            const currentPercentage = startProgress * (1 - progress);
+            updateIndicatorProgress(currentPercentage);
+            pausedProgressRef.current = currentPercentage;
+
+            if (progress < 1) {
+              manualAnimationRef.current = requestAnimationFrame(animate);
+            } else {
+              // アニメーション完了、次のスライドへ
+              if (swiperRef.current) {
+                swiperRef.current.slideNext();
+              }
+            }
+          };
+
+          manualAnimationRef.current = requestAnimationFrame(animate);
+        } else {
+          swiperRef.current.autoplay.start();
+          setIsAutoplayRunning(true);
+        }
       }
-      setIsAutoplayRunning(!isAutoplayRunning);
     }
   };
 
@@ -130,7 +205,7 @@ export default function CareerPathSlider() {
           loop={true}
           speed={600}
           autoplay={{
-            delay: 3000,
+            delay: AUTOPLAY_DELAY,
             disableOnInteraction: false,
           }}
           pagination={{
@@ -155,28 +230,36 @@ export default function CareerPathSlider() {
             swiperRef.current = swiper;
           }}
           onSlideChangeTransitionStart={() => {
-            // 全てのbulletからpausedクラスを削除してアニメーションをリセット
-            const allBullets = document.querySelectorAll(`.${styles.CustomPagination} .swiper-pagination-bullet`);
-            allBullets.forEach(bullet => {
-              bullet.classList.remove('paused');
+            // 手動アニメーションを停止
+            stopManualAnimation();
 
-              // アニメーションをリセット
-              const circle = bullet.querySelector('circle');
-              if (circle) {
-                circle.style.animation = 'none';
-                void (bullet as HTMLElement).offsetHeight;
-                circle.style.animation = '';
+            // インジケーターをリセット
+            resetIndicator();
+
+            // スライドが変わったので、保存状態をクリア（新しいスライドは最初から）
+            pausedProgressRef.current = 0;
+
+            // Pause中の場合、autoplayを停止
+            if (!isAutoplayRunning && swiperRef.current) {
+              swiperRef.current.autoplay.stop();
+            } else if (isAutoplayRunning && swiperRef.current) {
+              // 再生中の場合、autoplayが正しく動いているか確認して、必要なら再開
+              if (!swiperRef.current.autoplay.running) {
+                swiperRef.current.autoplay.start();
               }
-            });
+            }
+          }}
+          onAutoplayTimeLeft={(swiper, timeLeft, percentage) => {
+            // percentage: 1（開始）→ 0（終了）
+            // この値をそのまま使用してインジケーターを更新
 
-            // pause中の場合は新しいアクティブなbulletにpausedクラスを追加
-            if (!isAutoplayRunning) {
-              setTimeout(() => {
-                const activeBullet = document.querySelector(`.${styles.CustomPagination} .swiper-pagination-bullet-active`);
-                if (activeBullet) {
-                  activeBullet.classList.add('paused');
-                }
-              }, 10);
+            // 値のバリデーション（0-1の範囲内）
+            const validPercentage = Math.max(0, Math.min(1, percentage));
+            updateIndicatorProgress(validPercentage);
+
+            // 再生中の場合のみ進捗を保存
+            if (isAutoplayRunning) {
+              pausedProgressRef.current = validPercentage;
             }
           }}>
           {careerCards.map(card => (
