@@ -8,20 +8,20 @@ interface ThumbnailProps {
 export default function Thumbnail({ type, className }: ThumbnailProps) {
   const renderIcon = () => {
     switch (type) {
-      case 'chart':
-        return <Chart />;
-      case 'gear':
-        return <Gear />;
-      case 'chat':
-        return <Chat />;
-      case 'app':
-        return <App />;
-      case 'goal':
-        return <Goal />;
-      case 'community':
-        return <Community />;
-      default:
-        return null;
+    case 'chart':
+      return <Chart />;
+    case 'gear':
+      return <Gear />;
+    case 'chat':
+      return <Chat />;
+    case 'app':
+      return <App />;
+    case 'goal':
+      return <Goal />;
+    case 'community':
+      return <Community />;
+    default:
+      return null;
     }
   };
 
