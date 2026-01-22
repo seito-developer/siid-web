@@ -244,14 +244,7 @@ export default function CareerPathSlider() {
           centeredSlides={true}
           loop={true}
           speed={600}
-          autoplay={
-            isVisible
-              ? {
-                  delay: AUTOPLAY_DELAY,
-                  disableOnInteraction: false,
-                }
-              : false
-          }
+          autoplay={isVisible ? { delay: AUTOPLAY_DELAY, disableOnInteraction: false } : false}
           pagination={{
             clickable: true,
             el: `.${styles.CustomPagination}`,
