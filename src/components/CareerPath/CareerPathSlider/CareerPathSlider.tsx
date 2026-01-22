@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Image from 'next/image';
 
@@ -92,12 +92,51 @@ const CIRCLE_RADIUS = 8; // インジケーター円の半径
 const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS; // 円周
 
 export default function CareerPathSlider() {
-  const [isAutoplayRunning, setIsAutoplayRunning] = useState(true);
+  const [isAutoplayRunning, setIsAutoplayRunning] = useState(false); // 初期状態はfalse
+  const [isVisible, setIsVisible] = useState(false); // スライダーが画面内に入ったかどうか
   const swiperRef = useRef<SwiperType | null>(null);
+  const sliderRef = useRef<HTMLDivElement>(null); // Intersection Observer用
   const pausedProgressRef = useRef<number>(0); // Pause時の進捗（0-1）を保存
   const manualTimerRef = useRef<NodeJS.Timeout | null>(null); // 手動タイマー
   const manualAnimationRef = useRef<number | null>(null); // 手動アニメーション
   const manualStartTimeRef = useRef<number | null>(null); // 手動アニメーション開始時刻
+
+  // Intersection Observerでスライダーが画面内に入ったことを検知
+  useEffect(() => {
+    const currentSlider = sliderRef.current; // クリーンアップ用に保存
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !isVisible) {
+            // スライダーが画面内に入った
+            setIsVisible(true);
+
+            // 少し遅延してからautoplayを開始
+            setTimeout(() => {
+              if (swiperRef.current && !swiperRef.current.autoplay.running) {
+                swiperRef.current.autoplay.start();
+                setIsAutoplayRunning(true);
+              }
+            }, 1000);
+          }
+        });
+      },
+      {
+        threshold: 0.3, // 30%表示されたら発火
+      },
+    );
+
+    if (currentSlider) {
+      observer.observe(currentSlider);
+    }
+
+    return () => {
+      if (currentSlider) {
+        observer.unobserve(currentSlider);
+      }
+    };
+  }, [isVisible]);
 
   const handlePrev = () => {
     swiperRef.current?.slidePrev();
@@ -196,7 +235,7 @@ export default function CareerPathSlider() {
   };
 
   return (
-    <div className={styles.SliderWrapper}>
+    <div className={styles.SliderWrapper} ref={sliderRef}>
       <div className={styles.Slider}>
         <Swiper
           modules={[Pagination, Autoplay, Navigation]}
@@ -205,10 +244,14 @@ export default function CareerPathSlider() {
           centeredSlides={true}
           loop={true}
           speed={600}
-          autoplay={{
-            delay: AUTOPLAY_DELAY,
-            disableOnInteraction: false,
-          }}
+          autoplay={
+            isVisible
+              ? {
+                  delay: AUTOPLAY_DELAY,
+                  disableOnInteraction: false,
+                }
+              : false
+          }
           pagination={{
             clickable: true,
             el: `.${styles.CustomPagination}`,
