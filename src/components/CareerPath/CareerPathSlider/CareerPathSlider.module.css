@@ -74,19 +74,28 @@
   font-size: 15px;
   line-height: 160%;
   -webkit-text-stroke: 0.3px var(--text);
+  height: 3.2em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
 }
 
 .CardTags {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+  font-size: 10px;
+  height: calc(3.2em + 8px + 4px);
+  overflow: hidden;
+  align-items: flex-start;
 }
 
 .CardTag {
   background-color: #475499;
   border-radius: 4px;
   padding: 2px 6px;
-  font-size: 10px;
   line-height: 160%;
   color: #fff;
 }
@@ -307,6 +316,10 @@
   .CardTitle {
     font-size: 22px;
     margin-top: 8px;
+  }
+
+  .CardTags {
+    height: calc(3.2em + 16px + 4px);
   }
 
   .CardTag {

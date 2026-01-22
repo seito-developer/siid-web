@@ -61,7 +61,7 @@ const careerCards: CareerCard[] = [
     youtubeUrl: 'https://www.youtube.com/watch?v=example5',
     thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
     title: '完全未経験の文系出身者が、オンラインスクールで基礎から応用まで徹底的に学び、念願だった大手IT企業のバックエンドエンジニアとして転職を実現した成功ストーリー',
-    tags: ['未経験', '文系', 'オンラインスクール', '大手企業', 'バックエンド', '転職成功', 'キャリアチェンジ'],
+    tags: ['未経験', '文系', 'オンラインスクール', '大手企業', 'バックエンド', '転職成功', 'キャリアチェンジ', '30代', 'Java', 'Python', 'SQL', 'クラウド', 'AWS', 'Docker', 'Git', 'アジャイル', 'スクラム', 'チーム開発', 'コードレビュー', '設計', 'テスト', 'CI/CD', 'マイクロサービス', 'API開発', 'データベース', '年収アップ'],
   },
   {
     id: 6,
