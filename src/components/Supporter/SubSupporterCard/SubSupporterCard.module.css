@@ -4,6 +4,7 @@
   padding-block: 42px 34px;
   justify-content: space-between;
   border-top: 1px dashed var(--text);
+  align-items: center;
 }
 
 .SubSupporterCard__Header {
@@ -35,6 +36,7 @@
   display: flex;
   position: relative;
   z-index: 2;
+  visibility: hidden;
 }
 
 .SubSupporterCard__BadgeLabel {
@@ -77,7 +79,7 @@
   color: #fff;
   flex-direction: column;
   row-gap: 8px;
-  margin-block: 0 8px;
+  margin-block: 0;
   font-size: 32px;
   font-weight: 600;
   line-height: 1;
@@ -99,17 +101,6 @@
   -webkit-text-stroke: 0.5px #fff;
 }
 
-.SubSupporterCard__Social {
-  display: flex;
-  column-gap: 12px;
-  font-size: 20px;
-}
-
-.SubSupporterCard__SocialIconX {
-  width: 20px;
-  height: auto;
-}
-
 @media screen and (min-width: 1280px) {
   .SubSupporterCard {
     padding-left: 40px;
@@ -127,6 +118,7 @@
   .SubSupporterCard__Badge {
     width: 84px;
     row-gap: 2px;
+    visibility: visible;
   }
 
   .SubSupporterCard__Avatar {
@@ -154,23 +146,5 @@
   .SubSupporterCard__Name {
     padding-left: 56px;
     row-gap: 6px;
-  }
-
-  .SubSupporterCard__Social {
-    position: absolute;
-    right: 30px;
-    top: 0;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 10px;
-  }
-
-  .SubSupporterCard__SocialIconX {
-    width: 24px;
-  }
-
-  .SubSupporterCard__SocialIconGithub {
-    width: 32px;
-    height: auto;
   }
 }

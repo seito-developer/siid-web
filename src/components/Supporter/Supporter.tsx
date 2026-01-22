@@ -38,10 +38,6 @@ export default function Supporter() {
       englishName: 'Wataken',
       role: 'フルスタックエンジニア',
       avatarUrl: '/images/supporter/subsupportercard/wataken.svg',
-      socialLinks: {
-        x: 'https://x.com/',
-        github: 'https://github.com/',
-      },
     },
     {
       id: '003',
@@ -49,10 +45,6 @@ export default function Supporter() {
       englishName: 'Ariken',
       role: 'メガベンチャー研修講師',
       avatarUrl: '/images/supporter/subsupportercard/ariken.svg',
-      socialLinks: {
-        x: 'https://x.com/',
-        youtube: 'https://youtube.com/',
-      },
     },
     {
       id: '004',
@@ -60,11 +52,6 @@ export default function Supporter() {
       englishName: 'Takako',
       role: '学習アドバイザー',
       avatarUrl: '/images/supporter/subsupportercard/takako.svg',
-      socialLinks: {
-        x: 'https://x.com/',
-        github: 'https://github.com/',
-        note: 'https://note.com/',
-      },
     },
   ] as const;
 
