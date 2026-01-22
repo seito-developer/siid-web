@@ -1,15 +1,11 @@
-'use client';
-
-import useIsPc from '@/hooks/useIsPc';
-
 import Corner, { CornerPosition } from '../Corner/Corner';
 import Logo from '../Logo/Logo';
 
 import styles from './Message.module.css';
+import RevealLogo from './RevealLogo';
 import RevealText from './RevealText';
 
 export default function Message() {
-  const isPc = useIsPc();
   return (
     <div className={styles.Message}>
       <div className={styles.Message__Container}>
@@ -22,11 +18,13 @@ export default function Message() {
         </div>
         <div className={styles.Message__Title}>{'</ Message >'}</div>
         <RevealText className={styles.Message__Text}>
-          <Logo fill="#fff" />は{!isPc && <br />}
+          <RevealLogo />は<br className="br-sp" />
           プログラミング技術の
-          {!isPc && <br />}
-          習得を超え、{isPc && <br />}学びを実践に
-          {!isPc && <br />}
+          <br className="br-sp" />
+          習得を超え、
+          <br className="br-pc" />
+          学びを実践に
+          <br className="br-sp" />
           変えるための場。
           <br />
           スキルをどのように活かし、
@@ -36,25 +34,29 @@ export default function Message() {
           踏み出すかまでを共に考える。
         </RevealText>
         <RevealText className={styles.Message__Text}>
-          実践的なカリキュラムを通じて<br />コミュニケーション力や
-          {!isPc && <br />}
+          実践的なカリキュラムを通じて
+          <br />
+          コミュニケーション力や
+          <br className="br-sp" />
           課題解決力といった
           <br />
           現場で求められるスキルを。
         </RevealText>
         <RevealText className={styles.Message__Text}>
           一人ひとりに合わせた
-          {!isPc && <br />}
+          <br className="br-sp" />
           学習設計と
           <br />
-          親身なフォローアップ体制で、<br />知識を行動に変え、
-          {!isPc && <br />}
+          親身なフォローアップ体制で、
+          <br />
+          知識を行動に変え、
+          <br className="br-sp" />
           挑戦と成長の連続を支え、
           <br />
           未来に向かって進む力を育む。
         </RevealText>
         <RevealText className={styles.Message__Text}>
-          <Logo fill="#fff" />
+          <RevealLogo />
           と共に、
           <br />
           人生を切り開く

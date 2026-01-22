@@ -1,7 +1,3 @@
-'use client';
-
-import useIsPc from '@/hooks/useIsPc';
-
 import Logo from '../../Logo/Logo';
 
 import styles from './ComparisonTable.module.css';
@@ -15,7 +11,6 @@ import StarTop from './Icons/StarTop/StarTop';
 import Triangle from './Icons/Triangle/Triangle';
 
 export default function ComparisonTable() {
-  const isPc = useIsPc();
   return (
     <>
       <div className={styles.ComparisonTable__Container}>
@@ -37,7 +32,11 @@ export default function ComparisonTable() {
 
           {/* 1ヶ月あたりの受講費用 - ラベル */}
           <div className={styles.ComparisonTable__Label}>
-            1ヶ月{!isPc && <br />}あたりの{!isPc && <br />}受講費用
+            1ヶ月
+            <br className="br-sp" />
+            あたりの
+            <br className="br-sp" />
+            受講費用
           </div>
           {/* 1ヶ月あたりの受講費用 - SiiD */}
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
@@ -45,7 +44,11 @@ export default function ComparisonTable() {
               <span className={styles.ComparisonTable__PriceNumber}>1</span>
               <span className={styles.ComparisonTable__PriceUnit}>万円〜/月</span>
             </div>
-            <div className={styles.ComparisonTable__Description}>何故こんなに安いのかを言及する{!isPc && <br />}ひとこと</div>
+            <div className={styles.ComparisonTable__Description}>
+              何故こんなに安いのかを言及する
+              <br className="br-sp" />
+              ひとこと
+            </div>
           </div>
           {/* 1ヶ月あたりの受講費用 - 他社A */}
           <div className={styles.ComparisonTable__Cell}>
@@ -77,7 +80,11 @@ export default function ComparisonTable() {
 
           {/* 受講完了までの所要時間 - ラベル */}
           <div className={styles.ComparisonTable__Label}>
-            受講完了{!isPc && <br />}までの{!isPc && <br />}所要時間
+            受講完了
+            <br className="br-sp" />
+            までの
+            <br className="br-sp" />
+            所要時間
           </div>
           {/* 受講完了までの所要時間 - SiiD */}
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
@@ -118,7 +125,11 @@ export default function ComparisonTable() {
           </div>
 
           {/* リスキル応援給付金 - ラベル */}
-          <div className={styles.ComparisonTable__Label}>リスキル{!isPc && <br />}応援給付金</div>
+          <div className={styles.ComparisonTable__Label}>
+            リスキル
+            <br className="br-sp" />
+            応援給付金
+          </div>
           {/* リスキル応援給付金 - SiiD */}
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_Circle}`}>
@@ -190,7 +201,11 @@ export default function ComparisonTable() {
           </div>
 
           {/* カリキュラムの質 - ラベル */}
-          <div className={styles.ComparisonTable__Label}>カリキュラム{!isPc && <br />}の質</div>
+          <div className={styles.ComparisonTable__Label}>
+            カリキュラム
+            <br className="br-sp" />
+            の質
+          </div>
           {/* カリキュラムの質 - SiiD */}
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_DoubleCircle}`}>
@@ -226,7 +241,11 @@ export default function ComparisonTable() {
           </div>
 
           {/* アフターサポート - ラベル */}
-          <div className={styles.ComparisonTable__Label}>アフター{!isPc && <br />}サポート</div>
+          <div className={styles.ComparisonTable__Label}>
+            アフター
+            <br className="br-sp" />
+            サポート
+          </div>
           {/* アフターサポート - SiiD */}
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_DoubleCircle}`}>

@@ -155,6 +155,7 @@
   height: auto;
   background: #fff;
   opacity: 1;
+  transition: margin-inline 0.3s ease-in-out;
 
   svg {
     display: none;
@@ -170,6 +171,8 @@
 
 .CustomPagination :global(.swiper-pagination-bullet-active) {
   background: #a75884;
+
+  margin-inline: 4px !important;
 
   svg {
     display: block;

@@ -2,10 +2,6 @@
 
 import React, { useEffect, useRef } from 'react';
 
-import Logo from '../Logo/Logo';
-
-import RevealLogo from './RevealLogo';
-
 type RevealTextProps = {
   children: React.ReactNode;
   className?: string;
@@ -63,7 +59,7 @@ export default function RevealText({ children, className = '' }: RevealTextProps
     const processNode = (node: React.ReactNode): void => {
       if (typeof node === 'string') {
         // 文字列を1文字ずつ分割
-        node.split('').forEach((char) => {
+        node.split('').forEach(char => {
           if (char === ' ') {
             elements.push(
               <span key={charIndex++} className="ch">
@@ -80,12 +76,11 @@ export default function RevealText({ children, className = '' }: RevealTextProps
         });
       } else if (React.isValidElement(node)) {
         if (node.type === 'br') {
-          elements.push(<br key={`br-${charIndex++}`} />);
-        } else if (node.type === Logo) {
-          // Logoコンポーネントの場合
-          elements.push(<RevealLogo key={`logo-${charIndex++}`} />);
+          // br要素のprops（classNameなど）を保持
+          elements.push(React.cloneElement(node, { key: `br-${charIndex++}` }));
         } else {
-          elements.push(node);
+          // その他の要素（RevealLogoなど）はそのまま通す
+          elements.push(React.cloneElement(node, { key: `element-${charIndex++}` }));
         }
       }
     };

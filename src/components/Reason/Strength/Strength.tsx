@@ -1,22 +1,18 @@
-'use client';
-
 import CheckIcon from '@/components/CheckIcon/CheckIcon';
 import Logo from '@/components/Logo/Logo';
-import useIsPc from '@/hooks/useIsPc';
 
 import ServiceSection from './ServiceSection/ServiceSection';
 import styles from './Strength.module.css';
 import StrengthList from './StrengthList/StrengthList';
 
 export default function Strength() {
-  const isPc = useIsPc();
   const serviceSections = [
     {
       title: 'サービス',
       description: (
         <>
           他に劣らないひとつ上の
-          {!isPc && <br />}
+          <br className="br-sp" />
           クオリティを実現
         </>
       ),
@@ -41,7 +37,7 @@ export default function Strength() {
       description: (
         <>
           切磋琢磨しあえる仲間と
-          {!isPc && <br />}
+          <br className="br-sp" />
           ワクワクが続く
         </>
       ),

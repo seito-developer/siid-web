@@ -1,5 +1,6 @@
-import useIsPc from '@/hooks/useIsPc';
+'use client';
 
+import useIsPc from '@/hooks/useIsPc';
 
 import ReskillBanner from '../../ReskillBanner/ReskillBanner';
 
