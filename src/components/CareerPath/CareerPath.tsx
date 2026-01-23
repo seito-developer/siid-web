@@ -1,9 +1,13 @@
 import Link from 'next/link';
 
+import { getCareerPathData } from '@/lib/getCareerPathData';
+
 import styles from './CareerPath.module.css';
 import CareerPathSlider from './CareerPathSlider/CareerPathSlider';
 
 export default function CareerPath() {
+  const careerPathData = getCareerPathData();
+
   return (
     <div className={styles.CareerPath}>
       <div className={styles.CareerPath__Header}>
@@ -28,7 +32,7 @@ export default function CareerPath() {
           セイト先生のWeb・ITエンジニア転職ラボ
         </Link>
       </div>
-      <CareerPathSlider />
+      <CareerPathSlider data={careerPathData} />
     </div>
   );
 }

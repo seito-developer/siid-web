@@ -3,9 +3,13 @@
 import { useEffect, useRef, useState } from 'react';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import type { CareerPathData } from '@/types/career';
+import { getYouTubeThumbnailUrl } from '@/utils/youtube';
 
 import styles from './CareerPathSlider.module.css';
 import MarqueeText from './MarqueeText/MarqueeText';
@@ -17,7 +21,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-// カードデータ型
+// カードデータ型（UI用）
 type CareerCard = {
   id: number;
   youtubeUrl: string;
@@ -26,72 +30,26 @@ type CareerCard = {
   tags: string[];
 };
 
-// ダミーデータ
-const careerCards: CareerCard[] = [
-  {
-    id: 1,
-    youtubeUrl: 'https://www.youtube.com/watch?v=example1',
-    thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '文系学生からスタートアップのフロントエンド・インターン内定！',
-    tags: ['文系', '大学生', 'エンジニア'],
-  },
-  {
-    id: 2,
-    youtubeUrl: 'https://www.youtube.com/watch?v=example2',
-    thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '転職成功！',
-    tags: ['転職'],
-  },
-  {
-    id: 3,
-    youtubeUrl: 'https://www.youtube.com/watch?v=example3',
-    thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '働きながら独学でプログラミングを学び、半年後にフリーランスエンジニアとして独立',
-    tags: ['社会人', '独学', 'フリーランス', '副業'],
-  },
-  {
-    id: 4,
-    youtubeUrl: 'https://www.youtube.com/watch?v=example4',
-    thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '未経験から3ヶ月でエンジニアデビュー',
-    tags: ['未経験', '短期'],
-  },
-  {
-    id: 5,
-    youtubeUrl: 'https://www.youtube.com/watch?v=example5',
-    thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '完全未経験の文系出身者が、オンラインスクールで基礎から応用まで徹底的に学び、念願だった大手IT企業のバックエンドエンジニアとして転職を実現した成功ストーリー',
-    tags: ['未経験', '文系', 'オンラインスクール', '大手企業', 'バックエンド', '転職成功', 'キャリアチェンジ', '30代', 'Java', 'Python', 'SQL', 'クラウド', 'AWS', 'Docker', 'Git', 'アジャイル', 'スクラム', 'チーム開発', 'コードレビュー', '設計', 'テスト', 'CI/CD', 'マイクロサービス', 'API開発', 'データベース', '年収アップ'],
-  },
-  {
-    id: 6,
-    youtubeUrl: 'https://www.youtube.com/watch?v=example5',
-    thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '営業職から機械学習エンジニアへキャリアチェンジを実現！AI分野で新たな挑戦',
-    tags: ['転職', 'AI', '機械学習', 'キャリアチェンジ', 'データサイエンス'],
-  },
-  {
-    id: 7,
-    youtubeUrl: 'https://www.youtube.com/watch?v=example5',
-    thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: 'Web制作スキル習得',
-    tags: ['Web', 'フロントエンド'],
-  },
-  {
-    id: 8,
-    youtubeUrl: 'https://www.youtube.com/watch?v=example5',
-    thumbnail: '/images/careerpath/careerpathslider/slider01.jpg',
-    title: '地方在住の主婦が子育てしながらプログラミングを習得し、リモートワークで憧れのWebデザイナー兼フロントエンドエンジニアとして活躍中',
-    tags: ['主婦', 'リモートワーク', 'フロントエンド', 'Webデザイン', '地方', '子育て'],
-  },
-];
+// Props型定義
+type Props = {
+  data: CareerPathData[];
+};
 
 // スライダー設定の定数
 const AUTOPLAY_DELAY = 3000; // 3秒
 const CIRCLE_RADIUS = 8; // インジケーター円の半径
 const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS; // 円周
 
-export default function CareerPathSlider() {
+export default function CareerPathSlider({ data }: Props) {
+  // データ変換: CareerPathData → CareerCard
+  const careerCards: CareerCard[] = data.map(item => ({
+    id: parseInt(item.id, 10),
+    youtubeUrl: `https://www.youtube.com/watch?v=${item.youtubeId}`,
+    thumbnail: getYouTubeThumbnailUrl(item.youtubeId),
+    title: item.title,
+    tags: item.tags,
+  }));
+
   const [isAutoplayRunning, setIsAutoplayRunning] = useState(false); // 初期状態はfalse
   const [isVisible, setIsVisible] = useState(false); // スライダーが画面内に入ったかどうか
   const swiperRef = useRef<SwiperType | null>(null);
@@ -302,12 +260,12 @@ export default function CareerPathSlider() {
           {careerCards.map(card => (
             <SwiperSlide key={card.id}>
               <div className={styles.Card}>
-                <a href={card.youtubeUrl} className={styles.CardImageLink} target="_blank" rel="noopener noreferrer">
-                  <Image src={card.thumbnail} alt={card.title} className={styles.CardImage} width={320} height={180} />
-                </a>
-                <a href={card.youtubeUrl} className={styles.CardTitleLink} target="_blank" rel="noopener noreferrer">
+                <Link href={card.youtubeUrl} className={styles.CardImageLink} target="_blank" rel="noopener noreferrer">
+                  <Image src={card.thumbnail} alt={card.title} className={styles.CardImage} width={1280} height={720} />
+                </Link>
+                <Link href={card.youtubeUrl} className={styles.CardTitleLink} target="_blank" rel="noopener noreferrer">
                   <h3 className={styles.CardTitle}>{card.title}</h3>
-                </a>
+                </Link>
                 <div className={styles.CardTags}>
                   {card.tags.map((tag, index) => (
                     <span key={index} className={styles.CardTag}>

@@ -39,6 +39,7 @@
     top: 0;
     left: 0;
     border-radius: 24px;
+    pointer-events: none;
   }
 
   &:where(:global(.swiper-slide):not(:global(.swiper-slide-active)) &) {
