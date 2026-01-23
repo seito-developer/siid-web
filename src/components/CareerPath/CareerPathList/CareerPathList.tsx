@@ -9,7 +9,7 @@ import { getYouTubeThumbnailUrl } from '@/utils/youtube';
 
 import styles from './CareerPathList.module.css';
 
-export const ITEMS_PER_PAGE = 4;
+export const ITEMS_PER_PAGE = 10;
 
 interface CareerPathListProps {
   careerPathData: CareerPathData[];
