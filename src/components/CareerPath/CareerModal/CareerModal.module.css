@@ -10,6 +10,7 @@
   align-items: center;
   z-index: 1000;
   padding: 10px;
+  animation: overlayFadeIn 0.15s ease-out;
 }
 
 .CareerModal__Container {
@@ -21,7 +22,17 @@
   overflow-y: auto;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
   padding: 16px;
+  animation: containerScaleIn 0.15s ease-out;
 }
+
+.CareerModal__Overlay--closing {
+  animation: overlayFadeOut 0.2s ease-in forwards;
+}
+
+.CareerModal__Container--closing {
+  animation: containerScaleOut 0.2s ease-in forwards;
+}
+
 
 .CareerModal__Badge {
   position: absolute;
@@ -67,6 +78,15 @@
   font-size: 12px;
   font-weight: 600;
   width: fit-content;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.CareerModal__Close:hover {
+  color: #2f3a7a;
+  transform: translateY(-1px);
 }
 
 .CareerModal__Content {
@@ -140,6 +160,7 @@
 
 .CareerModal__Text {
   display: inline;
+  font-weight: 500;
 }
 
 .CareerModal__Line {
@@ -211,6 +232,52 @@
   letter-spacing: -0.02em;
   margin: 0;
   white-space: pre-wrap;
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes containerScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes overlayFadeOut {
+  0% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.7;
+  }
+  70% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes containerScaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
 }
 
 @media screen and (min-width: 1280px) {

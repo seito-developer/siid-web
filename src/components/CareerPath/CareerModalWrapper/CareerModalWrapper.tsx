@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 import { useRouter } from 'next/navigation';
 
 import CareerModal from '@/components/CareerPath/CareerModal/CareerModal';
@@ -17,14 +19,27 @@ export default function CareerModalWrapper({
   career,
 }: CareerModalWrapperProps) {
   const router = useRouter();
+  const [isClosing, setIsClosing] = useState(false);
 
   const handleClose = () => {
-    router.push(`/career-path/${currentPage}`, { scroll: false });
+    if (isClosing) {return;}
+    setIsClosing(true);
+    setTimeout(() => {
+      router.push(`/career-path/${currentPage}`, { scroll: false });
+    }, 200);
   };
+
+  if (!modalId) {
+    if (isClosing) {
+      setIsClosing(false);
+    }
+    return null;
+  }
 
   return (
     <CareerModal
-      isOpen={!!modalId}
+      isOpen={true}
+      isClosing={isClosing}
       onClose={handleClose}
       voice={career.voice}
       title={career.title}

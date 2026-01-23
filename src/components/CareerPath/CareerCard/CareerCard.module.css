@@ -6,12 +6,28 @@
   padding: 20px 16px;
 }
 
+.CareerCard__Modal {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.CareerCard__ImageWrapper {
+  width: 100%;
+  aspect-ratio: 452 / 254;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
 .CareerCard__Image {
   width: 100%;
-  height: auto;
-  aspect-ratio: 452 / 254;
+  height: 100%;
   object-fit: cover;
-  border-radius: 4px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.CareerCard__ImageWrapper:hover .CareerCard__Image {
+  transform: scale(1.1);
 }
 
 .CareerCard__Header {

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 
-
 import { getYouTubeEmbedUrl } from '../../../utils/youtube';
 
 import styles from './CareerModal.module.css';
@@ -17,12 +16,14 @@ interface CareerModalProps {
   achievement: string;
   detailContent: string;
   isOpen: boolean;
+  isClosing: boolean;
   onClose: () => void;
   voice: string;
 }
 
 export default function CareerModal({
   isOpen,
+  isClosing,
   onClose,
   title,
   age,
@@ -63,12 +64,12 @@ export default function CareerModal({
 
   return (
     <div
-      className={styles.CareerModal__Overlay}
+      className={`${styles.CareerModal__Overlay} ${isClosing ? styles['CareerModal__Overlay--closing'] : ''}`}
       role='dialog'
       aria-modal='true'
       onClick={handleBackdropClick}
     >
-      <div className={styles.CareerModal__Container}>
+      <div className={`${styles.CareerModal__Container} ${isClosing ? styles['CareerModal__Container--closing'] : ''}`}>
         <div className={styles.CareerModal__Badge}>
           <span className={styles.CareerModal__BadgeText}>･ CASE ･</span>
           <span className={styles.CareerModal__BadgeNumber}>{voice}</span>
@@ -126,7 +127,7 @@ export default function CareerModal({
 
               <section className={styles.CareerModal__DescriptionSection}>
                 <p className={styles.CareerModal__Description}>
-                  {description}
+                  {description.replace(/\n/g, '\n\n')}
                 </p>
               </section>
             </div>
