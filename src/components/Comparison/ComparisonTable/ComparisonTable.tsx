@@ -1,14 +1,6 @@
 import Logo from '../../Logo/Logo';
 
 import styles from './ComparisonTable.module.css';
-import Circle from './Icons/Circle/Circle';
-import Cross from './Icons/Cross/Cross';
-import DoubleCircle from './Icons/DoubleCircle/DoubleCircle';
-import Star from './Icons/Star/Star';
-import StarBottom from './Icons/StarBottom/StarBottom';
-import StarLeft from './Icons/StarLeft/StarLeft';
-import StarTop from './Icons/StarTop/StarTop';
-import Triangle from './Icons/Triangle/Triangle';
 
 export default function ComparisonTable() {
   return (
@@ -57,7 +49,9 @@ export default function ComparisonTable() {
               <span className={styles.ComparisonTable__PriceUnit}>万円〜/月</span>
             </div>
             <span className={`${styles.ComparisonTable__StarBottom}`}>
-              <StarBottom />
+              <svg width="14" height="7" fill="none">
+                <use href="#StarBottom" />
+              </svg>
             </span>
           </div>
           {/* 1ヶ月あたりの受講費用 - 他社B */}
@@ -67,7 +61,9 @@ export default function ComparisonTable() {
               <span className={styles.ComparisonTable__PriceUnit}>万円〜/月</span>
             </div>
             <span className={`${styles.ComparisonTable__StarBottom}`}>
-              <StarBottom />
+              <svg width="14" height="7" fill="none">
+                <use href="#StarBottom" />
+              </svg>
             </span>
           </div>
           {/* 1ヶ月あたりの受講費用 - 他社C */}
@@ -100,7 +96,9 @@ export default function ComparisonTable() {
               <div className={styles.ComparisonTable__PeriodDetail}>最短2ヶ月〜4ヶ月</div>
             </div>
             <span className={`${styles.ComparisonTable__Star} ${styles.ComparisonTable__Mark_Star}`}>
-              <Star />
+              <svg width="14" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#Star" />
+              </svg>
             </span>
           </div>
           {/* 受講完了までの所要時間 - 他社B */}
@@ -110,7 +108,9 @@ export default function ComparisonTable() {
               <div className={styles.ComparisonTable__PeriodDetail}>最短5ヶ月〜9ヶ月</div>
             </div>
             <span className={`${styles.ComparisonTable__Star} ${styles.ComparisonTable__Mark_Star}`}>
-              <Star />
+              <svg width="14" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#Star" />
+              </svg>
             </span>
           </div>
           {/* 受講完了までの所要時間 - 他社C */}
@@ -120,7 +120,9 @@ export default function ComparisonTable() {
               <div className={styles.ComparisonTable__PeriodDetail}>最短3ヶ月〜4ヶ月</div>
             </div>
             <span className={`${styles.ComparisonTable__StarLeft}`}>
-              <StarLeft />
+              <svg width="7" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#StarLeft" />
+              </svg>
             </span>
           </div>
 
@@ -133,34 +135,48 @@ export default function ComparisonTable() {
           {/* リスキル応援給付金 - SiiD */}
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_Circle}`}>
-              <Circle fill="#475499" />
+              <svg width="20" height="20" fill="none" style={{ color: '#475499' }}>
+                <use href="#Circle" />
+              </svg>
             </span>
           </div>
           {/* リスキル応援給付金 - 他社A */}
           <div className={styles.ComparisonTable__Cell}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_Cross}`}>
-              <Cross />
+              <svg width="22" height="22" fill="none" style={{ color: '#000' }}>
+                <use href="#Cross" />
+              </svg>
             </span>
             <span className={`${styles.ComparisonTable__Star} ${styles.ComparisonTable__Mark_Star}`}>
-              <Star />
+              <svg width="14" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#Star" />
+              </svg>
             </span>
           </div>
           {/* リスキル応援給付金 - 他社B */}
           <div className={styles.ComparisonTable__Cell}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_Circle}`}>
-              <Circle />
+              <svg width="20" height="20" fill="none" style={{ color: '#342525' }}>
+                <use href="#Circle" />
+              </svg>
             </span>
             <span className={`${styles.ComparisonTable__Star} ${styles.ComparisonTable__Mark_Star}`}>
-              <Star />
+              <svg width="14" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#Star" />
+              </svg>
             </span>
           </div>
           {/* リスキル応援給付金 - 他社C */}
           <div className={styles.ComparisonTable__Cell}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_Triangle}`}>
-              <Triangle />
+              <svg width="24" height="21" fill="none" style={{ color: '#000' }}>
+                <use href="#Triangle" />
+              </svg>
             </span>
             <span className={`${styles.ComparisonTable__StarLeft}`}>
-              <StarLeft />
+              <svg width="7" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#StarLeft" />
+              </svg>
             </span>
           </div>
 
@@ -169,34 +185,48 @@ export default function ComparisonTable() {
           {/* 講師の質 - SiiD */}
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_DoubleCircle}`}>
-              <DoubleCircle />
+              <svg width="20" height="20" fill="none" style={{ color: '#475499' }}>
+                <use href="#DoubleCircle" />
+              </svg>
             </span>
           </div>
           {/* 講師の質 - 他社A */}
           <div className={styles.ComparisonTable__Cell}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_Circle}`}>
-              <Circle />
+              <svg width="20" height="20" fill="none" style={{ color: '#342525' }}>
+                <use href="#Circle" />
+              </svg>
             </span>
             <span className={`${styles.ComparisonTable__Star} ${styles.ComparisonTable__Mark_Star}`}>
-              <Star />
+              <svg width="14" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#Star" />
+              </svg>
             </span>
           </div>
           {/* 講師の質 - 他社B */}
           <div className={styles.ComparisonTable__Cell}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_Circle}`}>
-              <Circle />
+              <svg width="20" height="20" fill="none" style={{ color: '#342525' }}>
+                <use href="#Circle" />
+              </svg>
             </span>
             <span className={`${styles.ComparisonTable__Star} ${styles.ComparisonTable__Mark_Star}`}>
-              <Star />
+              <svg width="14" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#Star" />
+              </svg>
             </span>
           </div>
           {/* 講師の質 - 他社C */}
           <div className={styles.ComparisonTable__Cell}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_Circle}`}>
-              <Circle />
+              <svg width="20" height="20" fill="none" style={{ color: '#342525' }}>
+                <use href="#Circle" />
+              </svg>
             </span>
             <span className={`${styles.ComparisonTable__StarLeft}`}>
-              <StarLeft />
+              <svg width="7" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#StarLeft" />
+              </svg>
             </span>
           </div>
 
@@ -209,34 +239,48 @@ export default function ComparisonTable() {
           {/* カリキュラムの質 - SiiD */}
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_DoubleCircle}`}>
-              <DoubleCircle />
+              <svg width="20" height="20" fill="none" style={{ color: '#475499' }}>
+                <use href="#DoubleCircle" />
+              </svg>
             </span>
           </div>
           {/* カリキュラムの質 - 他社A */}
           <div className={styles.ComparisonTable__Cell}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_Circle}`}>
-              <Circle />
+              <svg width="20" height="20" fill="none" style={{ color: '#342525' }}>
+                <use href="#Circle" />
+              </svg>
             </span>
             <span className={`${styles.ComparisonTable__Star} ${styles.ComparisonTable__Mark_Star}`}>
-              <Star />
+              <svg width="14" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#Star" />
+              </svg>
             </span>
           </div>
           {/* カリキュラムの質 - 他社B */}
           <div className={styles.ComparisonTable__Cell}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_Circle}`}>
-              <Circle />
+              <svg width="20" height="20" fill="none" style={{ color: '#342525' }}>
+                <use href="#Circle" />
+              </svg>
             </span>
             <span className={`${styles.ComparisonTable__Star} ${styles.ComparisonTable__Mark_Star}`}>
-              <Star />
+              <svg width="14" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#Star" />
+              </svg>
             </span>
           </div>
           {/* カリキュラムの質 - 他社C */}
           <div className={styles.ComparisonTable__Cell}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_Circle}`}>
-              <Circle />
+              <svg width="20" height="20" fill="none" style={{ color: '#342525' }}>
+                <use href="#Circle" />
+              </svg>
             </span>
             <span className={`${styles.ComparisonTable__StarLeft}`}>
-              <StarLeft />
+              <svg width="7" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#StarLeft" />
+              </svg>
             </span>
           </div>
 
@@ -249,34 +293,48 @@ export default function ComparisonTable() {
           {/* アフターサポート - SiiD */}
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_DoubleCircle}`}>
-              <DoubleCircle />
+              <svg width="20" height="20" fill="none" style={{ color: '#475499' }}>
+                <use href="#DoubleCircle" />
+              </svg>
             </span>
           </div>
           {/* アフターサポート - 他社A */}
           <div className={styles.ComparisonTable__Cell}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_Circle}`}>
-              <Circle />
+              <svg width="20" height="20" fill="none" style={{ color: '#342525' }}>
+                <use href="#Circle" />
+              </svg>
             </span>
             <span className={`${styles.ComparisonTable__Star} ${styles.ComparisonTable__Mark_Star}`}>
-              <Star />
+              <svg width="14" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#Star" />
+              </svg>
             </span>
           </div>
           {/* アフターサポート - 他社B */}
           <div className={styles.ComparisonTable__Cell}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_Circle}`}>
-              <Circle />
+              <svg width="20" height="20" fill="none" style={{ color: '#342525' }}>
+                <use href="#Circle" />
+              </svg>
             </span>
             <span className={`${styles.ComparisonTable__Star} ${styles.ComparisonTable__Mark_Star}`}>
-              <Star />
+              <svg width="14" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#Star" />
+              </svg>
             </span>
           </div>
           {/* アフターサポート - 他社C */}
           <div className={styles.ComparisonTable__Cell}>
             <span className={`${styles.ComparisonTable__Mark} ${styles.ComparisonTable__Mark_Circle}`}>
-              <Circle />
+              <svg width="20" height="20" fill="none" style={{ color: '#342525' }}>
+                <use href="#Circle" />
+              </svg>
             </span>
             <span className={`${styles.ComparisonTable__StarLeft}`}>
-              <StarLeft />
+              <svg width="7" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#StarLeft" />
+              </svg>
             </span>
           </div>
 
@@ -299,10 +357,14 @@ export default function ComparisonTable() {
               <li>完全オーダーメイド型で個別の目標に沿ったカリキュラム</li>
             </ul>
             <span className={`${styles.ComparisonTable__Star} ${styles.ComparisonTable__Mark_Star}`}>
-              <Star />
+              <svg width="14" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#Star" />
+              </svg>
             </span>
             <span className={`${styles.ComparisonTable__StarTop}`}>
-              <StarTop />
+              <svg width="14" height="7" fill="none" style={{ color: '#342525' }}>
+                <use href="#StarTop" />
+              </svg>
             </span>
           </div>
           {/* 比較ポイント - 他社B */}
@@ -312,10 +374,14 @@ export default function ComparisonTable() {
               <li>就職率90%以上の実績と無期限のサポート体制</li>
             </ul>
             <span className={`${styles.ComparisonTable__Star} ${styles.ComparisonTable__Mark_Star}`}>
-              <Star />
+              <svg width="14" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#Star" />
+              </svg>
             </span>
             <span className={`${styles.ComparisonTable__StarTop}`}>
-              <StarTop />
+              <svg width="14" height="7" fill="none" style={{ color: '#342525' }}>
+                <use href="#StarTop" />
+              </svg>
             </span>
           </div>
           {/* 比較ポイント - 他社C */}
@@ -325,7 +391,9 @@ export default function ComparisonTable() {
               <li>現役エンジニアを中心に対面・オンラインでの手厚いサポート</li>
             </ul>
             <span className={`${styles.ComparisonTable__StarLeft}`}>
-              <StarLeft />
+              <svg width="7" height="14" fill="none" style={{ color: '#342525' }}>
+                <use href="#StarLeft" />
+              </svg>
             </span>
           </div>
         </div>

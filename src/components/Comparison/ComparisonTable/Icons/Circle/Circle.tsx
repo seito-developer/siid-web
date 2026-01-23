@@ -1,7 +1,0 @@
-export default function Circle({ fill = '#342525' }: { fill?: string }) {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="10" cy="10" r="8.5" stroke={fill} strokeWidth="3" />
-    </svg>
-  );
-}
