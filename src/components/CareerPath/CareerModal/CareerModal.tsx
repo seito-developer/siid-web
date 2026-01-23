@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { getYouTubeEmbedUrl } from '../../../utils/youtube';
+import { getYouTubeEmbedUrl } from '@/utils/youtube';
 
 import styles from './CareerModal.module.css';
 
@@ -64,12 +64,18 @@ export default function CareerModal({
 
   return (
     <div
-      className={`${styles.CareerModal__Overlay} ${isClosing ? styles['CareerModal__Overlay--closing'] : ''}`}
-      role='dialog'
-      aria-modal='true'
+      className={`${styles.CareerModal__Overlay} ${
+        isClosing ? styles['CareerModal__Overlay--closing'] : ''
+      }`}
+      role="dialog"
+      aria-modal="true"
       onClick={handleBackdropClick}
     >
-      <div className={`${styles.CareerModal__Container} ${isClosing ? styles['CareerModal__Container--closing'] : ''}`}>
+      <div
+        className={`${styles.CareerModal__Container} ${
+          isClosing ? styles['CareerModal__Container--closing'] : ''
+        }`}
+      >
         <div className={styles.CareerModal__Badge}>
           <span className={styles.CareerModal__BadgeText}>･ CASE ･</span>
           <span className={styles.CareerModal__BadgeNumber}>{voice}</span>
@@ -137,16 +143,14 @@ export default function CareerModal({
                 src={getYouTubeEmbedUrl(youtubeId)}
                 className={styles.CareerModal__Image}
                 title="卒業生インタビュー動画"
-                loading='lazy'
+                loading="lazy"
                 allow="encrypted-media; picture-in-picture"
                 allowFullScreen
               />
             </section>
 
             <section className={styles.CareerModal__ResultSection}>
-              <h2 className={styles.CareerModal__ResultTitle}>
-                {detailTitle}
-              </h2>
+              <h2 className={styles.CareerModal__ResultTitle}>{detailTitle}</h2>
               <h3 className={styles.CareerModal__ResultAchievement}>
                 {achievement}
               </h3>
