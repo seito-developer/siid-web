@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import styles from './BookCard.module.css';
 
@@ -21,9 +22,9 @@ export default function BookCard({ title, publisher, date, imageUrl, link, width
           <p className={styles.BookCard__Publisher}>{publisher}</p>
           <p className={styles.BookCard__Date}>{date}</p>
         </div>
-        <a href={link} className={styles.BookCard__Link} target="_blank" rel="noopener noreferrer">
+        <Link href={link} className={styles.BookCard__Link} target="_blank" rel="noopener noreferrer">
           もっと見る
-        </a>
+        </Link>
       </div>
       <Image src={imageUrl} alt="" width={width} height={height} className={styles.BookCard__Image} />
     </div>

@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import useIsPc from '@/hooks/useIsPc';
 
 import BookCard from './BookCard/BookCard';
@@ -16,7 +18,7 @@ export default function Supporter() {
       publisher: '日経BP',
       date: '2024年9月発売',
       imageUrl: '/images/supporter/bookcard/programming.png',
-      link: '#',
+      link: 'https://bookplus.nikkei.com/atcl/catalog/24/02/27/01282/',
       width: 501,
       height: 643,
     },
@@ -25,7 +27,7 @@ export default function Supporter() {
       publisher: 'SBクリエイティブ',
       date: '2015年9月発売',
       imageUrl: '/images/supporter/bookcard/css.png',
-      link: '#',
+      link: 'https://www.sbcr.jp/product/4797384550/',
       width: 372,
       height: 442,
     },
@@ -88,26 +90,26 @@ export default function Supporter() {
             </h3>
 
             <div className={styles.MainSupporter__Social}>
-              <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+              <Link href="https://x.com/seito_horiguchi" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
                 <svg width="24" height="24">
                   <use href="#x" />
                 </svg>
-              </a>
-              <a href="https://tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+              </Link>
+              <Link href="https://www.tiktok.com/@seito2020" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
                 <svg width="25" height="28">
                   <use href="#tiktok" />
                 </svg>
-              </a>
-              <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              </Link>
+              <Link href="https://www.instagram.com/seito_horiguchi/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <svg width="30" height="30">
                   <use href="#instagram" />
                 </svg>
-              </a>
-              <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              </Link>
+              <Link href="https://www.youtube.com/@webit7652" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                 <svg width="29" height="20">
                   <use href="#youtube" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
 

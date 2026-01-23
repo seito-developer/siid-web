@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import useIsPc from '@/hooks/useIsPc';
 
 import ReskillBanner from '../../ReskillBanner/ReskillBanner';
@@ -11,9 +13,9 @@ export default function ReskillBannerSection() {
   const isPc = useIsPc();
 
   return (
-    <a href="" target="_blank" rel="noopener noreferrer" className={styles.ReskillBannerSection}>
+    <Link href="https://www.meti.go.jp/policy/economy/jinzai/reskillprograms/index.html" target="_blank" rel="noopener noreferrer" className={styles.ReskillBannerSection}>
       {isPc && <ReskillBannerPc />}
       {!isPc && <ReskillBanner />}
-    </a>
+    </Link>
   );
 }

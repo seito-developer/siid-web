@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import Logo from '../Logo/Logo';
 
 import styles from './Cource.module.css';
@@ -24,7 +26,7 @@ export default function Cource() {
           <div className={styles.Cource__Title}>{'</ Course >'}</div>
           <h2 className={styles.Cource__Heading}>コース紹介</h2>
           <div className={styles.Cource__DetailButtonContainer}>
-            <a href="#" className={styles.Cource__DetailButton}>
+            <Link href="/course" className={styles.Cource__DetailButton}>
               <span className={styles.Cource__DetailButtonText}>
                 コースの
                 <br className="br-sp" />
@@ -33,7 +35,7 @@ export default function Cource() {
               <svg width={11} height={11} fill="none">
                 <use href="#rightArrowWhite" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
 
