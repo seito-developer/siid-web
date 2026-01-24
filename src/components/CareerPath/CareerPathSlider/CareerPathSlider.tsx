@@ -13,8 +13,6 @@ import { getYouTubeThumbnailUrl } from '@/utils/youtube';
 
 import styles from './CareerPathSlider.module.css';
 import MarqueeText from './MarqueeText/MarqueeText';
-import PauseIcon from './PauseIcon';
-import PlayIcon from './PlayIcon';
 
 import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
@@ -76,7 +74,7 @@ export default function CareerPathSlider({ data }: Props) {
                 swiperRef.current.autoplay.start();
                 setIsAutoplayRunning(true);
               }
-            }, 1000);
+            }, 500);
           }
         });
       },
@@ -303,7 +301,15 @@ export default function CareerPathSlider({ data }: Props) {
           <div className={styles.CenterControls}>
             <div className={styles.CustomPagination}></div>
             <button className={styles.AutoplayButton} onClick={toggleAutoplay} aria-label={isAutoplayRunning ? '自動再生を停止' : '自動再生を開始'}>
-              {isAutoplayRunning ? <PauseIcon className={styles.PauseIcon} /> : <PlayIcon className={styles.PlayIcon} />}
+              {isAutoplayRunning ? (
+                <svg width="7" height="10" viewBox="0 0 7 10" fill="none" className={styles.PauseIcon}>
+                  <use href="#pause" />
+                </svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={styles.PlayIcon}>
+                  <use href="#play" />
+                </svg>
+              )}
             </button>
           </div>
           <button className={`${styles.NavButton} ${styles.NavButtonSp}`} onClick={handleNext} aria-label="次のスライド">

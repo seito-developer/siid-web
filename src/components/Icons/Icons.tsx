@@ -84,6 +84,13 @@ function Icons() {
       <symbol id="Triangle" viewBox="0 0 24 21" fill="none">
         <path d="M10.366 2.25C10.9433 1.25013 12.3863 1.25011 12.9636 2.25L21.6238 17.25C22.2011 18.25 21.4797 19.5 20.325 19.5H3.00464C1.84994 19.5 1.12846 18.25 1.70581 17.25L10.366 2.25Z" stroke="currentColor" strokeWidth="3" />
       </symbol>
+      <symbol id="play" viewBox="0 0 16 16" fill="none">
+        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" fill="currentColor" />
+      </symbol>
+      <symbol id="pause" viewBox="0 0 7 10" fill="none">
+        <path d="M5.375 0.75L5.375 9.1875" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M0.75 0.75L0.75 9.1875" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      </symbol>
     </svg>
   );
 }
