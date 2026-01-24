@@ -58,35 +58,32 @@ function Icons() {
           <path d="M23.2499 7.75781V11.2325C21.0182 11.2351 18.8423 10.5354 17.0304 9.23248V18.3174C17.0304 22.8547 13.3388 26.5463 8.80149 26.5463C7.1134 26.5475 5.46625 26.0265 4.08594 25.0547C4.85429 25.8832 5.78548 26.5441 6.82115 26.9959C7.85683 27.4477 8.97466 27.6808 10.1046 27.6805C14.6419 27.6805 18.3335 23.9916 18.3335 19.452V10.3667C20.1455 11.6694 22.3214 12.3691 24.553 12.3667V7.89604C24.115 7.89586 23.6782 7.84953 23.2499 7.75781Z" fill="#FE2C55" />
           <path d="M17.0314 18.3128V9.22743C18.8432 10.5304 21.0192 11.2301 23.2509 11.2274V7.75321C21.9349 7.4695 20.7464 6.76664 19.8638 5.7501C19.157 5.29014 18.5509 4.69155 18.0821 3.99057C17.6134 3.28958 17.2918 2.50077 17.1367 1.67188H13.8638L13.8567 19.5888C13.8292 20.3712 13.5575 21.1254 13.0797 21.7457C12.6019 22.366 11.942 22.8211 11.1925 23.0475C10.443 23.2738 9.64144 23.2599 8.90023 23.0077C8.15903 22.7555 7.51532 22.2777 7.05935 21.6412C6.31375 21.2521 5.72029 20.624 5.37402 19.8576C5.02775 19.0911 4.9487 18.2307 5.14953 17.414C5.35037 16.5973 5.81946 15.8716 6.4817 15.3531C7.14393 14.8347 7.96099 14.5535 8.80202 14.5545C9.17908 14.5555 9.55377 14.6141 9.91313 14.7283V11.2234C5.46558 11.3274 1.87891 14.975 1.87891 19.4457C1.87701 21.5263 2.66635 23.5298 4.08691 25.0501C5.4671 26.0218 7.11408 26.5428 8.80202 26.5417C13.3398 26.5417 17.0314 22.8501 17.0314 18.3128Z" fill="black" />
         </symbol>
-        <symbol id="Circle" viewBox="0 0 20 20" fill="none">
-          <circle cx="10" cy="10" r="8.5" stroke="currentColor" strokeWidth="3" />
-        </symbol>
-        <symbol id="Cross" viewBox="0 0 22 22" fill="none">
-          <path d="M1.5 1.5L10.8333 10.8333M10.8333 10.8333L20.1667 20.1667M10.8333 10.8333L20.1667 1.5M10.8333 10.8333L1.5 20.1667" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-        </symbol>
-        <symbol id="DoubleCircle" viewBox="0 0 20 20" fill="none">
-          <circle cx="10" cy="10" r="8.75002" stroke="currentColor" strokeWidth="2.49997" />
-          <circle cx="9.99935" cy="9.9974" r="4.58335" stroke="currentColor" strokeWidth="2.49997" />
-        </symbol>
-        <symbol id="Star" viewBox="0 0 14 14" fill="none">
-          <path d="M7 0L8.44533 5.55467L14 7L8.44533 8.44533L7 14L5.55467 8.44533L0 7L5.55467 5.55467L7 0Z" fill="currentColor" />
-        </symbol>
-        <symbol id="StarBottom" viewBox="0 0 14 7" fill="none">
-          <path d="M7 7L4.19824 1.80186L-6.11959e-07 1.22392e-06L6.19824 6.82051e-07L7 6.11959e-07L7.80176 5.41868e-07L14 0L9.80176 1.80186L7 7Z" fill="currentColor" />
-        </symbol>
-        <symbol id="StarLeft" viewBox="0 0 7 14" fill="none">
-          <path d="M-3.0598e-07 7L5.19814 4.19824L7 -3.0598e-07L7 6.19824L7 7L7 7.80176L7 14L5.19814 9.80176L-3.0598e-07 7Z" fill="currentColor" />
-        </symbol>
-        <symbol id="StarTop" viewBox="0 0 14 7" fill="none">
-          <path d="M7 0L9.80176 5.19814L14 7H7.80176H7H6.19824H0L4.19824 5.19814L7 0Z" fill="currentColor" />
-        </symbol>
-        <symbol id="Triangle" viewBox="0 0 24 21" fill="none">
-          <path d="M10.366 2.25C10.9433 1.25013 12.3863 1.25011 12.9636 2.25L21.6238 17.25C22.2011 18.25 21.4797 19.5 20.325 19.5H3.00464C1.84994 19.5 1.12846 18.25 1.70581 17.25L10.366 2.25Z" stroke="currentColor" strokeWidth="3" />
-        </symbol>
-        <symbol id="hexagon" viewBox="0 0 49 56" fill="none">
-          <path d="M23.0821 0.3142C23.804 -0.10261 24.6935 -0.102609 25.4154 0.3142L47.3308 12.967C48.0528 13.3839 48.4975 14.1542 48.4975 14.9878V40.2935C48.4975 41.1271 48.0528 41.8974 47.3308 42.3142L25.4154 54.967C24.6935 55.3839 23.804 55.3839 23.0821 54.967L1.16674 42.3142C0.444799 41.8974 6.86646e-05 41.1271 6.86646e-05 40.2935V14.9878C6.86646e-05 14.1542 0.444799 13.3839 1.16674 12.967L23.0821 0.3142Z" fill="currentColor" />
-        </symbol>
       </g>
+      <symbol id="Circle" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="8.5" stroke="currentColor" strokeWidth="3" />
+      </symbol>
+      <symbol id="Cross" viewBox="0 0 22 22" fill="none">
+        <path d="M1.5 1.5L10.8333 10.8333M10.8333 10.8333L20.1667 20.1667M10.8333 10.8333L20.1667 1.5M10.8333 10.8333L1.5 20.1667" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+      </symbol>
+      <symbol id="DoubleCircle" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="8.75002" stroke="currentColor" strokeWidth="2.49997" />
+        <circle cx="9.99935" cy="9.9974" r="4.58335" stroke="currentColor" strokeWidth="2.49997" />
+      </symbol>
+      <symbol id="Star" viewBox="0 0 14 14" fill="none">
+        <path d="M7 0L8.44533 5.55467L14 7L8.44533 8.44533L7 14L5.55467 8.44533L0 7L5.55467 5.55467L7 0Z" fill="currentColor" />
+      </symbol>
+      <symbol id="StarBottom" viewBox="0 0 14 7" fill="none">
+        <path d="M7 7L4.19824 1.80186L-6.11959e-07 1.22392e-06L6.19824 6.82051e-07L7 6.11959e-07L7.80176 5.41868e-07L14 0L9.80176 1.80186L7 7Z" fill="currentColor" />
+      </symbol>
+      <symbol id="StarLeft" viewBox="0 0 7 14" fill="none">
+        <path d="M-3.0598e-07 7L5.19814 4.19824L7 -3.0598e-07L7 6.19824L7 7L7 7.80176L7 14L5.19814 9.80176L-3.0598e-07 7Z" fill="currentColor" />
+      </symbol>
+      <symbol id="StarTop" viewBox="0 0 14 7" fill="none">
+        <path d="M7 0L9.80176 5.19814L14 7H7.80176H7H6.19824H0L4.19824 5.19814L7 0Z" fill="currentColor" />
+      </symbol>
+      <symbol id="Triangle" viewBox="0 0 24 21" fill="none">
+        <path d="M10.366 2.25C10.9433 1.25013 12.3863 1.25011 12.9636 2.25L21.6238 17.25C22.2011 18.25 21.4797 19.5 20.325 19.5H3.00464C1.84994 19.5 1.12846 18.25 1.70581 17.25L10.366 2.25Z" stroke="currentColor" strokeWidth="3" />
+      </symbol>
     </svg>
   );
 }
