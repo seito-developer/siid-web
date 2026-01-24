@@ -14,7 +14,7 @@ export default function TimelineItem({ index, title, subtitle, description, imag
   return (
     <div className={`${styles.TimelineItem} ${styles[`TimelineItem--${index}`]}`}>
       <div className={styles.TimelineItem__Image}>
-        <Image src={image} alt={title} width={400} height={300} />
+        <Image src={image} alt="" width={400} height={300} />
       </div>
       <h4 className={styles.TimelineItem__Title}>{title}</h4>
       <p className={styles.TimelineItem__Subtitle}>{subtitle}</p>
