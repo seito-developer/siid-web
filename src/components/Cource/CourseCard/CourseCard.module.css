@@ -5,7 +5,7 @@
 .CourseCard__Badge {
   position: absolute;
   top: -36px;
-  left: 26px;
+  left: calc(50% - 128px);
 }
 
 .CourseCard__Body {
