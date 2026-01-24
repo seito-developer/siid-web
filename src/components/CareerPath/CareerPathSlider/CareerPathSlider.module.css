@@ -163,9 +163,9 @@
   aspect-ratio: 1 / 1;
   width: 8px;
   height: auto;
-  background: #fff;
+  background-color: #fff;
   opacity: 1;
-  transition: margin-inline 0.3s ease-in-out;
+  transition: margin-left 0.3s ease-in-out, margin-right 0.3s ease-in-out, background-color 0.05s ease-in-out;
 
   svg {
     display: none;
@@ -180,7 +180,7 @@
 }
 
 .CustomPagination :global(.swiper-pagination-bullet-active) {
-  background: #a75884;
+  background-color: #a75884;
 
   margin-inline: 4px !important;
 
