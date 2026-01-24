@@ -1,5 +1,3 @@
-import CheckIcon from '../../CheckIcon/CheckIcon';
-
 import ConcernCard from './ConcernCard/ConcernCard';
 import styles from './Concerns.module.css';
 import ConcernsImage from './ConcernsImage/ConcernsImage';
@@ -17,9 +15,7 @@ export default function Concerns() {
   return (
     <div className={styles.Concerns}>
       <h3 className={styles.Concerns__Heading}>
-        <div className={styles.Concerns__HeadingIcon}>
-          <CheckIcon />
-        </div>
+        <div className={styles.Concerns__HeadingIcon}>CHECK</div>
         <span>こんなお悩みや不安はありませんか？</span>
       </h3>
 

@@ -15,11 +15,18 @@
 }
 
 .Concerns__HeadingIcon {
-  width: 50px;
-  svg {
-    width: 100%;
-    height: auto;
-  }
+  flex-basis: 44px;
+  position: relative;
+  font-size: 6px;
+  font-family: var(--font-bagor);
+  font-weight: 400;
+  color: #fff;
+  background-image: url(/images/reason/concerns/hexagon.svg);
+  aspect-ratio: 38/43;
+  background-size: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .Concerns__Intro {
@@ -57,7 +64,7 @@
     font-size: 20px;
   }
   .Concerns__HeadingIcon {
-    width: 42px;
+    flex-basis: 38px;
   }
   .Concerns__Intro {
     font-size: 13px;

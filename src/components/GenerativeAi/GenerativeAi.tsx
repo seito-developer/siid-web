@@ -1,8 +1,3 @@
-'use client';
-
-import CheckIcon from '@/components/CheckIcon/CheckIcon';
-import useIsPc from '@/hooks/useIsPc';
-
 import styles from './GenerativeAi.module.css';
 import AiIllustration from './Icons/AiIllustration';
 import ChatGptIcon from './Icons/ChatGptIcon';
@@ -12,7 +7,6 @@ import DocumentIconPc from './Icons/DocumentIconPc';
 import GithubCopilotIcon from './Icons/GithubCopilotIcon';
 
 export default function GenerativeAi() {
-  const isPc = useIsPc();
   return (
     <div className={styles.GenerativeAi}>
       <div className={styles.GenerativeAi__Container}>
@@ -22,9 +16,7 @@ export default function GenerativeAi() {
         <ul className={styles.GenerativeAi__List}>
           <li className={styles.GenerativeAi__Item}>
             <h3 className={styles.GenerativeAi__Header}>
-              <div className={styles.GenerativeAi__HeaderIcon}>
-                <CheckIcon />
-              </div>
+              <div className={styles.GenerativeAi__HeaderIcon}>CHECK</div>
               <span className={styles.GenerativeAi__HeaderText}>生成AIはエンジニアの「新たな常識」</span>
             </h3>
             <p className={styles.GenerativeAi__Text}>
@@ -42,9 +34,7 @@ export default function GenerativeAi() {
 
           <li className={styles.GenerativeAi__Item}>
             <h3 className={styles.GenerativeAi__Header}>
-              <div className={styles.GenerativeAi__HeaderIcon}>
-                <CheckIcon />
-              </div>
+              <div className={styles.GenerativeAi__HeaderIcon}>CHECK</div>
               <span className={styles.GenerativeAi__HeaderText}>単なる「使い方」では終わらない</span>
             </h3>
             <p className={styles.GenerativeAi__Text}>私たちは、ツールの操作方法を教えるだけではありません。生産性を最大化し、自身のスキルとして血肉化させるための「効果的な活用術」を、以下のツールを通じて実践的に指導します。</p>
@@ -71,14 +61,17 @@ export default function GenerativeAi() {
 
           <li className={styles.GenerativeAi__Item}>
             <h3 className={styles.GenerativeAi__Header}>
-              <div className={styles.GenerativeAi__HeaderIcon}>
-                <CheckIcon />
-              </div>
+              <div className={styles.GenerativeAi__HeaderIcon}>CHECK</div>
               <span className={styles.GenerativeAi__HeaderText}>生成AIはエンジニアの「新たな常識」</span>
             </h3>
             <p className={styles.GenerativeAi__Text}>一部のカリキュラムでは当スクール独自開発の「AI先生」が、あなたの学習を強力にサポートします。</p>
             <div className={styles.GenerativeAi__Example}>
-              <div className={styles.GenerativeAi__ExampleIcon}>{isPc ? <DocumentIconPc /> : <DocumentIcon />}</div>
+              <div className={`${styles.GenerativeAi__ExampleIcon} ${styles.GenerativeAi__ExampleIconSp}`}>
+                <DocumentIcon />
+              </div>
+              <div className={`${styles.GenerativeAi__ExampleIcon} ${styles.GenerativeAi__ExampleIconPc}`}>
+                <DocumentIconPc />
+              </div>
               <h4 className={styles.GenerativeAi__ExampleTitle}>
                 <span className={styles.GenerativeAi__ExampleTitleTag}>具体例</span>
                 <span className={styles.GenerativeAi__ExampleTitleText}>AI先生との書類作成</span>

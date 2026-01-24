@@ -13,10 +13,9 @@
   justify-content: center;
   color: #fff;
   background-image: url(/images/cource/futurelist/futureitem/hexagon.svg);
-  background-size: 100% 100%;
-  aspect-ratio: 1/1;
-  flex-basis: 56px;
-  height: auto;
+  background-size: 100%;
+  aspect-ratio: 7 / 8;
+  flex-basis: 49;
   font-family: bagor, sans-serif;
   font-weight: 400;
   row-gap: 1px;
@@ -63,7 +62,7 @@
 
   .FutureItem__Text {
     font-size: 20px;
-    flex-basis: 82%;
+    flex-basis: 83%;
   }
 
   .FutureItem__SubText {
@@ -71,7 +70,7 @@
   }
 
   .FutureItem__Number {
-    flex-basis: 80px;
+    flex-basis: 70px;
     row-gap: 2px;
   }
 

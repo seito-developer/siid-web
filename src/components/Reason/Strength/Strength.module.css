@@ -35,11 +35,18 @@
 }
 
 .Strength__TitleIcon {
-  width: 43px;
-  svg {
-    width: 100%;
-    height: auto;
-  }
+  flex-basis: 38px;
+  position: relative;
+  font-size: 6px;
+  font-family: var(--font-bagor);
+  font-weight: 400;
+  color: #fff;
+  background-image: url(/images/reason/concerns/hexagon.svg);
+  aspect-ratio: 38/43;
+  background-size: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .Strength__TitleText {
@@ -69,11 +76,18 @@
 }
 
 .Strength__ServiceTitleIcon {
-  width: 43px;
-  svg {
-    width: 100%;
-    height: auto;
-  }
+  flex-basis: 38px;
+  position: relative;
+  font-size: 6px;
+  font-family: var(--font-bagor);
+  font-weight: 400;
+  color: #fff;
+  background-image: url(/images/reason/concerns/hexagon.svg);
+  aspect-ratio: 38/43;
+  background-size: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .Strength__ServiceIntro {
@@ -114,7 +128,7 @@
     margin-block: 0;
   }
   .Strength__TitleIcon {
-    width: 42px;
+    flex-basis: 38px;
     svg {
       width: 100%;
       height: auto;

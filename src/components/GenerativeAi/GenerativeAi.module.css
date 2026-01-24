@@ -67,11 +67,18 @@
 }
 
 .GenerativeAi__HeaderIcon {
-  flex-basis: 43px;
-  svg {
-    width: 100%;
-    height: auto;
-  }
+  font-size: 6px;
+  font-family: var(--font-bagor);
+  color: #fff;
+  aspect-ratio: 38 / 43;
+  background-image: url(/images/generativeai/hexagon.svg);
+  background-size: 100%;
+  flex-basis: 38px;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  display: flex;
+  position: relative;
 }
 
 .GenerativeAi__HeaderText {
@@ -176,6 +183,10 @@
   }
 }
 
+.GenerativeAi__ExampleIconPc {
+  display: none;
+}
+
 .GenerativeAi__ExampleText {
   font-size: 11px;
   margin-block: 0;
@@ -242,7 +253,7 @@
       justify-content: space-between;
       column-gap: 4%;
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         top: -56px;
         left: 0;
@@ -339,5 +350,13 @@
     width: 186px;
     top: -46px;
     right: -2px;
+  }
+
+  .GenerativeAi__ExampleIconPc {
+    display: block;
+  }
+
+  .GenerativeAi__ExampleIconSp {
+    display: none;
   }
 }

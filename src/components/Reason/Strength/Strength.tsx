@@ -1,4 +1,3 @@
-import CheckIcon from '@/components/CheckIcon/CheckIcon';
 import Logo from '@/components/Logo/Logo';
 
 import ServiceSection from './ServiceSection/ServiceSection';
@@ -54,9 +53,7 @@ export default function Strength() {
       <div className={styles.Strength__Container}>
         <div className={styles.Strength__TitleContainer}>
           <h3 className={styles.Strength__Title}>
-            <div className={styles.Strength__TitleIcon}>
-              <CheckIcon />
-            </div>
+            <div className={styles.Strength__TitleIcon}>CHECK</div>
             <span className={styles.Strength__TitleText}>
               <Logo fill="#000" />
               のここがすごい！
@@ -69,9 +66,7 @@ export default function Strength() {
 
         <div className={styles.Strength__ServiceTitleContainer}>
           <h3 className={styles.Strength__ServiceTitle}>
-            <div className={styles.Strength__ServiceTitleIcon}>
-              <CheckIcon />
-            </div>
+            <div className={styles.Strength__ServiceTitleIcon}>CHECK</div>
             <span className={styles.Strength__ServiceTitleText}>充実したサービス</span>
           </h3>
           <p className={styles.Strength__ServiceIntro}>これらの悩みは9割の確率で挫折やモチベーションへ影響し、結局ITエンジニアになれないor非開発系の非正規の仕事に従事することになるケースを見てきました。</p>
