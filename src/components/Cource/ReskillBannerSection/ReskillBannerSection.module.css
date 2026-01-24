@@ -20,4 +20,9 @@
   .ReskillBannerSection__BannerSp {
     display: none;
   }
+
+  .ReskillBannerSection__BannerPcImage {
+    width: 100%;
+    height: auto;
+  }
 }
