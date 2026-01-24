@@ -1,61 +1,15 @@
-'use client';
-
 import Link from 'next/link';
 
-import useIsPc from '@/hooks/useIsPc';
+import { getBooks } from '@/lib/getBooks';
+import { getSubSupporters } from '@/lib/getSubSupporters';
 
 import BookCard from './BookCard/BookCard';
-import Decoration from './Decoration/Decoration';
-import DecorationPc from './DecorationPc/DecorationPc';
 import SubSupporterCard from './SubSupporterCard/SubSupporterCard';
 import styles from './Supporter.module.css';
 
 export default function Supporter() {
-  const isPc = useIsPc();
-  const books = [
-    {
-      title: '『セイト先生が教える\nプログラミング入門 』',
-      publisher: '日経BP',
-      date: '2024年9月発売',
-      imageUrl: '/images/supporter/bookcard/programming.png',
-      link: 'https://bookplus.nikkei.com/atcl/catalog/24/02/27/01282/',
-      width: 501,
-      height: 643,
-    },
-    {
-      title: '『最強のCSS設計』',
-      publisher: 'SBクリエイティブ',
-      date: '2015年9月発売',
-      imageUrl: '/images/supporter/bookcard/css.png',
-      link: 'https://www.sbcr.jp/product/4797384550/',
-      width: 372,
-      height: 442,
-    },
-  ] as const;
-
-  const subSupporters = [
-    {
-      id: '002',
-      name: 'わたけん',
-      englishName: 'Wataken',
-      role: 'フルスタックエンジニア',
-      avatarUrl: '/images/supporter/subsupportercard/wataken.svg',
-    },
-    {
-      id: '003',
-      name: 'ありけん',
-      englishName: 'Ariken',
-      role: 'メガベンチャー研修講師',
-      avatarUrl: '/images/supporter/subsupportercard/ariken.svg',
-    },
-    {
-      id: '004',
-      name: 'たかこ',
-      englishName: 'Takako',
-      role: '学習アドバイザー',
-      avatarUrl: '/images/supporter/subsupportercard/takako.svg',
-    },
-  ] as const;
+  const books = getBooks();
+  const subSupporters = getSubSupporters();
 
   return (
     <div className={styles.Supporter}>
@@ -63,7 +17,14 @@ export default function Supporter() {
         <div className={styles.Supporter__Title}>{'</ Supporter >'}</div>
         <h2 className={styles.Supporter__Heading}>講師陣紹介</h2>
 
-        <div className={`${styles.Supporter__Decoration} ${styles.Supporter__DecorationStart}`}>{isPc ? <DecorationPc /> : <Decoration />}</div>
+        <div className={`${styles.Supporter__Decoration} ${styles.Supporter__DecorationStart}`}>
+          <svg width="312" height="34" viewBox="0 0 312 34" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.Supporter__DecorationIconSp}>
+            <use href="#DecorativeBracketSp" />
+          </svg>
+          <svg width="1081" height="34" viewBox="0 0 1081 34" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.Supporter__DecorationIconPc}>
+            <use href="#DecorativeBracketPc" />
+          </svg>
+        </div>
 
         {/* メインサポーター：001 堀口セイト */}
         <div className={styles.Supporter__Main}>
@@ -144,7 +105,14 @@ export default function Supporter() {
           <span className={styles.Supporter__MoreButton}>and more...</span>
         </div>
 
-        <div className={`${styles.Supporter__Decoration} ${styles.Supporter__DecorationEnd}`}>{isPc ? <DecorationPc /> : <Decoration />}</div>
+        <div className={`${styles.Supporter__Decoration} ${styles.Supporter__DecorationEnd}`}>
+          <svg width="312" height="34" viewBox="0 0 312 34" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.Supporter__DecorationIconSp}>
+            <use href="#DecorativeBracketSp" />
+          </svg>
+          <svg width="1081" height="34" viewBox="0 0 1081 34" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.Supporter__DecorationIconPc}>
+            <use href="#DecorativeBracketPc" />
+          </svg>
+        </div>
       </div>
     </div>
   );

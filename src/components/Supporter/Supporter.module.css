@@ -52,6 +52,10 @@
   margin-block: 24px 0;
 }
 
+.Supporter__DecorationIconPc {
+  display: none;
+}
+
 /* メインサポーター */
 .Supporter__Main {
   margin-bottom: 36px;
@@ -240,6 +244,14 @@
 
   .Supporter__DecorationStart {
     margin-bottom: 130px;
+  }
+
+  .Supporter__DecorationIconPc {
+    display: block;
+  }
+
+  .Supporter__DecorationIconSp {
+    display: none;
   }
 
   .MainSupporter__Badge {

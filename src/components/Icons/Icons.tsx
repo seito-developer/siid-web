@@ -91,6 +91,16 @@ function Icons() {
         <path d="M5.375 0.75L5.375 9.1875" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         <path d="M0.75 0.75L0.75 9.1875" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </symbol>
+      <symbol id="DecorativeBracketSp" viewBox="0 0 312 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M311.5 34V25C311.5 20.5817 307.918 17 303.5 17H8.5C4.08172 17 0.5 20.5817 0.5 25V34" stroke="#342525" />
+        <line x1="31.5" y1="8.5" x2="280.5" y2="8.5" stroke="#342525" />
+        <line x1="31.5" y1="0.5" x2="280.5" y2="0.5" stroke="#342525" />
+      </symbol>
+      <symbol id="DecorativeBracketPc" viewBox="0 0 1081 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1080.5 34V25C1080.5 20.5817 1076.92 17 1072.5 17H8.5C4.08172 17 0.5 20.5817 0.5 25V34" stroke="#342525" />
+        <line x1="108.5" y1="8.5" x2="972.5" y2="8.5" stroke="#342525" />
+        <line x1="108.5" y1="0.5" x2="972.5" y2="0.5" stroke="#342525" />
+      </symbol>
     </svg>
   );
 }
