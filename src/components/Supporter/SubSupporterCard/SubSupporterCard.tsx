@@ -22,7 +22,7 @@ export default function SubSupporterCard({ id, name, englishName, role, avatarUr
           <div className={styles.SubSupporterCard__EnglishName}>{englishName}</div>
         </div>
 
-        <Image src={avatarUrl} alt={name} width={120} height={148} className={styles.SubSupporterCard__Avatar} />
+        <Image src={avatarUrl} alt={name} width={576} height={663} className={styles.SubSupporterCard__Avatar} />
       </div>
 
       <div className={styles.SubSupporterCard__NameContainer}>
