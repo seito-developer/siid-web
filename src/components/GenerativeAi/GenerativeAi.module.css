@@ -41,7 +41,6 @@
   font-size: var(--section-title-font-size);
   font-weight: var(--section-title-font-weight);
   margin: 0 0 20px;
-  -webkit-text-stroke: 0.4px var(--text);
 }
 
 .GenerativeAi__List {
@@ -60,10 +59,9 @@
   gap: 8px;
   margin-block: 0 14px;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 900;
   line-height: 140%;
   display: flex;
-  -webkit-text-stroke: 0.2px var(--text);
 }
 
 .GenerativeAi__HeaderIcon {
@@ -130,11 +128,10 @@
 }
 
 .GenerativeAi__ToolTitle {
-  font-weight: 600;
+  font-weight: 900;
   line-height: 130%;
   font-size: 14px;
   margin-block: 0 8px;
-  -webkit-text-stroke: 0.2px var(--text);
 }
 
 .GenerativeAi__ToolDescription {
@@ -164,7 +161,7 @@
 
 .GenerativeAi__ExampleTitle {
   margin-block: 0;
-  font-weight: 600;
+  font-weight: 900;
   display: flex;
   align-items: center;
   column-gap: 8px;
@@ -179,7 +176,7 @@
 
 .GenerativeAi__ExampleTitleText {
   font-size: 14px;
-  -webkit-text-stroke: 0.2px var(--text);
+  font-weight: 900;
 }
 
 .GenerativeAi__ExampleIcon {

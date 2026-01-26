@@ -74,7 +74,7 @@
   margin: 0;
   font-size: 15px;
   line-height: 160%;
-  -webkit-text-stroke: 0.3px var(--text);
+  font-weight: 900;
   height: 3.2em;
   display: -webkit-box;
   -webkit-box-orient: vertical;

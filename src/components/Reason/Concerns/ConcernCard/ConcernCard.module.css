@@ -14,7 +14,7 @@
   color: #567eb4;
   align-items: center;
   margin: 0;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .ConcernCard__Label {
@@ -29,7 +29,7 @@
   margin: 0;
   font-size: 13px;
   line-height: 140%;
-  -webkit-text-stroke: 0.2px var(--text);
+  font-weight: 900;
 }
 
 @media screen and (min-width: 1280px) {

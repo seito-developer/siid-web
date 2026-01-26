@@ -27,7 +27,6 @@
   font-size: var(--section-title-font-size);
   font-weight: var(--section-title-font-weight);
   margin: 0 0 32px;
-  -webkit-text-stroke: 0.4px var(--text);
 }
 
 .Comparison__Heading svg {

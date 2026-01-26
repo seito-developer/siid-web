@@ -26,7 +26,6 @@
   font-size: var(--section-title-font-size);
   font-weight: var(--section-title-font-weight);
   margin-block: 0;
-  -webkit-text-stroke: 0.4px var(--text);
 }
 
 .Cource__DetailButtonContainer {
@@ -91,9 +90,8 @@
 
 .Cource__FutureHeading {
   font-size: 22px;
-  font-weight: 600;
+  font-weight: 900;
   margin-block: 0 16px;
-  -webkit-text-stroke: 0.4px var(--text);
   position: relative;
   svg {
     width: 86px;
@@ -165,7 +163,7 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 10px #00000040;
-    transition: box-shadow .2s ease-out;
+    transition: box-shadow 0.2s ease-out;
     &::after {
       content: '';
       display: block;

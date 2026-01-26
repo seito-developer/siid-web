@@ -29,11 +29,10 @@
 
 .BookCard__Title {
   font-size: 13px;
-  font-weight: 600;
   margin: 0 0 8px;
   white-space: pre-line;
   line-height: 150%;
-  -webkit-text-stroke: 0.2px var(--text);
+  font-weight: 900;
 }
 
 .BookCard__Publisher,
@@ -41,7 +40,6 @@
   font-size: 11px;
   margin-block: 0;
   line-height: 140%;
-  font-weight: 500;
 }
 
 .BookCard__Link {

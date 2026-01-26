@@ -54,7 +54,7 @@
 
 .SubSupporterCard__BadgeNumber {
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 900;
   line-height: 1;
   font-family: var(--font-poppins);
   position: relative;
@@ -92,7 +92,6 @@
   row-gap: 8px;
   margin-block: 0;
   font-size: 32px;
-  font-weight: 600;
   line-height: 1;
   display: flex;
   align-items: flex-start;
@@ -103,13 +102,13 @@
   background-color: var(--text);
   padding: 4px 9px;
   border-radius: 4px;
+  font-weight: 400;
 }
 
 .SubSupporterCard__NameText {
-  font-weight: 600;
   font-size: 18px;
   line-height: 140%;
-  -webkit-text-stroke: 0.5px #fff;
+  font-weight: 900;
 }
 
 @media screen and (min-width: 1280px) {

@@ -30,8 +30,7 @@
   font-size: 18px;
   line-height: 140%;
   display: flex;
-  font-weight: 600;
-  -webkit-text-stroke: 0.2px var(--text);
+  font-weight: 900;
 }
 
 .Strength__TitleIcon {
@@ -82,8 +81,7 @@
   font-size: 18px;
   line-height: 140%;
   display: flex;
-  font-weight: 600;
-  -webkit-text-stroke: 0.2px var(--text);
+  font-weight: 900;
 }
 
 .Strength__ServiceTitleIcon {

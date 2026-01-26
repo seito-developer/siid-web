@@ -30,7 +30,7 @@
   right: 50%;
   width: 132px;
   height: 73px;
-  -webkit-text-stroke: 0.5px #fff;
+  font-weight: 900;
   &:where(.Timeline__YearItem:nth-child(1 of .Timeline__YearItem) &) {
     right: 35%;
   }

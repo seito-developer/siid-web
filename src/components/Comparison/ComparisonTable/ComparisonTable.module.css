@@ -175,7 +175,6 @@
 .ComparisonTable__PriceNumber {
   font-family: var(--font-poppins);
   font-size: 18px;
-  font-weight: 600;
   margin-right: 0.2em;
   position: relative;
   top: 0.05em;
@@ -203,7 +202,7 @@
 
 .ComparisonTable__PeriodTitle {
   font-size: 16px;
-  -webkit-text-stroke: 0.5px currentColor;
+  font-weight: 900;
 }
 
 .ComparisonTable__PeriodDetail {

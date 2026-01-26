@@ -2,7 +2,7 @@
   --pc-container-width: 1080px;
   --pc-background-width: calc(100% - 16px);
   --section-title-font-size: 24px;
-  --section-title-font-weight: 600;
+  --section-title-font-weight: 900;
   --section-title-logo-width: 92px;
   --section-title-logo-margin-right: 2px;
   --section-title-logo-transform: translateY(-2px);
@@ -11,7 +11,6 @@
   --section-en-title-line-height: 1;
   --section-en-title-margin: 0 0 8px;
   font-family: var(--font-noto-sans-jp);
-  font-weight: 600;
 }
 
 .Home__News {

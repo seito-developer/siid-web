@@ -10,8 +10,7 @@
 .ServiceSection__Title {
   grid-column: span 2;
   margin: 0;
-  font-weight: 600;
-  -webkit-text-stroke: 0.2px var(--text);
+  font-weight: 900;
 }
 
 .ServiceSection__Header {

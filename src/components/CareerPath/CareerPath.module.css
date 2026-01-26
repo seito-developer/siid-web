@@ -21,7 +21,6 @@
   font-size: var(--section-title-font-size);
   font-weight: var(--section-title-font-weight);
   margin-block: 0;
-  -webkit-text-stroke: 0.4px var(--text);
 }
 
 .CareerPath__DetailButtonContainer {
@@ -54,7 +53,6 @@
 
 .CareerPath__PoweredByLabel {
   font-family: var(--font-poppins);
-  font-weight: 600;
 }
 
 .CareerPath__PoweredByText {
@@ -79,7 +77,7 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 10px #00000040;
-    transition: box-shadow .2s ease-out;
+    transition: box-shadow 0.2s ease-out;
     &::after {
       content: '';
       display: block;

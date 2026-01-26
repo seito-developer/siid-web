@@ -46,16 +46,15 @@
   line-height: 140%;
   margin-block: 0;
   flex-basis: 77%;
-  -webkit-text-stroke: 0.2px var(--text);
+  font-weight: 900;
 }
 
 .FutureItem__SubText {
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   display: block;
   line-height: 140%;
   margin-top: 4px;
-  -webkit-text-stroke: 0px;
 }
 
 @media screen and (min-width: 1280px) {

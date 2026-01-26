@@ -11,11 +11,10 @@
 
 .TimelineItem__Title {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 900;
   line-height: 140%;
   margin-block: 0;
   align-self: center;
-  -webkit-text-stroke: 0.2px var(--text);
   svg {
     display: none;
   }
