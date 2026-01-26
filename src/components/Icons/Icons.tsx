@@ -1,6 +1,6 @@
 function Icons() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" style={{ display: 'none' }}>
+    <svg style={{ display: 'none' }}>
       <symbol id="smallArrow" viewBox="0 0 7 9" fill="none">
         <path d="M1 8C1 8 3.22222 4.9375 6 4.5C3.22222 4.0625 1 1 1 1" stroke="#342525" strokeWidth="1.5" />
       </symbol>
@@ -84,22 +84,31 @@ function Icons() {
       <symbol id="Triangle" viewBox="0 0 24 21" fill="none">
         <path d="M10.366 2.25C10.9433 1.25013 12.3863 1.25011 12.9636 2.25L21.6238 17.25C22.2011 18.25 21.4797 19.5 20.325 19.5H3.00464C1.84994 19.5 1.12846 18.25 1.70581 17.25L10.366 2.25Z" stroke="currentColor" strokeWidth="3" />
       </symbol>
-      <symbol id="play" viewBox="0 0 16 16" fill="none">
+      <symbol id="Play" viewBox="0 0 16 16" fill="none">
         <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" fill="currentColor" />
       </symbol>
-      <symbol id="pause" viewBox="0 0 7 10" fill="none">
+      <symbol id="Pause" viewBox="0 0 7 10" fill="none">
         <path d="M5.375 0.75L5.375 9.1875" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         <path d="M0.75 0.75L0.75 9.1875" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </symbol>
-      <symbol id="DecorativeBracketSp" viewBox="0 0 312 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="DecorativeBracketSp" viewBox="0 0 312 34" fill="none">
         <path d="M311.5 34V25C311.5 20.5817 307.918 17 303.5 17H8.5C4.08172 17 0.5 20.5817 0.5 25V34" stroke="#342525" />
         <line x1="31.5" y1="8.5" x2="280.5" y2="8.5" stroke="#342525" />
         <line x1="31.5" y1="0.5" x2="280.5" y2="0.5" stroke="#342525" />
       </symbol>
-      <symbol id="DecorativeBracketPc" viewBox="0 0 1081 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="DecorativeBracketPc" viewBox="0 0 1081 34" fill="none">
         <path d="M1080.5 34V25C1080.5 20.5817 1076.92 17 1072.5 17H8.5C4.08172 17 0.5 20.5817 0.5 25V34" stroke="#342525" />
         <line x1="108.5" y1="8.5" x2="972.5" y2="8.5" stroke="#342525" />
         <line x1="108.5" y1="0.5" x2="972.5" y2="0.5" stroke="#342525" />
+      </symbol>
+      <symbol id="Hexagon" viewBox="0 0 97 111" fill="none">
+        <path d="M45.4973 0.802363C47.3537 -0.269434 49.6409 -0.269433 51.4973 0.802363L93.9947 25.3383C95.8511 26.4101 96.9947 28.3908 96.9947 30.5344V79.6062C96.9947 81.7498 95.8511 83.7306 93.9947 84.8024L51.4973 109.338C49.6409 110.41 47.3537 110.41 45.4973 109.338L2.99989 84.8024C1.14349 83.7306 -0.000106812 81.7498 -0.000106812 79.6062V30.5344C-0.000106812 28.3908 1.14349 26.4101 2.99989 25.3383L45.4973 0.802363Z" fill="#475499" />
+      </symbol>
+      <symbol id="HexagonBlack" viewBox="0 0 97 111" fill="none">
+        <path d="M45.4973 0.802363C47.3537 -0.269434 49.6409 -0.269433 51.4973 0.802363L93.9947 25.3383C95.8511 26.4101 96.9947 28.3908 96.9947 30.5344V79.6062C96.9947 81.7498 95.8511 83.7306 93.9947 84.8024L51.4973 109.338C49.6409 110.41 47.3537 110.41 45.4973 109.338L2.99989 84.8024C1.14349 83.7306 -0.000106812 81.7498 -0.000106812 79.6062V30.5344C-0.000106812 28.3908 1.14349 26.4101 2.99989 25.3383L45.4973 0.802363Z" fill="#342525" />
+      </symbol>
+      <symbol id="StarBlue" viewBox="0 0 14 14" fill="none">
+        <path d="M7 0L8.08894 5.91106L14 7L8.08894 8.08894L7 14L5.91106 8.08894L0 7L5.91106 5.91106L7 0Z" fill="#567EB4" />
       </symbol>
     </svg>
   );

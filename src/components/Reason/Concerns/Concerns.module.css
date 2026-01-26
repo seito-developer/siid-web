@@ -21,12 +21,23 @@
   font-family: var(--font-bagor);
   font-weight: 400;
   color: #fff;
-  background-image: url(/images/reason/concerns/hexagon.svg);
   aspect-ratio: 38/43;
   background-size: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  svg {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.Concerns__HeadingIconText {
+  position: relative;
+  z-index: 1;
 }
 
 .Concerns__Intro {

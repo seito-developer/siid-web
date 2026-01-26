@@ -16,6 +16,9 @@
   margin-block: 0;
   align-self: center;
   -webkit-text-stroke: 0.2px var(--text);
+  svg {
+    display: none;
+  }
 }
 
 .TimelineItem__Subtitle {
@@ -55,8 +58,7 @@
     font-size: 20px;
     position: relative;
     padding-left: 44px;
-    &::before {
-      content: '';
+    svg {
       display: block;
       aspect-ratio: 1 / 1;
       width: 34px;
@@ -65,9 +67,6 @@
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-      background-image: url('/images/cource/timeline/star.svg');
-      background-size: cover;
-      background-repeat: no-repeat;
     }
   }
 

@@ -23,7 +23,6 @@
 .SubSupporterCard__Badge {
   color: #fff;
   aspect-ratio: 97 / 111;
-  background-image: url(/images/supporter/supporters/hexagon.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -37,10 +36,20 @@
   position: relative;
   z-index: 2;
   visibility: hidden;
+  svg {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: #fff;
+  }
 }
 
 .SubSupporterCard__BadgeLabel {
   font-size: 8px;
+  position: relative;
+  z-index: 1;
 }
 
 .SubSupporterCard__BadgeNumber {
@@ -48,6 +57,8 @@
   font-weight: 700;
   line-height: 1;
   font-family: var(--font-poppins);
+  position: relative;
+  z-index: 1;
 }
 
 .SubSupporterCard__EnglishName {

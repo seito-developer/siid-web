@@ -12,23 +12,33 @@
   align-items: center;
   justify-content: center;
   color: #fff;
-  background-image: url(/images/cource/futurelist/futureitem/hexagon.svg);
-  background-size: 100%;
-  aspect-ratio: 7 / 8;
+  aspect-ratio: 97 / 111;
   flex-basis: 49;
   font-family: bagor, sans-serif;
   font-weight: 400;
   row-gap: 1px;
+  position: relative;
+  svg {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
 .FutureItem__NumberLabel {
   font-size: 8px;
   line-height: 165%;
+  position: relative;
+  z-index: 1;
 }
 
 .FutureItem__NumberNumber {
   font-size: 17px;
   line-height: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .FutureItem__Text {

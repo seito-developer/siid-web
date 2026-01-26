@@ -70,7 +70,6 @@
 .MainSupporter__Badge {
   color: #fff;
   aspect-ratio: 97 / 111;
-  background-image: url(/images/supporter/supporters/hexagon.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -84,11 +83,21 @@
   position: absolute;
   top: -32px;
   left: 0;
+  svg {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: #fff;
+  }
 }
 
 .MainSupporter__BadgeLabel {
   font-size: 12px;
   background-color: var(--text);
+  position: relative;
+  z-index: 1;
 }
 
 .MainSupporter__BadgeNumber {
@@ -96,6 +105,8 @@
   font-weight: 700;
   line-height: 1;
   font-family: var(--font-poppins);
+  position: relative;
+  z-index: 1;
 }
 
 .MainSupporter__Avatar {

@@ -33,6 +33,9 @@ export default function Supporter() {
               <div className={styles.MainSupporter__Badge}>
                 <div className={styles.MainSupporter__BadgeLabel}>サポート講師</div>
                 <div className={styles.MainSupporter__BadgeNumber}>001</div>
+                <svg width="97" height="111" fill="none">
+                  <use href="#HexagonBlack" />
+                </svg>
               </div>
 
               <div className={styles.MainSupporter__Avatar}></div>

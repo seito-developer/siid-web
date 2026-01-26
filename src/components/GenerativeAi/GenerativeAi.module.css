@@ -70,8 +70,7 @@
   font-size: 6px;
   font-family: var(--font-bagor);
   color: #fff;
-  aspect-ratio: 38 / 43;
-  background-image: url(/images/generativeai/hexagon.svg);
+  aspect-ratio: 97 / 111;
   background-size: 100%;
   flex-basis: 38px;
   justify-content: center;
@@ -79,6 +78,18 @@
   font-weight: 400;
   display: flex;
   position: relative;
+  svg {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.GenerativeAi__HeaderIconText {
+  position: relative;
+  z-index: 1;
 }
 
 .GenerativeAi__HeaderText {

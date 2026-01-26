@@ -15,7 +15,12 @@ export default function Concerns() {
   return (
     <div className={styles.Concerns}>
       <h3 className={styles.Concerns__Heading}>
-        <div className={styles.Concerns__HeadingIcon}>CHECK</div>
+        <div className={styles.Concerns__HeadingIcon}>
+          <svg width="97" height="111" fill="none">
+            <use href="#Hexagon" />
+          </svg>
+          <span className={styles.Concerns__HeadingIconText}>CHECK</span>
+        </div>
         <span>こんなお悩みや不安はありませんか？</span>
       </h3>
 

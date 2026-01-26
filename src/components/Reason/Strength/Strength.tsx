@@ -53,7 +53,12 @@ export default function Strength() {
       <div className={styles.Strength__Container}>
         <div className={styles.Strength__TitleContainer}>
           <h3 className={styles.Strength__Title}>
-            <div className={styles.Strength__TitleIcon}>CHECK</div>
+            <div className={styles.Strength__TitleIcon}>
+              <svg width="97" height="111" fill="none">
+                <use href="#Hexagon" />
+              </svg>
+              <span className={styles.Strength__TitleIconText}>CHECK</span>
+            </div>
             <span className={styles.Strength__TitleText}>
               <Logo fill="#000" />
               のここがすごい！
@@ -66,7 +71,12 @@ export default function Strength() {
 
         <div className={styles.Strength__ServiceTitleContainer}>
           <h3 className={styles.Strength__ServiceTitle}>
-            <div className={styles.Strength__ServiceTitleIcon}>CHECK</div>
+            <div className={styles.Strength__ServiceTitleIcon}>
+              <svg width="97" height="111" fill="none">
+                <use href="#Hexagon" />
+              </svg>
+              <span className={styles.Strength__ServiceTitleIconText}>CHECK</span>
+            </div>
             <span className={styles.Strength__ServiceTitleText}>充実したサービス</span>
           </h3>
           <p className={styles.Strength__ServiceIntro}>これらの悩みは9割の確率で挫折やモチベーションへ影響し、結局ITエンジニアになれないor非開発系の非正規の仕事に従事することになるケースを見てきました。</p>

@@ -16,7 +16,12 @@ export default function GenerativeAi() {
         <ul className={styles.GenerativeAi__List}>
           <li className={styles.GenerativeAi__Item}>
             <h3 className={styles.GenerativeAi__Header}>
-              <div className={styles.GenerativeAi__HeaderIcon}>CHECK</div>
+              <div className={styles.GenerativeAi__HeaderIcon}>
+                <svg width="97" height="111" fill="none">
+                  <use href="#Hexagon" />
+                </svg>
+                <span className={styles.GenerativeAi__HeaderIconText}>CHECK</span>
+              </div>
               <span className={styles.GenerativeAi__HeaderText}>生成AIはエンジニアの「新たな常識」</span>
             </h3>
             <p className={styles.GenerativeAi__Text}>
@@ -34,7 +39,12 @@ export default function GenerativeAi() {
 
           <li className={styles.GenerativeAi__Item}>
             <h3 className={styles.GenerativeAi__Header}>
-              <div className={styles.GenerativeAi__HeaderIcon}>CHECK</div>
+              <div className={styles.GenerativeAi__HeaderIcon}>
+                <svg width="97" height="111" fill="none">
+                  <use href="#Hexagon" />
+                </svg>
+                <span className={styles.GenerativeAi__HeaderIconText}>CHECK</span>
+              </div>
               <span className={styles.GenerativeAi__HeaderText}>単なる「使い方」では終わらない</span>
             </h3>
             <p className={styles.GenerativeAi__Text}>私たちは、ツールの操作方法を教えるだけではありません。生産性を最大化し、自身のスキルとして血肉化させるための「効果的な活用術」を、以下のツールを通じて実践的に指導します。</p>
@@ -61,7 +71,12 @@ export default function GenerativeAi() {
 
           <li className={styles.GenerativeAi__Item}>
             <h3 className={styles.GenerativeAi__Header}>
-              <div className={styles.GenerativeAi__HeaderIcon}>CHECK</div>
+              <div className={styles.GenerativeAi__HeaderIcon}>
+                <svg width="97" height="111" fill="none">
+                  <use href="#Hexagon" />
+                </svg>
+                <span className={styles.GenerativeAi__HeaderIconText}>CHECK</span>
+              </div>
               <span className={styles.GenerativeAi__HeaderText}>生成AIはエンジニアの「新たな常識」</span>
             </h3>
             <p className={styles.GenerativeAi__Text}>一部のカリキュラムでは当スクール独自開発の「AI先生」が、あなたの学習を強力にサポートします。</p>

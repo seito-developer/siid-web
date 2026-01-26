@@ -303,11 +303,11 @@ export default function CareerPathSlider({ data }: Props) {
             <button className={styles.AutoplayButton} onClick={toggleAutoplay} aria-label={isAutoplayRunning ? '自動再生を停止' : '自動再生を開始'}>
               {isAutoplayRunning ? (
                 <svg width="7" height="10" viewBox="0 0 7 10" fill="none" className={styles.PauseIcon}>
-                  <use href="#pause" />
+                  <use href="#Pause" />
                 </svg>
               ) : (
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={styles.PlayIcon}>
-                  <use href="#play" />
+                  <use href="#Play" />
                 </svg>
               )}
             </button>

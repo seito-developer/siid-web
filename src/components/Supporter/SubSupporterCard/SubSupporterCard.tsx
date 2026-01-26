@@ -18,6 +18,9 @@ export default function SubSupporterCard({ id, name, englishName, role, avatarUr
           <div className={styles.SubSupporterCard__Badge}>
             <div className={styles.SubSupporterCard__BadgeLabel}>サポート講師</div>
             <div className={styles.SubSupporterCard__BadgeNumber}>{id}</div>
+            <svg width="97" height="111" fill="none">
+              <use href="#HexagonBlack" />
+            </svg>
           </div>
           <div className={styles.SubSupporterCard__EnglishName}>{englishName}</div>
         </div>

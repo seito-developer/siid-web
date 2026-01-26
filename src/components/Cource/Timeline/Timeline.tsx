@@ -39,7 +39,15 @@ export default function Timeline() {
           <div className={styles.Timeline__YearItem}>
             <span className={styles.Timeline__YearLabel}>{'Career \nroad'}</span>
             <span className={styles.Timeline__Year}>
-              <span className={styles.Timeline__YearText}>1年後</span>
+              <span className={styles.Timeline__YearText}>
+                <span className={styles.Timeline__YearTextLabel}>1年後</span>
+                <svg width="14" height="14" fill="none">
+                  <use href="#StarBlue" />
+                </svg>
+                <svg width="14" height="14" fill="none">
+                  <use href="#StarBlue" />
+                </svg>
+              </span>
             </span>
           </div>
           <TimelineItem index={0} {...timelineItems[0]} />
@@ -47,7 +55,15 @@ export default function Timeline() {
           {/* 3年後 */}
           <div className={styles.Timeline__YearItem}>
             <span className={styles.Timeline__Year}>
-              <span className={styles.Timeline__YearText}>3年後</span>
+              <span className={styles.Timeline__YearText}>
+                <span className={styles.Timeline__YearTextLabel}>3年後</span>
+                <svg width="14" height="14" fill="none">
+                  <use href="#StarBlue" />
+                </svg>
+                <svg width="14" height="14" fill="none">
+                  <use href="#StarBlue" />
+                </svg>
+              </span>
             </span>
           </div>
           <TimelineItem index={1} {...timelineItems[1]} />
@@ -55,7 +71,15 @@ export default function Timeline() {
           {/* 5-8年後 */}
           <div className={styles.Timeline__YearItem}>
             <span className={styles.Timeline__Year}>
-              <span className={styles.Timeline__YearText}>5-8年後</span>
+              <span className={styles.Timeline__YearText}>
+                <span className={styles.Timeline__YearTextLabel}>5-8年後</span>
+                <svg width="14" height="14" fill="none">
+                  <use href="#StarBlue" />
+                </svg>
+                <svg width="14" height="14" fill="none">
+                  <use href="#StarBlue" />
+                </svg>
+              </span>
             </span>
           </div>
           <TimelineItem index={2} {...timelineItems[2]} />
