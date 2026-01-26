@@ -1,5 +1,4 @@
 import styles from './StrengthCard.module.css';
-import Thumbnail from './Thumbnails/Thumbnail';
 
 interface StrengthCardProps {
   icon: 'chart' | 'gear' | 'chat' | 'app' | 'goal' | 'community';
@@ -8,10 +7,14 @@ interface StrengthCardProps {
 }
 
 export default function StrengthCard({ icon, title, items }: StrengthCardProps) {
+  const videoSrc = `/images/reason/strength/strengthlist/strengthcard/${icon}.mp4`;
+
   return (
     <div className={styles.StrengthCard}>
       <div className={styles.StrengthCard__Thumbnails}>
-        <Thumbnail type={icon} />
+        <video width="100%" height="auto" muted autoPlay loop preload="none">
+          <source src={videoSrc} type="video/mp4" />
+        </video>
       </div>
       <h3 className={styles.StrengthCard__Title}>{title}</h3>
       <ul className={styles.StrengthCard__List}>
