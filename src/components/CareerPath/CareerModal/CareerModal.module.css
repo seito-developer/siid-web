@@ -403,7 +403,7 @@
 
   .CareerModal__ResultSection {
     padding: 32px 40px;
-    min-height: 350px;
+    height: auto;
   }
 
   .CareerModal__ResultTitle {
