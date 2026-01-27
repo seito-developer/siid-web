@@ -24,9 +24,12 @@ export default function CareerModalWrapper({
   const handleClose = () => {
     if (isClosing) {return;}
     setIsClosing(true);
-    setTimeout(() => {
+  };
+
+  const handleAnimationEnd = () => {
+    if(isClosing) {
       router.push(`/career-path/${currentPage}`, { scroll: false });
-    }, 200);
+    }
   };
 
   if (!modalId) {
@@ -41,6 +44,7 @@ export default function CareerModalWrapper({
       isOpen={true}
       isClosing={isClosing}
       onClose={handleClose}
+      onAnimationEnd={handleAnimationEnd}
       voice={career.voice}
       title={career.title}
       age={career.age}

@@ -18,6 +18,7 @@ interface CareerModalProps {
   isOpen: boolean;
   isClosing: boolean;
   onClose: () => void;
+  onAnimationEnd: () => void;
   voice: string;
 }
 
@@ -25,6 +26,7 @@ export default function CareerModal({
   isOpen,
   isClosing,
   onClose,
+  onAnimationEnd,
   title,
   age,
   sex,
@@ -75,6 +77,7 @@ export default function CareerModal({
         className={`${styles.CareerModal__Container} ${
           isClosing ? styles['CareerModal__Container--closing'] : ''
         }`}
+        onAnimationEnd={onAnimationEnd}
       >
         <div className={styles.CareerModal__Badge}>
           <span className={styles.CareerModal__BadgeText}>･ CASE ･</span>
