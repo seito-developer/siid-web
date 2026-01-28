@@ -1,0 +1,147 @@
+.Message {
+  position: relative;
+  margin-top: 32px;
+  padding-block: 136px 156px;
+  color: #fff;
+  &::before {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 16px;
+    background: var(--main);
+    position: absolute;
+    top: 0;
+    left: -28px;
+  }
+  &::after {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 100%;
+    background-color: #475499;
+    position: absolute;
+    top: 0;
+    left: -28px;
+    z-index: -1;
+  }
+}
+
+.Message__Title {
+  font-size: var(--section-en-title-font-size);
+  font-weight: var(--section-en-title-font-weight);
+  line-height: var(--section-en-title-line-height);
+  font-family: var(--font-poppins);
+  margin: 0 0 62px;
+}
+
+.Message__Text {
+  font-size: 20px;
+  line-height: 1.8;
+  margin: 0;
+  white-space: nowrap;
+
+  & + & {
+    margin-top: 2em;
+  }
+
+  &:last-child {
+    font-size: 29px;
+    margin-top: 89px;
+  }
+
+  & :global(.reveal-logo) {
+    display: inline-block;
+    font-size: 123px !important;
+    line-height: 1;
+    vertical-align: middle;
+    transform: translateY(-0.07em);
+    margin-right: 8px;
+    &:where(.Message__Text:last-child :global(.reveal-logo)) {
+      font-size: 180px !important;
+    }
+  }
+}
+
+.Message__Logo {
+  width: 100vw;
+  position: absolute;
+  top: 240px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.1;
+  z-index: 0;
+  & svg {
+    width: 100%;
+    height: 100%;
+    fill: #fff;
+  }
+}
+
+/* Reveal Text Animation */
+.Message__Text :global(.ch) {
+  color: #8189b8;
+  transition: color 120ms linear;
+}
+
+.Message__Text :global(.ch.is-on) {
+  color: #fff;
+}
+
+.Message__Text :global(.ch svg path) {
+  fill: #8189b8 !important;
+  transition: fill 120ms linear;
+}
+
+.Message__Text :global(.ch.is-on svg path) {
+  fill: #fff !important;
+}
+
+@media screen and (min-width: 1280px) {
+  .Message {
+    margin-top: 0;
+    padding-block: 180px 330px;
+    &::before {
+      content: none;
+    }
+    &::after {
+      left: 0;
+      z-index: 3;
+    }
+  }
+  .Message__Corner {
+    display: none;
+  }
+  .Message__Container {
+    z-index: 4;
+    position: relative;
+    max-width: var(--pc-container-width);
+    margin-inline: auto;
+  }
+  .Message__Title {
+    margin-bottom: 56px;
+  }
+  .Message__Text {
+    font-size: 42px;
+    line-height: 1.53;
+    & + & {
+      margin-top: 1em;
+    }
+    &:last-child {
+      font-size: 72px;
+      margin-top: 160px;
+      line-height: 130%;
+    }
+    & :global(.reveal-logo) {
+      font-size: 220px !important;
+      transform: translateY(0);
+      margin-bottom: 18px;
+      margin-right: 12px;
+      &:where(.Message__Text:last-child :global(.reveal-logo)) {
+        transform: translateY(-0.05em);
+        font-size: 365px !important;
+        margin-bottom: 0;
+        margin-right: 6px;
+      }
+    }
+  }
+}

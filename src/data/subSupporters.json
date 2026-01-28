@@ -1,0 +1,23 @@
+[
+  {
+    "id": "002",
+    "name": "わたけん",
+    "englishName": "Wataken",
+    "role": "フルスタックエンジニア",
+    "avatarUrl": "/images/supporter/subsupportercard/wataken.png"
+  },
+  {
+    "id": "003",
+    "name": "ありけん",
+    "englishName": "Ariken",
+    "role": "メガベンチャー研修講師",
+    "avatarUrl": "/images/supporter/subsupportercard/ariken.png"
+  },
+  {
+    "id": "004",
+    "name": "たかこ",
+    "englishName": "Takako",
+    "role": "学習アドバイザー",
+    "avatarUrl": "/images/supporter/subsupportercard/takako.png"
+  }
+]

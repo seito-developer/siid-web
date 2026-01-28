@@ -10,7 +10,7 @@ export type NewsPostProps = {
 export default function NewsPost({ dateTime, title }: NewsPostProps) {
   return (
     <article className={styles.NewsPost}>
-      <time className={styles.NewsPost__date} dateTime={dateTime}>{new Date(dateTime).toLocaleDateString()}</time>
+      <time className={styles.NewsPost__date} dateTime={dateTime}>{new Date(dateTime).toLocaleDateString('ja-JP')}</time>
       <h1 className={styles.NewsPost__title}>{title}</h1>
     </article>
   );

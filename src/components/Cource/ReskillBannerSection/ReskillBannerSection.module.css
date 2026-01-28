@@ -1,0 +1,29 @@
+.ReskillBannerSection {
+  position: relative;
+  cursor: pointer;
+}
+
+.ReskillBannerSection__BannerPc {
+  display: none;
+}
+
+@media screen and (min-width: 1280px) {
+  .ReskillBannerSection {
+    max-width: 790px;
+    display: block;
+    margin-inline: auto;
+  }
+
+  .ReskillBannerSection__BannerPc {
+    display: block;
+  }
+
+  .ReskillBannerSection__BannerSp {
+    display: none;
+  }
+
+  .ReskillBannerSection__BannerPcImage {
+    width: 100%;
+    height: auto;
+  }
+}

@@ -6,8 +6,8 @@
 }
 
 :root {
-  --background: #F1F1F1;
-  --main: #567EB4;
+  --background: #f1f1f1;
+  --main: #567eb4;
   --text: #342525;
   --maxZ: 999;
   --font-bagor: 'Bagor', sans-serif;
@@ -34,6 +34,7 @@ body {
     top: 0;
     width: 8px;
     height: 100%;
+    z-index: 1;
   }
   &::before {
     border-left: 8px solid var(--main);
@@ -42,5 +43,24 @@ body {
   &::after {
     border-right: 8px solid var(--main);
     right: 0;
+  }
+}
+
+/* Responsive line breaks */
+.br-sp {
+  display: inline;
+}
+
+.br-pc {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .br-sp {
+    display: none;
+  }
+
+  .br-pc {
+    display: inline;
   }
 }

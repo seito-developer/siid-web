@@ -1,0 +1,274 @@
+/* Cource styles */
+.Cource__Container {
+  padding-block: 118px 96px;
+}
+
+.Cource__Header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  column-gap: 16px;
+  grid-auto-flow: column;
+  grid-template-rows: auto 1fr;
+  margin-bottom: 90px;
+  position: relative;
+}
+
+.Cource__Title {
+  font-size: var(--section-en-title-font-size);
+  font-weight: var(--section-en-title-font-weight);
+  line-height: var(--section-en-title-line-height);
+  font-family: var(--font-poppins);
+  margin: var(--section-en-title-margin);
+}
+
+.Cource__Heading {
+  font-size: var(--section-title-font-size);
+  font-weight: var(--section-title-font-weight);
+  margin-block: 0;
+}
+
+.Cource__DetailButtonContainer {
+  grid-row: span 2;
+}
+
+.Cource__DetailButton {
+  color: #fff;
+  background-color: var(--text);
+  border-radius: 9999px;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 36px;
+  padding: 6px 16px 6px 22px;
+  font-size: 11px;
+  text-decoration: none;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.Cource__Slider {
+  margin-bottom: 46px;
+}
+
+.Cource__ReskillBanner {
+  padding-bottom: 60px;
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 100%;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: -32px;
+    z-index: 0;
+  }
+}
+
+.Cource__Future {
+  margin-bottom: 22px;
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: calc(100% + 4px + 22px);
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: -32px;
+    z-index: 0;
+    margin-block: -2px;
+  }
+}
+
+.Cource__FutureInner {
+  padding-block: 22px 10px;
+  border-block: 1px solid var(--text);
+  position: relative;
+}
+
+.Cource__FutureHeading {
+  font-size: 22px;
+  font-weight: 900;
+  margin-block: 0 16px;
+  position: relative;
+  svg {
+    width: 86px;
+    height: auto;
+    transform: translateY(-3px);
+    margin-right: 5px;
+  }
+}
+
+.Cource__FutureDescription {
+  font-size: 12px;
+  line-height: 160%;
+  margin-block: 0 22px;
+  position: relative;
+}
+
+.Cource__FutureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.Cource__Timeline {
+  margin-inline: -12px;
+  width: calc(100% + 36px);
+  position: relative;
+  padding-bottom: 62px;
+  &::before {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 100%;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: -20px;
+    z-index: 0;
+    margin-block: -2px;
+    border-radius: 0 0 20px 20px;
+  }
+  &::after {
+    content: '';
+    display: block;
+    width: calc(100% - 12px);
+    height: 1px;
+    position: absolute;
+    border-top: 1px solid #000;
+    bottom: 62px;
+    left: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Cource__Container {
+    max-width: var(--pc-container-width);
+    margin-inline: auto;
+    padding-block: 278px 218px;
+  }
+
+  .Cource__Header {
+    margin-bottom: 108px;
+  }
+
+  .Cource__DetailButton {
+    font-size: 16px;
+    padding: 22px 32px 22px 32px;
+    column-gap: 60px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px #00000040;
+    transition: box-shadow 0.2s ease-out;
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-color: #111;
+      position: absolute;
+      left: 0;
+      top: 0;
+      backface-visibility: hidden;
+      transform-origin: 100% 50%;
+      transform: scaleX(0);
+      transition: transform ease-out 0.2s;
+    }
+    svg {
+      width: 24px;
+      height: auto;
+      position: relative;
+      z-index: 2;
+    }
+    &:hover {
+      box-shadow: none;
+      &::after {
+        transform-origin: 0% 50%;
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  .Cource__DetailButtonText {
+    position: relative;
+    z-index: 2;
+  }
+
+  .Cource__Slider {
+    margin-bottom: 60px;
+  }
+
+  .Cource__ReskillBanner {
+    padding-bottom: 40px;
+    &::before {
+      width: calc(100% + 180px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .Cource__Future {
+    margin-bottom: 32px;
+    &::before {
+      width: calc(100% + 180px);
+      height: calc(100% + 33px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .Cource__FutureInner {
+    display: grid;
+    grid-template-columns: 41.2% 1fr;
+    align-items: center;
+    column-gap: 16px;
+    grid-auto-flow: column;
+    grid-template-rows: auto 1fr;
+    padding-block: 26px 32px;
+  }
+
+  .Cource__FutureHeading {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+
+  .Cource__FutureDescription {
+    align-self: start;
+    font-size: 13px;
+    line-height: 200%;
+    margin-bottom: 0;
+  }
+
+  .Cource__FutureList {
+    grid-row: 1 / -1;
+    border-left: 1px dotted var(--text);
+    padding-left: 38px;
+  }
+
+  .Cource__Timeline {
+    margin-inline: 0;
+    width: auto;
+    border-bottom: 1px solid var(--text);
+    padding-bottom: 32px;
+    &::before {
+      width: calc(100% + 180px);
+      height: calc(100% + 62px);
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 0 0 40px 40px;
+    }
+    &::after {
+      content: none;
+    }
+  }
+}

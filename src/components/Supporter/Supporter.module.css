@@ -1,0 +1,331 @@
+.Supporter {
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 100%;
+    background: #4b579a;
+    position: absolute;
+    top: 0;
+    left: -32px;
+    z-index: -1;
+    border-radius: 20px;
+  }
+}
+
+.Supporter__Container {
+  padding-block: 78px 98px;
+}
+
+.Supporter__Title {
+  font-size: var(--section-en-title-font-size);
+  font-weight: var(--section-en-title-font-weight);
+  line-height: var(--section-en-title-line-height);
+  font-family: var(--font-poppins);
+  margin: var(--section-en-title-margin);
+  color: #fff;
+}
+
+.Supporter__Heading {
+  font-size: var(--section-title-font-size);
+  font-weight: var(--section-title-font-weight);
+  margin: 0 0 62px;
+  color: #fff;
+}
+
+.Supporter__Decoration {
+  width: 100%;
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.Supporter__DecorationStart {
+  margin-bottom: 72px;
+}
+
+.Supporter__DecorationEnd {
+  transform: rotateZ(180deg);
+  margin-block: 24px 0;
+}
+
+.Supporter__DecorationIconPc {
+  display: none;
+}
+
+/* メインサポーター */
+.Supporter__Main {
+  margin-bottom: 36px;
+}
+
+.MainSupporter__Header {
+  position: relative;
+  text-align: center;
+  margin-bottom: 46px;
+}
+
+.MainSupporter__Badge {
+  color: #fff;
+  aspect-ratio: 97 / 111;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 3px;
+  width: 97px;
+  font-size: 12px;
+  display: flex;
+  position: absolute;
+  top: -32px;
+  left: 0;
+  svg {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: #fff;
+  }
+}
+
+.MainSupporter__BadgeLabel {
+  font-size: 12px;
+  background-color: var(--text);
+  position: relative;
+  z-index: 1;
+}
+
+.MainSupporter__BadgeNumber {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1;
+  font-family: var(--font-poppins);
+  position: relative;
+  z-index: 1;
+}
+
+.MainSupporter__Avatar {
+  aspect-ratio: 222 / 266;
+  z-index: 2;
+  background-image: url(/images/supporter/supporters/seito.jpg);
+  background-position: 81% 18%;
+  background-size: 135%;
+  border: 1px solid #000;
+  border-radius: 50%;
+  width: 224px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  transform: translateX(6px);
+}
+
+.MainSupporter__EnglishName {
+  font-size: 32px;
+  font-weight: 400;
+  font-family: 'Bagor', sans-serif;
+  text-align: left;
+  position: absolute;
+  line-height: 1;
+  color: #567eb4;
+  bottom: -24px;
+}
+
+.MainSupporter__NameContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 22px;
+}
+
+.MainSupporter__Name {
+  font-size: 32px;
+  margin-block: 0;
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  color: #fff;
+  font-weight: 900;
+}
+
+.MainSupporter__NameRole {
+  font-size: 12px;
+}
+
+.MainSupporter__NameText {
+  font-size: 24px;
+  margin: 0;
+}
+
+.MainSupporter__Social {
+  column-gap: 14px;
+  display: flex;
+}
+
+.MainSupporter__SocialLink {
+  cursor: pointer;
+}
+
+.MainSupporter__Bio {
+  font-size: 12px;
+  line-height: 2;
+  text-align: left;
+  margin: 0 0 52px;
+  color: #fff;
+}
+
+.MainSupporter__Books {
+  flex-direction: column;
+  row-gap: 44px;
+  margin-top: 32px;
+  display: flex;
+}
+
+/* サブサポーターリスト */
+.Supporter__SubList {
+  list-style: none;
+  padding: 0;
+  margin-block: 0;
+}
+
+/* More ボタン */
+.Supporter__More {
+  text-align: right;
+  margin-top: -10px;
+}
+
+.Supporter__MoreButton {
+  background-color: var(--text);
+  font-family: var(--font-bagor);
+  color: #fff;
+  padding: 15px 35px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 100%;
+  transform: rotateZ(-8deg);
+  display: inline-block;
+}
+
+@media screen and (min-width: 1280px) {
+  .Supporter {
+    &::before {
+      border-radius: 40px;
+      max-width: var(--pc-background-width);
+      margin-inline: auto;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .Supporter__Container {
+    max-width: var(--pc-container-width);
+    margin-inline: auto;
+    padding-block: 158px 180px;
+  }
+
+  .Supporter__Main {
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 39% 54.6%;
+    grid-auto-flow: column;
+    display: grid;
+    justify-content: space-between;
+    margin-bottom: 60px;
+  }
+
+  .MainSupporter__Header {
+    grid-row: 1 / -1;
+  }
+
+  .MainSupporter__HeaderContainer {
+    position: relative;
+    text-align: right;
+  }
+
+  .MainSupporter__Avatar {
+    width: 352px;
+    transform: none;
+    margin-right: 0;
+    border-width: 2px;
+  }
+
+  .Supporter__DecorationStart {
+    margin-bottom: 130px;
+  }
+
+  .Supporter__DecorationIconPc {
+    display: block;
+  }
+
+  .Supporter__DecorationIconSp {
+    display: none;
+  }
+
+  .MainSupporter__Badge {
+    width: 154px;
+    top: -78px;
+  }
+
+  .MainSupporter__BadgeLabel {
+    font-size: 16px;
+  }
+
+  .MainSupporter__BadgeNumber {
+    font-size: 48px;
+  }
+
+  .MainSupporter__EnglishName {
+    font-size: 48px;
+    bottom: -48px;
+  }
+
+  .MainSupporter__NameRole {
+    font-size: 14px;
+  }
+
+  .MainSupporter__NameText {
+    font-size: 28px;
+  }
+
+  .MainSupporter__Bio {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .MainSupporter__NameContainer {
+    margin-bottom: 34px;
+  }
+
+  .MainSupporter__Books {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .Supporter__SubList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-top: 32px;
+    border-top: 1px dashed var(--text);
+  }
+
+  .Supporter__SubItem {
+    &:nth-child(n+2) {
+      border-left: 1px dashed var(--text);
+    }
+  }
+
+  .Supporter__More {
+    margin-block: 16px -52px;
+    margin-right: -48px;
+  }
+
+  .Supporter__MoreButton {
+    font-size: 20px;
+    position: relative;
+    z-index: 2;
+  }
+}

@@ -1,0 +1,358 @@
+.ComparisonTable__Container {
+  width: calc(100% + 24px);
+  padding-bottom: 16px;
+  overflow-x: auto;
+}
+
+.ComparisonTable {
+  display: grid;
+  grid-template-columns: minmax(101px, 12.625%) minmax(216px, 27%) 1fr 1fr 1fr;
+  width: 824px;
+  min-width: 100%;
+  font-size: 11px;
+  padding-right: 24px;
+}
+
+.ComparisonTable__HeaderCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 22px;
+  position: relative;
+  font-size: 18px;
+  &:not(.ComparisonTable__HeaderCell_Highlight) {
+    &:nth-child(n + 2 of &) {
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 20px);
+        height: 1px;
+        border-top: 1px dotted #000;
+      }
+      &:nth-child(3 of &) {
+        &::before {
+          width: calc(100% - 10px);
+          left: auto;
+          right: 0;
+          transform: none;
+        }
+      }
+    }
+  }
+}
+
+.ComparisonTable__Label {
+  display: flex;
+  align-items: center;
+  background-color: var(--text);
+  color: #fff;
+  line-height: 1.3;
+  padding: 1.7em 1em;
+  &:nth-child(1 of &) {
+    border-top-left-radius: 8px;
+  }
+  &:nth-child(7 of &) {
+    border-bottom-left-radius: 8px;
+  }
+  &:nth-child(n + 2 of &) {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      transform: translateY(-50%);
+      background-color: #fff;
+    }
+  }
+}
+
+.ComparisonTable__HeaderCell_Highlight {
+  background-color: #475499;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.ComparisonTable__HeaderCell_Highlight,
+.ComparisonTable__Cell_Highlight {
+  margin-inline: 8px;
+}
+
+.ComparisonTable__Logo {
+  width: 98px;
+}
+
+.ComparisonTable__Logo svg {
+  width: 100%;
+  height: auto;
+}
+
+.ComparisonTable__Cell {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  &:not(.ComparisonTable__Cell_Highlight) {
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 20px);
+      height: 1px;
+      border-top: 1px dotted #000;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      width: 1px;
+      height: calc(100% - 20px);
+      border-left: 1px dotted #000;
+    }
+    &:nth-child(3 of &) {
+      &::after {
+        height: calc(100% - 10px);
+        top: 0;
+        transform: none;
+      }
+    }
+    &:last-child {
+      &::before {
+        width: calc(100% - 10px);
+        left: auto;
+        right: 0;
+        transform: none;
+      }
+      &::after {
+        height: calc(100% - 10px);
+        top: auto;
+        bottom: 0;
+        transform: none;
+      }
+    }
+  }
+  &:has(.ComparisonTable__List) {
+    justify-content: flex-start;
+  }
+}
+
+.ComparisonTable__Cell_Highlight {
+  color: #475499;
+  background-color: #fff;
+  border-inline: 2px solid #475499;
+  &:nth-child(n + 2 of &) {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 20px);
+      height: 1px;
+      border-top: 1px dotted #000;
+    }
+  }
+  &:nth-last-child(1 of &) {
+    border-bottom: 2px solid #475499;
+    border-radius: 0 0 20px 20px;
+  }
+}
+
+.ComparisonTable__Price {
+  text-align: center;
+}
+
+.ComparisonTable__PriceNumber {
+  font-family: var(--font-poppins);
+  font-size: 18px;
+  margin-right: 0.2em;
+  position: relative;
+  top: 0.05em;
+  &:where(.ComparisonTable__Cell_Highlight &) {
+    font-size: 24px;
+  }
+}
+
+.ComparisonTable__PriceUnit {
+  &:where(.ComparisonTable__Cell_Highlight &) {
+    font-size: 14px;
+  }
+}
+
+.ComparisonTable__Description {
+  text-align: center;
+}
+
+.ComparisonTable__Period {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.5em;
+}
+
+.ComparisonTable__PeriodTitle {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.ComparisonTable__PeriodDetail {
+  text-align: center;
+}
+
+.ComparisonTable__Mark_Cross {
+  width: 20px;
+  svg {
+    width: 100%;
+  }
+}
+
+.ComparisonTable__Mark_Triangle {
+  width: 21px;
+  svg {
+    width: 100%;
+  }
+}
+
+.ComparisonTable__List {
+  padding-left: 2.4em;
+  padding-right: 1em;
+  line-height: 150%;
+  margin-block: 0;
+  padding-block: 1em;
+  &:where(.ComparisonTable__Cell_Highlight &) {
+    line-height: 160%;
+  }
+}
+
+.ComparisonTable__Star {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(45%, -62%);
+}
+
+.ComparisonTable__StarTop {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(45%, 15%);
+}
+
+.ComparisonTable__StarBottom {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(45%, -45%);
+}
+
+.ComparisonTable__StarLeft {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(0%, -62%);
+}
+
+.ComparisonTable__Note {
+  font-size: 10px;
+  font-weight: 400;
+  color: #818181;
+  line-height: 1.65;
+  text-indent: -1.6em;
+  padding-left: 1.6em;
+  margin-block: 1.6em;
+}
+
+@media screen and (min-width: 865px) {
+  .ComparisonTable__Container {
+    width: 100%;
+  }
+
+  .ComparisonTable {
+    padding-right: 0;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .ComparisonTable {
+    width: 100%;
+    grid-template-columns: 240px 292px 1fr 1fr 1fr;
+    font-size: 12px;
+  }
+
+  .ComparisonTable__HeaderCell_Highlight,
+  .ComparisonTable__Cell_Highlight {
+    margin-inline: 6px;
+  }
+
+  .ComparisonTable__Cell_Highlight {
+    border-inline-width: 3px;
+  }
+
+  .ComparisonTable__Label {
+    font-size: 13px;
+    padding-inline: 2.5em;
+  }
+
+  .ComparisonTable__Cell {
+    padding-block: 0.7em;
+  }
+
+  .ComparisonTable__PriceNumber {
+    &:where(.ComparisonTable__Cell_Highlight &) {
+      font-size: 32px;
+    }
+  }
+
+  .ComparisonTable__PriceUnit {
+    &:where(.ComparisonTable__Cell_Highlight &) {
+      font-size: 16px;
+    }
+  }
+
+  .ComparisonTable__Period {
+    margin-block: 0.8em;
+  }
+
+  .ComparisonTable__PeriodTitle {
+    font-size: 16px;
+    &:where(.ComparisonTable__Cell_Highlight &) {
+      font-size: 22px;
+    }
+  }
+
+  .ComparisonTable__Mark_Circle,
+  .ComparisonTable__Mark_DoubleCircle,
+  .ComparisonTable__Mark_Cross,
+  .ComparisonTable__Mark_Triangle {
+    width: 24px;
+    margin-block: 1.3em;
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .ComparisonTable__Mark_Cross {
+    width: 22px;
+  }
+
+  .ComparisonTable__List {
+    padding-block: 0.8em;
+  }
+
+  .ComparisonTable__Note {
+    font-size: 11px;
+    margin-block: 2.2em;
+  }
+}

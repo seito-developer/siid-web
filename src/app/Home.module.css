@@ -1,22 +1,197 @@
-.Home {}
+.Home {
+  --pc-container-width: 1080px;
+  --pc-background-width: calc(100% - 16px);
+  --section-title-font-size: 24px;
+  --section-title-font-weight: 900;
+  --section-title-logo-width: 92px;
+  --section-title-logo-margin-right: 2px;
+  --section-title-logo-transform: translateY(-2px);
+  --section-en-title-font-size: 14px;
+  --section-en-title-font-weight: 900;
+  --section-en-title-line-height: 1;
+  --section-en-title-margin: 0 0 8px;
+  font-family: var(--font-noto-sans-jp);
+}
 
 .Home__News {
-    display: block;
-    margin-bottom: 20px;
+  display: block;
+  margin-bottom: 20px;
 }
+
 .Home__Hero {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
+
 .Home__Contents {
-    padding: 0 20px;
+  padding: 0 32px;
+}
+
+.Home__Supporter {
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: -32px;
+    width: 100vw;
+    height: 50%;
+    background-color: #eeefed;
+    z-index: -1;
+  }
+}
+
+.Home__Cource {
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -32px;
+    width: 100vw;
+    height: 100%;
+    background-color: #eeefed;
+    z-index: 0;
+  }
+}
+
+.Home__CareerPath {
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -32px;
+    width: 100vw;
+    height: 100%;
+    background-color: #eeefed;
+    z-index: 0;
+  }
+}
+
+.Home__Faq {
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -32px;
+    width: 100vw;
+    height: 100%;
+    background-color: #eeefed;
+    z-index: 0;
+  }
+}
+
+/* スクロールフェードインアニメーション */
+.Home :global(.fade-in-scroll) {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.Home :global(.fade-in-scroll.is-visible) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 遅延アニメーション用 */
+.Home :global(.fade-in-scroll[data-delay='1']) {
+  transition-delay: 0.1s;
+}
+
+.Home :global(.fade-in-scroll[data-delay='2']) {
+  transition-delay: 0.2s;
+}
+
+.Home :global(.fade-in-scroll[data-delay='3']) {
+  transition-delay: 0.3s;
 }
 
 @media screen and (min-width: 1280px) {
-    .Home__News {
-        display: none;
+  .Home {
+    --section-title-font-size: 32px;
+    --section-title-logo-width: 100px;
+    --section-en-title-font-size: 16px;
+    --section-en-title-margin: 0 0 10px;
+  }
+
+  .Home__Hero {
+    margin-bottom: 0;
+  }
+
+  .Home__Contents {
+    padding: 0;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      width: 8px;
+      height: 100%;
+      z-index: 2;
     }
-    .Home__ReskillBanner {
-        display: none;
+
+    &::before {
+      border-left: 8px solid #eeefed;
+      left: 0;
     }
-    
+
+    &::after {
+      border-right: 8px solid #eeefed;
+      right: 0;
+    }
+  }
+
+  .Home__News {
+    display: none;
+  }
+
+  .Home__ReskillBanner {
+    display: none;
+  }
+
+  .Home__Comparison {
+    margin-top: -170px;
+  }
+
+  .Home__Supporter {
+    &::before {
+      left: -8px;
+    }
+  }
+
+  .Home__Cource {
+    &::before {
+      left: -8px;
+    }
+  }
+
+  .Home__CareerPath {
+    &::before {
+      left: -8px;
+    }
+  }
+
+  .Home__Faq {
+    &::before {
+      left: -8px;
+    }
+  }
+
+  .Home :global(.fade-in-scroll) {
+    transform: translateY(60px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+  }
+
+  .Home__Comparison:global(.fade-in-scroll.is-visible) {
+    position: relative;
+    z-index: 3;
+  }
 }

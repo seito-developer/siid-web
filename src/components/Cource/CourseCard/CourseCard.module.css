@@ -1,0 +1,147 @@
+.CourseCard {
+  position: relative;
+}
+
+.CourseCard__Badge {
+  position: absolute;
+  top: -36px;
+  left: calc(50% - 128px);
+}
+
+.CourseCard__Body {
+  background-color: #fff;
+  border: 2px solid var(--text);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.CourseCard__Header {
+  padding-block: 18px;
+  &:where(.CourseCard--career &) {
+    background-color: #8dc556;
+  }
+  &:where(.CourseCard--full-support &) {
+    background-color: #e0804c;
+  }
+  &:where(.CourseCard--vip &) {
+    background-color: #924a8f;
+  }
+}
+
+.CourseCard__Title {
+  font-size: 20px;
+  line-height: 105%;
+  font-family: var(--font-bagor);
+  font-weight: 400;
+  margin: 0;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.CourseCard__Content {
+  padding: 8px 16px 20px;
+}
+
+.CourseCard__Price {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.CourseCard__PriceAmount {
+  font-size: 32px;
+  font-weight: 900;
+  font-family: var(--font-poppins);
+}
+
+.CourseCard__PriceUnit {
+  margin-left: 6px;
+  font-size: 12px;
+}
+
+.CourseCard__PriceFrom {
+  font-size: 12px;
+}
+
+.CourseCard__Features {
+  margin-block: 0;
+  padding-inline: 0;
+  list-style: none;
+  background-color: #eeefed;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 130%;
+  padding: 14px 20px 20px;
+}
+
+.CourseCard__Feature {
+  padding-block: 12px;
+  border-bottom: 1px dashed #b9b9b9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: pre-line;
+}
+
+.CourseCard__FeatureLabel {
+  flex-basis: 45%;
+}
+
+.CourseCard__FeatureValue {
+  flex-basis: 45%;
+}
+
+@media (min-width: 1280px) {
+  .CourseCard__Badge {
+    top: -42px;
+    left: 4px;
+  }
+
+  .CourseCard__Header {
+    &:where(.CourseCard--career &) {
+      background-color: #8dc556;
+      padding-block: 22px;
+    }
+    &:where(.CourseCard--full-support &) {
+      background-color: #e0804c;
+      padding-block: 14px;
+    }
+    &:where(.CourseCard--vip &) {
+      background-color: #924a8f;
+      padding-block: 8px;
+    }
+  }
+
+  .CourseCard__Title {
+    font-size: 24px;
+  }
+
+  .CourseCard__PriceAmount {
+    font-size: 36px;
+  }
+
+  .CourseCard__Content {
+    padding: 10px 20px 20px;
+  }
+
+  .CourseCard__Features {
+    &:where(.CourseCard--career &),
+    &:where(.CourseCard--vip &) {
+      font-size: 11px;
+    }
+  }
+
+  .CourseCard__Feature {
+    &:where(.CourseCard--career &),
+    &:where(.CourseCard--vip &) {
+      padding-block: 10px;
+    }
+  }
+
+  .CourseCard__FeatureLabel {
+    flex-basis: 50%;
+  }
+
+  .CourseCard__FeatureValue {
+    flex-basis: 41%;
+  }
+}

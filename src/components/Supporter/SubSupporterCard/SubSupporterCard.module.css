@@ -1,0 +1,160 @@
+.SubSupporterCard {
+  position: relative;
+  display: flex;
+  padding-block: 42px 34px;
+  justify-content: space-between;
+  border-top: 1px dashed var(--text);
+  align-items: center;
+}
+
+.SubSupporterCard__Header {
+  justify-content: flex-end;
+  position: relative;
+  width: 51%;
+  display: flex;
+}
+
+.SubSupporterCard__BadgeContainer {
+  position: absolute;
+  top: -26px;
+  left: 0;
+}
+
+.SubSupporterCard__Badge {
+  color: #fff;
+  aspect-ratio: 97 / 111;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 3px;
+  width: 70px;
+  font-size: 12px;
+  display: flex;
+  position: relative;
+  z-index: 2;
+  visibility: hidden;
+  svg {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: #fff;
+  }
+}
+
+.SubSupporterCard__BadgeLabel {
+  font-size: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.SubSupporterCard__BadgeNumber {
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1;
+  font-family: var(--font-poppins);
+  position: relative;
+  z-index: 1;
+}
+
+.SubSupporterCard__EnglishName {
+  text-align: left;
+  color: #567eb4;
+  font-family: Bagor, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+  position: absolute;
+  left: 50%;
+  transform: rotateZ(90deg) translateY(-8px) translateX(-8px);
+  transform-origin: left top;
+}
+
+.SubSupporterCard__Avatar {
+  width: 126px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  transform: translateX(2px);
+}
+
+.SubSupporterCard__NameContainer {
+  width: 43.4%;
+}
+
+.SubSupporterCard__Name {
+  color: #fff;
+  flex-direction: column;
+  row-gap: 8px;
+  margin-block: 0;
+  font-size: 32px;
+  line-height: 1;
+  display: flex;
+  align-items: flex-start;
+}
+
+.SubSupporterCard__NameRole {
+  font-size: 10px;
+  background-color: var(--text);
+  padding: 4px 9px;
+  border-radius: 4px;
+  font-weight: 400;
+}
+
+.SubSupporterCard__NameText {
+  font-size: 18px;
+  line-height: 140%;
+  font-weight: 900;
+}
+
+@media screen and (min-width: 1280px) {
+  .SubSupporterCard {
+    padding-left: 40px;
+    border-top: none;
+    flex-direction: column;
+    padding-top: 26px;
+    row-gap: 10px;
+  }
+
+  .SubSupporterCard__Header {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .SubSupporterCard__Badge {
+    width: 84px;
+    row-gap: 2px;
+    visibility: visible;
+  }
+
+  .SubSupporterCard__Avatar {
+    width: 194px;
+    margin-left: 52px;
+  }
+
+  .SubSupporterCard__NameContainer {
+    width: 100%;
+  }
+
+  .SubSupporterCard__EnglishName {
+    font-size: 40px;
+    transform: rotateZ(90deg) translateY(-16px) translateX(-8px);
+  }
+
+  .SubSupporterCard__BadgeLabel {
+    font-size: 10px;
+  }
+
+  .SubSupporterCard__BadgeNumber {
+    font-size: 22px;
+  }
+
+  .SubSupporterCard__Name {
+    padding-left: 56px;
+    row-gap: 6px;
+  }
+}

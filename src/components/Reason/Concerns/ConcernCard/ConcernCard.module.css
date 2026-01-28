@@ -1,0 +1,51 @@
+.ConcernCard {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.ConcernCard__Number {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-bagor);
+  color: #567eb4;
+  align-items: center;
+  margin: 0;
+  font-weight: 400;
+}
+
+.ConcernCard__Label {
+  font-size: 9px;
+}
+
+.ConcernCard__Digit {
+  font-size: 12px;
+}
+
+.ConcernCard__Title {
+  margin: 0;
+  font-size: 13px;
+  line-height: 140%;
+  font-weight: 900;
+}
+
+@media screen and (min-width: 1280px) {
+  .ConcernCard {
+    row-gap: 0;
+    padding: 16px 20px 24px 20px;
+    justify-content: space-between;
+  }
+  .ConcernCard__Label {
+    font-size: 8px;
+  }
+  .ConcernCard__Digit {
+    font-size: 9px;
+  }
+  .ConcernCard__Title {
+    font-size: 14px;
+    line-height: 165%;
+  }
+}

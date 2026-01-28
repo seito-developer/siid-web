@@ -1,0 +1,370 @@
+.GenerativeAi {
+  position: relative;
+  &::before {
+    content: '';
+    background-color: #fff;
+    width: 100vw;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -32px;
+    z-index: -1;
+  }
+}
+
+.GenerativeAi__Container {
+  padding-block: 58px 104px;
+  &::before {
+    content: '';
+    background-color: var(--background);
+    width: 100vw;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -32px;
+    z-index: -1;
+    border-radius: 40px 40px 0 0;
+  }
+}
+
+.GenerativeAi__Title {
+  font-size: var(--section-en-title-font-size);
+  font-weight: var(--section-en-title-font-weight);
+  line-height: var(--section-en-title-line-height);
+  font-family: var(--font-poppins);
+  margin: var(--section-en-title-margin);
+}
+
+.GenerativeAi__Heading {
+  font-size: var(--section-title-font-size);
+  font-weight: var(--section-title-font-weight);
+  margin: 0 0 20px;
+}
+
+.GenerativeAi__List {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.GenerativeAi__Item {
+  border-top: 1px dotted #000;
+  padding-block: 18px;
+}
+
+.GenerativeAi__Header {
+  align-items: center;
+  gap: 8px;
+  margin-block: 0 14px;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 140%;
+  display: flex;
+}
+
+.GenerativeAi__HeaderIcon {
+  font-size: 6px;
+  font-family: var(--font-bagor);
+  color: #fff;
+  aspect-ratio: 97 / 111;
+  background-size: 100%;
+  flex-basis: 38px;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  display: flex;
+  position: relative;
+  svg {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.GenerativeAi__HeaderIconText {
+  position: relative;
+  z-index: 1;
+}
+
+.GenerativeAi__HeaderText {
+  flex: 1;
+}
+
+.GenerativeAi__Text {
+  font-size: 12px;
+  line-height: 180%;
+  margin-block: 0;
+}
+
+.GenerativeAi__Illustration {
+  width: 90px;
+  margin-inline: auto;
+  margin-top: 20px;
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.GenerativeAi__Tools {
+  display: grid;
+  column-gap: 15px;
+  margin-top: 12px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.GenerativeAi__Tool {
+  background-color: #fff;
+  border-radius: 8px;
+  justify-content: space-between;
+  padding: 14px 12px;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  grid-template-columns: 1fr;
+}
+
+.GenerativeAi__ToolTitle {
+  font-weight: 900;
+  line-height: 130%;
+  font-size: 14px;
+  margin-block: 0 8px;
+}
+
+.GenerativeAi__ToolDescription {
+  font-size: 11px;
+  line-height: 140%;
+  margin-block: 0;
+}
+
+.GenerativeAi__ToolIcons {
+  margin-top: 12px;
+  align-self: end;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.GenerativeAi__Example {
+  position: relative;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-top: 30px;
+  padding: 20px 17px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.GenerativeAi__ExampleTitle {
+  margin-block: 0;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.GenerativeAi__ExampleTitleTag {
+  font-size: 12px;
+  background-color: rgb(153, 146, 146, 0.5);
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+
+.GenerativeAi__ExampleTitleText {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.GenerativeAi__ExampleIcon {
+  width: 86px;
+  height: auto;
+  position: absolute;
+  top: -20px;
+  right: -2px;
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.GenerativeAi__ExampleIconPc {
+  display: none;
+}
+
+.GenerativeAi__ExampleText {
+  font-size: 11px;
+  margin-block: 0;
+  line-height: 160%;
+}
+
+@media screen and (min-width: 1280px) {
+  .GenerativeAi {
+    max-width: var(--pc-background-width);
+    margin-inline: auto;
+    &::before {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .GenerativeAi__Container {
+    max-width: var(--pc-container-width);
+    margin-inline: auto;
+    padding-block: 120px 116px;
+    &::before {
+      width: 100%;
+      border-radius: 40px 40px 0 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .GenerativeAi__List {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px dotted #000;
+    gap: 86px 64px;
+    padding-top: 34px;
+  }
+
+  .GenerativeAi__Item {
+    padding-block: 0 16px;
+    position: relative;
+    border-top: none;
+    &:first-child {
+      grid-template-columns: 56% 36%;
+      display: grid;
+      padding-right: 20px;
+      justify-content: space-between;
+    }
+    &:nth-child(2) {
+      &::before {
+        content: '';
+        border-left: 1px dotted #000;
+        width: 1px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: -42px;
+      }
+    }
+    &:last-child {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto 1fr;
+      grid-auto-flow: column;
+      justify-content: space-between;
+      column-gap: 4%;
+      &::before {
+        content: '';
+        position: absolute;
+        top: -56px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        border-top: 1px dotted #000;
+      }
+    }
+  }
+
+  .GenerativeAi__Heading {
+    margin-bottom: 30px;
+  }
+
+  .GenerativeAi__Header {
+    &:where(.GenerativeAi__Item:first-child &) {
+      grid-column: span 2;
+    }
+  }
+
+  .GenerativeAi__Illustration {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .GenerativeAi__Text {
+    font-size: 13px;
+    line-height: 180%;
+  }
+
+  .GenerativeAi__Tools {
+    margin-top: 26px;
+  }
+
+  .GenerativeAi__Tool {
+    grid-template-rows: subgrid;
+    grid-row: span 2;
+    grid-template-columns: 69% 1fr;
+    grid-auto-flow: column;
+    padding: 18px 20px;
+    display: grid;
+    gap: 8px 6%;
+  }
+
+  .GenerativeAi__ToolIcons {
+    margin-top: 0;
+    flex-direction: column;
+    grid-row: span 2;
+    align-self: center;
+    row-gap: 6px;
+    svg {
+      &:where(.GenerativeAi__Tool:first-child &) {
+        width: 100%;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .GenerativeAi__ToolTitle {
+    margin-bottom: 0;
+    align-self: center;
+  }
+
+  .GenerativeAi__ToolDescription {
+    font-size: 12px;
+    line-height: 180%;
+  }
+
+  .GenerativeAi__Example {
+    grid-row: span 2;
+    margin-top: 0;
+    padding: 24px 30px;
+    row-gap: 12px;
+  }
+
+  .GenerativeAi__ExampleTitleTag {
+    font-size: 14px;
+  }
+
+  .GenerativeAi__ExampleTitleText {
+    font-size: 18px;
+  }
+
+  .GenerativeAi__ExampleText {
+    font-size: 13px;
+    line-height: 180%;
+  }
+
+  .GenerativeAi__ExampleTitle {
+    column-gap: 12px;
+  }
+
+  .GenerativeAi__ExampleIcon {
+    width: 186px;
+    top: -46px;
+    right: -2px;
+  }
+
+  .GenerativeAi__ExampleIconPc {
+    display: block;
+  }
+
+  .GenerativeAi__ExampleIconSp {
+    display: none;
+  }
+}
