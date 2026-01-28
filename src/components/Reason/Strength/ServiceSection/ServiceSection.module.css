@@ -42,6 +42,7 @@
   font-size: 11px;
   text-decoration: none;
   display: inline-flex;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 1280px) {

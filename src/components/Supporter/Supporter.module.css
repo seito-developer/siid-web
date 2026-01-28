@@ -167,6 +167,10 @@
   display: flex;
 }
 
+.MainSupporter__SocialLink {
+  cursor: pointer;
+}
+
 .MainSupporter__Bio {
   font-size: 12px;
   line-height: 2;

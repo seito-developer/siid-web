@@ -52,6 +52,7 @@
 }
 
 .CardImageLink {
+  cursor: pointer;
   display: block;
   border-radius: 20px;
   overflow: hidden;
@@ -66,6 +67,7 @@
 }
 
 .CardTitleLink {
+  cursor: pointer;
   text-decoration: none;
   color: inherit;
 }

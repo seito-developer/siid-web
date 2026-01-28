@@ -1,5 +1,6 @@
 .ReskillBannerSection {
   position: relative;
+  cursor: pointer;
 }
 
 .ReskillBannerSection__BannerPc {

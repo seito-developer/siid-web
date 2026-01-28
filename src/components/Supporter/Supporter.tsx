@@ -54,22 +54,22 @@ export default function Supporter() {
             </h3>
 
             <div className={styles.MainSupporter__Social}>
-              <Link href="https://x.com/seito_horiguchi" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+              <Link href="https://x.com/seito_horiguchi" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className={styles.MainSupporter__SocialLink}>
                 <svg width="24" height="24">
                   <use href="#x" />
                 </svg>
               </Link>
-              <Link href="https://www.tiktok.com/@seito2020" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+              <Link href="https://www.tiktok.com/@seito2020" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className={styles.MainSupporter__SocialLink}>
                 <svg width="25" height="28">
                   <use href="#tiktok" />
                 </svg>
               </Link>
-              <Link href="https://www.instagram.com/seito_horiguchi/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <Link href="https://www.instagram.com/seito_horiguchi/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={styles.MainSupporter__SocialLink}>
                 <svg width="30" height="30">
                   <use href="#instagram" />
                 </svg>
               </Link>
-              <Link href="https://www.youtube.com/@webit7652" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <Link href="https://www.youtube.com/@webit7652" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className={styles.MainSupporter__SocialLink}>
                 <svg width="29" height="20">
                   <use href="#youtube" />
                 </svg>

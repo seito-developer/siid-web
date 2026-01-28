@@ -43,6 +43,7 @@
   font-size: 11px;
   text-decoration: none;
   display: inline-flex;
+  cursor: pointer;
 }
 
 .Cource__Slider {
