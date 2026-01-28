@@ -1,0 +1,8 @@
+.imgWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+.imgItem {
+  width: calc((100% - 32px)/2);
+}

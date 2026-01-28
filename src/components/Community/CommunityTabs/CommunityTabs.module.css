@@ -1,0 +1,32 @@
+.tabs{
+  display:flex;
+  gap:28px;
+  border-bottom:1px solid var(--text);
+  justify-content: center;
+}
+.tab{
+  display:flex;
+  align-items:center;
+  border-radius:10px 10px 0 0;
+  text-decoration:none;
+  color: var(--text);
+  width: 420px;
+  min-width: 160px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font-noto-sans-jp);
+}
+.online {
+  background: #E0804C;
+}
+.offline {
+  background: #8DC556;
+}
+.arrowDown {
+  width: 24px;
+  height: 24px;
+}

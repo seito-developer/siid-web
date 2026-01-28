@@ -1,0 +1,20 @@
+
+/* =====================
+   VOICE リボン
+===================== */
+.ribbon {
+  background: #4b5aa6;
+  padding: 12px 0;
+}
+
+.ribbonInner {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+}
+
+.ribbonWord {
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}

@@ -1,20 +1,115 @@
 # SiiD Web - 開発者ドキュメント
 
-ITエンジニア転職 × 生成AI特化のプログラミングスクール「SiiD」のWebサイト開発ドキュメントです。
+IT エンジニア転職 × 生成 AI 特化のプログラミングスクール「SiiD」の Web サイト開発ドキュメントです。
 
 ## デザインデータ
 
 ### 全体図イメージ
+
 <img width="951" height="628" alt="Screenshot 2025-11-22 at 13 07 35" src="https://github.com/user-attachments/assets/d7e93a09-3250-4fe5-ba83-700f246e3da8" />
 
 ### Figma
+
 https://www.figma.com/design/VSf9GA17S6gkc6rq4dfzpu/%E5%90%88%E5%90%8C%E4%BC%9A%E7%A4%BEBugFix%E6%A7%98_%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%B5%E3%82%A4%E3%83%88%E5%88%B6%E4%BD%9C--Copy-?node-id=1-2&p=f&t=iQ1DUi5Rihu20eul-0
 
 ※要アクセスリクエスト
 
+## 🛠️ 環境構築
+
+### 必要な環境
+
+- **Node.js**: 18.17.0 以上（推奨: 20.x 以上）
+- **npm**: 9.x 以上（Node.js に同梱）
+- **Git**: 最新版
+
+### Node.js のインストール
+
+#### macOS / Linux (nvm 推奨)
+
+```bash
+# nvmがインストールされていない場合
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+# ターミナルを再起動後、Node.js 20をインストール
+nvm install 20
+nvm use 20
+nvm alias default 20
+```
+
+#### Windows
+
+[Node.js 公式サイト](https://nodejs.org/)から LTS 版をダウンロードしてインストールしてください。
+
+#### バージョン確認
+
+```bash
+node --version  # v20.x.x 以上であることを確認
+npm --version   # 9.x.x 以上であることを確認
+```
+
+### プロジェクトのセットアップ
+
+1. **リポジトリのクローン**
+
+```bash
+git clone <repository-url>
+cd siid-web
+```
+
+2. **依存関係のインストール**
+
+```bash
+npm install
+```
+
+3. **開発サーバーの起動**
+
+```bash
+npm run dev
+```
+
+ブラウザで [http://localhost:3000](http://localhost:3000) を開いて動作確認してください。
+
+### 初回セットアップ後の確認事項
+
+```bash
+# Lintチェック（エラーがないことを確認）
+npm run lint
+
+# TypeScript型チェック（エラーがないことを確認）
+npm run typecheck
+
+# ビルドテスト（正常にビルドできることを確認）
+npm run build
+```
+
+### トラブルシューティング
+
+#### 依存関係のインストールエラー
+
+```bash
+# node_modulesとpackage-lock.jsonを削除して再インストール
+rm -rf node_modules package-lock.json
+npm install
+```
+
+#### ポート 3000 が既に使用されている場合
+
+```bash
+# 別のポートで起動
+npm run dev -- -p 3001
+```
+
+#### TypeScript エラーが発生する場合
+
+```bash
+# TypeScriptの型定義を再生成
+npm run typecheck
+```
+
 ## 🚀 プロジェクト概要
 
-Next.js 15.4.5 + TypeScript + CSS Modulesを使用したモダンなWebアプリケーションです。
+Next.js 15.4.5 + TypeScript + CSS Modules を使用したモダンな Web アプリケーションです。
 
 ### 技術スタック
 
@@ -61,46 +156,44 @@ src/
 
 ### CSS Modules
 
-全てのコンポーネントでCSS Modulesを使用しています。
+全てのコンポーネントで CSS Modules を使用しています。
 
 ```typescript
 // コンポーネント例
-import styles from './ComponentName.module.css'
+import styles from "./ComponentName.module.css";
 
 export default function ComponentName() {
   return (
     <div className={styles.ComponentName}>
-      <div className={styles.ComponentName__Element}>
-        {/* コンテンツ */}
-      </div>
+      <div className={styles.ComponentName__Element}>{/* コンテンツ */}</div>
     </div>
-  )
+  );
 }
 ```
 
-### CSS命名規則
+### CSS 命名規則
 
 - **コンポーネント名**: パスカルケース (例: `Header`, `LoadingScreen`)
-- **要素**: BEM風の命名 (例: `ComponentName__Element`)
-- **修飾子**: BEM風の命名 (例: `ComponentName.isModifier`)
+- **要素**: BEM 風の命名 (例: `ComponentName__Element`)
+- **修飾子**: BEM 風の命名 (例: `ComponentName.isModifier`)
 
 ### CSS 共通変数（カラーコード、フォントなど）
 
 ```css
 :root {
-  --background: #F1F1F1;
-  --main: #567EB4;
+  --background: #f1f1f1;
+  --main: #567eb4;
   --text: #342525;
   --maxZ: 999;
-  --font-bagor: 'Bagor', sans-serif;
-  --font-noto: 'Noto Sans JP', sans-serif;
-  --font-poppins: 'Poppins', sans-serif;
+  --font-bagor: "Bagor", sans-serif;
+  --font-noto: "Noto Sans JP", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
 }
 ```
 
 ### レスポンシブデザイン
 
-ブレイクポイントは1280px。スマホファーストでコーディングしつつ、PCのスタイルを次のように記述する。
+ブレイクポイントは 1280px。スマホファーストでコーディングしつつ、PC のスタイルを次のように記述する。
 
 ```typescript
 // 定数定義
@@ -127,8 +220,8 @@ components/
 ### コンポーネントテンプレート
 
 ```typescript
-import React from 'react';
-import styles from './ComponentName.module.css';
+import React from "react";
+import styles from "./ComponentName.module.css";
 
 interface ComponentNameProps {
   // プロパティ定義
@@ -136,9 +229,7 @@ interface ComponentNameProps {
 
 export default function ComponentName({ prop1, prop2 }: ComponentNameProps) {
   return (
-    <div className={styles.ComponentName}>
-      {/* コンポーネントの内容 */}
-    </div>
+    <div className={styles.ComponentName}>{/* コンポーネントの内容 */}</div>
   );
 }
 ```
@@ -148,10 +239,10 @@ export default function ComponentName({ prop1, prop2 }: ComponentNameProps) {
 ```typescript
 // クライアントコンポーネント（インタラクティブな機能が必要な場合）
 "use client";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 // サーバーコンポーネント（デフォルト、静的コンテンツ）
-import React from 'react';
+import React from "react";
 ```
 
 ## 📱 レスポンシブ対応
@@ -159,22 +250,26 @@ import React from 'react';
 ### PC/モバイル判定
 
 ```typescript
-import useIsPc from '@/hooks/useIsPc';
+import useIsPc from "@/hooks/useIsPc";
 
 export default function Component() {
   const isPc = useIsPc();
 
+<<<<<<< Updated upstream
   return (
     <div>
       {isPc ? <PCVersion /> : <MobileVersion />}
     </div>
   );
+=======
+  return <div>{isPc ? <PCVersion /> : <MobileVersion />}</div>;
+>>>>>>> Stashed changes
 }
 ```
 
 ### デバイス別コンポーネント
 
-一部のコンポーネントはPC/モバイルで別々のコンポーネントを用意：
+一部のコンポーネントは PC/モバイルで別々のコンポーネントを用意：
 
 ```
 Hero/
@@ -183,28 +278,28 @@ Hero/
 └── HeroMainCopyPc/         # PC版
 ```
 
-## 🔧 TypeScript規約
+## 🔧 TypeScript 規約
 
 ### インポート順序
 
 ```typescript
 // 1. React関連
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 // 2. Next.js関連
-import Link from 'next/link';
-import { Metadata } from 'next';
+import Link from "next/link";
+import { Metadata } from "next";
 
 // 3. 外部ライブラリ
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 // 4. 内部インポート（絶対パス）
-import Component from '@/components/Component/Component';
-import { CONSTANT } from '@/constants/common';
-import useHook from '@/hooks/useHook';
+import Component from "@/components/Component/Component";
+import { CONSTANT } from "@/constants/common";
+import useHook from "@/hooks/useHook";
 
 // 5. CSS Modules（最後）
-import styles from './Component.module.css';
+import styles from "./Component.module.css";
 ```
 
 ### 型定義
@@ -219,10 +314,10 @@ interface ComponentProps {
 
 // 列挙型
 export enum CornerPosition {
-  TOP_LEFT = 'top-left',
-  TOP_RIGHT = 'top-right',
-  BOTTOM_LEFT = 'bottom-left',
-  BOTTOM_RIGHT = 'bottom-right',
+  TOP_LEFT = "top-left",
+  TOP_RIGHT = "top-right",
+  BOTTOM_LEFT = "bottom-left",
+  BOTTOM_RIGHT = "bottom-right",
 }
 
 // 型エクスポート
@@ -234,7 +329,7 @@ export type { ComponentProps };
 ### ファイル・ディレクトリ命名
 
 - **コンポーネント**: PascalCase (例: `Header.tsx`, `LoadingScreen.tsx`)
-- **フック**: camelCase + useプレフィックス (例: `useIsPc.ts`)
+- **フック**: camelCase + use プレフィックス (例: `useIsPc.ts`)
 - **定数**: camelCase (例: `menuItems.ts`, `common.ts`)
 - **ユーティリティ**: camelCase (例: `helper.ts`)
 - **CSS Modules**: `.module.css`拡張子
@@ -257,12 +352,13 @@ export { utilityFunction };
 
 ```typescript
 // constants/meta.ts
-export const commonTitle = "ITエンジニア転職 × 生成AI特化のプログラミングスクール - SiiD";
+export const commonTitle =
+  "ITエンジニア転職 × 生成AI特化のプログラミングスクール - SiiD";
 
 export const pages = {
   index: {
-    description: "SiiDは、ITエンジニア転職と生成AI..."
-  }
+    description: "SiiDは、ITエンジニア転職と生成AI...",
+  },
 } as const;
 ```
 
@@ -295,7 +391,7 @@ npm run typecheck
 
 ## ⚠️ 開発時の必須チェック
 
-**developまたはmainブランチにマージする前に必ずLintとTypeScriptチェックを実行してください。**
+**develop または main ブランチにマージする前に必ず Lint と TypeScript チェックを実行してください。**
 
 ```bash
 # 必須: コミット前にLintチェック
@@ -305,13 +401,13 @@ npm run lint
 npm run typecheck
 ```
 
-### GitHub Actionsによる自動チェック
+### GitHub Actions による自動チェック
 
-- developまたはmainブランチへのPR時に自動的にLintとTypeScriptチェックが実行されます
-- **Lintエラーがある場合、PRマージが自動的に拒否されます**
-- 事前にローカルでチェックを行い、エラーを修正してからPRを作成してください
+- develop または main ブランチへの PR 時に自動的に Lint と TypeScript チェックが実行されます
+- **Lint エラーがある場合、PR マージが自動的に拒否されます**
+- 事前にローカルでチェックを行い、エラーを修正してから PR を作成してください
 
-### Lintエラーの修正方法
+### Lint エラーの修正方法
 
 ```bash
 # 自動修正可能なエラーを修正
@@ -331,15 +427,15 @@ npm run lint -- --fix
 
 ### アクセシビリティ
 
-- セマンティックHTMLの使用
-- 適切なARIAラベルの設定
+- セマンティック HTML の使用
+- 適切な ARIA ラベルの設定
 - キーボードナビゲーションの考慮
 
 ### SEO
 
 - **Metadata API**の活用
 - 構造化データの実装
-- 適切なHeading階層の維持
+- 適切な Heading 階層の維持
 
 ---
 

@@ -1,0 +1,28 @@
+.topImage {
+  max-width: 100%;
+  margin-bottom: 36px;
+}
+.iconWrapper {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+}
+.iconItem {
+  width: 116px;
+  height: 124px;
+  background: #F5F4F4;
+  border-radius: 16px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.iconText {
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0;
+}

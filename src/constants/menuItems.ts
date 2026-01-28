@@ -30,7 +30,7 @@ export const menuItems = [
   },
   {
     nameEN: 'Community',
-    nameJP: 'コミュニティ',
+    nameJP: 'SiiDコミュニティ',
     url: '/community',
   },
 ];

@@ -8,5 +8,9 @@ type Props = {
 };
 
 export default function ContentArea({ children, isSidePadding = true }: Props) {
-  return <main className={`${styles.ContentsArea} ${isSidePadding ? styles['ContentsArea--sidePadding'] : ''}`}>{children}</main>;
+  return (
+    <main className={`${styles.ContentsArea} ${isSidePadding ? styles['ContentsArea--sidePadding'] : ''}`}>
+      {children}
+    </main>
+  );
 }

@@ -1,0 +1,30 @@
+/* src/components/Community/CommunityOnlineSection.module.css */
+.section{
+  background:#E0804C;
+  display: grid;
+  grid-template-columns: 4fr 7fr 1fr;
+  grid-template-areas: "left center right";
+  min-height: 100vh;
+}
+
+.left  { 
+  grid-area: left;
+  padding: 90px 105px;
+ }
+.center{ grid-area: center; }
+.right { grid-area: right; }
+
+.railPcLeft {
+  /* padding: 90px 105px; */
+}
+.railPcRight {
+  /* min-width: 20.5rem; */
+}
+.center{
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

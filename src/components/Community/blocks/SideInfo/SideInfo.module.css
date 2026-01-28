@@ -1,0 +1,18 @@
+.titleEn{ 
+  margin-bottom: 12px;
+}
+.en {
+  font-size: 14px; 
+  font-family: var(--font-poppins);
+  font-weight: bold;
+}
+.title{ 
+  font-size: 24px; 
+  font-family: var(--font-noto-sans-jp);
+  margin-bottom: 20px;
+}
+.lead{
+  font-size: 13px;
+  font-family: var(--font-noto-sans-jp);
+  font-weight: 600;
+}

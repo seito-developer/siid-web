@@ -25,6 +25,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /*
+    SPでは下部に fixed のナビ（NavigationSp）が出るため、
+    ページ最下部（フッター含む）が被らないように余白を確保する。
+  */
+  padding-bottom: 120px;
 
   &::before,
   &::after {
@@ -46,6 +51,7 @@ body {
   }
 }
 
+<<<<<<< Updated upstream
 /* Responsive line breaks */
 .br-sp {
   display: inline;
@@ -62,5 +68,10 @@ body {
 
   .br-pc {
     display: inline;
+=======
+@media screen and (min-width: 1280px) {
+  body {
+    padding-bottom: 0;
+>>>>>>> Stashed changes
   }
 }
