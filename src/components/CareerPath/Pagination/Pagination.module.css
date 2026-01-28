@@ -1,0 +1,130 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 32px auto;
+  width: 100%;
+  padding: 0 8px;
+}
+
+.ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 28px;
+  color: var(--text);
+  font-size: 16px;
+  font-family: var(--font-bagor);
+  opacity: 0.5;
+  user-select: none;
+}
+
+.arrowButton {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--text);
+  border-radius: 50%;
+  background: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.arrowButton:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+.arrowButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  color: var(--text);
+}
+
+.pageNumbers {
+  display: flex;
+  gap: 2px;
+  margin: 0 8px;
+}
+
+.pageButton {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 400;
+  font-family: var(--font-bagor);
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0.8;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pageButton:hover {
+  background: #f5f5f5;
+}
+
+.pageButtonActive {
+  color: var(--text);
+  font-weight: 600;
+  opacity: 1;
+}
+
+@media screen and (min-width: 1280px) {
+  .pagination {
+    letter-spacing: 0.03em;
+    margin: 60px auto 80px;
+    gap: 8px;
+    padding: 0;
+  }
+
+  .ellipsis {
+    min-width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+
+  .arrowButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .pageNumbers {
+    gap: 8px;
+    margin: 0 24px;
+  }
+
+  .pageButton {
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    font-size: 22px;
+  }
+
+  .pageButtonActive {
+    font-weight: 600;
+    opacity: 1;
+  }
+}

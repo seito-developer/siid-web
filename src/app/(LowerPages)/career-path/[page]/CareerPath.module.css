@@ -1,0 +1,16 @@
+.CareerPath {
+    width: 100%;
+}
+
+.CareerPath__Wrapper {
+  width: 100%;
+  background: var(--background);
+}
+
+@media screen and (min-width: 1280px) {
+  .CareerPath__Wrapper {
+    background: var(--background);
+    max-width: 1081px;
+    margin: 0 auto;
+  }
+}

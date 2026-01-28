@@ -16,8 +16,9 @@
   "eslint.workingDirectories": ["src"],
   "eslint.validate": [
     "javascript",
-    "javascriptreact", 
+    "javascriptreact",
     "typescript",
     "typescriptreact"
-  ]
+  ],
+  "docwriter.style": "DocBlock"
 }
