@@ -4,7 +4,7 @@ import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import TitleArea from '../blocks/TitleArea/TitleArea';
 import RibbonText from '../parts/Ribbon/Ribbon';
 
-import styles from "./OnlineSection.module.css";
+import styles from './OnlineSection.module.css';
 
 export default function CommunityOnlineSection() {
   return (

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 
 import styles from './CommunityTabs.module.css';
 
@@ -8,6 +9,7 @@ export default function CommunityTabs() {
         オンライン
         <img
           src="/images/community/tab-arrow.svg"
+          alt=""
           className={styles.arrowDown}
         />
       </a>
@@ -15,6 +17,7 @@ export default function CommunityTabs() {
         オフライン
         <img
           src="/images/community/tab-arrow.svg"
+          alt=""
           className={styles.arrowDown}
         />
       </a>

@@ -3,7 +3,7 @@ import OfflineMeeting from '../blocks/BlockInner/BlockInnerOfflineMeeting/BlockI
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import TitleArea from '../blocks/TitleArea/TitleArea';
 import RibbonText from '../parts/Ribbon/Ribbon';
-import styles from "./OfflineSection.module.css";
+import styles from './OfflineSection.module.css';
 
 export default function CommunityOfflineSection() {
   return (

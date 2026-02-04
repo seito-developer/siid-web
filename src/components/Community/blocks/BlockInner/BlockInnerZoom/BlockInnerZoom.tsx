@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import styles from './BlockInnerZoom.module.css';
 
 export default function ZoomContents() {

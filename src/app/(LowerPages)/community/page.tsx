@@ -1,17 +1,17 @@
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
-import Breadcrumb, { BreadcrumbProps } from "@/components/Breadcrumb/Breadcrumb";
-import ContentsArea from "@/components/ContentsArea/ContentsArea";
-import Headline from "@/components/Headline/Headline";
-import { commonTitle, pages } from "@/constants/meta";
-import { handleStringHTML } from "@/utils/helper";
+import Breadcrumb, { BreadcrumbProps } from '@/components/Breadcrumb/Breadcrumb';
+import CommunityTabs from '@/components/Community/CommunityTabs/CommunityTabs';
+import CommunityOfflineSection from '@/components/Community/mainSection/OfflineSection';
+import CommunityOnlineSection from '@/components/Community/mainSection/OnlineSection';
+import VoiceSection from '@/components/Community/VoiceSection/VoiceSection';
+import ContentsArea from '@/components/ContentsArea/ContentsArea';
+import Headline from '@/components/Headline/Headline';
 
-import CommunityOnlineSection from "@/components/Community/mainSection/OnlineSection";
-import CommunityOfflineSection from "@/components/Community/mainSection/OfflineSection";
-import CommunityTabs from "@/components/Community/CommunityTabs/CommunityTabs";
+import { commonTitle, pages } from '@/constants/meta';
+import { handleStringHTML } from '@/utils/helper';
 
-import styles from "./Community.module.css";
-import VoiceSection from "../../../components/Community/VoiceSection/VoiceSection";
+import styles from './Community.module.css';
 
 export const metadata: Metadata = {
   title: `${pages.community.name.ja} | ${commonTitle}`,
