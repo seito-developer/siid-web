@@ -1,29 +1,30 @@
-/* src/components/Community/blocks/ContentBlock.module.css */
-.block{
-  padding: 92px 80px 80px;
-}
-.header{ 
+.header { 
   display: flex;
   align-items: center;
-  gap: 45px;
-  margin-bottom: 28px;
+  gap: 26px;
+  margin-bottom: 24px;
 }
-.placeholder{
-  margin-top:16px;
-  padding:20px;
-  border:1px dashed #aaa;
-  border-radius:12px;
+.title {
+  font-size: 13px;
+  margin: 0;
+  font-weight: bold;
+  min-width: 40px;
+}
+.subTitle {
+  font-size: 11px;
+  margin: 0;
+  font-weight: bold;
 }
 .serviceIcon {
   width: auto;
-  height: 97px;
+  height: 81px;
 }
 .balloon {
   position: relative;
   border: 1px solid var(--text);
-  padding: 18px;
+  padding: 16px;
   background: #fff;
-  font-size: 13px;
+  font-size: 12px;
   font-family: var(--font-noto-sans-jp);
   font-weight: bold;
   letter-spacing: 1.3;
@@ -31,7 +32,7 @@
 .balloon::before {
   content: "";
   position: absolute;
-  top: 50%;
+  top: 30%;
   transform: translateY(-50%);
   left: -13px;
   width: 0;
@@ -43,7 +44,7 @@
 .balloon::after {
   content: "";
   position: absolute;
-  top: 50%;
+  top: 30%;
   transform: translateY(-50%);
   left: -12px;
   width: 0;
@@ -51,4 +52,68 @@
   border-top: 16px solid transparent;
   border-bottom: 16px solid transparent;
   border-right: 12px solid #fff;
+}
+
+@media screen and (min-width: 1280px){
+  .header { 
+    display: flex;
+    align-items: center;
+    gap: 45px;
+    margin-bottom: 28px;
+  }
+  .title {
+    font-size: 20px;
+    white-space: nowrap;
+    margin: 0;
+  }
+  .subTitle {
+    font-size: 13px;
+    white-space: nowrap;
+    margin: 0;
+    font-weight: bold;
+  }
+  .placeholder {
+    margin-top: 16px;
+    padding: 20px;
+    border: 1px dashed #aaa;
+    border-radius: 12px;
+  }
+  .serviceIcon {
+    height: 97px;
+  }
+  .balloon {
+    position: relative;
+    border: 1px solid var(--text);
+    padding: 18px;
+    background: #fff;
+    font-size: 13px;
+    font-family: var(--font-noto-sans-jp);
+    font-weight: bold;
+    letter-spacing: 1.3;
+    white-space: pre-line;
+  }
+  .balloon::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -13px;
+    width: 0;
+    height: 0;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-right: 12px solid #3a2a2a;
+  }
+  .balloon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -12px;
+    width: 0;
+    height: 0;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-right: 12px solid #fff;
+  }
 }

@@ -1,20 +1,18 @@
 .ContentsArea {
     padding: 75px 20px;
-}
 
-.ContentsArea--sidePadding {
-    padding-right: 0;
-    padding-left: 0;
+    &.isSidePadding {
+        padding-right: 0;
+        padding-left: 0;
+    }
 }
 
 @media screen and (min-width: 1280px) {
     .ContentsArea {
         padding-top: 155px;
-        padding-bottom: 500px;
-    }
-
-    .ContentsArea--sidePadding {
-        padding-right: 0;
-        padding-left: 0;
+        &.isSidePadding {
+            padding-right: 0;
+            padding-left: 0;
+        }
     }
 }

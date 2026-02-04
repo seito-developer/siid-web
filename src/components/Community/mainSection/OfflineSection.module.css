@@ -1,38 +1,44 @@
+
 .left  { 
-  background:#E0804C;
+  background: #8DC556;
   padding: 32px;
 }
-.center {
+.center{
   padding: 48px 20px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 24px;
 }
 .right { 
   display: none;
 }
 @media screen and (min-width: 1280px) {
-  .section {
+  .section{
     display: grid;
     grid-template-columns: 4fr 7fr 1fr;
     grid-template-areas: "left center right";
-    background:#E0804C;
+    background: #8DC556;
   }
-  .left { 
+  .left  { 
     grid-area: left;
     padding: 90px 105px;
    }
+  .center{ 
+    grid-area: center;
+   }
   .right { 
     grid-area: right;
-  }
-  .center {
+    background: #8DC556;
+   }
+  .center{
     background: #fff;
-    grid-area: center;
     padding: 80px;
-    gap: 84px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     min-width: 0;
+    max-width: 787px;
     border-left: 1px dashed #000;
     border-right: 1px dashed #000;
-    width: 787px;
   }
 }

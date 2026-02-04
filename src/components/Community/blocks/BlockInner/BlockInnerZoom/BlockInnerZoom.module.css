@@ -1,16 +1,17 @@
 .topImage {
   max-width: 100%;
-  margin-bottom: 36px;
+  margin-bottom: 20px;
 }
 .iconWrapper {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
   list-style: none;
   padding: 0;
 }
 .iconItem {
-  width: 116px;
-  height: 124px;
+  width: calc((100% - 30px)/2);
+  aspect-ratio: 1/1;
   background: #F5F4F4;
   border-radius: 16px;
   list-style: none;
@@ -25,4 +26,17 @@
   font-size: 13px;
   font-weight: bold;
   margin: 0;
+}
+@media screen and (min-width: 1280px) {
+  .topImage {
+    margin-bottom: 36px;
+  }
+  .iconWrapper {
+    justify-content: space-between;
+    gap: unset;
+  }
+  .iconItem {
+    width: 116px;
+    height: 124px;
+  }
 }

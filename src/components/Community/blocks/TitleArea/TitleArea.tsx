@@ -1,4 +1,4 @@
-import styles from './SideInfo.module.css';
+import styles from './TitleArea.module.css';
 
 const TitleArea = () => {
   return (

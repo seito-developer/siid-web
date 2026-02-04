@@ -51,7 +51,6 @@ body {
   }
 }
 
-<<<<<<< Updated upstream
 /* Responsive line breaks */
 .br-sp {
   display: inline;
@@ -68,10 +67,5 @@ body {
 
   .br-pc {
     display: inline;
-=======
-@media screen and (min-width: 1280px) {
-  body {
-    padding-bottom: 0;
->>>>>>> Stashed changes
   }
 }

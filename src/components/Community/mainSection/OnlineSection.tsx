@@ -1,7 +1,7 @@
-import ImagesArea from '../blocks/BlockInner/BlockInnerDiscord/BlockInnerDiscord';
-import ContentBlock from '../blocks/ContentBlock/ContentBlock';
-import TitleArea from '../blocks/SideInfo/SideInfo';
+import BlockInnerDiscord from '../blocks/BlockInner/BlockInnerDiscord/BlockInnerDiscord';
 import ZoomContents from '../blocks/BlockInner/BlockInnerZoom/BlockInnerZoom';
+import ContentBlock from '../blocks/ContentBlock/ContentBlock';
+import TitleArea from '../blocks/TitleArea/TitleArea';
 import RibbonText from '../parts/Ribbon/Ribbon';
 
 import styles from "./OnlineSection.module.css";
@@ -14,16 +14,16 @@ export default function CommunityOnlineSection() {
       <div className={styles.center}>
         <section className={styles.block}>
           <ContentBlock
-            iconPass="/community/icon-discord.svg"
+            iconPass="/images/community/icon-discord.svg"
             alt="Discord"
             description="Discordは常に相談できる体制で、受講生同士で切磋琢磨や、雑談など日々にぎわっています。また、卒業してからも活用してる方も多く、エンジニアのタテヨコのつながりが生まれやすい！"
           />
-          <ImagesArea/>
+          <BlockInnerDiscord/>
         </section>
-        {/* <RibbonText text="ONLINE" repeat={14} /> */}
+        <RibbonText text="ONLINE" />
         <section className={styles.block}>
           <ContentBlock
-            iconPass="/community/icon-zoom.svg"
+            iconPass="/images/community/icon-zoom.svg"
             alt="Zoom"
             description="月１回、著名なゲストを招いて対談イベントや交流会を開催しています！その他には、もくもく相談会Zoomを週５日開催！"
           />

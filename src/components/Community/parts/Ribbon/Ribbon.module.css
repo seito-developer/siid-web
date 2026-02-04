@@ -1,20 +1,48 @@
-
-/* =====================
-   VOICE リボン
-===================== */
-.ribbon {
-  background: #4b5aa6;
-  padding: 12px 0;
+.MarqueeContainer {
+  width: 100vw;
+  margin-left: -32px;
+  background: #924A8F;
+  position: relative;
+  overflow: clip;
+  clip-path: inset(0);
+  contain: paint; 
+  padding: 4px 0;
 }
-
-.ribbonInner {
+.RibbonContent {
   display: flex;
-  gap: 32px;
-  justify-content: center;
+  width: max-content;
+  animation: marquee 60s linear infinite;
+}
+.RibbonInner {
+  display: inline-flex;
+  white-space: nowrap;
+  flex-shrink: 0;  
+}
+.RibbonText {
+  color: #342525;
+  font-weight: bold;
+  font-size: 22px;
+  font-family: var(--font-bagor);
+  white-space: nowrap;
+  padding: 0 12px;
 }
 
-.ribbonWord {
-  color: #fff;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .MarqueeContainer {
+    width: calc(100% + 80px * 2);
+    margin-left: -80px;
+  }
+  .RibbonText {
+    font-size: 22px;
+    padding: 0 10px;
+  }
 }

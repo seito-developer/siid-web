@@ -1,15 +1,23 @@
 import styles from './Ribbon.module.css';
 
-export default function RibbonText(props: { text: string; repeat?: number }) {
-  const { text, repeat = 12 } = props;
+type RibbonTextProps = {
+  text: string;
+};
+
+export default function RibbonText({
+  text,
+}: RibbonTextProps) {
+  const items = Array(20).fill(null).map((_, index) => (
+    <span key={index} className={styles.RibbonWrap}>
+      <span className={styles.RibbonText}>{text}</span>
+    </span>
+  ));
+
   return (
-    <div className={styles.ribbon} aria-hidden="true">
-      <div className={styles.ribbonInner}>
-        {Array.from({ length: repeat }).map((_, i) => (
-          <span key={i} className={styles.ribbonWord}>
-            {text}
-          </span>
-        ))}
+    <div className={styles.MarqueeContainer}>
+      <div className={styles.RibbonContent}>
+        <span className={styles.RibbonInner}>{items}</span>
+        <span className={styles.RibbonInner}>{items}</span>
       </div>
     </div>
   );

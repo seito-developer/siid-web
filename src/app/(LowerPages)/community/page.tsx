@@ -7,6 +7,7 @@ import { commonTitle, pages } from "@/constants/meta";
 import { handleStringHTML } from "@/utils/helper";
 
 import CommunityOnlineSection from "@/components/Community/mainSection/OnlineSection";
+import CommunityOfflineSection from "@/components/Community/mainSection/OfflineSection";
 import CommunityTabs from "@/components/Community/CommunityTabs/CommunityTabs";
 
 import styles from "./Community.module.css";
@@ -36,7 +37,7 @@ export default function Community() {
           <CommunityTabs />
           <CommunityOnlineSection />
           <VoiceSection></VoiceSection>
-          {/* <CommunityOfflineSection /> */}
+          <CommunityOfflineSection />
         </div>
       </ContentsArea>
     </div>

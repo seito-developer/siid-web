@@ -1,0 +1,32 @@
+.titleEn{ 
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+.en {
+  font-size: 13px; 
+  font-family: var(--font-poppins);
+  font-weight: bold;
+}
+.title{ 
+  font-size: 20px; 
+  font-family: var(--font-noto-sans-jp);
+  margin: 0 auto 12px;
+}
+.lead{
+  font-size: 13px;
+  font-family: var(--font-noto-sans-jp);
+  font-weight: bold;
+  margin: 0;
+}
+@media screen and (min-width: 1280px) {
+  .titleEn{ 
+    margin-bottom: 12px;
+  }
+  .en {
+    font-size: 14px; 
+  }
+  .title{ 
+    font-size: 24px; 
+    margin-bottom: 20px;
+  }
+}
