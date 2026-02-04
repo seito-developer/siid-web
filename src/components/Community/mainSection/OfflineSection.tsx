@@ -7,7 +7,7 @@ import styles from './OfflineSection.module.css';
 
 export default function CommunityOfflineSection() {
   return (
-    <section id="online" className={styles.section}>
+    <section id="offline" className={styles.section}>
       <aside className={styles.left}><TitleArea/></aside>  
 
       <div className={styles.center}>
