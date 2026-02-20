@@ -25,7 +25,7 @@ const breadcrumb: BreadcrumbProps[] = [
 
 export default function Community() {
   return (
-    <div className={styles.Community}>
+    <div className={styles.community}>
       <Headline
         subTitle={pages.community.name.ja}
         title={pages.community.name.en}

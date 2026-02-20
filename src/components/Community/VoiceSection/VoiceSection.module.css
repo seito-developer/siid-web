@@ -1,100 +1,116 @@
-/* VoiceSection.module.css */
-
 .voiceSection {
   position: relative;
-  background: #f2f2f2;
-  padding: 0;
   overflow: hidden;
 }
 
-/* =====================
-   VOICE リボン
-===================== */
 .ribbon {
-  background: #4b5aa6;
-  padding: 12px 0;
+  width: 100%;
 }
 
-.ribbonInner {
-  display: flex;
-  gap: 32px;
-  justify-content: center;
-}
-
-.ribbonWord {
-  color: #fff;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
-/* =====================
-   中身レイアウト
-===================== */
 .inner {
-  display: flex;
-  gap: 48px;
-  padding: 40px 48px;
-  align-items: stretch;
+  position: relative;
+  padding: 18px 0;
+  margin: 18px 0;
 }
 
-/* =====================
-   左カード
-===================== */
 .leftCard {
   position: relative;
-  width: 280px;
-  background: #5b7fb3;
-  border-radius: 24px;
-  padding: 32px;
+  margin: 0 auto;
+  background: #567eb4;
   color: #fff;
-  flex-shrink: 0;
+  border-radius: 16px;
+  width: 90%;
+  min-height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 600;
+  font-size: 28px;
 }
 
-.leftCardTitle {
-  font-size: 24px;
-  font-weight: 700;
-  z-index: 1;
-}
-
-.leftCardWatermark {
+.leftCardLogo {
   position: absolute;
-  bottom: 16px;
-  left: 16px;
-  font-size: 72px;
-  font-weight: 800;
-  opacity: 0.15;
-  pointer-events: none;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  opacity: 0.2;
+  width: 90%;
 }
 
-/* =====================
-   右：吹き出しレーン
-===================== */
 .lanes {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  overflow: hidden; /* ←後で流すため */
+  padding-top: 20px;
+  position: relative;
+  z-index: -1;
+  overflow: hidden;
+  display: grid;
+  gap: 20px;
 }
 
 .lane {
-  display: flex;
-  gap: 24px;
-  white-space: nowrap; /* 折り返さない */
+  overflow: hidden;
 }
 
-/* =====================
-   吹き出し
-===================== */
-.bubble {
-  background: #fff;
-  border-radius: 9999px;
-  padding: 14px 24px;
-  font-size: 14px;
-  line-height: 1.6;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-  flex: 0 0 auto; /* ←縮まない（超重要） */
+.lane:nth-child(n + 4) {
+  display: none;
 }
+
+.track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  will-change: transform;
+  animation: marquee var(--duration, 48s) linear infinite;
+}
+
+.bubble {
+  white-space: nowrap;
+  background: #fff;
+  padding: 15px 22px;
+  border-radius: 12px 12px 12px 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+    transform: none;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .leftCard {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    max-width: 320px;
+    z-index: 3;
+    font-size: 24px;
+  }
+
+  .lanes {
+    padding-top: 0;
+    padding-left: 300px;
+  }
+
+  .lane:nth-child(n + 4) {
+    display: block;
+  }
+
+  .bubble {
+    padding: 12px 16px;
+  }
+}
+
+

@@ -1,17 +1,31 @@
 .MarqueeContainer {
   width: 100vw;
-  margin-left: -32px;
+  margin-left: -20px;
   background: #924A8F;
   position: relative;
   overflow: clip;
   clip-path: inset(0);
-  contain: paint; 
+  contain: paint;
   padding: 4px 0;
+}
+
+.MarqueeContainer.default {
+}
+
+.MarqueeContainer.voice {
+  background: #475499;
+  margin-left: 0;
+}
+.MarqueeContainer.voice .RibbonText {
+  color: #fff;
 }
 .RibbonContent {
   display: flex;
   width: max-content;
-  animation: marquee 60s linear infinite;
+  animation: marquee var(--duration, 60s) linear infinite;
+}
+.RibbonContent[data-direction="right"] {
+  animation-direction: reverse;
 }
 .RibbonInner {
   display: inline-flex;
@@ -25,6 +39,7 @@
   font-family: var(--font-bagor);
   white-space: nowrap;
   padding: 0 12px;
+  letter-spacing: 0.08em;
 }
 
 @keyframes marquee {
@@ -33,6 +48,13 @@
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .RibbonContent {
+    animation: none;
+    transform: none;
   }
 }
 

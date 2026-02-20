@@ -1,4 +1,5 @@
 import React from 'react';
+import RibbonText from '../parts/Ribbon/Ribbon';
 import styles from './VoiceSection.module.css';
 
 type Voice = {
@@ -30,6 +31,12 @@ function splitIntoLanes<T>(items: T[], laneCount: number): T[][] {
   return lanes;
 }
 
+function laneDurationSec(laneIndex: number) {
+  const base = 48;
+  const diff = [0, 6, 12, 4, 10];
+  return base + (diff[laneIndex % diff.length] ?? 0);
+}
+
 export default function VoiceSection(props: Props) {
   const { voices = DEFAULT_VOICES, laneCount = 4 } = props;
 
@@ -38,50 +45,50 @@ export default function VoiceSection(props: Props) {
   return (
     <section className={styles.voiceSection} aria-label="受講者の声">
       <div className={styles.ribbon} aria-hidden="true">
-        <RibbonText text="VOICE" repeat={14} />
+        <RibbonText text="VOICE" durationSec={48} direction="left" variant="voice" />
       </div>
 
       <div className={styles.inner}>
         <aside className={styles.leftCard}>
           <div className={styles.leftCardTitle}>受講者の声</div>
           <div className={styles.leftCardWatermark} aria-hidden="true">
-            SiiD
+          <img
+            src="/images/community/logo_voice.svg"
+            alt=""
+            className={styles.leftCardLogo}
+            aria-hidden="true"
+            width={100}
+          />
           </div>
         </aside>
 
         <div className={styles.lanes} aria-label="受講者コメント">
-          {lanes.map((lane, laneIndex) => (
-            <div
-              key={laneIndex}
-              className={styles.lane}
-              data-lane={laneIndex}
-            >
-              {lane.map((v) => (
-                <div key={v.id} className={styles.bubble}>
-                  {v.text}
+          {lanes.map((lane, laneIndex) => {
+            const loopLane = [...lane, ...lane];
+            const duration = laneDurationSec(laneIndex);
+
+            return (
+              <div
+                key={laneIndex}
+                className={styles.lane}
+                style={{ ['--duration' as any]: `${duration}s` }}
+              >
+                <div className={styles.track} aria-hidden="true">
+                  {loopLane.map((v, i) => (
+                    <div key={`${v.id}-${i}`} className={styles.bubble}>
+                      {v.text}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
 
       <div className={styles.ribbon} aria-hidden="true">
-        <RibbonText text="VOICE" repeat={14} />
+        <RibbonText text="VOICE" durationSec={48} direction="right" variant="voice" />
       </div>
     </section>
-  );
-}
-
-function RibbonText(props: { text: string; repeat?: number }) {
-  const { text, repeat = 12 } = props;
-  return (
-    <div className={styles.ribbonInner}>
-      {Array.from({ length: repeat }).map((_, i) => (
-        <span key={i} className={styles.ribbonWord}>
-          {text}
-        </span>
-      ))}
-    </div>
   );
 }
