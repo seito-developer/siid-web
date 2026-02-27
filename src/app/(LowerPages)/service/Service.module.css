@@ -1,0 +1,7 @@
+.Service {
+  --pc-container-width: 1080px;
+  --pc-background-width: calc(100% - 16px);
+  font-family: var(--font-noto-sans-jp);
+}
+
+

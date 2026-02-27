@@ -1,0 +1,19 @@
+.Features__HeadingContainer {
+  border-block: 1px solid #342525;
+  padding-block: 24px;
+  margin-bottom: 34px;
+}
+
+.Features__Title {
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  font-family: var(--font-poppins);
+  margin-bottom: 4px;
+}
+
+.Features__Heading {
+  font-size: 20px;
+  font-weight: 900;
+  margin: 0;
+}
