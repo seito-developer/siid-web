@@ -4,6 +4,7 @@ import Breadcrumb, { BreadcrumbProps } from '@/components/Breadcrumb/Breadcrumb'
 import ContentsArea from '@/components/ContentsArea/ContentsArea';
 import Features from '@/components/Features/Features';
 import Headline from '@/components/Headline/Headline';
+import Support from '@/components/Support/Support';
 import { commonTitle, pages } from '@/constants/meta';
 import { handleStringHTML } from '@/utils/helper';
 
@@ -26,7 +27,12 @@ export default async function ServicePage() {
       <Breadcrumb breadcrumb={breadcrumb} />
       <ContentsArea>
         <div className={styles.Service}>
-          <Features />
+          <div className={styles.Service__Features}>
+            <Features />
+          </div>
+          <div className={styles.Service__Support}>
+            <Support />
+          </div>
         </div>
       </ContentsArea>
     </div>

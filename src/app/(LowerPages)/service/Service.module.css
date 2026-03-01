@@ -4,4 +4,6 @@
   font-family: var(--font-noto-sans-jp);
 }
 
-
+.Service__Features {
+  margin-bottom: 70px;
+}
