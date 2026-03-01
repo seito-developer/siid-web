@@ -7,3 +7,9 @@
 .Service__Features {
   margin-bottom: 70px;
 }
+
+@media screen and (min-width: 1280px) {
+  .Service__Features {
+    margin-bottom: 150px;
+  }
+}

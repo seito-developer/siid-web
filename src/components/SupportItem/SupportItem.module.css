@@ -16,7 +16,7 @@
   height: auto;
   object-fit: cover;
   display: block;
-  border-radius: 12px;
+  border-radius: 4px;
 }
 
 .SupportItem__Number {
@@ -44,8 +44,40 @@
   line-height: 180%;
   grid-column: 1 / -1;
   margin: 0;
-  white-space: pre-line;
 }
 
 @media screen and (min-width: 1280px) {
+  .SupportItem {
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 222px 1fr;
+    gap: 14px 32px;
+    padding-top: 32px;
+    &:first-child {
+      border-top: none;
+      padding-top: 6px;
+    }
+  }
+
+  .SupportItem__ImageWrapper {
+    grid-row: 1 / 3;
+  }
+
+  .SupportItem__Image {
+    border-radius: 12px;
+  }
+
+  .SupportItem__Number {
+    font-size: 16px;
+    padding: 8px 18px;
+    top: -12px;
+    left: -22px;
+  }
+
+  .SupportItem__Title {
+    font-size: 22px;
+  }
+
+  .SupportItem__Description {
+    grid-column: auto;
+  }
 }

@@ -6,3 +6,16 @@
   flex-direction: column;
   row-gap: 20px;
 }
+
+.SupportList__Highlight {
+  background-color: #fff;
+  color: #475499;
+  margin-inline: 2px;
+  padding-inline: 2px;
+}
+
+@media screen and (min-width: 1280px) {
+  .SupportList {
+    row-gap: 30px;
+  }
+}

@@ -43,8 +43,27 @@
 
 @media screen and (min-width: 1280px) {
   .Support {
+    padding-block: 98px;
+    &::before {
+      width: calc(100% + 48px);
+      height: 100%;
+      top: 0;
+      left: -24px;
+    }
+  }
+
+  .Support__Container {
     max-width: var(--pc-container-width);
     margin-inline: auto;
+    display: grid;
+    grid-template-columns: 31% 1fr;
+    column-gap: 66px;
+    padding-block: 46px 38px;
+  }
+
+  .Support__HeadingContainer {
+    border-right: 1px dotted #fff;
+    padding-right: 40px;
   }
 
   .Support__Title {
@@ -52,6 +71,6 @@
   }
 
   .Support__Heading {
-    font-size: 24px;
+    margin-bottom: 20px;
   }
 }
