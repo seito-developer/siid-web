@@ -24,4 +24,12 @@ export const pages = {
     url: '/courses',
     description: 'SiiDのコースは、実践的なスキルを身につけるために設計されています。<br />業界の最新トレンドに基づいたカリキュラムで、あなたの成長をサポートします。',
   },
+  service: {
+    name: {
+      ja: 'サービス',
+      en: 'Service',
+    },
+    url: '/service',
+    description: 'SiiDは学んで終わりではなく、その先の人生もあなたと共にありたいと考えています。<br />そのためのサポートもしっかりとご用意しています。',
+  },
 };

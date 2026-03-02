@@ -1,0 +1,15 @@
+.Service {
+  --pc-container-width: 1080px;
+  --pc-background-width: calc(100% - 16px);
+  font-family: var(--font-noto-sans-jp);
+}
+
+.Service__Features {
+  margin-bottom: 70px;
+}
+
+@media screen and (min-width: 1280px) {
+  .Service__Features {
+    margin-bottom: 150px;
+  }
+}
