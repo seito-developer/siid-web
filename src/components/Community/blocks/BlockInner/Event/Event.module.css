@@ -1,61 +1,61 @@
-.hero {
+.Event__Hero {
   margin-bottom: 12px;
 }
-.heroImg {
+.Event__HeroImg {
   width: 100%;
 }
-.detail {
+.Event__Detail {
   display: flex;
   gap: 12px;
 }
-.detailWrap {
+.Event__DetailWrap {
   max-width: 60%;
 }
-.detailImg {
+.Event__DetailImg {
   width: 100%;
 }
-.detailText {
+.Event__DetailText {
   font-size: 11px;
 }
-.detailRight {
+.Event__DetailRight {
   max-width: 40%;
 }
-.rightImg {
+.Event__RightImg {
   max-width: 100%;
 }
-.publication {
+.Event__Publication {
   border-top: 1px solid #000;
   border-bottom: 1px solid #000;
   margin-top: 48px;
   padding: 22px 0;
   display: flex;
-  align-items: flex-start
+  align-items: flex-start;
 }
-.publicationImg {
+.Event__PublicationImg {
   width: 80px;
   height: auto;
   margin-right: 10px;
   object-fit: contain;
 }
-.publicationText {
+.Event__PublicationText {
   padding-left: 25px;
   border-left: 1px dashed #000;
   font-size: 11px;
 }
-.bookTitle {
+.Event__BookTitle {
   display: block;
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 6px;
 }
-.bookDetail {
+.Event__BookDetail {
   display: block;
 }
-.bookDesc {
+.Event__BookDesc {
   display: block;
   margin: 10px auto;
 }
-.links {
+.Event__Links {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -64,45 +64,44 @@
   }
 }
 @media screen and (min-width: 1280px) {
-  .hero {
+  .Event__Hero {
     margin-bottom: 18px;
   }
-  .detail {
+  .Event__Detail {
     gap: 15px;
   }
-  .detailWrap {
+  .Event__DetailWrap {
     max-width: 234px;
   }
-  .detailImg {
+  .Event__DetailImg {
     width: 100%;
   }
-  .detailText {
+  .Event__DetailText {
     font-size: 11px;
-  
   }
-  .detailRight {
+  .Event__DetailRight {
     max-width: 379px;
   }
-  .rightImg {
+  .Event__RightImg {
     width: 100%;
   }
-  .publication {
+  .Event__Publication {
     margin-top: 60px;
     align-items: center;
   }
-  .publicationImg {
+  .Event__PublicationImg {
     width: 120px;
     margin-right: 40px;
     margin-left: 5px;
   }
-  .publicationText {
+  .Event__PublicationText {
     padding-left: 25px;
     font-size: 11px;
   }
-  .bookTitle {
+  .Event__BookTitle {
     margin-bottom: 8px;
   }
-  .links {
+  .Event__Links {
     flex-direction: row;
     gap: 24px;
   }

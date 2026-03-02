@@ -1,8 +1,8 @@
-.topImage {
+.Zoom__TopImage {
   max-width: 100%;
   margin-bottom: 20px;
 }
-.iconWrapper {
+.Zoom__IconWrapper {
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -11,7 +11,7 @@
   padding: 0;
   justify-content: center;
 }
-.iconItem {
+.Zoom__IconItem {
   min-width: 120px;
   aspect-ratio: 1/1;
   background: #f5f4f4;
@@ -23,21 +23,21 @@
   justify-content: center;
   gap: 15px;
 }
-.iconText {
+.Zoom__IconText {
   text-align: center;
   font-size: 13px;
   font-weight: bold;
   margin: 0;
 }
 @media screen and (min-width: 1280px) {
-  .topImage {
+  .Zoom__TopImage {
     margin-bottom: 36px;
   }
-  .iconWrapper {
+  .Zoom__IconWrapper {
     justify-content: space-between;
     gap: 0;
   }
-  .iconItem {
+  .Zoom__IconItem {
     width: 116px;
     height: 124px;
   }

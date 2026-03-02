@@ -1,4 +1,4 @@
-.offlineMeeting {
+.OfflineMeeting {
   display: flex;
   gap: 18px;
   img {
@@ -6,7 +6,7 @@
   }
 }
 @media screen and (min-width: 1280px) {
-  .offlineMeeting {
+  .OfflineMeeting {
     gap: 12px;
     img {
       width: calc((100% - 12px)/2);

@@ -1,25 +1,25 @@
-.header { 
+.ContentBlock { 
   display: flex;
   align-items: center;
   gap: 26px;
   margin-bottom: 24px;
 }
-.title {
+.ContentBlock__Title {
   font-size: 13px;
   margin: 0;
   font-weight: bold;
   min-width: 40px;
 }
-.subTitle {
+.ContentBlock__SubTitle {
   font-size: 11px;
   margin: 0;
   font-weight: bold;
 }
-.serviceIcon {
+.ContentBlock__ServiceIcon {
   width: auto;
   height: 81px;
 }
-.balloon {
+.ContentBlock__Balloon {
   position: relative;
   border: 1px solid var(--text);
   padding: 16px;
@@ -29,7 +29,7 @@
   font-weight: bold;
   letter-spacing: 1.3;
 }
-.balloon::before {
+.ContentBlock__Balloon::before {
   content: "";
   position: absolute;
   top: 30%;
@@ -41,7 +41,7 @@
   border-bottom: 16px solid transparent;
   border-right: 12px solid #3a2a2a;
 }
-.balloon::after {
+.ContentBlock__Balloon::after {
   content: "";
   position: absolute;
   top: 30%;
@@ -55,33 +55,27 @@
 }
 
 @media screen and (min-width: 1280px){
-  .header { 
+  .ContentBlock { 
     display: flex;
     align-items: center;
     gap: 45px;
     margin-bottom: 28px;
   }
-  .title {
+  .ContentBlock__Title {
     font-size: 20px;
     white-space: nowrap;
     margin: 0;
   }
-  .subTitle {
+  .ContentBlock__SubTitle {
     font-size: 13px;
     white-space: nowrap;
     margin: 0;
     font-weight: bold;
   }
-  .placeholder {
-    margin-top: 16px;
-    padding: 20px;
-    border: 1px dashed #aaa;
-    border-radius: 12px;
-  }
-  .serviceIcon {
+  .ContentBlock__ServiceIcon {
     height: 97px;
   }
-  .balloon {
+  .ContentBlock__Balloon {
     position: relative;
     border: 1px solid var(--text);
     padding: 18px;
@@ -92,7 +86,7 @@
     letter-spacing: 1.3;
     white-space: pre-line;
   }
-  .balloon::before {
+  .ContentBlock__Balloon::before {
     content: "";
     position: absolute;
     top: 50%;
@@ -104,7 +98,7 @@
     border-bottom: 16px solid transparent;
     border-right: 12px solid #3a2a2a;
   }
-  .balloon::after {
+  .ContentBlock__Balloon::after {
     content: "";
     position: absolute;
     top: 50%;

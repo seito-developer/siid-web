@@ -1,31 +1,31 @@
-.titleEn{ 
+.TitleArea__TitleEn{ 
   margin-top: 0;
   margin-bottom: 6px;
 }
-.en {
+.TitleArea__En {
   font-size: 13px; 
   font-family: var(--font-poppins);
   font-weight: bold;
 }
-.title{ 
+.TitleArea__Title{ 
   font-size: 20px; 
   font-family: var(--font-noto-sans-jp);
   margin: 0 auto 12px;
 }
-.lead{
+.TitleArea__Lead{
   font-size: 13px;
   font-family: var(--font-noto-sans-jp);
   font-weight: bold;
   margin: 0;
 }
 @media screen and (min-width: 1280px) {
-  .titleEn{ 
+  .TitleArea__TitleEn{ 
     margin-bottom: 12px;
   }
-  .en {
+  .TitleArea__En {
     font-size: 14px; 
   }
-  .title{ 
+  .TitleArea__Title{ 
     font-size: 24px; 
     margin-bottom: 20px;
   }

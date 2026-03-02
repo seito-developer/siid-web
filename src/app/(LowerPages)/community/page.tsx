@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 
 import Breadcrumb, { BreadcrumbProps } from '@/components/Breadcrumb/Breadcrumb';
-import CommunityTabs from '@/components/Community/CommunityTabs/CommunityTabs';
-import CommunityOfflineSection from '@/components/Community/mainSection/OfflineSection';
-import CommunityOnlineSection from '@/components/Community/mainSection/OnlineSection';
-import VoiceSection from '@/components/Community/VoiceSection/VoiceSection';
+import Tab from '@/components/Community/Tab/Tab';
+import OnlineSection from '@/components/Community/mainSection/OnlineSection';
+import VoiceSection from '@/components/Community/Voice/Voice';
+import OfflineSection from '@/components/Community/mainSection/OfflineSection';
 import ContentsArea from '@/components/ContentsArea/ContentsArea';
 import Headline from '@/components/Headline/Headline';
 
@@ -34,10 +34,10 @@ export default function Community() {
       <Breadcrumb breadcrumb={breadcrumb} />
       <ContentsArea>
         <div className={styles.community}>
-          <CommunityTabs />
-          <CommunityOnlineSection />
-          <VoiceSection></VoiceSection>
-          <CommunityOfflineSection />
+          <Tab />
+          <OnlineSection />
+          <VoiceSection />
+          <OfflineSection />
         </div>
       </ContentsArea>
     </div>

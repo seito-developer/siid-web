@@ -15,20 +15,20 @@ export default function RibbonText({
 }: RibbonTextProps) {
 
   const items = Array(20).fill(null).map((_, index) => (
-    <span key={index} className={styles.RibbonWrap}>
-      <span className={styles.RibbonText}>{text}</span>
+    <span key={index} className={styles.Ribbon__Wrapper}>
+      <span className={styles.Ribbon__Text}>{text}</span>
     </span>
   ));
 
   return (
-    <div className={`${styles.MarqueeContainer} ${variant === 'voice' ? styles.voice : styles.default}`}>
+    <div className={`${styles.Ribbon__MarqueeContainer} ${variant === 'voice' ? styles.voice : styles.default}`}>
       <div
-        className={styles.RibbonContent}
+        className={styles.Ribbon__Content}
         data-direction={direction}
         style={{ ['--duration' as any]: `${durationSec}s` }}
       >
-        <span className={styles.RibbonInner}>{items}</span>
-        <span className={styles.RibbonInner} aria-hidden="true">{items}</span>
+        <span className={styles.Ribbon__Inner}>{items}</span>
+        <span className={styles.Ribbon__Inner} aria-hidden="true">{items}</span>
       </div>
     </div>
   );

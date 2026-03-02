@@ -1,4 +1,4 @@
-.MarqueeContainer {
+.Ribbon__MarqueeContainer {
   width: 100vw;
   margin-left: -20px;
   background: #924A8F;
@@ -8,31 +8,27 @@
   contain: paint;
   padding: 4px 0;
 }
-
-.MarqueeContainer.default {
-}
-
-.MarqueeContainer.voice {
+.Ribbon__MarqueeContainer.voice {
   background: #475499;
   margin-left: 0;
 }
-.MarqueeContainer.voice .RibbonText {
+.Ribbon__MarqueeContainer.voice .Ribbon__Text {
   color: #fff;
 }
-.RibbonContent {
+.Ribbon__Content {
   display: flex;
   width: max-content;
   animation: marquee var(--duration, 60s) linear infinite;
 }
-.RibbonContent[data-direction="right"] {
+.Ribbon__Content[data-direction="right"] {
   animation-direction: reverse;
 }
-.RibbonInner {
+.Ribbon__Inner {
   display: inline-flex;
   white-space: nowrap;
   flex-shrink: 0;  
 }
-.RibbonText {
+.Ribbon__Text {
   color: #342525;
   font-weight: bold;
   font-size: 22px;
@@ -52,18 +48,18 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .RibbonContent {
+  .Ribbon__Content {
     animation: none;
     transform: none;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .MarqueeContainer {
+  .Ribbon__MarqueeContainer {
     width: calc(100% + 80px * 2);
     margin-left: -80px;
   }
-  .RibbonText {
+  .Ribbon__Text {
     font-size: 22px;
     padding: 0 10px;
   }

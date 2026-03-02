@@ -1,19 +1,16 @@
-.voiceSection {
+.Voice__Wrapper {
   position: relative;
   overflow: hidden;
 }
-
-.ribbon {
+.Voice__Ribbon {
   width: 100%;
 }
-
-.inner {
+.Voice__Inner {
   position: relative;
   padding: 18px 0;
   margin: 18px 0;
 }
-
-.leftCard {
+.Voice__LeftCard {
   position: relative;
   margin: 0 auto;
   background: #567eb4;
@@ -27,8 +24,7 @@
   font-weight: 600;
   font-size: 28px;
 }
-
-.leftCardLogo {
+.Voice__LeftCardLogo {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -37,8 +33,7 @@
   opacity: 0.2;
   width: 90%;
 }
-
-.lanes {
+.Voice__Lanes {
   padding-top: 20px;
   position: relative;
   z-index: -1;
@@ -46,24 +41,20 @@
   display: grid;
   gap: 20px;
 }
-
-.lane {
+.Voice__Lane {
   overflow: hidden;
 }
-
-.lane:nth-child(n + 4) {
+.Voice__Lane:nth-child(n + 4) {
   display: none;
 }
-
-.track {
+.Voice__Track {
   display: flex;
   gap: 24px;
   width: max-content;
   will-change: transform;
   animation: marquee var(--duration, 48s) linear infinite;
 }
-
-.bubble {
+.Voice__Bubble {
   white-space: nowrap;
   background: #fff;
   padding: 15px 22px;
@@ -82,14 +73,14 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .track {
+  .Voice__Track {
     animation: none;
     transform: none;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .leftCard {
+  .Voice__LeftCard {
     position: absolute;
     left: 20px;
     top: 0;
@@ -98,17 +89,14 @@
     z-index: 3;
     font-size: 24px;
   }
-
-  .lanes {
+  .Voice__Lanes {
     padding-top: 0;
     padding-left: 300px;
   }
-
-  .lane:nth-child(n + 4) {
+  .Voice__Lanes:nth-child(n + 4) {
     display: block;
   }
-
-  .bubble {
+  .Voice__Bubble {
     padding: 12px 16px;
   }
 }

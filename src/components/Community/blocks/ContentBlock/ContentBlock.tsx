@@ -19,20 +19,20 @@ export default function ContentBlock({
   const hasTitle = Boolean(title);
 
   return (
-    <div className={styles.header}>
+    <div className={styles.ContentBlock}>
       {hasTitle ? (
-        <div className={styles.titleArea}>
-          <h3 className={styles.title}>{title}</h3>
-          {subTitle && <p className={styles.subTitle}>{subTitle}</p>}
+        <div className={styles.ContentBlock__TitleArea}>
+          <h3 className={styles.ContentBlock__Title}>{title}</h3>
+          {subTitle && <p className={styles.ContentBlock__SubTitle}>{subTitle}</p>}
         </div>
       ) : hasIcon ? (
         <img
           src={iconPass}
           alt={alt ?? ''}
-          className={styles.serviceIcon}
+          className={styles.ContentBlock__ServiceIcon}
         />
       ) : null}
-      <div className={styles.balloon}>{description}</div>
+      <div className={styles.ContentBlock__Balloon}>{description}</div>
     </div>
   );
 }

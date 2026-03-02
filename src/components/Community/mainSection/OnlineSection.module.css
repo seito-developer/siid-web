@@ -1,31 +1,31 @@
-.left  { 
+.Online__Left  { 
   background:#E0804C;
   padding: 32px;
 }
-.center {
+.Online__Center {
   padding: 48px 20px;
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
-.right { 
+.Online__Right { 
   display: none;
 }
 @media screen and (min-width: 1280px) {
-  .section {
+  .Online {
     display: grid;
     grid-template-columns: 4fr 7fr 1fr;
     grid-template-areas: "left center right";
     background:#E0804C;
   }
-  .left { 
+  .Online__Left { 
     grid-area: left;
     padding: 90px 105px;
    }
-  .right { 
+  .Online__Right { 
     grid-area: right;
   }
-  .center {
+  .Online__Center {
     background: #fff;
     grid-area: center;
     padding: 80px;

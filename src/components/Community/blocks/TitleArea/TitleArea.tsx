@@ -2,10 +2,10 @@ import styles from './TitleArea.module.css';
 
 const TitleArea = () => {
   return (
-    <div className={styles.railPcLeft}>
-      <p className={styles.titleEn}>&lt;/ <span className={styles.en}>Online</span> &gt;</p>
-      <h2 className={styles.title}>オンライン</h2>
-      <p className={styles.lead}>DiscordやZoomを通じて常に相談できる体制</p>
+    <div className={styles.TitleArea__PcLeft}>
+      <p className={styles.TitleArea__TitleEn}>&lt;/ <span className={styles.TitleArea__En}>Online</span> &gt;</p>
+      <h2 className={styles.TitleArea__Title}>オンライン</h2>
+      <p className={styles.TitleArea__Lead}>DiscordやZoomを通じて常に相談できる体制</p>
     </div>
   )
 }

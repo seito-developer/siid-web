@@ -1,6 +1,6 @@
 import React from 'react';
 import RibbonText from '../parts/Ribbon/Ribbon';
-import styles from './VoiceSection.module.css';
+import styles from './Voice.module.css';
 
 type Voice = {
   id: string;
@@ -37,32 +37,32 @@ function laneDurationSec(laneIndex: number) {
   return base + (diff[laneIndex % diff.length] ?? 0);
 }
 
-export default function VoiceSection(props: Props) {
+export default function Voice(props: Props) {
   const { voices = DEFAULT_VOICES, laneCount = 4 } = props;
 
   const lanes = splitIntoLanes(voices, laneCount);
 
   return (
-    <section className={styles.voiceSection} aria-label="受講者の声">
-      <div className={styles.ribbon} aria-hidden="true">
+    <div className={styles.Voice__Wrapper} aria-label="受講者の声">
+      <div className={styles.Voice__Ribbon} aria-hidden="true">
         <RibbonText text="VOICE" durationSec={48} direction="left" variant="voice" />
       </div>
 
-      <div className={styles.inner}>
-        <aside className={styles.leftCard}>
-          <div className={styles.leftCardTitle}>受講者の声</div>
-          <div className={styles.leftCardWatermark} aria-hidden="true">
+      <div className={styles.Voice__Inner}>
+        <aside className={styles.Voice__LeftCard}>
+          <div className={styles.Voice__LeftCardTitle}>受講者の声</div>
+          <div className={styles.Voice__LeftCardWatermark} aria-hidden="true">
           <img
             src="/images/community/logo_voice.svg"
             alt=""
-            className={styles.leftCardLogo}
+            className={styles.Voice__LeftCardLogo}
             aria-hidden="true"
             width={100}
           />
           </div>
         </aside>
 
-        <div className={styles.lanes} aria-label="受講者コメント">
+        <div className={styles.Voice__Lanes} aria-label="受講者コメント">
           {lanes.map((lane, laneIndex) => {
             const loopLane = [...lane, ...lane];
             const duration = laneDurationSec(laneIndex);
@@ -70,12 +70,12 @@ export default function VoiceSection(props: Props) {
             return (
               <div
                 key={laneIndex}
-                className={styles.lane}
+                className={styles.Voice__Lane}
                 style={{ ['--duration' as any]: `${duration}s` }}
               >
-                <div className={styles.track} aria-hidden="true">
+                <div className={styles.Voice__Track} aria-hidden="true">
                   {loopLane.map((v, i) => (
-                    <div key={`${v.id}-${i}`} className={styles.bubble}>
+                    <div key={`${v.id}-${i}`} className={styles.Voice__Bubble}>
                       {v.text}
                     </div>
                   ))}
@@ -86,9 +86,9 @@ export default function VoiceSection(props: Props) {
         </div>
       </div>
 
-      <div className={styles.ribbon} aria-hidden="true">
+      <div className={styles.Voice__Ribbon} aria-hidden="true">
         <RibbonText text="VOICE" durationSec={48} direction="right" variant="voice" />
       </div>
-    </section>
+    </div>
   );
 }
