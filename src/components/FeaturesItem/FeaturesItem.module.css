@@ -1,0 +1,111 @@
+.FeaturesItem {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding-block: 24px;
+  border-bottom: 1px dotted #000;
+}
+
+.FeaturesItem__ImageWrapper {
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.FeaturesItem__Image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  aspect-ratio: 311 / 175;
+}
+
+.FeaturesItem__TitleWrapper {
+  position: absolute;
+  transform: rotateZ(-6deg);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 4px;
+  &:where(.FeaturesItem:nth-child(odd) &) {
+    bottom: 4px;
+    left: 14px;
+  }
+  &:where(.FeaturesItem:nth-child(even) &) {
+    top: -6px;
+    right: -14px;
+  }
+}
+
+.FeaturesItem__Title1,
+.FeaturesItem__Title2 {
+  background-color: #567eb4;
+  color: #fff;
+  font-size: 14px;
+  margin: 0;
+  padding: 0.4em 1.2em;
+}
+
+.FeaturesItem__Title1 {
+  margin-left: -2em;
+}
+
+.FeaturesItem__Description {
+  margin: 0;
+  font-size: 13px;
+  line-height: 180%;
+}
+
+@media screen and (min-width: 1280px) {
+  .FeaturesItem {
+    padding-block: 40px;
+    position: relative;
+    &:nth-child(even) {
+      &::before {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 100%;
+        border-left: 1px dotted #000;
+        position: absolute;
+        top: 0;
+        left: -32px;
+      }
+      &:nth-child(2),
+      &:last-child {
+        &::before {
+          height: calc(100% - 40px);
+        }
+      }
+      &:nth-child(2) {
+        &::before {
+          top: auto;
+          bottom: 0;
+        }
+      }
+    }
+    &:nth-last-child(-n + 2) {
+      border-bottom: none;
+    }
+  }
+
+  .FeaturesItem__ImageWrapper {
+    margin-bottom: 32px;
+  }
+
+  .FeaturesItem__TitleWrapper {
+    &:where(.FeaturesItem:nth-child(odd) &) {
+      bottom: -12px;
+      left: 22px;
+    }
+    &:where(.FeaturesItem:nth-child(even) &) {
+      top: 30px;
+      right: -104px;
+    }
+  }
+
+  .FeaturesItem__Title1,
+  .FeaturesItem__Title2 {
+    font-size: 22px;
+    padding: 0.6em 1em;
+  }
+}

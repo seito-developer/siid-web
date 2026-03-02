@@ -32,4 +32,12 @@ export const pages = {
     url: '/community',
     description: 'SiiDのコミュニティでは、学んだことを実践し、キャリアを展開するための情報を共有します。',
   },
+  service: {
+    name: {
+      ja: 'サービス',
+      en: 'Service',
+    },
+    url: '/service',
+    description: 'SiiDは学んで終わりではなく、その先の人生もあなたと共にありたいと考えています。<br />そのためのサポートもしっかりとご用意しています。',
+  },
 };
