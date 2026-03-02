@@ -25,7 +25,7 @@ const breadcrumb: BreadcrumbProps[] = [
 
 export default function Community() {
   return (
-    <div className={styles.community}>
+    <div>
       <Headline
         subTitle={pages.community.name.ja}
         title={pages.community.name.en}
@@ -33,7 +33,7 @@ export default function Community() {
       />
       <Breadcrumb breadcrumb={breadcrumb} />
       <ContentsArea>
-        <div>
+        <div className={styles.community}>
           <CommunityTabs />
           <CommunityOnlineSection />
           <VoiceSection></VoiceSection>
