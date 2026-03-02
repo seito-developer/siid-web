@@ -8,25 +8,25 @@ import styles from './OfflineSection.module.css';
 export default function OfflineSection() {
   return (
     <div id="offline" className={styles.Offline}>
-      <aside className={styles.Offline__Left}><TitleArea/></aside>  
+      <div className={styles.Offline__Left}><TitleArea/></div>  
 
       <div className={styles.Offline__Center}>
-        <section className={styles.Offline__Block}>
+        <div className={styles.Offline__Block}>
           <ContentBlock
             title="出版イベント"
             subTitle="＠LIGinc. 御徒町オフィス"
             description="2024年に出版した「セイト先生が教えるプログラミング入門」のリリースイベントを株式会社LIGのいいオフィス御徒町にて開催しました！"
           />
           <Event/>
-        </section>
+        </div>
         <RibbonText text="OFFLINE" />
-        <section className={styles.Offline__Block}>
+        <div className={styles.Offline__Block}>
           <ContentBlock
             title="オフ会"
             description="セイト企画もあれば、有志による企画などもありオフライン上でのコミュニケーションも大切にしています！"
           />
           <OfflineMeeting/>
-        </section>
+        </div>
       </div>
       <div className={styles.Offline__Right}></div>
     </div>
