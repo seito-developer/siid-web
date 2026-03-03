@@ -30,7 +30,7 @@ export const pages = {
       en: 'Community',
     },
     url: '/community',
-    description: 'SiiDのコミュニティでは、学んだことを実践し、キャリアを展開するための情報を共有します。',
+    description: 'SiiDのコミュニティでは、学んだことを実践し、<br />キャリアを展開するための情報を共有します。',
   },
   service: {
     name: {

@@ -30,10 +30,10 @@
   .Offline__Center{
     grid-area: center;
     background: #fff;
-    padding: 80px;
+    padding: 100px 80px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 45px;
     min-width: 0;
     max-width: 787px;
     border-left: 1px dashed #000;

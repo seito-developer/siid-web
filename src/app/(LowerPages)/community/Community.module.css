@@ -1,5 +1,9 @@
 .community {
-  width: calc(100% + (20px * 2));
-  margin-left: -20px;
+  width: calc(100% + ((32px - 8px) * 2));
+  margin-left: -24px;
 }
-
+@media screen and (min-width: 1280px) {
+  .community {
+    margin-left: -32px;
+  }
+}

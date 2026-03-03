@@ -28,7 +28,7 @@
   .Online__Center {
     background: #fff;
     grid-area: center;
-    padding: 80px;
+    padding: 100px 80px;
     gap: 84px;
     min-width: 0;
     border-left: 1px dashed #000;
