@@ -1,0 +1,108 @@
+.Event__Hero {
+  margin-bottom: 12px;
+}
+.Event__HeroImg {
+  width: 100%;
+}
+.Event__Detail {
+  display: flex;
+  gap: 12px;
+}
+.Event__DetailWrap {
+  max-width: 60%;
+}
+.Event__DetailImg {
+  width: 100%;
+}
+.Event__DetailText {
+  font-size: 11px;
+}
+.Event__DetailRight {
+  max-width: 40%;
+}
+.Event__RightImg {
+  max-width: 100%;
+}
+.Event__Publication {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  margin-top: 48px;
+  padding: 22px 0;
+  display: flex;
+  align-items: flex-start;
+}
+.Event__PublicationImg {
+  width: 80px;
+  height: auto;
+  margin-right: 10px;
+  object-fit: contain;
+}
+.Event__PublicationText {
+  padding-left: 25px;
+  border-left: 1px dashed #000;
+  font-size: 11px;
+}
+.Event__BookTitle {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+.Event__BookDetail {
+  display: block;
+}
+.Event__BookDesc {
+  display: block;
+  margin: 10px auto;
+}
+.Event__Links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  a {
+    color: #475499;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .Event__Hero {
+    margin-bottom: 18px;
+  }
+  .Event__Detail {
+    gap: 15px;
+  }
+  .Event__DetailWrap {
+    max-width: 234px;
+  }
+  .Event__DetailImg {
+    width: 100%;
+  }
+  .Event__DetailText {
+    font-size: 11px;
+  }
+  .Event__DetailRight {
+    max-width: 379px;
+  }
+  .Event__RightImg {
+    width: 100%;
+  }
+  .Event__Publication {
+    margin-top: 60px;
+    align-items: center;
+  }
+  .Event__PublicationImg {
+    width: 120px;
+    margin-right: 40px;
+    margin-left: 5px;
+  }
+  .Event__PublicationText {
+    padding-left: 25px;
+    font-size: 11px;
+  }
+  .Event__BookTitle {
+    margin-bottom: 8px;
+  }
+  .Event__Links {
+    flex-direction: row;
+    gap: 24px;
+  }
+}

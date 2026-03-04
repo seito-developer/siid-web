@@ -1,0 +1,47 @@
+.Tab{
+  display: flex;
+  gap: 14px;
+  border-bottom: 1px solid var(--text);
+  justify-content: center;
+  padding: 0 10px;
+}
+.Tab__Item{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 16px 16px 0 0;
+  text-decoration: none;
+  color: var(--text);
+  width: calc((100% - 8px)/2);
+  min-width: 160px;
+  height: 68px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font-noto-sans-jp);
+}
+.Tab__Online {
+  background: #E0804C;
+}
+.Tab__Offline {
+  background: #8DC556;
+}
+.Tab__ArrowDown {
+  width: 24px;
+  height: 24px;
+}
+@media screen and (min-width: 1280px) {
+  .Tab{
+    gap: 28px;
+  }
+  .Tab__Item{
+    border-radius: 10px 10px 0 0;
+    width: 420px;
+    height: 80px;
+    flex-direction: row;
+    gap: 26px;
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,18 @@
+.Discord__Images {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.Discord__Item {
+  width: 100%;
+}
+@media screen and (min-width: 1280px) {
+  .Discord__Images {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  .Discord__Item {
+    width: calc((100% - 32px)/2);
+  }
+}

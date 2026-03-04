@@ -1,0 +1,42 @@
+
+.Offline__Left  { 
+  background: #8DC556;
+  padding: 32px;
+}
+.Offline__Center{
+  padding: 48px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.Offline__Right { 
+  display: none;
+}
+@media screen and (min-width: 1280px) {
+  .Offline{
+    display: grid;
+    grid-template-columns: 4fr 7fr 1fr;
+    grid-template-areas: "left center right";
+    background: #8DC556;
+  }
+  .Offline__Left  { 
+    grid-area: left;
+    padding: 90px 105px;
+   }
+  .Offline__Right { 
+    grid-area: right;
+    background: #8DC556;
+  }
+  .Offline__Center{
+    grid-area: center;
+    background: #fff;
+    padding: 100px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    min-width: 0;
+    max-width: 787px;
+    border-left: 1px dashed #000;
+    border-right: 1px dashed #000;
+  }
+}

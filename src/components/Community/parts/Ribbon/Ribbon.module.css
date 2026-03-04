@@ -1,0 +1,66 @@
+.Ribbon__MarqueeContainer {
+  width: 100vw;
+  margin-left: -24px;
+  background: #924A8F;
+  position: relative;
+  overflow: clip;
+  clip-path: inset(0);
+  contain: paint;
+  padding: 4px 0;
+}
+.Ribbon__MarqueeContainer.voice {
+  background: #475499;
+  margin-left: 0;
+}
+.Ribbon__MarqueeContainer.voice .Ribbon__Text {
+  color: #fff;
+}
+.Ribbon__Content {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--duration, 60s) linear infinite;
+}
+.Ribbon__Content[data-direction="right"] {
+  animation-direction: reverse;
+}
+.Ribbon__Inner {
+  display: inline-flex;
+  white-space: nowrap;
+  flex-shrink: 0;  
+}
+.Ribbon__Text {
+  color: #342525;
+  font-weight: bold;
+  font-size: 22px;
+  font-family: var(--font-bagor);
+  white-space: nowrap;
+  padding: 0 12px;
+  letter-spacing: 0.08em;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Ribbon__Content {
+    animation: none;
+    transform: none;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .Ribbon__MarqueeContainer {
+    width: calc(100% + 80px * 2);
+    margin-left: -80px;
+  }
+  .Ribbon__Text {
+    font-size: 22px;
+    padding: 0 10px;
+  }
+}

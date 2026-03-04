@@ -1,0 +1,44 @@
+.Zoom__TopImage {
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+.Zoom__IconWrapper {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  justify-content: center;
+}
+.Zoom__IconItem {
+  min-width: 120px;
+  aspect-ratio: 1/1;
+  background: #f5f4f4;
+  border-radius: 16px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.Zoom__IconText {
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0;
+}
+@media screen and (min-width: 1280px) {
+  .Zoom__TopImage {
+    margin-bottom: 36px;
+  }
+  .Zoom__IconWrapper {
+    justify-content: space-between;
+    gap: 0;
+  }
+  .Zoom__IconItem {
+    width: 116px;
+    height: 124px;
+  }
+}

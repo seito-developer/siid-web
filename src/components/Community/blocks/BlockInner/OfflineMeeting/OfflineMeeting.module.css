@@ -1,0 +1,15 @@
+.OfflineMeeting {
+  display: flex;
+  gap: 18px;
+  img {
+    width: calc((100% - 18px)/2);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .OfflineMeeting {
+    gap: 12px;
+    img {
+      width: calc((100% - 12px)/2);
+    }
+  }
+}

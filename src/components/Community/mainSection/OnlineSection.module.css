@@ -1,0 +1,38 @@
+.Online__Left  { 
+  background:#E0804C;
+  padding: 32px;
+}
+.Online__Center {
+  padding: 48px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.Online__Right { 
+  display: none;
+}
+@media screen and (min-width: 1280px) {
+  .Online {
+    display: grid;
+    grid-template-columns: 4fr 7fr 1fr;
+    grid-template-areas: "left center right";
+    background:#E0804C;
+  }
+  .Online__Left { 
+    grid-area: left;
+    padding: 90px 105px;
+   }
+  .Online__Right { 
+    grid-area: right;
+  }
+  .Online__Center {
+    background: #fff;
+    grid-area: center;
+    padding: 100px 80px;
+    gap: 84px;
+    min-width: 0;
+    border-left: 1px dashed #000;
+    border-right: 1px dashed #000;
+    width: 787px;
+  }
+}
