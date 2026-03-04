@@ -1,7 +1,7 @@
 .Ribbon__MarqueeContainer {
   width: 100vw;
   margin-left: -24px;
-  background: #924A8F;
+  background: #924a8f;
   position: relative;
   overflow: clip;
   clip-path: inset(0);
@@ -26,7 +26,7 @@
 .Ribbon__Inner {
   display: inline-flex;
   white-space: nowrap;
-  flex-shrink: 0;  
+  flex-shrink: 0;
 }
 .Ribbon__Text {
   color: #342525;
@@ -44,13 +44,6 @@
   }
   to {
     transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .Ribbon__Content {
-    animation: none;
-    transform: none;
   }
 }
 
