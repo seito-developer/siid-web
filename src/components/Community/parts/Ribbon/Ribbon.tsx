@@ -25,7 +25,7 @@ export default function RibbonText({
       <div
         className={styles.Ribbon__Content}
         data-direction={direction}
-        style={{ ['--duration' as any]: `${durationSec}s` }}
+        style={{ ['--duration' as string]: `${durationSec}s` }}
       >
         <span className={styles.Ribbon__Inner}>{items}</span>
         <span className={styles.Ribbon__Inner} aria-hidden="true">{items}</span>

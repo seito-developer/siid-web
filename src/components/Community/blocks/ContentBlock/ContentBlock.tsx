@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import styles from './ContentBlock.module.css';
 
 type Props = {
@@ -26,9 +28,11 @@ export default function ContentBlock({
           {subTitle && <p className={styles.ContentBlock__SubTitle}>{subTitle}</p>}
         </div>
       ) : hasIcon ? (
-        <img
-          src={iconPass}
+        <Image
+          src={iconPass ?? ''}
           alt={alt ?? ''}
+          width={64}
+          height={64}
           className={styles.ContentBlock__ServiceIcon}
         />
       ) : null}

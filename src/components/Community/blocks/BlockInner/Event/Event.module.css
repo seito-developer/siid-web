@@ -63,6 +63,12 @@
     color: #475499;
   }
 }
+
+.Event__DisabledLink {
+  color: #475499;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 @media screen and (min-width: 1280px) {
   .Event__Hero {
     margin-bottom: 18px;
