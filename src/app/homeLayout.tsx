@@ -1,3 +1,5 @@
+import { ViewTransition } from 'react';
+
 import 'sanitize.css';
 import 'sanitize.css/forms.css';
 import 'sanitize.css/typography.css';
@@ -17,7 +19,7 @@ export default async function HomeLayout({
       <body className={`${poppins.variable} ${notoSansJp.variable}`}>
         <Icons />
         <NavigationSp />
-        {children}
+        <ViewTransition>{children}</ViewTransition>
         <Footer />
       </body>
     </html>

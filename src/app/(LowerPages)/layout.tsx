@@ -1,3 +1,5 @@
+import { ViewTransition } from 'react';
+
 import 'sanitize.css';
 import 'sanitize.css/forms.css';
 import 'sanitize.css/typography.css';
@@ -20,7 +22,7 @@ export default async function RootLayout({
         <Icons />
         <NavigationSp />
         <NavigationPcLower />
-        {children}
+        <ViewTransition>{children}</ViewTransition>
         <Footer />
       </body>
     </html>
