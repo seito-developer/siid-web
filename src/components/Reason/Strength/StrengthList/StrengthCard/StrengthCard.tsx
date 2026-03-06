@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import styles from './StrengthCard.module.css';
 
 interface StrengthCardProps {
@@ -7,14 +9,12 @@ interface StrengthCardProps {
 }
 
 export default function StrengthCard({ icon, title, items }: StrengthCardProps) {
-  const videoSrc = `/images/reason/strength/strengthlist/strengthcard/${icon}.mp4`;
+  const animeSrc = `/images/reason/strength/strengthlist/strengthcard/${icon}.png`;
 
   return (
     <div className={styles.StrengthCard}>
       <div className={styles.StrengthCard__Thumbnails}>
-        <video width="100%" height="auto" muted autoPlay loop preload="none">
-          <source src={videoSrc} type="video/mp4" />
-        </video>
+        <Image src={animeSrc} width={540} height={540} alt={'イメージ図' + title} />
       </div>
       <h3 className={styles.StrengthCard__Title}>{title}</h3>
       <ul className={styles.StrengthCard__List}>

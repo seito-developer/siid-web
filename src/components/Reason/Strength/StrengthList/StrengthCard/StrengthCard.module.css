@@ -11,7 +11,7 @@
 
 .StrengthCard__Thumbnails {
   grid-row: span 2;
-  svg {
+  img {
     width: 100%;
     height: auto;
   }
@@ -38,7 +38,7 @@
   position: relative;
   line-height: 160%;
   &::before {
-    content: '';
+    content: "";
     display: block;
     width: 6px;
     height: 6px;
@@ -63,7 +63,7 @@
     }
     &:nth-child(even) {
       &::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: -23px;
