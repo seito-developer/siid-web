@@ -18,8 +18,6 @@ import HeroSubCopyPc from './HeroSubCopy/HeroSubCopyPc';
 import ScrollDown from './ScrollDown/ScrollDown';
 
 
-
-
 export default function Hero() {
   const isPc = useIsPc();
 
