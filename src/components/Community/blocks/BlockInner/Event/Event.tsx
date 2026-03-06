@@ -1,15 +1,17 @@
+import Image from 'next/image';
+
 import styles from './Event.module.css';
 
 export default function Event() {
   return (
     <div className={styles.Event__Wrapper}>
       <div className={styles.Event__Hero}>
-        <img src="/images/community/offline.png" alt="満員御礼" className={styles.Event__HeroImg} />
+        <Image src="/images/community/offline.png" alt="満員御礼" width={800} height={500} className={styles.Event__HeroImg} />
       </div>
 
       <div className={styles.Event__Detail}>
         <div className={styles.Event__DetailWrap}>
-          <img src="/images/community/seito-01.png" alt="講師登壇" className={styles.Event__DetailImg} />
+          <Image src="/images/community/seito-01.png" alt="講師登壇" width={400} height={300} className={styles.Event__DetailImg} />
           <div className={styles.Event__DetailText}>
             <p>
               コメント記載できるスペースをこちらに配置しました。特になければトリで大丈夫です。80字程度で何かあれば入れてください。ここには４行程度の文字が入る想定です。
@@ -18,12 +20,12 @@ export default function Event() {
         </div>
 
         <div className={styles.Event__DetailRight}>
-          <img src="/images/community/seito-02.png" alt="講師登壇" className={styles.Event__RightImg} />
+          <Image src="/images/community/seito-02.png" alt="講師登壇" width={400} height={300} className={styles.Event__RightImg} />
         </div>
       </div>
 
       <div className={styles.Event__Publication}>
-        <img src="/images/community/seito-book.png" alt="セイト先生が教えるプログラミング入門" className={styles.Event__PublicationImg} />
+        <Image src="/images/community/seito-book.png" alt="セイト先生が教えるプログラミング入門" width={300} height={400} className={styles.Event__PublicationImg} />
         <div className={styles.Event__PublicationText}>
           <span className={styles.Event__BookTitle}>『セイト先生が教えるプログラミング入門 』</span>
           <span className={styles.Event__BookDetail}>日経BP /2024年9月 発売</span>
@@ -38,5 +40,5 @@ export default function Event() {
         </div>
       </div>
     </div>
-  )
+  );
 }
