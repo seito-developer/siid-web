@@ -32,8 +32,8 @@ export default function Event() {
             プログラミング学習はインプットするだけでは不十分で、アウトプットの経験が大切です。本書は演習問題を豊富に用意しており、アウトプットの経験を積むこともできます。
           </span>
           <div className={styles.Event__Links}>
-            <a href="http://" target="_blank" rel="noopener noreferrer">楽天ブックスで購入する</a>
-            <a href="http://" target="_blank" rel="noopener noreferrer">Amazonで購入する</a>
+            <span className={styles.Event__DisabledLink}>楽天ブックスで購入する（coming soon）</span>
+            <span className={styles.Event__DisabledLink}>Amazonで購入する（coming soon）</span>
           </div>
         </div>
       </div>

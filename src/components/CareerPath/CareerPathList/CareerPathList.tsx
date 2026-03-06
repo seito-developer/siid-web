@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import CareerCard from '@/components/CareerPath/CareerCard/CareerCard';
 import CareerModalWrapper from '@/components/CareerPath/CareerModalWrapper/CareerModalWrapper';
 import Pagination from '@/components/CareerPath/Pagination/Pagination';
@@ -75,15 +73,15 @@ export default function CareerPathList({
         />
 
         <div className={styles.CareerPath__SurveyLink}>
-          <Link href="#" className={styles.CareerCard__SurveyLinkAnchor}>
+          <span className={`${styles.CareerCard__SurveyLinkAnchor} ${styles.isComingSoon}`}>
             <span className={styles.CareerCard__SurveyText}>
-              過去の卒業生のアンケート内容はこちら
+              過去の卒業生のアンケート内容はこちら（coming soon）
             </span>
 
             <svg width={32} height={32} className={styles.CareerPath__SurveyIcon}>
               <use href="#page-flip" />
             </svg>
-          </Link>
+          </span>
         </div>
       </section>
 
