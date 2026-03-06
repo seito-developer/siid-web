@@ -1,4 +1,4 @@
-import { ViewTransition } from 'react';
+import { unstable_ViewTransition as ViewTransition } from 'react';
 
 import 'sanitize.css';
 import 'sanitize.css/forms.css';
