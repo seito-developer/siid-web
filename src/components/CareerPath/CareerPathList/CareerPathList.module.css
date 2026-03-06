@@ -37,11 +37,6 @@
     padding: 18px 40px;
 }
 
-.isComingSoon {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
 .CareerCard__SurveyText {
     color: #FFFFFF;
     font-weight: 600;
