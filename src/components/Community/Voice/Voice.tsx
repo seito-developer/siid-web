@@ -1,5 +1,9 @@
 import React from 'react';
+
+import Image from 'next/image';
+
 import RibbonText from '../parts/Ribbon/Ribbon';
+
 import styles from './Voice.module.css';
 
 type Voice = {
@@ -52,13 +56,14 @@ export default function Voice(props: Props) {
         <aside className={styles.Voice__LeftCard}>
           <div className={styles.Voice__LeftCardTitle}>受講者の声</div>
           <div className={styles.Voice__LeftCardWatermark} aria-hidden="true">
-          <img
-            src="/images/community/logo_voice.svg"
-            alt=""
-            className={styles.Voice__LeftCardLogo}
-            aria-hidden="true"
-            width={100}
-          />
+            <Image
+              src="/images/community/logo_voice.svg"
+              alt=""
+              width={100}
+              height={100}
+              className={styles.Voice__LeftCardLogo}
+              aria-hidden="true"
+            />
           </div>
         </aside>
 
@@ -71,7 +76,7 @@ export default function Voice(props: Props) {
               <div
                 key={laneIndex}
                 className={styles.Voice__Lane}
-                style={{ ['--duration' as any]: `${duration}s` }}
+                style={{ ['--duration' as string]: `${duration}s` }}
               >
                 <div className={styles.Voice__Track} aria-hidden="true">
                   {loopLane.map((v, i) => (

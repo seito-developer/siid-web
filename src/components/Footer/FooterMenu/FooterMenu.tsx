@@ -30,9 +30,15 @@ export default function FooterMenu() {
       <ul className={styles.FooterMenu__MainList}>
         {menuItems.map((item, index) => (
           <li className={styles.FooterMenu__MainItem} key={index}>
-            <TransitionLink href={item.url}>
-              <span className={styles.FooterMenu__Ja}>{item.nameJP}</span>
-            </TransitionLink>
+            {item.comingSoon ? (
+              <span className={styles.FooterMenu__DisabledLink}>
+                <span className={styles.FooterMenu__Ja}>{item.nameJP}（coming soon）</span>
+              </span>
+            ) : (
+              <TransitionLink href={item.url}>
+                <span className={styles.FooterMenu__Ja}>{item.nameJP}</span>
+              </TransitionLink>
+            )}
             {item.subItems && item.subItems.length > 0 && (
               <ul className={styles.FooterMenu__SubList}>
                 {item.subItems.map((subItem, subIndex) => (

@@ -27,6 +27,7 @@ export const menuItems = [
     nameEN: 'After support',
     nameJP: 'アフターサポート',
     url: '/after-support',
+    comingSoon: true,
   },
   {
     nameEN: 'Community',

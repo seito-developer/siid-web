@@ -75,7 +75,7 @@ export default function CareerPathList({
         />
 
         <div className={styles.CareerPath__SurveyLink}>
-          <Link href="#" className={styles.CareerCard__SurveyLinkAnchor}>
+          <Link href="https://docs.google.com/document/d/e/2PACX-1vRZv3ro50YWS5LdR3PSGB3b93omPY854misnktTRAOZ7xgIOj9MRQs4TgybkO3kJLSDzUXiQEoDDaJ4/pub" target="_blank" rel="noopener noreferrer" className={styles.CareerCard__SurveyLinkAnchor}>
             <span className={styles.CareerCard__SurveyText}>
               過去の卒業生のアンケート内容はこちら
             </span>
