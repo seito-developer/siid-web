@@ -2,7 +2,7 @@ import React from 'react';
 
 import Link from 'next/link';
 
-
+import TransitionLink from '@/components/TransitionLink/TransitionLink';
 import { menuItems } from '@/constants/menuItems';
 import { snsItems } from '@/constants/snsItems';
 
@@ -14,21 +14,21 @@ export default function Menu({ modifierClass }: { modifierClass?: string }) {
       <ul className={styles.Menu__MainList}>
         {menuItems.map((item, index) => (
           <li className={styles.Menu__MainItem} key={index}>
-            <Link href={item.url}>
+            <TransitionLink href={item.url}>
               <span className={styles.Menu__En}>{item.nameEN}</span>
               <span className={styles.Menu__Ja}>{item.nameJP}</span>
               <span className={styles.Menu__Bar} />
-            </Link>
+            </TransitionLink>
             {item.subItems && item.subItems.length > 0 && (
               <ul className={styles.Menu__SubList}>
                 {item.subItems.map((subItem, subIndex) => (
                   <li key={subIndex} className={styles.Menu__SubItem}>
-                    <Link href={subItem.url}>
+                    <TransitionLink href={subItem.url}>
                       <svg width="7" height="5">
                         <use href="#smallArrow" />
                       </svg>
                       {subItem.name}
-                    </Link>
+                    </TransitionLink>
                   </li>
                 ))}
               </ul>

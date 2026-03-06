@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import TransitionLink from '@/components/TransitionLink/TransitionLink';
 
 import { PaginationProps } from '@/types/pagination';
 import { getPaginationNumbers } from '@/utils/pagination';
@@ -16,7 +16,7 @@ export default function Pagination({
   return (
     <div className={styles.pagination}>
       {hasPrevPage && (
-        <Link
+        <TransitionLink
           href={`/career-path/${currentPage - 1}`}
           className={styles.arrowButton}
           aria-label="前のページ"
@@ -24,7 +24,7 @@ export default function Pagination({
           <svg className={styles.icon}>
             <use href="#leftArrow" />
           </svg>
-        </Link>
+        </TransitionLink>
       )}
 
       <div className={styles.pageNumbers}>
@@ -42,7 +42,7 @@ export default function Pagination({
           }
 
           return (
-            <Link
+            <TransitionLink
               key={pageNum}
               href={`/career-path/${pageNum}`}
               className={`${styles.pageButton} ${
@@ -52,13 +52,13 @@ export default function Pagination({
               aria-current={pageNum === currentPage ? 'page' : undefined}
             >
               {pageNum}
-            </Link>
+            </TransitionLink>
           );
         })}
       </div>
 
       {hasNextPage && (
-        <Link
+        <TransitionLink
           href={`/career-path/${currentPage + 1}`}
           className={styles.arrowButton}
           aria-label="次のページ"
@@ -67,7 +67,7 @@ export default function Pagination({
           <svg className={styles.icon}>
             <use href="#rightArrow" />
           </svg>
-        </Link>
+        </TransitionLink>
       )}
     </div>
   );

@@ -2,10 +2,9 @@
 
 import React from 'react';
 
-import Link from 'next/link';
-
 import Corner, { CornerPosition } from '@/components/Corner/Corner';
 import Logo from '@/components/Logo/Logo';
+import TransitionLink from '@/components/TransitionLink/TransitionLink';
 import useScroll from '@/hooks/useScroll';
 
 import Menu from '../Menu/Menu';
@@ -23,9 +22,9 @@ export default function NavigationPcLower() {
           <Corner top="0" right="0" position={CornerPosition.TOP_RIGHT} />
         </div>
         <div className={styles.NavigationPcLower__logo}>
-          <Link href="/">
+          <TransitionLink href="/">
             <Logo width={102} height={25} fill="#fff" />
-          </Link>
+          </TransitionLink>
           <div className={styles.NavigationPcLower__Corner}>
             <Corner bottom="-20px" left="0" position={CornerPosition.TOP_LEFT} />
             <Corner top="0" right="-20px" position={CornerPosition.TOP_LEFT} />

@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import Logo from '@/components/Logo/Logo';
+import TransitionLink from '@/components/TransitionLink/TransitionLink';
 import { menuItems } from '@/constants/menuItems';
 import { snsFooterItems } from '@/constants/snsItems';
 
@@ -29,19 +30,19 @@ export default function FooterMenu() {
       <ul className={styles.FooterMenu__MainList}>
         {menuItems.map((item, index) => (
           <li className={styles.FooterMenu__MainItem} key={index}>
-            <Link href={item.url}>
+            <TransitionLink href={item.url}>
               <span className={styles.FooterMenu__Ja}>{item.nameJP}</span>
-            </Link>
+            </TransitionLink>
             {item.subItems && item.subItems.length > 0 && (
               <ul className={styles.FooterMenu__SubList}>
                 {item.subItems.map((subItem, subIndex) => (
                   <li key={subIndex} className={styles.FooterMenu__SubItem}>
-                    <Link href={subItem.url}>
+                    <TransitionLink href={subItem.url}>
                       <svg width="7" height="5">
                         <use href="#smallArrowWhite" />
                       </svg>
                       {subItem.name}
-                    </Link>
+                    </TransitionLink>
                   </li>
                 ))}
               </ul>
