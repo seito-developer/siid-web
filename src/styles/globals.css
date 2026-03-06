@@ -62,6 +62,9 @@ body {
 }
 
 @media (min-width: 1280px) {
+  body {
+    padding-bottom: 0;
+  }
   .br-sp {
     display: none;
   }

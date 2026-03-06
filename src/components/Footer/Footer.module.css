@@ -3,17 +3,18 @@
   background: var(--main);
   /*
     Footer内のCONTACTボタンが top:-40px で上にせり出すため、
-    その分だけフッター自身に上パディングを作って「メインに被る」見え方を防ぐ。
+    その分だけフッター自身に上マージンを作って「メインに被る」見え方を防ぐ。
   */
-  padding-top: 40px;
+  margin-top: 40px;
 }
 
 .Footer__Container {
   padding: 0 20px 20px;
   background: #eeefed;
-  border-radius: 0 0 32px 32px;
+  border-radius: 0;
   border: 8px solid var(--main);
   border-top: 0;
+  border-bottom: 0;
 }
 
 .Footer__Inner {
@@ -40,10 +41,11 @@
   .Footer {
     background-color: #eeefed;
     position: relative;
+    border-bottom:8px solid var(--main);
 
     &::before,
     &::after {
-      content: '';
+      content: "";
       display: block;
       position: absolute;
       top: 0;
@@ -65,8 +67,9 @@
 
   .Footer__Container {
     border-radius: 0 0 40px 40px;
-    border: 8px solid #eeefed;
+    border: 8px solid var(--main);
     border-top: 0;
+    border: 0;
   }
 
   .Footer__Inner {
