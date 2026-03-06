@@ -40,4 +40,12 @@ export const pages = {
     url: '/service',
     description: 'SiiDは学んで終わりではなく、その先の人生もあなたと共にありたいと考えています。<br />そのためのサポートもしっかりとご用意しています。',
   },
+  counseling: {
+    name: {
+      ja: '無料カウンセリング',
+      en: 'Counseling',
+    },
+    url: '/counseling',
+    description: 'SiiDの無料カウンセリングでは、あなたのキャリアや学習に関する疑問や不安を解消します。<br />経験豊富なスタッフが、あなたの目標達成をサポートします。',
+  },
 };
