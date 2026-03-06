@@ -16,6 +16,14 @@
     }
 }
 
+.Menu__DisabledLink {
+    display: block;
+    text-decoration: none;
+    color: var(--text);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .Menu__En {
     font-family: 'Poppins';
     display: block;

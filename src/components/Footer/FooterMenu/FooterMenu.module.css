@@ -18,6 +18,13 @@
     }
 }
 
+.FooterMenu__DisabledLink {
+    display: block;
+    color: #fff;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .FooterMenu__Ja {
     display: block;
     font-weight: 700;

@@ -7,17 +7,21 @@ export default function Tab() {
     <nav className={styles.Tab}>
       <a className={`${styles.Tab__Item} ${styles.Tab__Online}`} href="#online">
         オンライン
-        <img
+        <Image
           src="/images/community/tab-arrow.svg"
           alt=""
+          width={12}
+          height={8}
           className={styles.Tab__ArrowDown}
         />
       </a>
       <a className={`${styles.Tab__Item} ${styles.Tab__Offline}`} href="#offline">
         オフライン
-        <img
+        <Image
           src="/images/community/tab-arrow.svg"
           alt=""
+          width={12}
+          height={8}
           className={styles.Tab__ArrowDown}
         />
       </a>
