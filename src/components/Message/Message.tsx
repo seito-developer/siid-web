@@ -19,7 +19,7 @@ export default function Message() {
         <div className={styles.Message__Title}>{'</ Message >'}</div>
         <RevealText className={styles.Message__Text}>
           <RevealLogo />は<br className="br-sp" />
-          プログラミング技術の
+          AIとプログラミング技術の
           <br className="br-sp" />
           習得を超え、
           <br className="br-pc" />

@@ -1,4 +1,5 @@
-.News {
+.News {}
+.News__Inner {
     background: #fff;
     border: 1px solid #000;
     border-radius: 16px;
@@ -59,6 +60,17 @@
 .News__ButtonLeft:hover {
     > svg {
         opacity: 0.5;
+    }
+}
+
+.News__BlogLink {
+    text-align: right;
+    margin-top: 10px;
+    > a {
+        color: var(--main);
+        &:hover {
+            text-decoration: none;
+        }
     }
 }
 
