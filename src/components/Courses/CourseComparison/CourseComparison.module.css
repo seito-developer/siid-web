@@ -1,0 +1,238 @@
+.CourseComparison {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 48px 16px 40px;
+    background-color: #475499;
+    border-radius: 24px;
+}
+
+.CourseComparison__Scroller {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.CourseComparison__Table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: #1b1b1b;
+}
+
+.CourseComparison__Spacer {
+    background: transparent;
+    border: none;
+    width: 220px;
+}
+
+.CourseComparison__CourseHeader {
+    padding: 16px 12px;
+    border-radius: 8px 8px 0 0;
+    font-family: var(--font-bagor);
+    font-weight: 400;
+    font-size: 17px;
+    letter-spacing: 0.04em;
+    line-height: 1.25;
+    color: #1b1b1b;
+    text-align: center;
+
+    span {
+        display: block;
+    }
+}
+
+.CourseComparison__CourseHeader.is-career {
+    background-color: #8dc556;
+}
+
+.CourseComparison__CourseHeader.is-fullSupport {
+    background-color: #e0804c;
+}
+
+.CourseComparison__CourseHeader.is-vip {
+    background-color: #924a8f;
+}
+
+.CourseComparison__GroupHeader {
+    width: 110px;
+    padding: 16px 12px;
+    background-color: #342525;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 4px solid #475499;
+}
+
+.CourseComparison__GroupNote {
+    display: block;
+    margin-top: 16px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.CourseComparison__SubHeader {
+    width: 110px;
+    padding: 12px;
+    background-color: #5d5151;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #475499;
+}
+
+.CourseComparison__Cell {
+    padding: 12px 16px;
+    background-color: #fff;
+    border-bottom: 1px dashed rgba(52, 37, 37, 0.35);
+    vertical-align: top;
+    line-height: 1.5;
+
+    p {
+        margin: 0;
+    }
+
+    em {
+        font-style: normal;
+        font-weight: 700;
+    }
+}
+
+.CourseComparison__Cell + .CourseComparison__Cell {
+    border-left: 1px dashed rgba(52, 37, 37, 0.35);
+}
+
+.em-fullSupport {
+    color: #e0804c;
+}
+
+.em-vip {
+    color: #924a8f;
+}
+
+.CourseComparison__GoalList,
+.CourseComparison__SharedList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    li {
+        position: relative;
+        padding-left: 12px;
+        font-weight: 700;
+    }
+
+    li::before {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 0;
+        width: 3px;
+        height: 12px;
+        background-color: #342525;
+        border-radius: 2px;
+    }
+}
+
+.CourseComparison__SharedList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 32px;
+    row-gap: 8px;
+}
+
+.CourseComparison__Langs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.CourseComparison__LangBasic {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    flex: 1;
+    min-width: 320px;
+}
+
+.CourseComparison__LangLabel {
+    flex-shrink: 0;
+    margin-top: 8px;
+    font-weight: 700;
+}
+
+.CourseComparison__LangIcons {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+
+    img {
+        display: block;
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+    }
+}
+
+.CourseComparison__LangEtc {
+    font-weight: 500;
+}
+
+.CourseComparison__LangAdvanced {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 16px 12px;
+    background-color: rgba(93, 128, 178, 0.1);
+    border-radius: 8px;
+}
+
+.CourseComparison__LangNote {
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    font-size: 10px;
+    color: #818181;
+}
+
+.CourseComparison__Note {
+    margin: 0;
+    display: flex;
+    gap: 4px;
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+}
+
+.CourseComparison__NoteBody {
+    white-space: pre-line;
+}
+
+@media screen and (min-width: 1280px) {
+    .CourseComparison {
+        gap: 60px;
+        padding: 120px 140px 100px;
+    }
+
+    .CourseComparison__Table {
+        font-size: 11px;
+    }
+}

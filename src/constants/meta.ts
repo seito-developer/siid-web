@@ -19,7 +19,7 @@ export const pages = {
   courses: {
     name: {
       ja: 'コース一覧',
-      en: 'Courses',
+      en: 'Course plan',
     },
     url: '/courses',
     description: 'SiiDのコースは、実践的なスキルを身につけるために設計されています。<br />業界の最新トレンドに基づいたカリキュラムで、あなたの成長をサポートします。',
