@@ -1,0 +1,69 @@
+.Opening {
+    position: fixed;
+    inset: 0;
+    z-index: var(--maxZ);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--main);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.Opening__Logo {
+    position: relative;
+    width: clamp(180px, 40vw, 320px);
+}
+
+/* stroke 版と fill 版を重ねる。fill 版はワイプで出現 */
+.Opening__LogoStroke,
+.Opening__LogoFill {
+    svg {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
+
+.Opening__LogoFill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    clip-path: inset(100% 0% 0% 0%);
+}
+
+.Opening__Tagline {
+    margin: 16px 0 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+.Opening__Counter {
+    position: absolute;
+    left: 24px;
+    bottom: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-poppins), sans-serif;
+    font-weight: 900;
+    font-size: clamp(56px, 10vw, 120px);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.Opening__CounterUnit {
+    font-size: 0.35em;
+    margin-left: 0.1em;
+}
+
+@media screen and (min-width: 1280px) {
+    .Opening__Tagline {
+        font-size: 14px;
+    }
+
+    .Opening__Counter {
+        left: 40px;
+        bottom: 32px;
+    }
+}
