@@ -38,6 +38,8 @@
 }
 
 .PlanCard__Header {
+    display: flex;
+    flex-direction: column;
     padding: 16px 12px 12px;
     background-color: var(--plan-color);
     border-radius: 8px 8px 0 0;
@@ -46,8 +48,10 @@
 
 .PlanCard__Title {
     margin: 0;
+    flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     font-family: var(--font-bagor);
     font-weight: 400;
     font-size: 18px;
@@ -152,4 +156,17 @@
     display: inline-flex;
     margin-top: 1px;
     color: var(--plan-color);
+}
+
+/* PC ではヘッダー高さを揃え、価格・特徴リストの開始位置を3カードで一致させる */
+@media screen and (min-width: 1280px) {
+    .PlanCard__Header {
+        min-height: 132px;
+    }
+
+    .PlanCard__Description {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
 }

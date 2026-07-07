@@ -183,11 +183,17 @@
 @media screen and (min-width: 1280px) {
     .CourseAdvice__BalloonWrap {
         margin-left: 330px;
-        width: auto;
+        width: calc(100% - 330px);
+    }
+
+    .CourseAdvice__Balloon {
+        width: 484px;
+        flex-shrink: 0;
     }
 
     .CourseAdvice__BalloonText {
         font-size: 20px;
+        white-space: nowrap;
     }
 
     .CourseAdvice__Columns {

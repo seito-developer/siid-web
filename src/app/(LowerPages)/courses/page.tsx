@@ -2,12 +2,12 @@ import { Metadata } from 'next';
 
 import Breadcrumb, { BreadcrumbProps } from '@/components/Breadcrumb/Breadcrumb';
 import ContentsArea from '@/components/ContentsArea/ContentsArea';
+import ReskillBannerSection from '@/components/Cource/ReskillBannerSection/ReskillBannerSection';
 import CourseAdvice from '@/components/Courses/CourseAdvice/CourseAdvice';
 import CourseComparison from '@/components/Courses/CourseComparison/CourseComparison';
 import CoursePlans from '@/components/Courses/CoursePlans/CoursePlans';
 import LineBanner from '@/components/Courses/LineBanner/LineBanner';
 import Headline from '@/components/Headline/Headline';
-import ReskillBanner from '@/components/ReskillBanner/ReskillBanner';
 import { commonTitle, pages } from '@/constants/meta';
 import { getCoursePlansData } from '@/lib/getCoursePlans';
 import { handleStringHTML } from '@/utils/helper';
@@ -39,7 +39,7 @@ export default function Courses() {
         <div className={styles.Courses__Contents}>
           <CoursePlans plans={plans} />
           <div className={styles.Courses__Reskill}>
-            <ReskillBanner />
+            <ReskillBannerSection />
           </div>
           <CourseComparison plans={plans} comparison={comparison} />
           <CourseAdvice plans={plans} />
