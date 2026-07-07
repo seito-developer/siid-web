@@ -42,3 +42,7 @@ next-env.d.ts
 
 #studentData
 /data/graduates/
+
+# Claude Code local settings / browser test artifacts
+.claude/settings.local.json
+.playwright-mcp/
