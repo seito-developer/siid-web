@@ -41,7 +41,7 @@ export default function Courses() {
           <div className={styles.Courses__Reskill}>
             <ReskillBanner />
           </div>
-          <CourseComparison comparison={comparison} />
+          <CourseComparison plans={plans} comparison={comparison} />
           <CourseAdvice plans={plans} />
           <div className={styles.Courses__Line}>
             <LineBanner />

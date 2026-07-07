@@ -45,15 +45,15 @@
 }
 
 .CourseComparison__CourseHeader.is-career {
-    background-color: #8dc556;
+    background-color: var(--plan-career);
 }
 
 .CourseComparison__CourseHeader.is-fullSupport {
-    background-color: #e0804c;
+    background-color: var(--plan-full-support);
 }
 
 .CourseComparison__CourseHeader.is-vip {
-    background-color: #924a8f;
+    background-color: var(--plan-vip);
 }
 
 .CourseComparison__GroupHeader {
@@ -110,12 +110,16 @@
     border-left: 1px dashed rgba(52, 37, 37, 0.35);
 }
 
+.em-career {
+    color: var(--plan-career);
+}
+
 .em-fullSupport {
-    color: #e0804c;
+    color: var(--plan-full-support);
 }
 
 .em-vip {
-    color: #924a8f;
+    color: var(--plan-vip);
 }
 
 .CourseComparison__GoalList,

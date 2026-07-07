@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { CourseComparisonData } from '@/lib/getCoursePlans';
+import { CourseComparisonData, CoursePlan } from '@/lib/getCoursePlans';
 
 import SectionHeading from '../SectionHeading/SectionHeading';
 
@@ -27,17 +27,12 @@ const ADVANCED_LANGS = [
   { name: 'Python', file: 'python' },
 ];
 
-const COURSE_HEADERS = [
-  { id: 'career', title: ['Career'] },
-  { id: 'fullSupport', title: ['Career', '+Full Support'] },
-  { id: 'vip', title: ['Career', '+VIP Edition'] },
-];
-
 type Props = {
+  plans: CoursePlan[];
   comparison: CourseComparisonData;
 };
 
-export default function CourseComparison({ comparison }: Props) {
+export default function CourseComparison({ plans, comparison }: Props) {
   return (
     <section className={styles.CourseComparison}>
       <SectionHeading en="Message" title="コースによる違い" invert />
@@ -46,13 +41,13 @@ export default function CourseComparison({ comparison }: Props) {
           <thead>
             <tr>
               <td className={styles.CourseComparison__Spacer} colSpan={2} />
-              {COURSE_HEADERS.map((course) => (
+              {plans.map((plan) => (
                 <th
-                  key={course.id}
-                  className={`${styles.CourseComparison__CourseHeader} ${styles[`is-${course.id}`]}`}
+                  key={plan.id}
+                  className={`${styles.CourseComparison__CourseHeader} ${styles[`is-${plan.id}`]}`}
                   scope="col"
                 >
-                  {course.title.map((line) => (
+                  {plan.title.map((line) => (
                     <span key={line}>{line}</span>
                   ))}
                 </th>
@@ -75,7 +70,7 @@ export default function CourseComparison({ comparison }: Props) {
                   ) : (
                     <p>
                       {goal.text}
-                      <em className={styles[`em-${['career', 'fullSupport', 'vip'][i]}`]}>{goal.em}</em>
+                      <em className={styles[`em-${plans[i].id}`]}>{goal.em}</em>
                     </p>
                   )}
                 </td>
@@ -112,7 +107,7 @@ export default function CourseComparison({ comparison }: Props) {
                   <div className={styles.CourseComparison__LangAdvanced}>
                     <span className={styles.CourseComparison__LangLabel}>＋応用</span>
                     <span className={styles.CourseComparison__LangNote}>
-                      ※Fullsuport,VIP Editionコースのみ
+                      ※Full Support,VIP Editionコースのみ
                     </span>
                     <ul className={styles.CourseComparison__LangIcons}>
                       {ADVANCED_LANGS.map((lang) => (

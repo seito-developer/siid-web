@@ -77,15 +77,15 @@
 }
 
 .CourseAdvice__Column.is-career {
-    --plan-color: #8dc556;
+    --plan-color: var(--plan-career);
 }
 
 .CourseAdvice__Column.is-fullSupport {
-    --plan-color: #e0804c;
+    --plan-color: var(--plan-full-support);
 }
 
 .CourseAdvice__Column.is-vip {
-    --plan-color: #924a8f;
+    --plan-color: var(--plan-vip);
 }
 
 .CourseAdvice__Worries {

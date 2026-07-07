@@ -6,15 +6,15 @@
 }
 
 .PlanCard--career {
-    --plan-color: #8dc556;
+    --plan-color: var(--plan-career);
 }
 
 .PlanCard--fullSupport {
-    --plan-color: #e0804c;
+    --plan-color: var(--plan-full-support);
 }
 
 .PlanCard--vip {
-    --plan-color: #924a8f;
+    --plan-color: var(--plan-vip);
 }
 
 .PlanCard__Badge {
