@@ -24,17 +24,19 @@ export default function Hero() {
   return (
     <div className={styles.Hero}>
       <div className={styles.Hero__Copy}>
-        <div className={styles.Hero__MainCopy}>
+        <div className={styles.Hero__MainCopy} data-opening="main-copy">
           {isPc ? <HeroMainCopyPc /> : <HeroMainCopy />}
         </div>
-        <div className={styles.Hero__SubCopy}>
+        <div className={styles.Hero__SubCopy} data-opening="sub-copy">
           {isPc ? <HeroSubCopyPc /> : <HeroSubCopy />}
         </div>
       </div>
       <div className={styles.Hero__BackLogo}>
-        <HeroBackLogo />
+        <div data-opening="back-logo">
+          <HeroBackLogo />
+        </div>
       </div>
-      <div className={styles.Hero__ScrollDown}>
+      <div className={styles.Hero__ScrollDown} data-opening="scroll-down">
         <ScrollDown />
       </div>
       {isPc && (
@@ -48,14 +50,16 @@ export default function Hero() {
               position={CornerPosition.BOTTOM_RIGHT}
             />
           </div>
-          <div className={styles.Hero__News}>
+          <div className={styles.Hero__News} data-opening="ui">
             <News />
           </div>
-          <div className={styles.Hero__ReskillBanner}>
+          <div className={styles.Hero__ReskillBanner} data-opening="ui">
             <ReskillBanner />
           </div>
           <div className={styles.Hero__Navigation}>
-            <NavigationPc />
+            <div data-opening="ui">
+              <NavigationPc />
+            </div>
           </div>
         </>
       )}
