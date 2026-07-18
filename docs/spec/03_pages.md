@@ -15,19 +15,20 @@
   - LINE バナーのリンク先 URL 未確定(`LineBanner.tsx` の TODO)
   - 「※Fullsuport,VIP Editionコースのみ」のタイポは原文ママ
 
-## 3-2. `/after-support` アフターサポート
+## 3-2. アフターサポート【対応済み 2026-07 / Issue #11】
 
-- 現状: 未実装。`menuItems.ts` とナビ・フッターにリンクが存在する(現状 404)
-- Figma: H-1 系フレーム(3506:11730, 4270:14744, 4270:25179, 4270:19950, 4265:8839)のいずれかにデザインが存在する可能性が高い(レート制限で未確認)。**着手時に最初に確認すること**
-- デザインが無い場合は既存トンマナベースで構成案を作り、ユーザー確認後に実装
+- **結論: 独立した `/after-support` ページは作らない**。アフターサポートの実体は `/service` ページ内の `Support` セクション(見出し「アフターサポート」＋5項目、`src/components/Support/`・`src/components/SupportList/`)であり、デザインは `D-1 サービス一覧`(3506:10951 / SP 3506:7084)に含まれる。
+- ナビ/フッターは「アフターサポート」(旧 `comingSoon: true` の無効表示 / リンク先 `/after-support` は実体なし)を廃止し、**「サービス一覧」→ `/service`** に置き換えた(`src/constants/menuItems.ts`)。既存 `Support` セクションへは `/service` 経由で到達する。
+- Figma 確認記録: §3-2 が挙げていた H-1 系候補ノードのうち実在するのは `3506:11730` = 「H-1 409」= 404 デザインのみで、アフターサポート専用フレームは存在しなかった。
 
 ## 3-2b. `/line` LINE登録で無料体験【実装済み 2026-07】
 
 - Figma: `G-1 LINE登録` PC (3506:11427) / SP (3506:6128)
 - ルート: `G-1 LINE登録` は `/contact` 候補フレームだったが、**独立した LINE 登録ランディングページ `/line`** として実装(ユーザー確認済み）
 - 構成: 共通下層ヘッダー(Headline / Breadcrumb)→ LINE 登録ヒーロー(スマホモックアップ・QR・友だち追加ボタン)→ 特典グリッド(星バッジ付き 10 枚カード)
+- LINE 登録ヒーローは **カード全体が LINE 友だち追加リンク**(クリッカブルエリアを広く確保。PR #25 レビュー反映)。SP でも PC のレイアウト(スマホ左＋本文＋QR/ボタン)を維持し、大きな縦積み組み替えはしない
 - データ: `src/data/linePresents.json` + `src/lib/getLinePresents.ts`。コンポーネントは `src/components/Line/`(`LineHero` / `LinePresents` / `Eyebrow`)配下
-- アセット: `public/images/line/`(Figma から書き出した QR・スマホ画面・リッチメニュー・LINE ロゴ、特典カードは各画像グループを 1 枚に flatten したスクリーンショット)
+- アセット: `public/images/line/`(Figma から書き出した QR・スマホ画面・LINE ロゴ、特典カードは各画像グループを 1 枚に flatten したスクリーンショット)
 - CTA(友だち追加ボタン)のリンク先: `https://siid.bug-fix.org/line/open/...`(セイト先生公式 LINE の友だち追加 URL。ユーザー提供）
 - **デザイン差異・要確認**:
   - PC は「Present / 10つの特典」(10 枚)、SP は「Features / ９つの特典」(9 枚)で不一致 → より完全な **PC 版(10 枚・Present)** を採用。デザイナー確認待ち

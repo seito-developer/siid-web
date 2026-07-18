@@ -1,4 +1,12 @@
-export const menuItems = [
+type MenuItem = {
+  nameEN: string;
+  nameJP: string;
+  url: string;
+  comingSoon?: boolean;
+  subItems?: { name: string; url: string }[];
+};
+
+export const menuItems: MenuItem[] = [
   {
     nameEN: 'Course plan',
     nameJP: 'コース/プラン',
@@ -24,10 +32,9 @@ export const menuItems = [
     url: '/career-path',
   },
   {
-    nameEN: 'After support',
-    nameJP: 'アフターサポート',
-    url: '/after-support',
-    comingSoon: true,
+    nameEN: 'Service',
+    nameJP: 'サービス一覧',
+    url: '/service',
   },
   {
     nameEN: 'Community',
