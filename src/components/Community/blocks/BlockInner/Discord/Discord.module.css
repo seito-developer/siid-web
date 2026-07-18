@@ -5,6 +5,7 @@
 }
 .Discord__Item {
   width: 100%;
+  height: auto;
 }
 @media screen and (min-width: 1280px) {
   .Discord__Images {
