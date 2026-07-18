@@ -27,47 +27,87 @@
   font-family: var(--font-poppins);
   margin-right: 2px;
 }
-.Benefits__List {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+
+/* --- カルーセル --- */
+.Benefits__Slider {
+  position: relative;
+  padding-bottom: 36px;
 }
-.Benefits__Item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  background: #fff;
-  border: 1px solid #e4e4e4;
-  border-radius: 12px;
-  padding: 16px;
+.Benefits__Slider :global(.swiper) {
+  overflow: visible;
 }
-.Benefits__ItemNum {
-  flex-shrink: 0;
+.Benefits__Slider :global(.swiper-slide) {
+  width: 220px;
+  height: auto;
+  box-sizing: border-box;
+}
+.Benefits__Badge {
+  display: inline-block;
   font-family: var(--font-poppins);
-  font-size: 18px;
+  font-size: 12px;
   font-weight: bold;
   color: #fff;
   background: var(--main);
-  width: 32px;
-  height: 32px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+.Benefits__Image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(52, 37, 37, 0.12);
+}
+
+/* ナビ矢印 */
+.Benefits__Nav {
+  position: absolute;
+  top: calc((100% - 36px) / 2);
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: var(--main);
+  box-shadow: 0 2px 8px rgba(52, 37, 37, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
-.Benefits__ItemText {
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 1.6;
-  color: var(--text);
+.Benefits__Nav:hover {
+  opacity: 0.8;
 }
+.Benefits__NavPrev {
+  left: 4px;
+}
+.Benefits__NavNext {
+  right: 4px;
+}
+.Benefits__Nav:global(.swiper-button-disabled) {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* ページネーション（ドット） */
+.Benefits__Slider :global(.swiper-pagination) {
+  bottom: 0;
+}
+.Benefits__Slider :global(.swiper-pagination-bullet) {
+  background: #c9c9c9;
+  opacity: 1;
+}
+.Benefits__Slider :global(.swiper-pagination-bullet-active) {
+  background: var(--main);
+}
+
 @media screen and (min-width: 1280px) {
   .Benefits {
-    max-width: 720px;
+    max-width: 900px;
     margin-bottom: 56px;
   }
   .Benefits__Head {
@@ -79,10 +119,13 @@
   .Benefits__TitleNum {
     font-size: 40px;
   }
-  .Benefits__Item {
-    padding: 18px 22px;
+  .Benefits__Slider :global(.swiper-slide) {
+    width: 260px;
   }
-  .Benefits__ItemText {
-    font-size: 15px;
+  .Benefits__NavPrev {
+    left: -8px;
+  }
+  .Benefits__NavNext {
+    right: -8px;
   }
 }
