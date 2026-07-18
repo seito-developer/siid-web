@@ -34,7 +34,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    max-width: 320px;
+    max-width: 100%;
 }
 
 /* ---- 番号バッジ（星形） ---- */

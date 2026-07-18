@@ -1,53 +1,78 @@
 .LineHero {
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 24px;
-    padding: 40px 24px 32px;
+    justify-content: center;
+    gap: 20px 16px;
+    padding: 28px 18px;
     border-radius: 20px;
     background: var(--bg-blue-shadow, #5a7fb2);
     color: #fff;
+    text-decoration: none;
     font-family: var(--font-noto-sans-jp);
+    transition: filter 0.2s ease;
+}
+
+.LineHero:hover {
+    filter: brightness(1.04);
+}
+
+/* ---- Phone（LINEアカウント画面） ---- */
+.LineHero__Phone {
+    flex-shrink: 0;
+    width: 116px;
+    padding: 8px 8px 0;
+    border-radius: 24px 24px 6px 6px;
+    background: var(--text);
+}
+
+.LineHero__Phone img {
+    display: block;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 18px 18px 0 0;
 }
 
 /* ---- Body（見出し・キャプション） ---- */
 .LineHero__Body {
-    order: 1;
+    flex: 1 1 190px;
+    min-width: 190px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    width: 100%;
+    gap: 10px;
 }
 
 .LineHero__Heading {
     margin: 0;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
-    line-height: 1.6;
-    letter-spacing: 0.09em;
+    line-height: 1.55;
+    letter-spacing: 0.06em;
 }
 
 .LineHero__Caption {
     margin: 0;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     line-height: 1.8;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
 }
 
 /* ---- Actions（QR・友だち追加ボタン） ---- */
 .LineHero__Actions {
-    order: 2;
+    flex-shrink: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 8px;
 }
 
 .LineHero__Qr {
-    flex-shrink: 0;
-    width: 100px;
-    height: 100px;
+    width: 96px;
+    height: 96px;
     padding: 6px;
     background: #fff;
     box-sizing: border-box;
@@ -64,129 +89,60 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 10px 18px;
+    gap: 5px;
+    width: 100px;
+    padding: 7px 8px;
     border-radius: 6px;
     background: #19bc03;
     color: #fff;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-}
-
-.LineHero__Button:hover {
-    opacity: 0.85;
+    letter-spacing: 0.06em;
 }
 
 .LineHero__ButtonIcon {
-    width: 22px;
-    height: auto;
-}
-
-/* ---- Phone（LINEアカウント画面） ---- */
-.LineHero__Phone {
-    order: 3;
-    flex-shrink: 0;
-    width: 220px;
-    max-width: 70%;
-    padding: 10px 10px 0;
-    border-radius: 32px 32px 8px 8px;
-    background: var(--text);
-}
-
-.LineHero__Phone img {
-    display: block;
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 22px 22px 0 0;
-}
-
-/* ---- Materials（浮遊するリッチメニューのサムネイル） ---- */
-.LineHero__Materials {
-    position: absolute;
-    top: -16px;
-    right: 12px;
-    width: 128px;
-    height: 90px;
-    overflow: hidden;
-    border-radius: 8px;
-    transform: rotate(12deg);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
-    z-index: 2;
-}
-
-.LineHero__Materials img {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    display: block;
-    width: 100%;
+    width: 18px;
     height: auto;
 }
 
 @media screen and (min-width: 1280px) {
     .LineHero {
-        flex-direction: row;
-        align-items: center;
+        flex-wrap: nowrap;
         justify-content: space-between;
         gap: 24px;
         padding: 44px 60px;
-        margin-top: 56px;
-    }
-
-    .LineHero__Body {
-        order: 2;
-        flex: 1;
-        gap: 14px;
-        padding-left: 8px;
-    }
-
-    .LineHero__Heading {
-        font-size: 24px;
-    }
-
-    .LineHero__Caption {
-        max-width: 360px;
-    }
-
-    .LineHero__Actions {
-        order: 3;
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .LineHero__Button {
-        width: 100px;
-        padding: 6px 8px;
-        font-size: 11px;
-        gap: 4px;
-    }
-
-    .LineHero__ButtonIcon {
-        width: 18px;
     }
 
     .LineHero__Phone {
-        order: 1;
         width: 232px;
-        max-width: none;
-        margin-top: -80px;
-        margin-bottom: -32px;
-        align-self: flex-start;
+        padding: 10px 10px 0;
+        border-radius: 32px 32px 8px 8px;
     }
 
     .LineHero__Phone img {
         height: 320px;
+        border-radius: 22px 22px 0 0;
     }
 
-    .LineHero__Materials {
-        top: -28px;
-        right: 118px;
-        width: 150px;
-        height: 104px;
+    .LineHero__Body {
+        flex: 1;
+        padding-left: 8px;
+        gap: 14px;
+    }
+
+    .LineHero__Heading {
+        font-size: 24px;
+        letter-spacing: 0.09em;
+    }
+
+    .LineHero__Caption {
+        max-width: 360px;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+    }
+
+    .LineHero__Qr {
+        width: 100px;
+        height: 100px;
     }
 }

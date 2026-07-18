@@ -12,7 +12,22 @@ const LINE_ADD_URL =
 
 export default function LineHero() {
   return (
-    <section className={styles.LineHero}>
+    <a
+      className={styles.LineHero}
+      href={LINE_ADD_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="セイト先生（公式）LINEを友だち追加する">
+      <div className={styles.LineHero__Phone}>
+        <Image
+          src="/images/line/phone-mockup.png"
+          alt="LINEアプリで表示したセイト先生（公式）アカウントの画面"
+          width={304}
+          height={660}
+          priority
+        />
+      </div>
+
       <div className={styles.LineHero__Body}>
         <Eyebrow label="Register" variant="light" />
         <h2 className={styles.LineHero__Heading}>
@@ -34,11 +49,7 @@ export default function LineHero() {
             height={360}
           />
         </div>
-        <a
-          className={styles.LineHero__Button}
-          href={LINE_ADD_URL}
-          target="_blank"
-          rel="noopener noreferrer">
+        <span className={styles.LineHero__Button}>
           <Image
             className={styles.LineHero__ButtonIcon}
             src="/images/line/line-add-icon.png"
@@ -47,27 +58,8 @@ export default function LineHero() {
             height={100}
           />
           友だち追加
-        </a>
+        </span>
       </div>
-
-      <div className={styles.LineHero__Phone}>
-        <Image
-          src="/images/line/phone-mockup.png"
-          alt="LINEアプリで表示したセイト先生（公式）アカウントの画面"
-          width={304}
-          height={660}
-          priority
-        />
-      </div>
-
-      <div className={styles.LineHero__Materials} aria-hidden="true">
-        <Image
-          src="/images/line/materials-stack.png"
-          alt=""
-          width={240}
-          height={520}
-        />
-      </div>
-    </section>
+    </a>
   );
 }
