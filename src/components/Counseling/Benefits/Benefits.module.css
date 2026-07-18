@@ -37,9 +37,14 @@
   overflow: visible;
 }
 .Benefits__Slider :global(.swiper-slide) {
-  width: 220px;
+  width: 160px;
   height: auto;
   box-sizing: border-box;
+  position: relative;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(52, 37, 37, 0.12);
 }
 .Benefits__Badge {
   display: inline-block;
@@ -50,14 +55,14 @@
   background: var(--main);
   padding: 4px 12px;
   border-radius: 999px;
-  margin-bottom: 8px;
+  position: absolute;
+  left: 5px;
+  top: 5px;
 }
 .Benefits__Image {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(52, 37, 37, 0.12);
 }
 
 /* ナビ矢印 */
@@ -96,6 +101,7 @@
 /* ページネーション（ドット） */
 .Benefits__Slider :global(.swiper-pagination) {
   bottom: 0;
+  margin-bottom: -40px;
 }
 .Benefits__Slider :global(.swiper-pagination-bullet) {
   background: #c9c9c9;
@@ -107,7 +113,6 @@
 
 @media screen and (min-width: 1280px) {
   .Benefits {
-    max-width: 900px;
     margin-bottom: 56px;
   }
   .Benefits__Head {
