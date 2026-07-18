@@ -33,10 +33,15 @@ export default function Opening() {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const seen = !!sessionStorage.getItem(SESSION_KEY);
     let finished = false;
+    let disposed = false;
+    let loadHandler: (() => void) | null = null;
     const timers: ReturnType<typeof setTimeout>[] = [];
 
+    // CareerModal と同様に html / body 両方をロックする
+    document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
     const unlockScroll = () => {
+      document.documentElement.style.overflow = '';
       document.body.style.overflow = '';
     };
 
@@ -70,20 +75,25 @@ export default function Opening() {
         }
         tl.to('[data-opening="scroll-down"]', { autoAlpha: 1, duration: 0.5 }, '-=0.2');
         // 背面ロゴは以降ゆっくり漂わせる
+        // （ctx.add でコンテキストに登録し、アンマウント時に確実に kill する）
         tl.call(() => {
-          gsap.to('[data-opening="back-logo"]', {
-            y: 8,
-            duration: 2.4,
-            ease: 'sine.inOut',
-            yoyo: true,
-            repeat: -1,
+          ctx.add(() => {
+            gsap.to('[data-opening="back-logo"]', {
+              y: 8,
+              duration: 2.4,
+              ease: 'sine.inOut',
+              yoyo: true,
+              repeat: -1,
+            });
           });
         });
       };
 
       // --- Phase 2: リビール（マスクワイプ）+ Phase 3 ---
-      const reveal = () => {
-        if (finished) {return;}
+      // setTimeout / Promise コールバックから呼ばれるため、生成する
+      // アニメーションを ctx.add でコンテキストに登録する
+      const reveal = () => ctx.add(() => {
+        if (finished || disposed) {return;}
         finished = true;
         sessionStorage.setItem(SESSION_KEY, '1');
 
@@ -139,7 +149,7 @@ export default function Opening() {
           // 同一セッション2回目以降は全体を短縮
           tl.timeScale(1.8);
         }
-      };
+      });
 
       // --- Phase 1: ローディング ---
       if (reduced || seen) {
@@ -147,7 +157,9 @@ export default function Opening() {
         gsap.set(fill, { clipPath: 'inset(0% 0% 0% 0%)' });
         gsap.set(stroke, { autoAlpha: 0 });
         gsap.set(counterBox, { autoAlpha: 0 });
-        timers.push(setTimeout(reveal, reduced ? 600 : 150));
+        // useIsPc の初期値による PC/SP コンポーネント差し替えが
+        // 完了してからリビールする（差し替え前の要素を掴まないよう余裕を持つ）
+        timers.push(setTimeout(reveal, reduced ? 600 : 400));
         return;
       }
 
@@ -170,10 +182,14 @@ export default function Opening() {
 
       // 実際の読込状態と連動したプログレス
       const progress = { v: 0 };
+      let finishing = false;
       const renderCounter = () => {
         counter.textContent = `${Math.round(progress.v)}`;
       };
+      // 完了トゥイーン開始後は中間ターゲットへのトゥイーンを発行しない
+      // （overwrite で完了トゥイーンが kill されて reveal が走らなくなるため）
       const tweenTo = (target: number) => {
+        if (finishing || disposed) {return;}
         gsap.to(progress, {
           v: target,
           duration: 0.8,
@@ -196,12 +212,12 @@ export default function Opening() {
       let windowLoaded: Promise<void> = Promise.resolve();
       if (!loadDone) {
         windowLoaded = new Promise<void>((resolve) => {
-          const onLoad = () => {
+          loadHandler = () => {
             loadDone = true;
             tweenTo(fontsDone ? 90 : 70);
             resolve();
           };
-          window.addEventListener('load', onLoad, { once: true });
+          window.addEventListener('load', loadHandler, { once: true });
         });
       }
 
@@ -212,21 +228,30 @@ export default function Opening() {
         timers.push(setTimeout(resolve, MAX_WAIT_MS));
       });
 
-      Promise.race([Promise.all([minDelay, windowLoaded, fontsReady]), Promise.all([minDelay, timeout])]).then(
-        () => {
-          if (finished) {return;}
-          gsap.to(progress, {
-            v: 100,
-            duration: 0.35,
-            ease: 'power2.inOut',
-            onUpdate: renderCounter,
-            onComplete: reveal,
-          });
-        },
-      );
-    }, overlay);
+      // 最低表示時間の経過 AND（読込完了 OR タイムアウト）で 100% へ
+      const loadedOrTimeout = Promise.race([Promise.all([windowLoaded, fontsReady]), timeout]);
+      Promise.all([minDelay, loadedOrTimeout]).then(() => {
+        if (finished || disposed) {return;}
+        finishing = true;
+        gsap.to(progress, {
+          v: 100,
+          duration: 0.35,
+          ease: 'power2.inOut',
+          onUpdate: renderCounter,
+          onComplete: reveal,
+          overwrite: true,
+        });
+      });
+      // 注意: gsap.context に scope（第2引数）を渡さないこと。
+      // 渡すとセレクタ文字列が overlay 配下に限定され、Hero 側の
+      // [data-opening] 要素が見つからなくなる
+    });
 
     return () => {
+      disposed = true;
+      if (loadHandler) {
+        window.removeEventListener('load', loadHandler);
+      }
       timers.forEach(clearTimeout);
       unlockScroll();
       ctx.revert();
