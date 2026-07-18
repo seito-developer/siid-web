@@ -4,8 +4,8 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 20px 16px;
-    padding: 28px 18px;
+    gap: 18px 14px;
+    padding: 24px 16px;
     border-radius: 20px;
     background: var(--bg-blue-shadow, #5a7fb2);
     color: #fff;
@@ -18,12 +18,21 @@
     filter: brightness(1.04);
 }
 
+/* ---- Main（スマホ＋本文を常に横並び維持） ---- */
+.LineHero__Main {
+    flex: 1 1 240px;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
 /* ---- Phone（LINEアカウント画面） ---- */
 .LineHero__Phone {
     flex-shrink: 0;
-    width: 116px;
-    padding: 8px 8px 0;
-    border-radius: 24px 24px 6px 6px;
+    width: 96px;
+    padding: 7px 7px 0;
+    border-radius: 22px 22px 6px 6px;
     background: var(--text);
 }
 
@@ -38,8 +47,8 @@
 
 /* ---- Body（見出し・キャプション） ---- */
 .LineHero__Body {
-    flex: 1 1 190px;
-    min-width: 190px;
+    flex: 1 1 auto;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -47,10 +56,10 @@
 
 .LineHero__Heading {
     margin: 0;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
-    line-height: 1.55;
-    letter-spacing: 0.06em;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
 }
 
 .LineHero__Caption {

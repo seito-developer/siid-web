@@ -18,26 +18,28 @@ export default function LineHero() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="セイト先生（公式）LINEを友だち追加する">
-      <div className={styles.LineHero__Phone}>
-        <Image
-          src="/images/line/phone-mockup.png"
-          alt="LINEアプリで表示したセイト先生（公式）アカウントの画面"
-          width={304}
-          height={660}
-          priority
-        />
-      </div>
+      <div className={styles.LineHero__Main}>
+        <div className={styles.LineHero__Phone}>
+          <Image
+            src="/images/line/phone-mockup.png"
+            alt="LINEアプリで表示したセイト先生（公式）アカウントの画面"
+            width={304}
+            height={660}
+            priority
+          />
+        </div>
 
-      <div className={styles.LineHero__Body}>
-        <Eyebrow label="Register" variant="light" />
-        <h2 className={styles.LineHero__Heading}>
-          LINE友だち追加で
-          <br />
-          スマホから簡単に体験できる！
-        </h2>
-        <p className={styles.LineHero__Caption}>
-          QRコードを読み取っていただくか、「LINE友だちに追加」ボタンからセイト先生のアカウントを友だち追加してください。友だち追加後、トーク内メニューをご確認ください。
-        </p>
+        <div className={styles.LineHero__Body}>
+          <Eyebrow label="Register" variant="light" />
+          <h2 className={styles.LineHero__Heading}>
+            LINE友だち追加で
+            <br />
+            スマホから簡単に体験できる！
+          </h2>
+          <p className={styles.LineHero__Caption}>
+            QRコードを読み取っていただくか、「LINE友だちに追加」ボタンからセイト先生のアカウントを友だち追加してください。友だち追加後、トーク内メニューをご確認ください。
+          </p>
+        </div>
       </div>
 
       <div className={styles.LineHero__Actions}>
