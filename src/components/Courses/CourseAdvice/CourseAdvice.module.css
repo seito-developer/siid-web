@@ -1,0 +1,213 @@
+.CourseAdvice {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.CourseAdvice__BalloonWrap {
+    align-self: center;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+}
+
+.CourseAdvice__Bracket {
+    margin-top: 20px;
+    width: 24px;
+    height: auto;
+}
+
+.CourseAdvice__Balloon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(484px, 80%);
+}
+
+.CourseAdvice__BalloonStarLeft,
+.CourseAdvice__BalloonStarRight {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: auto;
+}
+
+.CourseAdvice__BalloonStarLeft {
+    left: 8%;
+}
+
+.CourseAdvice__BalloonStarRight {
+    right: 8%;
+}
+
+.CourseAdvice__BalloonBg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.CourseAdvice__BalloonText {
+    position: absolute;
+    margin: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.CourseAdvice__Columns {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.CourseAdvice__Column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.CourseAdvice__Column.is-career {
+    --plan-color: var(--plan-career);
+}
+
+.CourseAdvice__Column.is-fullSupport {
+    --plan-color: var(--plan-full-support);
+}
+
+.CourseAdvice__Column.is-vip {
+    --plan-color: var(--plan-vip);
+}
+
+.CourseAdvice__Worries {
+    background-color: #fff;
+    padding: 16px 16px 32px;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 19px), 50% 100%, 0 calc(100% - 19px));
+}
+
+.CourseAdvice__WorryList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.CourseAdvice__Worry {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+
+    p {
+        margin: 0;
+        flex: 1;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        line-height: 1.4;
+    }
+}
+
+.CourseAdvice__Worry + .CourseAdvice__Worry {
+    border-top: 2px dashed rgba(52, 37, 37, 0.25);
+}
+
+.CourseAdvice__WorryBadge {
+    position: relative;
+    flex-shrink: 0;
+    display: inline-flex;
+    width: 37px;
+    height: 43px;
+}
+
+.CourseAdvice__WorryBadgeText {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 1.2;
+
+    strong {
+        font-family: var(--font-bagor);
+        font-weight: 400;
+        font-size: 13px;
+    }
+}
+
+.CourseAdvice__Course {
+    padding: 20px 16px 16px;
+    background-color: var(--plan-color);
+    border-radius: 0 0 8px 8px;
+    text-align: center;
+}
+
+.CourseAdvice__CourseTitle {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-bagor);
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    line-height: 1.25;
+    color: #342525;
+}
+
+.CourseAdvice__CourseDescription {
+    margin: 12px 0 0;
+    padding: 8px 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.45;
+    text-align: left;
+}
+
+@media screen and (min-width: 1280px) {
+    .CourseAdvice__BalloonWrap {
+        margin-left: 330px;
+        width: calc(100% - 330px);
+    }
+
+    .CourseAdvice__Balloon {
+        width: 484px;
+        flex-shrink: 0;
+    }
+
+    .CourseAdvice__BalloonText {
+        font-size: 20px;
+        white-space: nowrap;
+    }
+
+    .CourseAdvice__Columns {
+        flex-direction: row;
+        gap: 14px;
+        margin-left: 330px;
+    }
+
+    .CourseAdvice__Column {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .CourseAdvice__Worries {
+        flex: 1;
+    }
+}

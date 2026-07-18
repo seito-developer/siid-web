@@ -1,0 +1,38 @@
+.CoursePlans {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+}
+
+.CoursePlans__List {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+}
+
+@media screen and (min-width: 1280px) {
+    .CoursePlans {
+        flex-direction: row;
+        gap: 0;
+    }
+
+    .CoursePlans__Heading {
+        width: 330px;
+        flex-shrink: 0;
+    }
+
+    .CoursePlans__List {
+        flex: 1;
+        flex-direction: row;
+        gap: 14px;
+        align-items: stretch;
+    }
+
+    .CoursePlans__Item {
+        flex: 1;
+        min-width: 0;
+    }
+}

@@ -3,13 +3,17 @@
 各ページは 1 Issue = 1 feature ブランチ = 1 PR で実装する([04_workflow.md](./04_workflow.md))。
 実装時は必ず Figma の該当ノードを `get_design_context` で取得し、既存の下層ページ(`/service`, `/community`)の実装パターン(Headline / Breadcrumb / ContentsArea 構成、CSS Modules 命名)を踏襲する。
 
-## 3-1. `/courses` コース一覧
+## 3-1. `/courses` コース一覧【実装済み 2026-07】
 
-- 現状: `src/app/(LowerPages)/courses/page.tsx` にプレースホルダーのみ
-- Figma: `B-1 コース一覧` PC (3506:9919) / SP (3506:6335)。別フレーム 3506:16519 もあり(差分要確認)
-- フッターのコース名から想定される内容: `Career コース` / `Career+FullSupportEdition` / `Career+VIPEdition` の 3 コース比較
-- データは既存パターンに合わせ `src/data/` の JSON + `src/lib/` の取得関数で管理する
-- ページ内リンク(コース詳細アンカー等)の要否は Figma 確認時に判断
+- Figma: `B-1 コース一覧` PC (3506:9919) / SP (3506:6335)
+- 構成: コース紹介(3カード) → リスキルバナー → コースによる違い(比較表) → コース選びアドバイス → LINE バナー
+- データ: `src/data/coursePlans.json` + `src/lib/getCoursePlans.ts`。コンポーネントは `src/components/Courses/` 配下
+- アセット: `public/images/courses/`(Figma から書き出した SVG / 言語ロゴ PNG。SVG は `var(--fill-0)` を実色に置換済み — img 参照では CSS 変数が解決されないため)
+- **実装時判断・デザイン側への確認事項**:
+  - 比較表「実施内容」の行ラベルと値の対応は Figma の見た目どおりに実装したが、内容的に 1 行ズレている疑いあり(チャット=初回のみ 等)→ デザイナー確認待ち
+  - アドバイス欄の悩みバッジ番号が Figma では 01/03/03 になっている等の番号錯誤 → 01/02/03 に正規化。Career 列の悩み 02 と 03 が同一文言なのは Figma のまま
+  - LINE バナーのリンク先 URL 未確定(`LineBanner.tsx` の TODO)
+  - 「※Fullsuport,VIP Editionコースのみ」のタイポは原文ママ
 
 ## 3-2. `/after-support` アフターサポート
 

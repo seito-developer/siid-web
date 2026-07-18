@@ -35,7 +35,8 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 
 ## Figma デザインデータ
 
-- ファイル: [合同会社BugFix様_サービスサイト制作](https://www.figma.com/design/hEk4Ox1q0cTVzzVPoSz5lV/)
+- ファイル: [合同会社BugFix様_サービスサイト制作 (Copy)](https://www.figma.com/design/5TmLXYMQDXuXx163rxpGTD/)（2026-07: オーナーの有料アカウントに複製したコピー。**MCP からはこちらを参照する**。ノード ID は元ファイルと共通）
+- 元ファイル: [合同会社BugFix様_サービスサイト制作](https://www.figma.com/design/hEk4Ox1q0cTVzzVPoSz5lV/)（View シートのためレート制限が厳しい）
 - 実装対象デザインはページ `0:1` 内の canvas `1:3`(name: Design)に集約。「納品デザイン」フレーム (3562:8989) もあり
 - 「整理」セクション (3809:8023) にはデザインガイドライン(ロゴ・カラー・フォント・アニメーション方針・KV構成)が含まれる
 

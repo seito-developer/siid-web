@@ -1,0 +1,21 @@
+.Courses__Contents {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    padding-bottom: 80px;
+}
+
+.Courses__Reskill {
+    width: 100%;
+}
+
+.Courses__Line {
+    margin-top: 16px;
+}
+
+@media screen and (min-width: 1280px) {
+    .Courses__Contents {
+        gap: 100px;
+        padding-bottom: 120px;
+    }
+}
