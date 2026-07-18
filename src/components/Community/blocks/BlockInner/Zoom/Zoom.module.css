@@ -1,6 +1,12 @@
 .Zoom__TopImage {
   max-width: 100%;
+  height: auto;
   margin-bottom: 20px;
+}
+.Zoom__Icon,
+.icons {
+  width: auto;
+  height: 40px;
 }
 .Zoom__IconWrapper {
   margin: 0 auto;
