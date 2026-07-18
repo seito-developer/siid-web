@@ -1,0 +1,93 @@
+.Complete {
+  max-width: 640px;
+  margin: 0 auto;
+  font-family: var(--font-noto-sans-jp);
+}
+.Complete__Lead {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.8;
+  color: var(--text);
+  margin: 0 0 32px;
+}
+.Complete__Steps {
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.Complete__Step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 12px;
+  padding: 18px;
+}
+.Complete__StepNum {
+  flex-shrink: 0;
+  font-family: var(--font-poppins);
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background: var(--main);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.Complete__StepBody {
+  flex: 1;
+}
+.Complete__StepTitle {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--text);
+  margin: 2px 0 6px;
+}
+.Complete__StepText {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0;
+}
+.Complete__Actions {
+  text-align: center;
+}
+.Complete__HomeLink {
+  display: inline-block;
+  min-width: 240px;
+  padding: 14px 32px;
+  background: var(--main);
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: opacity 0.2s ease;
+}
+.Complete__HomeLink:hover {
+  opacity: 0.85;
+}
+@media screen and (min-width: 1280px) {
+  .Complete__Lead {
+    font-size: 17px;
+    margin-bottom: 40px;
+  }
+  .Complete__Step {
+    padding: 22px 24px;
+  }
+  .Complete__StepTitle {
+    font-size: 17px;
+  }
+  .Complete__StepText {
+    font-size: 14px;
+  }
+}

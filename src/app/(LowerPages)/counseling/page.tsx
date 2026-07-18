@@ -6,6 +6,7 @@ import Breadcrumb, {
   BreadcrumbProps,
 } from '@/components/Breadcrumb/Breadcrumb';
 import ContentsArea from '@/components/ContentsArea/ContentsArea';
+import Benefits from '@/components/Counseling/Benefits/Benefits';
 import Headline from '@/components/Headline/Headline';
 import { commonTitle, pages } from '@/constants/meta';
 import { handleStringHTML } from '@/utils/helper';
@@ -32,6 +33,7 @@ export default function Courses() {
       />
       <Breadcrumb breadcrumb={breadcrumb} />
       <ContentsArea>
+        <Benefits />
         <div className={styles.Counseling}>
           <div
             className="jicoo-widget"
