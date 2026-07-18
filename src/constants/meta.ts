@@ -48,4 +48,12 @@ export const pages = {
     url: '/counseling',
     description: 'SiiDの無料カウンセリングでは、あなたのキャリアや学習に関する疑問や不安を解消します。<br />経験豊富なスタッフが、あなたの目標達成をサポートします。',
   },
+  counselingComplete: {
+    name: {
+      ja: 'ご予約完了',
+      en: 'Thank you',
+    },
+    url: '/counseling/complete',
+    description: '無料カウンセリングのお申し込みありがとうございます。<br />ご予約内容の確認メールをお送りしましたのでご確認ください。',
+  },
 };
