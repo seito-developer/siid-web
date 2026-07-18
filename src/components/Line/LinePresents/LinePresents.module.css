@@ -1,0 +1,117 @@
+.LinePresents {
+    font-family: var(--font-noto-sans-jp);
+}
+
+/* ---- セクション見出し ---- */
+.LinePresents__Header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-block: 24px;
+    border-block: 1px solid var(--text);
+    margin-bottom: 40px;
+}
+
+.LinePresents__Heading {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+}
+
+/* ---- 特典カード一覧 ---- */
+.LinePresents__List {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 44px 40px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.LinePresents__Item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 320px;
+}
+
+/* ---- 番号バッジ（星形） ---- */
+.LinePresents__Badge {
+    position: absolute;
+    top: -16px;
+    left: -8px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    width: 64px;
+    height: 73px;
+    padding-bottom: 4px;
+    background: url('/images/line/badge-star.svg') no-repeat center / contain;
+    color: #fff;
+    font-family: var(--font-bagor);
+    text-align: center;
+}
+
+.LinePresents__BadgeCheck {
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+}
+
+.LinePresents__BadgeNo {
+    font-size: 22px;
+    line-height: 1;
+}
+
+/* ---- カード画像（特典プレビュー） ---- */
+.LinePresents__Image {
+    width: 100%;
+    aspect-ratio: 280 / 136;
+}
+
+.LinePresents__Image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.LinePresents__Title {
+    margin: 20px 0 0;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+    color: var(--text);
+}
+
+@media screen and (min-width: 1280px) {
+    .LinePresents {
+        max-width: var(--pc-container-width);
+        margin-inline: auto;
+    }
+
+    .LinePresents__Header {
+        padding-block: 28px;
+        margin-bottom: 56px;
+    }
+
+    .LinePresents__Heading {
+        font-size: 24px;
+    }
+
+    .LinePresents__List {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 56px 80px;
+        justify-items: start;
+    }
+
+    .LinePresents__Item {
+        max-width: 280px;
+    }
+}

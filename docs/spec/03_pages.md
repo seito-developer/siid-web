@@ -21,6 +21,19 @@
 - Figma: H-1 系フレーム(3506:11730, 4270:14744, 4270:25179, 4270:19950, 4265:8839)のいずれかにデザインが存在する可能性が高い(レート制限で未確認)。**着手時に最初に確認すること**
 - デザインが無い場合は既存トンマナベースで構成案を作り、ユーザー確認後に実装
 
+## 3-2b. `/line` LINE登録で無料体験【実装済み 2026-07】
+
+- Figma: `G-1 LINE登録` PC (3506:11427) / SP (3506:6128)
+- ルート: `G-1 LINE登録` は `/contact` 候補フレームだったが、**独立した LINE 登録ランディングページ `/line`** として実装(ユーザー確認済み）
+- 構成: 共通下層ヘッダー(Headline / Breadcrumb)→ LINE 登録ヒーロー(スマホモックアップ・QR・友だち追加ボタン)→ 特典グリッド(星バッジ付き 10 枚カード)
+- データ: `src/data/linePresents.json` + `src/lib/getLinePresents.ts`。コンポーネントは `src/components/Line/`(`LineHero` / `LinePresents` / `Eyebrow`)配下
+- アセット: `public/images/line/`(Figma から書き出した QR・スマホ画面・リッチメニュー・LINE ロゴ、特典カードは各画像グループを 1 枚に flatten したスクリーンショット)
+- CTA(友だち追加ボタン)のリンク先: `https://siid.bug-fix.org/line/open/...`(セイト先生公式 LINE の友だち追加 URL。ユーザー提供）
+- **デザイン差異・要確認**:
+  - PC は「Present / 10つの特典」(10 枚)、SP は「Features / ９つの特典」(9 枚)で不一致 → より完全な **PC 版(10 枚・Present)** を採用。デザイナー確認待ち
+  - 特典カードのプレビュー画像は装飾的なコラージュのため、各グループを 1 枚の PNG に flatten して掲載
+  - `/line` はまだナビ・フッター・LINE バナー(`LineBanner` の `LINE_URL`)から未リンク。導線の接続方針は要確認
+
 ## 3-3. `/contact` 問い合わせ導線
 
 - 現状: 未実装。`ContactButton` のリンク先(現状 404)
