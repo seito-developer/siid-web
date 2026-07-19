@@ -25,10 +25,11 @@
 
 - Figma: `G-1 LINE登録` PC (3506:11427) / SP (3506:6128)
 - ルート: `G-1 LINE登録` は `/contact` 候補フレームだったが、**独立した LINE 登録ランディングページ `/line`** として実装(ユーザー確認済み）
-- 構成: 共通下層ヘッダー(Headline / Breadcrumb)→ LINE 登録ヒーロー(スマホモックアップ・QR・友だち追加ボタン)→ 特典グリッド(星バッジ付き 10 枚カード)
-- LINE 登録ヒーローは **カード全体が LINE 友だち追加リンク**(クリッカブルエリアを広く確保。PR #25 レビュー反映)。SP でも PC のレイアウト(スマホ左＋本文＋QR/ボタン)を維持し、大きな縦積み組み替えはしない
-- データ: `src/data/linePresents.json` + `src/lib/getLinePresents.ts`。コンポーネントは `src/components/Line/`(`LineHero` / `LinePresents` / `Eyebrow`)配下
-- アセット: `public/images/line/`(Figma から書き出した QR・スマホ画面・LINE ロゴ、特典カードは各画像グループを 1 枚に flatten したスクリーンショット)
+- 構成: 共通下層ヘッダー(Headline / Breadcrumb)→ LINE 登録バナー(SVG)→ 特典グリッド(星バッジ付き 10 枚カード)→ LINE 登録バナー(SVG・フッター直前にもう1枚)
+- **LINE 登録バナーは Figma デザインを書き出した SVG 画像**(`LineBanner`)。PC 用(`banner-pc.svg`)と SP 用(`banner-sp.svg`)を CSS のブレイクポイント(1280px)で切り替え、PC/SP でレイアウトが異なる。バナー全体が LINE 友だち追加リンク(`cursor: pointer`)で、**ページ冒頭とフッター直前の2箇所**に配置
+- SVG 最適化: Figma 書き出し時は写真内包で約 6MB あったため、リッチメニュー画像を除去し、内包写真を JPEG 化・縮小＋`svgo` で **各約 300KB** に圧縮
+- データ: `src/data/linePresents.json` + `src/lib/getLinePresents.ts`。コンポーネントは `src/components/Line/`(`LineBanner` / `LinePresents` / `Eyebrow`)配下
+- アセット: `public/images/line/`(バナー SVG 2枚、特典カードは各画像グループを 1 枚に flatten したスクリーンショット)
 - CTA(友だち追加ボタン)のリンク先: `https://siid.bug-fix.org/line/open/...`(セイト先生公式 LINE の友だち追加 URL。ユーザー提供）
 - **デザイン差異・要確認**:
   - PC は「Present / 10つの特典」(10 枚)、SP は「Features / ９つの特典」(9 枚)で不一致 → より完全な **PC 版(10 枚・Present)** を採用。デザイナー確認待ち

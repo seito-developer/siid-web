@@ -1,0 +1,32 @@
+.LineBanner {
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.LineBanner img {
+    width: 100%;
+    height: auto;
+}
+
+/* スマホ表示（〜1279px）: SP レイアウトのバナー */
+.LineBanner__Pc {
+    display: none;
+}
+
+.LineBanner__Sp {
+    display: block;
+    max-width: 360px;
+    margin-inline: auto;
+}
+
+/* PC 表示（1280px〜）: PC レイアウトのバナー */
+@media screen and (min-width: 1280px) {
+    .LineBanner__Pc {
+        display: block;
+    }
+
+    .LineBanner__Sp {
+        display: none;
+    }
+}

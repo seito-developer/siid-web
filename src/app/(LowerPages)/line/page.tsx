@@ -5,7 +5,7 @@ import Breadcrumb, {
 } from '@/components/Breadcrumb/Breadcrumb';
 import ContentsArea from '@/components/ContentsArea/ContentsArea';
 import Headline from '@/components/Headline/Headline';
-import LineHero from '@/components/Line/LineHero/LineHero';
+import LineBanner from '@/components/Line/LineBanner/LineBanner';
 import LinePresents from '@/components/Line/LinePresents/LinePresents';
 import { commonTitle, pages } from '@/constants/meta';
 import { getLinePresents } from '@/lib/getLinePresents';
@@ -36,8 +36,9 @@ export default function Line() {
       <Breadcrumb breadcrumb={breadcrumb} />
       <ContentsArea>
         <div className={styles.Line__Contents}>
-          <LineHero />
+          <LineBanner priority />
           <LinePresents presents={presents} />
+          <LineBanner />
         </div>
       </ContentsArea>
     </div>

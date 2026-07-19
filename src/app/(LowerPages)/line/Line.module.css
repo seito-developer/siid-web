@@ -1,6 +1,5 @@
 .Line {
     --pc-container-width: 1080px;
-    --bg-blue-shadow: #5a7fb2;
     font-family: var(--font-noto-sans-jp);
 }
 
