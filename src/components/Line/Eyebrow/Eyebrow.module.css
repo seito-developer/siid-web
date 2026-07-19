@@ -1,0 +1,36 @@
+.Eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text);
+    line-height: 1;
+}
+
+.Eyebrow--light {
+    color: #fff;
+}
+
+.Eyebrow__Icon {
+    display: block;
+    width: 7px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.Eyebrow__Icon--right {
+    transform: scaleX(-1);
+}
+
+.Eyebrow__Slash {
+    font-family: var(--font-poppins);
+    font-weight: 800;
+    font-size: 10px;
+    letter-spacing: 0.57px;
+}
+
+.Eyebrow__Label {
+    font-family: var(--font-poppins);
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 0.56px;
+}
