@@ -38,13 +38,21 @@ npm run fetch:graduates -- --dry-run   # 変更せず検出結果だけ表示
 ### データ取得元と全履歴の取得
 
 - 既定は **チャンネルの RSS フィード**（依存ゼロ・**最新15件**）。新着の増分更新に向いています。
-- 過去動画も含めて全件取得したい場合は、YouTube Data API v3 のキーを環境変数で渡します：
+- 過去動画も含めて全件取得したい場合は、YouTube Data API v3 のキーを渡します。
+  プロジェクトルートの **`.env` / `.env.local` に書けば自動で読み込まれます**（スクリプトが起動時にロード）：
 
   ```bash
+  # .env に記載する場合（推奨）
+  echo 'YOUTUBE_API_KEY=xxxxx' >> .env
+  npm run fetch:graduates
+
+  # もしくは一時的に環境変数で渡す
   YOUTUBE_API_KEY=xxxxx npm run fetch:graduates
   ```
 
-  この場合は uploads プレイリストをページングして全件取得します。
+  この場合は uploads プレイリストをページングして全件取得します。実行時のログで
+  `YOUTUBE_API_KEY: 検出…` と `取得元: YouTube Data API v3` が出れば API 経由です。
+  `未検出` の場合は .env のキー名・場所を確認してください。
 
 ### 環境変数（任意）
 
