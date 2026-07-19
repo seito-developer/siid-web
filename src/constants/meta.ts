@@ -56,4 +56,12 @@ export const pages = {
     url: '/line',
     description: 'SiiDは学んで終わりではなく、その先の人生もあなたと共にありたいと考えています。<br />そのためのサポートもしっかりとご用意しています。',
   },
+  counselingComplete: {
+    name: {
+      ja: 'ご予約完了',
+      en: 'Thank you',
+    },
+    url: '/counseling/complete',
+    description: '無料カウンセリングのお申し込みありがとうございます。<br />ご予約内容の確認メールをお送りしましたのでご確認ください。',
+  },
 };
