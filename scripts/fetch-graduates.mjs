@@ -28,7 +28,39 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const GRADUATES_DIR = path.join(__dirname, '..', 'src', 'data', 'graduates');
+const ROOT_DIR = path.join(__dirname, '..');
+const GRADUATES_DIR = path.join(ROOT_DIR, 'src', 'data', 'graduates');
+
+/**
+ * .env ファイルを読み込んで process.env に反映する（依存ゼロの簡易ローダー）。
+ * 素の `node` 実行では Next.js と違い .env が自動ロードされないため必要。
+ * 既に環境変数が設定されている場合は上書きしない。Next の慣習に合わせ
+ * .env → .env.local の順で読み込み、後勝ち（.env.local が優先）。
+ */
+function loadEnvFiles() {
+  for (const file of ['.env', '.env.local']) {
+    const filePath = path.join(ROOT_DIR, file);
+    if (!fs.existsSync(filePath)) continue;
+    for (const rawLine of fs.readFileSync(filePath, 'utf-8').split('\n')) {
+      const line = rawLine.trim();
+      if (!line || line.startsWith('#')) continue;
+      const eq = line.indexOf('=');
+      if (eq === -1) continue;
+      const key = line.slice(0, eq).trim();
+      let value = line.slice(eq + 1).trim();
+      // 前後のクォートを除去
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
+        value = value.slice(1, -1);
+      }
+      if (key && process.env[key] === undefined) process.env[key] = value;
+    }
+  }
+}
+
+loadEnvFiles();
 
 // --- 設定（環境変数で上書き可能） ---
 const CHANNEL_ID = process.env.SIID_CHANNEL_ID || 'UCm94WagHb7fgz6Xn5F3NXkA'; // @programming-siid
@@ -67,16 +99,30 @@ async function fetchFromRss() {
   });
 }
 
+/** API エラー時にレスポンス本文から理由を抽出して分かりやすいメッセージにする */
+async function apiError(label, res) {
+  let reason = '';
+  try {
+    const body = await res.json();
+    reason = body?.error?.message || '';
+  } catch {
+    /* JSON でなければ無視 */
+  }
+  return new Error(
+    `${label} 失敗: HTTP ${res.status}${reason ? ` — ${reason}` : ''}`,
+  );
+}
+
 /** YouTube Data API v3 から全アップロード動画を取得（要 API キー） */
 async function fetchFromApi() {
   const chRes = await fetch(
     `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${CHANNEL_ID}&key=${API_KEY}`,
   );
-  if (!chRes.ok) throw new Error(`channels API 失敗: ${chRes.status}`);
+  if (!chRes.ok) throw await apiError('channels API', chRes);
   const chJson = await chRes.json();
   const uploads =
     chJson.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
-  if (!uploads) throw new Error('uploads プレイリストが見つかりません');
+  if (!uploads) throw new Error('uploads プレイリストが見つかりません（チャンネルIDを確認してください）');
 
   const videos = [];
   let pageToken = '';
@@ -84,7 +130,7 @@ async function fetchFromApi() {
     const res = await fetch(
       `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${uploads}&pageToken=${pageToken}&key=${API_KEY}`,
     );
-    if (!res.ok) throw new Error(`playlistItems API 失敗: ${res.status}`);
+    if (!res.ok) throw await apiError('playlistItems API', res);
     const json = await res.json();
     for (const item of json.items ?? []) {
       const s = item.snippet;
@@ -155,6 +201,9 @@ function buildDraft(video, id) {
 
 async function main() {
   const useApi = Boolean(API_KEY);
+  console.log(
+    `YOUTUBE_API_KEY: ${API_KEY ? `検出（末尾 …${API_KEY.slice(-4)}）` : '未検出'}`,
+  );
   console.log(
     `取得元: ${useApi ? 'YouTube Data API v3（全履歴）' : 'RSS フィード（最新15件）'}`,
   );
