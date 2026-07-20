@@ -12,9 +12,10 @@
  *   - 既存の student-*.json（手作業でキュレーション済み）は youtubeId で照合し、
  *     絶対に上書きしない（非破壊マージ）。
  *   - YouTube のメタデータから機械的に取れる項目のみ自動で埋める
- *     （youtubeId / title / description / thumbnail / publishedAt、タイトルから age・sex）。
- *   - achievement / detailContent / reason などの編集フィールドは動画を視聴しないと
- *     書けないため空のまま。新規動画は `_draft: true` を付けて追加し、
+ *     （youtubeId / title / description）。description は宣伝文・目次を除いた
+ *     インタビュー要約に整形して description / detailContent に入れる。
+ *   - achievement などの編集フィールドは動画を視聴しないと書けないため空のまま。
+ *     新規動画は `_draft: true` を付けて追加し、
  *     getCareerPathData() 側で描画対象から除外される。人がフィールドを埋めて
  *     `_draft` を削除すると公開される。
  *
@@ -151,11 +152,31 @@ async function fetchFromApi() {
   return videos;
 }
 
-/** タイトルから年代・性別を推定（例: 「30代男性」→ age:30, sex:'男性'） */
-function parseTitle(title) {
-  const age = Number(title.match(/(\d{2})代/)?.[1] ?? 0);
-  const sex = title.includes('男性') ? '男性' : title.includes('女性') ? '女性' : '';
-  return { age, sex };
+/**
+ * YouTube 概要欄から実インタビュー要約だけを抽出する。
+ * 概要欄は「説明会/特典/目次/SNSリンク」の定型文が大半で、実際の要約は
+ * 最後の `◆━━◆` 区切りより後ろにある。宣伝文・リンク・目次を除去する。
+ */
+function cleanDescription(desc) {
+  if (!desc) return '';
+  const parts = desc.split(/◆[━─\-—]+◆/);
+  let body = desc;
+  if (parts.length > 1) {
+    // 末尾に空区切りが来るケースに対応し、最後の“非空”セグメントを採用
+    const nonEmpty = parts.map((p) => p.trim()).filter(Boolean);
+    body = nonEmpty[nonEmpty.length - 1] || desc;
+  }
+  // 「文字起こしをもとに作成した…」等のメタ前置きを除去
+  if (/文字起こし|VSEO|^以下は/m.test(body) && /\n-{3,}\n/.test(body)) {
+    body = body.split(/\n-{3,}\n/).slice(1).join('\n');
+  }
+  return body
+    .replace(/\r/g, '')
+    .split('\n')
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .join('\n')
+    .trim();
 }
 
 /** 既存の卒業生データを読み込み、youtubeId→データ のマップと最大 id を返す */
@@ -176,23 +197,17 @@ function loadExisting() {
 
 /** 新規動画からドラフト用の卒業生データを生成 */
 function buildDraft(video, id) {
-  const { age, sex } = parseTitle(video.title);
+  // 宣伝文・リンク・目次を除いた実インタビュー要約
+  const summary = cleanDescription(video.description);
   return {
     id: String(id),
     title: video.title,
     voice: String(id).padStart(2, '0'),
     youtubeId: video.videoId,
-    description: video.description,
+    description: summary,
     tags: [],
-    age,
-    sex,
-    course: '',
-    reason: '',
-    detailTitle: '',
     achievement: '',
-    detailContent: '',
-    thumbnail: video.thumbnail,
-    publishedAt: video.publishedAt,
+    detailContent: summary,
     // 動画視聴が必要な編集フィールドが未記入であることを示すフラグ。
     // getCareerPathData() で描画対象から除外される。人が埋めたら削除すること。
     _draft: true,
