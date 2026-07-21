@@ -173,21 +173,6 @@
   width: 100%;
 }
 
-.CareerModal__ResultTitle {
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.5;
-  margin: 0 0 8px 0;
-  padding-bottom: 8px;
-}
-
-.CareerModal__ResultAchievement {
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.4;
-  margin: 0 0 12px 0;
-}
-
 .CareerModal__ResultContent {
   font-size: 12px;
   font-weight: 500;
@@ -320,21 +305,6 @@
   .CareerModal__ResultSection {
     padding: 32px 40px;
     height: auto;
-  }
-
-  .CareerModal__ResultTitle {
-    font-size: 18px;
-    margin-bottom: 12px;
-    padding-bottom: 12px;
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
-
-  .CareerModal__ResultAchievement {
-    font-size: 22px;
-    margin-bottom: 16px;
-    white-space: pre-wrap;
-    word-break: break-word;
   }
 
   .CareerModal__ResultContent {

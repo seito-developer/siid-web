@@ -1,14 +1,14 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
-import styles from './CareerCard.module.css';
+import styles from "./CareerCard.module.css";
 
-interface CareerCardProps{
+interface CareerCardProps {
   id: string;
   voice: string;
   title: string;
   thumbnailUrl: string;
-  description: string;
+  detailContent: string;
   tags: string[];
   priority?: boolean;
 }
@@ -18,7 +18,7 @@ export default function CareerCard({
   voice,
   title,
   thumbnailUrl,
-  description,
+  detailContent,
   tags,
   priority = false,
 }: CareerCardProps) {
@@ -48,7 +48,7 @@ export default function CareerCard({
         </div>
 
         <span className={styles.CareerCard__Line}></span>
-        <p className={styles.CareerCard__Description}>{description}</p>
+        <p className={styles.CareerCard__Description}>{detailContent}</p>
 
         <div className={styles.CareerCard__Footer}>
           <div className={styles.CareerCard__Tags}>

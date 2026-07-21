@@ -1,13 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import { getYouTubeEmbedUrl } from '@/utils/youtube';
+import { getYouTubeEmbedUrl } from "@/utils/youtube";
 
-import styles from './CareerModal.module.css';
+import styles from "./CareerModal.module.css";
 
 interface CareerModalProps {
   title: string;
   youtubeId: string;
-  achievement: string;
   detailContent: string;
   isOpen: boolean;
   isClosing: boolean;
@@ -23,22 +22,21 @@ export default function CareerModal({
   onAnimationEnd,
   title,
   youtubeId,
-  achievement,
   detailContent,
   voice,
 }: CareerModalProps) {
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
 
     return () => {
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [isOpen]);
 
@@ -55,7 +53,7 @@ export default function CareerModal({
   return (
     <div
       className={`${styles.CareerModal__Overlay} ${
-        isClosing ? styles['CareerModal__Overlay--closing'] : ''
+        isClosing ? styles["CareerModal__Overlay--closing"] : ""
       }`}
       role="dialog"
       aria-modal="true"
@@ -63,7 +61,7 @@ export default function CareerModal({
     >
       <div
         className={`${styles.CareerModal__Container} ${
-          isClosing ? styles['CareerModal__Container--closing'] : ''
+          isClosing ? styles["CareerModal__Container--closing"] : ""
         }`}
         onAnimationEnd={onAnimationEnd}
       >
@@ -101,10 +99,6 @@ export default function CareerModal({
             </div>
 
             <section className={styles.CareerModal__ResultSection}>
-              <h2 className={styles.CareerModal__ResultTitle}>{title}</h2>
-              <h3 className={styles.CareerModal__ResultAchievement}>
-                {achievement}
-              </h3>
               <p className={styles.CareerModal__ResultContent}>
                 {detailContent}
               </p>

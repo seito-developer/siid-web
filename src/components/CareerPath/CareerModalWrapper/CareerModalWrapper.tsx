@@ -48,7 +48,6 @@ export default function CareerModalWrapper({
       voice={career.voice}
       title={career.title}
       youtubeId={career.youtubeId}
-      achievement={career.achievement}
       detailContent={career.detailContent}
     />
   );

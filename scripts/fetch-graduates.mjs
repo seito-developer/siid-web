@@ -204,9 +204,7 @@ function buildDraft(video, id) {
     title: video.title,
     voice: String(id).padStart(2, '0'),
     youtubeId: video.videoId,
-    description: summary,
     tags: [],
-    achievement: '',
     detailContent: summary,
     // 動画視聴が必要な編集フィールドが未記入であることを示すフラグ。
     // getCareerPathData() で描画対象から除外される。人が埋めたら削除すること。
