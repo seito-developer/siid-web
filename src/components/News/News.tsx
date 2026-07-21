@@ -1,13 +1,15 @@
 import Link from 'next/link';
 
-import { getNews } from '@/lib/getNews';
+import { NewsPost } from '@/types/news';
 
 import styles from './News.module.css';
 import NewsCarousel from './NewsCarousel';
 
-export default async function News() {
-  const posts = await getNews();
+type NewsProps = {
+  posts: NewsPost[];
+};
 
+export default function News({ posts }: NewsProps) {
   return (
     <div className={styles.News}>
       <section className={styles.News__Inner}>
