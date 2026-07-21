@@ -47,14 +47,7 @@ export default function CareerModalWrapper({
       onAnimationEnd={handleAnimationEnd}
       voice={career.voice}
       title={career.title}
-      age={career.age}
-      sex={career.sex}
-      course={career.course}
-      reason={career.reason}
-      description={career.description}
       youtubeId={career.youtubeId}
-      detailTitle={career.detailTitle}
-      achievement={career.achievement}
       detailContent={career.detailContent}
     />
   );

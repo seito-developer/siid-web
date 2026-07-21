@@ -6,14 +6,7 @@ import styles from './CareerModal.module.css';
 
 interface CareerModalProps {
   title: string;
-  age: number;
-  sex: string;
-  course: string;
-  reason: string;
-  description: string;
   youtubeId: string;
-  detailTitle: string;
-  achievement: string;
   detailContent: string;
   isOpen: boolean;
   isClosing: boolean;
@@ -28,14 +21,7 @@ export default function CareerModal({
   onClose,
   onAnimationEnd,
   title,
-  age,
-  sex,
-  course,
-  reason,
-  description,
   youtubeId,
-  detailTitle,
-  achievement,
   detailContent,
   voice,
 }: CareerModalProps) {
@@ -95,53 +81,13 @@ export default function CareerModal({
 
         <div className={styles.CareerModal__Content}>
           <article className={styles.CareerModal__Article}>
-            <div className={styles.CareerModal__Top}>
-              <header className={styles.CareerModal__Header}>
-                <div className={styles.CareerModal__HeaderTop}>
-                  <div className={styles.CareerModal__TitleWrapper}>
-                    <h3 className={styles.CareerModal__Title}>{title}</h3>
-                  </div>
-
-                  <div className={styles.CareerModal__Block}>
-                    <div className={styles.CareerModal__InfoWrapper}>
-                      <div className={styles.CareerModal__InfoItem}>
-                        <span className={styles.CareerModal__Label}>
-                          {age}代 {sex}
-                        </span>
-                      </div>
-
-                      <div className={styles.CareerModal__InfoItem}>
-                        <span className={styles.CareerModal__Label}>
-                          受講したコース：
-                        </span>
-                        <span className={styles.CareerModal__Course}>
-                          {course}
-                        </span>
-                      </div>
-
-                      <div className={styles.CareerModal__InfoItem}>
-                        <span className={styles.CareerModal__Label}>
-                          受講した目的：
-                        </span>
-                        <span className={styles.CareerModal__Text}>
-                          {reason}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </header>
-
-              <span className={styles.CareerModal__Line}></span>
-
-              <section className={styles.CareerModal__DescriptionSection}>
-                <p className={styles.CareerModal__Description}>
-                  {description.replace(/\n/g, '\n\n')}
-                </p>
-              </section>
+            <div className={styles.CareerModal__HeaderTop}>
+              <div className={styles.CareerModal__TitleWrapper}>
+                <h3 className={styles.CareerModal__Title}>{title}</h3>
+              </div>
             </div>
 
-            <section className={styles.CareerModal__ImageSection}>
+            <div className={styles.CareerModal__ImageSection}>
               <iframe
                 src={getYouTubeEmbedUrl(youtubeId)}
                 className={styles.CareerModal__Image}
@@ -150,13 +96,9 @@ export default function CareerModal({
                 allow="encrypted-media; picture-in-picture"
                 allowFullScreen
               />
-            </section>
+            </div>
 
             <section className={styles.CareerModal__ResultSection}>
-              <h2 className={styles.CareerModal__ResultTitle}>{detailTitle}</h2>
-              <h3 className={styles.CareerModal__ResultAchievement}>
-                {achievement}
-              </h3>
               <p className={styles.CareerModal__ResultContent}>
                 {detailContent}
               </p>

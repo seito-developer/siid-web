@@ -22,9 +22,8 @@ export default function CareerPathList({
   currentPage,
   modalId,
 }: CareerPathListProps) {
-
   const selectedCareer = modalId
-    ? careerPathData.find(item => item.id === modalId)
+    ? careerPathData.find((item) => item.id === modalId)
     : null;
 
   const currentItems = getCurrentPageData(
@@ -52,7 +51,7 @@ export default function CareerPathList({
               voice={item.voice}
               title={item.title}
               thumbnailUrl={getYouTubeThumbnailUrl(item.youtubeId)}
-              description={item.description}
+              detailContent={item.detailContent}
               tags={item.tags}
               priority={currentPage === 1 && index < 2}
             />
@@ -75,12 +74,21 @@ export default function CareerPathList({
         />
 
         <div className={styles.CareerPath__SurveyLink}>
-          <Link href="https://docs.google.com/document/d/e/2PACX-1vRZv3ro50YWS5LdR3PSGB3b93omPY854misnktTRAOZ7xgIOj9MRQs4TgybkO3kJLSDzUXiQEoDDaJ4/pub" target="_blank" rel="noopener noreferrer" className={styles.CareerCard__SurveyLinkAnchor}>
+          <Link
+            href="https://docs.google.com/document/d/e/2PACX-1vRZv3ro50YWS5LdR3PSGB3b93omPY854misnktTRAOZ7xgIOj9MRQs4TgybkO3kJLSDzUXiQEoDDaJ4/pub"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.CareerCard__SurveyLinkAnchor}
+          >
             <span className={styles.CareerCard__SurveyText}>
               過去の卒業生のアンケート内容はこちら
             </span>
 
-            <svg width={32} height={32} className={styles.CareerPath__SurveyIcon}>
+            <svg
+              width={32}
+              height={32}
+              className={styles.CareerPath__SurveyIcon}
+            >
               <use href="#page-flip" />
             </svg>
           </Link>
