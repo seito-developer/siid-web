@@ -20,6 +20,15 @@
   height: 400px;
 }
 
+.CareerPath__YouTubeLink {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto 16px;
+    border: 1px solid var(--text);
+    border-radius: 60px;
+    background-color: var(--text);
+}
+
 .CareerPath__SurveyLink {
     width: 100%;
     max-width: 440px;
@@ -27,6 +36,13 @@
     border: 1px solid var(--text);
     border-radius: 60px;
     background-color: var(--text);
+}
+
+.CareerPath__YouTubeIcon {
+  flex-shrink: 0;
+  width: 29px;
+  height: 20px;
+  margin-left: 4px;
 }
 
 .CareerCard__SurveyLinkAnchor {
@@ -60,6 +76,15 @@
   .CareerPath__SurveyIcon {
     width: 32px;
     height: 32px;
+  }
+
+  .CareerPath__YouTubeIcon {
+    width: 35px;
+    height: 24px;
+  }
+
+  .CareerPath__YouTubeLink {
+    margin-bottom: 20px;
   }
 
   .CareerPathList__Grid {
