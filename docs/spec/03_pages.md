@@ -45,12 +45,20 @@
 - **アナリティクスタグの引き継ぎは本 PR のスコープ外**(サイト全体の別 Issue で対応)。参考として本番ページで検出したタグ: GA4 `G-54L1JQ7Q7V` / GTM `GTM-58D75LLL`・`GTM-NWT5NTNS`・`GTM-PCDDS7MV`(いずれが SiiD 専用か bug-fix.org 共通かは要確認)
 - Complete ページへの遷移は Jicoo 側のリダイレクト先設定が別途必要(予約完了後に `/counseling/complete` へ飛ばす)。未設定でもページ単体は成立する。
 
-## 3-4. 404 Not Found
+## 3-4. 404 Not Found【実装済み 2026-07 / Issue #24】
 
-- Figma: `H-1 408` (3506:11639) に 404 デザインあり
-- 構成: ヘッダー+「404 NOT FOUND」大見出し+お詫びテキスト+パンくず+ SiiD カードのトランプ風ゲーム要素+フッター
-- デザイン内の付箋コメントに「カードにうんちく的な言葉が入ったら面白い」「ぜひこのゲームも検討ください」とあり → **カードめくりのインタラクション**(クリックでフリップして豆知識表示)を実装する。凝りすぎない範囲で 1 日以内の作業量に収める
-- 実装: `src/app/not-found.tsx`(App Router 規約)
+- Figma: **`H-1 409` (3506:11730)** 準拠(Issue #24 で `H-1 408` の「カードめくり」案から仕様変更)。SP 版デザイン(H-1 410〜413)はキャンバス全走査の結果 **存在しない** ことを確認 → PC デザインを縮小した構成で実装
+- 構成: 下層ナビ+青パネル「404 NOT FOUND」見出し(`NotFoundHero`。既存 `Headline` とはタイトルサイズ・破線位置が異なるため専用実装)+お詫びテキスト+**フル幅ドット絵ミニゲーム**+フッター。パンくずなし
+- **ルーティング(重要)**: `src/app/not-found.tsx`(root not-found)で実装。前提として本リポジトリは root `layout.tsx` 不在の変則構成で `npm run build` 自体が失敗していたため、Issue #24 で **root `src/app/layout.tsx` を新設**し、旧 `homeLayout.tsx` を廃止・`(LowerPages)/layout.tsx` は `NavigationPcLower` のみ担当に変更した(共通クローム Icons / NavigationSp / Footer / フォントは root layout に集約)。
+  - 検討済みの代替案: `(LowerPages)` 内 catch-all + `notFound()` は、動的レンダー時に SSR が `__next_error__` シェルになりクロームがクライアント描画になるため不採用。root not-found は静的プリレンダーされ完全な HTML + HTTP 404 + noindex を返す(`curl -sI` で検証済み)
+- **ミニゲーム**(chrome://dino 風、`src/components/NotFound/Game/`):
+  - Phaser 3.90(`next/dynamic` + `ssr: false` で404ページ限定ロード。他ルートの初期チャンクに含まれないことを `.next/app-build-manifest.json` で検証済み。遅延チャンク約1.1MB)
+  - 単一シーン(idle / running / gameover)。待機画面は H-1 409 の静止再現、スペース/↑/クリック/タップで開始・ジャンプ・リスタート
+  - 障害物: ヘビ(地上)/ハチ(低空・上下浮遊)/レンガ1〜2段をランダム間隔で生成。速度は 380→820px/s に漸増
+  - ライフ3(ハートUI)・被弾で1500ms無敵(点滅)・スコア=走行距離・ハイスコアは localStorage `siid_404_high_score`
+  - `prefers-reduced-motion`: 待機画面は構造的に完全静止。プレイ中もハチ浮遊・被弾点滅を省略(点滅の代わりに半透明化)
+- アセット: `public/images/404/*.png`(H-1 409 配下から @2x で書き出し14点)。**SVG の `var(--fill-0)` 問題を回避するため PNG を採用**したが、Figma 書き出し PNG は背景色 `#EEEFED` が不透明で入るため透過処理済み。草花(3506:11978)はほぼ背景色のみで書き出し不能につき省略
+- 付帯修正: `next/font` の `subsets` 未指定によるビルドエラーも解消(`constants/common.ts` に `subsets: ['latin']` 追加)
 
 ## 3-5. OGP / favicon(付帯タスク)
 
