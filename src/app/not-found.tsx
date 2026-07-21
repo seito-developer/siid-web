@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
 import NavigationPcLower from '@/components/Navigation/NavigationPcLower/NavigationPcLower';
+import NotFoundHero from '@/components/NotFound/NotFoundHero';
 import { commonTitle, pages } from '@/constants/meta';
 import { handleStringHTML } from '@/utils/helper';
 
@@ -14,8 +15,7 @@ export default function NotFound() {
   return (
     <div>
       <NavigationPcLower />
-      <h1>404 NOT FOUND</h1>
-      <p>{handleStringHTML(pages.notFound.description, false)}</p>
+      <NotFoundHero />
     </div>
   );
 }
