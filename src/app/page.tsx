@@ -18,7 +18,6 @@ import { commonTitle, pages } from '@/constants/meta';
 import { handleStringHTML } from '@/utils/helper';
 
 import styles from './Home.module.css';
-import HomeLayout from './homeLayout';
 export const metadata: Metadata = {
   title: commonTitle,
   description: handleStringHTML(pages.index.description, false),
@@ -29,47 +28,45 @@ export default function Home() {
     <>
       <Opening />
       <FadeInOnScroll />
-      <HomeLayout>
-        <div className={styles.Home}>
-          <Header />
-          <div className={styles.Home__Hero}>
-            <Hero />
-          </div>
+      <div className={styles.Home}>
+        <Header />
+        <div className={styles.Home__Hero}>
+          <Hero />
+        </div>
 
-          <div className={styles.Home__Contents}>
-            <div className={styles.Home__News}>
-              <News />
-            </div>
-            <div className={styles.Home__ReskillBanner}>
-              <ReskillBanner />
-            </div>
-            <div className={styles.Home__Message}>
-              <Message />
-            </div>
-            <div className={`${styles.Home__Comparison} fade-in-scroll`}>
-              <Comparison />
-            </div>
-            <div className={styles.Home__Reason}>
-              <Reason />
-            </div>
-            <div className={styles.Home__GenerativeAi}>
-              <GenerativeAi />
-            </div>
-            <div className={styles.Home__Supporter}>
-              <Supporter />
-            </div>
-            <div className={`${styles.Home__Cource} fade-in-scroll`}>
-              <Cource />
-            </div>
-            <div className={styles.Home__CareerPath}>
-              <CareerPath />
-            </div>
-            <div className={styles.Home__Faq}>
-              <Faq />
-            </div>
+        <div className={styles.Home__Contents}>
+          <div className={styles.Home__News}>
+            <News />
+          </div>
+          <div className={styles.Home__ReskillBanner}>
+            <ReskillBanner />
+          </div>
+          <div className={styles.Home__Message}>
+            <Message />
+          </div>
+          <div className={`${styles.Home__Comparison} fade-in-scroll`}>
+            <Comparison />
+          </div>
+          <div className={styles.Home__Reason}>
+            <Reason />
+          </div>
+          <div className={styles.Home__GenerativeAi}>
+            <GenerativeAi />
+          </div>
+          <div className={styles.Home__Supporter}>
+            <Supporter />
+          </div>
+          <div className={`${styles.Home__Cource} fade-in-scroll`}>
+            <Cource />
+          </div>
+          <div className={styles.Home__CareerPath}>
+            <CareerPath />
+          </div>
+          <div className={styles.Home__Faq}>
+            <Faq />
           </div>
         </div>
-      </HomeLayout>
+      </div>
     </>
   );
 }
