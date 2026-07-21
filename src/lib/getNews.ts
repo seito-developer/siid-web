@@ -9,12 +9,13 @@ import { NewsPost } from '@/types/news';
  * 必要な環境変数（.env.local / Vercel）:
  * - MICROCMS_SERVICE_DOMAIN … `https://XXXX.microcms.io` の XXXX
  * - MICROCMS_API_KEY         … 読み取り用 API キー
- * - MICROCMS_COLUMN_CATEGORY_ID … 「コラム」カテゴリのコンテンツ ID（任意・デフォルト 'column'）
  */
 
 const serviceDomain = process.env.MICROCMS_SERVICE_DOMAIN;
 const apiKey = process.env.MICROCMS_API_KEY;
-const columnCategoryId = process.env.MICROCMS_COLUMN_CATEGORY_ID ?? 'column';
+
+// 「コラム」カテゴリのコンテンツ ID（変更予定がないため定数で固定）
+const COLUMN_CATEGORY_ID = 'column';
 
 const NEWS_LIMIT = 3;
 
@@ -31,7 +32,7 @@ export async function getNews(): Promise<NewsPost[]> {
       endpoint: 'blog',
       queries: {
         // categories は複数参照フィールドのため contains で絞り込む
-        filters: `categories[contains]${columnCategoryId}`,
+        filters: `categories[contains]${COLUMN_CATEGORY_ID}`,
         orders: '-publishedAt',
         limit: NEWS_LIMIT,
         fields: 'id,title,publishedAt',

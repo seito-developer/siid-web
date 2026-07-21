@@ -38,7 +38,7 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 ## TOPページ News セクション（microCMS 連携・Issue #30）
 
 - SiiD BLOG（microCMS）の `blog` エンドポイントから「コラム」カテゴリの最新記事を取得して表示。記事クリックで該当記事（`https://blog.bug-fix.org/blog/{id}`）へ遷移。
-- 取得ロジックは `src/lib/getNews.ts`（サーバー側実行）。`categories[contains]{カテゴリID}` で絞り込み、`publishedAt` 降順で最大3件。ISR で 600 秒ごとに再検証。
+- 取得ロジックは `src/lib/getNews.ts`（サーバー側実行）。`categories[contains]column` で絞り込み、`publishedAt` 降順で最大3件。ISR で 600 秒ごとに再検証。カテゴリID `column` は変更予定がないため定数で固定。
 - `News.tsx` は async Server Component（取得担当）、スワイプ/矢印カルーセルUXは `NewsCarousel.tsx`（Client Component）に分離。
 - 環境変数（サーバー専用・`.env.local` / Vercel に設定。`.env.example` 参照）:
 
@@ -46,7 +46,6 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
   |------|------|
   | `MICROCMS_SERVICE_DOMAIN` | `XXXX.microcms.io` の XXXX |
   | `MICROCMS_API_KEY` | 読み取り用 API キー |
-  | `MICROCMS_COLUMN_CATEGORY_ID` | 「コラム」カテゴリのコンテンツID（省略時 `column`） |
 
 - `blog` エンドポイントの `categories` は複数参照フィールドのため、絞り込みは `equals` ではなく `contains` を使う。
 - 環境変数未設定・取得失敗時は空配列を返し、News は「現在お知らせはありません。」を表示（ページ全体は落とさない）。
