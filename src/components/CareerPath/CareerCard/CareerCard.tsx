@@ -1,7 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
-import styles from "./CareerCard.module.css";
+import styles from './CareerCard.module.css';
 
 interface CareerCardProps {
   id: string;

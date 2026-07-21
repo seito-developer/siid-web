@@ -1,13 +1,13 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import CareerCard from "@/components/CareerPath/CareerCard/CareerCard";
-import CareerModalWrapper from "@/components/CareerPath/CareerModalWrapper/CareerModalWrapper";
-import Pagination from "@/components/CareerPath/Pagination/Pagination";
-import { CareerPathData } from "@/types/career";
-import { getCurrentPageData, getPaginationInfo } from "@/utils/pagination";
-import { getYouTubeThumbnailUrl } from "@/utils/youtube";
+import CareerCard from '@/components/CareerPath/CareerCard/CareerCard';
+import CareerModalWrapper from '@/components/CareerPath/CareerModalWrapper/CareerModalWrapper';
+import Pagination from '@/components/CareerPath/Pagination/Pagination';
+import { CareerPathData } from '@/types/career';
+import { getCurrentPageData, getPaginationInfo } from '@/utils/pagination';
+import { getYouTubeThumbnailUrl } from '@/utils/youtube';
 
-import styles from "./CareerPathList.module.css";
+import styles from './CareerPathList.module.css';
 
 export const ITEMS_PER_PAGE = 10;
 
