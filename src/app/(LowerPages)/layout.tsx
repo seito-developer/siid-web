@@ -2,6 +2,8 @@ import 'sanitize.css';
 import 'sanitize.css/forms.css';
 import 'sanitize.css/typography.css';
 import '../../styles/globals.css';
+import Analytics from '@/components/Analytics/Analytics';
+import GtmNoScript from '@/components/Analytics/GtmNoScript';
 import _Corner, { CornerPosition as _CornerPosition } from '@/components/Corner/Corner';
 import Footer from '@/components/Footer/Footer';
 import Icons from '@/components/Icons/Icons';
@@ -17,6 +19,8 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <body className={`${poppins.variable} ${notoSansJp.variable}`}>
+        <GtmNoScript />
+        <Analytics />
         <Icons />
         <NavigationSp />
         <NavigationPcLower />
