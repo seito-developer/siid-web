@@ -44,6 +44,7 @@ npm run lint && npm run typecheck
 | Framework | Next.js 15（App Router） |
 | Language | TypeScript 5 |
 | Styling | CSS Modules + CSS Custom Properties |
+| Game | Phaser 3.90（404ページのミニゲーム専用。`next/dynamic` + `ssr: false` で404ページ限定ロード） |
 | Slider | Swiper 12 |
 | CSS Reset | sanitize.css |
 | Font | Google Fonts (Noto Sans JP, Poppins) + カスタムフォント (Bagor) |

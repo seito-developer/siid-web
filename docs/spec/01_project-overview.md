@@ -19,6 +19,7 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 | 問い合わせフォーム | **外部フォームサービス** | サービス選定は未確定([03_pages.md](./03_pages.md) 参照) |
 | Styling | CSS Modules + CSS Custom Properties | 既存。Tailwind 等は導入しない |
 | Slider | Swiper 12 | 既存 |
+| Game | **Phaser 3.90** | 2026-07 確定(Issue #24)。404ページのミニゲーム専用。`next/dynamic` + `ssr: false` で404ページ限定ロード |
 
 ## ページ一覧と実装状況
 
