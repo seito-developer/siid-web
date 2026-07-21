@@ -15,6 +15,7 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 | Framework | Next.js 15 (App Router) | 既存 |
 | アニメーション | **GSAP** | 2026-07 ヒアリングで確定。オープニング演出・スクロール演出に使用 |
 | ホスティング | **Vercel** | 2026-07 ヒアリングで確定 |
+| ブログCMS | **microCMS** | 2026-07 確定(Issue #30)。SiiD BLOG(`blog.bug-fix.org`)のヘッドレスCMS。TOPページ News セクションが `blog` エンドポイントから「コラム」カテゴリ最新記事を取得。`microcms-js-sdk` 使用・サーバー側取得 |
 | 問い合わせフォーム | **外部フォームサービス** | サービス選定は未確定([03_pages.md](./03_pages.md) 参照) |
 | Styling | CSS Modules + CSS Custom Properties | 既存。Tailwind 等は導入しない |
 | Slider | Swiper 12 | 既存 |
@@ -33,6 +34,21 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 | `/contact` | **未実装**(ContactButton のリンク先は現状 `/counseling`) | ※ `G-1 LINE登録` は独立ページ `/line` として実装済み。`/contact` の実体は要確認のまま |
 | 404 | Next.js デフォルト | `H-1 408` (3506:11639) が 404 デザイン。H-1 410〜413 も要確認 |
 | `/counseling` | 未実装(meta.ts に定義のみ) | 要確認 |
+
+## TOPページ News セクション（microCMS 連携・Issue #30）
+
+- SiiD BLOG（microCMS）の `blog` エンドポイントから「コラム」カテゴリの最新記事を取得して表示。記事クリックで該当記事（`https://blog.bug-fix.org/blog/{id}`）へ遷移。
+- 取得ロジックは `src/lib/getNews.ts`（サーバー側実行）。`categories[contains]column` で絞り込み、`publishedAt` 降順で最大3件。ISR で 600 秒ごとに再検証。カテゴリID `column` は変更予定がないため定数で固定。
+- `News.tsx` は async Server Component（取得担当）、スワイプ/矢印カルーセルUXは `NewsCarousel.tsx`（Client Component）に分離。
+- 環境変数（サーバー専用・`.env.local` / Vercel に設定。`.env.example` 参照）:
+
+  | 変数 | 説明 |
+  |------|------|
+  | `MICROCMS_SERVICE_DOMAIN` | `XXXX.microcms.io` の XXXX |
+  | `MICROCMS_API_KEY` | 読み取り用 API キー |
+
+- `blog` エンドポイントの `categories` は複数参照フィールドのため、絞り込みは `equals` ではなく `contains` を使う。
+- 環境変数未設定・取得失敗時は空配列を返し、News は「現在お知らせはありません。」を表示（ページ全体は落とさない）。
 
 ## Figma デザインデータ
 

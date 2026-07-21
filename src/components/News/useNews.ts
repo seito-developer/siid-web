@@ -2,30 +2,28 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { NewsPostProps } from './NewsPost/NewsPost';
-
 /**
  * Custom hook to manage news articles navigation and touch events.
- * @param {NewsPostProps[]} posts - Array of news posts.
+ * @param {number} length - Number of news posts.
  * @returns {Object} - Contains current index, animation state, and handlers for navigation and touch events.
  */
 
-const useNews = (posts: NewsPostProps[]) => {
+const useNews = (length: number) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
   const nextArticle = () => {
-    if (isAnimating) {return;}
+    if (isAnimating || length === 0) {return;}
     setIsAnimating(true);
-    setCurrentIndex((prev) => (prev + 1) % posts.length);
+    setCurrentIndex((prev) => (prev + 1) % length);
   };
 
   const prevArticle = () => {
-    if (isAnimating) {return;}
+    if (isAnimating || length === 0) {return;}
     setIsAnimating(true);
-    setCurrentIndex((prev) => (prev - 1 + posts.length) % posts.length);
+    setCurrentIndex((prev) => (prev - 1 + length) % length);
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
