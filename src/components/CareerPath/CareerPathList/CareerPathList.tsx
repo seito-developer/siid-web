@@ -73,6 +73,28 @@ export default function CareerPathList({
           hasPrevPage={paginationInfo.hasPrevPage}
         />
 
+        <div className={styles.CareerPath__YouTubeLink}>
+          <Link
+            href="https://www.youtube.com/@programming-siid"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.CareerCard__SurveyLinkAnchor}
+          >
+            <span className={styles.CareerCard__SurveyText}>
+              その他の受講生様実績はこちら
+            </span>
+
+            <svg
+              width={32}
+              height={23}
+              viewBox="0 0 29 20"
+              className={styles.CareerPath__YouTubeIcon}
+            >
+              <use href="#youtube" />
+            </svg>
+          </Link>
+        </div>
+
         <div className={styles.CareerPath__SurveyLink}>
           <Link
             href="https://docs.google.com/document/d/e/2PACX-1vRZv3ro50YWS5LdR3PSGB3b93omPY854misnktTRAOZ7xgIOj9MRQs4TgybkO3kJLSDzUXiQEoDDaJ4/pub"
