@@ -37,8 +37,11 @@ export async function getNews(): Promise<NewsPost[]> {
         fields: 'id,title,publishedAt',
       },
       // ISR: 10 分ごとに再検証（再デプロイ不要で最新記事を反映）
+      // signal: microCMS 応答が遅延・ハングした場合でも TOP ページの描画を
+      //         ブロックしないよう 5 秒でタイムアウト（中断時は下の catch で [] 返却）
       customRequestInit: {
         next: { revalidate: 600 },
+        signal: AbortSignal.timeout(5000),
       },
     });
     return data.contents;
