@@ -15,6 +15,11 @@ export const GRAVITY_Y = 2200;
 export const MAX_LIVES = 3;
 export const INVINCIBLE_MS = 1500;
 
+// ハチの上下浮遊の振れ幅(px)と、イモムシが地面スクロールに上乗せで這う速度(px/s)
+export const BEE_BOB_AMPLITUDE = 12;
+export const SNAKE_CRAWL_SPEED = 40;
+export const IDLE_SNAKE_CRAWL_SPEED = 25;
+
 export const SPAWN_GAP_MIN_MS = 1400;
 export const SPAWN_GAP_MAX_MS = 2200;
 export const SPAWN_GAP_FLOOR_MS = 650;

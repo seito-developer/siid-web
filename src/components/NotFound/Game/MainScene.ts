@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 
 import {
   BASE_SPEED,
+  BEE_BOB_AMPLITUDE,
   GAME_FONT,
   GAME_HEIGHT,
   GAME_WIDTH,
@@ -9,6 +10,7 @@ import {
   GROUND_HEIGHT,
   GROUND_Y,
   HIGH_SCORE_KEY,
+  IDLE_SNAKE_CRAWL_SPEED,
   IMAGES,
   IMAGE_SCALE,
   INVINCIBLE_MS,
@@ -18,6 +20,7 @@ import {
   REGISTRY_AUTOSTART,
   REGISTRY_REDUCED_MOTION,
   SPAWN_GAP_FLOOR_MS,
+  SNAKE_CRAWL_SPEED,
   SPAWN_GAP_MAX_MS,
   SPAWN_GAP_MIN_MS,
   SPEED_RAMP_PER_SEC,
@@ -30,6 +33,7 @@ type Obstacle = {
   baseY: number;
   bobPhase: number;
   isBee: boolean;
+  isSnake: boolean;
 };
 
 // 障害物同士・プレイヤーの当たり判定を見た目より少し狭める
@@ -60,7 +64,10 @@ export default class MainScene extends Phaser.Scene {
   private promptText!: Phaser.GameObjects.Text;
   private overlayObjects: Phaser.GameObjects.GameObject[] = [];
   private spawnTimer?: Phaser.Time.TimerEvent;
-  private blinkTween?: Phaser.Tweens.Tween;
+  private blinkTimer?: Phaser.Time.TimerEvent;
+  private idleBee?: Phaser.GameObjects.Image;
+  private idleSnake?: Phaser.GameObjects.Image;
+  private idleBeeBaseY = 0;
 
   constructor() {
     super('main');
@@ -82,7 +89,10 @@ export default class MainScene extends Phaser.Scene {
     this.obstacles = [];
     this.overlayObjects = [];
     this.spawnTimer = undefined;
-    this.blinkTween = undefined;
+    this.blinkTimer = undefined;
+    this.idleBee = undefined;
+    this.idleSnake = undefined;
+    this.idleBeeBaseY = 0;
     this.reducedMotion =
       this.registry.get(REGISTRY_REDUCED_MOTION) === true;
     this.highScore = this.readHighScore();
@@ -158,7 +168,15 @@ export default class MainScene extends Phaser.Scene {
       ['snake', 1015, 313],
     ];
     decors.forEach(([key, x, y]) => {
-      this.idleDecors.push(this.addImage(key, x, y + DESIGN_OFFSET_Y));
+      const decor = this.addImage(key, x, y + DESIGN_OFFSET_Y);
+      this.idleDecors.push(decor);
+      if (key === 'bee') {
+        this.idleBee = decor;
+        this.idleBeeBaseY = decor.y;
+      }
+      if (key === 'snake') {
+        this.idleSnake = decor;
+      }
     });
   }
 
@@ -243,9 +261,11 @@ export default class MainScene extends Phaser.Scene {
     const sprites: Phaser.GameObjects.Image[] = [];
     let baseY = 0;
     let isBee = false;
+    let isSnake = false;
 
     if (roll < 0.4) {
-      // ヘビ(地上)
+      // イモムシ(地上・地面より少し速く這う)
+      isSnake = true;
       const snake = this.addImage('snake', x, 0);
       snake.setY(GROUND_Y - snake.displayHeight);
       sprites.push(snake);
@@ -271,12 +291,17 @@ export default class MainScene extends Phaser.Scene {
       baseY,
       bobPhase: Math.random() * Math.PI * 2,
       isBee,
+      isSnake,
     });
   }
 
   update(time: number, deltaMs: number) {
-    if (this.gameState !== 'running') {return;}
     const dt = deltaMs / 1000;
+    if (this.gameState === 'idle') {
+      this.updateIdleAmbience(time, dt);
+      return;
+    }
+    if (this.gameState !== 'running') {return;}
 
     this.elapsedSec += dt;
     this.speed = Math.min(
@@ -302,6 +327,22 @@ export default class MainScene extends Phaser.Scene {
 
     this.updatePlayer(dt);
     this.updateObstacles(time, dt);
+  }
+
+  // 待機画面のアンビエント演出(ハチの浮遊・イモムシの這い移動)。reduced-motion 時は完全静止を維持
+  private updateIdleAmbience(time: number, dt: number) {
+    if (this.reducedMotion) {return;}
+    if (this.idleBee?.active) {
+      this.idleBee.setY(
+        this.idleBeeBaseY + Math.sin(time * 0.004) * (BEE_BOB_AMPLITUDE / 2),
+      );
+    }
+    if (this.idleSnake?.active) {
+      this.idleSnake.x -= IDLE_SNAKE_CRAWL_SPEED * dt;
+      if (this.idleSnake.x < -this.idleSnake.displayWidth) {
+        this.idleSnake.x = GAME_WIDTH + 50;
+      }
+    }
   }
 
   private scrollWithWrap(decors: Phaser.GameObjects.Image[], dx: number) {
@@ -338,11 +379,14 @@ export default class MainScene extends Phaser.Scene {
 
     this.obstacles = this.obstacles.filter((obstacle) => {
       let offscreen = false;
+      const moveSpeed =
+        this.speed + (obstacle.isSnake ? SNAKE_CRAWL_SPEED : 0);
       obstacle.sprites.forEach((sprite) => {
-        sprite.x -= this.speed * dt;
+        sprite.x -= moveSpeed * dt;
         if (obstacle.isBee && !this.reducedMotion) {
           sprite.setY(
-            obstacle.baseY + Math.sin(time * 0.006 + obstacle.bobPhase) * 18,
+            obstacle.baseY +
+              Math.sin(time * 0.006 + obstacle.bobPhase) * BEE_BOB_AMPLITUDE,
           );
         }
         if (sprite.x < -sprite.displayWidth - 50) {offscreen = true;}
@@ -381,25 +425,24 @@ export default class MainScene extends Phaser.Scene {
       return;
     }
 
-    if (this.reducedMotion) {
-      this.player.setAlpha(0.5);
-      this.time.delayedCall(INVINCIBLE_MS, () => this.player.setAlpha(1));
-    } else {
-      this.blinkTween = this.tweens.add({
-        targets: this.player,
-        alpha: 0.2,
-        duration: 100,
-        yoyo: true,
-        repeat: 7,
-        onComplete: () => this.player.setAlpha(1),
-      });
-    }
+    // 無敵時間中はイージングなしのハード点滅(reduced-motion 時は 3Hz 未満に抑えたゆっくり点滅)
+    this.blinkTimer?.remove();
+    const interval = this.reducedMotion ? 250 : 100;
+    this.player.setAlpha(0.15);
+    this.blinkTimer = this.time.addEvent({
+      delay: interval,
+      repeat: Math.floor(INVINCIBLE_MS / interval) - 1,
+      callback: () => {
+        this.player.setAlpha(this.player.alpha < 1 ? 1 : 0.15);
+      },
+    });
+    this.time.delayedCall(INVINCIBLE_MS, () => this.player.setAlpha(1));
   }
 
   private gameOver() {
     this.gameState = 'gameover';
     this.spawnTimer?.remove();
-    this.blinkTween?.stop();
+    this.blinkTimer?.remove();
     this.player.setAlpha(1);
 
     const score = this.currentScore();
