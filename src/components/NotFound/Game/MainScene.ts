@@ -5,7 +5,6 @@ import {
   BEE_BOB_AMPLITUDE,
   GAME_FONT,
   GAME_HEIGHT,
-  GAME_WIDTH,
   GRAVITY_Y,
   GROUND_HEIGHT,
   FIRST_SPAWN_DELAY_MS,
@@ -69,6 +68,11 @@ export default class MainScene extends Phaser.Scene {
     super('main');
   }
 
+  // キャンバス幅は PC(1440)/SP(16:9) で異なるため定数でなくシーンから取る
+  private gameWidth() {
+    return this.scale.width;
+  }
+
   init() {
     this.gameState = 'idle';
     this.speed = BASE_SPEED;
@@ -130,7 +134,7 @@ export default class MainScene extends Phaser.Scene {
       .tileSprite(
         0,
         GAME_HEIGHT - GROUND_HEIGHT,
-        GAME_WIDTH,
+        this.gameWidth(),
         GROUND_HEIGHT,
         'ground',
       )
@@ -159,7 +163,7 @@ export default class MainScene extends Phaser.Scene {
       this.hearts.push(this.addImage('heart-full', 48 + i * 33, 24));
     }
     this.scoreText = this.add
-      .text(GAME_WIDTH - 48, 24, '', {
+      .text(this.gameWidth() - 48, 24, '', {
         fontFamily: GAME_FONT,
         fontSize: '24px',
         color: '#ffffff',
@@ -168,7 +172,7 @@ export default class MainScene extends Phaser.Scene {
     this.updateScoreText();
 
     this.promptText = this.add
-      .text(GAME_WIDTH / 2, 200, 'PRESS SPACE / TAP TO START', {
+      .text(this.gameWidth() / 2, 200, 'PRESS SPACE / TAP TO START', {
         fontFamily: GAME_FONT,
         fontSize: '32px',
         color: '#ffffff',
@@ -227,7 +231,7 @@ export default class MainScene extends Phaser.Scene {
   }
 
   private spawnObstacle() {
-    const x = GAME_WIDTH + 100;
+    const x = this.gameWidth() + 100;
     const roll = Math.random();
     const sprites: Phaser.GameObjects.Image[] = [];
     let baseY = 0;
@@ -291,7 +295,7 @@ export default class MainScene extends Phaser.Scene {
     decors.forEach((decor) => {
       decor.x -= dx;
       if (decor.x < -decor.displayWidth - 50) {
-        decor.x += GAME_WIDTH + 200;
+        decor.x += this.gameWidth() + 200;
       }
     });
   }
@@ -395,10 +399,10 @@ export default class MainScene extends Phaser.Scene {
     this.updateScoreText();
 
     const overlay = this.add
-      .rectangle(0, 0, GAME_WIDTH, GAME_HEIGHT, 0x342525, 0.6)
+      .rectangle(0, 0, this.gameWidth(), GAME_HEIGHT, 0x342525, 0.6)
       .setOrigin(0, 0);
     const title = this.add
-      .text(GAME_WIDTH / 2, 170, 'GAME OVER', {
+      .text(this.gameWidth() / 2, 170, 'GAME OVER', {
         fontFamily: GAME_FONT,
         fontSize: '56px',
         color: '#ffffff',
@@ -406,7 +410,7 @@ export default class MainScene extends Phaser.Scene {
       .setOrigin(0.5, 0.5);
     const result = this.add
       .text(
-        GAME_WIDTH / 2,
+        this.gameWidth() / 2,
         240,
         `SCORE ${score}   HI ${this.highScore}`,
         {
@@ -417,7 +421,7 @@ export default class MainScene extends Phaser.Scene {
       )
       .setOrigin(0.5, 0.5);
     const prompt = this.add
-      .text(GAME_WIDTH / 2, 300, 'PRESS SPACE / TAP TO RESTART', {
+      .text(this.gameWidth() / 2, 300, 'PRESS SPACE / TAP TO RESTART', {
         fontFamily: GAME_FONT,
         fontSize: '24px',
         color: '#ffffff',
