@@ -12,7 +12,7 @@ const FEATURES = [
   },
   {
     id: 2,
-    image: '/images/service/features/featurelist/featureitem/feature-2.jpg',
+    image: '/images/service/features/featurelist/featureitem/feature-2.webp',
     title1: '転職向けポートフォリオ',
     title2: '完成までの並走サポート',
     description: 'アイデア出しから設計、実装・デプロイ、さらには履歴書や面接対策まで、プロダクト制作と転職活動のすべてをゼロから並走サポートします。',

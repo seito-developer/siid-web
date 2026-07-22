@@ -5,15 +5,12 @@ import ContentsArea from '@/components/ContentsArea/ContentsArea';
 import Features from '@/components/Features/Features';
 import Headline from '@/components/Headline/Headline';
 import Support from '@/components/Support/Support';
-import { commonTitle, pages } from '@/constants/meta';
+import { buildPageMetadata, pages } from '@/constants/meta';
 import { handleStringHTML } from '@/utils/helper';
 
 import styles from './Service.module.css';
 
-export const metadata: Metadata = {
-  title: `${pages.service.name.ja} | ${commonTitle}`,
-  description: handleStringHTML(pages.service.description, false),
-};
+export const metadata: Metadata = buildPageMetadata(pages.service);
 
 const breadcrumb: BreadcrumbProps[] = [
   { title: pages.index.name.ja, url: pages.index.url },

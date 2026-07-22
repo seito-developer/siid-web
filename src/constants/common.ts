@@ -6,10 +6,12 @@ export const notoSansJp = Noto_Sans_JP({
   variable: '--font-noto-sans-jp',
   weight: ['400', '900'],
   subsets: ['latin'],
+  display: 'swap',
 });
 
 export const poppins = Poppins({
   variable: '--font-poppins',
   weight: ['400', '900'],
   subsets: ['latin'],
+  display: 'swap',
 });

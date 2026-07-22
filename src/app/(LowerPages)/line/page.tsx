@@ -7,16 +7,13 @@ import ContentsArea from '@/components/ContentsArea/ContentsArea';
 import Headline from '@/components/Headline/Headline';
 import LineBanner from '@/components/Line/LineBanner/LineBanner';
 import LinePresents from '@/components/Line/LinePresents/LinePresents';
-import { commonTitle, pages } from '@/constants/meta';
+import { buildPageMetadata, pages } from '@/constants/meta';
 import { getLinePresents } from '@/lib/getLinePresents';
 import { handleStringHTML } from '@/utils/helper';
 
 import styles from './Line.module.css';
 
-export const metadata: Metadata = {
-  title: `${pages.line.name.ja} | ${commonTitle}`,
-  description: handleStringHTML(pages.line.description, false),
-};
+export const metadata: Metadata = buildPageMetadata(pages.line);
 
 const breadcrumb: BreadcrumbProps[] = [
   { title: pages.index.name.ja, url: pages.index.url },

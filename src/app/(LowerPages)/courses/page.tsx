@@ -8,16 +8,13 @@ import CourseComparison from '@/components/Courses/CourseComparison/CourseCompar
 import CoursePlans from '@/components/Courses/CoursePlans/CoursePlans';
 import LineBanner from '@/components/Courses/LineBanner/LineBanner';
 import Headline from '@/components/Headline/Headline';
-import { commonTitle, pages } from '@/constants/meta';
+import { buildPageMetadata, pages } from '@/constants/meta';
 import { getCoursePlansData } from '@/lib/getCoursePlans';
 import { handleStringHTML } from '@/utils/helper';
 
 import styles from './Courses.module.css';
 
-export const metadata: Metadata = {
-  title: `${pages.courses.name.ja} | ${commonTitle}`,
-  description: handleStringHTML(pages.courses.description, false),
-};
+export const metadata: Metadata = buildPageMetadata(pages.courses);
 
 const breadcrumb: BreadcrumbProps[] = [
   { title: pages.index.name.ja, url: pages.index.url },
