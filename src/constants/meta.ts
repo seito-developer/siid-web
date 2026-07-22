@@ -56,6 +56,15 @@ export const pages = {
     url: '/line',
     description: 'SiiDは学んで終わりではなく、その先の人生もあなたと共にありたいと考えています。<br />そのためのサポートもしっかりとご用意しています。',
   },
+  notFound: {
+    name: {
+      ja: 'ページが見つかりません',
+      en: '404 Not Found',
+    },
+    url: '/404',
+    description:
+      '大変申し訳ございませんが、一時的にアクセスできない状態か、<br />移動もしくは削除されてしまった可能性があります',
+  },
   counselingComplete: {
     name: {
       ja: 'ご予約完了',
