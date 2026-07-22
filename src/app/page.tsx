@@ -15,6 +15,7 @@ import Reason from '@/components/Reason/Reason';
 import ReskillBanner from '@/components/ReskillBanner/ReskillBanner';
 import Supporter from '@/components/Supporter/Supporter';
 import { commonTitle, pages } from '@/constants/meta';
+import { getNews } from '@/lib/getNews';
 import { handleStringHTML } from '@/utils/helper';
 
 import styles from './Home.module.css';
@@ -23,7 +24,9 @@ export const metadata: Metadata = {
   description: handleStringHTML(pages.index.description, false),
 };
 
-export default function Home() {
+export default async function Home() {
+  const posts = await getNews();
+
   return (
     <>
       <Opening />
@@ -31,12 +34,12 @@ export default function Home() {
       <div className={styles.Home}>
         <Header />
         <div className={styles.Home__Hero}>
-          <Hero />
+          <Hero news={posts} />
         </div>
 
         <div className={styles.Home__Contents}>
           <div className={styles.Home__News}>
-            <News />
+            <News posts={posts} />
           </div>
           <div className={styles.Home__ReskillBanner}>
             <ReskillBanner />
