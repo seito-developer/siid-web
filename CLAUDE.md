@@ -69,8 +69,7 @@ src/
 │   ├── layout.tsx               # ルートレイアウト（html/body・Icons・NavigationSp・Footer）
 │   ├── page.tsx                 # ホームページ（TOPページ）
 │   ├── not-found.tsx            # 404ページ（dino風ミニゲーム付き）
-│   ├── robots.ts                # robots.txt（SITE_URL の sitemap を案内）
-│   ├── sitemap.ts               # sitemap.xml（実在ページ + career-path 全ページ番号）
+│   ├── sitemap.ts               # sitemap.xml（実在ページ + career-path 全ページ番号。robots.txt はルートドメイン側の別プロジェクトで対応）
 │   ├── apple-icon.png           # apple-touch-icon（Next.js ファイル規約で自動配線）
 │   ├── favicon.ico
 │   └── Home.module.css

@@ -9,7 +9,8 @@ interface StrengthCardProps {
 }
 
 export default function StrengthCard({ icon, title, items }: StrengthCardProps) {
-  const animeSrc = `/images/reason/strength/strengthlist/strengthcard/${icon}.webp`;
+  // APNG(アニメーション付きPNG)のため WebP 変換対象外(変換するとアニメーションが失われる)
+  const animeSrc = `/images/reason/strength/strengthlist/strengthcard/${icon}.png`;
 
   return (
     <div className={styles.StrengthCard}>

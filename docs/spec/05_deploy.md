@@ -41,9 +41,9 @@
 - **サイト URL**: `NEXT_PUBLIC_SITE_URL`(未設定時は `https://bug-fix.org/siid`)を `src/constants/meta.ts` の `SITE_URL` で参照。canonical・OGP・sitemap の絶対 URL 生成に使用
 - **metadata**: `buildPageMetadata()`(`src/constants/meta.ts`)が title / description / canonical / openGraph / twitter を一括生成。全ページで使用。`/counseling/complete` は noindex
 - **OGP 画像**: `public/ogp.png`(1200×630、Figma 4265:8754)。favicon は `src/app/favicon.ico`(16/32/48px、Figma 4265:8761)、apple-touch-icon は `src/app/apple-icon.png`(180px、Figma 4265:8766、Next.js のファイル規約で自動配線)
-- **robots / sitemap**: `src/app/robots.ts` / `src/app/sitemap.ts`。**注意**: robots.txt はドメインルートでのみ有効なため、`/siid` 配下で公開する場合は bug-fix.org 側(現行サイトのリポジトリ)の robots.txt に Sitemap 行を追記する必要がある。GSC には sitemap URL を直接送信すれば機能する
+- **sitemap**: `src/app/sitemap.ts`(`/sitemap.xml`)。GSC には sitemap URL を直接送信する。**robots.txt はドメインルート(bug-fix.org)でのみ有効なため本リポジトリでは実装せず、別プロジェクト(現行サイト側)で対応する**(PR #37 レビューでの決定)
 - **構造化データ**: TOP に Organization の JSON-LD(`src/components/JsonLd/JsonLd.tsx`)
-- **画像**: 300KB 超の PNG/JPG を WebP 化(`strengthcard/` と `courses/langs/` はディレクトリごと変換)。意味のある画像の空 alt を解消(装飾 SVG は空 alt を維持)
+- **画像**: 300KB 超の PNG/JPG を WebP 化(`courses/langs/` はディレクトリごと変換)。意味のある画像の空 alt を解消(装飾 SVG は空 alt を維持)。**例外**: `strengthcard/*.png` は APNG(アニメーション付き)のため WebP 変換対象外(変換するとアニメーションが失われる)
 
 ## 公開前チェックリスト
 
