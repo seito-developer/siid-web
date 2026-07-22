@@ -1,0 +1,7 @@
+.NotFoundGameSection {
+    width: 100%;
+    aspect-ratio: 1440 / 500;
+    background: #29bdf3;
+    overflow: hidden;
+    touch-action: manipulation;
+}
