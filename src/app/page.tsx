@@ -8,38 +8,36 @@ import Faq from '@/components/Faq/Faq';
 import GenerativeAi from '@/components/GenerativeAi/GenerativeAi';
 import Header from '@/components/Header/Header';
 import Hero from '@/components/Hero/Hero';
+import JsonLd from '@/components/JsonLd/JsonLd';
 import Message from '@/components/Message/Message';
 import News from '@/components/News/News';
 import Opening from '@/components/Opening/Opening';
 import Reason from '@/components/Reason/Reason';
 import ReskillBanner from '@/components/ReskillBanner/ReskillBanner';
 import Supporter from '@/components/Supporter/Supporter';
-import { commonTitle, pages } from '@/constants/meta';
+import { buildPageMetadata, commonTitle, pages } from '@/constants/meta';
 import { getNews } from '@/lib/getNews';
-import { handleStringHTML } from '@/utils/helper';
 
 import styles from './Home.module.css';
-export const metadata: Metadata = {
-  title: commonTitle,
-  description: handleStringHTML(pages.index.description, false),
-};
+export const metadata: Metadata = buildPageMetadata(pages.index, { title: commonTitle });
 
 export default async function Home() {
-  const posts = await getNews();
+  const news = await getNews();
 
   return (
     <>
       <Opening />
       <FadeInOnScroll />
+      <JsonLd />
       <div className={styles.Home}>
         <Header />
         <div className={styles.Home__Hero}>
-          <Hero news={posts} />
+          <Hero news={news} />
         </div>
 
         <div className={styles.Home__Contents}>
           <div className={styles.Home__News}>
-            <News posts={posts} />
+            <News posts={news} />
           </div>
           <div className={styles.Home__ReskillBanner}>
             <ReskillBanner />

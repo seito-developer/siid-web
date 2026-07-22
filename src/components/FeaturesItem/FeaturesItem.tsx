@@ -13,7 +13,7 @@ export default function FeaturesItem({ image, title1, title2, description }: Fea
   return (
     <li className={styles.FeaturesItem}>
       <div className={styles.FeaturesItem__ImageWrapper}>
-        <Image src={image} alt="" width={622} height={350} className={styles.FeaturesItem__Image} />
+        <Image src={image} alt={`${title1}${title2}のイメージ`} width={622} height={350} className={styles.FeaturesItem__Image} />
         <div className={styles.FeaturesItem__TitleWrapper}>
           <h3 className={styles.FeaturesItem__Title1}>{title1}</h3>
           <h3 className={styles.FeaturesItem__Title2}>{title2}</h3>

@@ -34,10 +34,21 @@
 
 > 現行サイトでは同一 GTM コンテナが重複読み込みされていたため、新サイトではコンテナごとに 1 回に集約した。`GTM-NWT5NTNS` は現行サイトでは noscript のみの部分的な設置だったが、計測漏れを避けるため script/noscript とも正式に読み込む(不要なら env から外す)。OpenAI Ads の `__bugfixTrackOpenAIAds` は基盤ピクセルのみ移植し、旧サイト固有のボタンイベント計測は新サイトの DOM に合わせて別途配線が必要。Search Console の登録要否は別途ユーザー確認。
 
+## SEO 実装(Issue #36)
+
+現行サイトへの SEO コンサル指摘のうち本リポジトリに該当する項目を Issue #36 で対応済み。
+
+- **サイト URL**: `NEXT_PUBLIC_SITE_URL`(未設定時は `https://bug-fix.org/siid`)を `src/constants/meta.ts` の `SITE_URL` で参照。canonical・OGP・sitemap の絶対 URL 生成に使用
+- **metadata**: `buildPageMetadata()`(`src/constants/meta.ts`)が title / description / canonical / openGraph / twitter を一括生成。全ページで使用。`/counseling/complete` は noindex
+- **OGP 画像**: `public/ogp.png`(1200×630、Figma 4265:8754)。favicon は `src/app/favicon.ico`(16/32/48px、Figma 4265:8761)、apple-touch-icon は `src/app/apple-icon.png`(180px、Figma 4265:8766、Next.js のファイル規約で自動配線)
+- **sitemap**: `src/app/sitemap.ts`(`/sitemap.xml`)。GSC には sitemap URL を直接送信する。**robots.txt はドメインルート(bug-fix.org)でのみ有効なため本リポジトリでは実装せず、別プロジェクト(現行サイト側)で対応する**(PR #37 レビューでの決定)
+- **構造化データ**: TOP に Organization の JSON-LD(`src/components/JsonLd/JsonLd.tsx`)
+- **画像**: 300KB 超の PNG/JPG を WebP 化(`courses/langs/` はディレクトリごと変換)。意味のある画像の空 alt を解消(装飾 SVG は空 alt を維持)。**例外**: `strengthcard/*.png` は APNG(アニメーション付き)のため WebP 変換対象外(変換するとアニメーションが失われる)
+
 ## 公開前チェックリスト
 
-- [ ] OGP 画像 / favicon / apple-touch-icon の設定(Figma 4265:8754 / 4265:8761 / 4265:8766 から書き出し)
-- [ ] `metadata`(title / description / OGP)が全ページ設定済み
+- [x] OGP 画像 / favicon / apple-touch-icon の設定(Figma 4265:8754 / 4265:8761 / 4265:8766 から書き出し)(Issue #36)
+- [x] `metadata`(title / description / OGP)が全ページ設定済み(Issue #36)
 - [ ] 404 ページ実装済み
 - [ ] ナビ・フッターの全リンクが 404 にならない(`/after-support`, `/contact` 実装完了が前提)
 - [ ] Lighthouse(モバイル)Performance 80+ / SEO 90+ / Accessibility 90+

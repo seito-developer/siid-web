@@ -25,7 +25,7 @@ export default function SubSupporterCard({ id, name, englishName, role, avatarUr
           <div className={styles.SubSupporterCard__EnglishName}>{englishName}</div>
         </div>
 
-        <Image src={avatarUrl} alt="" width={576} height={663} className={styles.SubSupporterCard__Avatar} />
+        <Image src={avatarUrl} alt={`サポート講師 ${name}の写真`} width={576} height={663} className={styles.SubSupporterCard__Avatar} />
       </div>
 
       <div className={styles.SubSupporterCard__NameContainer}>

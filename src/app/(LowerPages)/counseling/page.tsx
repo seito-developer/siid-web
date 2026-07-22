@@ -8,15 +8,12 @@ import Breadcrumb, {
 import ContentsArea from '@/components/ContentsArea/ContentsArea';
 import Benefits from '@/components/Counseling/Benefits/Benefits';
 import Headline from '@/components/Headline/Headline';
-import { commonTitle, pages } from '@/constants/meta';
+import { buildPageMetadata, pages } from '@/constants/meta';
 import { handleStringHTML } from '@/utils/helper';
 
 import styles from './Counseling.module.css';
 
-export const metadata: Metadata = {
-  title: `${pages.counseling.name.ja} | ${commonTitle}`,
-  description: handleStringHTML(pages.counseling.description, false),
-};
+export const metadata: Metadata = buildPageMetadata(pages.counseling);
 
 const breadcrumb: BreadcrumbProps[] = [
   { title: pages.index.name.ja, url: pages.index.url },

@@ -7,15 +7,12 @@ import Tab from '@/components/Community/Tab/Tab';
 import VoiceSection from '@/components/Community/Voice/Voice';
 import ContentsArea from '@/components/ContentsArea/ContentsArea';
 import Headline from '@/components/Headline/Headline';
-import { commonTitle, pages } from '@/constants/meta';
+import { buildPageMetadata, pages } from '@/constants/meta';
 import { handleStringHTML } from '@/utils/helper';
 
 import styles from './Community.module.css';
 
-export const metadata: Metadata = {
-  title: `${pages.community.name.ja} | ${commonTitle}`,
-  description: handleStringHTML(pages.community.description, false),
-};
+export const metadata: Metadata = buildPageMetadata(pages.community);
 
 const breadcrumb: BreadcrumbProps[] = [
   { title: pages.index.name.ja, url: pages.index.url },
