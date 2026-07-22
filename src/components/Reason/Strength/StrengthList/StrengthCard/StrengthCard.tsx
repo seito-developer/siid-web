@@ -9,7 +9,7 @@ interface StrengthCardProps {
 }
 
 export default function StrengthCard({ icon, title, items }: StrengthCardProps) {
-  const animeSrc = `/images/reason/strength/strengthlist/strengthcard/${icon}.png`;
+  const animeSrc = `/images/reason/strength/strengthlist/strengthcard/${icon}.webp`;
 
   return (
     <div className={styles.StrengthCard}>

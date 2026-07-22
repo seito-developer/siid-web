@@ -8,17 +8,20 @@ import Breadcrumb, { BreadcrumbProps } from '@/components/Breadcrumb/Breadcrumb'
 import CareerPathList, { ITEMS_PER_PAGE } from '@/components/CareerPath/CareerPathList/CareerPathList';
 import ContentsArea from '@/components/ContentsArea/ContentsArea';
 import Headline from '@/components/Headline/Headline';
-import { commonTitle, pages } from '@/constants/meta';
+import { buildPageMetadata, pages } from '@/constants/meta';
 import { getCareerPathData } from '@/lib/getCareerPathData';
 import { handleStringHTML } from '@/utils/helper';
 import { getTotalPages } from '@/utils/pagination';
 
 import styles from './CareerPath.module.css';
 
-export const metadata: Metadata = {
-  title: `${pages.careerPath.name.ja} | ${commonTitle}`,
-  description: handleStringHTML(pages.careerPath.description, false),
-};
+export async function generateMetadata({ params }: { params: Promise<{ page: string }> }): Promise<Metadata> {
+  const { page } = await params;
+  // ページ番号ごとに自己参照 canonical を出力する(/career-path/1, /career-path/2, …)
+  return buildPageMetadata(pages.careerPath, {
+    canonicalPath: `${pages.careerPath.url}/${page}`,
+  });
+}
 
 const breadcrumb: BreadcrumbProps[] = [
   { title: pages.index.name.ja, url: pages.index.url },

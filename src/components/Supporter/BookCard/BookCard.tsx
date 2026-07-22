@@ -26,7 +26,7 @@ export default function BookCard({ title, publisher, date, imageUrl, link, width
           もっと見る
         </Link>
       </div>
-      <Image src={imageUrl} alt="" width={width} height={height} className={styles.BookCard__Image} />
+      <Image src={imageUrl} alt={`書籍${title.replace(/\n/g, '')}の表紙`} width={width} height={height} className={styles.BookCard__Image} />
     </div>
   );
 }

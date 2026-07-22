@@ -94,7 +94,7 @@ export default function CourseComparison({ plans, comparison }: Props) {
                       {BASIC_LANGS.map((lang) => (
                         <li key={lang.file}>
                           <Image
-                            src={`/images/courses/langs/${lang.file}.png`}
+                            src={`/images/courses/langs/${lang.file}.webp`}
                             alt={lang.name}
                             width={36}
                             height={36}
@@ -113,7 +113,7 @@ export default function CourseComparison({ plans, comparison }: Props) {
                       {ADVANCED_LANGS.map((lang) => (
                         <li key={lang.file}>
                           <Image
-                            src={`/images/courses/langs/${lang.file}.png`}
+                            src={`/images/courses/langs/${lang.file}.webp`}
                             alt={lang.name}
                             width={36}
                             height={36}

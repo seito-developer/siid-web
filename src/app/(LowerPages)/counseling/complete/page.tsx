@@ -7,16 +7,12 @@ import Breadcrumb, {
 } from '@/components/Breadcrumb/Breadcrumb';
 import ContentsArea from '@/components/ContentsArea/ContentsArea';
 import Headline from '@/components/Headline/Headline';
-import { commonTitle, pages } from '@/constants/meta';
+import { buildPageMetadata, pages } from '@/constants/meta';
 import { handleStringHTML } from '@/utils/helper';
 
 import styles from './Complete.module.css';
 
-export const metadata: Metadata = {
-  title: `${pages.counselingComplete.name.ja} | ${commonTitle}`,
-  description: handleStringHTML(pages.counselingComplete.description, false),
-  robots: { index: false, follow: false },
-};
+export const metadata: Metadata = buildPageMetadata(pages.counselingComplete, { noindex: true });
 
 const breadcrumb: BreadcrumbProps[] = [
   { title: pages.index.name.ja, url: pages.index.url },

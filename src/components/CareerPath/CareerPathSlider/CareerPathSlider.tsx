@@ -259,7 +259,7 @@ export default function CareerPathSlider({ data }: Props) {
             <SwiperSlide key={card.id}>
               <div className={styles.Card}>
                 <Link href={card.youtubeUrl} className={styles.CardImageLink} target="_blank" rel="noopener noreferrer">
-                  <Image src={card.thumbnail} alt="" className={styles.CardImage} width={1280} height={720} />
+                  <Image src={card.thumbnail} alt={`${card.title}の動画サムネイル`} className={styles.CardImage} width={1280} height={720} />
                 </Link>
                 <Link href={card.youtubeUrl} className={styles.CardTitleLink} target="_blank" rel="noopener noreferrer">
                   <h3 className={styles.CardTitle}>{card.title}</h3>

@@ -65,13 +65,18 @@ src/
 │   │   ├── community/page.tsx   # SiiDコミュニティページ
 │   │   ├── courses/page.tsx     # コース一覧ページ（※コンテンツ未実装）
 │   │   └── service/page.tsx     # サービスページ
-│   ├── page.tsx                 # ホームページ（TOPページ）
-│   ├── homeLayout.tsx           # ホームページ専用レイアウト（html/body を持つ）
-│   └── Home.module.css
+│   ├── (Home)/                  # TOPページ（ルートグループ）
+│   │   ├── layout.tsx           # TOPページ専用ルートレイアウト（html/body を持つ）
+│   │   ├── page.tsx             # ホームページ（TOPページ）
+│   │   └── Home.module.css
+│   ├── robots.ts                # robots.txt（SITE_URL の sitemap を案内）
+│   ├── sitemap.ts               # sitemap.xml（実在ページ + career-path 全ページ番号）
+│   ├── apple-icon.png           # apple-touch-icon（Next.js ファイル規約で自動配線）
+│   └── favicon.ico
 ├── components/                  # 再利用可能 UI コンポーネント
 ├── constants/
 │   ├── common.ts                # BREAK_POINT(1280)、Google Fonts 設定
-│   ├── meta.ts                  # ページメタデータ・URL 定数（commonTitle、pages）
+│   ├── meta.ts                  # ページメタデータ・URL 定数（commonTitle、pages、SITE_URL、buildPageMetadata()）
 │   ├── menuItems.ts             # ナビメニュー項目
 │   └── snsItems.ts              # SNSリンク（snsItems / snsFooterItems）
 ├── data/                        # 静的 JSON データ
@@ -102,7 +107,7 @@ src/
 
 Next.js App Router では `html`/`body` タグを持つルートレイアウトが **2つ** 存在します：
 
-- **`src/app/homeLayout.tsx`** — TOPページ用（`Header` コンポーネントを内部で使用）
+- **`src/app/(Home)/layout.tsx`** — TOPページ用（`Header` はページ側で使用）
 - **`src/app/(LowerPages)/layout.tsx`** — 下層ページ用（`NavigationPcLower` を使用）
 
 どちらも `NavigationSp`（SP用ハンバーガーメニュー）・`Footer`・`Icons`（SVGスプライト）を含みます。
@@ -193,7 +198,7 @@ handleStringHTML(pages.xxx.description, true)
 
 | URL | ファイル | 備考 |
 |-----|---------|------|
-| `/` | `src/app/page.tsx` | TOPページ |
+| `/` | `src/app/(Home)/page.tsx` | TOPページ |
 | `/career-path` | `src/app/(LowerPages)/career-path/page.tsx` | `/career-path/1` へリダイレクト |
 | `/career-path/[page]` | `src/app/(LowerPages)/career-path/[page]/page.tsx` | ページネーション、`?id=` でモーダル表示 |
 | `/courses` | `src/app/(LowerPages)/courses/page.tsx` | コンテンツ未実装（プレースホルダーあり） |
