@@ -1,4 +1,3 @@
-import React from 'react';
 
 import ContactButton from '../ContactButton/ContactButton';
 import Corner, { CornerPosition } from '../Corner/Corner';

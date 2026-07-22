@@ -1,7 +1,14 @@
 .NotFoundGameSection {
-    width: 100%;
-    aspect-ratio: 1440 / 500;
-    background: #29bdf3;
-    overflow: hidden;
-    touch-action: manipulation;
+  width: 100%;
+  aspect-ratio: 1440 / 500;
+  background: #29bdf3;
+  overflow: hidden;
+  touch-action: manipulation;
+  margin: 20px 0 60px;
+}
+
+@media screen and (min-width: 1280px) {
+  .NotFoundGameSection {
+    margin: 80px 0 120px;
+  }
 }

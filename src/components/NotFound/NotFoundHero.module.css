@@ -7,7 +7,7 @@
     background: var(--main);
     color: #fff;
     border-radius: 0 0 0 16px;
-    padding: 25px 35px 35px;
+    padding: 25px 35px 35px 0;
     text-align: right;
     position: relative;
 }
@@ -19,7 +19,7 @@
 .NotFoundHero__Title {
     margin: 0;
     font-weight: bold;
-    font-size: 44px;
+    font-size: 40px;
     line-height: 1.2;
     font-family: var(--font-bagor);
 }
