@@ -47,7 +47,7 @@
 
 ## 3-4. 404 Not Found【実装済み 2026-07 / Issue #24】
 
-- Figma: **`H-1 409` (3506:11730)** 準拠(Issue #24 で `H-1 408` の「カードめくり」案から仕様変更)。SP 版デザイン(H-1 410〜413)はキャンバス全走査の結果 **存在しない** ことを確認 → PC デザインを縮小した構成で実装
+- Figma: **`H-1 409` (3506:11730)** 準拠(Issue #24 で `H-1 408` の「カードめくり」案から仕様変更)。SP 版デザイン(H-1 410〜413)はキャンバス全走査の結果 **存在しない** ことを確認 → PC デザインを縮小した構成で実装(ミニゲームのみ Issue #38 で SP は 16:9 キャンバスに変更。1440px 幅デザインの右端装飾(看板・猫・雲C)は SP の待機画面では画面外となり、走行中にスクロールで登場する)
 - 構成: 下層ナビ+青パネル「404 NOT FOUND」見出し(`NotFoundHero`。既存 `Headline` とはタイトルサイズ・破線位置が異なるため専用実装)+お詫びテキスト+**フル幅ドット絵ミニゲーム**+フッター。パンくずなし
 - **ルーティング(重要)**: `src/app/not-found.tsx`(root not-found)で実装。前提として本リポジトリは root `layout.tsx` 不在の変則構成で `npm run build` 自体が失敗していたため、Issue #24 で **root `src/app/layout.tsx` を新設**し、旧 `homeLayout.tsx` を廃止・`(LowerPages)/layout.tsx` は `NavigationPcLower` のみ担当に変更した(共通クローム Icons / NavigationSp / Footer / フォントは root layout に集約)。
   - 検討済みの代替案: `(LowerPages)` 内 catch-all + `notFound()` は、動的レンダー時に SSR が `__next_error__` シェルになりクロームがクライアント描画になるため不採用。root not-found は静的プリレンダーされ完全な HTML + HTTP 404 + noindex を返す(`curl -sI` で検証済み)
