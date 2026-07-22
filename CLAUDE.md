@@ -44,6 +44,7 @@ npm run lint && npm run typecheck
 | Framework | Next.js 15（App Router） |
 | Language | TypeScript 5 |
 | Styling | CSS Modules + CSS Custom Properties |
+| Game | Phaser 3.90（404ページのミニゲーム専用。`next/dynamic` + `ssr: false` で404ページ限定ロード） |
 | Slider | Swiper 12 |
 | CSS Reset | sanitize.css |
 | Font | Google Fonts (Noto Sans JP, Poppins) + カスタムフォント (Bagor) |
@@ -65,14 +66,14 @@ src/
 │   │   ├── community/page.tsx   # SiiDコミュニティページ
 │   │   ├── courses/page.tsx     # コース一覧ページ（※コンテンツ未実装）
 │   │   └── service/page.tsx     # サービスページ
-│   ├── (Home)/                  # TOPページ（ルートグループ）
-│   │   ├── layout.tsx           # TOPページ専用ルートレイアウト（html/body を持つ）
-│   │   ├── page.tsx             # ホームページ（TOPページ）
-│   │   └── Home.module.css
+│   ├── layout.tsx               # ルートレイアウト（html/body・Icons・NavigationSp・Footer）
+│   ├── page.tsx                 # ホームページ（TOPページ）
+│   ├── not-found.tsx            # 404ページ（dino風ミニゲーム付き）
 │   ├── robots.ts                # robots.txt（SITE_URL の sitemap を案内）
 │   ├── sitemap.ts               # sitemap.xml（実在ページ + career-path 全ページ番号）
 │   ├── apple-icon.png           # apple-touch-icon（Next.js ファイル規約で自動配線）
-│   └── favicon.ico
+│   ├── favicon.ico
+│   └── Home.module.css
 ├── components/                  # 再利用可能 UI コンポーネント
 ├── constants/
 │   ├── common.ts                # BREAK_POINT(1280)、Google Fonts 設定
@@ -105,12 +106,11 @@ src/
 
 ## レイアウト構造
 
-Next.js App Router では `html`/`body` タグを持つルートレイアウトが **2つ** 存在します：
+- **`src/app/layout.tsx`** — ルートレイアウト（唯一 `html`/`body` を持つ）。`Icons`（SVGスプライト）・`NavigationSp`（SP用ハンバーガーメニュー）・`Footer`・フォント変数を全ページ共通で提供
+- **`src/app/(LowerPages)/layout.tsx`** — 下層ページ用。`NavigationPcLower` のみ追加
+- TOPページの `Header` は `src/app/page.tsx` 内で使用
 
-- **`src/app/(Home)/layout.tsx`** — TOPページ用（`Header` はページ側で使用）
-- **`src/app/(LowerPages)/layout.tsx`** — 下層ページ用（`NavigationPcLower` を使用）
-
-どちらも `NavigationSp`（SP用ハンバーガーメニュー）・`Footer`・`Icons`（SVGスプライト）を含みます。
+※ 2026-07（Issue #24）まで root layout が無い変則構成（`homeLayout.tsx` が html/body を持つ）だったが、`npm run build` が失敗するため現構成に統合済み。
 
 ---
 
@@ -213,7 +213,7 @@ handleStringHTML(pages.xxx.description, true)
 
 | URL | ファイル | 備考 |
 |-----|---------|------|
-| `/` | `src/app/(Home)/page.tsx` | TOPページ |
+| `/` | `src/app/page.tsx` | TOPページ |
 | `/career-path` | `src/app/(LowerPages)/career-path/page.tsx` | `/career-path/1` へリダイレクト |
 | `/career-path/[page]` | `src/app/(LowerPages)/career-path/[page]/page.tsx` | ページネーション、`?id=` でモーダル表示 |
 | `/courses` | `src/app/(LowerPages)/courses/page.tsx` | コンテンツ未実装（プレースホルダーあり） |

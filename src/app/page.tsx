@@ -18,7 +18,6 @@ import Supporter from '@/components/Supporter/Supporter';
 import { buildPageMetadata, commonTitle, pages } from '@/constants/meta';
 
 import styles from './Home.module.css';
-
 export const metadata: Metadata = buildPageMetadata(pages.index, { title: commonTitle });
 
 export default function Home() {

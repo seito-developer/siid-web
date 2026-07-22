@@ -69,6 +69,15 @@ export const pages = {
     description: 'SiiDは学んで終わりではなく、その先の人生もあなたと共にありたいと考えています。<br />そのためのサポートもしっかりとご用意しています。',
     metaDescription: 'SiiDのLINE公式アカウントに登録すると、プログラミング学習やITエンジニア転職に役立つ特典を無料で受け取れます。まずはLINE登録から、お気軽にSiiDをご体験ください。',
   },
+  notFound: {
+    name: {
+      ja: 'ページが見つかりません',
+      en: '404 Not Found',
+    },
+    url: '/404',
+    description:
+      '一時的にアクセスできない状態か、<br />移動もしくは削除されてしまった可能性があります',
+  },
   counselingComplete: {
     name: {
       ja: 'ご予約完了',

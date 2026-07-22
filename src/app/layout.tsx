@@ -9,7 +9,7 @@ import Icons from '@/components/Icons/Icons';
 import NavigationSp from '@/components/Navigation/NavigationSp/NavigationSp';
 import { notoSansJp, poppins } from '@/constants/common';
 
-export default async function HomeLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
