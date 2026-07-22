@@ -1,5 +1,7 @@
 export const GAME_WIDTH = 1440;
 export const GAME_HEIGHT = 500;
+// SP(〜1279px)では横長すぎて縮小されるため、16:9 のキャンバスに切り替える
+export const GAME_WIDTH_SP = Math.round((GAME_HEIGHT * 16) / 9);
 export const GROUND_HEIGHT = 139;
 // 地面タイル上端から草の接地面までのオフセット
 export const GROUND_SURFACE_OFFSET = 40;
