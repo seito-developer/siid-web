@@ -20,6 +20,8 @@ import { SITE_URL, pages } from '@/constants/meta';
 
 // 広告流入用の独立LP。メタ情報は旧LP(bug-fix.org/siid/lp-1)の head から移植。
 // 新TOPページと訴求が重複するため noindex とする(Issue #40 での決定)。
+// buildPageMetadata() を使わない例外: 旧LP固有の title(共通サフィックス無し)・
+// og:description・OGP画像(hero.webp)を忠実に再現する必要があるため。
 const title =
   'AIプログラミングスクール SiiD｜未経験からエンジニア転職／給付金で受講料最大80%OFF';
 const ogDescription =
