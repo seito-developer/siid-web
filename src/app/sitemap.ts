@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     pages.service.url,
     pages.counseling.url,
     pages.line.url,
+    pages.whitePaper.url,
   ];
 
   const totalPages = getTotalPages(getCareerPathData().length, ITEMS_PER_PAGE);
