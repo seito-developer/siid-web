@@ -35,6 +35,9 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 | `/contact` | **未実装**(ContactButton のリンク先は現状 `/counseling`) | ※ `G-1 LINE登録` は独立ページ `/line` として実装済み。`/contact` の実体は要確認のまま |
 | 404 | 実装済み(2026-07 / Issue #24)。dino風ミニゲーム付き | `H-1 409` (3506:11730)。H-1 410〜413 は存在しないことを確認済み(SP はPC縮小構成) |
 | `/counseling` | 未実装(meta.ts に定義のみ) | 要確認 |
+| `/lp-1` | 実装済み(2026-07 / Issue #40)。旧サイト `bug-fix.org/siid/lp-1` から移植した広告流入用の独立LP。共通クローム無し・noindex | Figma 対応なし(旧LPの忠実再現) |
+| `/counseling-complete-lp-1` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した申込完了ページ(noindex)。OpenAI Ads CV計測 `appointment_scheduled` を発火 | Figma 対応なし |
+| `/white-paper` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した資料請求ページ(公式LINE誘導) | Figma 対応なし |
 
 ## TOPページ News セクション（microCMS 連携・Issue #30）
 
