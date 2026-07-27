@@ -20,7 +20,7 @@ function NavigationSp() {
     return (
       <nav className={styles.NavigationSp}>
         <div className={styles.NavigationSp__ButtonContainer}>
-          <div className={styles.NavigationSp__Button}>
+          <div className={`${styles.NavigationSp__Button} ${styles.isLogoOnly}`}>
             <div className={styles.NavigationSp__Item}>
               <Logo />
             </div>
