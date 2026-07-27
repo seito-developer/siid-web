@@ -44,6 +44,12 @@
   2. **予約完了ページ `/counseling/complete`**(`src/app/(LowerPages)/counseling/complete/`)= サンクス画面。3 ステップ案内 + TOP 導線。`robots: noindex`
 - **アナリティクスタグの引き継ぎは本 PR のスコープ外**(サイト全体の別 Issue で対応)。参考として本番ページで検出したタグ: GA4 `G-54L1JQ7Q7V` / GTM `GTM-58D75LLL`・`GTM-NWT5NTNS`・`GTM-PCDDS7MV`(いずれが SiiD 専用か bug-fix.org 共通かは要確認)
 - Complete ページへの遷移は Jicoo 側のリダイレクト先設定が別途必要(予約完了後に `/counseling/complete` へ飛ばす)。未設定でもページ単体は成立する。
+- **コンバージョン特化レイアウト【対応済み 2026-07 / Issue #42】**: SEO コンサルタントの助言(フォームページから離脱リンクを排除すると CVR が改善する)に基づき、`/counseling` のみ共通クロームを簡易表示に変更。対象パスは `src/constants/conversionFocusedPages.ts` で一元管理し、各コンポーネントが `usePathname()` で判定する。
+  - PC ナビ(`NavigationPcLower`): グローバルメニュー非表示・SiiD ロゴのリンクを解除(ロゴ表示は維持)
+  - SP ナビ(`NavigationSp`): ハンバーガーメニュー・CONTACT ボタンを出さず、ロゴのみの固定ピルを表示
+  - フッター(`Footer` / `FooterMenu`): コピーライトのみ表示(メニュー・SNS・プライバシーポリシー等のリンク、CONTACT ボタン、ページトップも非表示)
+  - パンくずも TOP へのリンクを含むため `/counseling` からは削除(Issue 記載外だが趣旨に合わせた対応)
+  - `/counseling/complete` は対象外(通常レイアウトのまま)
 
 ## 3-4. 404 Not Found【実装済み 2026-07 / Issue #24】
 
