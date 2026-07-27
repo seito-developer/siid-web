@@ -161,4 +161,9 @@
         left: 30px;
         bottom: 30px;
     }
+    /* コピーライトのみ表示時(コンバージョン特化ページ)は絶対配置を解除して中央寄せ */
+    .FooterMenu__Copyright.isStatic {
+        position: static;
+        margin: 0 auto;
+    }
 }
