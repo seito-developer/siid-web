@@ -76,6 +76,10 @@
   transform-origin: center;
   margin: 0 auto;
 }
+/* コンバージョン特化ページ(ロゴのみ・非インタラクティブ)ではポインターを出さない */
+.NavigationSp__Button.isLogoOnly {
+  cursor: default;
+}
 .NavigationSp__ButtonBack {
   position: fixed;
   z-index: calc(var(--maxZ) - 3);

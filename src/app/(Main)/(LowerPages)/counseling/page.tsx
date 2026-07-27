@@ -2,9 +2,6 @@ import { Metadata } from 'next';
 
 import Script from 'next/script';
 
-import Breadcrumb, {
-  BreadcrumbProps,
-} from '@/components/Breadcrumb/Breadcrumb';
 import ContentsArea from '@/components/ContentsArea/ContentsArea';
 import Benefits from '@/components/Counseling/Benefits/Benefits';
 import Headline from '@/components/Headline/Headline';
@@ -15,11 +12,6 @@ import styles from './Counseling.module.css';
 
 export const metadata: Metadata = buildPageMetadata(pages.counseling);
 
-const breadcrumb: BreadcrumbProps[] = [
-  { title: pages.index.name.ja, url: pages.index.url },
-  { title: pages.counseling.name.ja, url: pages.counseling.url },
-];
-
 export default function Courses() {
   return (
     <div className={styles.Courses}>
@@ -28,7 +20,7 @@ export default function Courses() {
         title={pages.counseling.name.en}
         description={handleStringHTML(pages.counseling.description, true)}
       />
-      <Breadcrumb breadcrumb={breadcrumb} />
+      {/* パンくずは TOP へのリンクを含むため、コンバージョン特化ページでは出さない (Issue #42) */}
       <ContentsArea>
         <Benefits />
         <div className={styles.Counseling}>

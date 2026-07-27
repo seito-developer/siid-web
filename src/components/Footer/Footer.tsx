@@ -1,5 +1,9 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
+
+import { isConversionFocusedPage } from '@/constants/conversionFocusedPages';
+
 import useIsPc from '../../hooks/useIsPc';
 import ContactButton from '../ContactButton/ContactButton';
 import Corner, { CornerPosition } from '../Corner/Corner';
@@ -10,6 +14,7 @@ import Pagetop from './Pagetop/Pagetop';
 
 export default function Footer() {
   const isPc = useIsPc();
+  const isConversionFocused = isConversionFocusedPage(usePathname());
 
   return (
     <footer className={styles.Footer}>
@@ -33,13 +38,17 @@ export default function Footer() {
 
       <div className={styles.Footer__Container}>
         <div className={styles.Footer__Inner}>
-          <FooterMenu />
-          <div className={styles.Footer__ContactButton}>
-            <ContactButton modifier="isFooter" />
-          </div>
-          <div className={styles.Footer__Pagetop}>
-            <Pagetop />
-          </div>
+          <FooterMenu copyrightOnly={isConversionFocused} />
+          {!isConversionFocused && (
+            <>
+              <div className={styles.Footer__ContactButton}>
+                <ContactButton modifier="isFooter" />
+              </div>
+              <div className={styles.Footer__Pagetop}>
+                <Pagetop />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </footer>
