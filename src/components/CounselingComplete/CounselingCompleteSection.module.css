@@ -1,9 +1,9 @@
-.CounselingCompleteLp1 {
+.CounselingCompleteSection {
   max-width: 640px;
   margin: 0 auto;
   font-family: var(--font-noto-sans-jp);
 }
-.CounselingCompleteLp1__Lead {
+.CounselingCompleteSection__Lead {
   text-align: center;
   font-size: 15px;
   font-weight: bold;
@@ -11,23 +11,23 @@
   color: var(--text);
   margin: 0 0 32px;
 }
-.CounselingCompleteLp1__Body {
+.CounselingCompleteSection__Body {
   background: #fff;
   border: 1px solid #e4e4e4;
   border-radius: 12px;
   padding: 24px 20px;
 }
-.CounselingCompleteLp1__Text {
+.CounselingCompleteSection__Text {
   font-size: 13px;
   line-height: 1.9;
   color: var(--text);
   margin: 0 0 16px;
 }
-.CounselingCompleteLp1__LinkWrap {
+.CounselingCompleteSection__LinkWrap {
   text-align: center;
   margin: 0 0 24px;
 }
-.CounselingCompleteLp1__Link {
+.CounselingCompleteSection__Link {
   display: inline-block;
   min-width: 220px;
   padding: 12px 28px;
@@ -39,26 +39,26 @@
   border-radius: 999px;
   transition: opacity 0.2s ease;
 }
-.CounselingCompleteLp1__Link:hover {
+.CounselingCompleteSection__Link:hover {
   opacity: 0.85;
 }
-.CounselingCompleteLp1__CancelLink {
+.CounselingCompleteSection__CancelLink {
   color: var(--main);
   font-size: 13px;
   text-decoration: underline;
 }
-.CounselingCompleteLp1__LinkWrap:last-child {
+.CounselingCompleteSection__LinkWrap:last-child {
   margin-bottom: 0;
 }
 @media screen and (min-width: 1280px) {
-  .CounselingCompleteLp1__Lead {
+  .CounselingCompleteSection__Lead {
     font-size: 17px;
     margin-bottom: 40px;
   }
-  .CounselingCompleteLp1__Body {
+  .CounselingCompleteSection__Body {
     padding: 32px 40px;
   }
-  .CounselingCompleteLp1__Text {
+  .CounselingCompleteSection__Text {
     font-size: 14px;
   }
 }

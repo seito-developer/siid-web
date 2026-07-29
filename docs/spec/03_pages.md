@@ -84,8 +84,10 @@
   - フォントは LP 専用に `(Lp)/fonts.ts` で定義(Noto Sans JP 400-900 / Poppins 500-800 / Barlow Semi Condensed 700)。`constants/common.ts` は変更しない
   - セクションは `src/components/Lp1/` に分割。FAQ 開閉・SP追従CTA・Jicoo ウィジェット遅延ロード(IntersectionObserver, rootMargin 600px)のみ client component
   - metadata は旧 head から移植。**noindex**(新TOPと訴求が重複するため。2026-07 オーナー決定)
-- **`/counseling-complete-lp-1`** — 申込完了ページ(noindex)。(LowerPages) パターンで新サイトデザインに載せ替え
-  - OpenAI Ads の CV 計測 `__bugfixTrackOpenAIAds('appointment_scheduled', {type:'customer_action'})` をマウント時に 1 回発火(`src/components/Analytics/TrackOpenAiAdsConversion.tsx`。発火関数は Analytics.tsx が env `NEXT_PUBLIC_OPENAI_ADS_PIXEL_ID` 設定時に定義)
+- **`/counseling-complete-lp-1` / `/counseling-complete`** — 申込完了ページ(いずれも noindex)。(LowerPages) パターンで新サイトデザインに載せ替え
+  - 2 ページは見た目・文言とも同一で、本体は共通コンポーネント `src/components/CounselingComplete/CounselingCompleteSection.tsx` に集約(旧サイトでも両 URL がほぼ同一内容で存在。`/counseling-complete` はオーナー指示で追加 2026-07)
+  - OpenAI Ads の CV 計測 `__bugfixTrackOpenAIAds('appointment_scheduled', {type:'customer_action'})` を両ページともマウント時に 1 回発火(`src/components/Analytics/TrackOpenAiAdsConversion.tsx`。発火関数は Analytics.tsx が env `NEXT_PUBLIC_OPENAI_ADS_PIXEL_ID` 設定時に定義)
+  - meta 定義は `pages.counselingCompleteLp1` / `pages.counselingCompleteFlat`(既存 `/counseling/complete` 用の `counselingComplete` キーとは別)
   - ※既存 `/counseling/complete` には CV 発火なし(必要なら同コンポーネントを配置するだけで対応可能・別 Issue 推奨)
 - **`/white-paper`** — 資料請求ページ(index 可・sitemap 登録済み)。資料イメージ 2 枚 + 公式LINE誘導(`https://bit.ly/4p3SOBn`)。(LowerPages) パターン
 

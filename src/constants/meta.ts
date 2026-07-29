@@ -95,6 +95,15 @@ export const pages = {
     url: '/counseling-complete-lp-1',
     description: '無料カウンセリングのお申し込みありがとうございます。<br />当日のご案内をメールにてお送りしますのでご確認ください。',
   },
+  // 旧サイト由来のフラット URL 版サンクスページ。既存の /counseling/complete(counselingComplete)とは別ルート
+  counselingCompleteFlat: {
+    name: {
+      ja: 'お申し込み完了',
+      en: 'Thank you',
+    },
+    url: '/counseling-complete',
+    description: '無料カウンセリングのお申し込みありがとうございます。<br />当日のご案内をメールにてお送りしますのでご確認ください。',
+  },
   lp1: {
     name: {
       ja: 'AIプログラミングスクール SiiD',
