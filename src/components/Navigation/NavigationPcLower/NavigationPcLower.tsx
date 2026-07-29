@@ -18,6 +18,11 @@ export default function NavigationPcLower() {
   const scrollY = useScroll();
   const isConversionFocused = isConversionFocusedPage(usePathname());
 
+  // コンバージョン特化ページ(Issue #42)ではナビゲーション自体を出さない
+  if (isConversionFocused) {
+    return null;
+  }
+
   return (
     <nav className={`${styles.NavigationPcLower} ${scrollY > 0 ? styles.isScrolling : ''}`}>
       <div className={styles.NavigationPcLower__Container}>
@@ -25,23 +30,17 @@ export default function NavigationPcLower() {
           <Corner top="0" right="0" position={CornerPosition.TOP_RIGHT} />
         </div>
         <div className={styles.NavigationPcLower__logo}>
-          {isConversionFocused ? (
+          <Link href="/">
             <Logo width={102} height={25} fill="#fff" />
-          ) : (
-            <Link href="/">
-              <Logo width={102} height={25} fill="#fff" />
-            </Link>
-          )}
+          </Link>
           <div className={styles.NavigationPcLower__Corner}>
             <Corner bottom="-20px" left="0" position={CornerPosition.TOP_LEFT} />
             <Corner top="0" right="-20px" position={CornerPosition.TOP_LEFT} />
           </div>
         </div>
-        {!isConversionFocused && (
-          <div className={styles.NavigationPcLower__Menu}>
-            <Menu modifierClass="isLower" />
-          </div>
-        )}
+        <div className={styles.NavigationPcLower__Menu}>
+          <Menu modifierClass="isLower" />
+        </div>
       </div>
     </nav>
   );

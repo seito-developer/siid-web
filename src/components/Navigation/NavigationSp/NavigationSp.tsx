@@ -16,19 +16,9 @@ function NavigationSp() {
   const [isActive, setIsActive] = useState(false);
   const isConversionFocused = isConversionFocusedPage(usePathname());
 
+  // コンバージョン特化ページ(Issue #42)ではナビゲーション自体を出さない
   if (isConversionFocused) {
-    return (
-      <nav className={styles.NavigationSp}>
-        <div className={styles.NavigationSp__ButtonContainer}>
-          <div className={`${styles.NavigationSp__Button} ${styles.isLogoOnly}`}>
-            <div className={styles.NavigationSp__Item}>
-              <Logo />
-            </div>
-          </div>
-        </div>
-        <div className={styles.NavigationSp__ButtonBack} />
-      </nav>
-    );
+    return null;
   }
 
   return (
