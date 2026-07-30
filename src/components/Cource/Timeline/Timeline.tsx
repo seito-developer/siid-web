@@ -20,7 +20,7 @@ const timelineItems: TimelineItemData[] = [
     title: '理想の働き方を実現',
     subtitle: 'Uターン、リモートワーク、フレックスなど',
     description: 'Youtubeだけでは個々の課題にパーソナライズできないとセイト自身が悩んで立ち上げたプログラミングスクール。本物が本気で付き合います。こんな講師から学べるスクールは他に存在し得ないと思います。',
-    image: '/images/cource/timeline/timelineitem/3years.jpg',
+    image: '/images/cource/timeline/timelineitem/3years.webp',
   },
   {
     title: 'さらなる未来への挑戦',

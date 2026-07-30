@@ -1,0 +1,64 @@
+.CounselingCompleteSection {
+  max-width: 640px;
+  margin: 0 auto;
+  font-family: var(--font-noto-sans-jp);
+}
+.CounselingCompleteSection__Lead {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.8;
+  color: var(--text);
+  margin: 0 0 32px;
+}
+.CounselingCompleteSection__Body {
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 12px;
+  padding: 24px 20px;
+}
+.CounselingCompleteSection__Text {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--text);
+  margin: 0 0 16px;
+}
+.CounselingCompleteSection__LinkWrap {
+  text-align: center;
+  margin: 0 0 24px;
+}
+.CounselingCompleteSection__Link {
+  display: inline-block;
+  min-width: 220px;
+  padding: 12px 28px;
+  background: var(--main);
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: opacity 0.2s ease;
+}
+.CounselingCompleteSection__Link:hover {
+  opacity: 0.85;
+}
+.CounselingCompleteSection__CancelLink {
+  color: var(--main);
+  font-size: 13px;
+  text-decoration: underline;
+}
+.CounselingCompleteSection__LinkWrap:last-child {
+  margin-bottom: 0;
+}
+@media screen and (min-width: 1280px) {
+  .CounselingCompleteSection__Lead {
+    font-size: 17px;
+    margin-bottom: 40px;
+  }
+  .CounselingCompleteSection__Body {
+    padding: 32px 40px;
+  }
+  .CounselingCompleteSection__Text {
+    font-size: 14px;
+  }
+}

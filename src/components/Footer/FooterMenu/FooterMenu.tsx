@@ -9,7 +9,18 @@ import { snsFooterItems } from '@/constants/snsItems';
 import styles from './FooterMenu.module.css';
 
 
-export default function FooterMenu() {
+export default function FooterMenu({ copyrightOnly = false }: { copyrightOnly?: boolean }) {
+  const copyright = (
+    <small className={`${styles.FooterMenu__Copyright} ${copyrightOnly ? styles.isStatic : ''}`}>
+             Copyright (&copy;) BugFix All Rights Reserved.
+    </small>
+  );
+
+  // コンバージョン特化ページ(Issue #42)ではリンク要素をすべて出さない
+  if (copyrightOnly) {
+    return <div className={styles.FooterMenu}>{copyright}</div>;
+  }
+
   return (
     <div className={styles.FooterMenu}>
       <div className={styles.FooterMenu__Landmark}>
@@ -63,9 +74,7 @@ export default function FooterMenu() {
           <Link href="https://bug-fix.org" target="_blank">運営会社</Link>
         </li>
       </ul>
-      <small className={styles.FooterMenu__Copyright}>
-             Copyright (&copy;) BugFix All Rights Reserved.
-      </small>
+      {copyright}
     </div>
   );
 }

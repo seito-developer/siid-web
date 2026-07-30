@@ -6,7 +6,7 @@ export default function Event() {
   return (
     <div className={styles.Event__Wrapper}>
       <div className={styles.Event__Hero}>
-        <Image src="/images/community/offline.png" alt="満員御礼" width={800} height={500} className={styles.Event__HeroImg} />
+        <Image src="/images/community/offline.webp" alt="満員御礼" width={800} height={500} className={styles.Event__HeroImg} />
       </div>
 
       <div className={styles.Event__Detail}>
@@ -20,7 +20,7 @@ export default function Event() {
         </div>
 
         <div className={styles.Event__DetailRight}>
-          <Image src="/images/community/seito-02.png" alt="講師登壇" width={400} height={300} className={styles.Event__RightImg} />
+          <Image src="/images/community/seito-02.webp" alt="講師登壇" width={400} height={300} className={styles.Event__RightImg} />
         </div>
       </div>
 

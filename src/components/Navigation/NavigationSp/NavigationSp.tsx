@@ -2,15 +2,25 @@
 
 import React, { useState } from 'react';
 
+import { usePathname } from 'next/navigation';
+
 import ContactButton from '@/components/ContactButton/ContactButton';
 import Logo from '@/components/Logo/Logo';
 import HamburgerMenu from '@/components/Navigation/HamburgerMenu/HamburgerMenu';
 import Menu from '@/components/Navigation/Menu/Menu';
+import { isConversionFocusedPage } from '@/constants/conversionFocusedPages';
 
 import styles from './NavigationSp.module.css';
 
 function NavigationSp() {
   const [isActive, setIsActive] = useState(false);
+  const isConversionFocused = isConversionFocusedPage(usePathname());
+
+  // コンバージョン特化ページ(Issue #42)ではナビゲーション自体を出さない
+  if (isConversionFocused) {
+    return null;
+  }
+
   return (
     <nav className={`${styles.NavigationSp} ${isActive ? styles.isActive : ''}`}>
       <div className={styles.NavigationSp__Container}>

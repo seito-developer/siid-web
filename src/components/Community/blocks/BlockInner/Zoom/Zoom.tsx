@@ -5,7 +5,7 @@ import styles from './Zoom.module.css';
 export default function Zoom() {
   return (
     <div className={styles.Zoom__Wrapper}>
-      <Image src="/images/community/online-zoom.png" alt="毎回多くの方に参加いただいてます" width={800} height={450} className={styles.Zoom__TopImage} />
+      <Image src="/images/community/online-zoom.webp" alt="毎回多くの方に参加いただいてます" width={800} height={450} className={styles.Zoom__TopImage} />
       <ul className={styles.Zoom__IconWrapper}>
         <li className={styles.Zoom__IconItem}>
           <Image src="/images/community/zoom-icon-01.svg" alt="" width={40} height={40} className={styles.Zoom__Icon} />

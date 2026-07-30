@@ -3,6 +3,7 @@
 import React from 'react';
 
 import useIsPc from '@/hooks/useIsPc';
+import { NewsPost } from '@/types/news';
 
 import Corner, { CornerPosition } from '../Corner/Corner';
 import NavigationPc from '../Navigation/NavigationPc/NavigationPc';
@@ -18,7 +19,11 @@ import HeroSubCopyPc from './HeroSubCopy/HeroSubCopyPc';
 import ScrollDown from './ScrollDown/ScrollDown';
 
 
-export default function Hero() {
+type HeroProps = {
+  news: NewsPost[];
+};
+
+export default function Hero({ news }: HeroProps) {
   const isPc = useIsPc();
 
   return (
@@ -51,7 +56,7 @@ export default function Hero() {
             />
           </div>
           <div className={styles.Hero__News} data-opening="ui">
-            <News />
+            <News posts={news} />
           </div>
           <div className={styles.Hero__ReskillBanner} data-opening="ui">
             <ReskillBanner />

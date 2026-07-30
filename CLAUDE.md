@@ -44,6 +44,7 @@ npm run lint && npm run typecheck
 | Framework | Next.js 15（App Router） |
 | Language | TypeScript 5 |
 | Styling | CSS Modules + CSS Custom Properties |
+| Game | Phaser 3.90（404ページのミニゲーム専用。`next/dynamic` + `ssr: false` で404ページ限定ロード） |
 | Slider | Swiper 12 |
 | CSS Reset | sanitize.css |
 | Font | Google Fonts (Noto Sans JP, Poppins) + カスタムフォント (Bagor) |
@@ -65,13 +66,17 @@ src/
 │   │   ├── community/page.tsx   # SiiDコミュニティページ
 │   │   ├── courses/page.tsx     # コース一覧ページ（※コンテンツ未実装）
 │   │   └── service/page.tsx     # サービスページ
+│   ├── layout.tsx               # ルートレイアウト（html/body・Icons・NavigationSp・Footer）
 │   ├── page.tsx                 # ホームページ（TOPページ）
-│   ├── homeLayout.tsx           # ホームページ専用レイアウト（html/body を持つ）
+│   ├── not-found.tsx            # 404ページ（dino風ミニゲーム付き）
+│   ├── sitemap.ts               # sitemap.xml（実在ページ + career-path 全ページ番号。robots.txt はルートドメイン側の別プロジェクトで対応）
+│   ├── apple-icon.png           # apple-touch-icon（Next.js ファイル規約で自動配線）
+│   ├── favicon.ico
 │   └── Home.module.css
 ├── components/                  # 再利用可能 UI コンポーネント
 ├── constants/
 │   ├── common.ts                # BREAK_POINT(1280)、Google Fonts 設定
-│   ├── meta.ts                  # ページメタデータ・URL 定数（commonTitle、pages）
+│   ├── meta.ts                  # ページメタデータ・URL 定数（commonTitle、pages、SITE_URL、buildPageMetadata()）
 │   ├── menuItems.ts             # ナビメニュー項目
 │   └── snsItems.ts              # SNSリンク（snsItems / snsFooterItems）
 ├── data/                        # 静的 JSON データ
@@ -100,12 +105,11 @@ src/
 
 ## レイアウト構造
 
-Next.js App Router では `html`/`body` タグを持つルートレイアウトが **2つ** 存在します：
+- **`src/app/layout.tsx`** — ルートレイアウト（唯一 `html`/`body` を持つ）。`Icons`（SVGスプライト）・`NavigationSp`（SP用ハンバーガーメニュー）・`Footer`・フォント変数を全ページ共通で提供
+- **`src/app/(LowerPages)/layout.tsx`** — 下層ページ用。`NavigationPcLower` のみ追加
+- TOPページの `Header` は `src/app/page.tsx` 内で使用
 
-- **`src/app/homeLayout.tsx`** — TOPページ用（`Header` コンポーネントを内部で使用）
-- **`src/app/(LowerPages)/layout.tsx`** — 下層ページ用（`NavigationPcLower` を使用）
-
-どちらも `NavigationSp`（SP用ハンバーガーメニュー）・`Footer`・`Icons`（SVGスプライト）を含みます。
+※ 2026-07（Issue #24）まで root layout が無い変則構成（`homeLayout.tsx` が html/body を持つ）だったが、`npm run build` が失敗するため現構成に統合済み。
 
 ---
 
@@ -171,13 +175,28 @@ const isPc = useIsPc();
 
 ### ページメタデータ（`constants/meta.ts`）
 
-URL、ページ名（ja/en）、description をここで一元管理。`description` は `<br />` タグを含む HTML 文字列のため、用途に応じて `handleStringHTML()` で変換して使用：
+URL、ページ名（ja/en）、description をここで一元管理。ページの `metadata` export は必ず `buildPageMetadata()` で生成する（title / description / canonical / OGP / Twitter Card を一括出力）：
+
+```typescript
+import { buildPageMetadata, pages } from '@/constants/meta';
+
+// 通常ページ
+export const metadata: Metadata = buildPageMetadata(pages.xxx);
+
+// noindex にしたいページ（例: サンクスページ）
+export const metadata: Metadata = buildPageMetadata(pages.xxx, { noindex: true });
+
+// 実URLが pages.url と異なる場合（例: ページネーション）は canonicalPath を指定
+buildPageMetadata(pages.careerPath, { canonicalPath: `${pages.careerPath.url}/${page}` });
+```
+
+- SEO 用の説明文を画面表示用の `description` と分けたい場合は `pages.xxx.metaDescription` を定義する（`buildPageMetadata` が優先使用）
+- canonical / OGP の絶対 URL は `SITE_URL`（環境変数 `NEXT_PUBLIC_SITE_URL`、デフォルト `https://bug-fix.org/siid`）起点で生成される
+
+`description` は `<br />` タグを含む HTML 文字列のため、JSX 表示用には `handleStringHTML()` で変換して使用：
 
 ```typescript
 import { handleStringHTML } from '@/utils/helper';
-
-// Metadata（SEO）用 → HTMLタグ除去
-description: handleStringHTML(pages.xxx.description, false)
 
 // JSX 表示用 → <br> そのまま（dangerouslySetInnerHTML で使用）
 handleStringHTML(pages.xxx.description, true)

@@ -15,9 +15,11 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 | Framework | Next.js 15 (App Router) | 既存 |
 | アニメーション | **GSAP** | 2026-07 ヒアリングで確定。オープニング演出・スクロール演出に使用 |
 | ホスティング | **Vercel** | 2026-07 ヒアリングで確定 |
+| ブログCMS | **microCMS** | 2026-07 確定(Issue #30)。SiiD BLOG(`blog.bug-fix.org`)のヘッドレスCMS。TOPページ News セクションが `blog` エンドポイントから「コラム」カテゴリ最新記事を取得。`microcms-js-sdk` 使用・サーバー側取得 |
 | 問い合わせフォーム | **外部フォームサービス** | サービス選定は未確定([03_pages.md](./03_pages.md) 参照) |
 | Styling | CSS Modules + CSS Custom Properties | 既存。Tailwind 等は導入しない |
 | Slider | Swiper 12 | 既存 |
+| Game | **Phaser 3.90** | 2026-07 確定(Issue #24)。404ページのミニゲーム専用。`next/dynamic` + `ssr: false` で404ページ限定ロード |
 
 ## ページ一覧と実装状況
 
@@ -31,8 +33,26 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 | `/after-support` | **独立ページ無し**(Issue #11)。実体は `/service` 内 `Support` セクション。ナビは『サービス一覧』→ /service に変更 | `D-1 サービス一覧` 内(3506:10951) |
 | `/line` | 実装済み(2026-07) | `G-1 LINE登録` PC (3506:11427) / SP (3506:6128) |
 | `/contact` | **未実装**(ContactButton のリンク先は現状 `/counseling`) | ※ `G-1 LINE登録` は独立ページ `/line` として実装済み。`/contact` の実体は要確認のまま |
-| 404 | Next.js デフォルト | `H-1 408` (3506:11639) が 404 デザイン。H-1 410〜413 も要確認 |
+| 404 | 実装済み(2026-07 / Issue #24)。dino風ミニゲーム付き | `H-1 409` (3506:11730)。H-1 410〜413 は存在しないことを確認済み(SP はPC縮小構成) |
 | `/counseling` | 未実装(meta.ts に定義のみ) | 要確認 |
+| `/lp-1` | 実装済み(2026-07 / Issue #40)。旧サイト `bug-fix.org/siid/lp-1` から移植した広告流入用の独立LP。共通クローム無し・noindex | Figma 対応なし(旧LPの忠実再現) |
+| `/counseling-complete-lp-1` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した申込完了ページ(noindex)。OpenAI Ads CV計測 `appointment_scheduled` を発火 | Figma 対応なし |
+| `/white-paper` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した資料請求ページ(公式LINE誘導) | Figma 対応なし |
+
+## TOPページ News セクション（microCMS 連携・Issue #30）
+
+- SiiD BLOG（microCMS）の `blog` エンドポイントから「コラム」カテゴリの最新記事を取得して表示。記事クリックで該当記事（`https://blog.bug-fix.org/blog/{id}`）へ遷移。
+- 取得ロジックは `src/lib/getNews.ts`（サーバー側実行）。`categories[contains]column` で絞り込み、`publishedAt` 降順で最大3件。ISR で 600 秒ごとに再検証。カテゴリID `column` は変更予定がないため定数で固定。
+- `News.tsx` は async Server Component（取得担当）、スワイプ/矢印カルーセルUXは `NewsCarousel.tsx`（Client Component）に分離。
+- 環境変数（サーバー専用・`.env.local` / Vercel に設定。`.env.example` 参照）:
+
+  | 変数 | 説明 |
+  |------|------|
+  | `MICROCMS_SERVICE_DOMAIN` | `XXXX.microcms.io` の XXXX |
+  | `MICROCMS_API_KEY` | 読み取り用 API キー |
+
+- `blog` エンドポイントの `categories` は複数参照フィールドのため、絞り込みは `equals` ではなく `contains` を使う。
+- 環境変数未設定・取得失敗時は空配列を返し、News は「現在お知らせはありません。」を表示（ページ全体は落とさない）。
 
 ## Figma デザインデータ
 
@@ -68,4 +88,3 @@ Figma 内「アニメーションについて」(3235:2345) にはデザイナ�
 ## 未確定事項
 
 - `/counseling` ページを作るか、`/contact` に統合するか
-- H-1 410〜413 フレームの内容(レート制限で未確認)

@@ -34,6 +34,23 @@
     width: 100%;
 }
 
+.News__Link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.News__Link:hover {
+    opacity: 0.6;
+}
+
+.News__Empty {
+    font-size: 12px;
+    margin: 0;
+    color: var(--text);
+}
+
 .News__Controls {
     display: flex;
     position: absolute;

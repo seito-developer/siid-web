@@ -1,11 +1,12 @@
 'use client';
 
-import React from 'react';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import Corner, { CornerPosition } from '@/components/Corner/Corner';
 import Logo from '@/components/Logo/Logo';
+import { isConversionFocusedPage } from '@/constants/conversionFocusedPages';
 import useScroll from '@/hooks/useScroll';
 
 import Menu from '../Menu/Menu';
@@ -15,6 +16,12 @@ import styles from './NavigationPcLower.module.css';
 export default function NavigationPcLower() {
 
   const scrollY = useScroll();
+  const isConversionFocused = isConversionFocusedPage(usePathname());
+
+  // コンバージョン特化ページ(Issue #42)ではナビゲーション自体を出さない
+  if (isConversionFocused) {
+    return null;
+  }
 
   return (
     <nav className={`${styles.NavigationPcLower} ${scrollY > 0 ? styles.isScrolling : ''}`}>

@@ -32,7 +32,7 @@ export default function LinePresents({ presents }: Props) {
             <div className={styles.LinePresents__Image}>
               <Image
                 src={present.imageUrl}
-                alt=""
+                alt={`特典「${present.title}」のイメージ`}
                 width={present.width}
                 height={present.height}
               />
