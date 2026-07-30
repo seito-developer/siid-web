@@ -78,6 +78,40 @@ export const pages = {
     description:
       '一時的にアクセスできない状態か、<br />移動もしくは削除されてしまった可能性があります',
   },
+  whitePaper: {
+    name: {
+      ja: '資料請求',
+      en: 'White Paper',
+    },
+    url: '/white-paper',
+    description: '公式LINEへのご登録で、<br />SiiDの紹介資料をダウンロードいただけます。',
+    metaDescription: 'SiiDのサービス紹介資料をダウンロードいただけます。公式LINEへのご登録で、コース内容・料金・転職サポートの詳細をまとめた資料をお受け取りください。',
+  },
+  counselingCompleteLp1: {
+    name: {
+      ja: 'お申し込み完了',
+      en: 'Thank you',
+    },
+    url: '/counseling-complete-lp-1',
+    description: '無料カウンセリングのお申し込みありがとうございます。<br />当日のご案内をメールにてお送りしますのでご確認ください。',
+  },
+  // 旧サイト由来のフラット URL 版サンクスページ。既存の /counseling/complete(counselingComplete)とは別ルート
+  counselingCompleteFlat: {
+    name: {
+      ja: 'お申し込み完了',
+      en: 'Thank you',
+    },
+    url: '/counseling-complete',
+    description: '無料カウンセリングのお申し込みありがとうございます。<br />当日のご案内をメールにてお送りしますのでご確認ください。',
+  },
+  lp1: {
+    name: {
+      ja: 'AIプログラミングスクール SiiD',
+      en: 'SiiD LP',
+    },
+    url: '/lp-1',
+    description: '未経験から最短でエンジニア転職が目指せるAIプログラミングスクールSiiD。経済産業省リスキル講座認定で受講料は給付金により最大80%OFF。現役エンジニアの個別指導と就活サポートで目標達成率88%・受講生満足度92%。無料カウンセリング受付中。',
+  },
   counselingComplete: {
     name: {
       ja: 'ご予約完了',

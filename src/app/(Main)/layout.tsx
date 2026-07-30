@@ -1,7 +1,7 @@
 import 'sanitize.css';
 import 'sanitize.css/forms.css';
 import 'sanitize.css/typography.css';
-import '../styles/globals.css';
+import '@/styles/globals.css';
 import Analytics from '@/components/Analytics/Analytics';
 import GtmNoScript from '@/components/Analytics/GtmNoScript';
 import Footer from '@/components/Footer/Footer';

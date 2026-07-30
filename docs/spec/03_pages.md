@@ -74,6 +74,23 @@
 - Figma に `ogp` (4265:8754, 1200×630) / `favicon.ico` (4265:8761, 48×48) / `apple-touch-icon` (4265:8766, 180×180) が用意済み
 - デプロイ前に書き出して `src/app/` に配置し、`metadata` に設定する([05_deploy.md](./05_deploy.md) の公開チェックリストに含む)
 
+## 3-6. 旧サイトからの移植ページ【実装済み 2026-07 / Issue #40】
+
+旧サイト(bugfix-corp / bug-fix.org)の 3 ページを移植。URL は `/siid/` prefix を外した(本番は `SITE_URL = bug-fix.org/siid` 配下で公開されるため、公開 URL は旧サイトと同一になる)。
+
+- **`/lp-1`** — 広告流入用の独立LP。旧LPのデザイン(navy×orange のネオブルータリズム)を忠実再現
+  - **root layout を分割**: `src/app/(Main)/`(既存サイト一式 + 共通クローム)と `src/app/(Lp)/`(LP専用・クローム無し)の 2 つの route group がそれぞれ root layout を持つ。未知 URL は `(Main)/[...notFound]/page.tsx`(catch-all)で dino 404 に着地させる
+  - 旧 `style.css`(1662行)は `(Lp)/lp1.css` にグローバルCSSとして逐語移植(CSS Modules 規約の例外。route group 隔離により `(Main)` 側へは影響しない)
+  - フォントは LP 専用に `(Lp)/fonts.ts` で定義(Noto Sans JP 400-900 / Poppins 500-800 / Barlow Semi Condensed 700)。`constants/common.ts` は変更しない
+  - セクションは `src/components/Lp1/` に分割。FAQ 開閉・SP追従CTA・Jicoo ウィジェット遅延ロード(IntersectionObserver, rootMargin 600px)のみ client component
+  - metadata は旧 head から移植。**noindex**(新TOPと訴求が重複するため。2026-07 オーナー決定)
+- **`/counseling-complete-lp-1` / `/counseling-complete`** — 申込完了ページ(いずれも noindex)。(LowerPages) パターンで新サイトデザインに載せ替え
+  - 2 ページは見た目・文言とも同一で、本体は共通コンポーネント `src/components/CounselingComplete/CounselingCompleteSection.tsx` に集約(旧サイトでも両 URL がほぼ同一内容で存在。`/counseling-complete` はオーナー指示で追加 2026-07)
+  - OpenAI Ads の CV 計測 `__bugfixTrackOpenAIAds('appointment_scheduled', {type:'customer_action'})` を両ページともマウント時に 1 回発火(`src/components/Analytics/TrackOpenAiAdsConversion.tsx`。発火関数は Analytics.tsx が env `NEXT_PUBLIC_OPENAI_ADS_PIXEL_ID` 設定時に定義)
+  - meta 定義は `pages.counselingCompleteLp1` / `pages.counselingCompleteFlat`(既存 `/counseling/complete` 用の `counselingComplete` キーとは別)
+  - ※既存 `/counseling/complete` には CV 発火なし(必要なら同コンポーネントを配置するだけで対応可能・別 Issue 推奨)
+- **`/white-paper`** — 資料請求ページ(index 可・sitemap 登録済み)。資料イメージ 2 枚 + 公式LINE誘導(`https://bit.ly/4p3SOBn`)。(LowerPages) パターン
+
 ## 未確定事項
 
 - 3-2 のデザイン所在 / 3-3 の 3 点 / `/counseling` の扱い(01 参照)

@@ -1,0 +1,70 @@
+.WhitePaper {
+  max-width: 640px;
+  margin: 0 auto;
+  font-family: var(--font-noto-sans-jp);
+}
+.WhitePaper__Lead {
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--text);
+  margin: 0 0 32px;
+}
+.WhitePaper__PolicyLink {
+  color: var(--main);
+  text-decoration: underline;
+}
+.WhitePaper__Figure {
+  margin: 0 0 40px;
+}
+.WhitePaper__Images {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.WhitePaper__Images img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+}
+.WhitePaper__Caption {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text);
+  margin-top: 12px;
+}
+.WhitePaper__Actions {
+  text-align: center;
+}
+.WhitePaper__LineLink {
+  display: inline-block;
+  min-width: 280px;
+  padding: 16px 32px;
+  background: #06c755;
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: opacity 0.2s ease;
+}
+.WhitePaper__LineLink:hover {
+  opacity: 0.85;
+}
+@media screen and (min-width: 1280px) {
+  .WhitePaper__Lead {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+  .WhitePaper__Images {
+    flex-direction: row;
+    gap: 20px;
+  }
+  .WhitePaper__Images img {
+    width: calc(50% - 10px);
+  }
+  .WhitePaper__LineLink {
+    font-size: 16px;
+  }
+}
