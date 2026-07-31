@@ -6,7 +6,7 @@
 
 | 環境 | ブランチ | URL |
 |------|---------|-----|
-| Production | `develop`(現デフォルト) | 本番ドメイン(未確定) |
+| Production | `develop`(現デフォルト) | 本番ドメイン(未確定。現行 `bug-fix.org/siid` からの移行方式は [06_migration.md](./06_migration.md) で確定させる) |
 | Preview | 各 feature ブランチ / PR | Vercel が自動発行 |
 
 > `main` ブランチを別途作って Production に割り当てる運用も可能だが、現状はブランチ数を増やさず `develop` = Production とする。リリース頻度が上がったら見直す。
@@ -58,5 +58,5 @@
 
 ## 未確定事項
 
-- 本番ドメイン(現行の https://bug-fix.org/siid からの移行・リダイレクト要否も含む)
+- 本番ドメイン(現行の https://bug-fix.org/siid からの移行・リダイレクト要否も含む。詳細計画は [06_migration.md](./06_migration.md) を参照)
 - Google Search Console 導入の要否(Analytics タグは Issue #19 で引き継ぎ済み)

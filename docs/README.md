@@ -9,6 +9,7 @@ AI ベース開発のための仕様書・運用ドキュメント一式。**実
 | [03_pages.md](./spec/03_pages.md) | 未実装ページの実装仕様 |
 | [04_workflow.md](./spec/04_workflow.md) | Issue / ブランチ / PR の開発ワークフロー |
 | [05_deploy.md](./spec/05_deploy.md) | Vercel デプロイ・公開計画 |
+| [06_migration.md](./spec/06_migration.md) | 現行 bug-fix.org/siid からの移行・リリース計画(Cloudflare 前段方式) |
 
 ## 更新ルール
 
