@@ -9,7 +9,7 @@ export default function Lp1Mentor() {
       </div>
       <div className="mentor-card">
         <div className="mentor-avatar" aria-hidden="true">
-          <Image src="/images/lp-1/seito.webp" width={154} height={154} alt="" />
+          <Image src="/siid/images/lp-1/seito.webp" width={154} height={154} alt="" />
         </div>
         <div className="mentor-info">
           <span className="role">CHIEF INSTRUCTOR / FOUNDER</span>

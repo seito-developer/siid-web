@@ -14,31 +14,31 @@ import 'swiper/css/pagination';
 // 各特典の画像（現行サイト bug-fix.org/siid/counseling の特典画像）と説明文（alt 用）
 const benefits: { image: string; label: string }[] = [
   {
-    image: '/images/counseling/gift-1.jpg',
+    image: '/siid/images/counseling/gift-1.jpg',
     label: '【Win/Mac対応】1分でわかる！プログラミング学習向けPCの選び方（PCを30%割引で買える裏技つき）',
   },
   {
-    image: '/images/counseling/gift-2.jpg',
+    image: '/siid/images/counseling/gift-2.jpg',
     label: '【歴14年エンジニアが選ぶ】主要AIツール5選・完全解説ガイド',
   },
   {
-    image: '/images/counseling/gift-3.jpg',
+    image: '/siid/images/counseling/gift-3.jpg',
     label: '【歴13年のエンジニアが活用する】Claude Code & Codex 裏ワザ＆プロンプト９セット',
   },
   {
-    image: '/images/counseling/gift-4.jpg',
+    image: '/siid/images/counseling/gift-4.jpg',
     label: '【Tier表別】AI時代のプログラミング言語27選・完全解説ガイド',
   },
   {
-    image: '/images/counseling/gift-5.jpg',
+    image: '/siid/images/counseling/gift-5.jpg',
     label: '300人の受講生データから作った「あなたのAI時代キャリア適性診断」GPTs',
   },
   {
-    image: '/images/counseling/gift-6.jpg',
+    image: '/siid/images/counseling/gift-6.jpg',
     label: '【実例ベース】年代別・未経験からエンジニア＆AI関連職へ転職までの20〜40代ロードマップ',
   },
   {
-    image: '/images/counseling/gift-7.jpg',
+    image: '/siid/images/counseling/gift-7.jpg',
     label: '【外資テック内定エンジニア直伝】フルスタックエンジニアへの完全ロードマップ75分特別動画講義',
   },
 ];

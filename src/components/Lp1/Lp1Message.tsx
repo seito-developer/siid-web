@@ -36,7 +36,7 @@ export default function Lp1Message() {
       <figure className="founder-quote">
         <Image
           className="founder-photo"
-          src="/images/lp-1/seito.webp"
+          src="/siid/images/lp-1/seito.webp"
           width={154}
           height={154}
           alt="主任講師 堀口セイト"

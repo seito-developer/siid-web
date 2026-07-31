@@ -8,7 +8,7 @@ export default function Tab() {
       <a className={`${styles.Tab__Item} ${styles.Tab__Online}`} href="#online">
         オンライン
         <Image
-          src="/images/community/tab-arrow.svg"
+          src="/siid/images/community/tab-arrow.svg"
           alt=""
           width={12}
           height={8}
@@ -18,7 +18,7 @@ export default function Tab() {
       <a className={`${styles.Tab__Item} ${styles.Tab__Offline}`} href="#offline">
         オフライン
         <Image
-          src="/images/community/tab-arrow.svg"
+          src="/siid/images/community/tab-arrow.svg"
           alt=""
           width={12}
           height={8}

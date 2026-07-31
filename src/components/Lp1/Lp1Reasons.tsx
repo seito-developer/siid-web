@@ -12,7 +12,7 @@ type Reason = {
 const reasons: Reason[] = [
   {
     no: '01',
-    image: { src: '/images/lp-1/feature-1.webp', width: 444, height: 282 },
+    image: { src: '/siid/images/lp-1/feature-1.webp', width: 444, height: 282 },
     title: (
       <>
         ゴールから逆算する<br /><span className="brand">必要なことだけ</span>学ぶ設計
@@ -22,7 +22,7 @@ const reasons: Reason[] = [
   },
   {
     no: '02',
-    image: { src: '/images/lp-1/feature-3.webp', width: 444, height: 258 },
+    image: { src: '/siid/images/lp-1/feature-3.webp', width: 444, height: 258 },
     title: (
       <>
         生成AIで最短学習！<br />独自の<span className="brand">AI先生</span>も完備
@@ -32,7 +32,7 @@ const reasons: Reason[] = [
   },
   {
     no: '03',
-    image: { src: '/images/lp-1/feature-2.webp', width: 888, height: 503 },
+    image: { src: '/siid/images/lp-1/feature-2.webp', width: 888, height: 503 },
     title: (
       <>
         徹底したポートフォリオ添削と模擬面接で、万全の就活対策<br />
@@ -42,7 +42,7 @@ const reasons: Reason[] = [
   },
   {
     no: '04',
-    image: { src: '/images/lp-1/feature-4.webp', width: 444, height: 282 },
+    image: { src: '/siid/images/lp-1/feature-4.webp', width: 444, height: 282 },
     title: (
       <>
         現役エンジニア＋<br />人事経験のある講師陣
@@ -52,7 +52,7 @@ const reasons: Reason[] = [
   },
   {
     no: '05',
-    image: { src: '/images/lp-1/feature-5.webp', width: 627, height: 335 },
+    image: { src: '/siid/images/lp-1/feature-5.webp', width: 627, height: 335 },
     title: (
       <>
         チャットで24h質問＋<br />毎日のZoom相談・交流室
@@ -67,7 +67,7 @@ const reasons: Reason[] = [
   },
   {
     no: '06',
-    image: { src: '/images/lp-1/feature-6.webp', width: 295, height: 195 },
+    image: { src: '/siid/images/lp-1/feature-6.webp', width: 295, height: 195 },
     title: (
       <>
         卒業後も参加可能！<br />イベントも豊富な永久コミュニティ

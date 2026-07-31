@@ -303,7 +303,7 @@ a {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url(/images/lp-1/noise-bg.webp);
+  background-image: url(/siid/images/lp-1/noise-bg.webp);
   opacity: 0.08;
   mix-blend-mode: overlay;
   pointer-events: none;

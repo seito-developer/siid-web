@@ -16,7 +16,7 @@ export default function PlanCard({ plan }: Props) {
       {plan.recommend && (
         <div className={styles.PlanCard__Badge}>
           <Image
-            src="/images/courses/icon-megaphone.svg"
+            src="/siid/images/courses/icon-megaphone.svg"
             alt=""
             width={20}
             height={20}

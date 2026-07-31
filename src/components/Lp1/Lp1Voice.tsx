@@ -4,32 +4,32 @@ import Lp1SectionCta from './Lp1SectionCta';
 
 const voices: { src: string; alt: string; caption: string }[] = [
   {
-    src: '/images/lp-1/works/thumb-iryu.webp',
+    src: '/siid/images/lp-1/works/thumb-iryu.webp',
     alt: 'Iryuさん（文系大学生）新卒でメガベンチャー内定',
     caption: '10代男性・文系大学生 → 新卒でメガベンチャー内定！',
   },
   {
-    src: '/images/lp-1/works/thumb-sho.webp',
+    src: '/siid/images/lp-1/works/thumb-sho.webp',
     alt: 'ショウさん（公務員）データサイエンティストに転職',
     caption: '20代男性・公務員からデータサイエンティストに転職！',
   },
   {
-    src: '/images/lp-1/works/thumb-maru.webp',
+    src: '/siid/images/lp-1/works/thumb-maru.webp',
     alt: 'まるさん（医療従事者）Webエンジニアに内定',
     caption: '20代女性・医療系からWebエンジニアに内定！',
   },
   {
-    src: '/images/lp-1/works/thumb-hachi.webp',
+    src: '/siid/images/lp-1/works/thumb-hachi.webp',
     alt: 'ハチさん（デザイナー）フルリモートWeb開発企業へ',
     caption: '30代女性・WebデザイナーからUI/UXデザイナーへ転職！',
   },
   {
-    src: '/images/lp-1/works/thumb-ryusei.webp',
+    src: '/siid/images/lp-1/works/thumb-ryusei.webp',
     alt: 'リュウセイさん（現役エンジニア）フリーランス転身で年収2.5倍',
     caption: '20代男性・現役エンジニアがフリーランサー転身で年収が2.5倍へ！',
   },
   {
-    src: '/images/lp-1/works/thumb-shota.webp',
+    src: '/siid/images/lp-1/works/thumb-shota.webp',
     alt: 'ショウタさん（介護職）Webエンジニアに転職',
     caption: '40代男性・介護職からWebエンジニアに転職！',
   },
@@ -57,7 +57,7 @@ export default function Lp1Voice() {
       </div>
       <figure className="voice-others">
         <Image
-          src="/images/lp-1/voices.webp"
+          src="/siid/images/lp-1/voices.webp"
           width={900}
           height={1362}
           alt="その他の受講生の声"

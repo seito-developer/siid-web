@@ -18,7 +18,7 @@ export default function Lp1Problems() {
       <div className="p-wrap">
         <div className="p-visual">
           <Image
-            src="/images/lp-1/nayami.webp"
+            src="/siid/images/lp-1/nayami.webp"
             width={1016}
             height={572}
             alt="ゴールに向かって曲がりくねった山道を登るビジネスパーソン"

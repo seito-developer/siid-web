@@ -14,19 +14,19 @@ const timelineItems: TimelineItemData[] = [
     title: 'ITエンジニアのキャリアを開始',
     subtitle: 'アプリ開発、チームワーク、技術で課題解決',
     description: '本物が本気で付き合います。こんな講師から学べるスクールは他に存在し得ないと思います。だからこそ成果を出していただく自信があります。',
-    image: '/images/cource/timeline/timelineitem/1year.jpg',
+    image: '/siid/images/cource/timeline/timelineitem/1year.jpg',
   },
   {
     title: '理想の働き方を実現',
     subtitle: 'Uターン、リモートワーク、フレックスなど',
     description: 'Youtubeだけでは個々の課題にパーソナライズできないとセイト自身が悩んで立ち上げたプログラミングスクール。本物が本気で付き合います。こんな講師から学べるスクールは他に存在し得ないと思います。',
-    image: '/images/cource/timeline/timelineitem/3years.webp',
+    image: '/siid/images/cource/timeline/timelineitem/3years.webp',
   },
   {
     title: 'さらなる未来への挑戦',
     subtitle: 'PM、コンサル、フリーランス、大手企業転職、海外就職など',
     description: '本物が本気で付き合います。こんな講師から学べるスクールは他に存在し得ないと思います。だからこそ成果を出していただく自信があります。',
-    image: '/images/cource/timeline/timelineitem/5-8years.jpg',
+    image: '/siid/images/cource/timeline/timelineitem/5-8years.jpg',
   },
 ];
 

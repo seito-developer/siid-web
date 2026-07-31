@@ -26,7 +26,7 @@ export default function Cource() {
           <div className={styles.Cource__Title}>{'</ Course >'}</div>
           <h2 className={styles.Cource__Heading}>コース紹介</h2>
           <div className={styles.Cource__DetailButtonContainer}>
-            <Link href="/course" className={styles.Cource__DetailButton}>
+            <Link href="/courses" className={styles.Cource__DetailButton}>
               <span className={styles.Cource__DetailButtonText}>
                 コースの
                 <br className="br-sp" />
