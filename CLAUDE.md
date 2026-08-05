@@ -14,7 +14,9 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 - `docs/spec/04_workflow.md` — Issue 駆動開発のルール（下記サマリ）
 - `docs/spec/05_deploy.md` — Vercel デプロイ計画・公開前チェックリスト
 
-**ワークフローのサマリ**: GitHub Issue 起票 → develop から `feature/{issue番号}-{slug}` ブランチ → 実装 → lint+typecheck → develop 向け PR（`Closes #N`）→ `/code-review` でセルフレビュー・修正 → **マージはユーザーが行う**。develop への直接コミット禁止。実装タスクは `/feature-work` スキルに従う。
+**ワークフローのサマリ**: GitHub Issue 起票 → develop から `feature/{issue番号}-{slug}` ブランチ → 実装 → lint+typecheck → develop 向け PR（`Closes #N`）→ `/code-review` でセルフレビュー・修正 → **マージはユーザーが行う**。main / develop への直接コミット禁止。実装タスクは `/feature-work` スキルに従う。
+
+**ブランチ**: `main` = 本番（Vercel の Production Branch。develop からのリリース PR のみ受ける）/ `develop` = デフォルトブランチ・日常の PR マージ先。feature ブランチから直接 main へ PR を出さない。
 
 仕様変更・ヒアリングでの決定事項は、実装 PR と同じ PR 内で該当仕様書に反映すること。
 
