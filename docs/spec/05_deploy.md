@@ -25,7 +25,9 @@
 Vercel の既定 URL(`*.vercel.app`)は公開されるため、本番(`bug-fix.org/siid`)との重複インデックスを防ぐ必要がある。対策は二重:
 
 - 全ページの canonical が `SITE_URL`(= `https://bug-fix.org/siid`)起点で出力される(Issue #36)
-- `next.config.ts` の `headers()` で、Host が `*.vercel.app` のリクエストに `X-Robots-Tag: noindex` を付与(Issue #14)。本番の `bug-fix.org` 経由アクセスには付かない
+- `next.config.ts` の `headers()` で、Host が `*.vercel.app` のリクエストに `X-Robots-Tag: noindex` を付与(Issue #14)
+
+**注意(Worker 側の必須対応)**: Vercel にカスタムドメインを割り当てないため、Cloudflare Worker のプロキシ fetch も Host は `*.vercel.app` となり、**本番向けレスポンスにもこのヘッダーが付く**。Worker は `bug-fix.org` へ中継する応答から `X-Robots-Tag` を必ず除去すること([06_migration.md](./06_migration.md) §3.2、Issue #47 の実装要件)。除去し忘れると本番サイト全体が noindex になる。
 
 ## 計測タグ(アナリティクス)
 

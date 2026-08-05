@@ -16,7 +16,9 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       // Vercel の直 URL(*.vercel.app)は本番(bug-fix.org/siid)との重複インデックスを防ぐため noindex にする。
-      // 本番ドメインは Cloudflare Worker 経由の bug-fix.org のみなのでこのルールに一致しない(docs/spec/05_deploy.md)。
+      // 注意: 本番の Cloudflare Worker も *.vercel.app をオリジンとして fetch するため、このヘッダーは
+      // 本番向けレスポンスにも付く。Worker がプロキシ応答から X-Robots-Tag を除去する契約
+      // (docs/spec/06_migration.md §3.2、Issue #47)とセットで機能する。
       {
         source: '/:path*',
         basePath: false,
