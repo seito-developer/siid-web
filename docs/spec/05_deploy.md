@@ -6,19 +6,22 @@
 
 | 環境 | ブランチ | URL |
 |------|---------|-----|
-| Production | `develop`(現デフォルト) | `https://bug-fix.org/siid`(Cloudflare Worker が Vercel デプロイの `/siid/*` をリバースプロキシする。[06_migration.md](./06_migration.md) 参照。Vercel へのカスタムドメイン割り当ては不要) |
-| Preview | 各 feature ブランチ / PR | Vercel が自動発行 |
+| Production | `main` | `https://bug-fix.org/siid`(Cloudflare Worker が Vercel デプロイの `/siid/*` をリバースプロキシする。[06_migration.md](./06_migration.md) 参照。Vercel へのカスタムドメイン割り当ては不要) |
+| Staging / Preview | `develop`(デフォルトブランチ)・各 feature ブランチ / PR | Vercel が自動発行 |
 
-> `main` ブランチを別途作って Production に割り当てる運用も可能だが、現状はブランチ数を増やさず `develop` = Production とする。リリース頻度が上がったら見直す。
+> **Production = `main`**(2026-08 変更)。従来は「ブランチ数を増やさない」ため `develop` = Production としていたが、公開後は develop へのマージがそのまま本番反映となり、検証を挟めない。`main` を置くことで「develop で統合・検証 → リリース時に develop → main の PR をマージして本番反映」というリリースゲートを設ける。日常の feature PR のマージ先は従来どおり `develop` のままで変わらない。
+>
+> Worker は Vercel の既定 URL(`https://<siid-web>.vercel.app`)を叩き、この URL は常に最新の **Production デプロイ**(= `main`)を指す。したがって develop へのマージは本番サイトに影響しない。
 
 ## セットアップ手順(M3 で実施)
 
 1. Vercel アカウントに GitHub リポジトリ `seito-developer/siid-web` を Import
 2. Framework Preset: Next.js(設定は自動検出)
-3. Environment Variables に計測タグ ID を登録(下記「計測タグ(アナリティクス)」参照)
-4. PR ごとの Preview Deploy を有効化 → 以降の PR はプレビュー URL で動作確認できる
-5. 本番ドメインの割り当ては**不要**(Cloudflare Worker が Vercel の既定 URL `https://<siid-web>.vercel.app/siid/*` をプロキシする方式のため。[06_migration.md](./06_migration.md) §3)
-6. `next.config.ts` の `remotePatterns`(img.youtube.com)が本番でも機能することを確認
+3. **Production Branch を `main` に設定**(Settings → Git。既定では GitHub のデフォルトブランチ `develop` が選ばれるため必ず変更する)
+4. Environment Variables に計測タグ ID を登録(下記「計測タグ(アナリティクス)」参照)
+5. PR ごとの Preview Deploy を有効化 → 以降の PR はプレビュー URL で動作確認できる
+6. 本番ドメインの割り当ては**不要**(Cloudflare Worker が Vercel の既定 URL `https://<siid-web>.vercel.app/siid/*` をプロキシする方式のため。[06_migration.md](./06_migration.md) §3)
+7. `next.config.ts` の `remotePatterns`(img.youtube.com)が本番でも機能することを確認
 
 ### vercel.app 直 URL の検索インデックス対策
 

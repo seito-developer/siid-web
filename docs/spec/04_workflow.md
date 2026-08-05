@@ -12,20 +12,32 @@ GitHub Issue 起票
   → Claude がセルフレビュー(/code-review)し、指摘を修正
   → ユーザーが最終確認してマージ(マージは必ずユーザーが行う)
   → Issue クローズ(PR の "Closes #N" で自動)
+  → 【リリース時】develop → main の PR をマージして本番反映
 ```
 
 ## ブランチ運用
 
 | ブランチ | 役割 |
 |---------|------|
-| `develop` | デフォルトブランチ。PR のマージ先 |
+| `main` | **本番リリース用**。Vercel の Production Branch。`develop` からのリリース PR のみを受ける |
+| `develop` | デフォルトブランチ。日常の PR のマージ先(統合・検証) |
 | `feature/{issue番号}-{短い英語スラッグ}` | 機能実装(例: `feature/12-opening-animation`) |
 | `fix/{issue番号}-{スラッグ}` | バグ修正 |
 | `docs/{issue番号}-{スラッグ}` / `chore/{issue番号}-{スラッグ}` | ドキュメント・雑務 |
 
-- `develop` への直接コミットは禁止
+- `main` / `develop` への直接コミットは禁止
 - ブランチは必ず最新の `develop` から切る
 - 1 Issue = 1 ブランチ = 1 PR を原則とする(巨大化する場合は Issue を分割する)
+- feature ブランチから直接 `main` へ PR を出さない(必ず `develop` を経由する)
+
+## リリース運用(develop → main)
+
+本番反映は `develop` → `main` の PR をマージすることで行う([05_deploy.md](./05_deploy.md) 環境構成)。
+
+- タイトル例: `release: <リリース内容の要約>`
+- 本文に「含まれる PR / Issue の一覧」「本番での確認項目」を記載する
+- マージ操作はユーザーが行う。マージ = 本番反映であることを常に意識する
+- 緊急修正も原則 `develop` を経由する(`fix/` → develop → main)
 
 ## Issue 運用
 
