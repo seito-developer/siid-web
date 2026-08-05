@@ -1,13 +1,14 @@
 import React from 'react';
 
-import styles from './LineBanner.module.css';
+import Link from 'next/link';
 
-// TODO: LINE 公式アカウントの登録 URL が確定したら差し替える
-const LINE_URL = '#';
+import { pages } from '@/constants/meta';
+
+import styles from './LineBanner.module.css';
 
 export default function LineBanner() {
   return (
-    <a href={LINE_URL} className={styles.LineBanner}>
+    <Link href={pages.line.url} className={styles.LineBanner}>
       <div className={styles.LineBanner__Head}>
         <span className={styles.LineBanner__Logo}>LINE</span>
         <p className={styles.LineBanner__Copy}>登録すると限定特典がもらえる</p>
@@ -31,6 +32,6 @@ export default function LineBanner() {
         <span className={styles.LineBanner__ButtonText}>詳細はこちら</span>
         <span className={styles.LineBanner__ButtonTag}>{'</button>'}</span>
       </div>
-    </a>
+    </Link>
   );
 }

@@ -47,7 +47,7 @@ export default function Menu({ modifierClass }: { modifierClass?: string }) {
       <ul className={styles.Menu__SnsList}>
         {snsItems.map((snsItem, index) => (
           <li key={index} className={styles.Menu__SnsItem}>
-            <Link href={snsItem.url} target="_blank">
+            <Link href={snsItem.url} target="_blank" rel="noopener noreferrer">
               <svg width={snsItem.width} height={snsItem.height}>
                 <use href={`#${snsItem.icon}`} />
               </svg>

@@ -12,7 +12,8 @@ export const snsItems = [
     height: 24,
   }, {
     icon: 'tiktok',
-    url: 'https://www.tiktok.com/@seito_horiguchi',
+    // @seito_horiguchi は存在しないアカウント（oEmbed 400）。実在するのは @seito2020
+    url: 'https://www.tiktok.com/@seito2020',
     width: 25,
     height: 28,
   }, 

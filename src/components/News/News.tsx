@@ -23,7 +23,7 @@ export default function News({ posts }: NewsProps) {
         )}
       </section>
       <div className={styles.News__BlogLink}>
-        <Link href="https://blog.bug-fix.org" target='_blank'>SiiD Techブログ</Link>
+        <Link href="https://blog.bug-fix.org" target="_blank" rel="noopener noreferrer">SiiD Techブログ</Link>
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+import { COURSE_PLAN_ANCHOR_IDS } from '@/constants/coursePlans';
+
 type MenuItem = {
   nameEN: string;
   nameJP: string;
@@ -10,19 +12,19 @@ export const menuItems: MenuItem[] = [
   {
     nameEN: 'Course plan',
     nameJP: 'コース/プラン',
-    url: '/',
+    url: '/courses',
     subItems: [
       {
         name: 'Careerコース',
-        url: '/',
+        url: `/courses#${COURSE_PLAN_ANCHOR_IDS.career}`,
       },
       {
         name: 'Career+FullSupportEditionコース',
-        url: '/',
+        url: `/courses#${COURSE_PLAN_ANCHOR_IDS.fullSupport}`,
       },
       {
         name: 'Career+VIPEditionコース',
-        url: '/',
+        url: `/courses#${COURSE_PLAN_ANCHOR_IDS.vip}`,
       },
     ],
   },

@@ -32,7 +32,7 @@ export default function NewsCarousel({ posts }: NewsCarouselProps) {
         >
           {posts.map((post) => (
             <li key={post.id} className={styles.News__Item}>
-              <Link href={`${BLOG_URL}/blog/${post.id}`} target='_blank' className={styles.News__Link}>
+              <Link href={`${BLOG_URL}/blog/${post.id}`} target="_blank" rel="noopener noreferrer" className={styles.News__Link}>
                 <NewsPost dateTime={post.publishedAt} title={post.title} />
               </Link>
             </li>
