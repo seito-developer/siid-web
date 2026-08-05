@@ -13,6 +13,28 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async headers() {
+    return [
+      // Vercel の直 URL(*.vercel.app)は本番(bug-fix.org/siid)との重複インデックスを防ぐため noindex にする。
+      // 本番ドメインは Cloudflare Worker 経由の bug-fix.org のみなのでこのルールに一致しない(docs/spec/05_deploy.md)。
+      {
+        source: '/:path*',
+        basePath: false,
+        has: [
+          {
+            type: 'host',
+            value: '.*\\.vercel\\.app',
+          },
+        ],
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

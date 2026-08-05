@@ -6,7 +6,7 @@
 
 | 環境 | ブランチ | URL |
 |------|---------|-----|
-| Production | `develop`(現デフォルト) | 本番ドメイン(未確定。現行 `bug-fix.org/siid` からの移行方式は [06_migration.md](./06_migration.md) で確定させる) |
+| Production | `develop`(現デフォルト) | `https://bug-fix.org/siid`(Cloudflare Worker が Vercel デプロイの `/siid/*` をリバースプロキシする。[06_migration.md](./06_migration.md) 参照。Vercel へのカスタムドメイン割り当ては不要) |
 | Preview | 各 feature ブランチ / PR | Vercel が自動発行 |
 
 > `main` ブランチを別途作って Production に割り当てる運用も可能だが、現状はブランチ数を増やさず `develop` = Production とする。リリース頻度が上がったら見直す。
@@ -17,8 +17,15 @@
 2. Framework Preset: Next.js(設定は自動検出)
 3. Environment Variables に計測タグ ID を登録(下記「計測タグ(アナリティクス)」参照)
 4. PR ごとの Preview Deploy を有効化 → 以降の PR はプレビュー URL で動作確認できる
-5. 本番ドメインの割り当て(ドメイン未確定 → ユーザーに確認)
+5. 本番ドメインの割り当ては**不要**(Cloudflare Worker が Vercel の既定 URL `https://<siid-web>.vercel.app/siid/*` をプロキシする方式のため。[06_migration.md](./06_migration.md) §3)
 6. `next.config.ts` の `remotePatterns`(img.youtube.com)が本番でも機能することを確認
+
+### vercel.app 直 URL の検索インデックス対策
+
+Vercel の既定 URL(`*.vercel.app`)は公開されるため、本番(`bug-fix.org/siid`)との重複インデックスを防ぐ必要がある。対策は二重:
+
+- 全ページの canonical が `SITE_URL`(= `https://bug-fix.org/siid`)起点で出力される(Issue #36)
+- `next.config.ts` の `headers()` で、Host が `*.vercel.app` のリクエストに `X-Robots-Tag: noindex` を付与(Issue #14)。本番の `bug-fix.org` 経由アクセスには付かない
 
 ## 計測タグ(アナリティクス)
 
@@ -49,8 +56,8 @@
 
 - [x] OGP 画像 / favicon / apple-touch-icon の設定(Figma 4265:8754 / 4265:8761 / 4265:8766 から書き出し)(Issue #36)
 - [x] `metadata`(title / description / OGP)が全ページ設定済み(Issue #36)
-- [ ] 404 ページ実装済み
-- [ ] ナビ・フッターの全リンクが 404 にならない(`/after-support`, `/contact` 実装完了が前提)
+- [x] 404 ページ実装済み(`src/app/not-found.tsx` + `(Main)/[...notFound]`)
+- [x] ナビ・フッターの全リンクが 404 にならない(現ナビは実装済みページのみ参照。コース系リンクは `/` へのプレースホルダー)
 - [ ] Lighthouse(モバイル)Performance 80+ / SEO 90+ / Accessibility 90+
 - [ ] 検索インデックス方針の確認(公開前に noindex が必要な期間はあるか → ユーザー確認)
 - [ ] 計測タグ(GA4 / GTM / UserHeat)の環境変数を Vercel に登録済み(「計測タグ(アナリティクス)」参照)
@@ -58,5 +65,6 @@
 
 ## 未確定事項
 
-- 本番ドメイン(現行の https://bug-fix.org/siid からの移行・リダイレクト要否も含む。詳細計画は [06_migration.md](./06_migration.md) を参照)
 - Google Search Console 導入の要否(Analytics タグは Issue #19 で引き継ぎ済み)
+
+> 本番ドメインは `https://bug-fix.org/siid`(Cloudflare Worker プロキシ方式)で確定済み。旧 URL からのリダイレクトは [06_migration.md](./06_migration.md) §4(Issue #48)で扱う。
