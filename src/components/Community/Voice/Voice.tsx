@@ -57,7 +57,7 @@ export default function Voice(props: Props) {
           <div className={styles.Voice__LeftCardTitle}>受講者の声</div>
           <div className={styles.Voice__LeftCardWatermark} aria-hidden="true">
             <Image
-              src="/images/community/logo_voice.svg"
+              src="/siid/images/community/logo_voice.svg"
               alt=""
               width={100}
               height={100}

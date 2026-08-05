@@ -25,7 +25,7 @@ export default function LineBanner({ priority = false }: Props) {
       aria-label="セイト先生（公式）LINEを友だち追加する">
       <Image
         className={styles.LineBanner__Pc}
-        src="/images/line/banner-pc.svg"
+        src="/siid/images/line/banner-pc.svg"
         alt={ALT}
         width={1080}
         height={460}
@@ -34,7 +34,7 @@ export default function LineBanner({ priority = false }: Props) {
       />
       <Image
         className={styles.LineBanner__Sp}
-        src="/images/line/banner-sp.svg"
+        src="/siid/images/line/banner-sp.svg"
         alt={ALT}
         width={311}
         height={627}

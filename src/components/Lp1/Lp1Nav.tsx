@@ -4,7 +4,7 @@ export default function Lp1Nav() {
   return (
     <header className="nav">
       <div className="logo">
-        <Image src="/images/lp-1/siid-logo.svg" alt="SiiD" width={469} height={117} />
+        <Image src="/siid/images/lp-1/siid-logo.svg" alt="SiiD" width={469} height={117} />
       </div>
       <div className="nav-right">
         <nav className="nav-links">

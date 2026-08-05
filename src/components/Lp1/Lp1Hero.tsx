@@ -8,7 +8,7 @@ export default function Lp1Hero() {
         <div className="hero-card">
           <Image
             className="hero-image"
-            src="/images/lp-1/hero.webp"
+            src="/siid/images/lp-1/hero.webp"
             width={1280}
             height={684}
             priority
@@ -26,7 +26,7 @@ export default function Lp1Hero() {
         <div className="hero-sp-main">
           <div className="hero-sp-title">
             <Image
-              src="/images/lp-1/hero-sp-title.svg"
+              src="/siid/images/lp-1/hero-sp-title.svg"
               width={379}
               height={155}
               priority
@@ -41,7 +41,7 @@ export default function Lp1Hero() {
             <div className="hero-sp-budge" />
             <div className="hero-sp-reskill">
               <Image
-                src="/images/lp-1/benefits.webp"
+                src="/siid/images/lp-1/benefits.webp"
                 width={337}
                 height={406}
                 priority
@@ -54,7 +54,7 @@ export default function Lp1Hero() {
 
         <Image
           className="hero-sp-logo"
-          src="/images/lp-1/logo-hero.webp"
+          src="/siid/images/lp-1/logo-hero.webp"
           width={360}
           height={90}
           alt="SiiDロゴ"

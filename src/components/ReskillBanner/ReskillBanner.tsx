@@ -6,10 +6,10 @@ export default function ReskillBanner() {
   return (
     <aside className={styles.ReskillBanner}>
       <picture>
-        <source media="(min-width: 1280px)" srcSet="/reskill-banner-pc.png" />
-        <source media="(max-width: 1279px)" srcSet="/reskill-banner-sp.png" />
+        <source media="(min-width: 1280px)" srcSet="/siid/reskill-banner-pc.png" />
+        <source media="(max-width: 1279px)" srcSet="/siid/reskill-banner-sp.png" />
         <img
-          src="/images/reskill-banner-sp.png"
+          src="/siid/reskill-banner-sp.png"
           alt="Reスキル講座 - 給付金制度を利用して受講料最大80%オフ！"
           width="100%"
           height="auto"

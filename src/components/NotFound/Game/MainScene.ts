@@ -96,7 +96,7 @@ export default class MainScene extends Phaser.Scene {
 
   preload() {
     IMAGES.forEach(({ key, file }) => {
-      this.load.image(key, `/images/404/${file}`);
+      this.load.image(key, `/siid/images/404/${file}`);
     });
   }
 

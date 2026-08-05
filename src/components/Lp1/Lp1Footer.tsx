@@ -14,7 +14,7 @@ export default function Lp1Footer() {
       <div className="foot-wrap">
         <div>
           <div className="logo" style={{ marginBottom: 10 }}>
-            <Image src="/images/lp-1/siid-logo-w.svg" alt="SiiD" width={469} height={117} />
+            <Image src="/siid/images/lp-1/siid-logo-w.svg" alt="SiiD" width={469} height={117} />
           </div>
           <p style={{ fontSize: 12, lineHeight: 1.8, color: '#a8b0cc' }}>
             AIプログラミングスクール SiiD。

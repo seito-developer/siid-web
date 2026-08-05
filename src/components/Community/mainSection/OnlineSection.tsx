@@ -14,7 +14,7 @@ export default function OnlineSection() {
       <div className={styles.Online__Center}>
         <div className={styles.Online__Block}>
           <ContentBlock
-            iconPass="/images/community/icon-discord.svg"
+            iconPass="/siid/images/community/icon-discord.svg"
             alt="Discord"
             description="Discordは常に相談できる体制で、受講生同士で切磋琢磨や、雑談など日々にぎわっています。また、卒業してからも活用してる方も多く、エンジニアのタテヨコのつながりが生まれやすい！"
           />
@@ -23,7 +23,7 @@ export default function OnlineSection() {
         <RibbonText text="ONLINE" />
         <div className={styles.Online__block}>
           <ContentBlock
-            iconPass="/images/community/icon-zoom.svg"
+            iconPass="/siid/images/community/icon-zoom.svg"
             alt="Zoom"
             description="月１回、著名なゲストを招いて対談イベントや交流会を開催しています！その他には、もくもく相談会Zoomを週５日開催！"
           />

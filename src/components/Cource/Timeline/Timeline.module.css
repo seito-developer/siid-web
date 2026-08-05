@@ -88,7 +88,7 @@
       aspect-ratio: 93 / 248;
       width: auto;
       height: 100%;
-      background-image: url('/images/cource/timeline/triangle.png');
+      background-image: url('/siid/images/cource/timeline/triangle.png');
       background-size: cover;
       background-repeat: no-repeat;
       position: absolute;
@@ -172,7 +172,7 @@
         aspect-ratio: 248 / 93;
         width: 100%;
         height: auto;
-        background-image: url('/images/cource/timeline/triangle-pc.png');
+        background-image: url('/siid/images/cource/timeline/triangle-pc.png');
         background-size: 100% 100%;
         background-repeat: no-repeat;
         position: absolute;

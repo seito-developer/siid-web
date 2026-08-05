@@ -49,13 +49,13 @@ export default function WhitePaper() {
           <figure className={styles.WhitePaper__Figure}>
             <div className={styles.WhitePaper__Images}>
               <Image
-                src="/images/white-paper/page-1.jpg"
+                src="/siid/images/white-paper/page-1.jpg"
                 alt="サービス資料の画像１"
                 width={960}
                 height={540}
               />
               <Image
-                src="/images/white-paper/page-2.jpg"
+                src="/siid/images/white-paper/page-2.jpg"
                 alt="サービス資料の画像２"
                 width={960}
                 height={540}

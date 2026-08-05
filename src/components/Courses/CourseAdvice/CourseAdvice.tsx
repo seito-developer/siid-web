@@ -16,7 +16,7 @@ export default function CourseAdvice({ plans }: Props) {
       <SectionHeading en="Advice" title="コース選びで迷っている方へ" />
       <div className={styles.CourseAdvice__BalloonWrap}>
         <Image
-          src="/images/courses/bracket-left.svg"
+          src="/siid/images/courses/bracket-left.svg"
           alt=""
           width={32}
           height={43}
@@ -24,21 +24,21 @@ export default function CourseAdvice({ plans }: Props) {
         />
         <div className={styles.CourseAdvice__Balloon}>
           <Image
-            src="/images/courses/balloon.svg"
+            src="/siid/images/courses/balloon.svg"
             alt=""
             width={484}
             height={92}
             className={styles.CourseAdvice__BalloonBg}
           />
           <Image
-            src="/images/courses/balloon-star.svg"
+            src="/siid/images/courses/balloon-star.svg"
             alt=""
             width={38}
             height={36}
             className={styles.CourseAdvice__BalloonStarLeft}
           />
           <Image
-            src="/images/courses/balloon-star.svg"
+            src="/siid/images/courses/balloon-star.svg"
             alt=""
             width={38}
             height={36}
@@ -51,7 +51,7 @@ export default function CourseAdvice({ plans }: Props) {
           </p>
         </div>
         <Image
-          src="/images/courses/bracket-right.svg"
+          src="/siid/images/courses/bracket-right.svg"
           alt=""
           width={32}
           height={43}
@@ -67,7 +67,7 @@ export default function CourseAdvice({ plans }: Props) {
                   <li key={i} className={styles.CourseAdvice__Worry}>
                     <span className={styles.CourseAdvice__WorryBadge}>
                       <Image
-                        src={`/images/courses/badge-nayami-${plan.id === 'fullSupport' ? 'fullsupport' : plan.id}.svg`}
+                        src={`/siid/images/courses/badge-nayami-${plan.id === 'fullSupport' ? 'fullsupport' : plan.id}.svg`}
                         alt=""
                         width={37}
                         height={43}
