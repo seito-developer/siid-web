@@ -277,7 +277,8 @@ import styles from './Component.module.css';
 | YouTube | https://www.youtube.com/@programming-siid |
 | X (Twitter) | https://x.com/seito_horiguchi |
 | TikTok | https://www.tiktok.com/@seito2020 |
-| Instagram | https://www.instagram.com/seito_horiguchi/ |
+| Instagram | https://www.instagram.com/seito.ai_engineer/ |
+| Threads | https://www.threads.com/@seito.ai_engineer |
 | プライバシーポリシー | https://bug-fix.org/privacy-policy |
 | 運営会社 | https://bug-fix.org |
 | リスキル講座（経産省） | https://www.meti.go.jp/policy/economy/jinzai/reskillprograms/index.html |
