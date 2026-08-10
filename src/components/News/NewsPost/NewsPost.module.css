@@ -1,7 +1,9 @@
 .NewsPost {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    /* タイトルは -webkit-box（line-clamp）のため、baseline 指定だと WebKit で
+       2行目に日付が引っ張られる。flex-start で1行目の高さに揃える */
+    align-items: flex-start;
     gap: 8px;
 }
 

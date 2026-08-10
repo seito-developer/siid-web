@@ -62,7 +62,8 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
   | `microCMS の環境変数が未設定` | Vercel の Environment Variables 未登録、または対象環境（Production / Preview）に未設定 |
   | `microCMS から 0 件が返りました` | `filters` の不一致（カテゴリID・フィールド名） |
   | `microCMS からの記事取得に失敗しました` | エンドポイント名の誤り（404）・API キーの権限不足（401）・タイムアウト |
-- **環境変数を追加・変更したら再デプロイが必要**。TOPページは静的生成されるため、環境変数が無い状態でビルドされると `getNews()` が fetch 前に return し、ISR の再検証も登録されない＝空のページが恒久的にキャッシュされる。
+- **環境変数を追加・変更したら再デプロイが必要**（Vercel の環境変数は既存デプロイには反映されない）。
+- 再検証は `getNews()` 内の fetch だけでなく、`src/app/(Main)/page.tsx` の `export const revalidate = 600` でもルート単位に指定する。環境変数未設定などで fetch 自体が実行されないとページが完全な静的扱いになり二度と再生成されないため（Issue #55）。
 
 ## Figma デザインデータ
 
