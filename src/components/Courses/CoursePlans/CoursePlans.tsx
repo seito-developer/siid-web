@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { COURSE_PLAN_ANCHOR_IDS } from '@/constants/coursePlans';
 import { CoursePlan } from '@/lib/getCoursePlans';
 
 import PlanCard from '../PlanCard/PlanCard';
@@ -19,7 +20,10 @@ export default function CoursePlans({ plans }: Props) {
       </div>
       <ul className={styles.CoursePlans__List}>
         {plans.map((plan) => (
-          <li key={plan.id} className={styles.CoursePlans__Item}>
+          <li
+            key={plan.id}
+            id={COURSE_PLAN_ANCHOR_IDS[plan.id]}
+            className={styles.CoursePlans__Item}>
             <PlanCard plan={plan} />
           </li>
         ))}

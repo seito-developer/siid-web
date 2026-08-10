@@ -64,7 +64,7 @@ export default function Supporter() {
                   <use href="#tiktok" />
                 </svg>
               </Link>
-              <Link href="https://www.instagram.com/seito_horiguchi/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={styles.MainSupporter__SocialLink}>
+              <Link href="https://www.instagram.com/seito.ai_engineer/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={styles.MainSupporter__SocialLink}>
                 <svg width="30" height="30">
                   <use href="#instagram" />
                 </svg>

@@ -34,5 +34,11 @@
     .CoursePlans__Item {
         flex: 1;
         min-width: 0;
+        /*
+         * グローバルナビから /courses#plan-xxx で遷移した際、固定ナビ
+         * (NavigationPcLower: border-top 8px + ロゴ 75px + padding-bottom 40px ≒ 123px)に
+         * カード上部が隠れないようにする。SP は上部固定ナビが無いため PC のみ。
+         */
+        scroll-margin-top: 140px;
     }
 }
