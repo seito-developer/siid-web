@@ -39,11 +39,14 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 | `/counseling-complete-lp-1` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した申込完了ページ(noindex)。OpenAI Ads CV計測 `appointment_scheduled` を発火 | Figma 対応なし |
 | `/white-paper` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した資料請求ページ(公式LINE誘導) | Figma 対応なし |
 
-## TOPページ News セクション（microCMS 連携・Issue #30）
+## TOPページ News セクション（microCMS 連携・Issue #30 / #55）
 
 - SiiD BLOG（microCMS）の `blog` エンドポイントから「コラム」カテゴリの最新記事を取得して表示。記事クリックで該当記事（`https://blog.bug-fix.org/blog/{id}`）へ遷移。
 - 取得ロジックは `src/lib/getNews.ts`（サーバー側実行）。`categories[contains]column` で絞り込み、`publishedAt` 降順で最大3件。ISR で 600 秒ごとに再検証。カテゴリID `column` は変更予定がないため定数で固定。
-- `News.tsx` は async Server Component（取得担当）、スワイプ/矢印カルーセルUXは `NewsCarousel.tsx`（Client Component）に分離。
+- `News.tsx` は props で記事を受け取る Server Component、スワイプ/矢印カルーセルUXは `NewsCarousel.tsx`（Client Component）に分離。取得は `src/app/(Main)/page.tsx` が `getNews()` を呼んで行う。
+- 表示形式は **`yyyy/mm/dd | title`**（`NewsPost.tsx`）。`|` は `.NewsPost__date::after` の擬似要素、タイトルは 2 行で省略。
+  - 日付は `Intl.DateTimeFormat('ja-JP', { timeZone: 'Asia/Tokyo', ... })` で整形する。`publishedAt` は UTC のため、タイムゾーンを固定しないとサーバー（UTC）とクライアント（JST）で表示がズレて Hydration Error になる。
+- 「SiiD Techブログ」への導線リンクは Issue #55 で削除済み（再追加しないこと）。
 - 環境変数（サーバー専用・`.env.local` / Vercel に設定。`.env.example` 参照）:
 
   | 変数 | 説明 |
@@ -53,6 +56,13 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 
 - `blog` エンドポイントの `categories` は複数参照フィールドのため、絞り込みは `equals` ではなく `contains` を使う。
 - 環境変数未設定・取得失敗時は空配列を返し、News は「現在お知らせはありません。」を表示（ページ全体は落とさない）。
+- **切り分け方法（Issue #55）**: 失敗ケースは全て同じ「現在お知らせはありません。」になるため、`getNews()` は原因を `console.error` / `console.warn` に出力する。表示されない場合は **Vercel の Runtime Logs** を確認する。
+  | ログ | 原因 |
+  |------|------|
+  | `microCMS の環境変数が未設定` | Vercel の Environment Variables 未登録、または対象環境（Production / Preview）に未設定 |
+  | `microCMS から 0 件が返りました` | `filters` の不一致（カテゴリID・フィールド名） |
+  | `microCMS からの記事取得に失敗しました` | エンドポイント名の誤り（404）・API キーの権限不足（401）・タイムアウト |
+- **環境変数を追加・変更したら再デプロイが必要**。TOPページは静的生成されるため、環境変数が無い状態でビルドされると `getNews()` が fetch 前に return し、ISR の再検証も登録されない＝空のページが恒久的にキャッシュされる。
 
 ## Figma デザインデータ
 
