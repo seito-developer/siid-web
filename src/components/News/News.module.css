@@ -80,17 +80,6 @@
     }
 }
 
-.News__BlogLink {
-    text-align: right;
-    margin-top: 10px;
-    > a {
-        color: var(--main);
-        &:hover {
-            text-decoration: none;
-        }
-    }
-}
-
 @media screen and (min-width: 1280px) {
     .News {
         width: 340px;
