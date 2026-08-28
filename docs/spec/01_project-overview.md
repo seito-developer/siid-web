@@ -25,19 +25,24 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 
 | URL | 状態 | Figma フレーム(主なもの) |
 |-----|------|------------------|
-| `/` | 実装済み(FVアニメ未実装) | `TOP_nomal` (3506:8246), `TOP` (3595:9208 / 3600:11840) |
+| `/` | 実装済み(オープニング演出 `Opening` 実装済み。News は microCMS 連携・`revalidate = 600`) | `TOP_nomal` (3506:8246), `TOP` (3595:9208 / 3600:11840) |
 | `/career-path` → `/career-path/[page]` | 実装済み | `C-1 卒業生の進路` (3506:10507), モーダル (3506:10655), SP (3506:5977) |
-| `/courses` | **プレースホルダーのみ** | `B-1 コース一覧` (3506:9919), SP (3506:6335) |
+| `/courses` | 実装済み(比較表・プラン。プラン別アンカーは `COURSE_PLAN_ANCHOR_IDS`) | `B-1 コース一覧` (3506:9919), SP (3506:6335) |
 | `/community` | 実装済み | `E-1 コミュニティの雰囲気` (3506:11116), SP (3506:7723) |
 | `/service` | 実装済み | `D-1 サービス一覧` (3506:10951), SP (3506:7084) |
 | `/after-support` | **独立ページ無し**(Issue #11)。実体は `/service` 内 `Support` セクション。ナビは『サービス一覧』→ /service に変更 | `D-1 サービス一覧` 内(3506:10951) |
 | `/line` | 実装済み(2026-07) | `G-1 LINE登録` PC (3506:11427) / SP (3506:6128) |
-| `/contact` | **未実装**(ContactButton のリンク先は現状 `/counseling`) | ※ `G-1 LINE登録` は独立ページ `/line` として実装済み。`/contact` の実体は要確認のまま |
-| 404 | 実装済み(2026-07 / Issue #24)。dino風ミニゲーム付き | `H-1 409` (3506:11730)。H-1 410〜413 は存在しないことを確認済み(SP はPC縮小構成) |
-| `/counseling` | 未実装(meta.ts に定義のみ) | 要確認 |
-| `/lp-1` | 実装済み(2026-07 / Issue #40)。旧サイト `bug-fix.org/siid/lp-1` から移植した広告流入用の独立LP。共通クローム無し・noindex | Figma 対応なし(旧LPの忠実再現) |
+| `/counseling` | 実装済み。`ContactButton` のリンク先 | 要確認 |
+| `/counseling/complete` | 実装済み(予約完了・CV 計測、noindex) | Figma 対応なし |
+| `/counseling-complete` | 実装済み(旧 URL 互換、noindex) | Figma 対応なし |
+| `/contact` | **ルートとして存在しない**。実体は `/counseling` | — |
+| 404 | 実装済み(2026-07 / Issue #24)。dino風ミニゲーム付き。`(Main)/[...notFound]` の catch-all で未知 URL を着地させる | `H-1 409` (3506:11730)。H-1 410〜413 は存在しないことを確認済み(SP はPC縮小構成) |
+| `/lp-1` | 実装済み(2026-07 / Issue #40)。旧サイト `bug-fix.org/siid/lp-1` から移植した広告流入用の独立LP。共通クローム無し・noindex。root layout は `(Lp)/layout.tsx` | Figma 対応なし(旧LPの忠実再現) |
 | `/counseling-complete-lp-1` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した申込完了ページ(noindex)。OpenAI Ads CV計測 `appointment_scheduled` を発火 | Figma 対応なし |
 | `/white-paper` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した資料請求ページ(公式LINE誘導) | Figma 対応なし |
+
+> ルーティングの実体は `src/app/` のディレクトリ構成、URL とメタデータの実体は `src/constants/meta.ts` が唯一の情報源。
+> この表と食い違ったらコードが正で、気付いた時点でこの表を直す。
 
 ## TOPページ News セクション（microCMS 連携・Issue #30 / #55）
 
@@ -98,4 +103,4 @@ Figma 内「アニメーションについて」(3235:2345) にはデザイナ�
 
 ## 未確定事項
 
-- `/counseling` ページを作るか、`/contact` に統合するか
+- 問い合わせフォームの外部サービス選定([03_pages.md](./03_pages.md) 参照)
