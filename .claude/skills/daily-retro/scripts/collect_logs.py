@@ -13,6 +13,7 @@
   - サブエージェントのログは <session-uuid>/subagents/*.jsonl
 """
 import json
+import re
 import os
 import sys
 from datetime import datetime, timedelta, timezone
@@ -60,6 +61,21 @@ def blocks(entry):
     return [b for b in (content or []) if isinstance(b, dict)]
 
 
+# 中断は「最後の assistant 発話がエラー出力そのもの」でしか判定しない。
+# 本文中の言及（過去の中断を報告文で引用しただけ 等）で誤検知しないこと。
+INTERRUPT_RE = re.compile(
+    r"^(?:\W*)(?:API Error|Request (?:timed out|was aborted)|Error: )", re.IGNORECASE
+)
+
+
+def is_interrupted(last_assistant: str) -> bool:
+    text = (last_assistant or "").strip()
+    if not text:
+        return False
+    # レポート本文（長文）は中断ではない。中断時の残骸は短いエラー行になる。
+    return bool(INTERRUPT_RE.match(text)) and len(text) < 400
+
+
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("-")]
     full = "--full" in sys.argv
@@ -81,7 +97,6 @@ def main():
         print(f"   全体: {min(stamps)[:19]}Z .. {max(stamps)[:19]}Z / entries={len(rows)}")
         tools = {}
         last_assistant = ""
-        interrupted = False
         for r in rows:
             ts = r.get("timestamp", "")
             if not (start <= ts < end):
@@ -102,12 +117,10 @@ def main():
                         print(f"\n   [USER] {ts[11:19]}\n   " + text[:limit].replace("\n", "\n   ") + "\n")
                     else:
                         last_assistant = text
-                        if "API Error" in text or "went to sleep" in text:
-                            interrupted = True
         print(f"\n   tool 内訳: {tools}")
         if last_assistant:
             print("   [最後の assistant 発話]\n   " + last_assistant[:limit].replace("\n", "\n   "))
-        if interrupted:
+        if is_interrupted(last_assistant):
             print("   !! このセッションは中断で終わっている（成果物が出ていない可能性が高い）")
         print()
     if not found:
