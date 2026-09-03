@@ -33,7 +33,12 @@ git log --all --since="2 days ago" --date=iso --pretty='%h %ad %d %s'
 gh pr list --state all --limit 10 --json number,title,state,baseRefName,headRefName \
   --template '{{range .}}#{{.number}} [{{.state}}] {{.headRefName}} -> {{.baseRefName}} {{.title}}{{"\n"}}{{end}}'
 gh issue list --state open --limit 20
+gh pr list --state open --json number,title,createdAt \
+  --template '{{range .}}#{{.number}} {{.createdAt}} {{.title}}{{"\n"}}{{end}}'   # 滞留 PR
 ```
+
+**open のまま残っている PR は報告に必ず含める。** マージはユーザーが行うため、
+毎朝新しい PR を積むだけだと滞留に気づけない（2026-09-04 時点で #54 / #58 / #60 が滞留していた）。
 
 ### 3. 何を「反省点」とみなすか
 
@@ -44,6 +49,12 @@ gh issue list --state open --limit 20
 - **前提のズレ**: ドキュメントの記述が古く、実装と食い違っていた → ドキュメントを直す
 - **中断・成果物ゼロ**: セッションが途中で落ちて何も残っていない → 進め方（早めのコミット）を見直す
 - **依頼文とプロジェクトルールの矛盾**: 例「main へ PR」だが CLAUDE.md は develop 向け → 判断をスキルに明記する
+- **このスキル自体の不具合**: 収集スクリプトの出力が事実と食い違っていたら、それを最優先で直す
+  （振り返りの一次情報が誤ると翌日以降の判断ごとミスリードする）
+
+**前日のセッションが「振り返り依頼」1 本だけだった日**は珍しくない。
+その場合は前日の振り返り自身の進め方（ツール消費・成果物の出方・スキル出力の正しさ）を対象にする。
+それでも直すところが無ければ「反省点なし」と報告して終える。自己言及で無理に改変を作らない。
 
 ### 4. 成果物を出す（中断に強い順序で）
 
@@ -54,7 +65,14 @@ gh issue list --state open --limit 20
    （ローカルは `main` や未マージのブランチに載っていることがある）
 3. スキル追記／ドキュメント更新を書いたら**すぐコミット**する。全部書き終えてからまとめてコミットしない
 4. `npm run lint && npm run typecheck`（ドキュメントのみの変更でもコミット前に一度通す）
-5. PR 作成（`Closes #N`）
+5. `git push -u origin <branch>` は**単独で実行**する。`git push && gh pr create` と繋ぐと
+   push 側で止まったときに切り分けができず、やり直しでツール呼び出しを余計に使う（前回 3 回消費）。
+   push 後は `git ls-remote --heads origin <branch>` で反映を確認してから PR を作る
+6. PR 作成（`Closes #N`）
+
+**基点の例外**: このスキル自身のファイルがまだ develop にマージされていない（＝先行 PR が open）場合は、
+`origin/develop` ではなく**その先行ブランチを基点**にし、PR の base もそのブランチにする（スタック PR）。
+先行 PR がマージされると GitHub が base を自動で develop に付け替える。
 
 ### 5. PR のベースブランチ
 
