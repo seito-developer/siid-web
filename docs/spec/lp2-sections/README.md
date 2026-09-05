@@ -10,7 +10,7 @@ PSD から自動生成したセクションごとの座標・サイズ・テキ�
 | # | セクション | コンポーネント | 補足 |
 |---|-----------|--------------|------|
 | 01 | [ヘッダー(固定ナビ)](./01-header.md) | `header` |  |
-| 02 | [FV(動画背景)](./02-fv.md) | `fv` |  |
+| 02 | [FV(動画背景)](./02-fv.md) | `fv` | [補足](./02-fv.notes.md) |
 | 03 | [ABOUT](./03-about.md) | `about` |  |
 | 04 | [RESULTS(カルーセル)](./04-result.md) | `result` |  |
 | 05 | [INSTRUCTOR](./05-instructor.md) | `instructor` |  |
