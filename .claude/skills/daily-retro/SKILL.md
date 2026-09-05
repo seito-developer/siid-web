@@ -123,8 +123,12 @@ Issue 起票・ブランチ作成・PR 作成をやり直さず、**その既存
     `...-siid-web--claude-worktrees-*`、`-Users-horiguchimasato-orca-workspaces-siid-web-*` が該当。
     `*siid-web*` のパス一致で全部拾える
   - サブエージェントのログは `<session-uuid>/subagents/*.jsonl`
-- **timestamp は UTC。ローカルは JST（+9）。** 「前日(JST)」= `[D-1T15:00:00Z, DT15:00:00Z)`。
+- **timestamp は UTC。ローカルは JST（+9）。**
   `grep '"timestamp":"YYYY-MM-DD'` で日付前方一致させると 9 時間ぶんズレる（前回やらかした）
+- **「1日」は暦日ではなく 05:00 JST 起点**（`collect_logs.py` が実装済み）。
+  ユーザーの作業は深夜 1〜3 時に及ぶため、暦日で切ると一晩の作業が 2 日に分断され、
+  本命のセッションが振り返りから丸ごと漏れる（2026-09-06 実行時に LP フェーズ0 の
+  169 ツール呼び出しぶんのセッションが範囲外に落ちた）。起点は `RETRO_DAY_START_HOUR` で変更可
 - ログ 1 ファイルは数百 KB〜数 MB。`cat` せず、必ず `type` と `message.content` を絞って抽出する
   （`type` は `user` / `assistant` / `attachment` / `system` など。本文は `content[].text`、
   ツールは `content[].type == "tool_use"`）

@@ -9,7 +9,10 @@
 ログの前提（調べ直さないこと）:
   - 置き場所は ~/.claude/projects/<cwd のスラッシュをハイフンにしたディレクトリ名>/<session-uuid>.jsonl
   - ワークツリーごとに別ディレクトリになる（git worktree / orca workspaces も別扱い）
-  - timestamp は UTC。JST の「前日」は [D-1T15:00Z, DT15:00Z)
+  - timestamp は UTC。JST の「前日」は暦日ではなく **対象日 05:00 JST 〜 翌日 05:00 JST**
+    （深夜 1〜3 時の作業を「その晩」として対象日側に含めるため。暦日で切ると一晩の作業が
+     2 日に分断され、本命のセッションが振り返りから丸ごと漏れる）
+    起点は環境変数 RETRO_DAY_START_HOUR で変更できる（既定 5）
   - サブエージェントのログは <session-uuid>/subagents/*.jsonl
 """
 import json
@@ -24,8 +27,13 @@ PROJECTS = os.path.expanduser("~/.claude/projects")
 MATCH = os.environ.get("RETRO_MATCH", "siid-web")
 
 
+# 「1日」の起点(JST)。5 = 05:00 起点なので、深夜 0〜5 時の作業は前日側に含まれる。
+DAY_START_HOUR = int(os.environ.get("RETRO_DAY_START_HOUR", "5"))
+
+
 def jst_window(day: str):
-    d = datetime.strptime(day, "%Y-%m-%d").replace(tzinfo=JST)
+    """対象日(JST)の [DAY_START_HOUR:00, 翌日 DAY_START_HOUR:00) を UTC 文字列で返す。"""
+    d = datetime.strptime(day, "%Y-%m-%d").replace(tzinfo=JST, hour=DAY_START_HOUR)
     start = d.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S")
     end = (d + timedelta(days=1)).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S")
     return start, end
@@ -79,11 +87,17 @@ def is_interrupted(last_assistant: str) -> bool:
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("-")]
     full = "--full" in sys.argv
-    day = args[0] if args else (datetime.now(JST) - timedelta(days=1)).strftime("%Y-%m-%d")
+    # 05:00 前に実行した場合、「今」はまだ前日の夜の続き。基準日を 1 日戻してから前日を取る。
+    now = datetime.now(JST)
+    today = (now - timedelta(days=1)) if now.hour < DAY_START_HOUR else now
+    day = args[0] if args else (today - timedelta(days=1)).strftime("%Y-%m-%d")
     start, end = jst_window(day)
     limit = 4000 if full else 800
 
-    print(f"# 対象日(JST): {day}  / UTC window: {start} .. {end}  / match: {MATCH}\n")
+    print(
+        f"# 対象日(JST): {day} {DAY_START_HOUR:02d}:00 〜 翌 {DAY_START_HOUR:02d}:00"
+        f"  / UTC window: {start} .. {end}  / match: {MATCH}\n"
+    )
     found = 0
     for path in sorted(iter_logs()):
         rows = load(path)
