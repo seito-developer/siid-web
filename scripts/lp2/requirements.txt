@@ -1,0 +1,8 @@
+# LP リニューアル(/siid/lp-2)用スクリプトの依存パッケージ
+#
+#   python3 -m venv .venv-lp2
+#   ./.venv-lp2/bin/pip install -r scripts/lp2/requirements.txt
+#
+psd-tools==1.19.0
+Pillow>=10.0
+numpy>=1.26
