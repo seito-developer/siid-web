@@ -1,0 +1,47 @@
+{
+  "_readme": [
+    "PSD から書き出す画像アセットの定義(docs/spec/07_lp2-renewal.md §8)。",
+    "",
+    "  python3 scripts/lp2/psd_tool.py manifest scripts/lp2/assets.manifest.json",
+    "",
+    "実装フェーズごとに、そのセクションで必要なアセットを追記していく。",
+    "全アセットを先に洗い出すことはしない。何を画像にして何を CSS / SVG で組むかは",
+    "セクションを実装しながらでないと決まらないため。",
+    "",
+    "path は PSD 内のレイヤーパス。exclude にはそのグループからの相対パスを渡し、",
+    "テキストで実装する部分やスクリーン合成のグロー(単独で書き出すと黒く潰れる)を除く。",
+    "",
+    "exclude_kinds に \"type\" を渡すとテキストレイヤーを一括で除外できる。代替フォントを使う以上、PSD の文字を画像として貼ることはできないため基本的に指定する。"
+  ],
+  "psd_dir": "~/Downloads/260902_seitosama",
+  "out_dir": "public/images/lp-2",
+  "assets": [
+    {
+      "_note": "FV の実績メダル(3 個とも同じ図柄)。数値と見出しはテキストで実装するため除外。光はスクリーン合成のため単独書き出しでは黒く潰れる。CSS の影で表現する",
+      "psd": "pc/pc1.psd",
+      "path": "fv/medal/1",
+      "out": "fv-medal.webp",
+      "exclude": [
+        "txt",
+        "txt/**",
+        "光",
+        "光/**"
+      ]
+    },
+    {
+      "_note": "FV の経産省リスキル講座バッジ。枠と角の切り欠き・金の帯を含む。文字はテキストで実装",
+      "psd": "pc/pc1.psd",
+      "path": "fv/card",
+      "out": "fv-badge-card.webp",
+      "exclude_kinds": [
+        "type"
+      ]
+    },
+    {
+      "_note": "ABOUT セクション背景の SiiD ロゴ透かし",
+      "psd": "pc/pc1.psd",
+      "path": "sec_about/bg/logo",
+      "out": "about-logo-watermark.webp"
+    }
+  ]
+}

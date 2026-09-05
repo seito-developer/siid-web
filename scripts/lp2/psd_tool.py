@@ -211,9 +211,40 @@ def _find_layer(psd: Any, pattern: str):
     return matches[0]
 
 
-def _export_layer(psd: Any, pattern: str, out: str, quality: int, lossless: bool) -> None:
+def _export_layer(
+    psd: Any,
+    pattern: str,
+    out: str,
+    quality: int,
+    lossless: bool,
+    exclude: list[str] | None = None,
+    exclude_kinds: list[str] | None = None,
+) -> None:
+    """レイヤー/グループを 1 枚の画像として書き出す。
+
+    exclude には対象グループからの相対パスを、exclude_kinds にはレイヤー種別を渡す。
+    書き出しの間だけ非表示にする。テキストで実装する部分を焼き込まないために使う
+    (代替フォントを使う以上、PSD の文字を画像として貼ることはできない。§6)。
+    """
     path, layer = _find_layer(psd, pattern)
-    image = layer.composite()
+
+    hidden: list[Any] = []
+    if exclude or exclude_kinds:
+        for child_path, child in _iter_layers(layer, path):
+            if not child.visible:
+                continue
+            rel = child_path[len(path) + 1:]
+            by_path = exclude and any(fnmatch.fnmatch(rel, pat) or rel == pat for pat in exclude)
+            by_kind = exclude_kinds and child.kind in exclude_kinds
+            if by_path or by_kind:
+                child.visible = False
+                hidden.append(child)
+
+    try:
+        image = layer.composite()
+    finally:
+        for child in hidden:
+            child.visible = True
     if image is None:
         raise SystemExit(f"書き出せませんでした(空のレイヤー): {path}")
     os.makedirs(os.path.dirname(os.path.abspath(out)) or ".", exist_ok=True)
@@ -226,7 +257,9 @@ def _export_layer(psd: Any, pattern: str, out: str, quality: int, lossless: bool
 
 def cmd_export(args: argparse.Namespace) -> None:
     psd = PSDImage.open(args.target)
-    _export_layer(psd, args.path, args.out, args.quality, args.lossless)
+    _export_layer(
+        psd, args.path, args.out, args.quality, args.lossless, args.exclude, args.exclude_kinds
+    )
 
 
 def cmd_manifest(args: argparse.Namespace) -> None:
@@ -238,7 +271,8 @@ def cmd_manifest(args: argparse.Namespace) -> None:
         "out_dir": "public/images/lp-2",
         "assets": [
           {"psd": "pc/pc1.psd", "path": "fv/medal/1", "out": "fv-medal-1.webp"},
-          {"psd": "sp/....psd", "path": "...", "out": "...", "lossless": true}
+          {"psd": "pc/pc1.psd", "path": "fv/medal/1", "out": "fv-medal-1.webp",
+           "exclude": ["txt", "txt/**"]}
         ]
       }
     """
@@ -261,6 +295,8 @@ def cmd_manifest(args: argparse.Namespace) -> None:
                 os.path.join(out_dir, asset["out"]),
                 asset.get("quality", args.quality),
                 asset.get("lossless", False),
+                asset.get("exclude"),
+                asset.get("exclude_kinds"),
             )
             ok += 1
         except SystemExit as exc:
@@ -299,6 +335,16 @@ def main() -> None:
     p.add_argument("--out", required=True)
     p.add_argument("--quality", type=int, default=80)
     p.add_argument("--lossless", action="store_true", help="図版・ロゴ向けの可逆圧縮")
+    p.add_argument(
+        "--exclude",
+        action="append",
+        help="書き出しから除外する子レイヤーの相対パス(glob 可)。複数指定可",
+    )
+    p.add_argument(
+        "--exclude-kinds",
+        action="append",
+        help="書き出しから除外するレイヤー種別(例: type)。複数指定可",
+    )
     p.set_defaults(func=cmd_export)
 
     p = sub.add_parser("manifest", help="マニフェストに従って一括書き出しする")
