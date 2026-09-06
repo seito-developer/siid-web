@@ -119,10 +119,6 @@
   color: #fff66d;
 }
 
-.Instructor__Bullets .isAccent::before {
-  background: #fff66d;
-}
-
 /* CtaButton は inline-flex。display:flex にするとブロックレベルになり全幅に広がるため、
    幅は内容に合わせて中央寄せする */
 .Instructor__Cta {
@@ -206,8 +202,16 @@
     height: 19px;
   }
 
+  /* PSD: 緑の角丸 498x118 @(473,736)。CtaButton は inline-flex のため
+     auto マージンでは中央に寄らない。実測座標で絶対配置する */
   .Instructor__Cta {
-    min-width: 498px;
-    margin-top: 25px;
+    position: absolute;
+    top: 665px; /* セクション上端から 736px。Inner は padding-top 71px ぶん下がっている */
+    left: 0;
+    right: 0;
+    width: 498px;
+    min-width: 0;
+    height: 118px;
+    margin: 0 auto;
   }
 }

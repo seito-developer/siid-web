@@ -11,10 +11,11 @@ import styles from './Instructor.module.css';
 // INSTRUCTOR(docs/spec/lp2-sections/05-instructor.md)。
 // PC は写真を左・テキストを右に置く 2 カラム、SP は縦積み。
 
+// カンプでは行の先頭だけ黄色の強調が入る(行全体ではない)
 const BULLETS = [
-  { text: '株式会社LIGで海外事業部長／フィリピン支社代表・VPoEを歴任', accent: false },
-  { text: '約100名規模のエンジニアチームを統括。2,000人超を選考、150名以上を採用', accent: true },
-  { text: 'YouTube登録者 13万人／著書『セイト先生が教えるプログラミング入門』', accent: true },
+  { accent: '', text: '株式会社LIGで海外事業部長／フィリピン支社代表・VPoEを歴任' },
+  { accent: '約100名規模のエンジニアチーム', text: 'を統括。2,000人超を選考、150名以上を採用' },
+  { accent: 'YouTube登録者 13万人', text: '／著書『セイト先生が教えるプログラミング入門』' },
 ];
 
 export default function Instructor() {
@@ -61,7 +62,8 @@ export default function Instructor() {
 
         <ul className={styles.Instructor__Bullets}>
           {BULLETS.map((item) => (
-            <li key={item.text} className={item.accent ? styles.isAccent : undefined}>
+            <li key={item.text}>
+              {item.accent && <strong className={styles.isAccent}>{item.accent}</strong>}
               {item.text}
             </li>
           ))}
