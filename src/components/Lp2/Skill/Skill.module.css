@@ -273,6 +273,9 @@
 
 .Skill__Lead {
   top: 174px;
+  /* カンプは 440x81(= CSS 220x40.5)の 2 行組み。折り返し位置を合わせる */
+  max-width: 232px;
+  margin-inline: auto;
   font-feature-settings: normal;
   font-size: 16px;
   line-height: 1.42;
@@ -280,7 +283,7 @@
 
 .Skill__Hint {
   top: 236px;
-  font-size: 14.5px;
+  font-size: 17px;
   line-height: 1;
 }
 
@@ -292,10 +295,23 @@
 }
 
 .Skill__Card {
+  /* PSD 実測(@2x): カード 35..714 = CSS 17.5..357 */
   position: absolute;
-  left: 17px;
-  right: 16.5px;
+  left: 17.5px;
+  right: 18px;
   border-radius: 10px;
+}
+
+/* 開いているカードは 596px(= CSS 298)、閉じているカードは 191px(= CSS 95.5) */
+.Skill__Card:nth-child(1) {
+  height: 298px;
+}
+
+.Skill__Card:nth-child(2),
+.Skill__Card:nth-child(3),
+.Skill__Card:nth-child(4),
+.Skill__Card:nth-child(5) {
+  height: 95.5px;
 }
 
 .Skill__Card:nth-child(1) {
@@ -319,26 +335,40 @@
 }
 
 .Skill__CardHead {
-  height: 47px;
+  height: 57px;
   padding: 0 18px 0 22px;
 }
 
 .Skill__CardTitle {
-  padding-left: 27.5px;
-  font-size: 24.5px;
+  padding-left: 31.5px;
+  font-size: 25px;
+  /* カンプの見出しは青紫 */
+  color: #565ff0;
+}
+
+.Skill__CardTitle::before {
+  width: 18px;
+  height: 10px;
+  border-left-width: 4px;
+  border-bottom-width: 4px;
+  border-color: #565ff0;
 }
 
 .Skill__Summary {
-  padding: 0 0 0 23px;
-  font-size: 14.5px;
+  padding: 2.6px 0 0 22.5px;
+  font-size: 15.8px;
 }
 
 .Skill__Panel {
   padding: 0 22px 20px;
 }
 
+/* カンプの帯は文字幅ぶんだけ(「技術」87px /「できるようになること」183px) */
 .Skill__Bar {
-  padding: 3px 8px;
+  display: block;
+  width: fit-content;
+  height: 19.5px;
+  padding: 3.75px 31.5px;
   font-size: 12px;
   line-height: 1;
 }
@@ -353,14 +383,16 @@
 }
 
 .Skill__Tags li {
-  padding: 5px 10px;
+  height: 27px;
+  padding: 0 10px;
+  background: #fffcc7;
   font-size: 12.5px;
 }
 
 .Skill__Outcomes li {
   padding-left: 24.5px;
-  font-size: 14px;
-  line-height: 1.45;
+  font-size: 16.5px;
+  line-height: 1.55;
 }
 
 @media screen and (min-width: 768px) {
@@ -403,6 +435,7 @@
     top: auto;
     left: auto;
     right: auto;
+    height: auto;
   }
 
   .Skill__Title {
@@ -421,6 +454,7 @@
   }
 
   .Skill__Lead {
+    max-width: none;
     margin-top: 26px;
     font-feature-settings: 'palt' 1;
     font-size: 30.03px;
@@ -485,6 +519,15 @@
     padding-left: 26px;
     font-size: 25.72px;
     line-height: 1.1;
+    color: #06133d;
+  }
+
+  .Skill__CardTitle::before {
+    width: 16px;
+    height: 9px;
+    border-left-width: 3px;
+    border-bottom-width: 3px;
+    border-color: var(--lp2-primary);
   }
 
   /* PC は常時展開。開閉の矢印も要約も出さない */
@@ -499,6 +542,9 @@
   }
 
   .Skill__Bar {
+    display: block;
+    width: auto;
+    height: auto;
     padding: 4px 10px;
     font-size: 13px;
     line-height: 1;
@@ -514,7 +560,9 @@
   }
 
   .Skill__Tags li {
+    height: auto;
     padding: 6px 12px;
+    background: #fffbdc;
     font-size: 15.14px;
   }
 
