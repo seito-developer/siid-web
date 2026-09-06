@@ -5,12 +5,15 @@
   gap: 14px;
   min-width: 246px;
   padding: 10px 18px;
+  border: 3px solid var(--lp2-cta-border);
   border-radius: 8px;
   background: linear-gradient(180deg, var(--lp2-cta-from) 0%, var(--lp2-cta-to) 100%);
-  /* PSD の楕円形スマートオブジェクトによる発光を影で表現する */
+  /* 内側の白い線は PSD の意匠。下端の濃い緑は立ち上がりの陰。
+     いちばん外の広い影は楕円形スマートオブジェクトによる発光 */
   box-shadow:
-    0 0 24px rgba(43, 170, 57, 0.55),
-    0 4px 0 rgba(0, 0, 0, 0.18);
+    inset 0 0 0 2px #fff,
+    0 3px 0 var(--lp2-cta-edge),
+    0 0 24px rgba(43, 170, 57, 0.55);
   color: var(--lp2-white);
   font-family: var(--lp2-font-display);
   font-weight: 900;

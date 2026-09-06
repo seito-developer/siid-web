@@ -449,17 +449,23 @@
     padding-left: 18px;
     font-size: 16.03px;
     line-height: 1.38;
-    letter-spacing: 0.129em;
+    /* PSD: 1 文字 17.4px(14 文字で 243〜244px)。この幅で 1 行目が
+       「まずは転職に挑戦したい方向け」「本気で転職・キャリアアップを」で折り返す */
+    letter-spacing: 0.0873em;
   }
 
   .isRecommended .Plan__Lead {
-    width: 250px;
+    width: 266px;
     padding-left: 20px;
   }
 
+  /* 顧問プランだけ一回り小さい組み(PSD: 151x39 の 2 行) */
   .Plan__Card:last-child .Plan__Lead {
-    width: 177px;
-    padding-left: 17px;
+    width: 159px;
+    padding-left: 14px;
+    font-size: 15.1px;
+    line-height: 1.29;
+    letter-spacing: 0;
   }
 
   .Plan__Price {
