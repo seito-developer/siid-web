@@ -9,7 +9,8 @@ import styles from './About.module.css';
 export default function About() {
   return (
     <section className={styles.About} id="about">
-      {/* 背景のグラデーション・ロゴ透かし・角飾り付きの枠はカンプの書き出し */}
+      {/* 背景のグラデーション・ロゴ透かし・枠・下線と三角・白帯はすべて
+          セクション背景の画像に含まれる。ここでは文字だけを重ねる */}
       <SectionBg name="about" pcWidth={1440} pcHeight={456} spWidth={750} spHeight={560} />
 
       <div className={styles.About__Frame}>
@@ -19,7 +20,6 @@ export default function About() {
           <span className={styles.About__LeadBreak} />
           スクールではありません
         </p>
-        <span className={styles.About__Caret} aria-hidden="true" />
 
         {/* SP は「元人事部長の講師 が」で改行する(カンプの組み方) */}
         <p className={styles.About__Sub}>
@@ -28,7 +28,10 @@ export default function About() {
           採用する側の目線で、
         </p>
 
-        <h2 className={styles.About__Copy}>「企業が求めるAI人材」へ</h2>
+        {/* カンプは閉じ括弧と「へ」の間が少し空いている */}
+        <h2 className={styles.About__Copy}>
+          「企業が求めるAI人材」<span className={styles.About__CopyTail}>へ</span>
+        </h2>
 
         {/* SP では 2 行それぞれに白帯が付くため、行ごとに span を分ける */}
         <p className={styles.About__Result}>
