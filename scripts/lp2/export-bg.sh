@@ -20,6 +20,7 @@ ROWS=(
   "strength|sp/seitosama_lp_sp01|0,4735,750,7857|sp/strength|"
   "about|sp/seitosama_lp_sp01|0,1473,750,2034|sp/about|"
   "difference|sp/seitosama_lp_sp02|0,0,750,2978|sp/difference|比較表"
+  "fv-band|sp/seitosama_lp_sp01|0,898,750,1473|sp/fv-band|"
   "result|sp/seitosama_lp_sp01|0,2033,750,3102|sp/result|sec_result/長方形 702:sec_result/レイヤー 29:arrow1:arrow2:page_nation"
   "step|sp/seitosama_lp_sp03|0,0,750,4620|sp/step|"
   "support|sp/seitosama_lp_sp05|0,0,750,1646|sp/support|"

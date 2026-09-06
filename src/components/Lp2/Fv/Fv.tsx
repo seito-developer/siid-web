@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 
 import CtaButton from '../CtaButton/CtaButton';
+import SectionBg from '../SectionBg/SectionBg';
 
 import styles from './Fv.module.css';
 import FvVideo from './FvVideo';
@@ -58,10 +59,22 @@ export default function Fv() {
       </div>
 
       <div className={styles.Fv__Band}>
+        {/* SP は回路基板の背景・メダルの意匠・CTA の枠を書き出し画像に含める */}
+        <SectionBg
+          name="fv-band"
+          spOnly
+          pcWidth={750}
+          pcHeight={575}
+          spWidth={750}
+          spHeight={575}
+          className={styles.Fv__BandBg}
+        />
+
         <ul className={styles.Fv__Medals}>
           {MEDALS.map((medal) => (
             <li key={medal.label} className={styles.Fv__Medal}>
               <Image
+                className={styles.Fv__MedalImage}
                 src={lp2Asset('/images/lp-2/fv-medal.webp')}
                 alt=""
                 width={169}

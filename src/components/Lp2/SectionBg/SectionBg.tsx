@@ -22,10 +22,24 @@ type Props = {
   pcHeight: number;
   spWidth: number;
   spHeight: number;
+  /** SP だけ背景がある場合。PC 側は透明な 1x1 を読ませて余分な取得を防ぐ */
+  spOnly?: boolean;
   className?: string;
 };
 
-export default function SectionBg({ name, pcWidth, pcHeight, spWidth, spHeight, className = '' }: Props) {
+// 1x1 の透明 GIF。PC で <img> の src を空にできないため、これを読ませる
+const TRANSPARENT =
+  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+export default function SectionBg({
+  name,
+  pcWidth,
+  pcHeight,
+  spWidth,
+  spHeight,
+  spOnly,
+  className = '',
+}: Props) {
   const common = { alt: '', sizes: '100vw', quality: LP2_IMAGE_QUALITY };
 
   const {
@@ -45,6 +59,15 @@ export default function SectionBg({ name, pcWidth, pcHeight, spWidth, spHeight, 
     width: pcWidth,
     height: pcHeight,
   });
+
+  if (spOnly) {
+    return (
+      <picture>
+        <source media="(max-width: 767px)" srcSet={spSrcSet} sizes="100vw" />
+        <img src={TRANSPARENT} alt="" className={`${styles.SectionBg} ${className}`} />
+      </picture>
+    );
+  }
 
   return (
     <picture>
