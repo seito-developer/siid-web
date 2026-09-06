@@ -49,10 +49,12 @@ export default function Plan() {
           quality={LP2_IMAGE_QUALITY}
         />
 
-        {/* SP だけのタブ。PC ではカードを 3 枚並べるので出さない */}
+        {/* SP だけのタブ。PC ではカードを 3 枚並べるので出さない。
+            role="tablist" の直下に許されるのは role="tab" だけなので、
+            リストの意匠は活かしつつ li には role="presentation" を付ける */}
         <ul className={styles.Plan__Tabs} role="tablist" aria-label="料金プラン">
           {LP2_PLANS.map((plan, i) => (
-            <li key={plan.id}>
+            <li key={plan.id} role="presentation">
               <button
                 type="button"
                 role="tab"
@@ -78,9 +80,10 @@ export default function Plan() {
           ))}
         </ul>
 
-        <ul className={styles.Plan__Cards}>
+        {/* タブの中身なので ul/li ではなく div。li に role="tabpanel" は付けられない */}
+        <div className={styles.Plan__Cards}>
           {LP2_PLANS.map((plan, i) => (
-            <li
+            <div
               key={plan.id}
               id={`lp2-plan-panel-${plan.id}`}
               role="tabpanel"
@@ -122,9 +125,9 @@ export default function Plan() {
               )}
 
               <CtaButton size="pc" className={styles.Plan__Cta} />
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
 
         <p className={styles.Plan__Note}>
           ※ 月々の支払金額は24回分割の場合の参考額。

@@ -21,3 +21,13 @@ export const GTM_IDS = (process.env.NEXT_PUBLIC_GTM_IDS ?? '')
   .split(',')
   .map((id) => id.trim())
   .filter(Boolean);
+
+/**
+ * Cookie 同意バナーを出しているページのパス（basePath 込み）。
+ * このパス配下でだけ Google Consent Mode の既定値を denied にする。
+ * layout は lp-1 と共有のため、他ページの計測に影響させないための絞り込み。
+ */
+export const LP2_CONSENT_PATH = '/siid/lp-2';
+
+/** Cookie 同意の保存先（localStorage のキー）。バナー側と共有する。 */
+export const LP2_CONSENT_STORAGE_KEY = 'lp2-cookie-consent';

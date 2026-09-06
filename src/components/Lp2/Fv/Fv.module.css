@@ -18,6 +18,14 @@
   position: absolute;
   inset: 0;
   z-index: 0;
+  /* 動画の src / poster はハイドレーション後にしか決まらない(FvVideo.tsx)。
+     それまで FV が塗られず LCP が大きく遅れるため、動画の 1 コマ目と同じ
+     ポスター画像を CSS の背景として先に出す。
+     CSS の url() には basePath が付かないので /siid を明示する。 */
+  background-image: url('/siid/videos/lp-2/fv-sp-poster.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .Fv__Video {
@@ -292,6 +300,10 @@
   .Fv {
     height: auto;
     min-height: 781px;
+  }
+
+  .Fv__Media {
+    background-image: url('/siid/videos/lp-2/fv-pc-poster.webp');
   }
 
   .Fv__Body {
