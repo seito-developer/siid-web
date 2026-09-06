@@ -239,8 +239,16 @@
     line-height: 1.78;
   }
 
+  /* PSD: 緑の角丸 498x118 @(473,2044)。CtaButton は inline-flex のため
+     auto マージンでは中央に寄らない。実測座標で絶対配置する */
   .Step__Cta {
-    min-width: 498px;
-    margin-top: 56px;
+    position: absolute;
+    top: 1977px; /* セクション上端から 2044px。Inner は padding-top 67px ぶん下がっている */
+    left: 0;
+    right: 0;
+    width: 498px;
+    min-width: 0;
+    height: 118px;
+    margin: 0 auto;
   }
 }
