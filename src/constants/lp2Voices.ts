@@ -5,9 +5,6 @@
 export const LP2_VOICES = [
   {
     no: '01',
-    photo: 'voice-1',
-    photoWidth: 293,
-    photoHeight: 301,
     title: '未経験・文系大学生 新卒でメガベンチャー内定！',
     name: 'Iryuさん',
     profile: '20代\n大学生',
@@ -20,9 +17,6 @@ export const LP2_VOICES = [
   },
   {
     no: '02',
-    photo: 'voice-2',
-    photoWidth: 332,
-    photoHeight: 297,
     title: '30代・未経験からWebエンジニアへ転職！',
     name: '宮崎さん',
     profile: '30代\nミュージシャン',
@@ -35,9 +29,6 @@ export const LP2_VOICES = [
   },
   {
     no: '03',
-    photo: 'voice-3',
-    photoWidth: 263,
-    photoHeight: 218,
     title: '20代未経験→AI系スタートアップの\nエンジニアに内定！',
     name: 'けいたさん',
     profile: '20代\n非IT業界',

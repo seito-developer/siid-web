@@ -203,6 +203,13 @@
 /* --- PC ----------------------------------------------------------------- */
 
 @media screen and (min-width: 768px) {
+  /* PSD 実測(セクション上端 y0 基準)。
+       VOICE ラベル y91 / 受講生の声 319x56 @(560,149)
+       カード 803px @x319、上端 y362 / 772 / 1182(間隔 410px)
+       カードの高さは 458 / 447 / 429 と 1 枚ずつ違う
+       注記 383x14 @(529,1660)
+     丸・番号の下地・青い帯・受講生の写真・「>」はすべて意匠画像に含まれるので、
+     文字だけを実測座標で重ねる */
   .Voice {
     min-height: 1730px;
     padding: 85px 0 0;
@@ -213,84 +220,188 @@
   }
 
   .Voice__Heading {
-    margin-top: 28px;
+    /* PSD: y149 = Inner 上端(85)から 64px */
+    margin-top: 40px;
     font-size: 60.06px;
+    line-height: 1;
+    color: #5850ee;
   }
 
   .Voice__Cards {
-    /* PSD: カード 803px @x319、上端 y384 / 794 / 1204(間隔 410px) */
-    gap: 45px;
+    display: block;
+    gap: 0;
     width: 803px;
-    margin: 160px auto 0;
+    /* PSD: 1 枚目の上端 y362 = Inner 上端から 277px */
+    margin: 0 auto;
+    padding-top: 150px;
   }
 
   .Voice__Card {
-    /* 写真を左、テキストを右に置く */
-    min-height: 365px;
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    grid-template-areas:
-      'no title'
-      'profile text';
-    gap: 12px 26px;
-    padding: 26px 30px 24px;
+    position: relative;
+    display: block;
+    min-height: 0;
+    height: 458px;
+    padding: 0;
   }
 
+  /* 間隔 410px。カードの高さのほうが大きいので負のマージンで詰める */
+  .Voice__Card:nth-child(1) {
+    margin-bottom: -48px;
+  }
+
+  .Voice__Card:nth-child(2) {
+    height: 447px;
+    margin-bottom: -37px;
+  }
+
+  .Voice__Card:nth-child(3) {
+    height: 429px;
+  }
+
+  .Voice__Card > :not(.Voice__CardBg) {
+    position: absolute;
+    margin: 0;
+  }
+
+  /* 丸の中の「VOICE」と番号 */
   .Voice__No {
-    position: static;
-    grid-area: no;
-    justify-self: center;
-    width: 60px;
-    height: 60px;
+    top: 7px;
+    left: 60px;
+    width: auto;
+    height: auto;
+    display: block;
   }
 
   .Voice__No span {
+    position: absolute;
+    top: 0;
+    left: 19px;
     font-size: 9.91px;
+    color: #546feb;
   }
 
   .Voice__No strong {
+    position: absolute;
+    top: 24px;
+    left: 0;
     font-size: 27.17px;
+    line-height: 1;
+    color: #5561f1;
   }
 
   .Voice__Title {
-    grid-area: title;
-    align-self: center;
-    margin-left: 0;
+    top: 66px;
+    left: 161px;
     font-size: 24.04px;
+    line-height: 1;
+    color: var(--lp2-white);
+  }
+
+  .Voice__Card:nth-child(3) .Voice__Title {
+    top: 56px;
+    line-height: 2.163;
   }
 
   .Voice__Profile {
-    grid-area: profile;
+    top: 104px;
+    left: 49px;
     margin-top: 0;
   }
 
-  .Voice__Photo {
-    max-width: 160px;
+  .Voice__Card:nth-child(2) .Voice__Profile {
+    top: 103px;
+    left: 22px;
+  }
+
+  .Voice__Card:nth-child(3) .Voice__Profile {
+    top: 102px;
+    left: 39px;
   }
 
   .Voice__Name {
     font-size: 16.03px;
+    line-height: 1.21;
+    color: #565df0;
+    white-space: nowrap;
   }
 
+  /* PSD: テキスト群 443x214 @カード左上から (319,132)。
+     リード y0 / 本文 y63 / 続きを読む y198 */
   .Voice__Text {
-    grid-area: text;
+    top: 132px;
+    left: 319px;
+    width: 445px;
+    height: 214px;
     margin-top: 0;
+  }
+
+  .Voice__Card:nth-child(3) .Voice__Text {
+    top: 169px;
   }
 
   .Voice__Lead {
     font-size: 16.03px;
+    line-height: 1.4;
+    color: #f8026f;
+  }
+
+  .Voice__Body {
+    position: absolute;
+    top: 63px;
+    left: 0;
+    right: 0;
+    height: 112px;
+    margin-top: 0;
+    overflow: hidden;
   }
 
   .Voice__Body p {
     font-size: 16.03px;
+    line-height: 1.75;
+    color: #333;
   }
 
   .Voice__More {
+    position: absolute;
+    top: 198px;
+    left: 0;
+    margin-top: 0;
     font-size: 16.03px;
+    line-height: 1;
+    color: #3858ff;
+  }
+
+  /* 開いたときだけ通常のフローに戻す(カンプは閉じた状態) */
+  .isOpen {
+    height: auto;
+    padding-bottom: 40px;
+  }
+
+  .isOpen .Voice__Text {
+    position: static;
+    width: 445px;
+    height: auto;
+    margin: 132px 0 0 319px;
+  }
+
+  .isOpen .Voice__Body,
+  .isOpen .Voice__More {
+    position: static;
+    height: auto;
+    overflow: visible;
+  }
+
+  .isOpen .Voice__Body {
+    margin-top: 18px;
+  }
+
+  .isOpen .Voice__More {
+    margin-top: 20px;
   }
 
   .Voice__Note {
-    margin-top: 46px;
+    /* PSD: y1660 */
+    margin-top: 49px;
     font-size: 14px;
   }
 }

@@ -46,16 +46,8 @@ function Card({ voice, index }: { voice: (typeof LP2_VOICES)[number]; index: num
         ))}
       </h3>
 
+      {/* 受講生の写真は意匠画像に焼き込まれているため、ここでは描かない */}
       <div className={styles.Voice__Profile}>
-        <Image
-          className={styles.Voice__Photo}
-          src={lp2Asset(`/images/lp-2/${voice.photo}.webp`)}
-          alt=""
-          width={voice.photoWidth}
-          height={voice.photoHeight}
-          sizes="(min-width: 768px) 293px, 45vw"
-          quality={LP2_IMAGE_QUALITY}
-        />
         <p className={styles.Voice__Name}>
           {voice.name}
           <br />
