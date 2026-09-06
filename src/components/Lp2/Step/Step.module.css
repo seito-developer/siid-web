@@ -1,18 +1,20 @@
 /*
- * 内定までの 5STEP。PSD 実測(PC セクション 1440x2242)。
- *   見出し「内定までの」y80 / 「5STEP」y142(142.4px)
- *   カード 803x290 を y321 から 346px 間隔で 5 枚
- *   番号バッジ 136x147 @(339,229) がカード左上に重なる
- *   カード間の三角 48x17 @(696,632…)
- *   CTA 501x334 @(470,1950)
+ * 内定までの 5STEP。カードの枠・番号バッジ・黄色い帯・イラスト・下向きの三角・
+ * CTA ボタンの意匠はすべてセクション背景の画像に含まれる。
+ * ここでは文字だけを PSD 実測の座標で重ねる。
+ *
+ * PC: セクション 1440x2242
+ *   「内定までの」y80 / 「5STEP」y142 / カード 803x380 を y229 から 346px 間隔
+ *   番号バッジ 136x147 @(339,229) / CTA 498x118 @(473,2044)
+ * SP: セクション 750x4620(= CSS 375x2310)
+ *   「内定までの」y34 / 「5STEP」y79 / CTA 331x78 @(22,2201.5)
  */
 
 .Step {
-  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
-  min-height: 2310px;
   position: relative;
   overflow: hidden;
-  padding: 26px 0 40px;
+  min-height: 2310px;
+  padding: 0;
   background: #4d59f0;
 }
 
@@ -29,101 +31,142 @@
   position: relative;
   z-index: 1;
   max-width: var(--lp2-canvas);
+  height: 2310px;
   margin-inline: auto;
-  padding-inline: 16px;
+}
+
+.Step__Inner > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
 }
 
 .Step__Title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: block;
+  top: 34px;
   color: var(--lp2-white);
   text-align: center;
 }
 
 .Step__TitleSmall {
-  padding: 3px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  font-size: 19px;
+  display: block;
+  padding: 0;
+  border: 0;
+  font-size: 26.5px;
+  line-height: 1;
   letter-spacing: var(--lp2-tracking-lg);
 }
 
+/* PSD(SP)実測: 「5」 55.5x80.5 @(86,79.5) / 「STEP」 148x76 @(140,81)。
+   どちらもかなりの長体がかかっている */
 .Step__TitleLarge {
-  margin-top: 6px;
+  position: relative;
+  display: block;
+  height: 82px;
+  margin-top: 18.5px;
   font-family: var(--lp2-font-latin);
   font-weight: 700;
-  font-size: 68px;
   line-height: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
+}
+
+/* 長体をかけてもレイアウト上の幅は変わらないため、絶対配置で位置を決める */
+.Step__TitleNum {
+  position: absolute;
+  top: -14px;
+  left: 82px;
+  font-size: 116px;
+  line-height: 1;
   color: #fef579;
+  transform: scaleX(0.845);
+  transform-origin: left top;
+}
+
+.Step__TitleWord {
+  position: absolute;
+  top: -12px;
+  left: 143px;
+  font-size: 105px;
+  line-height: 1;
+  color: var(--lp2-white);
+  transform: scaleX(0.581);
+  transform-origin: left top;
 }
 
 /* --- カード -------------------------------------------------------------- */
 
 .Step__List {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  margin-top: 26px;
-}
-
-/* カードの意匠(番号バッジ・黄色い帯・イラスト)はカンプの書き出し */
-.Step__CardBg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  top: 0;
+  display: block;
+  gap: 0;
+  height: 2310px;
 }
 
 .Step__Item {
-  position: relative;
-  aspect-ratio: 803 / 380;
-}
-
-.Step__Item > :not(.Step__CardBg) {
   position: absolute;
-  z-index: 1;
+  left: 0;
+  right: 0;
+  aspect-ratio: auto;
 }
 
-/* カード間の下向き三角 */
-.Step__Item:not(:last-child)::after {
-  content: '';
+.Step__Item > * {
   position: absolute;
-  bottom: -24px;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-top: 9px solid #fef579;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  margin: 0;
 }
 
-/* 丸の意匠は背景画像側にあるため、文字だけを重ねる。
-   PSD: バッジ 136x147 @(339,229) = カード左上から (21,0) */
+/* PSD(SP)実測: カードの上端 y119 / 523 / 907.5 / 1353 / 1742.5 */
+.Step__Item:nth-child(1) {
+  top: 119px;
+}
+
+.Step__Item:nth-child(2) {
+  top: 523px;
+}
+
+.Step__Item:nth-child(3) {
+  top: 907.5px;
+}
+
+.Step__Item:nth-child(4) {
+  top: 1353px;
+}
+
+.Step__Item:nth-child(5) {
+  top: 1742.5px;
+}
+
+/* 丸の意匠は背景画像側にあるため、文字だけを重ねる */
 .Step__Badge {
-  top: 0;
-  left: 2.6%;
-  display: grid;
-  place-items: center;
-  width: 17%;
-  height: 38.7%;
+  top: 56.5px;
+  left: 35.5px;
+  right: auto;
+  display: block;
+  width: auto;
+  height: auto;
   font-family: var(--lp2-font-latin);
   color: var(--lp2-white);
   line-height: 1;
+  text-align: left;
 }
 
 .Step__Badge span {
-  font-size: 9px;
+  position: absolute;
+  top: 0;
+  left: 7px;
+  font-size: 13px;
   letter-spacing: var(--lp2-tracking-md);
 }
 
 .Step__Badge strong {
-  margin-top: 2px;
+  position: absolute;
+  top: 14.5px;
+  left: 0;
   font-weight: 400;
-  font-size: 28px;
+  font-size: 29px;
+  white-space: nowrap;
 }
 
 .Step__Card {
@@ -132,35 +175,43 @@
   background: var(--lp2-white);
 }
 
-/* 黄色の帯も背景画像側にある。PSD: 見出し y340 = カード上端から 111 / 380 = 29% */
+/* 黄色の帯も背景画像側にある */
 .Step__CardTitle {
-  top: 26%;
-  left: 20%;
-  right: 4%;
+  top: 89.5px;
   font-family: var(--lp2-font-body);
   font-weight: 700;
-  font-size: 20px;
-  line-height: 1.3;
+  font-size: 26.5px;
+  line-height: 1.14;
   letter-spacing: var(--lp2-tracking-md);
   color: #000914;
   text-align: center;
 }
 
-/* PSD: 本文 y420 = カード上端から 191 / 380 = 50%、左 x745 = 53% */
 .Step__Text {
-  top: 48%;
-  left: 53%;
-  right: 4%;
+  top: 286px;
+  left: 37px;
+  right: 37px;
+  /* カンプの本文は約物を詰めない組み。palt を効かせると 1 行に 1 文字多く入り、
+     背景に焼き込まれている黄色のマーカーと行がずれる */
+  font-feature-settings: normal;
   font-size: 15px;
-  line-height: 1.72;
+  line-height: 1.59;
   letter-spacing: var(--lp2-tracking-md);
   color: var(--lp2-grey);
   text-align: left;
 }
 
+/* 3 枚目以降は見出しが 2 行なので、本文の位置が 1 行ぶん下がる */
+.Step__Item:nth-child(n + 3) .Step__Text {
+  top: 321px;
+}
+
 .Step__Cta {
-  width: fit-content;
-  margin: 30px auto 0;
+  top: 2201.5px;
+  width: 331px;
+  min-width: 0;
+  height: 78px;
+  margin: 0 auto;
 }
 
 /* --- PC ----------------------------------------------------------------- */
@@ -168,87 +219,120 @@
 @media screen and (min-width: 768px) {
   .Step {
     min-height: 2242px;
-    padding: 67px 0 0;
   }
 
   .Step__Inner {
-    padding-inline: 0;
+    height: 2242px;
+  }
+
+  .Step__Title {
+    top: 67px;
   }
 
   .Step__TitleSmall {
+    /* PSD: 枠付きの小見出し */
+    display: inline-block;
     padding: 5px 24px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
     font-size: 38.67px;
-    border-width: 2px;
   }
 
   .Step__TitleLarge {
     margin-top: 4px;
+  }
+
+  .Step__TitleLarge {
+    height: auto;
+  }
+
+  .Step__TitleNum,
+  .Step__TitleWord {
+    position: static;
+    transform: none;
+  }
+
+  .Step__TitleNum {
+    font-size: 154px;
+  }
+
+  .Step__TitleWord {
     font-size: 142.38px;
   }
 
+  /* PSD: カード枠 803x380 @y229 / 574 / 920 / 1266 / 1612(間隔 346px) */
   .Step__List {
-    /* PSD: カード枠 803x380 @y229 / 574 / 920 / 1266 / 1612(間隔 346px)。
-       枠が 380 で間隔が 346 なので 34px 重なる */
-    gap: 0;
-    width: 803px;
-    margin: -53px auto 0;
+    height: 2242px;
   }
 
-  .Step__Item:not(:last-child) {
-    margin-bottom: -34px;
+  .Step__Item {
+    left: 319px;
+    right: 319px;
   }
 
-  .Step__Item:not(:last-child)::after {
-    bottom: -37px;
-    border-left-width: 24px;
-    border-right-width: 24px;
-    border-top-width: 17px;
+  .Step__Item:nth-child(1) {
+    top: 229px;
+  }
+
+  .Step__Item:nth-child(2) {
+    top: 575px;
+  }
+
+  .Step__Item:nth-child(3) {
+    top: 921px;
+  }
+
+  .Step__Item:nth-child(4) {
+    top: 1267px;
+  }
+
+  .Step__Item:nth-child(5) {
+    top: 1613px;
   }
 
   .Step__Badge {
-    /* PSD: 136x147 @(339,229) = カード左上から (21,0) */
+    /* PSD: 136x147 @(339,229) = カード左上から (20,0) */
     top: 0;
-    left: 21px;
+    left: 20px;
     width: 136px;
-    height: 147px;
+    text-align: center;
   }
 
   .Step__Badge span {
+    position: static;
+    display: block;
     font-size: 15px;
   }
 
   .Step__Badge strong {
+    position: static;
+    display: block;
     margin-top: 4px;
     font-size: 47px;
   }
 
   .Step__CardTitle {
-    /* PSD: 見出し y340 = カード上端(229)から 111px */
+    /* PSD: 見出し y340 = カード上端(229)から 111px、左 x501(= 相対 182) */
     top: 105px;
     left: 160px;
     right: 24px;
     font-size: 32px;
+    line-height: 1.3;
+    letter-spacing: var(--lp2-tracking-md);
   }
 
   .Step__Text {
-    /* PSD: 本文 y420 = カード上端から 191px、左 x745 = 427px */
+    /* PSD: 本文 y420 = カード上端から 191px、左 x745 = 相対 427px */
     top: 185px;
     left: 427px;
     right: 32px;
     font-size: 18px;
     line-height: 1.78;
+    letter-spacing: var(--lp2-tracking-md);
   }
 
-  /* PSD: 緑の角丸 498x118 @(473,2044)。CtaButton は inline-flex のため
-     auto マージンでは中央に寄らない。実測座標で絶対配置する */
   .Step__Cta {
-    position: absolute;
-    top: 1977px; /* セクション上端から 2044px。Inner は padding-top 67px ぶん下がっている */
-    left: 0;
-    right: 0;
+    top: 2044px;
     width: 498px;
-    min-width: 0;
     height: 118px;
-    margin: 0 auto;
   }
 }
