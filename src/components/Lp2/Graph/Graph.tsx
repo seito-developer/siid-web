@@ -24,6 +24,10 @@ export default function Graph() {
       />
 
       <div className={styles.Graph__Inner}>
+        {/* カンプにこのセクションの見出しは無いが、見出しの無い section は
+            アウトライン上たどれないため、視覚的に隠した h2 を置く */}
+        <h2 className={styles.Graph__SrOnly}>コース比較表</h2>
+
         {/* SP は表がはみ出すため横スクロールさせる(カンプにも「＋scroll」の指示がある) */}
         <p className={styles.Graph__ScrollHint} aria-hidden="true">
           ＋scroll

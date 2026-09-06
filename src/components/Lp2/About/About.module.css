@@ -175,6 +175,11 @@
     font-size: 30px;
   }
 
+  /* PC は 1 行に収まる(カンプの組み方) */
+  .About__SubBreak {
+    display: none;
+  }
+
   .About__Copy {
     /* PSD: y1002 / 943x77。1 行に収まる幅なので折り返させない。
        字送りは PSD 値 0.06em だが、palt で括弧が詰まるぶん実測が 911px と

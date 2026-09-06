@@ -119,8 +119,11 @@ export const pages = {
     },
     url: '/lp-2',
     description: 'AI時代に、選ばれるエンジニアへ。<br />元人事部長の現役エンジニアが、学習から内定まで総合プロデュースします。',
+    // 「ページ内容 | サイト名」で全角 28 字前後に収める(リリース前チェックリスト)。
+    // 既定の `name.ja | commonTitle` は 58 字あり、「プログラミングスクール」「SiiD」も重複する。
+    metaTitle: '未経験からITエンジニア転職 | AIプログラミングスクール SiiD',
     metaDescription:
-      '未経験からITエンジニア転職を目指すAIプログラミングスクールSiiD。経済産業省リスキル講座認定で受講料は給付金により最大80%OFF。元人事部長の現役エンジニアが採用する側の目線で学習から内定まで総合プロデュースします。無料カウンセリング受付中。',
+      '未経験からITエンジニア転職を目指すAIプログラミングスクールSiiD。経済産業省リスキル講座認定で、受講料は給付金により最大80%OFF。元人事部長の現役エンジニアが採用する側の目線で、学習からポートフォリオ制作・書類選考・面接対策まで総合プロデュースします。目標達成率88%・受講生満足度92%。無料カウンセリングを受付中です。',
   },
   counselingComplete: {
     name: {
@@ -136,6 +139,8 @@ interface PageMeta {
   name: { ja: string; en: string };
   url: string;
   description: string;
+  // 既定の `name.ja | commonTitle` では長すぎる/表現を変えたいページで使う
+  metaTitle?: string;
   metaDescription?: string;
 }
 
@@ -152,7 +157,7 @@ interface BuildPageMetadataOptions {
 // canonical・OGP の URL は SEO 指摘(canonical 未設置・OGP の相対パス記述)に対応するため
 // SITE_URL 起点の絶対 URL で出力する。
 export function buildPageMetadata(page: PageMeta, options: BuildPageMetadataOptions = {}): Metadata {
-  const title = options.title ?? `${page.name.ja} | ${commonTitle}`;
+  const title = options.title ?? page.metaTitle ?? `${page.name.ja} | ${commonTitle}`;
   const description = page.metaDescription ?? handleStringHTML(page.description, false);
   const canonical = `${SITE_URL}${options.canonicalPath ?? page.url}`.replace(/\/$/, '');
   const ogpImage = `${SITE_URL}${options.ogpImagePath ?? OGP_IMAGE_PATH}`;

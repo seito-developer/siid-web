@@ -84,8 +84,9 @@ export default function CookieBanner() {
     return null;
   }
 
+  // フォーカスを閉じ込めないバナーのため role="dialog" ではなく region にする
   return (
-    <div className={styles.CookieBanner} role="dialog" aria-label="Cookie の利用について">
+    <div className={styles.CookieBanner} role="region" aria-label="Cookie の利用について">
       <p className={styles.CookieBanner__Text}>
         当サイトでは、サービス改善と利用状況の分析のために Cookie を使用します。詳細は
         <a href="https://bug-fix.org/privacy-policy" target="_blank" rel="noopener noreferrer">

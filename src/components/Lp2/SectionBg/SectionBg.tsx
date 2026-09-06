@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { getImageProps } from 'next/image';
 
 import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 
@@ -9,6 +9,11 @@ import styles from './SectionBg.module.css';
 // 背景はカンプの合成結果を前景だけ隠して切り出したもの
 // (docs/spec/07_lp2-renewal.md §8.2)。SP のカンプは @2x なので
 // 実寸の半分で表示される。
+//
+// <Image> を 2 つ並べて CSS で display: none にすると、隠したほうまで
+// ダウンロードされる(SP 表示で PC 用の背景 12 枚 = 約 400KB を余分に取得していた)。
+// そのため next/image の getImageProps() で srcSet だけを取り出し、
+// メディアクエリが確実に効く <picture> + <source media> で 1 枚だけ読ませる。
 
 type Props = {
   /** public/images/lp-2/<name>-bg.webp と public/images/lp-2/sp/<name>.webp を使う */
@@ -21,26 +26,32 @@ type Props = {
 };
 
 export default function SectionBg({ name, pcWidth, pcHeight, spWidth, spHeight, className = '' }: Props) {
+  const common = { alt: '', sizes: '100vw', quality: LP2_IMAGE_QUALITY };
+
+  const {
+    props: { srcSet: spSrcSet },
+  } = getImageProps({
+    ...common,
+    src: lp2Asset(`/images/lp-2/sp/${name}.webp`),
+    width: spWidth,
+    height: spHeight,
+  });
+
+  const {
+    props: { srcSet: pcSrcSet, ...imgProps },
+  } = getImageProps({
+    ...common,
+    src: lp2Asset(`/images/lp-2/${name}-bg.webp`),
+    width: pcWidth,
+    height: pcHeight,
+  });
+
   return (
-    <>
-      <Image
-        className={`${styles.SectionBg} ${styles.isSp} ${className}`}
-        src={lp2Asset(`/images/lp-2/sp/${name}.webp`)}
-        alt=""
-        width={spWidth}
-        height={spHeight}
-        sizes="100vw"
-        quality={LP2_IMAGE_QUALITY}
-      />
-      <Image
-        className={`${styles.SectionBg} ${styles.isPc} ${className}`}
-        src={lp2Asset(`/images/lp-2/${name}-bg.webp`)}
-        alt=""
-        width={pcWidth}
-        height={pcHeight}
-        sizes="100vw"
-        quality={LP2_IMAGE_QUALITY}
-      />
-    </>
+    <picture>
+      <source media="(min-width: 768px)" srcSet={pcSrcSet} sizes="100vw" />
+      <source media="(max-width: 767px)" srcSet={spSrcSet} sizes="100vw" />
+      {/* <picture> の中の <img>。src / srcSet / sizes は next/image が生成したものを使う */}
+      <img {...imgProps} alt="" className={`${styles.SectionBg} ${className}`} />
+    </picture>
   );
 }

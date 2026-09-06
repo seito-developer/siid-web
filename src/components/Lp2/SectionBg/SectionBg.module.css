@@ -6,17 +6,3 @@
   height: 100%;
   object-fit: cover;
 }
-
-.isPc {
-  display: none;
-}
-
-@media screen and (min-width: 768px) {
-  .isSp {
-    display: none;
-  }
-
-  .isPc {
-    display: block;
-  }
-}

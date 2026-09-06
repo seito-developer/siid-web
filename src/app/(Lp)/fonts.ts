@@ -43,6 +43,11 @@ export const zenKakuGothicAntiqueLp2 = Zen_Kaku_Gothic_Antique({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-display-lp2',
+  // 日本語フォントは unicode-range で 100 以上のファイルに分割配信される。
+  // preload を有効にすると全チャンクの <link rel="preload"> が head に並び
+  // (実測 489 本)、初期リクエストが激増して LCP を悪化させる。
+  // display: swap で実際に使う文字のチャンクだけを遅延取得させる。
+  preload: false,
 });
 
 // 英字セクションラベル(RESULTS / VOICE 等)と装飾数字。FuturaPT / Futura / Avenir の代替。
@@ -59,6 +64,8 @@ export const shipporiMinchoB1Lp2 = Shippori_Mincho_B1({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-mincho-lp2',
+  // 日本語フォントのため preload しない(理由は zenKakuGothicAntiqueLp2 を参照)
+  preload: false,
 });
 
 // STEP ラベル。DIN 2014 の代替。lp-1 用は 700 のみのため lp-2 用に別途定義する。

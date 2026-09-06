@@ -33,7 +33,7 @@ export default function Result() {
 
   return (
     <section className={styles.Result} id="result">
-      <SectionLabel>RESULTS</SectionLabel>
+      <SectionLabel gradient>RESULTS</SectionLabel>
 
       {/* SP は「未経験から、」で改行する(カンプの組み方) */}
       <h2 className={styles.Result__Title}>
@@ -46,6 +46,14 @@ export default function Result() {
       <div className={styles.Result__Carousel}>
         <Swiper
           modules={[Navigation, Pagination, A11y]}
+          // Swiper の A11y モジュールは矢印・ドットの aria-label を英語の既定文
+          // ("Next slide" 等)で上書きするため、日本語の文言を渡す
+          a11y={{
+            prevSlideMessage: '前の実績へ',
+            nextSlideMessage: '次の実績へ',
+            paginationBulletMessage: '{{index}} 件目の実績を表示',
+            slideLabelMessage: '{{index}} / {{slidesLength}}',
+          }}
           centeredSlides
           loop
           watchSlidesProgress
@@ -66,7 +74,7 @@ export default function Result() {
             <SwiperSlide key={item.image} className={styles.Result__Slide}>
               <Image
                 src={lp2Asset(`/images/lp-2/results/${item.image}.webp`)}
-                alt={`${item.from} ${item.to}`}
+                alt={`${item.from} ${item.to}`.trim()}
                 width={1316}
                 height={772}
                 sizes="(min-width: 768px) 623px, 70vw"
@@ -92,8 +100,12 @@ export default function Result() {
 
       <p className={styles.Result__Caption} aria-live="polite">
         {active.from}
-        <br />
-        <span className={styles.Result__CaptionAccent}>{active.to}</span>
+        {active.to && (
+          <>
+            <br />
+            <span className={styles.Result__CaptionAccent}>{active.to}</span>
+          </>
+        )}
       </p>
 
       <p className={styles.Result__Note}>※個人の実績であり、成果を保証するものではありません</p>

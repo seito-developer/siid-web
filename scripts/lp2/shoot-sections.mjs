@@ -39,6 +39,11 @@ await page.evaluate(async () => {
   });
 });
 
+// 日本語 Web フォントは preload していないため、適用されるまで待つ。
+// 待たずに撮ると代替フォントのまま写り、カンプとの一致率が落ちる。
+await page.evaluate(() => document.fonts.ready);
+await page.waitForTimeout(600);
+
 // 外部の予約ウィジェット(Jicoo)は遅延読み込みなので、描画されるまで待つ。
 await page.waitForTimeout(2500);
 

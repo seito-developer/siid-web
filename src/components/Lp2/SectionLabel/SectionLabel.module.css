@@ -49,6 +49,26 @@
   color: var(--lp2-white);
 }
 
+/* 明るい背景用。PSD の見た目(紫 → 水色)に合わせる。
+   白抜きのままだと背景に埋もれて読めない */
+.isGradient {
+  color: var(--lp2-primary);
+}
+
+.isGradient .SectionLabel__Line:last-child {
+  color: var(--lp2-cyan-light);
+  background: currentColor;
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .isGradient .SectionLabel__Text {
+    background-image: linear-gradient(90deg, var(--lp2-primary) 0%, var(--lp2-cyan-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .SectionLabel {
     gap: 10px;

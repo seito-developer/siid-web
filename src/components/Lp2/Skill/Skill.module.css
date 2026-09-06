@@ -83,6 +83,14 @@
   box-shadow: 0 2px 14px rgba(19, 26, 62, 0.1);
 }
 
+/* 見出し要素としての既定値を打ち消し、ボタンの見た目に影響させない */
+.Skill__CardHeading {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
 .Skill__CardHead {
   display: flex;
   align-items: center;

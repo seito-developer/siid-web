@@ -100,7 +100,7 @@ export default function Voice() {
       />
 
       <div className={styles.Voice__Inner}>
-        <SectionLabel inverse className={styles.Voice__Label}>
+        <SectionLabel gradient className={styles.Voice__Label}>
           VOICE
         </SectionLabel>
         <h2 className={styles.Voice__Heading}>受講生の声</h2>

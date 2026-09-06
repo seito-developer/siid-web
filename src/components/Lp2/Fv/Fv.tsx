@@ -5,6 +5,7 @@ import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 import CtaButton from '../CtaButton/CtaButton';
 
 import styles from './Fv.module.css';
+import FvVideo from './FvVideo';
 
 // FV(docs/spec/lp2-sections/02-fv.md と 02-fv.notes.md)。
 //
@@ -22,20 +23,7 @@ export default function Fv() {
   return (
     <section className={styles.Fv} id="fv">
       <div className={styles.Fv__Media}>
-        <video
-          className={styles.Fv__Video}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster={lp2Asset('/videos/lp-2/fv-pc-poster.webp')}
-          aria-hidden="true"
-        >
-          {/* SP には SP 用の軽いファイルを読ませる。LCP に直結するため */}
-          <source src={lp2Asset('/videos/lp-2/fv-sp.mp4')} type="video/mp4" media="(max-width: 767px)" />
-          <source src={lp2Asset('/videos/lp-2/fv-pc.mp4')} type="video/mp4" />
-        </video>
+        <FvVideo />
         <span className={styles.Fv__Scrim} aria-hidden="true" />
       </div>
 
@@ -59,6 +47,7 @@ export default function Fv() {
             width={330}
             height={97}
             quality={LP2_IMAGE_QUALITY}
+            priority
           />
           <span className={styles.Fv__BadgeMinistry}>経済産業省</span>
           <span className={styles.Fv__BadgeTitle}>リスキル講座認定</span>
@@ -78,6 +67,7 @@ export default function Fv() {
                 width={169}
                 height={181}
                 quality={LP2_IMAGE_QUALITY}
+                priority
               />
               <span className={styles.Fv__MedalLabel}>
                 {medal.label}

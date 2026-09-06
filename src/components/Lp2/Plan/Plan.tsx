@@ -24,10 +24,12 @@ export default function Plan() {
 
       <div className={styles.Plan__Inner}>
         <p className={styles.Plan__Label}>PRICING</p>
-        {/* PSD: 大きな「3」が左、その右上に「選べる」、右下に「つのプラン」 */}
+        {/* PSD: 大きな「3」が左、その右上に「選べる」、右下に「つのプラン」。
+            配置は grid-template-areas で決めているため、DOM は読み上げ順
+            (「選べる 3 つのプラン」)を優先して並べる */}
         <h2 className={styles.Plan__Title}>
-          <span className={styles.Plan__TitleNumber}>3</span>
           <span className={styles.Plan__TitleSmall}>選べる</span>
+          <span className={styles.Plan__TitleNumber}>3</span>
           <span className={styles.Plan__TitleLarge}>つのプラン</span>
         </h2>
 

@@ -29,7 +29,7 @@ export default function Present() {
           配布
         </p>
 
-        <SectionLabel inverse className={styles.Present__Label}>
+        <SectionLabel gradient className={styles.Present__Label}>
           FREE GIFTS
         </SectionLabel>
 

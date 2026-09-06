@@ -149,14 +149,16 @@
   }
 
   .Faq__List {
-    /* PSD: 帯 903px @x268 */
+    /* PSD: 帯 853px @x293。Q1 は開いた状態で高さ 189(帯 75 + 回答 114)@y295、
+       Q2 以降は帯のみ 75px を 95px 間隔(= 帯 75 + 余白 20) */
     gap: 20px;
-    width: 903px;
-    margin: 52px auto 0;
+    width: 853px;
+    margin: 74px auto 0;
   }
 
   .Faq__Question {
-    padding: 14px 22px;
+    height: 75px;
+    padding: 0 22px;
     font-size: 18px;
   }
 
@@ -167,7 +169,8 @@
   }
 
   .Faq__Answer {
-    padding: 18px 26px 22px;
+    /* Q1 の開いた高さ 189 - 帯 75 = 114px */
+    padding: 14px 26px 18px;
   }
 
   .Faq__Answer p {
