@@ -207,6 +207,8 @@
 
 .Voice__Lead {
   position: static;
+  /* PSD: リード 286.5px 幅 / 本文 273px 幅 */
+  width: 287px;
   font-feature-settings: normal;
   /* カンプは 18 文字で 285.5px = 1 文字 15.86px */
   font-size: 15.8px;
@@ -220,7 +222,7 @@
   position: absolute;
   top: 58.5px;
   left: 0;
-  right: 0;
+  right: 39px;
   height: 122px;
   margin: 0;
   overflow: hidden;
@@ -420,6 +422,7 @@
   }
 
   .Voice__Lead {
+    width: auto;
     font-feature-settings: 'palt' 1;
     font-size: 16.03px;
     line-height: 1.4;
@@ -430,6 +433,7 @@
   .Voice__Card:nth-child(2) .Voice__Body,
   .Voice__Card:nth-child(3) .Voice__Body {
     top: 63px;
+    right: 0;
     height: 112px;
   }
 

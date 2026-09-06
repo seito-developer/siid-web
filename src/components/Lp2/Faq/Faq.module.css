@@ -78,7 +78,7 @@
   gap: 7.5px;
   /* Q4 だけ質問が 2 行になり帯が 1 行ぶん高くなる(カンプ実測 57 → 74.5px) */
   min-height: 57px;
-  padding: 0 10px 0 6.5px;
+  padding: 9.75px 10px 9.75px 6.5px;
   background: var(--lp2-primary);
   font-family: var(--lp2-font-body);
   font-weight: 700;
@@ -111,8 +111,8 @@
 .Faq__QuestionText {
   flex: 1;
   /* 改行位置はデータ側の \n で持つ(SP だけ 2 行になる質問がある)。
-     行の高さは 2 行のとき帯が 74.5px になるように決めている */
-  line-height: 2.57;
+     行送り 27.5px で、2 行のとき帯が 74.5px になる */
+  line-height: 1.9;
   white-space: pre-line;
 }
 
@@ -153,7 +153,8 @@
 
 .Faq__Answer p {
   font-feature-settings: normal;
-  font-size: 14.5px;
+  /* カンプは 19 文字で 269px = 1 文字 14.2px */
+  font-size: 14.2px;
   line-height: 1.75;
   letter-spacing: 0;
   color: var(--lp2-grey);
