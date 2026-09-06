@@ -135,16 +135,21 @@
   }
 
   .Graph__Table :is(th, td) {
-    padding: 14px 10px;
-    font-size: 16px;
+    /* PSD: 表 1097x1121 / 15 行 = 約 75px */
+    height: 75px;
+    padding: 4px 8px;
+    font-size: 15px;
+    line-height: 1.28;
   }
 
   .Graph__Table tbody th {
     width: 150px;
+    font-size: 16px;
   }
 
   .Graph__Table thead th {
-    font-size: 30px;
+    height: 75px;
+    font-size: 28px;
   }
 
   .Graph__Table thead th:first-child {

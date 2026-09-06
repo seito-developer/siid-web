@@ -39,6 +39,9 @@ await page.evaluate(async () => {
   });
 });
 
+// 外部の予約ウィジェット(Jicoo)は遅延読み込みなので、描画されるまで待つ。
+await page.waitForTimeout(2500);
+
 // 動画は再生されているとフレームが毎回変わり、基準画像と比較できない。
 // 先頭で止めてポスターと同じ絵にそろえる。
 await page.evaluate(async () => {

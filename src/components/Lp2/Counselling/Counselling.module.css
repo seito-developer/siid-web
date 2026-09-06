@@ -134,7 +134,7 @@
   }
 
   .Counselling__Text {
-    padding-top: 50px;
+    padding-top: 66px;
   }
 
   .Counselling__Kicker {
@@ -150,21 +150,25 @@
   }
 
   .Counselling__Heading {
-    margin-top: 22px;
+    /* PSD: y277 */
+    margin-top: 0;
     font-size: 60.09px;
+    line-height: 1.13;
     text-align: left;
   }
 
   .Counselling__Lead {
-    margin-top: 26px;
+    /* PSD: y446 */
+    margin-top: 24px;
     font-size: 18px;
     text-align: left;
   }
 
   .Counselling__Points {
+    /* PSD: 箱は x310 から。本文カラムの左端(x60)より内側に置く */
     gap: 14px;
     width: 288px;
-    margin-top: 32px;
+    margin: 24px 0 0 250px;
   }
 
   .Counselling__Points li {

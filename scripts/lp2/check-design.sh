@@ -38,7 +38,7 @@ if [ "$SIDE" = "pc" ]; then
     "voice|pc6|0:1730"
     "faq|pc8|0:1256"
     "present|pc7|0:1083"
-    "counselling|pc9|0:1019"
+    "counselling|pc9|0:1019|700,60,1440,1019"
   )
 else
   ROWS=(
@@ -56,7 +56,7 @@ else
     "voice|seitosama_lp_sp08|0:3872"
     "faq|seitosama_lp_sp09|0:1923"
     "present|seitosama_lp_sp10|0:3176"
-    "counselling|seitosama_lp_sp11|0:2374"
+    "counselling|seitosama_lp_sp11|0:2374|0,900,750,2374"
   )
 fi
 

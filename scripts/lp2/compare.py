@@ -159,11 +159,13 @@ def compare(
     reference, actual, ref_h, act_h = _align(reference, actual)
 
     if ignore_rows:
-        # 判定から外す帯(FV の動画領域など)。両方を同じ色で塗りつぶして無視させる。
-        top, bottom = ignore_rows
+        # 判定から外す領域。両方を同じ色で塗りつぶして無視させる。
+        #   FV の動画領域(カンプと異なることが承認済み)
+        #   予約フォーム(外部サービスの埋め込みでスクリーンショットに写らない)
+        x0, top, x1, bottom = ignore_rows
         for image in (reference, actual):
             ImageDraw.Draw(image).rectangle(
-                (0, top, image.width, min(bottom, image.height)), fill=(0, 0, 0)
+                (x0, top, min(x1, image.width), min(bottom, image.height)), fill=(0, 0, 0)
             )
 
     structure, mean_error, match_mask = _structure_ratio(
@@ -210,8 +212,9 @@ def main() -> None:
     )
     parser.add_argument(
         "--ignore-rows",
-        help="判定から外す縦の範囲(切り出し後の座標。例: 83:617)。"
-        "FV の動画領域のように、カンプと異なることが承認済みの箇所に使う",
+        help="判定から外す範囲。「上:下」で全幅、「x0,上,x1,下」で矩形。"
+        "FV の動画領域や外部埋め込みのフォームなど、"
+        "カンプと一致しないことが承認済み・撮影できない箇所に使う",
     )
     parser.add_argument("--json", action="store_true", help="結果を JSON で出力する")
     args = parser.parse_args()
@@ -223,8 +226,9 @@ def main() -> None:
 
     ignore_rows = None
     if args.ignore_rows:
-        top, _, bottom = args.ignore_rows.partition(':')
-        ignore_rows = (int(top), int(bottom))
+        parts = [int(v) for v in args.ignore_rows.replace(':', ',').split(',')]
+        # 「上:下」なら全幅、「x0,上,x1,下」なら矩形
+        ignore_rows = (0, parts[0], 10**6, parts[1]) if len(parts) == 2 else tuple(parts)
 
     result = compare(args.reference, args.actual, args.out, ref_crop, ignore_rows)
     structure_ok = result["structure_ratio"] >= args.structure_threshold

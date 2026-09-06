@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 
 import About from '@/components/Lp2/About/About';
 import CookieBanner from '@/components/Lp2/CookieBanner/CookieBanner';
@@ -16,6 +16,7 @@ import Result from '@/components/Lp2/Result/Result';
 import Skill from '@/components/Lp2/Skill/Skill';
 import Step from '@/components/Lp2/Step/Step';
 import Strength from '@/components/Lp2/Strength/Strength';
+import StructuredData from '@/components/Lp2/StructuredData/StructuredData';
 import Support from '@/components/Lp2/Support/Support';
 import Voice from '@/components/Lp2/Voice/Voice';
 import { buildPageMetadata, pages } from '@/constants/meta';
@@ -37,6 +38,13 @@ export const metadata: Metadata = buildPageMetadata(pages.lp2, {
   ogpImagePath: '/images/lp-2/ogp.png',
 });
 
+// リリース前チェックリスト「favicon > theme-color」。ブラウザ UI の色を FV に合わせる。
+export const viewport: Viewport = {
+  themeColor: '#131a3e',
+  width: 'device-width',
+  initialScale: 1,
+};
+
 const fontVariables = [
   zenKakuGothicAntiqueLp2.variable,
   jostLp2.variable,
@@ -47,6 +55,7 @@ const fontVariables = [
 export default function Lp2() {
   return (
     <div className={`lp2 ${fontVariables} ${styles.Lp2}`} id="top">
+      <StructuredData />
       <Header />
       <main>
         <Fv />
