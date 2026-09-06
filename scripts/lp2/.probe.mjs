@@ -1,13 +1,11 @@
 import { chromium } from 'playwright';
 const b = await chromium.launch();
-const p = await b.newPage({ viewport: { width: 1440, height: 1400 }, deviceScaleFactor: 1 });
+const p = await b.newPage({ viewport: { width: 1440, height: 1400 } });
 await p.goto('http://localhost:3000/siid/lp-2', { waitUntil: 'networkidle' });
 await p.evaluate(() => document.fonts.ready);
-const sec = p.locator('#plan');
-await sec.scrollIntoViewIfNeeded();
-await p.waitForTimeout(1500);
-await p.screenshot({ path: '/private/tmp/claude-502/-Users-horiguchimasato-orca-workspaces-siid-web-lp/3277863a-a571-458d-bea1-ca05910342da/scratchpad/plan-full.png', fullPage: true });
-await sec.screenshot({ path: '/private/tmp/claude-502/-Users-horiguchimasato-orca-workspaces-siid-web-lp/3277863a-a571-458d-bea1-ca05910342da/scratchpad/plan-el.png' });
-const box = await sec.boundingBox();
-console.log(JSON.stringify(box));
+console.log(await p.evaluate(() => {
+  const th = document.querySelector('#graph thead th:nth-child(2)');
+  const cs = getComputedStyle(th);
+  return JSON.stringify({ height: cs.height, fontSize: cs.fontSize, bg: cs.backgroundColor });
+}));
 await b.close();

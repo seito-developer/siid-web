@@ -91,7 +91,11 @@
 
 /* PSD 実測: 表 903x588、列幅 189 / 338 / 188 / 188。
    見出し列 #39A0FA、当社列 #F1F7FB、競合・転職特化 #EAEFF1 */
-.Difference__Table :is(th, td) {
+/* autoprefixer が `:is()` を `:-webkit-any()` に展開すると詳細度が
+   (0,2,0) に上がり、あとから書く thead / tbody の指定を潰してしまう。
+   そのため th と td を明示的に並べる */
+.Difference__Table th,
+.Difference__Table td {
   padding: 12px 8px;
   font-weight: 500;
   font-size: 16px;
@@ -172,7 +176,8 @@
     min-width: 0;
   }
 
-  .Difference__Table :is(th, td) {
+  .Difference__Table th,
+  .Difference__Table td {
     /* 588px / 7 行 = 84px */
     height: 84px;
     padding: 4px 10px;
