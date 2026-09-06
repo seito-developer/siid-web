@@ -79,8 +79,15 @@
     font-size: 12.2px;
   }
 
+  /* PSD 実測(@2x): 線 137x3 / 丸 6x6 = CSS 68.5x1.5 / 3x3 */
   .SectionLabel__Line {
-    width: 71px;
-    height: 3.5px;
+    width: 68.5px;
+    height: 1.5px;
+  }
+
+  .SectionLabel__Line::before,
+  .SectionLabel__Line::after {
+    width: 3px;
+    height: 3px;
   }
 }

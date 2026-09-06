@@ -143,7 +143,8 @@
   font-size: 19.5px;
   line-height: 1.87;
   letter-spacing: var(--lp2-tracking-md);
-  color: var(--lp2-white);
+  /* カンプの帯の文字は黄色 */
+  color: #faf26e;
   text-align: left;
 }
 
@@ -222,7 +223,7 @@
   position: absolute;
   top: 58.5px;
   left: 0;
-  right: 39px;
+  right: 19.5px;
   height: 122px;
   margin: 0;
   overflow: hidden;
@@ -240,7 +241,7 @@
 .Voice__Body p {
   font-feature-settings: normal;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.61;
   letter-spacing: 0;
   color: #333;
 }
@@ -361,6 +362,7 @@
   }
 
   .Voice__Title {
+    color: var(--lp2-white);
     top: 66px;
     left: 161px;
     font-feature-settings: 'palt' 1;
