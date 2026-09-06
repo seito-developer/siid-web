@@ -58,6 +58,25 @@ await page.evaluate(async () => {
 // 日本語 Web フォントは preload していないため、適用されるまで待つ。
 // 待たずに撮ると代替フォントのまま写り、カンプとの一致率が落ちる。
 await page.evaluate(() => document.fonts.ready);
+
+// 日本語フォントは unicode-range で分割配信され、preload も切ってあるため
+// `document.fonts.ready` だけでは取りこぼす。ページ上の文字を渡して
+// 必要なチャンクを明示的に読み込ませる(取りこぼすと代替フォントで撮れてしまう)。
+await page.evaluate(async () => {
+  const text = document.body.innerText.replace(/\s+/g, '').slice(0, 4000);
+  const specs = [];
+  for (const weight of [400, 500, 700, 900]) {
+    specs.push(`${weight} 16px "Zen Kaku Gothic Antique"`, `${weight} 16px "Noto Sans JP"`);
+  }
+  specs.push(
+    '500 16px Jost', '700 16px Jost',
+    '600 16px "Shippori Mincho B1"', '700 16px "Shippori Mincho B1"',
+    '500 16px "Barlow Semi Condensed"', '700 16px "Barlow Semi Condensed"',
+    '500 16px Poppins', '700 16px Poppins',
+  );
+  await Promise.all(specs.map((spec) => document.fonts.load(spec, text).catch(() => {})));
+  await document.fonts.ready;
+});
 await page.waitForTimeout(600);
 
 // 外部の予約ウィジェット(Jicoo)は遅延読み込みなので、描画されるまで待つ。
@@ -82,8 +101,16 @@ for (const id of SECTIONS) {
     const header = document.querySelector('header');
     if (header) header.style.visibility = sectionId === 'fv' ? 'visible' : 'hidden';
   }, id);
+  // 要素の上端が 0.5px 単位にあると element.screenshot() が 1 デバイスピクセル
+  // 手前から撮ってしまい、セクション全体がカンプと 1px ずれて写る。
+  // ページ全体をわずかにずらして、上端を整数 px にそろえてから撮る。
+  await page.evaluate(() => { document.body.style.paddingTop = ''; });
+  let box = await el.boundingBox();
+  if (Math.abs(box.y - Math.round(box.y)) > 0.01) {
+    await page.evaluate(() => { document.body.style.paddingTop = '0.5px'; });
+    box = await el.boundingBox();
+  }
   await el.screenshot({ path: `${outDir}/${id}.png` });
-  const box = await el.boundingBox();
   console.log(`${id.padEnd(12)} ${Math.round(box.width)}x${Math.round(box.height)}`);
 }
 
