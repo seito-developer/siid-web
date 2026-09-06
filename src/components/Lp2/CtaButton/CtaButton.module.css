@@ -24,6 +24,8 @@
 }
 
 .CtaButton__Label {
+  /* 改行は <br> だけ。カンプはどこでも 2 行組みで、自動折り返しは起きない */
+  white-space: nowrap;
   font-size: 15.76px;
   line-height: 1.28;
   letter-spacing: var(--lp2-tracking-xl);

@@ -136,18 +136,10 @@
   padding-top: 22px;
 }
 
-.Plan__Stars {
-  font-size: 14px;
-  letter-spacing: 0.3em;
-  color: #ffe14d;
-}
-
 .Plan__Badge {
-  display: inline-block;
+  /* 下地のピンクの角丸は意匠画像に含まれるため、文字だけを重ねる */
+  align-self: center;
   margin-top: 4px;
-  padding: 3px 16px;
-  border-radius: 4px;
-  background: #f0334f;
   font-family: var(--lp2-font-body);
   font-weight: 700;
   font-size: 16px;
@@ -187,19 +179,13 @@
   color: var(--lp2-white);
 }
 
+ /* ピンクのピルと取り消し線は意匠画像側にある */
 .Plan__Price del {
-  padding: 1px 6px;
-  background: #131a3e;
-  text-decoration: line-through;
-  text-decoration-color: #f0334f;
+  text-decoration: none;
 }
 
 .Plan__After {
   color: #fff66d;
-}
-
-.isRecommended .Plan__Price {
-  color: var(--lp2-white);
 }
 
 .Plan__AfterPrice {
@@ -209,19 +195,11 @@
   color: #5562f1;
 }
 
-.isRecommended .Plan__AfterPrice {
-  color: var(--lp2-white);
-}
-
 .Plan__MonthlyLabel {
   margin-top: 4px;
   font-weight: 700;
   font-size: 20px;
   color: #5562f1;
-}
-
-.isRecommended .Plan__MonthlyLabel {
-  color: var(--lp2-white);
 }
 
 .Plan__Monthly {
@@ -230,10 +208,6 @@
   font-size: 22px;
   letter-spacing: var(--lp2-tracking-sm);
   color: #5562f1;
-}
-
-.isRecommended .Plan__Monthly {
-  color: #fff66d;
 }
 
 .Plan__Cta {
@@ -261,24 +235,49 @@
   }
 
   .Plan__Label {
+    /* PSD: 261x26 @(577,49)。中央(720)ではなく 12.5px 左にずれている */
+    padding-right: 25px;
     font-size: 38.06px;
+    letter-spacing: 0.387em;
+    text-indent: 0.387em;
   }
 
+  /* PSD の 3 つの文字は中央揃えでも左揃えでもない(「3」だけ大きく左に出る)ため、
+     実測座標で個別に置く。tit グループ 442x176 @(486,49)。
+       選べる 177x51 @(642,97) / 3 80x125 @(486,100) / つのプラン 351x59 @(577,162)
+     ブロック自体の上端は y126(セクション上端 49 + ラベル 67 + 余白 10)なので、
+     上 2 つは負の top になる */
   .Plan__Title {
-    column-gap: 12px;
+    display: block;
+    position: relative;
+    height: 169px;
     margin-top: 10px;
   }
 
+  .Plan__Title span {
+    position: absolute;
+    line-height: 1;
+  }
+
   .Plan__TitleSmall {
+    top: -29px;
+    left: 642px;
     font-size: 56.39px;
+    letter-spacing: 0;
   }
 
   .Plan__TitleNumber {
-    font-size: 174.46px;
+    /* PSD の字形より縦長のため、高さ(125px)が合う大きさにしている */
+    top: -26px;
+    left: 486px;
+    font-size: 139px;
   }
 
   .Plan__TitleLarge {
+    top: 36px;
+    left: 577px;
     font-size: 64.55px;
+    letter-spacing: 0.087em;
   }
 
   /* PSD: 179x358 @(921,34)。見出しの右に重なる */
@@ -291,7 +290,8 @@
     height: auto;
   }
 
-  /* PSD: FullSupport は他の 2 枚より 65px 上に出る(中央揃えではない) */
+  /* PSD: FullSupport は他の 2 枚より 65px 上に出る(中央揃えではない)。
+     カード幅 339 + 374 + 336 と隙間 4px x2 = 1057 が 1440 の中央に来る */
   .Plan__Cards {
     align-items: flex-start;
     justify-content: center;
@@ -301,19 +301,19 @@
     overflow-x: visible;
   }
 
-  .Plan__Card:not(.isRecommended) {
-    margin-top: 65px;
-  }
-
-  /* PSD: Career 339x434 / FullSupport 374x534 / 顧問 336x429 */
+  /* PSD: Career 339x434 @(192,333) / FullSupport 374x534 @(535,268) /
+     顧問 336x429 @(913,334) */
   .Plan__Card {
-    display: flex;
+    display: block;
     flex: none;
-    flex-direction: column;
     width: 339px;
     max-width: none;
     height: 434px;
-    padding: 22px 20px 20px;
+    padding: 0;
+  }
+
+  .Plan__Card:not(.isRecommended) {
+    margin-top: 65px;
   }
 
   .Plan__Card:last-child {
@@ -325,65 +325,219 @@
     width: 374px;
     max-width: none;
     height: 534px;
-    padding-top: 22px;
+    padding-top: 0;
   }
 
-  /* PSD: CTA y643 = 相対 310。カード下端には寄せない */
-  .Plan__Cta {
-    margin-top: 48px;
-    align-self: center;
+  /* 枠・星・バッジの下地・価格のピル・チェック印は意匠画像に含まれる。
+     文字だけを PSD 実測の位置に絶対配置で重ねる(3 枚とも中身の縦位置が違う) */
+  .Plan__Card > :not(.Plan__CardBg) {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0;
   }
 
+  /* Career(カード上端 y333 基準) */
+  .Plan__Card:first-child .Plan__Name {
+    top: 33px;
+  }
+
+  .Plan__Card:first-child .Plan__Lead {
+    top: 105px;
+  }
+
+  .Plan__Card:first-child .Plan__Price {
+    top: 132px;
+  }
+
+  .Plan__Card:first-child .Plan__AfterPrice {
+    top: 175px;
+  }
+
+  .Plan__Card:first-child .Plan__MonthlyLabel {
+    top: 201px;
+  }
+
+  .Plan__Card:first-child .Plan__Monthly {
+    top: 236px;
+  }
+
+  .Plan__Card:first-child .Plan__Cta {
+    top: 297px;
+  }
+
+  /* Career + FullSupport(カード上端 y268 基準) */
+  .isRecommended .Plan__Name {
+    top: 50px;
+  }
+
+  .isRecommended .Plan__Badge {
+    top: 115px;
+  }
+
+  .isRecommended .Plan__Lead {
+    top: 171px;
+  }
+
+  .isRecommended .Plan__Price {
+    top: 221px;
+  }
+
+  .isRecommended .Plan__AfterPrice {
+    top: 262px;
+  }
+
+  .isRecommended .Plan__MonthlyLabel {
+    top: 287px;
+  }
+
+  .isRecommended .Plan__Monthly {
+    top: 325px;
+  }
+
+  .isRecommended .Plan__Cta {
+    top: 383px;
+  }
+
+  /* 顧問プラン(カード上端 y333 基準) */
+  .Plan__Card:last-child .Plan__Name {
+    top: 33px;
+  }
+
+  .Plan__Card:last-child .Plan__Lead {
+    top: 123px;
+  }
+
+  .Plan__Card:last-child .Plan__Price {
+    top: 172px;
+  }
+
+  .Plan__Card:last-child .Plan__AfterPrice {
+    top: 212px;
+  }
+
+  .Plan__Card:last-child .Plan__Cta {
+    top: 292px;
+  }
+
+  /* 字送りは PSD のテキストレイヤーの実測幅に合わせている
+     (Career 121 / Career + FullSupport 312 / 顧問プラン 165 / おすすめ 95) */
   .Plan__Name {
     font-size: 30.02px;
+    line-height: 1;
+    letter-spacing: 0.127em;
   }
 
   .isRecommended .Plan__Name {
     font-size: 23.99px;
+    letter-spacing: 0.133em;
   }
 
+  .Plan__Card:last-child .Plan__Name {
+    letter-spacing: 0.167em;
+  }
+
+  .Plan__Badge {
+    font-size: 21.4px;
+    line-height: 1;
+    letter-spacing: 0.2em;
+  }
+
+  /* チェック印が意匠画像の左側にあるぶん、文字の中心を右へずらす。
+     幅は PSD の折り返し位置(FullSupport / 顧問は 2 行)に合わせる */
   .Plan__Lead {
-    /* PSD(Career カード上端 y333 基準): リード y438 = 相対 105 */
-    margin-top: 41px;
+    padding-left: 18px;
     font-size: 16.03px;
-    line-height: 1.4;
+    line-height: 1.38;
+    letter-spacing: 0.129em;
+  }
+
+  .isRecommended .Plan__Lead {
+    width: 250px;
+    padding-left: 20px;
+  }
+
+  .Plan__Card:last-child .Plan__Lead {
+    width: 177px;
+    padding-left: 17px;
   }
 
   .Plan__Price {
-    /* PSD: 価格 y471 = 相対 138 */
-    margin-top: 9px;
     font-size: 16.03px;
+    line-height: 1;
   }
 
   .Plan__AfterPrice,
   .Plan__MonthlyLabel {
-    /* PSD: 給付金適用後 y508 / 月額分割払い y534 = 相対 175 / 201 */
     font-size: 20.03px;
-    line-height: 1.15;
-  }
-
-  .Plan__AfterPrice {
-    margin-top: 7px;
+    line-height: 1;
   }
 
   .Plan__MonthlyLabel {
-    margin-top: 3px;
+    letter-spacing: 0.067em;
+  }
+
+  .Plan__Card:last-child .Plan__Price {
+    letter-spacing: 0;
+  }
+
+  .Plan__Card:last-child .Plan__AfterPrice {
+    font-size: 26.05px;
+    letter-spacing: 0.149em;
   }
 
   .Plan__Monthly {
-    /* PSD: 月々 y569 = 相対 236 */
-    margin-top: 14px;
     font-size: 22.04px;
-    line-height: 1.15;
+    line-height: 1;
+    letter-spacing: 0.137em;
+  }
+
+  /* PSD: 緑のボタンは Career / 顧問 が 275x66、FullSupport が 309x74。
+     `margin: 0` を当てている上の一括指定(詳細度 0,2,0)に勝たせるため
+     ここも 2 段にする。そうしないと left:0/right:0 のまま左寄せになる */
+  .Plan__Card .Plan__Cta {
+    width: 275px;
+    min-width: 0;
+    height: 66px;
+    margin-inline: auto;
+    padding: 0 20px;
+    gap: 8px;
+    border-radius: 8px;
+  }
+
+  .Plan__Card.isRecommended .Plan__Cta {
+    width: 309px;
+    height: 74px;
+    padding: 0 22px;
+  }
+
+  .Plan__Cta span {
+    font-size: 18.5px;
+    line-height: 1.2;
+  }
+
+  .isRecommended .Plan__Cta span {
+    font-size: 20.9px;
+  }
+
+  .Plan__Cta svg {
+    width: 14px;
+    height: 33px;
+  }
+
+  .isRecommended .Plan__Cta svg {
+    width: 15px;
+    height: 37px;
   }
 
   /* PSD: y789。カードと縦位置が重なるため絶対配置にする */
   .Plan__Note {
     position: absolute;
-    top: 789px;
+    top: 740px;
     left: 0;
     right: 0;
     margin-top: 0;
     font-size: 10.71px;
+    letter-spacing: 0.16em;
   }
 }

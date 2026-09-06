@@ -11,6 +11,10 @@ const side = process.argv[2] === 'sp' ? 'sp' : 'pc';
 const width = side === 'sp' ? 375 : 1440;
 const url = process.env.LP2_URL ?? 'http://localhost:3000/siid/lp-2';
 const outDir = `tmp/shots/${side}`;
+// element.screenshot() は、要素の高さがビューポート高をわずかに下回るときに
+// 下端が白く抜けることがある(PRICING の下 42px が白落ちしていた)。
+// 一番高いセクションより十分に高くしておく。
+const VIEWPORT_HEIGHT = side === 'sp' ? 2600 : 2600;
 const SECTIONS = [
   'fv', 'about', 'result', 'instructor', 'strength', 'difference',
   'step', 'skill', 'support', 'plan', 'graph', 'voice', 'faq', 'present', 'counselling',
@@ -19,7 +23,7 @@ const SECTIONS = [
 mkdirSync(outDir, { recursive: true });
 
 const browser = await chromium.launch();
-const page = await browser.newPage({ viewport: { width, height: 900 }, deviceScaleFactor: 1 });
+const page = await browser.newPage({ viewport: { width, height: VIEWPORT_HEIGHT }, deviceScaleFactor: 1 });
 // Cookie バナーが撮影に写り込まないよう同意済みにしておく
 await page.addInitScript(() => {
   try { localStorage.setItem('lp2-cookie-consent', 'accepted'); } catch {}

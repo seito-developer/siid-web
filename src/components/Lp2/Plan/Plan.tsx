@@ -59,16 +59,9 @@ export default function Plan() {
                 quality={LP2_IMAGE_QUALITY}
               />
 
-              {plan.recommended && (
-                <>
-                  <p className={styles.Plan__Stars} aria-hidden="true">
-                    ★★★★★
-                  </p>
-                  <p className={styles.Plan__Badge}>おすすめ</p>
-                </>
-              )}
-
+              {/* 星は意匠画像に含まれるため描かない */}
               <h3 className={styles.Plan__Name}>{plan.name}</h3>
+              {plan.recommended && <p className={styles.Plan__Badge}>おすすめ</p>}
               <p className={styles.Plan__Lead}>{plan.lead}</p>
 
               <p className={styles.Plan__Price}>
