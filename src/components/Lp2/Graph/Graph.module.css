@@ -46,16 +46,17 @@
   width: 100%;
   min-width: 700px;
   border-collapse: separate;
-  border-spacing: 2px;
+  border-spacing: 1px;
   font-family: var(--lp2-font-body);
   text-align: center;
 }
 
+/* PSD 実測: 表 1097x1121、行 74.7px、列は 166 / 307 / 307 / 317 */
 .Graph__Table :is(th, td) {
-  padding: 10px 8px;
+  padding: 6px 8px;
   font-weight: 700;
   font-size: 13px;
-  line-height: 1.45;
+  line-height: 1.35;
   letter-spacing: var(--lp2-tracking-sm);
   color: #1b2453;
   background: var(--lp2-white);
@@ -64,30 +65,34 @@
 
 /* 見出し列 */
 .Graph__Table tbody th {
-  width: 108px;
-  background: #eaf3fb;
+  width: 15.1%;
+  background: #f0f6fb;
 }
 
-/* 見出し行 */
+/* 見出し行。PSD では列ごとに色が変わる(水色 → 青 → 青紫 → 紫) */
 .Graph__Table thead th {
   font-size: 20px;
   color: var(--lp2-white);
-  background: linear-gradient(180deg, #2f7cf5 0%, #2f9df6 100%);
+  background: #1c81fe;
 }
 
 .Graph__Table thead th:first-child {
   font-size: 14px;
-  background: linear-gradient(180deg, #2fb6f6 0%, #2f9df6 100%);
+  background: #2aa7fd;
+}
+
+.Graph__Table thead th:last-child {
+  background: #5856ef;
 }
 
 /* FullSupport の列を強調する */
 .Graph__Table thead .isFeatured {
   color: #ffe14d;
-  background: linear-gradient(180deg, #6a4ef4 0%, #2fa8f8 100%);
+  background: #4c82f6;
 }
 
 .Graph__Table tbody .isFeatured {
-  background: #f4f8ff;
+  background: var(--lp2-white);
 }
 
 .Graph__SrOnly {

@@ -212,6 +212,8 @@
 
 @media screen and (min-width: 768px) {
   .Skill {
+    /* PSD: ラベル y86 / 学んで y147 / できるようになる y232 /
+       リード y346 / カード y449 */
     min-height: 1700px;
     padding: 78px 0 0;
   }
