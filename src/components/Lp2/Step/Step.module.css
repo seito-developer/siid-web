@@ -67,8 +67,24 @@
   margin-top: 26px;
 }
 
+/* カードの意匠(番号バッジ・黄色い帯・イラスト)はカンプの書き出し */
+.Step__CardBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .Step__Item {
   position: relative;
+  aspect-ratio: 803 / 380;
+}
+
+.Step__Item > :not(.Step__CardBg) {
+  position: absolute;
+  z-index: 1;
 }
 
 /* カード間の下向き三角 */
@@ -85,19 +101,15 @@
   transform: translateX(-50%);
 }
 
-/* STEP 番号のバッジ。カードの左上に重ねる */
+/* 丸の意匠は背景画像側にあるため、文字だけを重ねる。
+   PSD: バッジ 136x147 @(339,229) = カード左上から (21,0) */
 .Step__Badge {
-  position: absolute;
-  top: -14px;
-  left: 6px;
-  z-index: 2;
+  top: 0;
+  left: 2.6%;
   display: grid;
   place-items: center;
-  width: 68px;
-  height: 74px;
-  border-radius: 50%;
-  background: #6f7bf5;
-  border: 2px solid #fef579;
+  width: 17%;
+  height: 38.7%;
   font-family: var(--lp2-font-latin);
   color: var(--lp2-white);
   line-height: 1;
@@ -120,10 +132,11 @@
   background: var(--lp2-white);
 }
 
-/* 黄色の見出し帯 */
+/* 黄色の帯も背景画像側にある。PSD: 見出し y340 = カード上端から 111 / 380 = 29% */
 .Step__CardTitle {
-  padding: 10px 16px 10px 78px;
-  background: #fef579;
+  top: 26%;
+  left: 20%;
+  right: 4%;
   font-family: var(--lp2-font-body);
   font-weight: 700;
   font-size: 20px;
@@ -133,25 +146,16 @@
   text-align: center;
 }
 
-.Step__CardBody {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  padding: 16px;
-}
-
-.Step__Illust {
-  width: 100%;
-  max-width: 220px;
-  height: auto;
-}
-
+/* PSD: 本文 y420 = カード上端から 191 / 380 = 50%、左 x745 = 53% */
 .Step__Text {
+  top: 48%;
+  left: 53%;
+  right: 4%;
   font-size: 15px;
   line-height: 1.72;
   letter-spacing: var(--lp2-tracking-md);
   color: var(--lp2-grey);
+  text-align: left;
 }
 
 .Step__Cta {
@@ -183,10 +187,15 @@
   }
 
   .Step__List {
-    /* PSD: カード 803px 幅、左端 x318。間隔 346px(カード 290 + 余白 56) */
-    gap: 56px;
+    /* PSD: カード枠 803x380 @y229 / 574 / 920 / 1266 / 1612(間隔 346px)。
+       枠が 380 で間隔が 346 なので 34px 重なる */
+    gap: 0;
     width: 803px;
-    margin: 34px auto 0;
+    margin: -53px auto 0;
+  }
+
+  .Step__Item:not(:last-child) {
+    margin-bottom: -34px;
   }
 
   .Step__Item:not(:last-child)::after {
@@ -197,8 +206,8 @@
   }
 
   .Step__Badge {
-    /* PSD: 136x147 @(339,229) = カード左上から (21,-92) */
-    top: -30px;
+    /* PSD: 136x147 @(339,229) = カード左上から (21,0) */
+    top: 0;
     left: 21px;
     width: 136px;
     height: 147px;
@@ -214,25 +223,18 @@
   }
 
   .Step__CardTitle {
-    padding: 16px 24px 16px 160px;
+    /* PSD: 見出し y340 = カード上端(229)から 111px */
+    top: 105px;
+    left: 160px;
+    right: 24px;
     font-size: 32px;
   }
 
-  .Step__CardBody {
-    /* イラストを左、本文を右に置く */
-    flex-direction: row;
-    align-items: center;
-    gap: 34px;
-    padding: 22px 32px 22px 42px;
-  }
-
-  .Step__Illust {
-    flex: none;
-    width: 356px;
-    max-width: none;
-  }
-
   .Step__Text {
+    /* PSD: 本文 y420 = カード上端から 191px、左 x745 = 427px */
+    top: 185px;
+    left: 427px;
+    right: 32px;
     font-size: 18px;
     line-height: 1.78;
   }

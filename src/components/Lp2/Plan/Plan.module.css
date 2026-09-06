@@ -107,6 +107,21 @@
   display: none;
 }
 
+/* 枠とグラデーションはカンプの書き出しを敷き、その上に文字を置く */
+.Plan__CardBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.Plan__Card > :not(.Plan__CardBg) {
+  position: relative;
+  z-index: 1;
+}
+
 .Plan__Card {
   position: relative;
   flex: 0 0 auto;
@@ -114,15 +129,11 @@
   max-width: 342px;
   padding: 16px 16px 18px;
   scroll-snap-align: center;
-  border-radius: 10px;
-  background: var(--lp2-white);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
 }
 
 .isRecommended {
   max-width: 342px;
   padding-top: 22px;
-  background: linear-gradient(180deg, #6f5cf7 0%, #2fa8f8 100%);
 }
 
 .Plan__Stars {
@@ -317,9 +328,9 @@
     padding-top: 22px;
   }
 
-  /* CTA はカードの下端に揃える */
+  /* PSD: CTA y643 = 相対 310。カード下端には寄せない */
   .Plan__Cta {
-    margin-top: auto;
+    margin-top: 48px;
     align-self: center;
   }
 
@@ -332,20 +343,38 @@
   }
 
   .Plan__Lead {
+    /* PSD(Career カード上端 y333 基準): リード y438 = 相対 105 */
+    margin-top: 41px;
     font-size: 16.03px;
+    line-height: 1.4;
   }
 
   .Plan__Price {
+    /* PSD: 価格 y471 = 相対 138 */
+    margin-top: 9px;
     font-size: 16.03px;
   }
 
   .Plan__AfterPrice,
   .Plan__MonthlyLabel {
+    /* PSD: 給付金適用後 y508 / 月額分割払い y534 = 相対 175 / 201 */
     font-size: 20.03px;
+    line-height: 1.15;
+  }
+
+  .Plan__AfterPrice {
+    margin-top: 7px;
+  }
+
+  .Plan__MonthlyLabel {
+    margin-top: 3px;
   }
 
   .Plan__Monthly {
+    /* PSD: 月々 y569 = 相対 236 */
+    margin-top: 14px;
     font-size: 22.04px;
+    line-height: 1.15;
   }
 
   /* PSD: y789。カードと縦位置が重なるため絶対配置にする */

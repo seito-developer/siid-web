@@ -47,6 +47,22 @@
   margin-top: 24px;
 }
 
+/* 枠や番号の丸などの意匠はカンプの書き出しを敷き、その上に文字を置く。
+   「続きを読む」で伸びるぶんは下に白を継ぎ足す */
+.Voice__CardBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: auto;
+}
+
+.Voice__Card > :not(.Voice__CardBg) {
+  position: relative;
+  z-index: 1;
+}
+
 .Voice__Card {
   position: relative;
   padding: 22px 18px 20px;
@@ -55,6 +71,7 @@
   box-shadow: 0 4px 18px rgba(19, 26, 62, 0.12);
 }
 
+/* 丸の意匠は背景画像側にあるため、文字だけを重ねる */
 .Voice__No {
   position: absolute;
   top: -10px;
@@ -63,9 +80,6 @@
   place-items: center;
   width: 54px;
   height: 54px;
-  border: 2px solid #feb325;
-  border-radius: 50%;
-  background: var(--lp2-white);
   font-family: var(--lp2-font-latin);
   line-height: 1;
   color: #feb325;
@@ -81,10 +95,10 @@
   font-size: 22px;
 }
 
+/* 紫の帯も背景画像側にあるため、文字だけを重ねる */
 .Voice__Title {
   padding: 8px 14px;
   margin-left: 46px;
-  background: linear-gradient(90deg, #5a3ce4 0%, #7d5cf2 100%);
   font-family: var(--lp2-font-body);
   font-weight: 700;
   font-size: 17px;
@@ -204,14 +218,15 @@
   }
 
   .Voice__Cards {
-    /* PSD: カード 803px @x319 */
-    gap: 30px;
+    /* PSD: カード 803px @x319、上端 y384 / 794 / 1204(間隔 410px) */
+    gap: 45px;
     width: 803px;
-    margin: 56px auto 0;
+    margin: 160px auto 0;
   }
 
   .Voice__Card {
     /* 写真を左、テキストを右に置く */
+    min-height: 365px;
     display: grid;
     grid-template-columns: 160px 1fr;
     grid-template-areas:

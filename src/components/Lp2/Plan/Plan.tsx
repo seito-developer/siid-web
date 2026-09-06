@@ -48,6 +48,17 @@ export default function Plan() {
               key={plan.id}
               className={`${styles.Plan__Card} ${plan.recommended ? styles.isRecommended : ''}`}
             >
+              {/* カードの枠・グラデーションはカンプの意匠をそのまま使う */}
+              <Image
+                className={styles.Plan__CardBg}
+                src={lp2Asset(`/images/lp-2/${plan.chrome}.webp`)}
+                alt=""
+                width={plan.recommended ? 374 : 339}
+                height={plan.recommended ? 530 : 434}
+                sizes="(min-width: 768px) 374px, 86vw"
+                quality={LP2_IMAGE_QUALITY}
+              />
+
               {plan.recommended && (
                 <>
                   <p className={styles.Plan__Stars} aria-hidden="true">

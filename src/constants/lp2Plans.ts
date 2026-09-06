@@ -2,6 +2,7 @@
 export const LP2_PLANS = [
   {
     id: 'career',
+    chrome: 'plan-card-career',
     name: 'Career',
     lead: 'まずは転職に挑戦したい方向け',
     listPrice: '528,000円',
@@ -13,6 +14,7 @@ export const LP2_PLANS = [
   },
   {
     id: 'fullsupport',
+    chrome: 'plan-card-full',
     name: 'Career + FullSupport',
     lead: '本気で転職・キャリアアップを目指す方向け',
     listPrice: '698,000円',
@@ -24,6 +26,7 @@ export const LP2_PLANS = [
   },
   {
     id: 'advisor',
+    chrome: 'plan-card-advisor',
     name: '顧問プラン',
     lead: '個人・企業様向けに幅広い内容をサポート',
     listPrice: null,

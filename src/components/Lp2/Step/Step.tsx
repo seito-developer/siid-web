@@ -31,33 +31,32 @@ export default function Step() {
         <ol className={styles.Step__List}>
           {LP2_STEPS.map((step) => (
             <li key={step.no} className={styles.Step__Item}>
+              {/* 番号バッジ・黄色い帯・イラストはカンプの意匠をそのまま敷き、
+                  文字だけを実テキストで重ねる */}
+              <Image
+                className={styles.Step__CardBg}
+                src={lp2Asset(`/images/lp-2/step-card-${step.no}.webp`)}
+                alt=""
+                width={803}
+                height={380}
+                sizes="(min-width: 768px) 803px, 100vw"
+                quality={LP2_IMAGE_QUALITY}
+              />
+
               <p className={styles.Step__Badge}>
                 <span>STEP</span>
                 <strong>{step.no}</strong>
               </p>
 
-              <div className={styles.Step__Card}>
-                <h3 className={styles.Step__CardTitle}>{step.title}</h3>
-                <div className={styles.Step__CardBody}>
-                  <Image
-                    className={styles.Step__Illust}
-                    src={lp2Asset(`/images/lp-2/${step.image}.webp`)}
-                    alt=""
-                    width={step.imageWidth}
-                    height={step.imageHeight}
-                    sizes="(min-width: 768px) 356px, 45vw"
-                    quality={LP2_IMAGE_QUALITY}
-                  />
-                  <p className={styles.Step__Text}>
-                    {step.body.split('\n').map((line, i) => (
-                      <span key={line}>
-                        {i > 0 && <br />}
-                        {line}
-                      </span>
-                    ))}
-                  </p>
-                </div>
-              </div>
+              <h3 className={styles.Step__CardTitle}>{step.title}</h3>
+              <p className={styles.Step__Text}>
+                {step.body.split('\n').map((line, i) => (
+                  <span key={line}>
+                    {i > 0 && <br />}
+                    {line}
+                  </span>
+                ))}
+              </p>
             </li>
           ))}
         </ol>
