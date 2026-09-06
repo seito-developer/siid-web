@@ -16,7 +16,7 @@ export default function About() {
       <div className={styles.About__Frame}>
         {/* SP は「教える」で改行する(カンプの組み方) */}
         <p className={styles.About__Lead}>
-          SiiDは、AIの技術だけを教える
+          SiiDは、<strong>AIの技術だけ</strong>を教える
           <span className={styles.About__LeadBreak} />
           スクールではありません
         </p>

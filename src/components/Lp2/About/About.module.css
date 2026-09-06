@@ -40,10 +40,16 @@
   max-width: none;
   padding: 0;
   border: 0;
-  font-weight: 700;
+  /* カンプの SP は PC より細い */
+  font-weight: 500;
   font-size: 15.2px;
   line-height: 1.58;
   letter-spacing: var(--lp2-tracking-3xl);
+}
+
+.About__Lead strong {
+  font-weight: inherit;
+  color: #fdf263;
 }
 
 .About__LeadBreak {
@@ -116,6 +122,7 @@
 
   .About__Lead {
     top: 80px;
+    font-weight: 700;
     font-size: 30px;
     line-height: 1;
     letter-spacing: 0.148em;
