@@ -2,9 +2,6 @@
 
 import React, { useState } from 'react';
 
-import Image from 'next/image';
-
-import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 import { LP2_VOICES } from '@/constants/lp2Voices';
 
 import SectionBg from '../SectionBg/SectionBg';
@@ -21,17 +18,7 @@ function Card({ voice, index }: { voice: (typeof LP2_VOICES)[number]; index: num
 
   return (
     <li className={`${styles.Voice__Card} ${isOpen ? styles.isOpen : ''}`}>
-      {/* カードの枠・番号の丸などの意匠はカンプの書き出しを敷く */}
-      <Image
-        className={styles.Voice__CardBg}
-        src={lp2Asset(`/images/lp-2/voice-card-${index + 1}.webp`)}
-        alt=""
-        width={803}
-        height={458}
-        sizes="(min-width: 768px) 803px, 100vw"
-        quality={LP2_IMAGE_QUALITY}
-      />
-
+      {/* カードの枠・番号の丸・青い帯・写真はセクション背景に含まれる */}
       <p className={styles.Voice__No}>
         <span>VOICE</span>
         <strong>{voice.no}</strong>
@@ -40,7 +27,7 @@ function Card({ voice, index }: { voice: (typeof LP2_VOICES)[number]; index: num
       <h3 className={styles.Voice__Title}>
         {voice.title.split('\n').map((line, i) => (
           <span key={line}>
-            {i > 0 && <br />}
+            {i > 0 && <br className={styles.Voice__TitleBreak} />}
             {line}
           </span>
         ))}

@@ -23,11 +23,13 @@ ROWS=(
   "support|sp/seitosama_lp_sp05|0,0,750,1646|sp/support|"
   "present|sp/seitosama_lp_sp10|0,0,750,3176|sp/present|"
   "plan|sp/seitosama_lp_sp06|0,0,750,1525|sp/plan|*/tab:*/label_recom"
+  "voice|sp/seitosama_lp_sp08|0,0,750,3872|sp/voice|"
 
   # PC。カード類は各コンポーネントが画像で持っているものもあるため、
   # ここでは「テキストだけを隠す」ぶんに留める(重ねて描いても同じ絵になる)。
   "pc-instructor|pc/pc2|0,0,1440,901|instructor-bg|"
   "pc-step|pc/pc3|0,0,1440,2242|step-bg|"
+  "pc-voice|pc/pc6|0,0,1440,1730|voice-bg|"
   "pc-support|pc/pc4|0,1700,1440,2515|support-bg|"
   "pc-present|pc/pc7|0,0,1440,1083|present-bg|"
   "pc-about|pc/pc1|0,781,1440,1237|about-bg|"
