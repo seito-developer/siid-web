@@ -1,16 +1,19 @@
 /*
- * FREE GIFTS。PSD 実測(PC セクション 1440x1083)。
- *   限定配布リボン y52 / ラベル y75 / 見出し y148(50.1px) / 大見出し y243(115.3px)
- *   GIFT ラベル 3 列 x458/728/1008、y432 / y569 / y709
- *   CTA 501x334 @(468,793)
+ * FREE GIFTS。書影・リボン・青い帯・CTA ボタンの意匠はセクション背景の画像に
+ * 含まれる。CSS では文字だけを実測座標で重ねる。
+ *
+ * PC: セクション 1440x1083
+ * SP: セクション 750x3176(= CSS 375x1588)
+ *   限定/配布 y27 / FREE GIFTS y38.5 / 無料カウンセリング y75
+ *   7大特典をプレゼント y122.5 / GIFT の文字は 7 件それぞれ座標が違う
+ *   CTA 331.5x77.5 @(22.5,1468)
  */
 
 .Present {
-  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
-  min-height: 1588px;
   position: relative;
   overflow: hidden;
-  padding: 26px 0 34px;
+  min-height: 1588px;
+  padding: 0;
   background: #fdf7e6;
 }
 
@@ -27,98 +30,163 @@
   position: relative;
   z-index: 1;
   max-width: var(--lp2-canvas);
+  height: 1588px;
   margin-inline: auto;
-  padding-inline: 16px;
   text-align: center;
 }
 
+.Present__Inner > *,
+.Present__Gifts > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+/* リボンの枠は背景画像側にある */
 .Present__Ribbon {
-  display: inline-block;
-  padding: 6px 12px;
-  border: 2px solid #765e2b;
+  top: 27px;
+  left: 25px;
+  right: auto;
+  display: block;
+  width: 34.5px;
+  padding: 0;
+  border: 0;
   font-family: var(--lp2-font-mincho);
   font-weight: 700;
-  font-size: 18px;
-  line-height: 1.2;
-  letter-spacing: var(--lp2-tracking-lg);
+  font-size: 16.5px;
+  line-height: 1.14;
+  letter-spacing: 0;
   color: #765e2b;
+  text-align: center;
 }
 
 .Present__Label {
-  margin-top: 12px;
+  top: 38.5px;
   color: var(--lp2-blue);
 }
 
 .Present__Title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 12px;
-}
-
-.Present__Label + .Present__Title {
-  margin-top: 12px;
+  position: static;
+  display: block;
+  margin: 0;
 }
 
 .Present__TitleSmall {
-  font-size: 24px;
-  line-height: 1.4;
-  color: var(--lp2-grey);
+  position: absolute;
+  top: 75px;
+  left: 0;
+  right: 0;
+  font-size: 26px;
+  line-height: 1.25;
+  color: #4e7af5;
 }
 
+/* カンプは左から右へ濃い金 → 淡い金のグラデーション */
 .Present__TitleLarge {
-  margin-top: 6px;
-  font-size: 34px;
-  line-height: 1.2;
-  color: var(--lp2-white);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+  position: absolute;
+  top: 122.5px;
+  left: 0;
+  right: 0;
+  margin-top: 0;
+  font-size: 33px;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  background: linear-gradient(90deg, #a7813b 0%, #e8c87f 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: none;
 }
 
-/* 書影は背景画像に含まれるため、ここでは文字だけを重ねる */
+.Present__TitleNum {
+  font-size: 1.44em;
+  line-height: 0.7;
+}
+
+/* --- 特典 ---------------------------------------------------------------- */
+
 .Present__Gifts {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px 10px;
-  margin-top: 22px;
+  position: static;
+  display: block;
+  margin: 0;
 }
 
+/* SP は書影が左、文字が右。文字の中心はセクション中央より 53.75px 右 */
 .Present__Gift {
-  padding: 10px 8px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.78);
+  padding: 0;
+  background: none;
+  text-align: center;
 }
 
+.Present__Gift > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding-left: 107.5px;
+  margin: 0;
+}
+
+/* 帯の下地は背景画像側にあるため、文字だけを白で重ねる */
 .Present__GiftNo {
-  display: inline-block;
-  padding: 2px 10px;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #4a3ad6 0%, #2f6ef0 100%);
-  font-family: var(--lp2-font-body);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: var(--lp2-tracking-md);
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.1em;
   color: var(--lp2-white);
+  background: none;
+}
+
+.Present__GiftTitle,
+.Present__GiftHighlight {
+  font-size: 17px;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
 }
 
 .Present__GiftTitle {
-  margin-top: 6px;
-  font-size: 13px;
-  line-height: 1.4;
-  letter-spacing: var(--lp2-tracking-sm);
-  color: var(--lp2-grey);
+  color: #333;
 }
 
 .Present__GiftHighlight {
   font-weight: 700;
-  font-size: 13px;
-  line-height: 1.4;
-  letter-spacing: var(--lp2-tracking-sm);
   color: #f8026f;
 }
 
+/* 7 件それぞれの実測座標(帯 / 見出し / ハイライト) */
+.Present__Gift:nth-child(1) .Present__GiftNo { top: 240px; }
+.Present__Gift:nth-child(1) .Present__GiftTitle { top: 276px; }
+.Present__Gift:nth-child(1) .Present__GiftHighlight { top: 299.5px; }
+
+.Present__Gift:nth-child(2) .Present__GiftNo { top: 410.5px; }
+.Present__Gift:nth-child(2) .Present__GiftTitle { top: 447px; }
+.Present__Gift:nth-child(2) .Present__GiftHighlight { top: 472px; }
+
+.Present__Gift:nth-child(3) .Present__GiftNo { top: 591px; }
+.Present__Gift:nth-child(3) .Present__GiftTitle { top: 637.5px; }
+.Present__Gift:nth-child(3) .Present__GiftHighlight { top: 663px; }
+
+.Present__Gift:nth-child(4) .Present__GiftNo { top: 770px; }
+.Present__Gift:nth-child(4) .Present__GiftTitle { top: 809px; }
+.Present__Gift:nth-child(4) .Present__GiftHighlight { top: 833.5px; }
+
+.Present__Gift:nth-child(5) .Present__GiftNo { top: 952px; }
+.Present__Gift:nth-child(5) .Present__GiftTitle { top: 989px; }
+.Present__Gift:nth-child(5) .Present__GiftHighlight { top: 1040px; }
+
+.Present__Gift:nth-child(6) .Present__GiftNo { top: 1131px; }
+.Present__Gift:nth-child(6) .Present__GiftTitle { top: 1170px; }
+.Present__Gift:nth-child(6) .Present__GiftHighlight { top: 1194.5px; }
+
+.Present__Gift:nth-child(7) .Present__GiftNo { top: 1312.5px; }
+.Present__Gift:nth-child(7) .Present__GiftTitle { top: 1351.5px; }
+.Present__Gift:nth-child(7) .Present__GiftHighlight { top: 1375.5px; }
+
 .Present__Cta {
-  width: fit-content;
-  margin: 24px auto 0;
+  top: 1468px;
+  width: 331.5px;
+  min-width: 0;
+  height: 77.5px;
+  margin: 0 auto;
 }
 
 @media screen and (min-width: 768px) {
