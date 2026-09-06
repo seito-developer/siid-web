@@ -27,6 +27,8 @@ ROWS=(
   # ここでは「テキストだけを隠す」ぶんに留める(重ねて描いても同じ絵になる)。
   "pc-instructor|pc/pc2|0,0,1440,901|instructor-bg|"
   "pc-step|pc/pc3|0,0,1440,2242|step-bg|"
+  "pc-support|pc/pc4|0,1700,1440,2515|support-bg|"
+  "pc-present|pc/pc7|0,0,1440,1083|present-bg|"
   "pc-about|pc/pc1|0,781,1440,1237|about-bg|"
   "pc-strength|pc/pc2|0,901,1440,1942|strength-bg|"
   "pc-difference|pc/pc2|0,1942,1440,3303|difference-bg|sec_difference/比較表"

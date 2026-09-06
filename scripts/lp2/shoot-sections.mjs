@@ -33,7 +33,14 @@ const page = await browser.newPage({
 await page.addInitScript(() => {
   try { localStorage.setItem('lp2-cookie-consent', 'accepted'); } catch {}
 });
+
 await page.goto(url, { waitUntil: 'networkidle' });
+
+// 開発サーバーのインジケーター(左下の丸い N)が写り込むと、
+// そのぶんが毎回不一致として数えられてしまう
+await page
+  .addStyleTag({ content: 'nextjs-portal, #__next-build-watcher { display: none !important; }' })
+  .catch(() => {});
 // 遅延読み込みの画像を確実に読ませる
 await page.evaluate(async () => {
   await new Promise((resolve) => {

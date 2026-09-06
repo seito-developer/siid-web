@@ -1,18 +1,22 @@
 /*
- * RESKILLING SUPPORT。PSD 実測(PC セクション 1440x815、y1700..2515)。
- *   ラベル y-163(前セクションにまたがる) / 「その学び」y-57 / 大見出し y2(69.6px)
- *   価格ブロック y165..270 / 認定バッジ y338..446 / 注記 y507,y560 / CTA y651
+ * RESKILLING SUPPORT。帯・矢印・打ち消し線・月桂樹・CTA ボタンの意匠は
+ * すべてセクション背景の画像に含まれる。CSS では文字だけを実測座標で重ねる。
+ *
+ * PC: セクション 1440x815(PSD 原点 y1700)
+ * SP: セクション 750x1646(= CSS 375x823)
+ *   ラベル y39 / その学び y83 / 大見出し y108
+ *   通常価格 ラベル y198・金額 y233.5 / 給付金適用 y356・最大80% y394
+ *   実質負担 y451・105,600円 y488 / 認定バッジ y572, y609, y610.5
+ *   申請手続き y647 / 注記 y683.5 / CTA 331x78 @(22,716.5)
  */
 
 .Support {
-  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
-  min-height: 823px;
   position: relative;
   overflow: hidden;
-  padding: 22px 0 20px;
+  min-height: 823px;
+  padding: 0;
   background: #3f4ff0;
   color: var(--lp2-white);
-  text-align: center;
 }
 
 .Support__Bg {
@@ -28,24 +32,52 @@
   position: relative;
   z-index: 1;
   max-width: var(--lp2-canvas);
+  height: 823px;
   margin-inline: auto;
-  padding-inline: 16px;
+  text-align: center;
 }
 
-.Support__Title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 12px;
-  color: var(--lp2-grey);
+.Support__Inner > *,
+.Support__Prices > *,
+.Support__Badge > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+/* SP のラベルは黄色い帯の上に乗るため、白ではなく青。
+   SectionLabel 側の .isInverse(0,1,0)に勝たせるため 2 段にする */
+.Support__Inner .Support__Label {
+  top: 39px;
+  color: #4c80f6;
+}
+
+.Support__Title,
+.Support__Prices,
+.Support__Badge {
+  position: static;
+  display: block;
 }
 
 .Support__TitleSmall {
-  font-size: 24px;
+  position: absolute;
+  top: 83px;
+  left: 0;
+  right: 0;
+  font-size: 19.5px;
+  line-height: 1;
+  color: #5852ee;
 }
 
 .Support__TitleLarge {
-  font-size: 32px;
+  position: absolute;
+  top: 107px;
+  left: 0;
+  right: 0;
+  font-size: 28px;
+  line-height: 1;
+  color: #584fee;
 }
 
 .Support__TitleTail {
@@ -55,55 +87,29 @@
 
 /* --- 価格 ---------------------------------------------------------------- */
 
-.Support__Prices {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 12px 18px;
-  margin-top: 24px;
-}
-
-/* 帯・矢印・打ち消し線はカンプの意匠に含まれるため、文字だけを重ねる */
 .Support__PriceBox {
-  position: relative;
-  flex: 0 0 auto;
-  width: 42%;
-  max-width: 298px;
-}
-
-.Support__PriceBox.isAfter {
-  width: 92%;
-  max-width: 676px;
-}
-
-.Support__PriceBg {
-  position: relative;
-  z-index: 0;
-  width: 100%;
-  height: auto;
+  position: static;
 }
 
 .Support__PriceLabel,
 .Support__PriceValue {
   position: absolute;
-  z-index: 1;
   left: 0;
   right: 0;
   font-family: var(--lp2-font-body);
+  line-height: 1;
   letter-spacing: var(--lp2-tracking-lg);
 }
 
-/* PSD: 通常価格の帯 y187 / 数値 y229(枠の上端 y168 基準) */
 .Support__PriceLabel {
-  top: 12%;
   font-size: 15px;
 }
 
+/* 金額はカンプでは約物を詰めない組みで、線も一段細い */
 .Support__PriceValue {
-  top: 40%;
-  font-weight: 700;
-  font-size: 28px;
+  font-feature-settings: normal;
+  font-weight: 500;
+  font-size: 38.3px;
   letter-spacing: var(--lp2-tracking-sm);
   color: #0c1233;
 }
@@ -112,107 +118,97 @@
   color: #f8006f;
 }
 
-/* 給付金適用の枠は 2 列。左が「給付金適用」、右が「実質負担」 */
-.isAfter .Support__PriceLabel,
-.isAfter .Support__PriceValue {
-  left: auto;
-  right: auto;
-  width: 48%;
-  white-space: nowrap;
+/* PSD(SP)実測の縦位置 */
+.Support__PriceBox .Support__PriceLabel {
+  top: 198px;
 }
 
-.isAfter .isLeft {
-  left: 2%;
+.Support__PriceBox .Support__PriceValue {
+  top: 229px;
 }
 
-.isAfter .isRight {
-  right: 2%;
+.isAfter .Support__PriceLabel.isLeft {
+  top: 356px;
 }
 
-.isAfter .Support__PriceLabel {
-  top: 9%;
+.isAfter .Support__PriceValue.isLeft {
+  top: 391.5px;
+  font-size: 40.6px;
 }
 
-.isAfter .Support__PriceValue {
-  top: 39%;
+.isAfter .Support__PriceLabel.isRight {
+  top: 451px;
+}
+
+.isAfter .Support__PriceValue.isRight {
+  top: 483px;
+  font-size: 43.5px;
 }
 
 /* --- 認定バッジ ---------------------------------------------------------- */
 
-/* 意匠(月桂樹の枠・黄色い帯)は書き出し画像。文字だけを絶対配置で重ねる。
-   PSD: 枠 713x129、経済産業省 が上端から 2px、講座名が 76px */
-.Support__Badge {
-  position: relative;
-  margin-top: 28px;
-}
-
-.Support__BadgeFrame {
-  position: relative;
-  z-index: 0;
-  width: 100%;
-  height: auto;
-}
-
-.Support__BadgeMinistry,
-.Support__BadgeCourse {
+.Support__BadgeMinistry {
   position: absolute;
-  z-index: 1;
+  top: 570.5px;
   left: 0;
   right: 0;
-}
-
-.Support__BadgeMinistry {
-  top: 2%;
-}
-
-.Support__BadgeCourse {
-  top: 56%;
-}
-
-.Support__BadgeMinistry {
   font-family: var(--lp2-font-body);
   font-weight: 700;
-  font-size: 26px;
+  font-size: 26.3px;
+  line-height: 1;
   letter-spacing: var(--lp2-tracking-md);
   color: #fdf251;
   text-align: center;
 }
 
 .Support__BadgeCourse {
+  position: absolute;
+  top: 609px;
+  left: 0;
+  right: 0;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 14px;
+  /* PSD: 帯 @x44、「認定」@x306.5。中央より 4.75px 右にずれている */
+  padding-left: 9.5px;
   font-family: var(--lp2-font-body);
   font-weight: 700;
-  font-size: 17px;
+  font-size: 16px;
+  line-height: 1;
   letter-spacing: var(--lp2-tracking-md);
 }
 
 .Support__BadgeCourse span {
-  /* 帯の意匠は書き出し画像側にある */
-  padding: 2px 10px;
+  padding: 0;
+  color: #5850ee;
 }
 
+/* カンプでは黄色 */
 .Support__Note {
-  margin-top: 24px;
+  top: 646.5px;
+  color: #fff662;
   font-family: var(--lp2-font-body);
   font-weight: 700;
-  font-size: 20px;
+  font-size: 19.6px;
+  line-height: 1;
   letter-spacing: var(--lp2-tracking-md);
 }
 
 .Support__Small {
-  margin-top: 10px;
-  font-size: 13px;
-  line-height: 1.7;
+  top: 681px;
+  font-feature-settings: normal;
+  font-size: 8.6px;
+  line-height: 1.45;
   letter-spacing: var(--lp2-tracking-sm);
 }
 
 .Support__Cta {
-  width: fit-content;
-  margin: 26px auto 0;
+  top: 716.5px;
+  width: 331px;
+  min-width: 0;
+  height: 78px;
+  margin: 0 auto;
 }
 
 /* --- PC ----------------------------------------------------------------- */
@@ -228,15 +224,17 @@
   }
 
   .Support__Inner {
+    height: 815px;
     padding-inline: 0;
   }
 
   /* ラベルは前セクション(SKILLS)の下端に食い込む位置にある */
-  .Support__Label {
+  .Support__Inner .Support__Label {
     position: absolute;
     top: -163px;
     left: 0;
     right: 0;
+    color: var(--lp2-white);
   }
 
   .Support__Title {
@@ -250,6 +248,7 @@
     position: absolute;
     top: -57px;
     left: 621px;
+    right: auto;
     font-size: 46.88px;
     line-height: 1;
     color: #5852ee;
@@ -260,6 +259,7 @@
     position: absolute;
     top: 2px;
     left: 361px;
+    right: auto;
     font-size: 69.57px;
     line-height: 1;
     color: #584fee;
@@ -275,6 +275,7 @@
     position: absolute;
     top: 168px;
     left: 218px;
+    right: auto;
     width: 298px;
     max-width: none;
   }
@@ -334,6 +335,7 @@
     position: absolute;
     top: 336px;
     left: 364px;
+    right: auto;
     width: 713px;
     height: 129px;
     margin: 0;
@@ -351,6 +353,7 @@
   .Support__BadgeCourse {
     top: 76px;
     gap: 28px;
+    padding-left: 0;
     font-size: 32px;
     line-height: 1;
   }
@@ -363,6 +366,7 @@
     /* PSD: 643x35 @(399,507) */
     position: absolute;
     top: 507px;
+    color: var(--lp2-white);
     left: 0;
     right: 0;
     margin-top: 0;
