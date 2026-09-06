@@ -134,6 +134,19 @@
 }
 
 @media screen and (min-width: 768px) {
+  /* カンプは左から右へ 青紫 → 水色 のグラデーション */
+  .Faq__Heading {
+    background: linear-gradient(90deg, #5855ef 0%, #29aefc 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  /* カンプの回答は段落ではなく 1 かたまりの中の改行(段落間の余白が無い) */
+  .Faq__Answer p + p {
+    margin-top: 0;
+  }
+
   .Faq {
     /* PSD: ラベル y88 / 見出し y166 / Q1 の帯 y295 */
     min-height: 1256px;

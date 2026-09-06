@@ -21,7 +21,7 @@ export default function Faq() {
       />
 
       <div className={styles.Faq__Inner}>
-        <SectionLabel className={styles.Faq__Label}>FAQ</SectionLabel>
+        <SectionLabel gradient className={styles.Faq__Label}>FAQ</SectionLabel>
         <h2 className={styles.Faq__Heading}>よくある質問</h2>
 
         <ul className={styles.Faq__List}>
