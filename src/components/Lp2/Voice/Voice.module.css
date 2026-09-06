@@ -152,6 +152,16 @@
   display: inline;
 }
 
+/* SP だけの改行。PC では打ち消す */
+.Voice__TitleBreakSp {
+  display: inline;
+}
+
+/* 3 枚目は SP と PC で折り返し位置が違う。SP では `\n` の改行を使わない */
+.Voice__Card:nth-child(3) .Voice__TitleBreak {
+  display: none;
+}
+
 .Voice__Card:nth-child(2) .Voice__Title {
   top: 205px;
   left: 31px;
@@ -374,6 +384,14 @@
   .Voice__Card:nth-child(1) .Voice__TitleBreak,
   .Voice__Card:nth-child(2) .Voice__TitleBreak {
     display: none;
+  }
+
+  .Voice__TitleBreakSp {
+    display: none;
+  }
+
+  .Voice__Card:nth-child(3) .Voice__TitleBreak {
+    display: inline;
   }
 
   .Voice__Card:nth-child(2) .Voice__Title {

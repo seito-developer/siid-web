@@ -34,7 +34,12 @@ export default function Fv() {
         <h1 className={styles.Fv__Copy}>
           AI時代に、
           <br />
-          <span className={styles.Fv__CopyAccent}>選ばれるエンジニアへ</span>
+          <span className={styles.Fv__CopyAccent}>
+            選ばれる
+            {/* SP のカンプは「選ばれる／エンジニアへ」で改行する */}
+            <br className={styles.Fv__CopyBreak} />
+            エンジニアへ
+          </span>
         </h1>
 
         <p className={`${styles.Fv__Ribbon} ${styles.Fv__RibbonAccent}`}>元人事部長の現役エンジニアが</p>

@@ -25,12 +25,20 @@ function Card({ voice, index }: { voice: (typeof LP2_VOICES)[number]; index: num
       </p>
 
       <h3 className={styles.Voice__Title}>
-        {voice.title.split('\n').map((line, i) => (
-          <span key={line}>
-            {i > 0 && <br className={styles.Voice__TitleBreak} />}
-            {line}
-          </span>
-        ))}
+        {/* `\n` は既定の改行、`<sp>` は SP だけの改行。
+            カンプの折り返しが PC と SP で違うカードがあるため分けている */}
+        {voice.title
+          .split(/(\n|<sp>)/)
+          .filter(Boolean)
+          .map((part, i) => {
+            if (part === '\n') {
+              return <br key={`br-${i}`} className={styles.Voice__TitleBreak} />;
+            }
+            if (part === '<sp>') {
+              return <br key={`br-${i}`} className={styles.Voice__TitleBreakSp} />;
+            }
+            return <span key={part}>{part}</span>;
+          })}
       </h3>
 
       {/* 受講生の写真は意匠画像に焼き込まれているため、ここでは描かない */}

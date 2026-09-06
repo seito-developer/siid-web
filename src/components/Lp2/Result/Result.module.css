@@ -217,6 +217,16 @@
     position: static;
   }
 
+  /* 前景を position: static に戻すと z-index が効かなくなり、
+     絶対配置の背景(z-index: 0)が上に描かれて見出し・キャプションが消える。
+     位置は変えずに重なり順だけ戻すため position: relative を掛け直す。 */
+  .Result > div,
+  .Result > h2,
+  .Result > p {
+    position: relative;
+    z-index: 1;
+  }
+
   .Result > picture {
     position: absolute;
     top: 0;

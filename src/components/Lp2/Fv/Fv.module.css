@@ -40,12 +40,15 @@
 .Fv__Body {
   position: relative;
   z-index: 1;
-  padding: 52px 20px 14px;
+  /* SP のタグラインはヘッダーの帯にあるため本文では出さない。
+     その代わり、カンプのコピー位置に合わせて上の余白で高さを確保する */
+  padding: 87.6px 20px 14px;
   text-align: center;
   color: var(--lp2-white);
 }
 
 .Fv__Tagline {
+  display: none;
   font-family: var(--lp2-font-display);
   font-weight: 900;
   font-size: 12.4px;
@@ -55,9 +58,14 @@
 
 .Fv__Copy {
   margin-top: 14px;
-  font-size: 38px;
+  /* カンプ(@2x)実測: 「エンジニアへ」6 文字で 593px = CSS 296.5px */
+  font-size: 47.8px;
   line-height: 1.24;
   letter-spacing: var(--lp2-tracking-md);
+}
+
+.Fv__CopyBreak {
+  display: inline;
 }
 
 .Fv__CopyAccent {
@@ -289,24 +297,29 @@
   .Fv__Body {
     max-width: var(--lp2-canvas);
     /* PSD 実測: 上部ラベルの左端 164px、ヘッダー(83px)の下から 30px */
-    padding: 113px 0 0 164px;
+    padding: 106px 0 0 164px;
     margin-inline: auto;
     text-align: left;
   }
 
   .Fv__Tagline {
+    display: block;
     font-size: 13.01px;
   }
 
+  .Fv__CopyBreak {
+    display: none;
+  }
+
   .Fv__Copy {
-    margin-top: 26px;
+    margin-top: 11px;
     font-size: 79.36px;
     line-height: 1.18;
   }
 
   .Fv__Ribbon {
-    margin-top: 18px;
-    padding: 10px 22px;
+    margin-top: 6px;
+    padding: 3.5px 22px;
     font-size: 21.32px;
   }
 
@@ -342,7 +355,9 @@
     font-size: 22.35px;
   }
 
-  /* 帯は FV の下端に重ね、メダルは帯の上へはみ出す(PSD の配置) */
+  /* 帯は FV の下端に重ね、メダルは帯の上へはみ出す(PSD の配置)。
+     基準画像の実測: 帯 y616 / メダルの金枠 x163..659・y587..743 /
+     CTA 396x91 @(740,648) / 注記 @(590,750) */
   .Fv__Band > picture {
     display: none;
   }
@@ -353,11 +368,24 @@
     height: auto;
   }
 
+  .Fv__Band {
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 2;
+    display: block;
+    height: 165px;
+    padding: 0;
+    background: linear-gradient(90deg, var(--lp2-fvband-from) 0%, #1b2a6b 50%, var(--lp2-fvband-to) 100%);
+  }
+
   .Fv__Medals {
-    position: static;
-    inset: auto;
+    position: absolute;
+    top: -46px;
+    left: 159px;
+    right: auto;
     display: flex;
-    justify-content: center;
+    gap: 0;
+    justify-content: flex-start;
   }
 
   .Fv__Medal,
@@ -369,87 +397,60 @@
     left: auto;
     display: grid;
     place-items: center;
-  }
-
-  .Fv__MedalLabel,
-  .Fv__MedalValue {
-    left: auto;
-    right: auto;
-  }
-
-  .Fv__MedalLabel {
-    top: 24%;
-    font-size: 12.5px;
-  }
-
-  .Fv__MedalValue {
-    top: 48%;
-    font-size: 38px;
-  }
-
-  .Fv__Medal:nth-child(2) .Fv__MedalLabel,
-  .Fv__Medal:nth-child(3) .Fv__MedalLabel {
-    top: 24%;
-    font-size: 12.5px;
-  }
-
-  .Fv__Medal:nth-child(2) .Fv__MedalValue,
-  .Fv__Medal:nth-child(3) .Fv__MedalValue {
-    top: 48%;
-    font-size: 38px;
-  }
-
-  .Fv__Note {
-    position: static;
-    font-size: 10px;
-    letter-spacing: var(--lp2-tracking-3xl);
-  }
-
-  .Fv__Cta {
-    position: static;
-    width: auto;
-    height: auto;
-  }
-
-  .Fv__Band {
-    position: absolute;
-    inset: auto 0 0;
-    z-index: 2;
-    background: linear-gradient(90deg, var(--lp2-fvband-from) 0%, #1b2a6b 50%, var(--lp2-fvband-to) 100%);
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    justify-items: center;
-    gap: 0 40px;
-    height: 165px;
-    padding: 0 60px;
-  }
-
-  .Fv__Medals {
-    justify-self: end;
-    gap: 24px;
-  }
-
-  .Fv__Medal {
     width: 169px;
   }
 
-  .Fv__MedalLabel {
-    font-size: 20.5px;
+  /* 3 つのメダルはすべて同じ級数。nth-child 側に別の級数を残すと
+     詳細度で勝ってしまい、1 枚目だけ大きく見える不具合になる */
+  .Fv__MedalLabel,
+  .Fv__Medal:nth-child(2) .Fv__MedalLabel,
+  .Fv__Medal:nth-child(3) .Fv__MedalLabel {
+    top: 33px;
+    left: 0;
+    right: 0;
+    font-size: 21.2px;
   }
 
-  .Fv__MedalValue {
-    font-size: 65px;
+  .Fv__MedalValue,
+  .Fv__Medal:nth-child(2) .Fv__MedalValue,
+  .Fv__Medal:nth-child(3) .Fv__MedalValue {
+    top: 74px;
+    left: 0;
+    right: 0;
+    font-size: 73px;
   }
 
+  /* FV の CTA だけカンプの寸法が他セクションと違う(396x91)。
+     CtaButton 側の `.is_pc` は min-width で効いているため min-width も上書きする。
+     ラベル・矢印は CtaButton 側が 2 クラスの詳細度で指定しているので、
+     クラスを重ねて詳細度を合わせる */
   .Fv__Cta {
-    justify-self: start;
+    position: absolute;
+    top: 32px;
+    left: 740px;
+    width: 396px;
+    min-width: 396px;
+    height: 91px;
+    padding: 0 32px;
+    gap: 14px;
+  }
+
+  .Fv__Cta.Fv__Cta span {
+    font-size: 24.2px;
+  }
+
+  .Fv__Cta.Fv__Cta svg {
+    width: 17.5px;
+    height: 47px;
   }
 
   .Fv__Note {
     position: absolute;
-    right: 60px;
-    bottom: 12px;
-    justify-self: end;
+    top: 134px;
+    left: 590px;
+    right: auto;
+    bottom: auto;
+    font-size: 10px;
+    letter-spacing: var(--lp2-tracking-3xl);
   }
 }

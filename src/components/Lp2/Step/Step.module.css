@@ -237,26 +237,32 @@
     font-size: 38.67px;
   }
 
+  /* カンプの「5STEP」は長体がかかっている。PC で transform を解除すると
+     字幅が広がって別の書体に見えるため、SP と同じく絶対配置＋長体で組む。
+     基準画像の実測: 「5」581..656 x142..251 /「STEP」660..858 x151..247 */
   .Step__TitleLarge {
-    margin-top: 4px;
-  }
-
-  .Step__TitleLarge {
-    height: auto;
-  }
-
-  .Step__TitleNum,
-  .Step__TitleWord {
-    position: static;
-    transform: none;
+    position: relative;
+    height: 120px;
+    margin-top: 0;
   }
 
   .Step__TitleNum {
+    position: absolute;
+    top: 0;
+    left: 575px;
     font-size: 154px;
+    transform: scaleX(0.872);
+    transform-origin: left top;
   }
 
   .Step__TitleWord {
-    font-size: 142.38px;
+    position: absolute;
+    top: 14px;
+    left: 657px;
+    font-weight: 500;
+    font-size: 132.5px;
+    transform: scaleX(0.694);
+    transform-origin: left top;
   }
 
   /* PSD: カード枠 803x380 @y229 / 574 / 920 / 1266 / 1612(間隔 346px) */
@@ -290,9 +296,10 @@
   }
 
   .Step__Badge {
-    /* PSD: 136x147 @(339,229) = カード左上から (20,0) */
-    top: 0;
-    left: 20px;
+    /* 丸の意匠は背景画像側。カンプの丸の中に収まる位置に文字を置く
+       (基準画像で「STEP」は y300、「01」は y318 から始まる) */
+    top: 70px;
+    left: 2px;
     width: 136px;
     text-align: center;
   }
@@ -306,7 +313,7 @@
   .Step__Badge strong {
     position: static;
     display: block;
-    margin-top: 4px;
+    margin-top: -1px;
     font-size: 47px;
   }
 
@@ -328,6 +335,12 @@
     font-size: 18px;
     line-height: 1.78;
     letter-spacing: var(--lp2-tracking-md);
+  }
+
+  /* SP 用の `.Step__Item:nth-child(n + 3) .Step__Text` はこの指定より詳細度が
+     高く、PC でも 3 枚目以降の本文が 1 行ぶん下に落ちていた。同じ詳細度で戻す */
+  .Step__Item:nth-child(n + 3) .Step__Text {
+    top: 185px;
   }
 
   .Step__Cta {

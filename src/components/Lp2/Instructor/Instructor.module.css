@@ -224,6 +224,10 @@
   .Instructor__CopyLast {
     margin-left: 0;
     color: var(--lp2-highlight);
+    /* 9 文字 × 52px × (1 + 0.12em) = 524px で幅 520px をわずかに超え、
+       最後の「る」だけが 4 行目に落ちて講師名に重なっていた。
+       字送りの末尾アキぶんなので、折り返しを止めて 1 行に収める。 */
+    white-space: nowrap;
   }
 
   .Instructor__Name {
