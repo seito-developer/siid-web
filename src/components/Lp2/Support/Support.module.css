@@ -48,9 +48,9 @@
   font-size: 32px;
 }
 
-.Support__TitleLarge em {
-  font-style: normal;
-  font-size: 1.28em;
+.Support__TitleTail {
+  font-size: 0.72em;
+  color: #3a9efa;
 }
 
 /* --- 価格 ---------------------------------------------------------------- */
@@ -218,9 +218,13 @@
 /* --- PC ----------------------------------------------------------------- */
 
 @media screen and (min-width: 768px) {
+  /* PSD 実測(セクション上端 y1700 基準)。要素ごとに位置が飛ぶため絶対配置で置く。
+       ラベル y-163 / その学び y-57 / 大見出し y2
+       通常価格 298x154 @(218,168) / 給付金適用 676x191 @(522,147)
+       認定バッジ 713x129 @(364,336) / 申請手続き y507 / 注記 y560 / CTA y630 */
   .Support {
     min-height: 815px;
-    padding: 0 0 0;
+    padding: 0;
   }
 
   .Support__Inner {
@@ -236,83 +240,156 @@
   }
 
   .Support__Title {
+    display: block;
     margin-top: 0;
-    padding-top: 6px;
+    padding-top: 0;
   }
 
   .Support__TitleSmall {
-    /* PSD: y-57 = セクション上端より上。前セクションの黄色い帯に乗る */
+    /* PSD: 200x45 @(621,-57)。前セクションの黄色い帯に乗る */
     position: absolute;
     top: -57px;
-    left: 50%;
+    left: 621px;
     font-size: 46.88px;
-    transform: translateX(-50%);
+    line-height: 1;
+    color: #5852ee;
   }
 
   .Support__TitleLarge {
+    /* PSD: 720x67 @(361,2) */
+    position: absolute;
+    top: 2px;
+    left: 361px;
     font-size: 69.57px;
+    line-height: 1;
+    color: #584fee;
   }
 
   .Support__Prices {
-    /* PSD: 通常価格 298x154 @(218,168) / 給付金適用 676x191 @(522,147)。
-       中央より 12px 左に寄っている */
-    align-items: center;
-    gap: 0 6px;
-    margin-top: 18px;
-    padding-right: 24px;
+    display: block;
+    margin-top: 0;
+    padding-right: 0;
   }
 
-  .Support__PriceLabel {
-    font-size: 19.04px;
+  .Support__PriceBox {
+    position: absolute;
+    top: 168px;
+    left: 218px;
+    width: 298px;
+    max-width: none;
   }
 
-  .Support__PriceValue {
-    font-size: 44.03px;
+  .Support__PriceBox.isAfter {
+    top: 147px;
+    left: 522px;
+    width: 676px;
+    max-width: none;
   }
 
-  .isAfter .isLeft.Support__PriceValue {
-    font-size: 40px;
-  }
-
-  .isAfter .isRight.Support__PriceValue {
-    font-size: 48px;
-  }
-
-  .Support__Badge {
-    /* PSD: 713x129 @y338 */
-    width: 713px;
-    height: 129px;
-    margin: 36px auto 0;
-    padding: 10px 20px;
-  }
-
-  .Support__BadgeMinistry {
-    font-size: 50px;
+  /* 枠の中の文字は、枠の左上からの実測値で置く */
+  .Support__PriceBox .Support__PriceLabel,
+  .Support__PriceBox .Support__PriceValue {
+    left: 0;
+    right: auto;
+    width: auto;
+    text-align: left;
     line-height: 1;
   }
 
-  /* PSD: 講座名 y412 = 枠上端(336)から 76 / 129 = 59% */
-  .Support__BadgeCourse {
-    top: 59%;
+  .Support__PriceBox .Support__PriceLabel {
+    top: 19px;
+    left: 108px;
+    font-size: 19.04px;
+  }
+
+  .Support__PriceBox .Support__PriceValue {
+    top: 61px;
+    left: 35px;
+    font-size: 43px;
+  }
+
+  .isAfter .Support__PriceLabel.isLeft {
+    top: 18px;
+    left: 163px;
+  }
+
+  .isAfter .Support__PriceLabel.isRight {
+    top: 18px;
+    left: 445px;
+  }
+
+  .isAfter .Support__PriceValue.isLeft {
+    top: 75px;
+    left: 116px;
+    font-size: 43px;
+  }
+
+  .isAfter .Support__PriceValue.isRight {
+    top: 76px;
+    left: 353px;
+    font-size: 47px;
+  }
+
+  .Support__Badge {
+    position: absolute;
+    top: 336px;
+    left: 364px;
+    width: 713px;
+    height: 129px;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* PSD: 経済産業省 275x48 @(584,338) / 第四次… 497x32 @(433,412) /
+     認定 68x31 @(958,415)。バッジの左上 (364,336) からの相対 */
+  .Support__BadgeMinistry {
+    top: 2px;
+    font-size: 48px;
+    line-height: 1;
   }
 
   .Support__BadgeCourse {
+    top: 76px;
+    gap: 28px;
     font-size: 32px;
     line-height: 1;
   }
 
+  .Support__BadgeCourse span {
+    padding: 0;
+  }
+
   .Support__Note {
-    margin-top: 34px;
-    font-size: 36px;
+    /* PSD: 643x35 @(399,507) */
+    position: absolute;
+    top: 507px;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    font-size: 35px;
+    line-height: 1;
   }
 
   .Support__Small {
-    margin-top: 10px;
+    /* PSD: 474x42 @(483,560) */
+    position: absolute;
+    top: 560px;
+    left: 0;
+    right: 0;
+    margin-top: 0;
     font-size: 16px;
+    line-height: 1.35;
   }
 
   .Support__Cta {
-    min-width: 498px;
-    margin-top: 30px;
+    /* PSD: 緑の角丸 498x118 @(473,630) */
+    position: absolute;
+    top: 630px;
+    left: 0;
+    right: 0;
+    width: 498px;
+    min-width: 0;
+    height: 118px;
+    margin: 0 auto;
   }
 }
