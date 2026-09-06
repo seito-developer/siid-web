@@ -25,6 +25,7 @@ ROWS=(
   "plan|sp/seitosama_lp_sp06|0,0,750,1525|sp/plan|*/tab:*/label_recom"
   "voice|sp/seitosama_lp_sp08|0,0,750,3872|sp/voice|"
   "faq|sp/seitosama_lp_sp09|0,0,750,1923|sp/faq|Q1:Q2:Q3:Q4:Q5:Q6:Q7:Q8"
+  "counselling|sp/seitosama_lp_sp11|0,0,750,2374|sp/counselling|"
 
   # PC。カード類は各コンポーネントが画像で持っているものもあるため、
   # ここでは「テキストだけを隠す」ぶんに留める(重ねて描いても同じ絵になる)。
@@ -33,6 +34,7 @@ ROWS=(
   "pc-voice|pc/pc6|0,0,1440,1730|voice-bg|"
   "pc-support|pc/pc4|0,1700,1440,2515|support-bg|"
   "pc-present|pc/pc7|0,0,1440,1083|present-bg|"
+  "pc-counselling|pc/pc9|0,0,1440,1019|counselling-bg|"
   "pc-about|pc/pc1|0,781,1440,1237|about-bg|"
   "pc-strength|pc/pc2|0,901,1440,1942|strength-bg|"
   "pc-difference|pc/pc2|0,1942,1440,3303|difference-bg|sec_difference/比較表"
