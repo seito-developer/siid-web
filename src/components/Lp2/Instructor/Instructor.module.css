@@ -5,6 +5,8 @@
  */
 
 .Instructor {
+  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
+  min-height: 817px;
   position: relative;
   overflow: hidden;
   padding: 30px 20px 40px;

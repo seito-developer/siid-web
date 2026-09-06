@@ -4,6 +4,8 @@
  */
 
 .Result {
+  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
+  min-height: 535px;
   position: relative;
   overflow: hidden;
   padding: 44px 0 32px;

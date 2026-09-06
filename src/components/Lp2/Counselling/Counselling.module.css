@@ -5,6 +5,8 @@
  */
 
 .Counselling {
+  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
+  min-height: 1187px;
   position: relative;
   overflow: hidden;
   padding: 28px 0 36px;

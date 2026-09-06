@@ -8,6 +8,8 @@
  */
 
 .Step {
+  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
+  min-height: 2310px;
   position: relative;
   overflow: hidden;
   padding: 26px 0 40px;

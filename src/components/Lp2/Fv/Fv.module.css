@@ -4,6 +4,8 @@
  */
 
 .Fv {
+  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
+  min-height: 737px;
   position: relative;
   overflow: hidden;
   background: #0b1230;

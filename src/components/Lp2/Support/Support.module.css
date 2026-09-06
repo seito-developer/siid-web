@@ -5,6 +5,8 @@
  */
 
 .Support {
+  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
+  min-height: 823px;
   position: relative;
   overflow: hidden;
   padding: 30px 0 40px;

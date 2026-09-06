@@ -5,6 +5,8 @@
  */
 
 .Difference {
+  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
+  min-height: 1489px;
   position: relative;
   overflow: hidden;
   padding: 34px 0 44px;

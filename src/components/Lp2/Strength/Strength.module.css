@@ -5,6 +5,8 @@
  */
 
 .Strength {
+  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
+  min-height: 1561px;
   position: relative;
   overflow: hidden;
   padding-bottom: 40px;
