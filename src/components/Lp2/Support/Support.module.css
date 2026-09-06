@@ -64,62 +64,109 @@
   margin-top: 24px;
 }
 
-.Support__PriceLabel {
-  padding: 3px 14px;
-  background: linear-gradient(90deg, #5a3ce4 0%, #2f9df6 100%);
-  font-size: 15px;
+/* 帯・矢印・打ち消し線はカンプの意匠に含まれるため、文字だけを重ねる */
+.Support__PriceBox {
+  position: relative;
+  flex: 0 0 auto;
+  width: 42%;
+  max-width: 298px;
+}
+
+.Support__PriceBox.isAfter {
+  width: 92%;
+  max-width: 676px;
+}
+
+.Support__PriceBg {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: auto;
+}
+
+.Support__PriceLabel,
+.Support__PriceValue {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  font-family: var(--lp2-font-body);
   letter-spacing: var(--lp2-tracking-lg);
 }
 
+/* PSD: 通常価格の帯 y187 / 数値 y229(枠の上端 y168 基準) */
+.Support__PriceLabel {
+  top: 12%;
+  font-size: 15px;
+}
+
 .Support__PriceValue {
-  margin-top: 8px;
-  font-family: var(--lp2-font-body);
+  top: 40%;
   font-weight: 700;
   font-size: 28px;
   letter-spacing: var(--lp2-tracking-sm);
   color: #0c1233;
 }
 
-.Support__PriceValue del {
-  text-decoration: line-through;
-  text-decoration-color: #f8006f;
-  text-decoration-thickness: 3px;
-}
-
 .Support__PriceValue.isAccent {
   color: #f8006f;
 }
 
-/* 価格の間の矢印 */
-.Support__Arrow {
-  width: 0;
-  height: 0;
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  border-left: 18px solid #0c1233;
+/* 給付金適用の枠は 2 列。左が「給付金適用」、右が「実質負担」 */
+.isAfter .Support__PriceLabel,
+.isAfter .Support__PriceValue {
+  left: auto;
+  right: auto;
+  width: 48%;
+  white-space: nowrap;
+}
+
+.isAfter .isLeft {
+  left: 2%;
+}
+
+.isAfter .isRight {
+  right: 2%;
+}
+
+.isAfter .Support__PriceLabel {
+  top: 9%;
+}
+
+.isAfter .Support__PriceValue {
+  top: 39%;
 }
 
 /* --- 認定バッジ ---------------------------------------------------------- */
 
+/* 意匠(月桂樹の枠・黄色い帯)は書き出し画像。文字だけを絶対配置で重ねる。
+   PSD: 枠 713x129、経済産業省 が上端から 2px、講座名が 76px */
 .Support__Badge {
   position: relative;
-  display: grid;
-  place-items: center;
-  gap: 4px;
   margin-top: 28px;
-  padding: 14px 10px;
 }
 
 .Support__BadgeFrame {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  z-index: 0;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
 }
 
-.Support__Badge > :not(.Support__BadgeFrame) {
-  position: relative;
+.Support__BadgeMinistry,
+.Support__BadgeCourse {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+}
+
+.Support__BadgeMinistry {
+  top: 2%;
+}
+
+.Support__BadgeCourse {
+  top: 56%;
 }
 
 .Support__BadgeMinistry {
@@ -128,6 +175,7 @@
   font-size: 26px;
   letter-spacing: var(--lp2-tracking-md);
   color: #fdf251;
+  text-align: center;
 }
 
 .Support__BadgeCourse {
@@ -143,8 +191,8 @@
 }
 
 .Support__BadgeCourse span {
+  /* 帯の意匠は書き出し画像側にある */
   padding: 2px 10px;
-  background: rgba(255, 255, 255, 0.14);
 }
 
 .Support__Note {
@@ -206,8 +254,12 @@
   }
 
   .Support__Prices {
-    gap: 0 34px;
-    margin-top: 34px;
+    /* PSD: 通常価格 298x154 @(218,168) / 給付金適用 676x191 @(522,147)。
+       中央より 12px 左に寄っている */
+    align-items: center;
+    gap: 0 6px;
+    margin-top: 18px;
+    padding-right: 24px;
   }
 
   .Support__PriceLabel {
@@ -215,15 +267,14 @@
   }
 
   .Support__PriceValue {
-    margin-top: 14px;
     font-size: 44.03px;
   }
 
-  .Support__Prices > :nth-child(3) .Support__PriceValue {
+  .isAfter .isLeft.Support__PriceValue {
     font-size: 40px;
   }
 
-  .Support__Prices > :nth-child(4) .Support__PriceValue {
+  .isAfter .isRight.Support__PriceValue {
     font-size: 48px;
   }
 
@@ -238,6 +289,11 @@
   .Support__BadgeMinistry {
     font-size: 50px;
     line-height: 1;
+  }
+
+  /* PSD: 講座名 y412 = 枠上端(336)から 76 / 129 = 59% */
+  .Support__BadgeCourse {
+    top: 59%;
   }
 
   .Support__BadgeCourse {

@@ -140,7 +140,7 @@
 
   .Result__Title {
     /* PSD: 見出し y1333 = セクション上端から 96px */
-    margin-top: 24px;
+    margin-top: 13px;
     font-size: 58.24px;
   }
 
@@ -162,17 +162,19 @@
      セレクタを 3 段にしているのは、Swiper の
      `.swiper-backface-hidden .swiper-slide { transform: translateZ(0) }`
      (詳細度 0,2,0)に負けないようにするため。 */
+  /* PSD では中央・中・小で縦位置がずれている(中央の中心 y370、中 427、小 443)。
+     translate を scale より先に書いて、ずらし量が倍率の影響を受けないようにする */
   .Result__Carousel .Result__Swiper .Result__Slide {
     width: auto;
     max-width: none;
-    transform: scale(0.365);
+    transform: translateY(73px) scale(0.365);
     transform-origin: center center;
     opacity: 0.92;
   }
 
   .Result__Carousel .Result__Swiper :global(.swiper-slide-prev),
   .Result__Carousel .Result__Swiper :global(.swiper-slide-next) {
-    transform: scale(0.778);
+    transform: translateY(57px) scale(0.778);
     z-index: 1;
   }
 

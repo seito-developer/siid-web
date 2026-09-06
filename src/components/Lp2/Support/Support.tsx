@@ -34,24 +34,38 @@ export default function Support() {
           </span>
         </h2>
 
+        {/* 帯や矢印の意匠はカンプの書き出しを敷き、文字だけを重ねる */}
         <div className={styles.Support__Prices}>
-          <div className={styles.Support__Price}>
+          <div className={styles.Support__PriceBox}>
+            <Image
+              className={styles.Support__PriceBg}
+              src={lp2Asset('/images/lp-2/support-price-normal.webp')}
+              alt=""
+              width={298}
+              height={154}
+              sizes="(min-width: 768px) 298px, 42vw"
+              quality={LP2_IMAGE_QUALITY}
+            />
             <p className={styles.Support__PriceLabel}>通常価格</p>
-            <p className={styles.Support__PriceValue}>
-              <del>528,000円</del>
+            <p className={styles.Support__PriceValue}>528,000円</p>
+          </div>
+
+          <div className={`${styles.Support__PriceBox} ${styles.isAfter}`}>
+            <Image
+              className={styles.Support__PriceBg}
+              src={lp2Asset('/images/lp-2/support-price-after.webp')}
+              alt=""
+              width={676}
+              height={191}
+              sizes="(min-width: 768px) 676px, 92vw"
+              quality={LP2_IMAGE_QUALITY}
+            />
+            <p className={`${styles.Support__PriceLabel} ${styles.isLeft}`}>給付金適用</p>
+            <p className={`${styles.Support__PriceLabel} ${styles.isRight}`}>実質負担</p>
+            <p className={`${styles.Support__PriceValue} ${styles.isAccent} ${styles.isLeft}`}>最大80%</p>
+            <p className={`${styles.Support__PriceValue} ${styles.isAccent} ${styles.isRight}`}>
+              105,600円～
             </p>
-          </div>
-
-          <span className={styles.Support__Arrow} aria-hidden="true" />
-
-          <div className={styles.Support__Price}>
-            <p className={styles.Support__PriceLabel}>給付金適用</p>
-            <p className={`${styles.Support__PriceValue} ${styles.isAccent}`}>最大80%</p>
-          </div>
-
-          <div className={styles.Support__Price}>
-            <p className={styles.Support__PriceLabel}>実質負担</p>
-            <p className={`${styles.Support__PriceValue} ${styles.isAccent}`}>105,600円～</p>
           </div>
         </div>
 
