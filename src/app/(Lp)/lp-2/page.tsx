@@ -22,12 +22,7 @@ import Voice from '@/components/Lp2/Voice/Voice';
 import { lp2Asset } from '@/constants/lp2Assets';
 import { buildPageMetadata, pages } from '@/constants/meta';
 
-import {
-  barlowSemiCondensedLp2,
-  jostLp2,
-  shipporiMinchoB1Lp2,
-  zenKakuGothicAntiqueLp2,
-} from '../fonts';
+import { barlowSemiCondensedLp2, jostLp2 } from '../fonts';
 
 import styles from './Lp2.module.css';
 import './lp2-tokens.css';
@@ -46,12 +41,9 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const fontVariables = [
-  zenKakuGothicAntiqueLp2.variable,
-  jostLp2.variable,
-  shipporiMinchoB1Lp2.variable,
-  barlowSemiCondensedLp2.variable,
-].join(' ');
+// 見出し(Zen Kaku)と明朝(Shippori)は lp2-tokens.css のサブセットを直接読むため、
+// next/font の変数は英字の 2 書体だけでよい
+const fontVariables = [jostLp2.variable, barlowSemiCondensedLp2.variable].join(' ');
 
 export default function Lp2() {
   return (
