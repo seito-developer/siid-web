@@ -244,34 +244,57 @@
     display: none;
   }
 
-  /* PSD: 上段 3 枚(346x527)を x173/548/923、下段 2 枚(346x421)を x368/729 */
+  /* PSD 実測: 上段 345x491 @(173,457) / 345x493 @(548,450) / 346x499 @(923,449)
+     下段 346x390 @(368,990) / 346x389 @(729,991)。
+     3 列グリッド(346px + 隙間 29px、左端 x172)を基準に、下段はずらして置く */
   .Skill__Cards {
     display: grid;
     grid-template-columns: repeat(3, 346px);
     justify-content: center;
+    align-items: start;
     gap: 41px 29px;
-    margin-top: 60px;
+    margin-top: 74px;
+  }
+
+  .Skill__Card:nth-child(1) {
+    min-height: 491px;
+  }
+
+  .Skill__Card:nth-child(2) {
+    min-height: 493px;
+  }
+
+  .Skill__Card:nth-child(3) {
+    min-height: 499px;
   }
 
   .Skill__Card:nth-child(4) {
     grid-column: 1 / 2;
-    justify-self: end;
-    margin-right: -166px;
+    justify-self: start;
+    width: 346px;
+    min-height: 390px;
+    margin-left: 196px;
   }
 
   .Skill__Card:nth-child(5) {
     grid-column: 2 / 3;
-    justify-self: end;
-    margin-right: -166px;
+    justify-self: start;
+    width: 346px;
+    min-height: 389px;
+    margin-left: 182px;
   }
 
+  /* PSD 実測(カード上端 y457 基準): 見出し y19 / 「技術」帯 y60 /
+     タグ 1 行目 y90(高さ 30、送り 32) / 「できるようになること」帯 y201 /
+     箇条書き y236 */
   .Skill__CardHead {
-    padding: 20px 22px 12px;
+    padding: 13px 22px 0;
     cursor: default;
   }
 
   .Skill__CardTitle {
     font-size: 25.72px;
+    line-height: 1.1;
   }
 
   /* PC は常時展開。開閉の矢印も出さない */
@@ -281,7 +304,29 @@
 
   .Skill__Panel {
     display: block;
-    padding: 0 22px 24px;
+    padding: 19px 21px 24px;
+  }
+
+  .Skill__Bar {
+    padding: 4px 10px;
+    line-height: 1;
+  }
+
+  .Skill__Bar + * {
+    margin-top: 9px;
+  }
+
+  .Skill__Tags {
+    gap: 2px 5px;
+    margin-bottom: 17px;
+  }
+
+  .Skill__Tags li {
+    padding: 6px 12px;
+  }
+
+  .Skill__Outcomes li {
+    line-height: 1.5;
   }
 
   .Skill__Tags li {
