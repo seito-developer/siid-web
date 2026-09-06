@@ -1,0 +1,171 @@
+/*
+ * FREE GIFTS。PSD 実測(PC セクション 1440x1083)。
+ *   限定配布リボン y52 / ラベル y75 / 見出し y148(50.1px) / 大見出し y243(115.3px)
+ *   GIFT ラベル 3 列 x458/728/1008、y432 / y569 / y709
+ *   CTA 501x334 @(468,793)
+ */
+
+.Present {
+  position: relative;
+  overflow: hidden;
+  padding: 26px 0 34px;
+  background: #fdf7e6;
+}
+
+.Present__Bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Present__Inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--lp2-canvas);
+  margin-inline: auto;
+  padding-inline: 16px;
+  text-align: center;
+}
+
+.Present__Ribbon {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 2px solid #765e2b;
+  font-family: var(--lp2-font-mincho);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: var(--lp2-tracking-lg);
+  color: #765e2b;
+}
+
+.Present__Label {
+  margin-top: 12px;
+  color: var(--lp2-blue);
+}
+
+.Present__Title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.Present__TitleSmall {
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--lp2-grey);
+}
+
+.Present__TitleLarge {
+  margin-top: 6px;
+  font-size: 34px;
+  line-height: 1.2;
+  color: var(--lp2-white);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+}
+
+/* 書影は背景画像に含まれるため、ここでは文字だけを重ねる */
+.Present__Gifts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 10px;
+  margin-top: 22px;
+}
+
+.Present__Gift {
+  padding: 10px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.Present__GiftNo {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #4a3ad6 0%, #2f6ef0 100%);
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: var(--lp2-tracking-md);
+  color: var(--lp2-white);
+}
+
+.Present__GiftTitle {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: var(--lp2-grey);
+}
+
+.Present__GiftHighlight {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: #f8026f;
+}
+
+.Present__Cta {
+  width: fit-content;
+  margin: 24px auto 0;
+}
+
+@media screen and (min-width: 768px) {
+  .Present {
+    min-height: 1083px;
+    padding: 40px 0 0;
+  }
+
+  .Present__Inner {
+    padding-inline: 0;
+  }
+
+  .Present__Ribbon {
+    position: absolute;
+    top: 12px;
+    left: 380px;
+    font-size: 18px;
+  }
+
+  .Present__TitleSmall {
+    font-size: 50.05px;
+  }
+
+  .Present__TitleLarge {
+    font-size: 115.31px;
+  }
+
+  /* PSD: 3 列(x458/728/1008)・3 行(y432/569/709)。7 件目は 2 列目に置く */
+  .Present__Gifts {
+    display: grid;
+    grid-template-columns: repeat(3, 250px);
+    justify-content: center;
+    gap: 26px 20px;
+    margin-top: 46px;
+  }
+
+  .Present__Gift {
+    padding: 0;
+    background: none;
+    text-align: left;
+  }
+
+  .Present__GiftNo {
+    font-size: 16px;
+  }
+
+  .Present__GiftTitle,
+  .Present__GiftHighlight {
+    font-size: 16px;
+  }
+
+  .Present__Cta {
+    min-width: 498px;
+    margin-top: 46px;
+  }
+}

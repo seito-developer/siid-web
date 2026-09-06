@@ -1,0 +1,257 @@
+/*
+ * RESKILLING SUPPORT。PSD 実測(PC セクション 1440x815、y1700..2515)。
+ *   ラベル y-163(前セクションにまたがる) / 「その学び」y-57 / 大見出し y2(69.6px)
+ *   価格ブロック y165..270 / 認定バッジ y338..446 / 注記 y507,y560 / CTA y651
+ */
+
+.Support {
+  position: relative;
+  overflow: hidden;
+  padding: 30px 0 40px;
+  background: #3f4ff0;
+  color: var(--lp2-white);
+  text-align: center;
+}
+
+.Support__Bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Support__Inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--lp2-canvas);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+.Support__Title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12px;
+  color: var(--lp2-grey);
+}
+
+.Support__TitleSmall {
+  font-size: 24px;
+}
+
+.Support__TitleLarge {
+  font-size: 32px;
+}
+
+.Support__TitleLarge em {
+  font-style: normal;
+  font-size: 1.28em;
+}
+
+/* --- 価格 ---------------------------------------------------------------- */
+
+.Support__Prices {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 18px;
+  margin-top: 24px;
+}
+
+.Support__PriceLabel {
+  padding: 3px 14px;
+  background: linear-gradient(90deg, #5a3ce4 0%, #2f9df6 100%);
+  font-size: 15px;
+  letter-spacing: var(--lp2-tracking-lg);
+}
+
+.Support__PriceValue {
+  margin-top: 8px;
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: #0c1233;
+}
+
+.Support__PriceValue del {
+  text-decoration: line-through;
+  text-decoration-color: #f8006f;
+  text-decoration-thickness: 3px;
+}
+
+.Support__PriceValue.isAccent {
+  color: #f8006f;
+}
+
+/* 価格の間の矢印 */
+.Support__Arrow {
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 18px solid #0c1233;
+}
+
+/* --- 認定バッジ ---------------------------------------------------------- */
+
+.Support__Badge {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: 4px;
+  margin-top: 28px;
+  padding: 14px 10px;
+}
+
+.Support__BadgeFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.Support__Badge > :not(.Support__BadgeFrame) {
+  position: relative;
+}
+
+.Support__BadgeMinistry {
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: var(--lp2-tracking-md);
+  color: #fdf251;
+}
+
+.Support__BadgeCourse {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: var(--lp2-tracking-md);
+}
+
+.Support__BadgeCourse span {
+  padding: 2px 10px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.Support__Note {
+  margin-top: 24px;
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: var(--lp2-tracking-md);
+}
+
+.Support__Small {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+  letter-spacing: var(--lp2-tracking-sm);
+}
+
+.Support__Cta {
+  width: fit-content;
+  margin: 26px auto 0;
+}
+
+/* --- PC ----------------------------------------------------------------- */
+
+@media screen and (min-width: 768px) {
+  .Support {
+    min-height: 815px;
+    padding: 0 0 0;
+  }
+
+  .Support__Inner {
+    padding-inline: 0;
+  }
+
+  /* ラベルは前セクション(SKILLS)の下端に食い込む位置にある */
+  .Support__Label {
+    position: absolute;
+    top: -163px;
+    left: 0;
+    right: 0;
+  }
+
+  .Support__Title {
+    margin-top: 0;
+    padding-top: 6px;
+  }
+
+  .Support__TitleSmall {
+    /* PSD: y-57 = セクション上端より上。前セクションの黄色い帯に乗る */
+    position: absolute;
+    top: -57px;
+    left: 50%;
+    font-size: 46.88px;
+    transform: translateX(-50%);
+  }
+
+  .Support__TitleLarge {
+    font-size: 69.57px;
+  }
+
+  .Support__Prices {
+    gap: 0 34px;
+    margin-top: 68px;
+  }
+
+  .Support__PriceLabel {
+    font-size: 19.04px;
+  }
+
+  .Support__PriceValue {
+    margin-top: 14px;
+    font-size: 44.03px;
+  }
+
+  .Support__Prices > :nth-child(3) .Support__PriceValue {
+    font-size: 40px;
+  }
+
+  .Support__Prices > :nth-child(4) .Support__PriceValue {
+    font-size: 48px;
+  }
+
+  .Support__Badge {
+    width: 713px;
+    min-height: 129px;
+    margin: 62px auto 0;
+    padding: 18px 20px;
+  }
+
+  .Support__BadgeMinistry {
+    font-size: 50px;
+  }
+
+  .Support__BadgeCourse {
+    font-size: 32px;
+  }
+
+  .Support__Note {
+    margin-top: 46px;
+    font-size: 36px;
+  }
+
+  .Support__Small {
+    margin-top: 16px;
+    font-size: 16px;
+  }
+
+  .Support__Cta {
+    min-width: 498px;
+    margin-top: 44px;
+  }
+}

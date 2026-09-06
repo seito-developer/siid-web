@@ -1,0 +1,161 @@
+/*
+ * FAQ。PSD 実測(PC セクション 1440x1256)。
+ *   ラベル y88 / 見出し y166(60.1px)
+ *   Q1 の帯 y295..343、回答 y389。以降 Q2〜Q8 は帯のみ y504 から 95px 間隔
+ */
+
+.Faq {
+  padding: 30px 0 36px;
+  background: #f2f2fd;
+}
+
+.Faq__Inner {
+  max-width: var(--lp2-canvas);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+.Faq__Heading {
+  margin-top: 14px;
+  font-size: 28px;
+  letter-spacing: var(--lp2-tracking-md);
+  color: var(--lp2-primary);
+  text-align: center;
+}
+
+.Faq__List {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.Faq__Item {
+  border-radius: 6px;
+  background: var(--lp2-white);
+  overflow: hidden;
+}
+
+.Faq__Question {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--lp2-primary);
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: var(--lp2-tracking-lg);
+  color: var(--lp2-white);
+  cursor: pointer;
+  list-style: none;
+}
+
+/* Safari の三角マーカーを消す */
+.Faq__Question::-webkit-details-marker {
+  display: none;
+}
+
+.Faq__No {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--lp2-white);
+  font-family: var(--lp2-font-body);
+  font-size: 12px;
+  color: var(--lp2-primary);
+}
+
+.Faq__QuestionText {
+  flex: 1;
+}
+
+/* 開閉の +/− */
+.Faq__Mark {
+  position: relative;
+  flex: none;
+  width: 14px;
+  height: 14px;
+}
+
+.Faq__Mark::before,
+.Faq__Mark::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--lp2-white);
+  transform: translateY(-50%);
+}
+
+.Faq__Mark::after {
+  transform: translateY(-50%) rotate(90deg);
+  transition: transform 0.2s ease;
+}
+
+.Faq__Item[open] .Faq__Mark::after {
+  transform: translateY(-50%) rotate(0deg);
+}
+
+.Faq__Answer {
+  padding: 14px 16px 16px;
+}
+
+.Faq__Answer p {
+  font-size: 14px;
+  line-height: 1.8;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: var(--lp2-grey);
+}
+
+.Faq__Answer p + p {
+  margin-top: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .Faq {
+    min-height: 1256px;
+    padding: 82px 0 0;
+  }
+
+  .Faq__Inner {
+    padding-inline: 0;
+  }
+
+  .Faq__Heading {
+    margin-top: 28px;
+    font-size: 60.06px;
+  }
+
+  .Faq__List {
+    /* PSD: 帯 903px @x268 */
+    gap: 20px;
+    width: 903px;
+    margin: 52px auto 0;
+  }
+
+  .Faq__Question {
+    padding: 14px 22px;
+    font-size: 18px;
+  }
+
+  .Faq__No {
+    width: 30px;
+    height: 30px;
+    font-size: 15.12px;
+  }
+
+  .Faq__Answer {
+    padding: 18px 26px 22px;
+  }
+
+  .Faq__Answer p {
+    font-size: 16px;
+  }
+}

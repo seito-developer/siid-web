@@ -1,0 +1,303 @@
+/*
+ * PRICING。PSD 実測(PC セクション 1440x865)。
+ *   PRICING y49(38.1px) / 「選べる」y97 / 「3」y100(174.5px) / 「つのプラン」y162
+ *   カード Career 339x434 @(192,333) / FullSupport 374x534 @(535,268) / 顧問 336x429 @(913,334)
+ *   講師の切り抜き 179x358 @(921,34) / 注記 y789
+ */
+
+.Plan {
+  position: relative;
+  overflow: hidden;
+  padding: 28px 0 34px;
+  background: #060b26;
+}
+
+.Plan__Bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Plan__Inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--lp2-canvas);
+  margin-inline: auto;
+  padding-inline: 16px;
+  text-align: center;
+}
+
+.Plan__Label {
+  font-family: var(--lp2-font-latin);
+  font-weight: 700;
+  font-style: oblique 12deg;
+  font-size: 22px;
+  letter-spacing: var(--lp2-tracking-label);
+  text-indent: var(--lp2-tracking-label);
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.Plan__Title {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.Plan__TitleSmall {
+  font-size: 28px;
+  color: var(--lp2-highlight);
+}
+
+.Plan__TitleNumber {
+  font-family: var(--lp2-font-condensed);
+  font-weight: 700;
+  font-size: 84px;
+  line-height: 0.9;
+  color: #f6edbb;
+}
+
+.Plan__TitleLarge {
+  font-size: 32px;
+  color: var(--lp2-cyan-light);
+}
+
+/* 講師の切り抜き。SP では出さない */
+.Plan__Instructor {
+  display: none;
+}
+
+/* --- カード -------------------------------------------------------------- */
+
+.Plan__Cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.Plan__Card {
+  position: relative;
+  width: 100%;
+  max-width: 339px;
+  padding: 20px 18px 22px;
+  border-radius: 10px;
+  background: var(--lp2-white);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
+}
+
+.isRecommended {
+  max-width: 374px;
+  padding-top: 30px;
+  background: linear-gradient(180deg, #6f5cf7 0%, #2fa8f8 100%);
+}
+
+.Plan__Stars {
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  color: #ffe14d;
+}
+
+.Plan__Badge {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 3px 16px;
+  border-radius: 4px;
+  background: #f0334f;
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: var(--lp2-tracking-md);
+  color: #fcf251;
+}
+
+.Plan__Name {
+  font-family: var(--lp2-font-body);
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: var(--lp2-tracking-md);
+  color: #5562f1;
+}
+
+.isRecommended .Plan__Name {
+  font-size: 22px;
+  color: #fff66d;
+}
+
+.Plan__Lead {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: var(--lp2-grey);
+}
+
+.Plan__Price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 15px;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: var(--lp2-white);
+}
+
+.Plan__Price del {
+  padding: 1px 6px;
+  background: #131a3e;
+  text-decoration: line-through;
+  text-decoration-color: #f0334f;
+}
+
+.Plan__After {
+  color: #fff66d;
+}
+
+.isRecommended .Plan__Price {
+  color: var(--lp2-white);
+}
+
+.Plan__AfterPrice {
+  margin-top: 8px;
+  font-size: 20px;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: #5562f1;
+}
+
+.isRecommended .Plan__AfterPrice {
+  color: var(--lp2-white);
+}
+
+.Plan__MonthlyLabel {
+  margin-top: 4px;
+  font-weight: 700;
+  font-size: 20px;
+  color: #5562f1;
+}
+
+.isRecommended .Plan__MonthlyLabel {
+  color: var(--lp2-white);
+}
+
+.Plan__Monthly {
+  margin-top: 4px;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: #5562f1;
+}
+
+.isRecommended .Plan__Monthly {
+  color: #fff66d;
+}
+
+.Plan__Cta {
+  margin-top: 16px;
+}
+
+.Plan__Note {
+  margin-top: 26px;
+  font-size: 11px;
+  line-height: 1.7;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: rgba(255, 255, 255, 0.86);
+}
+
+/* --- PC ----------------------------------------------------------------- */
+
+@media screen and (min-width: 768px) {
+  .Plan {
+    min-height: 865px;
+    padding: 49px 0 0;
+  }
+
+  .Plan__Inner {
+    padding-inline: 0;
+  }
+
+  .Plan__Label {
+    font-size: 38.06px;
+  }
+
+  .Plan__Title {
+    margin-top: 10px;
+  }
+
+  .Plan__TitleSmall {
+    font-size: 56.39px;
+  }
+
+  .Plan__TitleNumber {
+    font-size: 174.46px;
+  }
+
+  .Plan__TitleLarge {
+    font-size: 64.55px;
+  }
+
+  /* PSD: 179x358 @(921,34)。見出しの右に重なる */
+  .Plan__Instructor {
+    position: absolute;
+    top: -15px;
+    left: 921px;
+    display: block;
+    width: 179px;
+    height: auto;
+  }
+
+  .Plan__Cards {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 18px;
+  }
+
+  .Plan__Card {
+    width: 339px;
+    max-width: none;
+    min-height: 434px;
+  }
+
+  .isRecommended {
+    width: 374px;
+    max-width: none;
+    min-height: 534px;
+  }
+
+  .Plan__Name {
+    font-size: 30.02px;
+  }
+
+  .isRecommended .Plan__Name {
+    font-size: 23.99px;
+  }
+
+  .Plan__Lead {
+    font-size: 16.03px;
+  }
+
+  .Plan__Price {
+    font-size: 16.03px;
+  }
+
+  .Plan__AfterPrice,
+  .Plan__MonthlyLabel {
+    font-size: 20.03px;
+  }
+
+  .Plan__Monthly {
+    font-size: 22.04px;
+  }
+
+  .Plan__Note {
+    margin-top: 44px;
+    font-size: 10.71px;
+  }
+}

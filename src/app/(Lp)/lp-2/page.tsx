@@ -2,13 +2,22 @@ import { Metadata } from 'next';
 
 import About from '@/components/Lp2/About/About';
 import CookieBanner from '@/components/Lp2/CookieBanner/CookieBanner';
+import Counselling from '@/components/Lp2/Counselling/Counselling';
 import Difference from '@/components/Lp2/Difference/Difference';
+import Faq from '@/components/Lp2/Faq/Faq';
 import Footer from '@/components/Lp2/Footer/Footer';
 import Fv from '@/components/Lp2/Fv/Fv';
+import Graph from '@/components/Lp2/Graph/Graph';
 import Header from '@/components/Lp2/Header/Header';
 import Instructor from '@/components/Lp2/Instructor/Instructor';
+import Plan from '@/components/Lp2/Plan/Plan';
+import Present from '@/components/Lp2/Present/Present';
 import Result from '@/components/Lp2/Result/Result';
+import Skill from '@/components/Lp2/Skill/Skill';
+import Step from '@/components/Lp2/Step/Step';
 import Strength from '@/components/Lp2/Strength/Strength';
+import Support from '@/components/Lp2/Support/Support';
+import Voice from '@/components/Lp2/Voice/Voice';
 import { buildPageMetadata, pages } from '@/constants/meta';
 
 import {
@@ -46,6 +55,15 @@ export default function Lp2() {
         <Instructor />
         <Strength />
         <Difference />
+        <Step />
+        <Skill />
+        <Support />
+        <Plan />
+        <Graph />
+        <Voice />
+        <Faq />
+        <Present />
+        <Counselling />
       </main>
       <Footer />
       <CookieBanner />

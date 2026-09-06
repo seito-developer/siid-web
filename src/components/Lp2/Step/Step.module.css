@@ -1,0 +1,242 @@
+/*
+ * 内定までの 5STEP。PSD 実測(PC セクション 1440x2242)。
+ *   見出し「内定までの」y80 / 「5STEP」y142(142.4px)
+ *   カード 803x290 を y321 から 346px 間隔で 5 枚
+ *   番号バッジ 136x147 @(339,229) がカード左上に重なる
+ *   カード間の三角 48x17 @(696,632…)
+ *   CTA 501x334 @(470,1950)
+ */
+
+.Step {
+  position: relative;
+  overflow: hidden;
+  padding: 26px 0 40px;
+  background: #4d59f0;
+}
+
+.Step__Bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Step__Inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--lp2-canvas);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+.Step__Title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--lp2-white);
+  text-align: center;
+}
+
+.Step__TitleSmall {
+  padding: 3px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  font-size: 19px;
+  letter-spacing: var(--lp2-tracking-lg);
+}
+
+.Step__TitleLarge {
+  margin-top: 6px;
+  font-family: var(--lp2-font-latin);
+  font-weight: 700;
+  font-size: 68px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #fef579;
+}
+
+/* --- カード -------------------------------------------------------------- */
+
+.Step__List {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 26px;
+}
+
+.Step__Item {
+  position: relative;
+}
+
+/* カード間の下向き三角 */
+.Step__Item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 9px solid #fef579;
+  transform: translateX(-50%);
+}
+
+/* STEP 番号のバッジ。カードの左上に重ねる */
+.Step__Badge {
+  position: absolute;
+  top: -14px;
+  left: 6px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 74px;
+  border-radius: 50%;
+  background: #6f7bf5;
+  border: 2px solid #fef579;
+  font-family: var(--lp2-font-latin);
+  color: var(--lp2-white);
+  line-height: 1;
+}
+
+.Step__Badge span {
+  font-size: 9px;
+  letter-spacing: var(--lp2-tracking-md);
+}
+
+.Step__Badge strong {
+  margin-top: 2px;
+  font-weight: 400;
+  font-size: 28px;
+}
+
+.Step__Card {
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--lp2-white);
+}
+
+/* 黄色の見出し帯 */
+.Step__CardTitle {
+  padding: 10px 16px 10px 78px;
+  background: #fef579;
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: var(--lp2-tracking-md);
+  color: #000914;
+  text-align: center;
+}
+
+.Step__CardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.Step__Illust {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+}
+
+.Step__Text {
+  font-size: 15px;
+  line-height: 1.72;
+  letter-spacing: var(--lp2-tracking-md);
+  color: var(--lp2-grey);
+}
+
+.Step__Cta {
+  width: fit-content;
+  margin: 30px auto 0;
+}
+
+/* --- PC ----------------------------------------------------------------- */
+
+@media screen and (min-width: 768px) {
+  .Step {
+    min-height: 2242px;
+    padding: 67px 0 0;
+  }
+
+  .Step__Inner {
+    padding-inline: 0;
+  }
+
+  .Step__TitleSmall {
+    padding: 5px 24px;
+    font-size: 38.67px;
+    border-width: 2px;
+  }
+
+  .Step__TitleLarge {
+    margin-top: 4px;
+    font-size: 142.38px;
+  }
+
+  .Step__List {
+    /* PSD: カード 803px 幅、左端 x318。間隔 346px(カード 290 + 余白 56) */
+    gap: 56px;
+    width: 803px;
+    margin: 34px auto 0;
+  }
+
+  .Step__Item:not(:last-child)::after {
+    bottom: -37px;
+    border-left-width: 24px;
+    border-right-width: 24px;
+    border-top-width: 17px;
+  }
+
+  .Step__Badge {
+    /* PSD: 136x147 @(339,229) = カード左上から (21,-92) */
+    top: -30px;
+    left: 21px;
+    width: 136px;
+    height: 147px;
+  }
+
+  .Step__Badge span {
+    font-size: 15px;
+  }
+
+  .Step__Badge strong {
+    margin-top: 4px;
+    font-size: 47px;
+  }
+
+  .Step__CardTitle {
+    padding: 16px 24px 16px 160px;
+    font-size: 32px;
+  }
+
+  .Step__CardBody {
+    /* イラストを左、本文を右に置く */
+    flex-direction: row;
+    align-items: center;
+    gap: 34px;
+    padding: 22px 32px 22px 42px;
+  }
+
+  .Step__Illust {
+    flex: none;
+    width: 356px;
+    max-width: none;
+  }
+
+  .Step__Text {
+    font-size: 18px;
+    line-height: 1.78;
+  }
+
+  .Step__Cta {
+    min-width: 498px;
+    margin-top: 56px;
+  }
+}

@@ -309,12 +309,14 @@ def cmd_section_bg(args: argparse.Namespace) -> None:
     """
     psd = PSDImage.open(args.target)
     patterns = args.hide or []
+    kinds = set(args.hide_kinds or [])
 
     hidden = []
     for path, layer in _iter_layers(psd):
         if not layer.visible:
             continue
-        if any(fnmatch.fnmatch(path, pat) or path == pat for pat in patterns):
+        by_path = any(fnmatch.fnmatch(path, pat) or path == pat for pat in patterns)
+        if by_path or layer.kind in kinds:
             layer.visible = False
             hidden.append(layer)
 
@@ -430,6 +432,11 @@ def main() -> None:
     )
     p.add_argument("target", help="PSD ファイル")
     p.add_argument("--hide", action="append", help="隠すレイヤーパス(glob 可)。複数指定可")
+    p.add_argument(
+        "--hide-kinds",
+        action="append",
+        help="隠すレイヤー種別(例: type)。文字を実テキストで実装する場合に指定する",
+    )
     p.add_argument("--box", help="切り出す範囲 x0,y0,x1,y1")
     p.add_argument(
         "--match-reference",

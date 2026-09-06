@@ -1,0 +1,279 @@
+/*
+ * VOICE。PSD 実測(PC セクション 1440x1730)。
+ *   ラベル y91 / 見出し y149(60.1px) / カード 803x… を y362 から
+ *   カード内: 番号 y369 / タイトル y428(24px) / 名前 y466 / リード y494 / 本文 y557
+ */
+
+.Voice {
+  position: relative;
+  overflow: hidden;
+  padding: 30px 0 34px;
+  background: #f3f6ff;
+}
+
+.Voice__Bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Voice__Inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--lp2-canvas);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+.Voice__Heading {
+  margin-top: 14px;
+  font-size: 28px;
+  letter-spacing: var(--lp2-tracking-md);
+  color: var(--lp2-grey);
+  text-align: center;
+}
+
+/* --- カード -------------------------------------------------------------- */
+
+.Voice__Cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.Voice__Card {
+  position: relative;
+  padding: 22px 18px 20px;
+  border-radius: 10px;
+  background: var(--lp2-white);
+  box-shadow: 0 4px 18px rgba(19, 26, 62, 0.12);
+}
+
+.Voice__No {
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 2px solid #feb325;
+  border-radius: 50%;
+  background: var(--lp2-white);
+  font-family: var(--lp2-font-latin);
+  line-height: 1;
+  color: #feb325;
+}
+
+.Voice__No span {
+  font-size: 8px;
+  letter-spacing: var(--lp2-tracking-md);
+}
+
+.Voice__No strong {
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.Voice__Title {
+  padding: 8px 14px;
+  margin-left: 46px;
+  background: linear-gradient(90deg, #5a3ce4 0%, #7d5cf2 100%);
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1.4;
+  letter-spacing: var(--lp2-tracking-md);
+  color: var(--lp2-highlight);
+}
+
+.Voice__Profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.Voice__Photo {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 6px;
+}
+
+.Voice__Name {
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: var(--lp2-grey);
+  text-align: center;
+}
+
+.Voice__Text {
+  margin-top: 14px;
+}
+
+.Voice__Lead {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: #f8026f;
+}
+
+/* 閉じているときは先頭の 1 段落だけを高さで切って見せる */
+.Voice__Body {
+  overflow: hidden;
+  max-height: 88px;
+  margin-top: 10px;
+  transition: max-height 0.3s ease;
+}
+
+.isOpen .Voice__Body {
+  max-height: 2000px;
+}
+
+.Voice__Body p {
+  font-size: 15px;
+  line-height: 1.72;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: var(--lp2-grey);
+}
+
+.Voice__Body p + p {
+  margin-top: 12px;
+}
+
+.Voice__More {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--lp2-font-body);
+  font-size: 15px;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: #3858ff;
+  cursor: pointer;
+}
+
+.Voice__More span {
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+}
+
+.isOpen .Voice__More span {
+  transform: rotate(135deg);
+}
+
+.Voice__Note {
+  margin-top: 22px;
+  font-size: 12px;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: var(--lp2-white);
+  text-align: center;
+}
+
+/* --- PC ----------------------------------------------------------------- */
+
+@media screen and (min-width: 768px) {
+  .Voice {
+    min-height: 1730px;
+    padding: 85px 0 0;
+  }
+
+  .Voice__Inner {
+    padding-inline: 0;
+  }
+
+  .Voice__Heading {
+    margin-top: 28px;
+    font-size: 60.06px;
+  }
+
+  .Voice__Cards {
+    /* PSD: カード 803px @x319 */
+    gap: 30px;
+    width: 803px;
+    margin: 56px auto 0;
+  }
+
+  .Voice__Card {
+    /* 写真を左、テキストを右に置く */
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    grid-template-areas:
+      'no title'
+      'profile text';
+    gap: 12px 26px;
+    padding: 26px 30px 24px;
+  }
+
+  .Voice__No {
+    position: static;
+    grid-area: no;
+    justify-self: center;
+    width: 60px;
+    height: 60px;
+  }
+
+  .Voice__No span {
+    font-size: 9.91px;
+  }
+
+  .Voice__No strong {
+    font-size: 27.17px;
+  }
+
+  .Voice__Title {
+    grid-area: title;
+    align-self: center;
+    margin-left: 0;
+    font-size: 24.04px;
+  }
+
+  .Voice__Profile {
+    grid-area: profile;
+    margin-top: 0;
+  }
+
+  .Voice__Photo {
+    max-width: 160px;
+  }
+
+  .Voice__Name {
+    font-size: 16.03px;
+  }
+
+  .Voice__Text {
+    grid-area: text;
+    margin-top: 0;
+  }
+
+  .Voice__Lead {
+    font-size: 16.03px;
+  }
+
+  .Voice__Body p {
+    font-size: 16.03px;
+  }
+
+  .Voice__More {
+    font-size: 16.03px;
+  }
+
+  .Voice__Note {
+    margin-top: 46px;
+    font-size: 14px;
+  }
+}

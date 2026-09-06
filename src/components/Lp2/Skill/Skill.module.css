@@ -1,0 +1,282 @@
+/*
+ * SKILLS。PSD 実測(PC セクション 1440x1700)。
+ *   ラベル y86 / 「学んで」y147(56.3px) / 「できるようになる」y232(60.1px)
+ *   リード y346(30px) / カード 346x527 を 3 枚 + 346x421 を 2 枚
+ *
+ * SP のみアコーディオン。PC は常時展開。
+ */
+
+.Skill {
+  position: relative;
+  overflow: hidden;
+  padding: 28px 0 40px;
+  background: #f4f7ff;
+}
+
+.Skill__Bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Skill__Inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--lp2-canvas);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+.Skill__Title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 14px;
+  color: var(--lp2-grey);
+  text-align: center;
+}
+
+.Skill__TitleSmall {
+  font-size: 26px;
+}
+
+.Skill__TitleLarge {
+  font-size: 28px;
+  color: var(--lp2-blue);
+}
+
+.Skill__Lead {
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: var(--lp2-tracking-md);
+  color: var(--lp2-grey);
+  text-align: center;
+}
+
+.Skill__Hint {
+  margin-top: 10px;
+  font-size: 13px;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: var(--lp2-grey);
+  text-align: center;
+}
+
+/* --- カード -------------------------------------------------------------- */
+
+.Skill__Cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.Skill__Card {
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--lp2-white);
+  box-shadow: 0 2px 14px rgba(19, 26, 62, 0.1);
+}
+
+.Skill__CardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 18px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.Skill__CardTitle {
+  position: relative;
+  padding-left: 26px;
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: var(--lp2-tracking-md);
+  color: #06133d;
+}
+
+/* タイトル左のチェック印 */
+.Skill__CardTitle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 9px;
+  border-left: 3px solid var(--lp2-primary);
+  border-bottom: 3px solid var(--lp2-primary);
+  transform: translateY(-70%) rotate(-45deg);
+}
+
+.Skill__Chevron {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--lp2-primary);
+  border-bottom: 2px solid var(--lp2-primary);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.isOpen .Skill__Chevron {
+  transform: rotate(-135deg);
+}
+
+/* SP では閉じた状態で中身を隠す */
+.Skill__Panel {
+  display: none;
+  padding: 0 18px 20px;
+}
+
+.isOpen .Skill__Panel {
+  display: block;
+}
+
+/* 「技術」「できるようになること」の帯 */
+.Skill__Bar {
+  padding: 4px 10px;
+  background: linear-gradient(90deg, #5a3ce4 0%, #2f9df6 100%);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: var(--lp2-tracking-lg);
+  color: var(--lp2-white);
+  text-align: center;
+}
+
+.Skill__Bar + * {
+  margin-top: 12px;
+}
+
+.Skill__Tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.Skill__Tags li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #fffbdc;
+  font-size: 15px;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: var(--lp2-grey);
+}
+
+.Skill__Tags img {
+  width: 20px;
+  height: auto;
+}
+
+.Skill__Outcomes li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 15px;
+  line-height: 1.66;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: var(--lp2-grey);
+}
+
+.Skill__Outcomes li::before {
+  content: '';
+  position: absolute;
+  top: 0.6em;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--lp2-primary);
+}
+
+/* --- PC ----------------------------------------------------------------- */
+
+@media screen and (min-width: 768px) {
+  .Skill {
+    min-height: 1700px;
+    padding: 78px 0 0;
+  }
+
+  .Skill__Inner {
+    padding-inline: 0;
+  }
+
+  .Skill__Title {
+    margin-top: 34px;
+  }
+
+  .Skill__TitleSmall {
+    font-size: 56.33px;
+  }
+
+  .Skill__TitleLarge {
+    font-size: 60.06px;
+  }
+
+  .Skill__Lead {
+    margin-top: 26px;
+    font-size: 30.03px;
+  }
+
+  /* タップの案内は SP だけのもの */
+  .Skill__Hint {
+    display: none;
+  }
+
+  /* PSD: 上段 3 枚(346x527)を x173/548/923、下段 2 枚(346x421)を x368/729 */
+  .Skill__Cards {
+    display: grid;
+    grid-template-columns: repeat(3, 346px);
+    justify-content: center;
+    gap: 41px 29px;
+    margin-top: 60px;
+  }
+
+  .Skill__Card:nth-child(4) {
+    grid-column: 1 / 2;
+    justify-self: end;
+    margin-right: -166px;
+  }
+
+  .Skill__Card:nth-child(5) {
+    grid-column: 2 / 3;
+    justify-self: end;
+    margin-right: -166px;
+  }
+
+  .Skill__CardHead {
+    padding: 20px 22px 12px;
+    cursor: default;
+  }
+
+  .Skill__CardTitle {
+    font-size: 25.72px;
+  }
+
+  /* PC は常時展開。開閉の矢印も出さない */
+  .Skill__Chevron {
+    display: none;
+  }
+
+  .Skill__Panel {
+    display: block;
+    padding: 0 22px 24px;
+  }
+
+  .Skill__Tags li {
+    font-size: 15.14px;
+  }
+
+  .Skill__Outcomes li {
+    font-size: 15.14px;
+  }
+}

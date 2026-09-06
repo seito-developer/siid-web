@@ -1,0 +1,36 @@
+// PRICING の 3 プラン(docs/spec/lp2-sections/11-plan.md)。
+export const LP2_PLANS = [
+  {
+    id: 'career',
+    name: 'Career',
+    lead: 'まずは転職に挑戦したい方向け',
+    listPrice: '528,000円',
+    afterLabel: '給付金適用後',
+    afterPrice: '110,000円～',
+    monthlyLabel: '月額分割払い',
+    monthly: '月々22,000円～（税込）',
+    recommended: false,
+  },
+  {
+    id: 'fullsupport',
+    name: 'Career + FullSupport',
+    lead: '本気で転職・キャリアアップを目指す方向け',
+    listPrice: '698,000円',
+    afterLabel: '給付金適用後',
+    afterPrice: '258,600円～',
+    monthlyLabel: '月額分割払い',
+    monthly: '月々29,083円～（税込）',
+    recommended: true,
+  },
+  {
+    id: 'advisor',
+    name: '顧問プラン',
+    lead: '個人・企業様向けに幅広い内容をサポート',
+    listPrice: null,
+    afterLabel: 'お問い合わせ',
+    afterPrice: '個別見積もり',
+    monthlyLabel: null,
+    monthly: null,
+    recommended: false,
+  },
+];

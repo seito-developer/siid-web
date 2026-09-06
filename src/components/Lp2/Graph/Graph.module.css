@@ -1,0 +1,158 @@
+/*
+ * コース比較表。PSD 実測(PC セクション 1440x1374、y865..2239)。
+ *   表 1097x1121 @(172,987)= セクション上端から 122
+ *   注記 y2151 = セクション上端から 1286
+ */
+
+.Graph {
+  position: relative;
+  overflow: hidden;
+  padding: 24px 0 30px;
+  background: #0a1240;
+}
+
+.Graph__Bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Graph__Inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--lp2-canvas);
+  margin-inline: auto;
+  padding-inline: 12px;
+}
+
+.Graph__ScrollHint {
+  font-size: 15px;
+  letter-spacing: var(--lp2-tracking-xl);
+  color: var(--lp2-white);
+  text-align: right;
+}
+
+.Graph__TableWrap {
+  margin-top: 8px;
+  overflow-x: auto;
+}
+
+.Graph__Table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: separate;
+  border-spacing: 2px;
+  font-family: var(--lp2-font-body);
+  text-align: center;
+}
+
+.Graph__Table :is(th, td) {
+  padding: 10px 8px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: #1b2453;
+  background: var(--lp2-white);
+  vertical-align: middle;
+}
+
+/* 見出し列 */
+.Graph__Table tbody th {
+  width: 108px;
+  background: #eaf3fb;
+}
+
+/* 見出し行 */
+.Graph__Table thead th {
+  font-size: 20px;
+  color: var(--lp2-white);
+  background: linear-gradient(180deg, #2f7cf5 0%, #2f9df6 100%);
+}
+
+.Graph__Table thead th:first-child {
+  font-size: 14px;
+  background: linear-gradient(180deg, #2fb6f6 0%, #2f9df6 100%);
+}
+
+/* FullSupport の列を強調する */
+.Graph__Table thead .isFeatured {
+  color: #ffe14d;
+  background: linear-gradient(180deg, #6a4ef4 0%, #2fa8f8 100%);
+}
+
+.Graph__Table tbody .isFeatured {
+  background: #f4f8ff;
+}
+
+.Graph__SrOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.Graph__Note {
+  margin-top: 18px;
+  font-size: 12px;
+  line-height: 1.7;
+  letter-spacing: var(--lp2-tracking-lg);
+  color: var(--lp2-white);
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .Graph {
+    min-height: 1374px;
+    padding: 122px 0 0;
+  }
+
+  .Graph__Inner {
+    padding-inline: 0;
+  }
+
+  .Graph__ScrollHint {
+    display: none;
+  }
+
+  .Graph__TableWrap {
+    margin-top: 0;
+    overflow-x: visible;
+  }
+
+  .Graph__Table {
+    /* PSD: 1097x1121 @(172,987) */
+    width: 1097px;
+    min-width: 0;
+    margin-inline: auto;
+  }
+
+  .Graph__Table :is(th, td) {
+    padding: 14px 10px;
+    font-size: 16px;
+  }
+
+  .Graph__Table tbody th {
+    width: 150px;
+  }
+
+  .Graph__Table thead th {
+    font-size: 30px;
+  }
+
+  .Graph__Table thead th:first-child {
+    font-size: 18px;
+  }
+
+  .Graph__Note {
+    margin-top: 44px;
+    font-size: 16px;
+  }
+}
