@@ -28,7 +28,8 @@
 .About__Lead {
   max-width: 248px;
   padding-bottom: 6px;
-  border-bottom: 2px solid var(--lp2-white);
+  /* PSD 実測: 下線と三角は黄色(#fff66d) */
+  border-bottom: 2px solid #fff66d;
   font-weight: 700;
   font-size: 15px;
   line-height: 1.3;
@@ -41,7 +42,7 @@
   height: 0;
   border-left: 6.5px solid transparent;
   border-right: 6.5px solid transparent;
-  border-top: 6px solid var(--lp2-white);
+  border-top: 6px solid #fff66d;
 }
 
 .About__Sub {
@@ -107,11 +108,15 @@
   }
 
   .About__Lead {
+    /* PSD: 文字 817x29 @(309,861)、下線 820x4 @(310,902)。
+       下線は要素の下端なので、余白の内訳で文字の位置を合わせる */
     max-width: none;
-    padding-bottom: 12px;
+    padding-top: 7px;
+    padding-bottom: 5px;
     border-bottom-width: 4px;
     font-size: 30px;
     line-height: 1.2;
+    letter-spacing: 0.148em;
   }
 
   .About__Caret {
@@ -122,7 +127,7 @@
 
   .About__Sub {
     /* 下線の下 33px(PSD: 下線 y906 → サブ y939) */
-    margin-top: 24px;
+    margin-top: 21px;
     font-size: 30px;
   }
 
@@ -138,7 +143,7 @@
     margin-top: 26px;
     font-size: 78.03px;
     line-height: 1;
-    letter-spacing: 0.09em;
+    letter-spacing: 0.109em;
     white-space: nowrap;
   }
 
@@ -146,10 +151,11 @@
     /* PSD: 白帯 795x49 @ y1114、1 行に収まる */
     flex-direction: row;
     gap: 0;
-    /* PSD: 見出し下端 y1079 → 白帯 y1114、帯の高さ 49px */
-    margin-top: 30px;
+    /* PSD: 見出し下端 y1079 → 白帯 y1114、帯の高さ 49px(795x49 @x323) */
+    margin-top: 39px;
     font-size: 29.69px;
     line-height: 1;
+    letter-spacing: 0.152em;
   }
 
   .About__Result span {

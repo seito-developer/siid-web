@@ -294,6 +294,21 @@ def _match_reference(image: Any, reference_path: str, box: tuple | None) -> Any:
             continue
         slope, intercept = np.polyfit(x, y, 1)
         out[..., c] = a[..., c] * slope + intercept
+
+    # 背景は横方向のグラデーションが主なので、全体の線形補正だけでは
+    # 端の色が 10 前後ずれて残る。列ごとの中央値でさらに詰める
+    # (中央値なので、列の一部を文字が占めていても引きずられない)。
+    diff = np.where(mask[..., None], b - out, np.nan)
+    with np.errstate(invalid="ignore"):
+        per_column = np.nanmedian(diff, axis=0)
+    per_column = np.nan_to_num(per_column, nan=0.0)
+    # 隣の列と平均して、1 列だけ極端な値になるのを避ける
+    kernel = np.ones(15) / 15
+    for c in range(3):
+        padded = np.pad(per_column[:, c], 7, mode="edge")
+        per_column[:, c] = np.convolve(padded, kernel, mode="valid")
+    out += per_column[None, :, :]
+
     corrected = np.clip(out, 0, 255).astype(np.uint8)
     residual = np.abs(corrected.astype(np.int16) - b.astype(np.int16))[mask].mean()
     print(f"  基準画像に合わせて色を補正した(残差 {residual:.2f} / 255)")
