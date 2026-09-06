@@ -112,6 +112,16 @@ export const pages = {
     url: '/lp-1',
     description: '未経験から最短でエンジニア転職が目指せるAIプログラミングスクールSiiD。経済産業省リスキル講座認定で受講料は給付金により最大80%OFF。現役エンジニアの個別指導と就活サポートで目標達成率88%・受講生満足度92%。無料カウンセリング受付中。',
   },
+  lp2: {
+    name: {
+      ja: 'AIプログラミングスクール SiiD',
+      en: 'SiiD LP',
+    },
+    url: '/lp-2',
+    description: 'AI時代に、選ばれるエンジニアへ。<br />元人事部長の現役エンジニアが、学習から内定まで総合プロデュースします。',
+    metaDescription:
+      '未経験からITエンジニア転職を目指すAIプログラミングスクールSiiD。経済産業省リスキル講座認定で受講料は給付金により最大80%OFF。元人事部長の現役エンジニアが採用する側の目線で学習から内定まで総合プロデュースします。無料カウンセリング受付中。',
+  },
   counselingComplete: {
     name: {
       ja: 'ご予約完了',
@@ -134,6 +144,8 @@ interface BuildPageMetadataOptions {
   // ページネーション等で page.url と実 URL が異なる場合に指定(例: '/career-path/2')
   canonicalPath?: string;
   noindex?: boolean;
+  // 共通 OGP 画像ではなくページ固有の画像を使う場合に指定(例: '/images/lp-2/ogp.png')
+  ogpImagePath?: string;
 }
 
 // title / description / canonical / OGP / Twitter Card をまとめて生成する共通ヘルパー。
@@ -143,7 +155,7 @@ export function buildPageMetadata(page: PageMeta, options: BuildPageMetadataOpti
   const title = options.title ?? `${page.name.ja} | ${commonTitle}`;
   const description = page.metaDescription ?? handleStringHTML(page.description, false);
   const canonical = `${SITE_URL}${options.canonicalPath ?? page.url}`.replace(/\/$/, '');
-  const ogpImage = `${SITE_URL}${OGP_IMAGE_PATH}`;
+  const ogpImage = `${SITE_URL}${options.ogpImagePath ?? OGP_IMAGE_PATH}`;
 
   return {
     title,

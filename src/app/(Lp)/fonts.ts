@@ -1,4 +1,11 @@
-import { Barlow_Semi_Condensed, Noto_Sans_JP, Poppins } from 'next/font/google';
+import {
+  Barlow_Semi_Condensed,
+  Jost,
+  Noto_Sans_JP,
+  Poppins,
+  Shippori_Mincho_B1,
+  Zen_Kaku_Gothic_Antique,
+} from 'next/font/google';
 
 // lp-1 専用フォント。既存サイト(constants/common.ts)とはウェイト構成が異なるため
 // LP 専用の変数として定義する(旧LPは Noto 400/700/900 + Poppins 500-800 + Barlow 700 を使用)。
@@ -21,4 +28,43 @@ export const barlowSemiCondensedLp = Barlow_Semi_Condensed({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-barlow-lp',
+});
+
+// --- lp-2(新デザイン)専用フォント ---
+//
+// デザインで使われている商用フォントは使用できないため無料 Web フォントへ置換する
+// (docs/spec/07_lp2-renewal.md §6)。lp-1 の描画に影響させないよう別変数で定義する。
+
+// 見出し・CTA・強調。筑紫ゴシック H / E の代替。
+// 筑紫ゴシックはオールドスタイルの温かみを意図した人文的書体であり、
+// 同じ設計思想を持つ Zen Kaku Gothic Antique が最も近い。
+export const zenKakuGothicAntiqueLp2 = Zen_Kaku_Gothic_Antique({
+  weight: ['400', '500', '700', '900'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-display-lp2',
+});
+
+// 英字セクションラベル(RESULTS / VOICE 等)と装飾数字。FuturaPT / Futura / Avenir の代替。
+export const jostLp2 = Jost({
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-latin-lp2',
+});
+
+// 給付金バッジ。筑紫明朝の代替。
+export const shipporiMinchoB1Lp2 = Shippori_Mincho_B1({
+  weight: ['600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mincho-lp2',
+});
+
+// STEP ラベル。DIN 2014 の代替。lp-1 用は 700 のみのため lp-2 用に別途定義する。
+export const barlowSemiCondensedLp2 = Barlow_Semi_Condensed({
+  weight: ['500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-condensed-lp2',
 });
