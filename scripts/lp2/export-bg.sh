@@ -22,6 +22,7 @@ ROWS=(
   "step|sp/seitosama_lp_sp03|0,0,750,4620|sp/step|"
   "support|sp/seitosama_lp_sp05|0,0,750,1646|sp/support|"
   "present|sp/seitosama_lp_sp10|0,0,750,3176|sp/present|"
+  "plan|sp/seitosama_lp_sp06|0,0,750,1525|sp/plan|*/tab:*/label_recom"
 
   # PC。カード類は各コンポーネントが画像で持っているものもあるため、
   # ここでは「テキストだけを隠す」ぶんに留める(重ねて描いても同じ絵になる)。

@@ -1,16 +1,21 @@
 /*
- * PRICING。PSD 実測(PC セクション 1440x865)。
- *   PRICING y49(38.1px) / 「選べる」y97 / 「3」y100(174.5px) / 「つのプラン」y162
- *   カード Career 339x434 @(192,333) / FullSupport 374x534 @(535,268) / 顧問 336x429 @(913,334)
- *   講師の切り抜き 179x358 @(921,34) / 注記 y789
+ * PRICING。カードの枠・グラデーション・CTA ボタンの意匠はセクション背景の
+ * 画像に含まれる。CSS では文字とタブだけを実測座標で置く。
+ *
+ * PC: セクション 1440x865。カードを 3 枚並べる
+ * SP: セクション 750x1525(= CSS 375x762.5)。カンプはタブで 1 枚ずつ切り替え
+ *   PRICING y25.5 / 3 y51 / 選べる y49.5 / つのプラン y82
+ *   タブ 342x69 @(17,146.5)(中央だけ 11px 高い)
+ *   おすすめ 142.5x34.5 @(116.5,227.5) / プラン名 y273 / リード y327
+ *   価格 y382.5 / y414.5 / y446.5 / y478.5 / CTA 299.5x70.5 @(41.5,547)
+ *   注記 y682
  */
 
 .Plan {
-  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
-  min-height: 763px;
   position: relative;
   overflow: hidden;
-  padding: 28px 0 34px;
+  min-height: 762.5px;
+  padding: 0;
   background: #060b26;
 }
 
@@ -27,159 +32,225 @@
   position: relative;
   z-index: 1;
   max-width: var(--lp2-canvas);
+  height: 762.5px;
   margin-inline: auto;
   text-align: center;
 }
 
-.Plan__Label,
-.Plan__Title,
-.Plan__Note {
-  padding-inline: 16px;
+.Plan__Inner > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
 }
 
 .Plan__Label {
+  top: 25.5px;
+  padding: 0;
   font-family: var(--lp2-font-latin);
   font-weight: 700;
   font-style: oblique 12deg;
-  font-size: 22px;
-  letter-spacing: var(--lp2-tracking-label);
-  text-indent: var(--lp2-tracking-label);
+  font-size: 19px;
+  line-height: 1;
+  letter-spacing: 0.387em;
+  text-indent: 0.387em;
   color: rgba(255, 255, 255, 0.42);
 }
 
 .Plan__Title {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-areas:
-    'number small'
-    'number large';
-  align-items: center;
-  justify-content: center;
-  column-gap: 6px;
-  margin-top: 6px;
+  position: static;
+  display: block;
+  margin: 0;
+}
+
+.Plan__Title span {
+  position: absolute;
+  line-height: 1;
 }
 
 .Plan__TitleNumber {
-  grid-area: number;
-}
-
-.Plan__TitleSmall {
-  grid-area: small;
-  font-size: 28px;
-  color: var(--lp2-highlight);
-}
-
-.Plan__TitleNumber {
-  align-self: center;
-  font-family: var(--lp2-font-condensed);
+  /* カンプの「3」は 100x123。等幅寄りの字形なので condensed ではなく latin */
+  top: 41px;
+  left: 76px;
+  font-family: var(--lp2-font-latin);
   font-weight: 700;
-  font-size: 84px;
-  line-height: 0.9;
+  font-size: 81.1px;
   color: #f6edbb;
 }
 
-.Plan__TitleLarge {
-  grid-area: large;
-  font-size: 32px;
-  color: var(--lp2-cyan-light);
+.Plan__TitleSmall {
+  top: 47px;
+  left: 155px;
+  font-size: 30.1px;
+  color: var(--lp2-highlight);
 }
 
-/* 講師の切り抜き。SP では出さない */
+.Plan__TitleLarge {
+  top: 80.5px;
+  left: 122.5px;
+  font-size: 33.5px;
+  letter-spacing: 0.087em;
+  /* SP のカンプはクリーム色(PC は水色) */
+  color: #fffed9;
+}
+
+/* 講師の切り抜きは背景画像に含まれる */
 .Plan__Instructor {
   display: none;
 }
 
-/* --- カード -------------------------------------------------------------- */
+/* --- タブ ---------------------------------------------------------------- */
 
-/* SP のカンプは 1 プランずつ横に並べたスライダー構成(sec_plan の複製が 3 つ)。
-   縦積みにすると倍以上の高さになるため、横スクロール + スナップで再現する。 */
-.Plan__Cards {
+.Plan__Tabs {
+  top: 146.5px;
+  left: 17px;
+  right: auto;
   display: flex;
-  gap: 12px;
-  margin-top: 20px;
-  padding-inline: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
+  align-items: flex-end;
+  width: 342px;
+  height: 69px;
 }
 
-.Plan__Cards::-webkit-scrollbar {
+.Plan__Tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 115px;
+  height: 58px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px 8px 0 0;
+  background: #5757ef;
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  /* PSD: 「Career」78x15.5 / 「顧問プラン」88.5x16 / 中央のタブは 2 行 */
+  font-size: 15.5px;
+  line-height: 1.2;
+  letter-spacing: 0.29em;
+  text-indent: 0.29em;
+  color: var(--lp2-white);
+  cursor: pointer;
+}
+
+.Plan__Tabs li:nth-child(2) .Plan__Tab {
+  width: 114.5px;
+  height: 69px;
+  padding-top: 6px;
+  background: #4986f7;
+  font-size: 14.5px;
+  line-height: 0.97;
+  letter-spacing: 0.083em;
+  text-indent: 0.083em;
+  color: #fff66d;
+}
+
+.Plan__Tabs li:nth-child(3) .Plan__Tab {
+  width: 115px;
+  background: #2cacfc;
+  font-size: 16.5px;
+  letter-spacing: 0.07em;
+  text-indent: 0.07em;
+}
+
+.Plan__TabStars {
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  color: #fff66d;
+}
+
+/* --- カード -------------------------------------------------------------- */
+
+.Plan__Cards {
+  position: static;
+  display: block;
+  gap: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+/* 枠は背景画像に含まれる。SP は選択中の 1 枚だけを見せる */
+.Plan__CardBg {
   display: none;
 }
 
-/* 枠とグラデーションはカンプの書き出しを敷き、その上に文字を置く */
-.Plan__CardBg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-}
-
-.Plan__Card > :not(.Plan__CardBg) {
-  position: relative;
-  z-index: 1;
-}
-
 .Plan__Card {
-  position: relative;
-  flex: 0 0 auto;
-  width: 86%;
-  max-width: 342px;
-  padding: 16px 16px 18px;
-  scroll-snap-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  max-width: none;
+  padding: 0;
 }
 
-.isRecommended {
-  max-width: 342px;
-  padding-top: 22px;
+.Plan__Card:not(.isActive) {
+  display: none;
+}
+
+.Plan__Card > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
 }
 
 .Plan__Badge {
-  /* 下地のピンクの角丸は意匠画像に含まれるため、文字だけを重ねる */
-  align-self: center;
-  margin-top: 4px;
+  top: 227.5px;
+  left: 116.5px;
+  right: auto;
+  width: 142.5px;
+  padding: 5.5px 0;
+  background: #f8006f;
   font-family: var(--lp2-font-body);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 22.6px;
+  line-height: 1;
   letter-spacing: var(--lp2-tracking-md);
   color: #fcf251;
+  text-align: center;
 }
 
 .Plan__Name {
+  top: 270px;
   font-family: var(--lp2-font-body);
   font-weight: 800;
-  font-size: 26px;
+  font-size: 25.3px;
+  line-height: 1;
   letter-spacing: var(--lp2-tracking-md);
   color: #5562f1;
 }
 
 .isRecommended .Plan__Name {
-  font-size: 22px;
-  color: #fff66d;
+  color: #4d6ff3;
 }
 
 .Plan__Lead {
-  margin-top: 10px;
-  font-size: 15px;
-  line-height: 1.5;
-  letter-spacing: var(--lp2-tracking-sm);
+  /* PSD: 457x81 @(167,654)。2 行に収まる幅にして折り返し位置を合わせる */
+  top: 322.5px;
+  width: 254.5px;
+  margin-inline: auto;
+  padding-left: 26px;
+  font-feature-settings: normal;
+  font-size: 16.3px;
+  line-height: 1.4;
+  letter-spacing: 0;
   color: var(--lp2-grey);
 }
 
 .Plan__Price {
+  top: 382.5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-top: 14px;
+  gap: 15px;
   font-size: 15px;
+  line-height: 1;
   letter-spacing: var(--lp2-tracking-sm);
   color: var(--lp2-white);
 }
 
- /* ピンクのピルと取り消し線は意匠画像側にある */
 .Plan__Price del {
   text-decoration: none;
 }
@@ -189,35 +260,55 @@
 }
 
 .Plan__AfterPrice {
-  margin-top: 8px;
-  font-size: 20px;
+  top: 411px;
+  font-feature-settings: normal;
+  font-size: 23.7px;
+  line-height: 1;
   letter-spacing: var(--lp2-tracking-sm);
   color: #5562f1;
 }
 
 .Plan__MonthlyLabel {
-  margin-top: 4px;
+  top: 444px;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 24.4px;
+  line-height: 1;
   color: #5562f1;
 }
 
 .Plan__Monthly {
-  margin-top: 4px;
+  top: 474px;
+  font-feature-settings: normal;
   font-weight: 700;
-  font-size: 22px;
+  font-size: 29.3px;
+  line-height: 1;
   letter-spacing: var(--lp2-tracking-sm);
   color: #5562f1;
 }
 
+.Plan__MonthlyTax {
+  font-size: 0.63em;
+}
+
 .Plan__Cta {
-  margin-top: 16px;
+  /* カンプ実測: 緑の角丸 601x152 @(83,1081) = CSS 300.5x76 @(41.5,540.5) */
+  top: 540.5px;
+  left: 41.5px;
+  right: auto;
+  width: 300.5px;
+  min-width: 0;
+  height: 76px;
+  margin: 0;
 }
 
 .Plan__Note {
-  margin-top: 26px;
-  font-size: 11px;
-  line-height: 1.7;
+  /* PSD: 497x71 @(127,1364) = CSS 248.5x35.5 @(63.5,682) の 3 行 */
+  top: 682px;
+  width: 249px;
+  margin-inline: auto;
+  font-feature-settings: normal;
+  font-size: 9.5px;
+  line-height: 1.25;
   letter-spacing: var(--lp2-tracking-sm);
   color: rgba(255, 255, 255, 0.86);
 }
@@ -227,15 +318,29 @@
 @media screen and (min-width: 768px) {
   .Plan {
     min-height: 865px;
-    padding: 49px 0 0;
+    padding: 0;
   }
 
   .Plan__Inner {
+    height: 865px;
     padding-inline: 0;
+  }
+
+  .Plan__Tabs {
+    display: none;
+  }
+
+  .Plan__Card:not(.isActive) {
+    display: block;
+  }
+
+  .Plan__CardBg {
+    display: block;
   }
 
   .Plan__Label {
     /* PSD: 261x26 @(577,49)。中央(720)ではなく 12.5px 左にずれている */
+    top: 49px;
     padding-right: 25px;
     font-size: 38.06px;
     letter-spacing: 0.387em;
@@ -248,10 +353,10 @@
      ブロック自体の上端は y126(セクション上端 49 + ラベル 67 + 余白 10)なので、
      上 2 つは負の top になる */
   .Plan__Title {
+    position: static;
     display: block;
-    position: relative;
-    height: 169px;
-    margin-top: 10px;
+    height: auto;
+    margin: 0;
   }
 
   .Plan__Title span {
@@ -260,7 +365,7 @@
   }
 
   .Plan__TitleSmall {
-    top: -29px;
+    top: 97px;
     left: 642px;
     font-size: 56.39px;
     letter-spacing: 0;
@@ -268,22 +373,23 @@
 
   .Plan__TitleNumber {
     /* PSD の字形より縦長のため、高さ(125px)が合う大きさにしている */
-    top: -26px;
+    top: 100px;
     left: 486px;
     font-size: 139px;
   }
 
   .Plan__TitleLarge {
-    top: 36px;
+    top: 162px;
     left: 577px;
     font-size: 64.55px;
     letter-spacing: 0.087em;
+    color: var(--lp2-cyan-light);
   }
 
   /* PSD: 179x358 @(921,34)。見出しの右に重なる */
   .Plan__Instructor {
     position: absolute;
-    top: -15px;
+    top: 34px;
     left: 921px;
     display: block;
     width: 179px;
@@ -293,10 +399,15 @@
   /* PSD: FullSupport は他の 2 枚より 65px 上に出る(中央揃えではない)。
      カード幅 339 + 374 + 336 と隙間 4px x2 = 1057 が 1440 の中央に来る */
   .Plan__Cards {
+    position: absolute;
+    top: 268px;
+    left: 0;
+    right: 0;
+    display: flex;
     align-items: flex-start;
     justify-content: center;
     gap: 4px;
-    margin-top: -27px;
+    margin-top: 0;
     padding-inline: 0;
     overflow-x: visible;
   }
@@ -304,6 +415,8 @@
   /* PSD: Career 339x434 @(192,333) / FullSupport 374x534 @(535,268) /
      顧問 336x429 @(913,334) */
   .Plan__Card {
+    position: relative;
+    top: auto;
     display: block;
     flex: none;
     width: 339px;
@@ -437,7 +550,13 @@
     letter-spacing: 0.167em;
   }
 
+  /* PC は「おすすめ」の下地も意匠画像に含まれるため、文字だけを重ねる */
   .Plan__Badge {
+    left: 0;
+    right: 0;
+    width: auto;
+    padding: 0;
+    background: none;
     font-size: 21.4px;
     line-height: 1;
     letter-spacing: 0.2em;
@@ -452,6 +571,11 @@
     /* PSD: 1 文字 17.4px(14 文字で 243〜244px)。この幅で 1 行目が
        「まずは転職に挑戦したい方向け」「本気で転職・キャリアアップを」で折り返す */
     letter-spacing: 0.0873em;
+  }
+
+  .Plan__Lead {
+    width: auto;
+    margin-inline: 0;
   }
 
   .isRecommended .Plan__Lead {
@@ -517,13 +641,17 @@
     padding: 0 22px;
   }
 
-  .Plan__Cta span {
+  .Plan__Card .Plan__Cta span {
     font-size: 18.5px;
     line-height: 1.2;
   }
 
-  .isRecommended .Plan__Cta span {
+  .Plan__Card.isRecommended .Plan__Cta span {
     font-size: 20.9px;
+  }
+
+  .Plan__Card .Plan__Cta .Arrows {
+    display: inline-flex;
   }
 
   .Plan__Cta svg {
@@ -539,7 +667,9 @@
   /* PSD: y789。カードと縦位置が重なるため絶対配置にする */
   .Plan__Note {
     position: absolute;
-    top: 740px;
+    top: 789px;
+    width: auto;
+    margin-inline: 0;
     left: 0;
     right: 0;
     margin-top: 0;

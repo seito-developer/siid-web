@@ -1,3 +1,7 @@
+'use client';
+
+import React, { useState } from 'react';
+
 import Image from 'next/image';
 
 import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
@@ -9,9 +13,12 @@ import SectionBg from '../SectionBg/SectionBg';
 import styles from './Plan.module.css';
 
 // PRICING(docs/spec/lp2-sections/11-plan.md)。
-// 中央の FullSupport だけ一回り大きく、王冠と「おすすめ」バッジが付く。
+// PC はカードを 3 枚並べ、中央の FullSupport だけ一回り大きく「おすすめ」が付く。
+// SP はカンプどおりタブで 1 プランずつ切り替える(既定は FullSupport)。
 
 export default function Plan() {
+  const [activeIndex, setActiveIndex] = useState(1);
+
   return (
     <section className={styles.Plan} id="plan">
       <SectionBg
@@ -42,11 +49,45 @@ export default function Plan() {
           quality={LP2_IMAGE_QUALITY}
         />
 
+        {/* SP だけのタブ。PC ではカードを 3 枚並べるので出さない */}
+        <ul className={styles.Plan__Tabs} role="tablist" aria-label="料金プラン">
+          {LP2_PLANS.map((plan, i) => (
+            <li key={plan.id}>
+              <button
+                type="button"
+                role="tab"
+                id={`lp2-plan-tab-${plan.id}`}
+                aria-selected={i === activeIndex}
+                aria-controls={`lp2-plan-panel-${plan.id}`}
+                className={`${styles.Plan__Tab} ${i === activeIndex ? styles.isActive : ''}`}
+                onClick={() => setActiveIndex(i)}
+              >
+                {plan.recommended && (
+                  <span className={styles.Plan__TabStars} aria-hidden="true">
+                    ★★★★★
+                  </span>
+                )}
+                {plan.tab.split('\n').map((line, j) => (
+                  <span key={line}>
+                    {j > 0 && <br />}
+                    {line}
+                  </span>
+                ))}
+              </button>
+            </li>
+          ))}
+        </ul>
+
         <ul className={styles.Plan__Cards}>
-          {LP2_PLANS.map((plan) => (
+          {LP2_PLANS.map((plan, i) => (
             <li
               key={plan.id}
-              className={`${styles.Plan__Card} ${plan.recommended ? styles.isRecommended : ''}`}
+              id={`lp2-plan-panel-${plan.id}`}
+              role="tabpanel"
+              aria-labelledby={`lp2-plan-tab-${plan.id}`}
+              className={`${styles.Plan__Card} ${plan.recommended ? styles.isRecommended : ''} ${
+                i === activeIndex ? styles.isActive : ''
+              }`}
             >
               {/* カードの枠・グラデーションはカンプの意匠をそのまま使う */}
               <Image
@@ -71,9 +112,16 @@ export default function Plan() {
               <p className={styles.Plan__AfterPrice}>{plan.afterPrice}</p>
 
               {plan.monthlyLabel && <p className={styles.Plan__MonthlyLabel}>{plan.monthlyLabel}</p>}
-              {plan.monthly && <p className={styles.Plan__Monthly}>{plan.monthly}</p>}
+              {plan.monthly && (
+                <p className={styles.Plan__Monthly}>
+                  {plan.monthly}
+                  {plan.monthlyTax && (
+                    <span className={styles.Plan__MonthlyTax}>{plan.monthlyTax}</span>
+                  )}
+                </p>
+              )}
 
-              <CtaButton className={styles.Plan__Cta} />
+              <CtaButton size="pc" className={styles.Plan__Cta} />
             </li>
           ))}
         </ul>
