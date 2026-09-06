@@ -1,0 +1,304 @@
+/*
+ * FV。PSD 実測(PC 1440px 幅)を基準に組む。
+ * SP はカンプ(750px = @2x)を CSS 375px に換算した値。
+ */
+
+.Fv {
+  position: relative;
+  overflow: hidden;
+  background: #0b1230;
+}
+
+/* --- 背景動画 ----------------------------------------------------------- */
+
+.Fv__Media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.Fv__Video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* PSD の over(暗いシェイプ)。白文字の可読性を確保する */
+.Fv__Scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 12, 38, 0.72) 0%, rgba(6, 12, 38, 0.62) 55%, rgba(6, 12, 38, 0.86) 100%);
+}
+
+/* --- 本文 --------------------------------------------------------------- */
+
+.Fv__Body {
+  position: relative;
+  z-index: 1;
+  padding: 62px 20px 26px;
+  text-align: center;
+  color: var(--lp2-white);
+}
+
+.Fv__Tagline {
+  font-family: var(--lp2-font-display);
+  font-weight: 900;
+  font-size: 12.4px;
+  letter-spacing: 0.18em;
+  color: var(--lp2-cyan);
+}
+
+.Fv__Copy {
+  margin-top: 14px;
+  font-size: 38px;
+  line-height: 1.24;
+  letter-spacing: var(--lp2-tracking-md);
+}
+
+.Fv__CopyAccent {
+  letter-spacing: var(--lp2-tracking-sm);
+  color: #fef579;
+}
+
+/* 帯付きのコピー 2 本。PSD では y=347 と y=401 に縦に積まれている */
+.Fv__Ribbon {
+  /* 内容幅に縮みつつブロックとして積むため table を使う */
+  display: table;
+  margin: 12px auto 0;
+  padding: 6px 16px;
+  background: rgba(38, 47, 122, 0.92);
+  font-family: var(--lp2-font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: var(--lp2-tracking-md);
+}
+
+.Fv__RibbonAccent {
+  color: #fff991;
+  letter-spacing: var(--lp2-tracking-lg);
+}
+
+/* --- 経産省バッジ -------------------------------------------------------- */
+
+.Fv__Badge {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: 2px;
+  width: 264px;
+  margin-inline: auto;
+  min-height: 78px;
+  margin-top: 16px;
+  padding: 10px 14px;
+  font-family: var(--lp2-font-mincho);
+}
+
+.Fv__BadgeBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.Fv__Badge > :not(.Fv__BadgeBg) {
+  position: relative;
+}
+
+.Fv__BadgeMinistry {
+  padding: 1px 12px;
+  background: linear-gradient(180deg, #f7e9ae 0%, #cfa94f 100%);
+  color: #282924;
+  font-size: 11.7px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.Fv__BadgeTitle {
+  font-size: 15.3px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--lp2-white);
+}
+
+.Fv__BadgeGrant {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--lp2-white);
+}
+
+.Fv__BadgeGrant strong {
+  font-size: 22.35px;
+  font-weight: 700;
+}
+
+/* --- 実績メダルと CTA の帯 ----------------------------------------------- */
+
+.Fv__Band {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px 22px;
+  background: linear-gradient(90deg, var(--lp2-fvband-from) 0%, #1b2a6b 50%, var(--lp2-fvband-to) 100%);
+}
+
+.Fv__Medals {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.Fv__Medal {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 104px;
+}
+
+.Fv__Medal img {
+  width: 100%;
+  height: auto;
+}
+
+.Fv__MedalLabel,
+.Fv__MedalValue {
+  position: absolute;
+  font-family: var(--lp2-font-mincho);
+  color: var(--lp2-white);
+  text-align: center;
+  line-height: 1.12;
+}
+
+.Fv__MedalLabel {
+  top: 24%;
+  font-size: 12.5px;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+}
+
+.Fv__MedalValue {
+  top: 48%;
+  font-size: 38px;
+  letter-spacing: 0.02em;
+}
+
+.Fv__MedalValue small {
+  font-size: 0.42em;
+  letter-spacing: 0.08em;
+}
+
+.Fv__Note {
+  font-size: 10px;
+  letter-spacing: var(--lp2-tracking-3xl);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* --- PC ----------------------------------------------------------------- */
+
+@media screen and (min-width: 768px) {
+  .Fv {
+    min-height: 783px;
+  }
+
+  .Fv__Body {
+    max-width: var(--lp2-canvas);
+    /* PSD 実測: 上部ラベルの左端 164px、ヘッダー(83px)の下から 30px */
+    padding: 113px 0 0 164px;
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  .Fv__Tagline {
+    font-size: 13.01px;
+  }
+
+  .Fv__Copy {
+    margin-top: 26px;
+    font-size: 79.36px;
+    line-height: 1.18;
+  }
+
+  .Fv__Ribbon {
+    margin-top: 18px;
+    padding: 10px 22px;
+    font-size: 21.32px;
+  }
+
+  .Fv__Body .Fv__Ribbon {
+    margin-inline: 0;
+  }
+
+  .Fv__Ribbon + .Fv__Ribbon {
+    margin-top: 8px;
+  }
+
+  .Fv__Badge {
+    width: 330px;
+    min-height: 97px;
+    /* PSD: リボン(y=401..447)の下 20px、左端は本文より 86px 内側 */
+    margin: 20px 0 0 86px;
+    padding: 12px 18px;
+  }
+
+  .Fv__BadgeMinistry {
+    font-size: 14.67px;
+  }
+
+  .Fv__BadgeTitle {
+    font-size: 19.17px;
+  }
+
+  .Fv__BadgeGrant {
+    font-size: 20.16px;
+  }
+
+  .Fv__BadgeGrant strong {
+    font-size: 22.35px;
+  }
+
+  /* 帯は FV の下端に重ね、メダルは帯の上へはみ出す(PSD の配置) */
+  .Fv__Band {
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-items: center;
+    gap: 0 40px;
+    height: 165px;
+    padding: 0 60px;
+  }
+
+  .Fv__Medals {
+    justify-self: end;
+    gap: 24px;
+  }
+
+  .Fv__Medal {
+    width: 169px;
+  }
+
+  .Fv__MedalLabel {
+    font-size: 20.5px;
+  }
+
+  .Fv__MedalValue {
+    font-size: 65px;
+  }
+
+  .Fv__Cta {
+    justify-self: start;
+  }
+
+  .Fv__Note {
+    position: absolute;
+    right: 60px;
+    bottom: 12px;
+    justify-self: end;
+  }
+}

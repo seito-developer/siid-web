@@ -1,8 +1,11 @@
 import { Metadata } from 'next';
 
+import About from '@/components/Lp2/About/About';
 import CookieBanner from '@/components/Lp2/CookieBanner/CookieBanner';
 import Footer from '@/components/Lp2/Footer/Footer';
+import Fv from '@/components/Lp2/Fv/Fv';
 import Header from '@/components/Lp2/Header/Header';
+import Result from '@/components/Lp2/Result/Result';
 import { buildPageMetadata, pages } from '@/constants/meta';
 
 import {
@@ -33,7 +36,11 @@ export default function Lp2() {
   return (
     <div className={`lp2 ${fontVariables} ${styles.Lp2}`} id="top">
       <Header />
-      <main>{/* セクションはフェーズ 3 以降で追加する */}</main>
+      <main>
+        <Fv />
+        <About />
+        <Result />
+      </main>
       <Footer />
       <CookieBanner />
     </div>

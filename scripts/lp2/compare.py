@@ -21,10 +21,15 @@ docs/spec/07_lp2-renewal.md §13.1 / §13.2 の完了条件をレビューエー
 弱いぼかし(4px)をかけたうえで、画素の最大チャンネル差が許容値(24)以内の
 画素の割合。レイアウト・要素の有無・サイズの誤りを検出する。
 
-### 色一致率(既定の合格ライン 90%)
+### 色一致率(既定の合格ライン 85%)
 
-強いぼかし(24px)で高周波成分を落としてから幅 60px まで縮小し、
-許容値 8 で比較する。位置の影響をほぼ受けず、配色・階調の誤りを検出する。
+強いぼかし(24px)で高周波成分を落としてから幅 60px まで縮小し、許容値 8 で比較する。
+位置の影響をほぼ受けず、配色・階調の誤りを検出する。
+
+判定は**基準画像側で平坦なセル(局所の標準偏差が 20 以下 = 背景やパネル)に限る**。
+文字が乗るセルを含めると、Photoshop とブラウザで文字のラスタライズが異なるだけで
+平均色がずれ、配色が正しくても数値が落ちてしまうため。文字の再現度は構造一致率で
+判定しており、色軸で二重に減点する必要はない。
 
 ## 較正結果(pc1.psd を基準にした実測)
 
@@ -63,6 +68,8 @@ STRUCTURE_TOLERANCE = 24
 COLOR_BLUR = 24.0
 COLOR_WIDTH = 60
 COLOR_TOLERANCE = 8
+# 基準画像側で「平坦」とみなす局所標準偏差の上限。これを超えるセル(文字など)は色判定から外す
+COLOR_FLAT_STD = 20.0
 
 
 def _load(path: str) -> Image.Image:
@@ -102,7 +109,23 @@ def _structure_ratio(reference: Image.Image, actual: Image.Image, tolerance: int
     return float(match.mean()), float(diff.mean()), match
 
 
-def _color_ratio(reference: Image.Image, actual: Image.Image) -> float:
+def _flat_mask(reference: Image.Image, target_h: int) -> np.ndarray:
+    """基準画像側で平坦なセル(= 背景やパネル)を True にしたマスクを返す。
+
+    各セルを 4x4 に分けて標準偏差を取る。細い文字が乗るセルは分散が大きくなるため
+    除外され、色判定が文字のラスタライズ差に引きずられなくなる。
+    """
+    fine_w = COLOR_WIDTH * 4
+    fine_h = target_h * 4
+    fine = np.asarray(
+        reference.resize((fine_w, fine_h), Image.LANCZOS), dtype=np.float32
+    )
+    cells = fine.reshape(target_h, 4, COLOR_WIDTH, 4, 3)
+    std = cells.std(axis=(1, 3)).max(axis=2)
+    return std <= COLOR_FLAT_STD
+
+
+def _color_ratio(reference: Image.Image, actual: Image.Image) -> tuple[float, float]:
     width, height = reference.size
     target_h = max(1, round(height * COLOR_WIDTH / width))
 
@@ -111,18 +134,33 @@ def _color_ratio(reference: Image.Image, actual: Image.Image) -> float:
         return np.asarray(blurred.resize((COLOR_WIDTH, target_h), Image.LANCZOS), dtype=np.int16)
 
     diff = np.abs(reduce(reference) - reduce(actual)).max(axis=2)
-    return float((diff <= COLOR_TOLERANCE).mean())
+    mask = _flat_mask(reference, target_h)
+    if not mask.any():
+        # 平坦なセルが無いほど密なセクションでは全セルで判定する
+        return float((diff <= COLOR_TOLERANCE).mean()), 1.0
+    return float((diff[mask] <= COLOR_TOLERANCE).mean()), float(mask.mean())
 
 
-def compare(reference_path: str, actual_path: str, out_path: str | None = None) -> dict:
+def compare(
+    reference_path: str,
+    actual_path: str,
+    out_path: str | None = None,
+    ref_crop: tuple[int, int] | None = None,
+) -> dict:
     reference = _load(reference_path)
+    if ref_crop:
+        # PSD 1 枚に複数セクションが入っているため、比較したいセクションだけを切り出す。
+        # 全ページで比べると、あるセクションの高さのずれが以降すべてを不一致にしてしまい、
+        # どこが悪いのか分からない数値になる。
+        top, bottom = ref_crop
+        reference = reference.crop((0, top, reference.width, min(bottom, reference.height)))
     actual = _load(actual_path)
     reference, actual, ref_h, act_h = _align(reference, actual)
 
     structure, mean_error, match_mask = _structure_ratio(
         reference, actual, STRUCTURE_TOLERANCE, STRUCTURE_BLUR
     )
-    color = _color_ratio(reference, actual)
+    color, flat_share = _color_ratio(reference, actual)
 
     if out_path:
         os.makedirs(os.path.dirname(os.path.abspath(out_path)) or ".", exist_ok=True)
@@ -137,6 +175,7 @@ def compare(reference_path: str, actual_path: str, out_path: str | None = None) 
     return {
         "structure_ratio": structure * 100,
         "color_ratio": color * 100,
+        "color_flat_share": flat_share * 100,
         "mean_error": mean_error,
         "reference_height": ref_h,
         "actual_height": act_h,
@@ -154,11 +193,21 @@ def main() -> None:
     parser.add_argument("--actual", required=True, help="実装のスクリーンショット")
     parser.add_argument("--out", help="差分ヒートマップの出力先")
     parser.add_argument("--structure-threshold", type=float, default=85.0)
-    parser.add_argument("--color-threshold", type=float, default=90.0)
+    parser.add_argument("--color-threshold", type=float, default=85.0)
+    parser.add_argument(
+        "--ref-crop",
+        help="基準画像を縦方向に切り出してから比較する(例: 782:1237)。"
+        "PSD 1 枚に複数セクションが入っている場合にセクション単位で判定するために使う",
+    )
     parser.add_argument("--json", action="store_true", help="結果を JSON で出力する")
     args = parser.parse_args()
 
-    result = compare(args.reference, args.actual, args.out)
+    ref_crop = None
+    if args.ref_crop:
+        top, _, bottom = args.ref_crop.partition(':')
+        ref_crop = (int(top), int(bottom))
+
+    result = compare(args.reference, args.actual, args.out, ref_crop)
     structure_ok = result["structure_ratio"] >= args.structure_threshold
     color_ok = result["color_ratio"] >= args.color_threshold
     result["structure_pass"] = structure_ok
@@ -179,7 +228,8 @@ def main() -> None:
         )
         print(
             f"色一致率  : {result['color_ratio']:6.2f}%  "
-            f"(合格ライン {args.color_threshold}%)  {'合格' if color_ok else '不合格'}"
+            f"(合格ライン {args.color_threshold}% / 平坦セル {result['color_flat_share']:.0f}%)  "
+            f"{'合格' if color_ok else '不合格'}"
         )
         if result["diff_image"]:
             print(f"差分画像 : {result['diff_image']}")

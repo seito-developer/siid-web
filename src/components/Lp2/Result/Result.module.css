@@ -1,0 +1,198 @@
+/*
+ * RESULTS。PSD 実測(PC 1440px)を基準に組む。
+ * 中央 623x352 / 中 224x127 / 小 105x60 の 3 段階で、Swiper の coverflow で近似する。
+ */
+
+.Result {
+  position: relative;
+  overflow: hidden;
+  padding: 44px 0 32px;
+  background: var(--lp2-paper);
+  text-align: center;
+}
+
+.Result__Title {
+  margin-top: 16px;
+  padding-inline: 16px;
+  font-size: 26px;
+  line-height: 1.34;
+  letter-spacing: var(--lp2-tracking-md);
+  color: var(--lp2-ink);
+}
+
+.Result__TitleAccent {
+  color: var(--lp2-blue);
+}
+
+.Result__Carousel {
+  position: relative;
+  margin-top: 26px;
+}
+
+.Result__Swiper {
+  padding-bottom: 8px;
+  /* 拡大した中央スライドが切れないよう、はみ出しを許可する */
+  overflow: visible;
+}
+
+.Result__Slide {
+  width: 70vw;
+  max-width: 623px;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.Result__Image {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(19, 26, 62, 0.18);
+}
+
+.Result__Caption {
+  margin-top: 10px;
+  font-family: var(--lp2-font-display);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.38;
+  letter-spacing: var(--lp2-tracking-md);
+  color: var(--lp2-ink);
+}
+
+.Result__CaptionAccent {
+  color: var(--lp2-accent);
+}
+
+/* --- 矢印 --------------------------------------------------------------- */
+
+.Result__Prev,
+.Result__Next {
+  position: absolute;
+  top: 38%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--lp2-white);
+  box-shadow: 0 2px 10px rgba(19, 26, 62, 0.2);
+  color: var(--lp2-ink);
+  cursor: pointer;
+}
+
+.Result__Prev {
+  left: 8px;
+}
+
+.Result__Next {
+  right: 8px;
+}
+
+/* --- ページネーション ---------------------------------------------------- */
+
+.Result__Pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.Result__Pagination :global(.swiper-pagination-bullet) {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #c9cede;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.Result__Pagination :global(.swiper-pagination-bullet-active) {
+  width: 16px;
+  height: 16px;
+  background: var(--lp2-primary);
+}
+
+.Result__Note {
+  margin-top: 18px;
+  padding-inline: 16px;
+  font-size: 11px;
+  letter-spacing: var(--lp2-tracking-md);
+  color: var(--lp2-ink);
+}
+
+/* --- PC ----------------------------------------------------------------- */
+
+@media screen and (min-width: 768px) {
+  .Result {
+    padding: 57px 0 60px;
+  }
+
+  .Result__Title {
+    margin-top: 29px;
+    font-size: 58.24px;
+  }
+
+  .Result__Carousel {
+    /* 拡大した中央スライドが上下にはみ出すぶんの余白(352px の半分 - 素の高さの半分) */
+    margin-top: 43px;
+    padding-block: 100px;
+  }
+
+  /* 5 枚を等幅(1/5)で並べ、状態ごとに倍率を変えて PSD の 623 / 224 / 105 を再現する。
+     中央 2.163 倍 = 623px、隣 0.778 倍 = 224px、その外 0.365 倍 = 105px。
+     transform-origin を中央にしているため、拡大した中央が両隣に重なる(PSD と同じ)。
+
+     セレクタを 3 段にしているのは、Swiper の
+     `.swiper-backface-hidden .swiper-slide { transform: translateZ(0) }`
+     (詳細度 0,2,0)に負けないようにするため。 */
+  .Result__Carousel .Result__Swiper .Result__Slide {
+    width: auto;
+    max-width: none;
+    transform: scale(0.365);
+    transform-origin: center center;
+    opacity: 0.92;
+  }
+
+  .Result__Carousel .Result__Swiper :global(.swiper-slide-prev),
+  .Result__Carousel .Result__Swiper :global(.swiper-slide-next) {
+    transform: scale(0.778);
+    z-index: 1;
+  }
+
+  .Result__Carousel .Result__Swiper :global(.swiper-slide-active) {
+    transform: scale(2.163);
+    opacity: 1;
+    z-index: 2;
+  }
+
+  .Result__Caption {
+    margin-top: 17px;
+    font-size: 26.14px;
+  }
+
+  .Result__Prev,
+  .Result__Next {
+    top: 44%;
+    width: 53px;
+    height: 53px;
+  }
+
+  .Result__Prev {
+    left: 8px;
+  }
+
+  .Result__Next {
+    right: 8px;
+  }
+
+  .Result__Pagination {
+    margin-top: 34px;
+  }
+
+  .Result__Note {
+    margin-top: 23px;
+    font-size: 12.15px;
+  }
+}
