@@ -70,18 +70,62 @@
   height: 36px;
 }
 
-/* PC の本文中。PSD 実測 402x100 相当 / 25.84px */
+/* 本文中の CTA。SP はボタンの意匠(緑の角丸・枠・矢印・発光)をセクション背景に
+   焼き込んでいるので、ここでは文字だけを重ねる。
+   SP と PC で寸法が違うだけで同じ役割なので 1 つのクラスで持つ。
+   SP: PSD(@2x)実測 663x156 → CSS 331.5x78 / 文字 21.46px / 矢印 13.5x39
+   PC: PSD 実測 402x100 相当 / 文字 25.84px / 矢印 16x42 */
 .is_pc {
-  min-width: 402px;
-  padding: 18px 28px;
+  min-width: 331.5px;
+  height: 78px;
+  padding: 0 27.5px;
+  gap: 12.5px;
+  border: 0;
   border-radius: 10px;
+  background: none;
+  box-shadow: none;
+}
+
+/* 矢印も背景画像に含まれる */
+.is_pc .Arrows {
+  display: none;
 }
 
 .is_pc .CtaButton__Label {
-  font-size: 25.84px;
+  font-size: 21.46px;
 }
 
 .is_pc .Arrows svg {
-  width: 16px;
-  height: 42px;
+  width: 13.5px;
+  height: 39px;
+}
+
+@media screen and (min-width: 768px) {
+  /* PC。PSD 実測: 緑の角丸 498x118、矢印 22x59 @rel41 / 436、
+     文字 336x31 @rel81(10 文字で 336px = 1 文字 33.6px) */
+  .is_pc {
+    min-width: 498px;
+    height: 118px;
+    padding: 0 41px;
+    gap: 18px;
+    border: 3px solid var(--lp2-cta-border);
+    background: linear-gradient(180deg, var(--lp2-cta-from) 0%, var(--lp2-cta-to) 100%);
+    box-shadow:
+      inset 0 0 0 2px #fff,
+      0 3px 0 var(--lp2-cta-edge),
+      0 0 24px rgba(43, 170, 57, 0.55);
+  }
+
+  .is_pc .Arrows {
+    display: inline-flex;
+  }
+
+  .is_pc .CtaButton__Label {
+    font-size: 30.5px;
+  }
+
+  .is_pc .Arrows svg {
+    width: 22px;
+    height: 59px;
+  }
 }

@@ -1,21 +1,22 @@
 /*
- * INSTRUCTOR。PSD 実測。
- *   PC: セクション 1442x979、写真 663x565 @(166,115)、テキスト右 @(770,164)
- *   SP: セクション 375x878、縦積み中央揃え
+ * INSTRUCTOR。写真・バッジの白地・箇条書きの■はセクション背景に含まれる。
+ * CSS では文字だけを実測座標で重ねる。
+ *
+ * PC: セクション 1440x901(PSD 原点 y-1)
+ * SP: セクション 750x1633(= CSS 375x816.5、PSD 原点 y3102)
+ *     INSTRUCTOR y35 / 見出し y74 / 氏名 y403 / バッジ y449.5, y485
+ *     箇条書き y535.5 / 598.5 / 660.5 / CTA 331.5x78 @(22.5,718.5)
  */
 
 .Instructor {
-  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
-  min-height: 817px;
   position: relative;
   overflow: hidden;
-  padding: 22px 20px 20px;
+  min-height: 816.5px;
+  padding: 0;
   color: var(--lp2-white);
   background: #1b2c8a;
 }
 
-/* 背景はカンプの合成結果をセクション範囲で切り出したもの(1440x901)。
-   グループ単体の書き出しでは上に重なるオーバーレイが反映されず色がずれる */
 .Instructor__Bg {
   position: absolute;
   inset: 0;
@@ -29,89 +30,137 @@
   position: relative;
   z-index: 1;
   max-width: var(--lp2-canvas);
+  height: 816.5px;
   margin-inline: auto;
 }
 
+.Instructor__Inner > *,
+.Instructor__Main > *,
+.Instructor__Text > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
 .Instructor__Label {
-  margin-bottom: 24px;
+  top: 35px;
 }
 
-.Instructor__Main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.Instructor__Photo {
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-}
-
+.Instructor__Main,
 .Instructor__Text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  position: static;
+  display: block;
 }
 
-.Instructor__Copy {
-  font-size: 26.1px;
-  line-height: 1.5;
-  letter-spacing: var(--lp2-tracking-2xl);
-  color: var(--lp2-highlight);
-  /* PC では 3 行、SP では 2 行に組む。改行は文字幅で自動的に変わらないよう
-     コンポーネント側の <br> に任せ、SP では 1 つ目の <br> を無効化する */
-}
-
-.Instructor__Copy br:first-of-type {
+/* 写真は背景画像に含まれるため描かない */
+.Instructor__Photo {
   display: none;
 }
 
-.Instructor__Name {
-  margin-top: 22px;
-  font-family: var(--lp2-font-body);
-  font-weight: 700;
+.Instructor__Copy {
+  /* PSD 実測: 1 行目のインク 565x49 @(49,149)(= CSS 282.5x24.5 @(24.5,74.5))、
+     2 行目 504x49 @(137,228)。行ごとに文字の大きさが違う */
+  top: 67px;
   font-size: 28px;
-  letter-spacing: var(--lp2-tracking-md);
+  line-height: 1.42;
+  letter-spacing: 0.018em;
+  color: var(--lp2-highlight);
+  text-align: center;
 }
 
-.Instructor__Badge {
-  margin-top: 8px;
-  padding: 3px 12px;
-  background: var(--lp2-white);
+/* カンプの 1 行目は 12 文字が 282.5px に収まる長体組み(2 行目は等倍)。
+   行ごとに中央がずれている(1 行目は左寄り)ため、余白でその差を作る */
+.Instructor__CopyHead {
+  display: inline-block;
+  margin-right: 26.5px;
+  transform: scaleX(0.874);
+}
+
+.Instructor__CopyBreak {
+  display: none;
+}
+
+/* カンプでは最後の行だけ白い */
+.Instructor__CopyLast {
+  margin-left: 17px;
+  color: var(--lp2-white);
+}
+
+.Instructor__Name {
+  top: 400.5px;
+  font-family: var(--lp2-font-body);
   font-weight: 700;
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: 0.127em;
+  text-align: center;
+}
+
+/* バッジの白い下地は背景画像に含まれる。
+   .Instructor__Text の中では 氏名 → バッジ → バッジ の順に <p> が並ぶため、
+   nth-of-type は 2 と 3 になる */
+.Instructor__Badge {
+  padding: 0;
+  background: none;
+  font-weight: 700;
+  font-size: 16.5px;
+  line-height: 1;
   letter-spacing: var(--lp2-tracking-lg);
   color: #02396f;
+  text-align: center;
+}
+
+.Instructor__Text .Instructor__Badge:nth-of-type(2) {
+  top: 449.5px;
+}
+
+.Instructor__Text .Instructor__Badge:nth-of-type(3) {
+  top: 485px;
+  font-size: 14.5px;
 }
 
 .Instructor__Bullets {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin-top: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  gap: 0;
+  margin: 0;
 }
 
 .Instructor__Bullets li {
-  position: relative;
-  padding-left: 18px;
+  position: absolute;
+  left: 36px;
+  right: 20px;
+  padding-left: 0;
   font-weight: 500;
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.24;
   letter-spacing: var(--lp2-tracking-lg);
 }
 
-/* PSD の四角い箇条書きマーカー(長方形 707) */
+/* SP だけ改行する(カンプの組み方) */
+.Instructor__BulletBreak {
+  display: block;
+}
+
+/* ■ の印は背景画像に含まれる */
 .Instructor__Bullets li::before {
-  content: '';
-  position: absolute;
-  top: 0.42em;
-  left: 0;
-  width: 10px;
-  height: 10px;
-  background: var(--lp2-white);
+  content: none;
+}
+
+.Instructor__Bullets li:nth-child(1) {
+  top: 535.5px;
+}
+
+.Instructor__Bullets li:nth-child(2) {
+  top: 598.5px;
+}
+
+.Instructor__Bullets li:nth-child(3) {
+  top: 660.5px;
 }
 
 .Instructor__Bullets .isAccent {
@@ -119,99 +168,117 @@
   color: #fff66d;
 }
 
-/* CtaButton は inline-flex。display:flex にするとブロックレベルになり全幅に広がるため、
-   幅は内容に合わせて中央寄せする */
 .Instructor__Cta {
-  width: fit-content;
-  margin: 34px auto 0;
+  position: absolute;
+  top: 718.5px;
+  left: 0;
+  right: 0;
+  width: 331.5px;
+  min-width: 0;
+  height: 78px;
+  margin: 0 auto;
 }
 
 /* --- PC ----------------------------------------------------------------- */
 
 @media screen and (min-width: 768px) {
+  /* PSD 実測(セクション上端 y0 基準):
+       INSTRUCTOR y76 / 見出し 504x186 @(770,163)(3 行・行送り 62)
+       氏名 @(772,387) / バッジ @(790,439) と @(796,486)
+       箇条書き @(280,567) / (280,620) / (279,675)
+       CTA 498x118 @(473,736) */
   .Instructor {
-    /* PSD: セクション 1440x901 */
     min-height: 901px;
-    padding: 71px 0 0;
+    padding: 0;
+  }
+
+  .Instructor__Inner {
+    height: 901px;
   }
 
   .Instructor__Label {
-    margin-bottom: 0;
-  }
-
-  /* PSD 実測(セクション上端基準):
-     写真 597x362 @(192,160) / 見出し y164 / 名前 y388 / バッジ y440,y487
-     箇条書き y568,621,676 / CTA 498x118 @(473,737) */
-  .Instructor__Main {
-    display: grid;
-    grid-template-columns: 578px 1fr;
-    align-items: start;
-    margin-top: 62px;
-    padding-left: 192px;
-  }
-
-  .Instructor__Photo {
-    width: 597px;
-    max-width: none;
-  }
-
-  .Instructor__Text {
-    align-items: flex-start;
-    padding-top: 0;
-    text-align: left;
+    top: 76px;
   }
 
   .Instructor__Copy {
+    top: 163px;
+    left: 770px;
+    right: auto;
+    width: 520px;
     font-size: 52px;
-    /* PSD: 行間 68px */
-    line-height: 1.308;
+    line-height: 1.192;
+    letter-spacing: var(--lp2-tracking-2xl);
+    text-align: left;
   }
 
-  .Instructor__Copy br:first-of-type {
+  .Instructor__CopyHead {
+    display: inline;
+    margin-right: 0;
+    transform: none;
+  }
+
+  .Instructor__CopyBreak {
     display: inline;
   }
 
+  .Instructor__CopyLast {
+    margin-left: 0;
+    color: var(--lp2-highlight);
+  }
+
   .Instructor__Name {
-    margin-top: 24px;
+    top: 387px;
+    left: 772px;
+    right: auto;
     font-size: 36px;
-    line-height: 1;
+    letter-spacing: var(--lp2-tracking-md);
+    text-align: left;
   }
 
   .Instructor__Badge {
-    margin-top: 18px;
-    padding: 4px 14px;
+    right: auto;
     font-size: 19.9px;
-    line-height: 1.2;
+    text-align: left;
   }
 
-  .Instructor__Bullets {
-    /* PSD: マーカー左端 x250、行間 53px */
-    gap: 16px;
-    margin-top: 37px;
-    padding-left: 250px;
+  .Instructor__Text .Instructor__Badge:nth-of-type(2) {
+    top: 439px;
+    left: 790px;
+  }
+
+  .Instructor__Text .Instructor__Badge:nth-of-type(3) {
+    top: 486px;
+    left: 796px;
+    font-size: 19.9px;
   }
 
   .Instructor__Bullets li {
-    padding-left: 30px;
+    left: 280px;
+    right: 40px;
     font-size: 25px;
-    line-height: 1.5;
+    line-height: 1.24;
   }
 
-  .Instructor__Bullets li::before {
-    width: 19px;
-    height: 19px;
+  .Instructor__Bullets li:nth-child(1) {
+    top: 570px;
   }
 
-  /* PSD: 緑の角丸 498x118 @(473,736)。CtaButton は inline-flex のため
-     auto マージンでは中央に寄らない。実測座標で絶対配置する */
+  .Instructor__Bullets li:nth-child(2) {
+    top: 623px;
+  }
+
+  .Instructor__Bullets li:nth-child(3) {
+    top: 678px;
+    left: 279px;
+  }
+
+  .Instructor__BulletBreak {
+    display: none;
+  }
+
   .Instructor__Cta {
-    position: absolute;
-    top: 665px; /* セクション上端から 736px。Inner は padding-top 71px ぶん下がっている */
-    left: 0;
-    right: 0;
+    top: 736px;
     width: 498px;
-    min-width: 0;
     height: 118px;
-    margin: 0 auto;
   }
 }

@@ -69,17 +69,18 @@
   }
 }
 
+/* SP。PSD(@2x)実測: 線 142x7 → CSS 71x3.5、文字 269x18 → CSS 134.5x9 */
 @media screen and (max-width: 767px) {
   .SectionLabel {
-    gap: 10px;
+    gap: 10.5px;
   }
 
   .SectionLabel__Text {
-    font-size: 13px;
+    font-size: 12.2px;
   }
 
   .SectionLabel__Line {
-    width: 46px;
-    height: 3px;
+    width: 71px;
+    height: 3.5px;
   }
 }

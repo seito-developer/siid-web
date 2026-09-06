@@ -1,6 +1,3 @@
-import Image from 'next/image';
-
-import { lp2Asset } from '@/constants/lp2Assets';
 
 import CtaButton from '../CtaButton/CtaButton';
 import SectionBg from '../SectionBg/SectionBg';
@@ -11,11 +8,24 @@ import styles from './Instructor.module.css';
 // INSTRUCTOR(docs/spec/lp2-sections/05-instructor.md)。
 // PC は写真を左・テキストを右に置く 2 カラム、SP は縦積み。
 
-// カンプでは行の先頭だけ黄色の強調が入る(行全体ではない)
+// カンプでは行の先頭だけ黄色の強調が入る(行全体ではない)。
+// tail は SP で改行する後半(PC は 1 行に収まる)。
 const BULLETS = [
-  { accent: '', text: '株式会社LIGで海外事業部長／フィリピン支社代表・VPoEを歴任' },
-  { accent: '約100名規模のエンジニアチーム', text: 'を統括。2,000人超を選考、150名以上を採用' },
-  { accent: 'YouTube登録者 13万人', text: '／著書『セイト先生が教えるプログラミング入門』' },
+  {
+    accent: '',
+    text: '株式会社LIGで海外事業部長／',
+    tail: 'フィリピン支社代表・VPoEを歴任',
+  },
+  {
+    accent: '約100名規模のエンジニアチーム',
+    text: 'を統括。',
+    tail: '2,000人超を選考、150名以上を採用',
+  },
+  {
+    accent: 'YouTube登録者 13万人',
+    text: '／',
+    tail: '著書『セイト先生が教えるプログラミング入門』',
+  },
 ];
 
 export default function Instructor() {
@@ -35,22 +45,18 @@ export default function Instructor() {
         </SectionLabel>
 
         <div className={styles.Instructor__Main}>
-          <Image
-            className={styles.Instructor__Photo}
-            src={lp2Asset('/images/lp-2/instructor-photo.webp')}
-            alt="講師 堀口セイト"
-            width={663}
-            height={565}
-            sizes="(min-width: 768px) 663px, 100vw"
-          />
+          {/* 講師の写真はセクション背景の画像に含まれる */}
 
           <div className={styles.Instructor__Text}>
+            {/* PC は 3 行、SP は 2 行。SP の 1 行目だけ長体がかかっている */}
             <h2 className={styles.Instructor__Copy}>
-              採用する側を
+              <span className={styles.Instructor__CopyHead}>
+                採用する側を
+                <br className={styles.Instructor__CopyBreak} />
+                知る講師が、
+              </span>
               <br />
-              知る講師が、
-              <br />
-              市場価値を設計する
+              <span className={styles.Instructor__CopyLast}>市場価値を設計する</span>
             </h2>
 
             <p className={styles.Instructor__Name}>堀口 セイト</p>
@@ -62,9 +68,11 @@ export default function Instructor() {
 
         <ul className={styles.Instructor__Bullets}>
           {BULLETS.map((item) => (
-            <li key={item.text}>
+            <li key={item.tail}>
               {item.accent && <strong className={styles.isAccent}>{item.accent}</strong>}
               {item.text}
+              <br className={styles.Instructor__BulletBreak} />
+              {item.tail}
             </li>
           ))}
         </ul>

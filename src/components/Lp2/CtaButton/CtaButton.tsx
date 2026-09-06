@@ -18,9 +18,10 @@ type Props = {
 function Arrows({ flip }: { flip?: boolean }) {
   return (
     <span className={`${styles.Arrows} ${flip ? styles.isFlipped : ''}`} aria-hidden="true">
-      <svg viewBox="0 0 27 30" width="27" height="30" focusable="false">
-        <polygon points="16,0 27,15 16,30" fill="currentColor" />
-        <polygon points="0,4 9,15 0,26" fill="currentColor" opacity="0.85" />
+      {/* PSD 実測: 27x78(SP)/ 22x59(PC)の縦長の二重シェブロン */}
+      <svg viewBox="0 0 27 78" width="27" height="78" focusable="false">
+        <polygon points="16,0 27,39 16,78" fill="currentColor" />
+        <polygon points="0,10 9,39 0,68" fill="currentColor" opacity="0.85" />
       </svg>
     </span>
   );
@@ -37,13 +38,14 @@ export default function CtaButton({
       href="#counselling"
       className={`${styles.CtaButton} ${styles[`is_${size}`]} ${className}`}
     >
-      <Arrows flip />
+      {/* カンプでは左右の矢印がどちらも内側(文字のほう)を向く */}
+      <Arrows />
       <span className={styles.CtaButton__Label}>
         {label}
         <br />
         {sub}
       </span>
-      <Arrows />
+      <Arrows flip />
     </a>
   );
 }

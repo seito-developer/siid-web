@@ -262,7 +262,7 @@ def cmd_export(args: argparse.Namespace) -> None:
     )
 
 
-def _match_reference(image: Any, reference_path: str, box: tuple | None) -> Any:
+def _match_reference(image: Any, reference_path: str, box: tuple | None, full: Any = None) -> Any:
     """自前合成の色を基準画像(Photoshop の合成)に合わせて線形補正する。
 
     背景として一致すべき画素(差が小さい画素)だけで回帰し、前景を消したことで
@@ -314,10 +314,15 @@ def _match_reference(image: Any, reference_path: str, box: tuple | None) -> Any:
     # 自前合成は Photoshop と完全には一致しない(とくにスクリーン合成の発光)。
     # 前景を消していない領域は基準画像(= Photoshop の合成そのもの)の画素を
     # そのまま使い、消した領域だけ自前合成で埋める。
-    keep = np.abs(corrected.astype(np.float64) - b).max(axis=2) < 24
-    # 文字の縁が残らないよう、置き換える側(= 消した領域)を少し広げる
-    from scipy.ndimage import binary_erosion  # type: ignore
-    keep = binary_erosion(keep, np.ones((7, 7)))
+    if full is not None:
+        # 隠したレイヤーがあったところだけを自前合成で埋める
+        changed = np.abs(np.asarray(full, dtype=np.float64) - a).max(axis=2) > 6
+        from scipy.ndimage import binary_dilation  # type: ignore
+        keep = ~binary_dilation(changed, np.ones((9, 9)))
+    else:
+        keep = np.abs(corrected.astype(np.float64) - b).max(axis=2) < 24
+        from scipy.ndimage import binary_erosion  # type: ignore
+        keep = binary_erosion(keep, np.ones((7, 7)))
     corrected = np.where(keep[..., None], b.astype(np.uint8), corrected)
     residual = np.abs(corrected.astype(np.int16) - b.astype(np.int16))[mask].mean()
     print(f"  基準画像に合わせて色を補正した(残差 {residual:.2f} / 255)")
@@ -350,14 +355,21 @@ def cmd_section_bg(args: argparse.Namespace) -> None:
         for layer in hidden:
             layer.visible = True
 
+    # 「隠す前」も同じ合成器で作っておく。基準画像(Photoshop の合成)と比べると
+    # スクリーン合成の発光などがどこでもずれてしまい、隠した領域を特定できない。
+    # 同じ合成器どうしなら、差が出るのは隠したレイヤーのところだけになる。
+    full = psd.composite().convert("RGB") if args.match_reference else None
+
     box = None
     if args.box:
         x0, y0, x1, y1 = (int(v) for v in args.box.split(","))
         box = (x0, y0, min(x1, image.width), min(y1, image.height))
         image = image.crop(box)
+        if full is not None:
+            full = full.crop(box)
 
     if args.match_reference:
-        image = _match_reference(image, args.match_reference, box)
+        image = _match_reference(image, args.match_reference, box, full)
 
     os.makedirs(os.path.dirname(os.path.abspath(args.out)) or ".", exist_ok=True)
     save_kwargs = {"quality": args.quality, "method": 6} if args.out.lower().endswith(".webp") else {}
