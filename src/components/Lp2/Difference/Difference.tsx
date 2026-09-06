@@ -40,6 +40,10 @@ export default function Difference() {
                 sizes="(min-width: 768px) 334px, 100vw"
                 quality={LP2_IMAGE_QUALITY}
               />
+              <p className={styles.Difference__PointNo}>
+                <span>POINT</span>
+                <strong>{point.no}</strong>
+              </p>
               <p className={styles.Difference__PointTitle}>
                 {point.title.split('\n').map((line, i) => (
                   <span key={line}>
