@@ -84,40 +84,50 @@
   min-width: 620px;
   margin-inline: auto;
   border-collapse: separate;
-  border-spacing: 0;
+  border-spacing: 1px;
   font-family: var(--lp2-font-body);
   text-align: center;
 }
 
+/* PSD 実測: 表 903x588、列幅 189 / 338 / 188 / 188。
+   見出し列 #39A0FA、当社列 #F1F7FB、競合・転職特化 #EAEFF1 */
 .Difference__Table :is(th, td) {
   padding: 12px 8px;
-  border-bottom: 1px solid rgba(19, 26, 62, 0.12);
   font-weight: 500;
   font-size: 16px;
   letter-spacing: var(--lp2-tracking-lg);
   color: var(--lp2-grey);
-  background: rgba(255, 255, 255, 0.94);
+  background: #eaeff1;
 }
 
-/* 見出し行と見出し列は濃紺 */
-.Difference__Table thead th,
 .Difference__Table tbody th {
-  background: #2b3556;
+  width: 21%;
+  background: #39a0fa;
   color: var(--lp2-white);
+}
+
+.Difference__Table thead th {
+  background: #9ea4a7;
+  color: var(--lp2-white);
+}
+
+.Difference__Table thead th:first-child {
+  background: #18223d;
 }
 
 /* 当社の列だけ強調する */
 .Difference__Table .isOurs {
+  width: 37%;
   font-weight: 700;
   font-size: 20px;
   color: #141c3d;
-  background: rgba(232, 240, 255, 0.96);
+  background: #f1f7fb;
 }
 
 .Difference__Table thead .isOurs {
   font-size: 26px;
   color: #fff66d;
-  background: linear-gradient(120deg, #4a3ad6 0%, #2f6ef0 100%);
+  background: #5173f4;
 }
 
 @media screen and (min-width: 768px) {

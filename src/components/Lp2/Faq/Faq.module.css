@@ -135,8 +135,9 @@
 
 @media screen and (min-width: 768px) {
   .Faq {
+    /* PSD: ラベル y88 / 見出し y166 / Q1 の帯 y295 */
     min-height: 1256px;
-    padding: 82px 0 0;
+    padding: 88px 0 0;
   }
 
   .Faq__Inner {
@@ -144,7 +145,7 @@
   }
 
   .Faq__Heading {
-    margin-top: 28px;
+    margin-top: 51px;
     font-size: 60.06px;
   }
 
@@ -153,7 +154,7 @@
        Q2 以降は帯のみ 75px を 95px 間隔(= 帯 75 + 余白 20) */
     gap: 20px;
     width: 853px;
-    margin: 74px auto 0;
+    margin: 45px auto 0;
   }
 
   .Faq__Question {
