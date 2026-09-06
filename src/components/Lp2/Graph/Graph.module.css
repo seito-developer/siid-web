@@ -130,7 +130,8 @@
 @media screen and (min-width: 768px) {
   .Graph {
     min-height: 1374px;
-    padding: 122px 0 0;
+    /* PSD: 表 1097x1121 @(172,987) = セクション上端(863)から 124px */
+    padding: 124px 0 0;
   }
 
   .Graph__Inner {
@@ -159,13 +160,16 @@
 
   .Graph__Table th,
   .Graph__Table td {
-    height: 70px;
-    padding: 6px 10px;
+    /* 1121px を 14 行 + 見出し 103px で割ると 1 行 70.4px。
+       70px にすると最後の行までに 9px ずれる */
+    height: 70.4px;
+    padding: 6px 8px;
     border: 1px solid var(--col, transparent);
     border-left-width: 4px;
     border-right-width: 4px;
-    font-size: 20px;
-    line-height: 1.4;
+    /* PSD 実測: 2 行のセルは 1 行 280px 前後・行送り 25.5px */
+    font-size: 19px;
+    line-height: 1.34;
     letter-spacing: 0;
     color: #050505;
   }
