@@ -13,7 +13,12 @@ export default function About() {
       <SectionBg name="about" pcWidth={1440} pcHeight={456} spWidth={750} spHeight={560} />
 
       <div className={styles.About__Frame}>
-        <p className={styles.About__Lead}>SiiDは、AIの技術だけを教えるスクールではありません</p>
+        {/* SP は「教える」で改行する(カンプの組み方) */}
+        <p className={styles.About__Lead}>
+          SiiDは、AIの技術だけを教える
+          <span className={styles.About__LeadBreak} />
+          スクールではありません
+        </p>
         <span className={styles.About__Caret} aria-hidden="true" />
 
         {/* SP は「元人事部長の講師 が」で改行する(カンプの組み方) */}

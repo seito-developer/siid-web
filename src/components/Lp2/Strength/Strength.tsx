@@ -1,6 +1,3 @@
-import Image from 'next/image';
-
-import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 import { LP2_STRENGTHS } from '@/constants/lp2Strengths';
 
 import SectionBg from '../SectionBg/SectionBg';
@@ -33,16 +30,7 @@ export default function Strength() {
       <ul className={styles.Strength__Cards}>
         {LP2_STRENGTHS.map((item) => (
           <li key={item.no} className={styles.Strength__Card}>
-            {/* カードの白枠・発光・写真はカンプの意匠をそのまま使う */}
-            <Image
-              className={styles.Strength__CardBg}
-              src={lp2Asset(`/images/lp-2/strength-card-${item.no.replace(/^0/, '')}.webp`)}
-              alt=""
-              width={316}
-              height={555}
-              sizes="(min-width: 768px) 316px, 100vw"
-              quality={LP2_IMAGE_QUALITY}
-            />
+            {/* カードの白枠・発光・写真はセクション背景に含まれる(文字だけを重ねる) */}
             <p className={styles.Strength__Badge}>
               <span>STRENGTH</span>
               <strong>{item.no}</strong>

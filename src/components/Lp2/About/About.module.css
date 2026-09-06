@@ -7,8 +7,9 @@
 .About {
   position: relative;
   overflow: hidden;
-  min-height: 280px;
-  padding: 2px;
+  /* PSD(SP、@2x)実測: セクション 750x561、枠 742x554 @(4,1476) */
+  min-height: 280.5px;
+  padding: 1.75px;
   background: var(--lp2-about-from);
   text-align: center;
 }
@@ -21,18 +22,24 @@
   flex-direction: column;
   align-items: center;
   height: 277px;
-  padding: 18px 12px;
+  padding: 14.5px 12px 0;
   color: var(--lp2-white);
 }
 
+.About__LeadBreak {
+  display: block;
+}
+
+/* PSD(SP)実測: 文字 232x38 @(71.5,19.5)、下線 248x2.5 @(63.5,65.5) */
 .About__Lead {
-  max-width: 248px;
-  padding-bottom: 6px;
+  width: 248px;
+  max-width: none;
+  padding-bottom: 5.5px;
   /* PSD 実測: 下線と三角は黄色(#fff66d) */
   border-bottom: 2px solid #fff66d;
   font-weight: 700;
-  font-size: 15px;
-  line-height: 1.3;
+  font-size: 14.5px;
+  line-height: 1.31;
   letter-spacing: var(--lp2-tracking-3xl);
 }
 
@@ -46,7 +53,7 @@
 }
 
 .About__Sub {
-  margin-top: 16px;
+  margin-top: 15px;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.3;
@@ -64,7 +71,7 @@
 }
 
 .About__Copy {
-  margin-top: 12px;
+  margin-top: 7.5px;
   font-family: var(--lp2-font-body);
   font-weight: 900;
   font-size: 28px;
@@ -77,8 +84,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  margin-top: 14px;
+  gap: 8.5px;
+  margin-top: 15.5px;
   font-weight: 900;
   font-size: 18px;
   line-height: 1.35;
@@ -87,7 +94,8 @@
 }
 
 .About__Result span {
-  padding: 4px 16px;
+  padding: 5px 16px;
+  line-height: 1.05;
   background: var(--lp2-white);
 }
 
@@ -109,7 +117,9 @@
 
   .About__Lead {
     /* PSD: 文字 817x29 @(309,861)、下線 820x4 @(310,902)。
-       下線は要素の下端なので、余白の内訳で文字の位置を合わせる */
+       下線は要素の下端なので、余白の内訳で文字の位置を合わせる。
+       SP は 248px 幅の 2 行組みなので、PC では幅の指定を戻す */
+    width: auto;
     max-width: none;
     padding-top: 7px;
     padding-bottom: 5px;
@@ -132,7 +142,8 @@
   }
 
   /* PC は 1 行に収まる(カンプの組み方) */
-  .About__SubBreak {
+  .About__SubBreak,
+  .About__LeadBreak {
     display: none;
   }
 
@@ -160,6 +171,7 @@
 
   .About__Result span {
     padding: 10px 0;
+    line-height: 1;
   }
 
   .About__Result span:first-child {

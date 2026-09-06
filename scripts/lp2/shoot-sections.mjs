@@ -23,7 +23,12 @@ const SECTIONS = [
 mkdirSync(outDir, { recursive: true });
 
 const browser = await chromium.launch();
-const page = await browser.newPage({ viewport: { width, height: VIEWPORT_HEIGHT }, deviceScaleFactor: 1 });
+// SP のカンプは @2x(750px)なので、同じ解像度で撮って等倍で比べる。
+// 375px で撮って引き伸ばすと、拡大のぼけぶんだけ一致率が下がる。
+const page = await browser.newPage({
+  viewport: { width, height: VIEWPORT_HEIGHT },
+  deviceScaleFactor: side === 'sp' ? 2 : 1,
+});
 // Cookie バナーが撮影に写り込まないよう同意済みにしておく
 await page.addInitScript(() => {
   try { localStorage.setItem('lp2-cookie-consent', 'accepted'); } catch {}

@@ -310,6 +310,15 @@ def _match_reference(image: Any, reference_path: str, box: tuple | None) -> Any:
     out += per_column[None, :, :]
 
     corrected = np.clip(out, 0, 255).astype(np.uint8)
+
+    # 自前合成は Photoshop と完全には一致しない(とくにスクリーン合成の発光)。
+    # 前景を消していない領域は基準画像(= Photoshop の合成そのもの)の画素を
+    # そのまま使い、消した領域だけ自前合成で埋める。
+    keep = np.abs(corrected.astype(np.float64) - b).max(axis=2) < 24
+    # 文字の縁が残らないよう、置き換える側(= 消した領域)を少し広げる
+    from scipy.ndimage import binary_erosion  # type: ignore
+    keep = binary_erosion(keep, np.ones((7, 7)))
+    corrected = np.where(keep[..., None], b.astype(np.uint8), corrected)
     residual = np.abs(corrected.astype(np.int16) - b.astype(np.int16))[mask].mean()
     print(f"  基準画像に合わせて色を補正した(残差 {residual:.2f} / 255)")
     return PILImage.fromarray(corrected)
