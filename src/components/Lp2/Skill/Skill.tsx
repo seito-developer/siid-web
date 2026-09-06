@@ -28,7 +28,8 @@ function Card({
   index: number;
   isPc: boolean;
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  // カンプの SP は 1 枚目だけ開いた状態
+  const [isOpen, setIsOpen] = useState(index === 0);
   const panelId = `lp2-skill-panel-${index}`;
   // PC は CSS 側で常時展開しているため、aria-expanded も開いた状態で伝える
   const isExpanded = isPc || isOpen;
@@ -48,6 +49,12 @@ function Card({
           <span className={styles.Skill__Chevron} aria-hidden="true" />
         </button>
       </h3>
+
+      {/* 閉じているときは技術の一覧を要約で見せる(カンプの組み方) */}
+      <p className={styles.Skill__Summary} aria-hidden="true">
+        {card.tags[0].label}
+        {card.tags.length > 1 && `ほか${card.tags.length - 1}`}
+      </p>
 
       <div className={styles.Skill__Panel} id={panelId}>
         <p className={styles.Skill__Bar}>技術</p>

@@ -139,6 +139,20 @@
   transform: rotate(-135deg);
 }
 
+/* 閉じているときだけ出す技術の要約 */
+.Skill__Summary {
+  margin: 0;
+  padding: 0 18px 14px;
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: var(--lp2-grey);
+}
+
+.isOpen .Skill__Summary {
+  display: none;
+}
+
 /* SP では閉じた状態で中身を隠す */
 .Skill__Panel {
   display: none;
@@ -210,6 +224,145 @@
 
 /* --- PC ----------------------------------------------------------------- */
 
+
+/* --- SP の実測値(PSD @2x を CSS px に換算) ------------------------------- */
+
+.Skill {
+  min-height: 1101px;
+  padding: 0;
+}
+
+.Skill__Inner {
+  height: 1101px;
+  padding-inline: 0;
+}
+
+.Skill__Inner > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+.Skill__Label {
+  top: 45px;
+}
+
+.Skill__Title {
+  position: static;
+  display: block;
+}
+
+.Skill__TitleSmall {
+  position: absolute;
+  top: 73px;
+  left: 0;
+  right: 0;
+  font-size: 26.5px;
+  line-height: 1;
+}
+
+.Skill__TitleLarge {
+  position: absolute;
+  top: 113px;
+  left: 0;
+  right: 0;
+  font-size: 28.5px;
+  line-height: 1;
+}
+
+.Skill__Lead {
+  top: 174px;
+  font-feature-settings: normal;
+  font-size: 16px;
+  line-height: 1.42;
+}
+
+.Skill__Hint {
+  top: 236px;
+  font-size: 14.5px;
+  line-height: 1;
+}
+
+.Skill__Cards {
+  position: static;
+  display: block;
+  gap: 0;
+  margin: 0;
+}
+
+.Skill__Card {
+  position: absolute;
+  left: 17px;
+  right: 16.5px;
+  border-radius: 10px;
+}
+
+.Skill__Card:nth-child(1) {
+  top: 301px;
+}
+
+.Skill__Card:nth-child(2) {
+  top: 634px;
+}
+
+.Skill__Card:nth-child(3) {
+  top: 741.5px;
+}
+
+.Skill__Card:nth-child(4) {
+  top: 848.5px;
+}
+
+.Skill__Card:nth-child(5) {
+  top: 956px;
+}
+
+.Skill__CardHead {
+  height: 47px;
+  padding: 0 18px 0 22px;
+}
+
+.Skill__CardTitle {
+  padding-left: 27.5px;
+  font-size: 24.5px;
+}
+
+.Skill__Summary {
+  padding: 0 0 0 23px;
+  font-size: 14.5px;
+}
+
+.Skill__Panel {
+  padding: 0 22px 20px;
+}
+
+.Skill__Bar {
+  padding: 3px 8px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.Skill__Bar + * {
+  margin-top: 10px;
+}
+
+.Skill__Tags {
+  gap: 5px 8px;
+  margin-bottom: 15px;
+}
+
+.Skill__Tags li {
+  padding: 5px 10px;
+  font-size: 12.5px;
+}
+
+.Skill__Outcomes li {
+  padding-left: 24.5px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
 @media screen and (min-width: 768px) {
   .Skill {
     /* PSD: ラベル y86 / 学んで y147 / できるようになる y232 /
@@ -219,24 +372,59 @@
   }
 
   .Skill__Inner {
+    height: auto;
     padding-inline: 0;
+  }
+
+  .Skill__Inner > * {
+    position: static;
+  }
+
+  .Skill__Title {
+    display: flex;
+  }
+
+  .Skill__TitleSmall,
+  .Skill__TitleLarge {
+    position: static;
+  }
+
+  .Skill__Cards {
+    position: static;
+  }
+
+  .Skill__Card,
+  .Skill__Card:nth-child(1),
+  .Skill__Card:nth-child(2),
+  .Skill__Card:nth-child(3),
+  .Skill__Card:nth-child(4),
+  .Skill__Card:nth-child(5) {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
   }
 
   .Skill__Title {
     margin-top: 34px;
   }
 
+  /* PSD: 学んで y147 / できるようになる y232(行送り 85px) */
   .Skill__TitleSmall {
     font-size: 56.33px;
+    line-height: 1.5;
   }
 
   .Skill__TitleLarge {
     font-size: 60.06px;
+    line-height: 1.4;
   }
 
   .Skill__Lead {
     margin-top: 26px;
+    font-feature-settings: 'palt' 1;
     font-size: 30.03px;
+    line-height: 1.6;
   }
 
   /* タップの案内は SP だけのもの */
@@ -288,17 +476,20 @@
      タグ 1 行目 y90(高さ 30、送り 32) / 「できるようになること」帯 y201 /
      箇条書き y236 */
   .Skill__CardHead {
+    height: auto;
     padding: 13px 22px 0;
     cursor: default;
   }
 
   .Skill__CardTitle {
+    padding-left: 26px;
     font-size: 25.72px;
     line-height: 1.1;
   }
 
-  /* PC は常時展開。開閉の矢印も出さない */
-  .Skill__Chevron {
+  /* PC は常時展開。開閉の矢印も要約も出さない */
+  .Skill__Chevron,
+  .Skill__Summary {
     display: none;
   }
 
@@ -309,6 +500,7 @@
 
   .Skill__Bar {
     padding: 4px 10px;
+    font-size: 13px;
     line-height: 1;
   }
 
@@ -323,9 +515,12 @@
 
   .Skill__Tags li {
     padding: 6px 12px;
+    font-size: 15.14px;
   }
 
   .Skill__Outcomes li {
+    padding-left: 18px;
+    font-size: 15.14px;
     line-height: 1.5;
   }
 
