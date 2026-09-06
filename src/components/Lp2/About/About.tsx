@@ -1,6 +1,4 @@
-import Image from 'next/image';
-
-import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
+import SectionBg from '../SectionBg/SectionBg';
 
 import styles from './About.module.css';
 
@@ -11,14 +9,8 @@ import styles from './About.module.css';
 export default function About() {
   return (
     <section className={styles.About} id="about">
-      <Image
-        className={styles.About__Watermark}
-        src={lp2Asset('/images/lp-2/about-logo-watermark.webp')}
-        alt=""
-        width={817}
-        height={203}
-        quality={LP2_IMAGE_QUALITY}
-      />
+      {/* 背景のグラデーション・ロゴ透かし・角飾り付きの枠はカンプの書き出し */}
+      <SectionBg name="about" pcWidth={1440} pcHeight={456} spWidth={750} spHeight={560} />
 
       <div className={styles.About__Frame}>
         <p className={styles.About__Lead}>SiiDは、AIの技術だけを教えるスクールではありません</p>

@@ -9,60 +9,20 @@
   overflow: hidden;
   min-height: 280px;
   padding: 2px;
-  background:
-    /* カンプに入っている細い斜めストライプ(コントラストは 3% 程度) */
-    repeating-linear-gradient(
-      -45deg,
-      rgba(255, 255, 255, 0.035) 0 2px,
-      rgba(255, 255, 255, 0) 2px 6px
-    ),
-    linear-gradient(
-      90deg,
-      var(--lp2-about-from) 0%,
-      var(--lp2-about-mid) 50%,
-      var(--lp2-about-to) 100%
-    );
+  background: var(--lp2-about-from);
   text-align: center;
 }
 
-/* 背景の SiiD ロゴ透かし。PSD: PC 817x203 / SP 344x86 */
-.About__Watermark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 344px;
-  max-width: 92%;
-  height: auto;
-  opacity: 0.2;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-/* 四隅に小さな四角が付いた枠 */
+/* 枠と四隅の飾りは背景画像側にあるため、ここでは文字の器としてだけ使う */
 .About__Frame {
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 277px;
   padding: 18px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.9);
   color: var(--lp2-white);
-}
-
-.About__Frame::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  pointer-events: none;
-  background-image:
-    linear-gradient(var(--lp2-white), var(--lp2-white)),
-    linear-gradient(var(--lp2-white), var(--lp2-white)),
-    linear-gradient(var(--lp2-white), var(--lp2-white)),
-    linear-gradient(var(--lp2-white), var(--lp2-white));
-  background-repeat: no-repeat;
-  background-size: 10px 9px;
-  background-position: 0 0, 100% 0, 0 100%, 100% 100%;
 }
 
 .About__Lead {
@@ -139,20 +99,11 @@
     padding: 14px 219px 19px;
   }
 
-  .About__Watermark {
-    width: 817px;
-    max-width: none;
-  }
-
   .About__Frame {
     height: 422px;
     /* PSD の縦位置(枠の上端 y796 基準):
        見出し y861 / 下線 y902 / サブ y939 / 大見出し y1002 / 白帯 y1114 */
     padding: 55px 8px 0;
-  }
-
-  .About__Frame::before {
-    background-size: 19px 20px;
   }
 
   .About__Lead {
