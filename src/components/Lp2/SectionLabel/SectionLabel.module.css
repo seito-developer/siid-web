@@ -1,0 +1,65 @@
+.SectionLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--lp2-ink);
+}
+
+.SectionLabel__Text {
+  font-family: var(--lp2-font-latin);
+  font-weight: 700;
+  font-style: oblique 12deg;
+  font-size: 15.5px;
+  letter-spacing: var(--lp2-tracking-label);
+  /* letter-spacing で右側に余白が付くぶんを戻し、線との間隔を左右対称にする */
+  text-indent: var(--lp2-tracking-label);
+}
+
+/* 線の両端に丸が付く。線は 83px・丸は直径 5px(PSD 実測) */
+.SectionLabel__Line {
+  position: relative;
+  width: 83px;
+  height: 4px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.SectionLabel__Line::before,
+.SectionLabel__Line::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  transform: translateY(-50%);
+}
+
+.SectionLabel__Line::before {
+  left: -1px;
+}
+
+.SectionLabel__Line::after {
+  right: -1px;
+}
+
+.isInverse {
+  color: var(--lp2-white);
+}
+
+@media screen and (max-width: 767px) {
+  .SectionLabel {
+    gap: 10px;
+  }
+
+  .SectionLabel__Text {
+    font-size: 13px;
+  }
+
+  .SectionLabel__Line {
+    width: 46px;
+    height: 3px;
+  }
+}

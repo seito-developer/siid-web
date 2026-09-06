@@ -1,0 +1,82 @@
+.CtaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-width: 246px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--lp2-cta-from) 0%, var(--lp2-cta-to) 100%);
+  /* PSD の楕円形スマートオブジェクトによる発光を影で表現する */
+  box-shadow:
+    0 0 24px rgba(43, 170, 57, 0.55),
+    0 4px 0 rgba(0, 0, 0, 0.18);
+  color: var(--lp2-white);
+  font-family: var(--lp2-font-display);
+  font-weight: 900;
+  text-align: center;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.CtaButton:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+.CtaButton__Label {
+  font-size: 15.76px;
+  line-height: 1.28;
+  letter-spacing: var(--lp2-tracking-xl);
+}
+
+.Arrows {
+  display: inline-flex;
+  color: var(--lp2-white);
+}
+
+.Arrows svg {
+  width: 12px;
+  height: 30px;
+}
+
+.isFlipped svg {
+  transform: scaleX(-1);
+}
+
+/* PC ヘッダー内。PSD 実測 246x59 / 15.76px */
+.is_header {
+  min-width: 246px;
+  padding: 10px 18px;
+}
+
+/* SP の本文中。PSD(@2x)実測 333x78 / 21.46px */
+.is_sp {
+  min-width: 333px;
+  padding: 14px 20px;
+  border-radius: 10px;
+}
+
+.is_sp .CtaButton__Label {
+  font-size: 21.46px;
+}
+
+.is_sp .Arrows svg {
+  width: 14px;
+  height: 36px;
+}
+
+/* PC の本文中。PSD 実測 402x100 相当 / 25.84px */
+.is_pc {
+  min-width: 402px;
+  padding: 18px 28px;
+  border-radius: 10px;
+}
+
+.is_pc .CtaButton__Label {
+  font-size: 25.84px;
+}
+
+.is_pc .Arrows svg {
+  width: 16px;
+  height: 42px;
+}

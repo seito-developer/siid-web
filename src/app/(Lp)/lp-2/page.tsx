@@ -1,5 +1,8 @@
 import { Metadata } from 'next';
 
+import CookieBanner from '@/components/Lp2/CookieBanner/CookieBanner';
+import Footer from '@/components/Lp2/Footer/Footer';
+import Header from '@/components/Lp2/Header/Header';
 import { buildPageMetadata, pages } from '@/constants/meta';
 
 import {
@@ -27,5 +30,12 @@ const fontVariables = [
 ].join(' ');
 
 export default function Lp2() {
-  return <div className={`lp2 ${fontVariables} ${styles.Lp2}`} />;
+  return (
+    <div className={`lp2 ${fontVariables} ${styles.Lp2}`} id="top">
+      <Header />
+      <main>{/* セクションはフェーズ 3 以降で追加する */}</main>
+      <Footer />
+      <CookieBanner />
+    </div>
+  );
 }
