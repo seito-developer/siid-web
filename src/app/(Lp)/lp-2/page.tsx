@@ -19,6 +19,7 @@ import Strength from '@/components/Lp2/Strength/Strength';
 import StructuredData from '@/components/Lp2/StructuredData/StructuredData';
 import Support from '@/components/Lp2/Support/Support';
 import Voice from '@/components/Lp2/Voice/Voice';
+import { lp2Asset } from '@/constants/lp2Assets';
 import { buildPageMetadata, pages } from '@/constants/meta';
 
 import {
@@ -55,6 +56,21 @@ const fontVariables = [
 export default function Lp2() {
   return (
     <div className={`lp2 ${fontVariables} ${styles.Lp2}`} id="top">
+      {/* LCP 要素は FV のポスター画像。CSS の background-image から参照しているため
+          ブラウザが見つけるのが遅く、実測で LCP が 15 秒台になっていた。
+          先に preload して CSS の解析を待たずに取得させる(PC / SP で別ファイル)。 */}
+      <link
+        rel="preload"
+        as="image"
+        href={lp2Asset('/videos/lp-2/fv-sp-poster.webp')}
+        media="(max-width: 767px)"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href={lp2Asset('/videos/lp-2/fv-pc-poster.webp')}
+        media="(min-width: 768px)"
+      />
       <StructuredData />
       <Header />
       <main>

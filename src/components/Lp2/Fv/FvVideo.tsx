@@ -15,6 +15,10 @@ import styles from './Fv.module.css';
 //
 // そのためマウント後に matchMedia で 1 本だけ選ぶ。
 // 判定前は src も poster も持たせず、セクションの背景色(濃紺)を見せる。
+//
+// また動画は装飾で、初期表示に必要なのはポスターまで。SP 版でも 917KB あり、
+// 初期ロードに載せると帯域を占有して LCP を大きく損なう。
+// ポスターは判定でき次第すぐ出し、本体は load 後(アイドル時)に取りに行く。
 
 const PC_MEDIA = '(min-width: 768px)';
 
@@ -25,6 +29,7 @@ const SOURCES = {
 
 export default function FvVideo() {
   const [isPc, setIsPc] = useState<boolean | null>(null);
+  const [canLoadBody, setCanLoadBody] = useState(false);
 
   useEffect(() => {
     const mql = window.matchMedia(PC_MEDIA);
@@ -32,6 +37,23 @@ export default function FvVideo() {
     sync();
     mql.addEventListener('change', sync);
     return () => mql.removeEventListener('change', sync);
+  }, []);
+
+  useEffect(() => {
+    const start = () => setCanLoadBody(true);
+
+    if (document.readyState === 'complete') {
+      const idle = window.requestIdleCallback;
+      if (idle) {
+        const id = idle(start, { timeout: 2000 });
+        return () => window.cancelIdleCallback?.(id);
+      }
+      const id = window.setTimeout(start, 400);
+      return () => window.clearTimeout(id);
+    }
+
+    window.addEventListener('load', start, { once: true });
+    return () => window.removeEventListener('load', start);
   }, []);
 
   const source = isPc === null ? null : SOURCES[isPc ? 'pc' : 'sp'];
@@ -43,9 +65,9 @@ export default function FvVideo() {
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="none"
       poster={source ? lp2Asset(source.poster) : undefined}
-      src={source ? lp2Asset(source.src) : undefined}
+      src={source && canLoadBody ? lp2Asset(source.src) : undefined}
       aria-hidden="true"
     />
   );

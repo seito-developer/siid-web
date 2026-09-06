@@ -65,6 +65,8 @@
 
 .Plan__Title span {
   position: absolute;
+  /* 見出しの既定(900)ではカンプより 4 割ほど太くなる */
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -361,6 +363,7 @@
 
   .Plan__Title span {
     position: absolute;
+    font-weight: 900;
     line-height: 1;
   }
 

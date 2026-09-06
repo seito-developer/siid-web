@@ -38,8 +38,11 @@ export const barlowSemiCondensedLp = Barlow_Semi_Condensed({
 // 見出し・CTA・強調。筑紫ゴシック H / E の代替。
 // 筑紫ゴシックはオールドスタイルの温かみを意図した人文的書体であり、
 // 同じ設計思想を持つ Zen Kaku Gothic Antique が最も近い。
+// 実際に使うのは 500(RESULTS のキャプション)/ 700 / 900 の 3 ウェイトだけ。
+// 日本語フォントは 1 ウェイトあたり 100 以上のチャンクに分かれて配信されるため、
+// 使わないウェイトを載せるとそのぶん初期転送量がまるごと増える。
 export const zenKakuGothicAntiqueLp2 = Zen_Kaku_Gothic_Antique({
-  weight: ['400', '500', '700', '900'],
+  weight: ['500', '700', '900'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-display-lp2',
@@ -59,8 +62,9 @@ export const jostLp2 = Jost({
 });
 
 // 給付金バッジ。筑紫明朝の代替。
+// 使うのは 700 だけ(給付金バッジ)。
 export const shipporiMinchoB1Lp2 = Shippori_Mincho_B1({
-  weight: ['600', '700'],
+  weight: ['700'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-mincho-lp2',
