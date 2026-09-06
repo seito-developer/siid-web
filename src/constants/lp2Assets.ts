@@ -11,3 +11,12 @@ export function lp2Asset(path: string): string {
 
 export const LP2_LOGO = lp2Asset('/images/lp-1/siid-logo.svg');
 export const LP2_LOGO_WHITE = lp2Asset('/images/lp-1/siid-logo-w.svg');
+
+/**
+ * lp-2 の画像に指定する品質。
+ *
+ * next/image の既定(75)で再エンコードすると、カンプの背景グラデーションで
+ * 色が 20 程度ずれることを実測で確認した(例: #24A6FC → #0E9FF7)。
+ * 90 まで上げると基準画像とほぼ一致する。
+ */
+export const LP2_IMAGE_QUALITY = 90;

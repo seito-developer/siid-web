@@ -129,7 +129,7 @@
 
 @media screen and (min-width: 768px) {
   .About {
-    min-height: 455px;
+    min-height: 456px;
     /* 枠は y796(セクション先頭から 14px)、左右に 219px */
     padding: 14px 219px 19px;
   }

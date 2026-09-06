@@ -1,0 +1,179 @@
+/*
+ * STRENGTH。PSD 実測(PC 原点 y898、セクション高 1135)。
+ *   見出し帯: STRENGTH ラベル y68 / 結果を生む、y105 / SiiDだけの3つの強み y158
+ *   カード: 316x555 を 370px 間隔で 3 枚(x192 / x562 / x930)
+ */
+
+.Strength {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 40px;
+  background: #101a4d;
+}
+
+/* 背景はカンプの合成結果をセクション範囲で切り出したもの */
+.Strength__Bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Strength__Head,
+.Strength__Cards {
+  position: relative;
+  z-index: 1;
+}
+
+/* 黄色い帯の見出し。PSD では上下が斜めに切れている */
+.Strength__Head {
+  position: relative;
+  padding: 26px 20px 30px;
+  background: var(--lp2-highlight);
+  text-align: center;
+  /* 下端の斜めの切り欠き */
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), 50% 100%, 0 calc(100% - 14px));
+}
+
+.Strength__Label {
+  font-family: var(--lp2-font-latin);
+  font-weight: 700;
+  font-style: oblique 12deg;
+  font-size: 15px;
+  letter-spacing: var(--lp2-tracking-label);
+  text-indent: var(--lp2-tracking-label);
+  color: var(--lp2-white);
+}
+
+.Strength__Title {
+  margin-top: 8px;
+  font-size: 24px;
+  line-height: 1.32;
+  letter-spacing: var(--lp2-tracking-md);
+  color: var(--lp2-blue);
+}
+
+.Strength__TitleLarge {
+  font-size: 32px;
+}
+
+/* --- カード -------------------------------------------------------------- */
+
+.Strength__Cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 28px;
+  padding-inline: 20px;
+}
+
+.Strength__Card {
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--lp2-white);
+  box-shadow: 0 0 22px rgba(97, 138, 255, 0.45);
+  text-align: center;
+}
+
+.Strength__Photo {
+  width: 100%;
+  height: auto;
+}
+
+.Strength__Badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 16px;
+  font-family: var(--lp2-font-latin);
+  color: var(--lp2-blue);
+}
+
+.Strength__Badge span {
+  font-size: 17px;
+  letter-spacing: var(--lp2-tracking-md);
+}
+
+.Strength__Badge strong {
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.Strength__CardTitle {
+  margin-top: 6px;
+  padding-inline: 16px;
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.39;
+  letter-spacing: var(--lp2-tracking-md);
+  color: var(--lp2-blue);
+}
+
+.Strength__Body {
+  margin-top: 14px;
+  padding: 0 22px 24px;
+  font-size: 18px;
+  line-height: 1.62;
+  letter-spacing: var(--lp2-tracking-md);
+  color: #06133d;
+  text-align: left;
+}
+
+/* --- PC ----------------------------------------------------------------- */
+
+@media screen and (min-width: 768px) {
+  .Strength {
+    min-height: 1041px;
+    padding-bottom: 0;
+  }
+
+  .Strength__Head {
+    padding: 60px 20px 46px;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), 50% 100%, 0 calc(100% - 30px));
+  }
+
+  .Strength__Label {
+    font-size: 23.7px;
+    letter-spacing: 0.54em;
+    text-indent: 0.54em;
+  }
+
+  .Strength__Title {
+    margin-top: 12px;
+    font-size: 41.6px;
+  }
+
+  .Strength__TitleLarge {
+    font-size: 55px;
+  }
+
+  .Strength__Cards {
+    /* PSD: カード 316px を 370px 間隔で 3 枚、左端 x192 */
+    flex-direction: row;
+    justify-content: center;
+    gap: 54px;
+    margin-top: 68px;
+    padding-inline: 0;
+  }
+
+  .Strength__Card {
+    width: 316px;
+    min-height: 555px;
+  }
+
+  .Strength__Badge {
+    margin-top: 26px;
+  }
+
+  .Strength__CardTitle {
+    margin-top: 12px;
+  }
+
+  .Strength__Body {
+    margin-top: 22px;
+    padding: 0 24px 28px;
+  }
+}

@@ -2,10 +2,13 @@ import { Metadata } from 'next';
 
 import About from '@/components/Lp2/About/About';
 import CookieBanner from '@/components/Lp2/CookieBanner/CookieBanner';
+import Difference from '@/components/Lp2/Difference/Difference';
 import Footer from '@/components/Lp2/Footer/Footer';
 import Fv from '@/components/Lp2/Fv/Fv';
 import Header from '@/components/Lp2/Header/Header';
+import Instructor from '@/components/Lp2/Instructor/Instructor';
 import Result from '@/components/Lp2/Result/Result';
+import Strength from '@/components/Lp2/Strength/Strength';
 import { buildPageMetadata, pages } from '@/constants/meta';
 
 import {
@@ -40,6 +43,9 @@ export default function Lp2() {
         <Fv />
         <About />
         <Result />
+        <Instructor />
+        <Strength />
+        <Difference />
       </main>
       <Footer />
       <CookieBanner />

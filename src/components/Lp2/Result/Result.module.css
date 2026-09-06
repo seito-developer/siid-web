@@ -126,18 +126,22 @@
 
 @media screen and (min-width: 768px) {
   .Result {
-    padding: 57px 0 60px;
+    /* PSD: セクション 1440x780(y1237..2017) */
+    min-height: 780px;
+    padding: 56px 0 0;
   }
 
   .Result__Title {
-    margin-top: 29px;
+    /* PSD: 見出し y1333 = セクション上端から 96px */
+    margin-top: 24px;
     font-size: 58.24px;
   }
 
   .Result__Carousel {
-    /* 拡大した中央スライドが上下にはみ出すぶんの余白(352px の半分 - 素の高さの半分) */
-    margin-top: 43px;
-    padding-block: 100px;
+    /* PSD: カルーセル y1431..1852 = セクション上端から 194..615。
+       拡大した中央スライドが上下にはみ出すぶんを padding で確保する */
+    margin-top: 0;
+    padding-block: 98px;
   }
 
   /* 5 枚を等幅(1/5)で並べ、状態ごとに倍率を変えて PSD の 623 / 224 / 105 を再現する。
@@ -188,10 +192,12 @@
   }
 
   .Result__Pagination {
-    margin-top: 34px;
+    /* PSD: ドット y1904 = セクション上端から 667px */
+    margin-top: 6px;
   }
 
   .Result__Note {
+    /* PSD: 注記 y1943 = セクション上端から 706px */
     margin-top: 23px;
     font-size: 12.15px;
   }

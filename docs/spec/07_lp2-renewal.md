@@ -93,7 +93,22 @@ PSD のレイヤーグループは `sec_*` でセマンティックに命名さ�
 | — | SP ドロワー | — | sp12_menu | ハンバーガーメニュー |
 | — | フッター | **なし** | **なし** | 新規設計(§10) |
 
-### 3.1 PC と SP でセクション順序が食い違っている(決定済み)
+### 3.1 セクションの境界はレイヤーの bbox ではなく見た目で決める
+
+背景がセクションをまたいで大きく置かれているため、グループの bbox は互いに重なっている。
+一致率の判定に bbox をそのまま使うと隣のセクションが混ざって数値にならない。
+
+基準画像の行ごとの色変化から検出した**見た目の境界**を使う
+(`scripts/lp2/check-design.sh` に定義):
+
+| PSD | 境界 |
+|-----|------|
+| pc1 | 0 / 781(FV→ABOUT) / 1237(ABOUT→RESULTS) / 2017 |
+| pc2 | 0 / 901(INSTRUCTOR→STRENGTH) / 1942(STRENGTH→DIFFERENCE) / 3303 |
+| pc4 | 0 / 1700(SKILLS→SUPPORT) / 2515 |
+| pc5 | 0 / 865(PRICING→比較表) / 2239 |
+
+### 3.2 PC と SP でセクション順序が食い違っている(決定済み)
 
 - **PC**: … → VOICE(pc6) → FREE GIFTS(pc7) → FAQ(pc8) → COUNSELING(pc9)
 - **SP**: … → VOICE(sp08) → FAQ(sp09) → FREE GIFTS(sp10) → COUNSELING(sp11)
@@ -301,7 +316,32 @@ python3 scripts/lp2/psd_tool.py manifest scripts/lp2/assets.manifest.json
   (新デザインでも字形は同じ。PSD 側は等倍ラスターのため Retina で不足する)
 - `next/image` を使う(`<img>` は ESLint エラー)
 
-### 8.2 アセットはフェーズごとに追加する
+### 8.2 背景アセットは「前景を隠した文書全体の合成」から切り出す
+
+グループ単体の `export` では、そのグループより上に重なるオーバーレイが反映されず
+背景の色がカンプとずれる(実測で R チャンネルが 10〜20)。背景は `section-bg` を使う。
+
+```bash
+python3 scripts/lp2/psd_tool.py section-bg <PSD> \
+    --hide '<前景グループ>' --hide '<前景グループ>/**' \
+    --box 0,901,1440,1942 \
+    --match-reference tmp/psd-ref/pc/pc2.png \
+    --out public/images/lp-2/xxx-bg.webp
+```
+
+さらに psd-tools の `composite()` は「全レイヤー表示・無変更」のときだけ Photoshop
+埋め込みのプレビューを返し、レイヤーを 1 枚でも隠すと自前の合成に切り替わる。
+自前の合成は Photoshop と色が完全には一致しないため、`--match-reference` で
+チャンネルごとに線形補正をかける(実測の残差 0.7〜4.1 / 255)。
+
+### 8.3 next/image の品質は既定のままにしない
+
+既定の `quality=75` で再エンコードすると、背景グラデーションの色が 20 程度ずれる
+(実測: `#24A6FC` → `#0E9FF7`)。この 1 点だけで INSTRUCTOR の色一致率が
+12.9% に落ちていた。`LP2_IMAGE_QUALITY`(90)を全ての画像に指定すること
+(同 80.2% に改善)。
+
+### 8.4 アセットはフェーズごとに追加する
 
 **全アセットを先に洗い出すことはしない。** 何を画像にして何を CSS / SVG で組むかは
 セクションを実装しながらでないと決まらないため。

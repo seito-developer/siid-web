@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { lp2Asset } from '@/constants/lp2Assets';
+import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 
 import CtaButton from '../CtaButton/CtaButton';
 
@@ -58,6 +58,7 @@ export default function Fv() {
             alt=""
             width={330}
             height={97}
+            quality={LP2_IMAGE_QUALITY}
           />
           <span className={styles.Fv__BadgeMinistry}>経済産業省</span>
           <span className={styles.Fv__BadgeTitle}>リスキル講座認定</span>
@@ -71,7 +72,13 @@ export default function Fv() {
         <ul className={styles.Fv__Medals}>
           {MEDALS.map((medal) => (
             <li key={medal.label} className={styles.Fv__Medal}>
-              <Image src={lp2Asset('/images/lp-2/fv-medal.webp')} alt="" width={169} height={181} />
+              <Image
+                src={lp2Asset('/images/lp-2/fv-medal.webp')}
+                alt=""
+                width={169}
+                height={181}
+                quality={LP2_IMAGE_QUALITY}
+              />
               <span className={styles.Fv__MedalLabel}>
                 {medal.label}
                 <br />

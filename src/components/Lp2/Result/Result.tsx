@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { A11y, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { lp2Asset } from '@/constants/lp2Assets';
+import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 import { LP2_RESULTS } from '@/constants/lp2Results';
 
 import SectionLabel from '../SectionLabel/SectionLabel';
@@ -68,6 +68,7 @@ export default function Result() {
                 height={772}
                 sizes="(min-width: 768px) 623px, 70vw"
                 className={styles.Result__Image}
+                quality={LP2_IMAGE_QUALITY}
               />
             </SwiperSlide>
           ))}

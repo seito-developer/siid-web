@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { lp2Asset } from '@/constants/lp2Assets';
+import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 
 import styles from './About.module.css';
 
@@ -17,6 +17,7 @@ export default function About() {
         alt=""
         width={817}
         height={203}
+        quality={LP2_IMAGE_QUALITY}
       />
 
       <div className={styles.About__Frame}>

@@ -262,6 +262,83 @@ def cmd_export(args: argparse.Namespace) -> None:
     )
 
 
+def _match_reference(image: Any, reference_path: str, box: tuple | None) -> Any:
+    """自前合成の色を基準画像(Photoshop の合成)に合わせて線形補正する。
+
+    背景として一致すべき画素(差が小さい画素)だけで回帰し、前景を消したことで
+    大きく変わった画素は除外する。
+    """
+    import numpy as np
+    from PIL import Image as PILImage
+
+    reference = PILImage.open(reference_path).convert("RGB")
+    if box:
+        reference = reference.crop(box)
+    if reference.size != image.size:
+        reference = reference.resize(image.size, PILImage.LANCZOS)
+
+    a = np.asarray(image, dtype=np.float64)
+    b = np.asarray(reference, dtype=np.float64)
+    # 前景を消した領域は大きく変わるため、差の小さい画素だけで係数を求める
+    mask = np.abs(a - b).max(axis=2) < 40
+    if mask.sum() < a[..., 0].size * 0.05:
+        print("  補正をスキップ(一致する画素が少なすぎる)", file=sys.stderr)
+        return image
+
+    out = a.copy()
+    for c in range(3):
+        x = a[..., c][mask]
+        y = b[..., c][mask]
+        if x.std() < 1e-6:
+            out[..., c] += y.mean() - x.mean()
+            continue
+        slope, intercept = np.polyfit(x, y, 1)
+        out[..., c] = a[..., c] * slope + intercept
+    corrected = np.clip(out, 0, 255).astype(np.uint8)
+    residual = np.abs(corrected.astype(np.int16) - b.astype(np.int16))[mask].mean()
+    print(f"  基準画像に合わせて色を補正した(残差 {residual:.2f} / 255)")
+    return PILImage.fromarray(corrected)
+
+
+def cmd_section_bg(args: argparse.Namespace) -> None:
+    """前景だけを隠して文書全体を合成し、指定範囲を切り出す。
+
+    グループ単体の composite では、そのグループより上に重なっているオーバーレイや
+    調整レイヤーが反映されず、背景の色がカンプとずれる(実測で R チャンネルが
+    10〜20 ずれた)。背景アセットはこちらで書き出すこと。
+    """
+    psd = PSDImage.open(args.target)
+    patterns = args.hide or []
+
+    hidden = []
+    for path, layer in _iter_layers(psd):
+        if not layer.visible:
+            continue
+        if any(fnmatch.fnmatch(path, pat) or path == pat for pat in patterns):
+            layer.visible = False
+            hidden.append(layer)
+
+    try:
+        image = psd.composite().convert("RGB")
+    finally:
+        for layer in hidden:
+            layer.visible = True
+
+    box = None
+    if args.box:
+        x0, y0, x1, y1 = (int(v) for v in args.box.split(","))
+        box = (x0, y0, min(x1, image.width), min(y1, image.height))
+        image = image.crop(box)
+
+    if args.match_reference:
+        image = _match_reference(image, args.match_reference, box)
+
+    os.makedirs(os.path.dirname(os.path.abspath(args.out)) or ".", exist_ok=True)
+    save_kwargs = {"quality": args.quality, "method": 6} if args.out.lower().endswith(".webp") else {}
+    image.save(args.out, **save_kwargs)
+    print(f"{image.size[0]}x{image.size[1]} -> {args.out} ({os.path.getsize(args.out)} B)  隠したレイヤー {len(hidden)} 件")
+
+
 def cmd_manifest(args: argparse.Namespace) -> None:
     """マニフェストに従って一括書き出しする。
 
@@ -346,6 +423,21 @@ def main() -> None:
         help="書き出しから除外するレイヤー種別(例: type)。複数指定可",
     )
     p.set_defaults(func=cmd_export)
+
+    p = sub.add_parser(
+        "section-bg",
+        help="前景を隠して文書全体を合成し、範囲を切り出す(背景アセット向け)",
+    )
+    p.add_argument("target", help="PSD ファイル")
+    p.add_argument("--hide", action="append", help="隠すレイヤーパス(glob 可)。複数指定可")
+    p.add_argument("--box", help="切り出す範囲 x0,y0,x1,y1")
+    p.add_argument(
+        "--match-reference",
+        help="基準画像(render で書き出した PNG)に色を合わせる",
+    )
+    p.add_argument("--out", required=True)
+    p.add_argument("--quality", type=int, default=80)
+    p.set_defaults(func=cmd_section_bg)
 
     p = sub.add_parser("manifest", help="マニフェストに従って一括書き出しする")
     p.add_argument("manifest")

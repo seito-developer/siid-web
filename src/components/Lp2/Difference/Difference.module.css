@@ -1,0 +1,174 @@
+/*
+ * DIFFERENCE。PSD 実測(PC 原点 y1941、セクション高 1363)。
+ *   ラベル y120 / 見出し y164 / POINT カード y301(334x298 を 361px 間隔)
+ *   比較表 903x588 @(268,690)
+ */
+
+.Difference {
+  position: relative;
+  overflow: hidden;
+  padding: 34px 0 44px;
+  background: #eef3ff;
+}
+
+.Difference__Bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.Difference__Inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--lp2-canvas);
+  margin-inline: auto;
+}
+
+.Difference__Title {
+  margin-top: 16px;
+  font-size: 28px;
+  line-height: 1.3;
+  letter-spacing: var(--lp2-tracking-md);
+  color: var(--lp2-blue);
+  text-align: center;
+}
+
+/* --- POINT カード -------------------------------------------------------- */
+
+.Difference__Points {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 26px;
+  padding-inline: 20px;
+}
+
+.Difference__Point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Difference__Point img {
+  width: 100%;
+  max-width: 334px;
+  height: auto;
+}
+
+.Difference__PointTitle {
+  margin-top: -34px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: var(--lp2-grey);
+  text-align: center;
+}
+
+/* --- 比較表 -------------------------------------------------------------- */
+
+.Difference__TableWrap {
+  margin-top: 30px;
+  padding-inline: 20px;
+  /* SP では表がはみ出すため横スクロールさせる */
+  overflow-x: auto;
+}
+
+.Difference__Table {
+  width: 100%;
+  min-width: 620px;
+  margin-inline: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: var(--lp2-font-body);
+  text-align: center;
+}
+
+.Difference__Table :is(th, td) {
+  padding: 12px 8px;
+  border-bottom: 1px solid rgba(19, 26, 62, 0.12);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: var(--lp2-tracking-lg);
+  color: var(--lp2-grey);
+  background: rgba(255, 255, 255, 0.94);
+}
+
+/* 見出し行と見出し列は濃紺 */
+.Difference__Table thead th,
+.Difference__Table tbody th {
+  background: #2b3556;
+  color: var(--lp2-white);
+}
+
+/* 当社の列だけ強調する */
+.Difference__Table .isOurs {
+  font-weight: 700;
+  font-size: 20px;
+  color: #141c3d;
+  background: rgba(232, 240, 255, 0.96);
+}
+
+.Difference__Table thead .isOurs {
+  font-size: 26px;
+  color: #fff66d;
+  background: linear-gradient(120deg, #4a3ad6 0%, #2f6ef0 100%);
+}
+
+@media screen and (min-width: 768px) {
+  .Difference {
+    /* PSD: セクション 1440x1361。ラベル y120 / 見出し y164 /
+       POINT カード y301 / 比較表 y690 */
+    min-height: 1361px;
+    padding: 113px 0 0;
+  }
+
+  .Difference__Title {
+    margin-top: 24px;
+    font-size: 55px;
+  }
+
+  .Difference__Points {
+    flex-direction: row;
+    justify-content: center;
+    gap: 27px;
+    margin-top: 62px;
+    padding-inline: 0;
+  }
+
+  .Difference__Point {
+    width: 334px;
+  }
+
+  .Difference__PointTitle {
+    margin-top: -46px;
+  }
+
+  .Difference__TableWrap {
+    margin-top: 62px;
+    padding-inline: 0;
+    overflow-x: visible;
+  }
+
+  .Difference__Table {
+    /* PSD: 903x588 @(268,690) */
+    width: 903px;
+    min-width: 0;
+  }
+
+  .Difference__Table :is(th, td) {
+    padding: 26px 10px;
+    font-size: 22px;
+  }
+
+  .Difference__Table .isOurs {
+    font-size: 28.1px;
+  }
+
+  .Difference__Table thead .isOurs {
+    font-size: 42.2px;
+  }
+}
