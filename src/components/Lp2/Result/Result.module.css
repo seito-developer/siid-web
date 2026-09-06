@@ -155,43 +155,76 @@
     padding-block: 98px;
   }
 
-  /* 5 枚を等幅(1/5)で並べ、状態ごとに倍率を変えて PSD の 623 / 224 / 105 を再現する。
-     中央 2.163 倍 = 623px、隣 0.778 倍 = 224px、その外 0.365 倍 = 105px。
-     transform-origin を中央にしているため、拡大した中央が両隣に重なる(PSD と同じ)。
+  /* Swiper の `.swiper { overflow: hidden }` は詳細度 (0,1,0) で
+     `.Result__Swiper` と同着になり、読み込み順で勝たれてしまう。
+     2 段にして確実に上書きしないと、拡大した中央スライドが上下で切れる */
+  .Result__Carousel .Result__Swiper {
+    overflow: visible;
+  }
+
+  /* 5 枚を等幅(1/5 = 288px)で並べ、状態ごとに倍率と平行移動で
+     PSD の座標を再現する。
+
+     書き出した webp は 1316x772 のうちカード本体が 1267x726 @(25,22) で、
+     まわりに影のぶんの余白がある。倍率はカード幅が PSD 値になるよう
+     `PSD幅 x 1316 / 1267 / 288` で求めている。
+       中央 623px → 2.247 / 中 224px → 0.808 / 小 105px → 0.379
+
+     PSD 実測(セクション上端 y1236 基準):
+       中央 623x352 @(409,195) / 中 224x127 @(174,365) と @(1044,365)
+       小 105x60 @(72,414) と @(1266,414)
+     左右で位置が対称でないため、prev / next を別々に指定する。
+
+     translate を scale より先に書いて、ずらし量が倍率の影響を受けないようにする。
 
      セレクタを 3 段にしているのは、Swiper の
      `.swiper-backface-hidden .swiper-slide { transform: translateZ(0) }`
      (詳細度 0,2,0)に負けないようにするため。 */
-  /* PSD では中央・中・小で縦位置がずれている(中央の中心 y370、中 427、小 443)。
-     translate を scale より先に書いて、ずらし量が倍率の影響を受けないようにする */
   .Result__Carousel .Result__Swiper .Result__Slide {
     width: auto;
     max-width: none;
-    transform: translateY(73px) scale(0.365);
     transform-origin: center center;
     opacity: 0.92;
   }
 
-  .Result__Carousel .Result__Swiper :global(.swiper-slide-prev),
+  /* 小(左): active の 2 つ手前。Swiper は専用クラスを振らないため
+     「prev の直前の兄弟」として選ぶ */
+  .Result__Carousel .Result__Swiper .Result__Slide:has(+ :global(.swiper-slide-prev)) {
+    transform: translate(-19.6px, 87.7px) scale(0.379);
+  }
+
+  /* 小(右) */
+  .Result__Carousel .Result__Swiper :global(.swiper-slide-next) + .Result__Slide {
+    transform: translate(22.4px, 87.7px) scale(0.379);
+  }
+
+  .Result__Carousel .Result__Swiper :global(.swiper-slide-prev) {
+    transform: translate(-146px, 72.8px) scale(0.808);
+    z-index: 1;
+  }
+
   .Result__Carousel .Result__Swiper :global(.swiper-slide-next) {
-    transform: translateY(57px) scale(0.778);
+    transform: translate(148px, 72.8px) scale(0.808);
     z-index: 1;
   }
 
   .Result__Carousel .Result__Swiper :global(.swiper-slide-active) {
-    transform: scale(2.163);
+    transform: translateY(17.5px) scale(2.247);
     opacity: 1;
     z-index: 2;
   }
 
   .Result__Caption {
-    margin-top: 17px;
+    /* PSD: 1 行目 y1800 / 2 行目 y1830 = セクション上端から 564 / 594 */
+    margin-top: 21px;
     font-size: 26.14px;
+    line-height: 1.15;
   }
 
   .Result__Prev,
   .Result__Next {
-    top: 44%;
+    /* PSD: 53x53 @y1706 = セクション上端から 470px(カルーセル上端 174 から 296) */
+    top: 296px;
     width: 53px;
     height: 53px;
   }
@@ -204,14 +237,24 @@
     right: 8px;
   }
 
-  .Result__Pagination {
-    /* PSD: ドット y1904 = セクション上端から 667px */
-    margin-top: 6px;
+  /* PSD の並びは キャプション(564) → ドット(668) → 注記(707)。
+     DOM 上はドットがキャプションより前にあるため、絶対配置で本来の位置に置く */
+  /* Swiper の `.swiper-pagination-horizontal` 側が `top: auto; bottom: 8px` を
+     詳細度 (0,2,0) で当ててくるため、こちらも 2 段にして上書きする。
+     z-index は拡大した中央スライド(z-index 2)より上に置くために必要 */
+  .Result__Carousel .Result__Pagination {
+    position: absolute;
+    top: 494px;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    margin-top: 0;
   }
 
   .Result__Note {
-    /* PSD: 注記 y1943 = セクション上端から 706px */
-    margin-top: 23px;
+    /* PSD: 注記 y1943 = セクション上端から 707px */
+    margin-top: 87px;
     font-size: 12.15px;
   }
 }
