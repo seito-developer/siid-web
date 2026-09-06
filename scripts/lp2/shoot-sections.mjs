@@ -39,6 +39,17 @@ await page.evaluate(async () => {
   });
 });
 
+// 動画は再生されているとフレームが毎回変わり、基準画像と比較できない。
+// 先頭で止めてポスターと同じ絵にそろえる。
+await page.evaluate(async () => {
+  const videos = [...document.querySelectorAll('video')];
+  for (const v of videos) {
+    v.pause();
+    v.currentTime = 0;
+  }
+  await new Promise((r) => setTimeout(r, 300));
+});
+
 for (const id of SECTIONS) {
   const el = page.locator(`#${id}`);
   if (await el.count() === 0) continue;

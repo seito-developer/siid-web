@@ -90,13 +90,12 @@
   margin-top: 20px;
 }
 
+/* 箱の意匠は背景画像に含まれるため、ここでは文字だけを重ねる */
 .Counselling__Points li {
   display: grid;
   place-items: center;
   min-height: 78px;
   padding: 10px;
-  border-radius: 6px;
-  background: linear-gradient(160deg, #4a5cf0 0%, #2f7cf5 100%);
   font-family: var(--lp2-font-body);
   font-weight: 700;
   font-size: 17px;

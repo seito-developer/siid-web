@@ -205,7 +205,7 @@
 
   .Support__Prices {
     gap: 0 34px;
-    margin-top: 68px;
+    margin-top: 34px;
   }
 
   .Support__PriceLabel {
@@ -226,32 +226,35 @@
   }
 
   .Support__Badge {
+    /* PSD: 713x129 @y338 */
     width: 713px;
-    min-height: 129px;
-    margin: 62px auto 0;
-    padding: 18px 20px;
+    height: 129px;
+    margin: 36px auto 0;
+    padding: 10px 20px;
   }
 
   .Support__BadgeMinistry {
     font-size: 50px;
+    line-height: 1;
   }
 
   .Support__BadgeCourse {
     font-size: 32px;
+    line-height: 1;
   }
 
   .Support__Note {
-    margin-top: 46px;
+    margin-top: 34px;
     font-size: 36px;
   }
 
   .Support__Small {
-    margin-top: 16px;
+    margin-top: 10px;
     font-size: 16px;
   }
 
   .Support__Cta {
     min-width: 498px;
-    margin-top: 44px;
+    margin-top: 30px;
   }
 }

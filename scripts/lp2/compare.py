@@ -56,7 +56,7 @@ import sys
 
 try:
     import numpy as np
-    from PIL import Image, ImageFilter
+    from PIL import Image, ImageDraw, ImageFilter
 except ImportError:  # pragma: no cover
     sys.exit("依存が不足しています: pip install -r scripts/lp2/requirements.txt")
 
@@ -146,6 +146,7 @@ def compare(
     actual_path: str,
     out_path: str | None = None,
     ref_crop: tuple[int, int] | None = None,
+    ignore_rows: tuple[int, int] | None = None,
 ) -> dict:
     reference = _load(reference_path)
     if ref_crop:
@@ -156,6 +157,14 @@ def compare(
         reference = reference.crop((0, top, reference.width, min(bottom, reference.height)))
     actual = _load(actual_path)
     reference, actual, ref_h, act_h = _align(reference, actual)
+
+    if ignore_rows:
+        # 判定から外す帯(FV の動画領域など)。両方を同じ色で塗りつぶして無視させる。
+        top, bottom = ignore_rows
+        for image in (reference, actual):
+            ImageDraw.Draw(image).rectangle(
+                (0, top, image.width, min(bottom, image.height)), fill=(0, 0, 0)
+            )
 
     structure, mean_error, match_mask = _structure_ratio(
         reference, actual, STRUCTURE_TOLERANCE, STRUCTURE_BLUR
@@ -199,6 +208,11 @@ def main() -> None:
         help="基準画像を縦方向に切り出してから比較する(例: 782:1237)。"
         "PSD 1 枚に複数セクションが入っている場合にセクション単位で判定するために使う",
     )
+    parser.add_argument(
+        "--ignore-rows",
+        help="判定から外す縦の範囲(切り出し後の座標。例: 83:617)。"
+        "FV の動画領域のように、カンプと異なることが承認済みの箇所に使う",
+    )
     parser.add_argument("--json", action="store_true", help="結果を JSON で出力する")
     args = parser.parse_args()
 
@@ -207,7 +221,12 @@ def main() -> None:
         top, _, bottom = args.ref_crop.partition(':')
         ref_crop = (int(top), int(bottom))
 
-    result = compare(args.reference, args.actual, args.out, ref_crop)
+    ignore_rows = None
+    if args.ignore_rows:
+        top, _, bottom = args.ignore_rows.partition(':')
+        ignore_rows = (int(top), int(bottom))
+
+    result = compare(args.reference, args.actual, args.out, ref_crop, ignore_rows)
     structure_ok = result["structure_ratio"] >= args.structure_threshold
     color_ok = result["color_ratio"] >= args.color_threshold
     result["structure_pass"] = structure_ok

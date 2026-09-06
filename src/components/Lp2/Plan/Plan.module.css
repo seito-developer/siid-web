@@ -41,19 +41,29 @@
 }
 
 .Plan__Title {
-  display: flex;
-  align-items: baseline;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+    'number small'
+    'number large';
+  align-items: center;
   justify-content: center;
-  gap: 4px;
+  column-gap: 6px;
   margin-top: 6px;
 }
 
+.Plan__TitleNumber {
+  grid-area: number;
+}
+
 .Plan__TitleSmall {
+  grid-area: small;
   font-size: 28px;
   color: var(--lp2-highlight);
 }
 
 .Plan__TitleNumber {
+  align-self: center;
   font-family: var(--lp2-font-condensed);
   font-weight: 700;
   font-size: 84px;
@@ -62,6 +72,7 @@
 }
 
 .Plan__TitleLarge {
+  grid-area: large;
   font-size: 32px;
   color: var(--lp2-cyan-light);
 }
@@ -226,6 +237,7 @@
   }
 
   .Plan__Title {
+    column-gap: 12px;
     margin-top: 10px;
   }
 
@@ -251,24 +263,45 @@
     height: auto;
   }
 
+  /* PSD: FullSupport は他の 2 枚より 65px 上に出る(中央揃えではない) */
   .Plan__Cards {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     gap: 4px;
-    margin-top: 18px;
+    margin-top: -27px;
   }
 
+  .Plan__Card:not(.isRecommended) {
+    margin-top: 65px;
+  }
+
+  /* PSD: Career 339x434 / FullSupport 374x534 / 顧問 336x429 */
   .Plan__Card {
+    display: flex;
+    flex-direction: column;
     width: 339px;
     max-width: none;
-    min-height: 434px;
+    height: 434px;
+    padding: 22px 20px 20px;
+  }
+
+  .Plan__Card:last-child {
+    width: 336px;
+    height: 429px;
   }
 
   .isRecommended {
     width: 374px;
     max-width: none;
-    min-height: 534px;
+    height: 534px;
+    padding-top: 22px;
+  }
+
+  /* CTA はカードの下端に揃える */
+  .Plan__Cta {
+    margin-top: auto;
+    align-self: center;
   }
 
   .Plan__Name {
@@ -296,8 +329,13 @@
     font-size: 22.04px;
   }
 
+  /* PSD: y789。カードと縦位置が重なるため絶対配置にする */
   .Plan__Note {
-    margin-top: 44px;
+    position: absolute;
+    top: 789px;
+    left: 0;
+    right: 0;
+    margin-top: 0;
     font-size: 10.71px;
   }
 }

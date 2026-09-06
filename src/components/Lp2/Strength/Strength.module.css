@@ -27,14 +27,11 @@
   z-index: 1;
 }
 
-/* 黄色い帯の見出し。PSD では上下が斜めに切れている */
+/* 黄色い帯は背景画像に含まれるため、ここでは文字だけを置く */
 .Strength__Head {
   position: relative;
   padding: 26px 20px 30px;
-  background: var(--lp2-highlight);
   text-align: center;
-  /* 下端の斜めの切り欠き */
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), 50% 100%, 0 calc(100% - 14px));
 }
 
 .Strength__Label {
@@ -131,8 +128,8 @@
   }
 
   .Strength__Head {
-    padding: 60px 20px 46px;
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), 50% 100%, 0 calc(100% - 30px));
+    /* PSD: ラベル y68 / 「結果を生む、」y105 / 「SiiDだけの3つの強み」y158 */
+    padding: 60px 20px 0;
   }
 
   .Strength__Label {
@@ -151,11 +148,11 @@
   }
 
   .Strength__Cards {
-    /* PSD: カード 316px を 370px 間隔で 3 枚、左端 x192 */
+    /* PSD: カード 316x555 を 370px 間隔で 3 枚、左端 x192、y374(= 1272-898) */
     flex-direction: row;
     justify-content: center;
     gap: 54px;
-    margin-top: 68px;
+    margin-top: 145px;
     padding-inline: 0;
   }
 
