@@ -33,12 +33,13 @@ export default function Strength() {
       <ul className={styles.Strength__Cards}>
         {LP2_STRENGTHS.map((item) => (
           <li key={item.no} className={styles.Strength__Card}>
+            {/* カードの白枠・発光・写真はカンプの意匠をそのまま使う */}
             <Image
-              className={styles.Strength__Photo}
-              src={lp2Asset(`/images/lp-2/${item.photo}.webp`)}
+              className={styles.Strength__CardBg}
+              src={lp2Asset(`/images/lp-2/strength-card-${item.no.replace(/^0/, '')}.webp`)}
               alt=""
               width={316}
-              height={168}
+              height={555}
               sizes="(min-width: 768px) 316px, 100vw"
               quality={LP2_IMAGE_QUALITY}
             />
