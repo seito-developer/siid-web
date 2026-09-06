@@ -39,7 +39,9 @@ export default function Present() {
             <br />
             参加者限定
           </span>
-          <span className={styles.Present__TitleLarge}>7大特典をプレゼント</span>
+          <span className={styles.Present__TitleLarge}>
+            <span className={styles.Present__TitleNum}>7</span>大特典をプレゼント
+          </span>
         </h2>
 
         <ul className={styles.Present__Gifts}>

@@ -122,60 +122,172 @@
 }
 
 @media screen and (min-width: 768px) {
+  /* PSD 実測(セクション上端 y0 基準)。書影・青い帯・月桂樹・リボンの意匠は
+     すべて背景画像に含まれるので、文字だけを実測座標で重ねる。
+       限定/配布 69x75 @(395,52) / FREE GIFTS 243x18 @(597,75)
+       無料カウンセリング 490x113 @(476,148) / 7大特典をプレゼント 566x97 @(437,243)
+       GIFT の帯・見出し・ハイライトは 7 件それぞれ座標が違う
+       CTA 498x118 @(471,887) */
   .Present {
     min-height: 1083px;
-    padding: 63px 0 0;
+    padding: 0;
   }
 
   .Present__Inner {
+    position: relative;
+    height: 1083px;
     padding-inline: 0;
   }
 
+  /* リボンの枠は背景画像側にあるため、枠線と内側の余白は打ち消す */
   .Present__Ribbon {
-    /* PSD: 「限定/配布」の飾りは y52 @x395 */
     position: absolute;
-    top: 44px;
-    left: 380px;
-    font-size: 18px;
+    top: 52px;
+    left: 395px;
+    padding: 0;
+    border: 0;
+    letter-spacing: 0;
+    width: 69px;
+    font-size: 33px;
+    line-height: 1.14;
+    color: #765e2b;
+    text-align: center;
+  }
+
+  .Present__Label {
+    position: absolute;
+    top: 75px;
+    left: 0;
+    right: 0;
+  }
+
+  /* `.Present__Label + .Present__Title`(詳細度 0,2,0)の margin-top が
+     マージン相殺でセクションの高さを 12px 押し広げていた */
+  .Present__Title,
+  .Present__Label + .Present__Title {
+    display: block;
+    margin: 0;
   }
 
   .Present__TitleSmall {
-    font-size: 50.05px;
-    line-height: 1.28;
+    position: absolute;
+    top: 127px;
+    left: 0;
+    right: 0;
+    font-size: 52px;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    color: #4e7af5;
   }
 
+  /* カンプは左から右へ濃い金→淡い金のグラデーション。白い縁取りが付く */
   .Present__TitleLarge {
-    font-size: 115.31px;
+    position: absolute;
+    top: 243px;
+    margin-top: 0;
+    text-shadow: none;
+    left: 0;
+    right: 0;
+    font-size: 66px;
+    line-height: 1;
+    letter-spacing: -0.055em;
+    background: linear-gradient(90deg, #a7813b 0%, #e8c87f 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
   }
 
-  /* PSD: 3 列(x458/728/1008)・3 行(y432/569/709)。7 件目は 2 列目に置く */
+  .Present__TitleNum {
+    font-size: 2em;
+    line-height: 0.7;
+  }
+
   .Present__Gifts {
-    /* PSD: GIFT ラベル 3 列(x458/728/1008)・3 行(y432/569/709) */
-    display: grid;
-    grid-template-columns: repeat(3, 250px);
-    justify-content: center;
-    gap: 26px 20px;
-    margin-top: 34px;
+    display: block;
+    margin-top: 0;
   }
 
   .Present__Gift {
+    position: absolute;
     padding: 0;
     background: none;
     text-align: left;
   }
 
+  /* 帯の下地は背景画像側にあるため、文字だけを白で重ねる */
   .Present__GiftNo {
-    font-size: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+    border-radius: 0;
+    /* 実測との差を打ち消す(座標は文字のインクの上端で持っている) */
+    margin-top: -9px;
+    font-size: 15px;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    color: var(--lp2-white);
+    background: none;
   }
 
   .Present__GiftTitle,
   .Present__GiftHighlight {
-    font-size: 16px;
+    position: absolute;
+    left: 0;
+    font-size: 14.5px;
+    line-height: 1.3;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
   }
 
+  .Present__GiftTitle {
+    margin-top: -16px;
+    color: #333;
+  }
+
+  .Present__GiftHighlight {
+    margin-top: -10px;
+    font-weight: 700;
+    color: #f8026f;
+  }
+
+  /* 7 件それぞれ、帯 / 見出し / ハイライトの実測座標 */
+  .Present__Gift:nth-child(1) { top: 433px; left: 458px; }
+  .Present__Gift:nth-child(1) .Present__GiftTitle { top: 28px; left: -53px; }
+  .Present__Gift:nth-child(1) .Present__GiftHighlight { top: 51px; left: -11px; }
+
+  .Present__Gift:nth-child(2) { top: 432px; left: 728px; }
+  .Present__Gift:nth-child(2) .Present__GiftTitle { top: 29px; left: -15px; }
+  .Present__Gift:nth-child(2) .Present__GiftHighlight { top: 54px; left: -49px; }
+
+  .Present__Gift:nth-child(3) { top: 432px; left: 1008px; }
+  .Present__Gift:nth-child(3) .Present__GiftTitle { top: 37px; left: -25px; }
+  .Present__Gift:nth-child(3) .Present__GiftHighlight { top: 61px; left: -20px; }
+
+  .Present__Gift:nth-child(4) { top: 569px; left: 459px; }
+  .Present__Gift:nth-child(4) .Present__GiftTitle { top: 32px; left: -49px; }
+  .Present__Gift:nth-child(4) .Present__GiftHighlight { top: 56px; left: -19px; }
+
+  .Present__Gift:nth-child(5) { top: 570px; left: 739px; }
+  .Present__Gift:nth-child(5) .Present__GiftTitle { top: 29px; left: -35px; }
+  .Present__Gift:nth-child(5) .Present__GiftHighlight { top: 76px; left: -44px; }
+
+  .Present__Gift:nth-child(6) { top: 710px; left: 459px; }
+  .Present__Gift:nth-child(6) .Present__GiftTitle { top: 30px; left: -21px; }
+  .Present__Gift:nth-child(6) .Present__GiftHighlight { top: 54px; left: -27px; }
+
+  .Present__Gift:nth-child(7) { top: 709px; left: 742px; }
+  .Present__Gift:nth-child(7) .Present__GiftTitle { top: 31px; left: -47px; }
+  .Present__Gift:nth-child(7) .Present__GiftHighlight { top: 56px; left: -32px; }
+
   .Present__Cta {
-    /* PSD: ボタン y793 */
-    min-width: 498px;
-    margin-top: 22px;
+    position: absolute;
+    top: 887px;
+    left: 0;
+    right: 0;
+    width: 498px;
+    min-width: 0;
+    height: 118px;
+    margin: 0 auto;
   }
 }
