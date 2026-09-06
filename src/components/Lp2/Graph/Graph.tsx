@@ -1,7 +1,6 @@
-import Image from 'next/image';
-
-import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 import { LP2_COURSE_TABLE } from '@/constants/lp2CourseTable';
+
+import SectionBg from '../SectionBg/SectionBg';
 
 import styles from './Graph.module.css';
 
@@ -16,14 +15,12 @@ export default function Graph() {
 
   return (
     <section className={styles.Graph} id="graph">
-      <Image
-        className={styles.Graph__Bg}
-        src={lp2Asset('/images/lp-2/graph-bg.webp')}
-        alt=""
-        width={1440}
-        height={1374}
-        sizes="100vw"
-        quality={LP2_IMAGE_QUALITY}
+      <SectionBg
+        name="graph"
+        pcWidth={1440}
+        pcHeight={1374}
+        spWidth={750}
+        spHeight={1725}
       />
 
       <div className={styles.Graph__Inner}>

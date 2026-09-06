@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 
 import CtaButton from '../CtaButton/CtaButton';
+import SectionBg from '../SectionBg/SectionBg';
 import SectionLabel from '../SectionLabel/SectionLabel';
 
 import styles from './Support.module.css';
@@ -13,14 +14,12 @@ import styles from './Support.module.css';
 export default function Support() {
   return (
     <section className={styles.Support} id="support">
-      <Image
-        className={styles.Support__Bg}
-        src={lp2Asset('/images/lp-2/support-bg.webp')}
-        alt=""
-        width={1440}
-        height={815}
-        sizes="100vw"
-        quality={LP2_IMAGE_QUALITY}
+      <SectionBg
+        name="support"
+        pcWidth={1440}
+        pcHeight={815}
+        spWidth={750}
+        spHeight={1646}
       />
 
       <div className={styles.Support__Inner}>

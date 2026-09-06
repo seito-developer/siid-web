@@ -4,6 +4,7 @@ import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 import { LP2_STEPS } from '@/constants/lp2Steps';
 
 import CtaButton from '../CtaButton/CtaButton';
+import SectionBg from '../SectionBg/SectionBg';
 
 import styles from './Step.module.css';
 
@@ -13,14 +14,12 @@ import styles from './Step.module.css';
 export default function Step() {
   return (
     <section className={styles.Step} id="step">
-      <Image
-        className={styles.Step__Bg}
-        src={lp2Asset('/images/lp-2/step-bg.webp')}
-        alt=""
-        width={1440}
-        height={2242}
-        sizes="100vw"
-        quality={LP2_IMAGE_QUALITY}
+      <SectionBg
+        name="step"
+        pcWidth={1440}
+        pcHeight={2242}
+        spWidth={750}
+        spHeight={4620}
       />
 
       <div className={styles.Step__Inner}>

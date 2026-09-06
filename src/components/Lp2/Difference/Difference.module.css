@@ -9,7 +9,7 @@
   min-height: 1489px;
   position: relative;
   overflow: hidden;
-  padding: 34px 0 44px;
+  padding: 26px 0 24px;
   background: #eef3ff;
 }
 
@@ -43,8 +43,8 @@
 .Difference__Points {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  margin-top: 26px;
+  gap: 10px;
+  margin-top: 18px;
   padding-inline: 20px;
 }
 

@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 import { LP2_SKILLS } from '@/constants/lp2Skills';
 
+import SectionBg from '../SectionBg/SectionBg';
 import SectionLabel from '../SectionLabel/SectionLabel';
 
 import styles from './Skill.module.css';
@@ -67,14 +68,12 @@ function Card({ card, index }: { card: (typeof LP2_SKILLS)[number]; index: numbe
 export default function Skill() {
   return (
     <section className={styles.Skill} id="skill">
-      <Image
-        className={styles.Skill__Bg}
-        src={lp2Asset('/images/lp-2/skill-bg.webp')}
-        alt=""
-        width={1440}
-        height={1700}
-        sizes="100vw"
-        quality={LP2_IMAGE_QUALITY}
+      <SectionBg
+        name="skill"
+        pcWidth={1440}
+        pcHeight={1700}
+        spWidth={750}
+        spHeight={2202}
       />
 
       <div className={styles.Skill__Inner}>

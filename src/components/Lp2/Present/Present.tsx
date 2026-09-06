@@ -1,9 +1,7 @@
-import Image from 'next/image';
-
-import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 import { LP2_GIFTS } from '@/constants/lp2Gifts';
 
 import CtaButton from '../CtaButton/CtaButton';
+import SectionBg from '../SectionBg/SectionBg';
 import SectionLabel from '../SectionLabel/SectionLabel';
 
 import styles from './Present.module.css';
@@ -16,14 +14,12 @@ import styles from './Present.module.css';
 export default function Present() {
   return (
     <section className={styles.Present} id="present">
-      <Image
-        className={styles.Present__Bg}
-        src={lp2Asset('/images/lp-2/present-bg.webp')}
-        alt=""
-        width={1440}
-        height={1083}
-        sizes="100vw"
-        quality={LP2_IMAGE_QUALITY}
+      <SectionBg
+        name="present"
+        pcWidth={1440}
+        pcHeight={1083}
+        spWidth={750}
+        spHeight={3176}
       />
 
       <div className={styles.Present__Inner}>

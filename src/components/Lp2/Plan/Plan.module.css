@@ -28,8 +28,13 @@
   z-index: 1;
   max-width: var(--lp2-canvas);
   margin-inline: auto;
-  padding-inline: 16px;
   text-align: center;
+}
+
+.Plan__Label,
+.Plan__Title,
+.Plan__Note {
+  padding-inline: 16px;
 }
 
 .Plan__Label {
@@ -86,27 +91,37 @@
 
 /* --- カード -------------------------------------------------------------- */
 
+/* SP のカンプは 1 プランずつ横に並べたスライダー構成(sec_plan の複製が 3 つ)。
+   縦積みにすると倍以上の高さになるため、横スクロール + スナップで再現する。 */
 .Plan__Cards {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-  margin-top: 24px;
+  gap: 12px;
+  margin-top: 20px;
+  padding-inline: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.Plan__Cards::-webkit-scrollbar {
+  display: none;
 }
 
 .Plan__Card {
   position: relative;
-  width: 100%;
-  max-width: 339px;
-  padding: 20px 18px 22px;
+  flex: 0 0 auto;
+  width: 86%;
+  max-width: 342px;
+  padding: 16px 16px 18px;
+  scroll-snap-align: center;
   border-radius: 10px;
   background: var(--lp2-white);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
 }
 
 .isRecommended {
-  max-width: 374px;
-  padding-top: 30px;
+  max-width: 342px;
+  padding-top: 22px;
   background: linear-gradient(180deg, #6f5cf7 0%, #2fa8f8 100%);
 }
 
@@ -267,11 +282,12 @@
 
   /* PSD: FullSupport は他の 2 枚より 65px 上に出る(中央揃えではない) */
   .Plan__Cards {
-    flex-direction: row;
     align-items: flex-start;
     justify-content: center;
     gap: 4px;
     margin-top: -27px;
+    padding-inline: 0;
+    overflow-x: visible;
   }
 
   .Plan__Card:not(.isRecommended) {
@@ -281,6 +297,7 @@
   /* PSD: Career 339x434 / FullSupport 374x534 / 顧問 336x429 */
   .Plan__Card {
     display: flex;
+    flex: none;
     flex-direction: column;
     width: 339px;
     max-width: none;

@@ -37,7 +37,7 @@
 .Fv__Body {
   position: relative;
   z-index: 1;
-  padding: 62px 20px 26px;
+  padding: 52px 20px 14px;
   text-align: center;
   color: var(--lp2-white);
 }
@@ -144,7 +144,7 @@
   flex-direction: column;
   align-items: center;
   gap: 14px;
-  padding: 18px 20px 22px;
+  padding: 12px 20px 14px;
   background: linear-gradient(90deg, var(--lp2-fvband-from) 0%, #1b2a6b 50%, var(--lp2-fvband-to) 100%);
 }
 

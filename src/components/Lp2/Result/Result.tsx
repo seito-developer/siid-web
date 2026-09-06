@@ -35,8 +35,11 @@ export default function Result() {
     <section className={styles.Result} id="result">
       <SectionLabel>RESULTS</SectionLabel>
 
+      {/* SP は「未経験から、」で改行する(カンプの組み方) */}
       <h2 className={styles.Result__Title}>
-        <span className={styles.Result__TitleAccent}>未経験</span>から、ここまで
+        <span className={styles.Result__TitleAccent}>未経験</span>から、
+        <span className={styles.Result__TitleBreak} />
+        ここまで
         <span className={styles.Result__TitleAccent}>目指せる！</span>
       </h2>
 
@@ -46,8 +49,8 @@ export default function Result() {
           centeredSlides
           loop
           watchSlidesProgress
-          slidesPerView={1.4}
-          spaceBetween={12}
+          slidesPerView={1.22}
+          spaceBetween={10}
           navigation={{
             prevEl: `.${styles.Result__Prev}`,
             nextEl: `.${styles.Result__Next}`,

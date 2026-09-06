@@ -92,6 +92,11 @@
   letter-spacing: var(--lp2-tracking-3xl);
 }
 
+/* SP だけ改行を入れる */
+.About__SubBreak {
+  display: block;
+}
+
 .About__Sub strong {
   font-weight: 700;
   color: #fdf263;

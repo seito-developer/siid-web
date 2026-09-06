@@ -4,6 +4,7 @@ import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 import { LP2_PLANS } from '@/constants/lp2Plans';
 
 import CtaButton from '../CtaButton/CtaButton';
+import SectionBg from '../SectionBg/SectionBg';
 
 import styles from './Plan.module.css';
 
@@ -13,14 +14,12 @@ import styles from './Plan.module.css';
 export default function Plan() {
   return (
     <section className={styles.Plan} id="plan">
-      <Image
-        className={styles.Plan__Bg}
-        src={lp2Asset('/images/lp-2/plan-bg.webp')}
-        alt=""
-        width={1440}
-        height={865}
-        sizes="100vw"
-        quality={LP2_IMAGE_QUALITY}
+      <SectionBg
+        name="plan"
+        pcWidth={1440}
+        pcHeight={865}
+        spWidth={750}
+        spHeight={1525}
       />
 
       <div className={styles.Plan__Inner}>

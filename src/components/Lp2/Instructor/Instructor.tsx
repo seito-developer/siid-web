@@ -1,8 +1,9 @@
 import Image from 'next/image';
 
-import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
+import { lp2Asset } from '@/constants/lp2Assets';
 
 import CtaButton from '../CtaButton/CtaButton';
+import SectionBg from '../SectionBg/SectionBg';
 import SectionLabel from '../SectionLabel/SectionLabel';
 
 import styles from './Instructor.module.css';
@@ -19,14 +20,12 @@ const BULLETS = [
 export default function Instructor() {
   return (
     <section className={styles.Instructor} id="instructor">
-      <Image
-        className={styles.Instructor__Bg}
-        src={lp2Asset('/images/lp-2/instructor-bg.webp')}
-        alt=""
-        width={1440}
-        height={901}
-        sizes="100vw"
-        quality={LP2_IMAGE_QUALITY}
+      <SectionBg
+        name="instructor"
+        pcWidth={1440}
+        pcHeight={901}
+        spWidth={750}
+        spHeight={1633}
       />
 
       <div className={styles.Instructor__Inner}>

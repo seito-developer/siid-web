@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 import { LP2_VOICES } from '@/constants/lp2Voices';
 
+import SectionBg from '../SectionBg/SectionBg';
 import SectionLabel from '../SectionLabel/SectionLabel';
 
 import styles from './Voice.module.css';
@@ -90,14 +91,12 @@ function Card({ voice, index }: { voice: (typeof LP2_VOICES)[number]; index: num
 export default function Voice() {
   return (
     <section className={styles.Voice} id="voice">
-      <Image
-        className={styles.Voice__Bg}
-        src={lp2Asset('/images/lp-2/voice-bg.webp')}
-        alt=""
-        width={1440}
-        height={1730}
-        sizes="100vw"
-        quality={LP2_IMAGE_QUALITY}
+      <SectionBg
+        name="voice"
+        pcWidth={1440}
+        pcHeight={1730}
+        spWidth={750}
+        spHeight={3872}
       />
 
       <div className={styles.Voice__Inner}>

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 import { LP2_DIFFERENCE_POINTS, LP2_DIFFERENCE_TABLE } from '@/constants/lp2Difference';
 
+import SectionBg from '../SectionBg/SectionBg';
 import SectionLabel from '../SectionLabel/SectionLabel';
 
 import styles from './Difference.module.css';
@@ -16,14 +17,12 @@ export default function Difference() {
 
   return (
     <section className={styles.Difference} id="difference">
-      <Image
-        className={styles.Difference__Bg}
-        src={lp2Asset('/images/lp-2/difference-bg.webp')}
-        alt=""
-        width={1440}
-        height={1361}
-        sizes="100vw"
-        quality={LP2_IMAGE_QUALITY}
+      <SectionBg
+        name="difference"
+        pcWidth={1440}
+        pcHeight={1361}
+        spWidth={750}
+        spHeight={2978}
       />
 
       <div className={styles.Difference__Inner}>

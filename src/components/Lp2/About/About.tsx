@@ -24,8 +24,11 @@ export default function About() {
         <p className={styles.About__Lead}>SiiDは、AIの技術だけを教えるスクールではありません</p>
         <span className={styles.About__Caret} aria-hidden="true" />
 
+        {/* SP は「元人事部長の講師 が」で改行する(カンプの組み方) */}
         <p className={styles.About__Sub}>
-          <strong>元人事部長の講師</strong>が採用する側の目線で、
+          <strong>元人事部長の講師</strong>が<wbr />
+          <span className={styles.About__SubBreak} />
+          採用する側の目線で、
         </p>
 
         <h2 className={styles.About__Copy}>「企業が求めるAI人材」へ</h2>

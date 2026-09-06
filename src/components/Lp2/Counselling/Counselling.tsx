@@ -2,9 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 
-import Image from 'next/image';
-
-import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
+import SectionBg from '../SectionBg/SectionBg';
 
 import styles from './Counselling.module.css';
 
@@ -61,14 +59,12 @@ export default function Counselling() {
 
   return (
     <section className={styles.Counselling} id="counselling">
-      <Image
-        className={styles.Counselling__Bg}
-        src={lp2Asset('/images/lp-2/counselling-bg.webp')}
-        alt=""
-        width={1440}
-        height={1019}
-        sizes="100vw"
-        quality={LP2_IMAGE_QUALITY}
+      <SectionBg
+        name="counselling"
+        pcWidth={1440}
+        pcHeight={1019}
+        spWidth={750}
+        spHeight={2374}
       />
 
       <div className={styles.Counselling__Inner}>

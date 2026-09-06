@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 import { LP2_STRENGTHS } from '@/constants/lp2Strengths';
 
+import SectionBg from '../SectionBg/SectionBg';
+
 import styles from './Strength.module.css';
 
 // STRENGTH(docs/spec/lp2-sections/06-strength.md)。
@@ -11,14 +13,12 @@ import styles from './Strength.module.css';
 export default function Strength() {
   return (
     <section className={styles.Strength} id="strength">
-      <Image
-        className={styles.Strength__Bg}
-        src={lp2Asset('/images/lp-2/strength-bg.webp')}
-        alt=""
-        width={1440}
-        height={1041}
-        sizes="100vw"
-        quality={LP2_IMAGE_QUALITY}
+      <SectionBg
+        name="strength"
+        pcWidth={1440}
+        pcHeight={1041}
+        spWidth={750}
+        spHeight={3122}
       />
 
       <div className={styles.Strength__Head}>

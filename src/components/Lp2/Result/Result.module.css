@@ -22,6 +22,11 @@
   color: var(--lp2-ink);
 }
 
+/* SP だけ改行を入れる */
+.Result__TitleBreak {
+  display: block;
+}
+
 .Result__TitleAccent {
   color: var(--lp2-blue);
 }
@@ -38,7 +43,7 @@
 }
 
 .Result__Slide {
-  width: 70vw;
+  width: 78vw;
   max-width: 623px;
   transition: transform 0.35s ease, opacity 0.35s ease;
 }
@@ -137,6 +142,10 @@
     /* PSD: 見出し y1333 = セクション上端から 96px */
     margin-top: 24px;
     font-size: 58.24px;
+  }
+
+  .Result__TitleBreak {
+    display: none;
   }
 
   .Result__Carousel {
