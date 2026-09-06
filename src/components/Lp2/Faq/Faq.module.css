@@ -1,15 +1,18 @@
 /*
- * FAQ。PSD 実測(PC セクション 1440x1256)。
- *   ラベル y88 / 見出し y166(60.1px)
+ * FAQ。開閉で位置が動くため、帯と回答パネルは背景に焼き込まず CSS で描く。
+ *
+ * PC: セクション 1440x1256。ラベル y88 / 見出し y166
  *   Q1 の帯 y295..343、回答 y389。以降 Q2〜Q8 は帯のみ y504 から 95px 間隔
+ * SP: セクション 750x1923(= CSS 375x961.5)
+ *   FAQ y42 / よくある質問 y76 / Q1 の帯 y149(高さ 57)
+ *   Q1 の回答 y202..397.5 / Q2 以降は y412.5 から 70px 間隔
  */
 
 .Faq {
-  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
-  min-height: 962px;
   position: relative;
   overflow: hidden;
-  padding: 30px 0 36px;
+  min-height: 961.5px;
+  padding: 0;
   background: #f2f2fd;
 }
 
@@ -26,23 +29,40 @@
   position: relative;
   z-index: 1;
   max-width: var(--lp2-canvas);
+  height: 961.5px;
   margin-inline: auto;
-  padding-inline: 16px;
+  padding-inline: 0;
+}
+
+.Faq__Label {
+  position: absolute;
+  top: 42px;
+  left: 0;
+  right: 0;
 }
 
 .Faq__Heading {
-  margin-top: 14px;
-  font-size: 28px;
+  position: absolute;
+  top: 76px;
+  left: 0;
+  right: 0;
+  margin-top: 0;
+  font-size: 28.5px;
+  line-height: 1;
   letter-spacing: var(--lp2-tracking-md);
   color: var(--lp2-primary);
   text-align: center;
 }
 
 .Faq__List {
+  position: absolute;
+  top: 147.5px;
+  left: 12.5px;
+  right: 12.5px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 24px;
+  gap: 13px;
+  margin-top: 0;
 }
 
 .Faq__Item {
@@ -54,13 +74,16 @@
 .Faq__Question {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
+  /* PSD(SP): 丸 35.5px @x19、質問文 @x62、+/− @x336 */
+  gap: 7.5px;
+  /* Q4 だけ質問が 2 行になり帯が 1 行ぶん高くなる(カンプ実測 57 → 74.5px) */
+  min-height: 57px;
+  padding: 0 10px 0 6.5px;
   background: var(--lp2-primary);
   font-family: var(--lp2-font-body);
   font-weight: 700;
-  font-size: 15px;
-  line-height: 1.4;
+  font-size: 14.5px;
+  line-height: 1.28;
   letter-spacing: var(--lp2-tracking-lg);
   color: var(--lp2-white);
   cursor: pointer;
@@ -76,17 +99,21 @@
   display: grid;
   place-items: center;
   flex: none;
-  width: 26px;
-  height: 26px;
+  width: 35.5px;
+  height: 35.5px;
   border-radius: 50%;
   background: var(--lp2-white);
   font-family: var(--lp2-font-body);
-  font-size: 12px;
+  font-size: 16px;
   color: var(--lp2-primary);
 }
 
 .Faq__QuestionText {
   flex: 1;
+  /* 改行位置はデータ側の \n で持つ(SP だけ 2 行になる質問がある)。
+     行の高さは 2 行のとき帯が 74.5px になるように決めている */
+  line-height: 2.57;
+  white-space: pre-line;
 }
 
 /* 開閉の +/− */
@@ -119,23 +146,84 @@
 }
 
 .Faq__Answer {
-  padding: 14px 16px 16px;
+  /* PSD(SP): パネル 351x195.5 @(12.5,202)、本文 270px 幅 @x62、y220 と y282 */
+  height: 194px;
+  padding: 18px 31.5px 0 49.5px;
 }
 
 .Faq__Answer p {
-  font-size: 14px;
-  line-height: 1.8;
-  letter-spacing: var(--lp2-tracking-sm);
+  font-feature-settings: normal;
+  font-size: 14.5px;
+  line-height: 1.75;
+  letter-spacing: 0;
   color: var(--lp2-grey);
 }
 
 .Faq__Answer p + p {
-  margin-top: 8px;
+  margin-top: 9px;
+}
+
+.Faq__Mark {
+  width: 16.5px;
+  height: 16.5px;
 }
 
 @media screen and (min-width: 768px) {
+  .Faq {
+    min-height: 1256px;
+    padding: 30px 0 36px;
+  }
+
+  .Faq__Inner {
+    height: auto;
+    padding-inline: 16px;
+  }
+
+  .Faq__Label {
+    position: static;
+  }
+
+  .Faq__List {
+    position: static;
+    gap: 10px;
+  }
+
+  .Faq__Question {
+    min-height: 0;
+    gap: 12px;
+    padding: 0 22px;
+    line-height: 1.4;
+  }
+
+  .Faq__QuestionText {
+    line-height: 1.4;
+    white-space: normal;
+  }
+
+  .Faq__No {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  .Faq__Answer {
+    height: auto;
+    padding: 14px 26px 18px;
+  }
+
+  .Faq__Answer p {
+    font-feature-settings: 'palt' 1;
+    letter-spacing: var(--lp2-tracking-sm);
+  }
+
+  .Faq__Mark {
+    width: 14px;
+    height: 14px;
+  }
+
   /* カンプは左から右へ 青紫 → 水色 のグラデーション */
   .Faq__Heading {
+    position: static;
     background: linear-gradient(90deg, #5855ef 0%, #29aefc 100%);
     background-clip: text;
     -webkit-background-clip: text;
@@ -160,6 +248,7 @@
   .Faq__Heading {
     margin-top: 51px;
     font-size: 60.06px;
+    line-height: 1.4;
   }
 
   .Faq__List {
@@ -189,5 +278,6 @@
 
   .Faq__Answer p {
     font-size: 16px;
+    line-height: 1.8;
   }
 }
