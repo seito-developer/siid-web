@@ -1,7 +1,11 @@
 /*
- * コース比較表。PSD 実測(PC セクション 1440x1374、y865..2239)。
- *   表 1097x1121 @(172,987)= セクション上端から 122
- *   注記 y2151 = セクション上端から 1286
+ * コース比較表。表は HTML の <table> で組む(画像にしない)。
+ *
+ * PC: セクション 1440x1374。表 1097x1121 @(172,987 = セクション上端から 124)
+ * SP: セクション 750x1725(= CSS 375x862.5)
+ *   表 707x722 @(22,80.5)。画面幅より広いので横スクロールさせる
+ *   列幅 104 / 195.5 x3、見出し行 45.5、本文行 45.5(1 行目だけ 65.5)
+ *   ＋scroll y33.5 / 注記 y815
  */
 
 .Graph {
@@ -127,6 +131,139 @@
   text-align: center;
 }
 
+
+/* --- SP の実測値 --------------------------------------------------------- */
+
+.Graph {
+  min-height: 862.5px;
+  padding: 0;
+}
+
+.Graph__Inner {
+  height: 862.5px;
+  padding-inline: 0;
+}
+
+.Graph__ScrollHint {
+  position: absolute;
+  top: 33.5px;
+  left: 0;
+  right: 15px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1;
+  text-align: right;
+}
+
+.Graph__TableWrap {
+  position: absolute;
+  top: 90.5px;
+  left: 22px;
+  right: 0;
+  margin: 0;
+  overflow-x: auto;
+}
+
+.Graph__Table {
+  width: 707px;
+  min-width: 707px;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.Graph__Table th,
+.Graph__Table td {
+  height: 45.5px;
+  padding: 3px 5px;
+  border: 1px solid var(--col, transparent);
+  border-left-width: 2.5px;
+  border-right-width: 2.5px;
+  font-size: 12.5px;
+  line-height: 1.34;
+  letter-spacing: 0;
+  color: #050505;
+  white-space: pre-line;
+}
+
+.Graph__Table th:first-child,
+.Graph__Table td:first-child {
+  width: 107px;
+}
+
+.Graph__Table th:nth-child(2),
+.Graph__Table td:nth-child(2),
+.Graph__Table th:nth-child(3),
+.Graph__Table td:nth-child(3),
+.Graph__Table th:nth-child(4),
+.Graph__Table td:nth-child(4) {
+  width: 200px;
+}
+
+.Graph__Table th:nth-child(2),
+.Graph__Table td:nth-child(2) {
+  --col: #1c81fe;
+}
+
+.Graph__Table th:nth-child(3),
+.Graph__Table td:nth-child(3) {
+  --col: #526ef3;
+}
+
+.Graph__Table th:nth-child(4),
+.Graph__Table td:nth-child(4) {
+  --col: #5855ef;
+}
+
+/* 見出し列の左端には水色の細い罫がある(カンプ実測 3px) */
+.Graph__Table tbody th {
+  border: 0;
+  border-left: 3px solid #2aa8fc;
+  font-size: 12.5px;
+  background: #f0f6fa;
+}
+
+.Graph__Table thead th {
+  height: 56.5px;
+  font-size: 20px;
+  color: var(--lp2-white);
+  background: #1c81fe;
+}
+
+/* 「コースの違い」の帯だけ一回り低い位置から始まる */
+.Graph__Table thead th:first-child {
+  font-size: 13px;
+  background: linear-gradient(180deg, transparent 0 21%, #2aa8fc 21% 100%);
+}
+
+.Graph__Table thead .isFeatured {
+  color: #fff66d;
+  background: #526ef3;
+}
+
+.Graph__Table thead th:last-child {
+  background: #5465f1;
+}
+
+.Graph__Table td > span[aria-hidden] {
+  font-size: 1.7em;
+  line-height: 1;
+}
+
+.Graph__Note {
+  position: absolute;
+  /* カンプは 41 文字が 331.5px に収まる 1 行組み */
+  top: 815px;
+  left: 21.5px;
+  right: 0;
+  margin: 0;
+  font-feature-settings: normal;
+  font-size: 8px;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-align: left;
+}
+
 @media screen and (min-width: 768px) {
   .Graph {
     min-height: 1374px;
@@ -135,6 +272,7 @@
   }
 
   .Graph__Inner {
+    height: auto;
     padding-inline: 0;
   }
 
@@ -143,6 +281,7 @@
   }
 
   .Graph__TableWrap {
+    position: static;
     margin-top: 0;
     overflow-x: visible;
   }
@@ -156,6 +295,11 @@
     margin-inline: auto;
     border-spacing: 0;
     table-layout: fixed;
+  }
+
+  .Graph__Table tbody tr:first-child th,
+  .Graph__Table tbody tr:first-child td {
+    height: 70.4px;
   }
 
   .Graph__Table th,
@@ -243,7 +387,13 @@
   }
 
   .Graph__Note {
+    position: static;
+    white-space: normal;
+    letter-spacing: var(--lp2-tracking-lg);
     margin-top: 44px;
+    font-feature-settings: 'palt' 1;
     font-size: 16px;
+    line-height: 1.7;
+    text-align: center;
   }
 }

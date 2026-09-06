@@ -30,7 +30,7 @@ export default function Graph() {
 
         {/* SP は表がはみ出すため横スクロールさせる(カンプにも「＋scroll」の指示がある) */}
         <p className={styles.Graph__ScrollHint} aria-hidden="true">
-          ＋scroll
+          ＋scroll ≫
         </p>
 
         <div className={styles.Graph__TableWrap}>
