@@ -1,25 +1,73 @@
 /*
- * RESULTS。PSD 実測(PC 1440px)を基準に組む。
- * 中央 623x352 / 中 224x127 / 小 105x60 の 3 段階で、Swiper の coverflow で近似する。
+ * RESULTS。
+ * PC: セクション 1440x780(y1237..2017)。中央 623x352 / 中 224x127 / 小 105x60。
+ * SP: PSD(@2x) 750x1069(y2033..3102) = CSS 375x534.5。
+ *   RESULTS y37 / 見出し y77(2 行) / カード 349x197 @(12.5,173.5)
+ *   矢印 44.5x43.5 @y393(左 x16.5 / 右 x316.5) / キャプション y396.5・418.5
+ *   ドット y456 / 注記 y492
  */
 
 .Result {
-  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
-  min-height: 535px;
   position: relative;
   overflow: hidden;
-  padding: 44px 0 32px;
+  height: 534.5px;
+  min-height: 534.5px;
+  padding: 0;
   background: var(--lp2-paper);
   text-align: center;
 }
 
+.Result > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+/* 背景(波の模様)はセクション全面に敷く */
+.Result > picture {
+  top: 0;
+  height: 534.5px;
+  z-index: 0;
+}
+
+.Result > picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Result > div,
+.Result > h2,
+.Result > p {
+  z-index: 1;
+}
+
+.Result :global(.SectionLabel),
+.Result > div:first-of-type {
+  top: 37px;
+}
+
 .Result__Title {
-  margin-top: 16px;
-  padding-inline: 16px;
-  font-size: 26px;
-  line-height: 1.34;
-  letter-spacing: var(--lp2-tracking-md);
-  color: var(--lp2-ink);
+  top: 68.5px;
+  /* 「！」の右アキぶん、中央がわずかに左へ寄るのを戻す */
+  padding: 0 0 0 8px;
+  /* カンプの SP 見出しは PC より細い */
+  font-weight: 700;
+  font-size: 28.5px;
+  line-height: 1.47;
+  letter-spacing: 0;
+  /* SP のカンプは調整レイヤーで全体が少し明るく転んでいる。実測値に合わせる */
+  color: #18214e;
+}
+
+/* カンプの 1 行目は 2 行目より字送りが広い */
+.Result__TitleLine1 {
+  letter-spacing: 0.086em;
+  /* 字送りで右に付く余白を戻し、中央揃えの基準をそろえる */
+  margin-right: -0.086em;
+  margin-left: 8px;
 }
 
 /* SP だけ改行を入れる */
@@ -28,40 +76,57 @@
 }
 
 .Result__TitleAccent {
-  color: var(--lp2-blue);
+  color: #2e3f96;
+}
+
+/* SP のカンプでは 2 行目に強調色が乗らない */
+.Result__TitleAccent2 {
+  color: inherit;
 }
 
 .Result__Carousel {
-  position: relative;
-  margin-top: 26px;
+  top: 0;
+  height: 534.5px;
+  margin: 0;
 }
 
-.Result__Swiper {
-  padding-bottom: 8px;
-  /* 拡大した中央スライドが切れないよう、はみ出しを許可する */
-  overflow: visible;
+/* 書き出した webp は 1316x772 のうちカード本体が 1267x726 @(25,22) で、
+   まわりに影のぶんの余白がある。カード本体が PSD 実測の 349x197 @(12.5,173.5)
+   になるよう、webp 全体は 362.5x209.5 @(5.6,167.5) に置く */
+/* Swiper 側の `.swiper { width: 100% }` と詳細度が同着で負けるため 2 段にする */
+.Result__Carousel .Result__Swiper {
+  position: absolute;
+  top: 167.25px;
+  left: 1.92px;
+  right: auto;
+  width: 369.7px;
+  padding: 0;
+  overflow: hidden;
 }
 
 .Result__Slide {
-  width: 78vw;
-  max-width: 623px;
-  transition: transform 0.35s ease, opacity 0.35s ease;
+  width: 100%;
+  max-width: none;
 }
 
 .Result__Image {
+  display: block;
   width: 100%;
-  height: auto;
-  border-radius: 6px;
-  box-shadow: 0 6px 18px rgba(19, 26, 62, 0.18);
+  height: 216.6px;
+  /* SP のカンプは全体に明度を落とす調整レイヤーが乗っており、背景の書き出しも
+     その色に合わせている。カードだけ素の明るさだと浮くため同じ量だけ暗くする */
+  filter: brightness(0.8892) contrast(1.1449);
+  /* webp に焼き込まれた影はカンプより濃く広いため、カード本体だけを見せる */
+  clip-path: inset(7.75px 10.1px 13.25px 10.6px);
 }
 
 .Result__Caption {
-  margin-top: 10px;
+  top: 392px;
   font-family: var(--lp2-font-display);
-  font-weight: 700;
-  font-size: 13px;
-  line-height: 1.38;
-  letter-spacing: var(--lp2-tracking-md);
+  font-weight: 500;
+  font-size: 16.3px;
+  line-height: 1.375;
+  letter-spacing: 0;
   color: var(--lp2-ink);
 }
 
@@ -74,12 +139,12 @@
 .Result__Prev,
 .Result__Next {
   position: absolute;
-  top: 38%;
+  top: 393px;
   z-index: 3;
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 44.5px;
+  height: 43.5px;
   padding: 0;
   border: 0;
   border-radius: 50%;
@@ -90,25 +155,33 @@
 }
 
 .Result__Prev {
-  left: 8px;
+  left: 16.5px;
+  right: auto;
 }
 
 .Result__Next {
-  right: 8px;
+  left: auto;
+  right: 15px;
 }
 
 /* --- ページネーション ---------------------------------------------------- */
 
-.Result__Pagination {
+.Result__Carousel .Result__Pagination {
+  position: absolute;
+  top: 456px;
+  bottom: auto;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+  align-items: center;
+  gap: 10.5px;
+  margin: 0;
 }
 
 .Result__Pagination :global(.swiper-pagination-bullet) {
-  width: 11px;
-  height: 11px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #c9cede;
   opacity: 1;
@@ -116,16 +189,17 @@
 }
 
 .Result__Pagination :global(.swiper-pagination-bullet-active) {
-  width: 16px;
-  height: 16px;
+  width: 12.5px;
+  height: 12px;
   background: var(--lp2-primary);
 }
 
 .Result__Note {
-  margin-top: 18px;
-  padding-inline: 16px;
-  font-size: 11px;
-  letter-spacing: var(--lp2-tracking-md);
+  top: 491px;
+  padding: 0;
+  font-size: 7.75px;
+  line-height: 1;
+  letter-spacing: 0;
   color: var(--lp2-ink);
 }
 
@@ -134,25 +208,73 @@
 @media screen and (min-width: 768px) {
   .Result {
     /* PSD: セクション 1440x780(y1237..2017) */
+    height: auto;
     min-height: 780px;
     padding: 56px 0 0;
   }
 
+  .Result > * {
+    position: static;
+  }
+
+  .Result > picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+  }
+
+  .Result > div:first-of-type {
+    top: auto;
+  }
+
+  .Result__TitleAccent,
+  .Result__TitleAccent2 {
+    color: var(--lp2-blue);
+  }
+
   .Result__Title {
     /* PSD: 見出し y1333 = セクション上端から 96px */
+    top: auto;
+    font-weight: 900;
+    color: var(--lp2-ink);
     margin-top: 13px;
     font-size: 58.24px;
+    line-height: 1.34;
+    letter-spacing: var(--lp2-tracking-md);
   }
 
   .Result__TitleBreak {
     display: none;
   }
 
+  .Result__TitleLine1 {
+    letter-spacing: inherit;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
   .Result__Carousel {
     /* PSD: カルーセル y1431..1852 = セクション上端から 194..615。
        拡大した中央スライドが上下にはみ出すぶんを padding で確保する */
+    height: auto;
     margin-top: 0;
     padding-block: 98px;
+  }
+
+  .Result__Carousel .Result__Swiper {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+  }
+
+  .Result__Image {
+    height: auto;
+    filter: none;
+    clip-path: none;
   }
 
   /* Swiper の `.swiper { overflow: hidden }` は詳細度 (0,1,0) で
@@ -216,7 +338,11 @@
 
   .Result__Caption {
     /* PSD: 1 行目 y1800 / 2 行目 y1830 = セクション上端から 564 / 594 */
+    top: auto;
     margin-top: 21px;
+    font-weight: 700;
+    font-size: 26.14px;
+    letter-spacing: var(--lp2-tracking-md);
     font-size: 26.14px;
     line-height: 1.15;
   }
@@ -231,9 +357,11 @@
 
   .Result__Prev {
     left: 8px;
+    right: auto;
   }
 
   .Result__Next {
+    left: auto;
     right: 8px;
   }
 
@@ -244,6 +372,7 @@
      z-index は拡大した中央スライド(z-index 2)より上に置くために必要 */
   .Result__Carousel .Result__Pagination {
     position: absolute;
+    gap: 10px;
     top: 494px;
     bottom: auto;
     left: 0;
@@ -254,7 +383,18 @@
 
   .Result__Note {
     /* PSD: 注記 y1943 = セクション上端から 707px */
+    top: auto;
     margin-top: 87px;
     font-size: 12.15px;
+  }
+
+  .Result__Pagination :global(.swiper-pagination-bullet) {
+    width: 11px;
+    height: 11px;
+  }
+
+  .Result__Pagination :global(.swiper-pagination-bullet-active) {
+    width: 16px;
+    height: 16px;
   }
 }

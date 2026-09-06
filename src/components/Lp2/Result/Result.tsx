@@ -10,6 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 import { LP2_RESULTS } from '@/constants/lp2Results';
 
+import SectionBg from '../SectionBg/SectionBg';
 import SectionLabel from '../SectionLabel/SectionLabel';
 
 import styles from './Result.module.css';
@@ -33,14 +34,18 @@ export default function Result() {
 
   return (
     <section className={styles.Result} id="result">
+      <SectionBg name="result" pcWidth={1440} pcHeight={780} spWidth={750} spHeight={1069} />
+
       <SectionLabel gradient>RESULTS</SectionLabel>
 
       {/* SP は「未経験から、」で改行する(カンプの組み方) */}
       <h2 className={styles.Result__Title}>
-        <span className={styles.Result__TitleAccent}>未経験</span>から、
+        <span className={styles.Result__TitleLine1}>
+          <span className={styles.Result__TitleAccent}>未経験</span>から、
+        </span>
         <span className={styles.Result__TitleBreak} />
         ここまで
-        <span className={styles.Result__TitleAccent}>目指せる！</span>
+        <span className={styles.Result__TitleAccent2}>目指せる！</span>
       </h2>
 
       <div className={styles.Result__Carousel}>
@@ -57,8 +62,8 @@ export default function Result() {
           centeredSlides
           loop
           watchSlidesProgress
-          slidesPerView={1.22}
-          spaceBetween={10}
+          slidesPerView={1}
+          spaceBetween={0}
           navigation={{
             prevEl: `.${styles.Result__Prev}`,
             nextEl: `.${styles.Result__Next}`,
@@ -86,12 +91,12 @@ export default function Result() {
         </Swiper>
 
         <button type="button" className={styles.Result__Prev} aria-label="前の実績へ">
-          <svg viewBox="0 0 12 18" width="12" height="18" aria-hidden="true" focusable="false">
+          <svg viewBox="0 0 12 18" width="8" height="12" aria-hidden="true" focusable="false">
             <path d="M11 1 L3 9 L11 17" stroke="currentColor" strokeWidth="2.4" fill="none" />
           </svg>
         </button>
         <button type="button" className={styles.Result__Next} aria-label="次の実績へ">
-          <svg viewBox="0 0 12 18" width="12" height="18" aria-hidden="true" focusable="false">
+          <svg viewBox="0 0 12 18" width="8" height="12" aria-hidden="true" focusable="false">
             <path d="M1 1 L9 9 L1 17" stroke="currentColor" strokeWidth="2.4" fill="none" />
           </svg>
         </button>

@@ -1,15 +1,23 @@
 /*
- * DIFFERENCE。PSD 実測(PC 原点 y1941、セクション高 1363)。
+ * DIFFERENCE。POINT カードの白枠・写真・青帯はセクション背景の画像に含める。
+ * CSS では文字と比較表だけを実測座標で重ねる。
+ *
+ * PC: PSD 原点 y1941、セクション高 1361。
  *   ラベル y120 / 見出し y164 / POINT カード y301(334x298 を 361px 間隔)
  *   比較表 903x588 @(268,690)
+ * SP: PSD(@2x) 750x2978(= CSS 375x1489)。
+ *   DIFFERENCE y43.5 / 見出し y72
+ *   カード 01 番号 y147 / POINT y161.5 / 見出し y202
+ *   カード 02 番号 y432.5 / 見出し y487.5
+ *   カード 03 番号 y722.5 / 見出し y783(2 行)
+ *   比較表 351.5x413 @(12,1042.5)。列幅 84.5 / 102 / 83 / 82.5
  */
 
 .Difference {
-  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
-  min-height: 1489px;
   position: relative;
   overflow: hidden;
-  padding: 26px 0 24px;
+  min-height: 1489px;
+  padding: 0;
   background: #eef3ff;
 }
 
@@ -26,132 +34,208 @@
   position: relative;
   z-index: 1;
   max-width: var(--lp2-canvas);
+  height: 1489px;
   margin-inline: auto;
 }
 
+.Difference__Inner > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+.Difference__Label {
+  top: 43.5px;
+}
+
 .Difference__Title {
-  margin-top: 16px;
-  font-size: 28px;
-  line-height: 1.3;
-  letter-spacing: var(--lp2-tracking-md);
-  color: var(--lp2-blue);
+  top: 72px;
+  font-size: 29.5px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-indent: 0.02em;
+  /* カンプの見出しは紫 → 水色のグラデーション */
+  background-image: linear-gradient(90deg, var(--lp2-primary) 0%, var(--lp2-cyan-light) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
   text-align: center;
 }
 
 /* --- POINT カード -------------------------------------------------------- */
 
 .Difference__Points {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 18px;
-  padding-inline: 20px;
+  top: 0;
+  display: block;
+  gap: 0;
+  height: 1489px;
+  padding: 0;
 }
 
 .Difference__Point {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.Difference__Point img {
-  width: 100%;
-  max-width: 334px;
-  height: auto;
-}
-
-.Difference__PointNo {
   position: absolute;
-  top: 9px;
-  left: 15px;
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
+  left: 0;
+  right: 0;
+  display: block;
+}
+
+.Difference__Point > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+.Difference__Point:nth-child(1) {
+  top: 0;
+}
+
+.Difference__Point:nth-child(2) {
+  top: 285.5px;
+}
+
+.Difference__Point:nth-child(3) {
+  top: 576px;
+}
+
+/* 青い帯は背景画像に含まれるため、文字だけを置く */
+.Difference__PointNo {
+  top: 161.5px;
+  left: 36px;
+  right: auto;
+  display: block;
   font-family: var(--lp2-font-latin);
   color: var(--lp2-white);
   line-height: 1;
 }
 
 .Difference__PointNo span {
-  font-size: 10px;
-  letter-spacing: var(--lp2-tracking-md);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.02em;
 }
 
 .Difference__PointNo strong {
+  position: absolute;
+  top: -24px;
+  left: 27.5px;
   font-weight: 700;
-  font-size: 38px;
-  color: #fff66d;
+  font-size: 43px;
+  line-height: 1;
+  /* カンプの番号は塗りのない袋文字 */
+  -webkit-text-stroke: 2.5px #fff66d;
+  color: transparent;
+  white-space: nowrap;
 }
 
 .Difference__PointTitle {
-  margin-top: -34px;
+  top: 202px;
+  font-family: var(--lp2-font-body);
   font-weight: 700;
-  font-size: 20px;
-  line-height: 1.4;
-  letter-spacing: var(--lp2-tracking-sm);
+  font-size: 19.5px;
+  line-height: 1.44;
+  letter-spacing: 0.03em;
+  text-indent: 0.03em;
   color: var(--lp2-grey);
   text-align: center;
+}
+
+.Difference__Point:nth-child(3) .Difference__PointTitle {
+  top: 207px;
+  letter-spacing: 0;
+  text-indent: 0;
 }
 
 /* --- 比較表 -------------------------------------------------------------- */
 
 .Difference__TableWrap {
-  margin-top: 30px;
-  padding-inline: 20px;
-  /* SP では表がはみ出すため横スクロールさせる */
-  overflow-x: auto;
+  top: 1042.5px;
+  left: 12px;
+  right: 11.5px;
+  overflow: visible;
 }
 
 .Difference__Table {
   width: 100%;
-  min-width: 620px;
+  min-width: 0;
   margin-inline: auto;
   border-collapse: separate;
-  border-spacing: 1px;
+  border-spacing: 0.5px;
+  table-layout: fixed;
   font-family: var(--lp2-font-body);
+  font-feature-settings: normal;
   text-align: center;
 }
 
-/* PSD 実測: 表 903x588、列幅 189 / 338 / 188 / 188。
-   見出し列 #39A0FA、当社列 #F1F7FB、競合・転職特化 #EAEFF1 */
 /* autoprefixer が `:is()` を `:-webkit-any()` に展開すると詳細度が
    (0,2,0) に上がり、あとから書く thead / tbody の指定を潰してしまう。
    そのため th と td を明示的に並べる */
 .Difference__Table th,
 .Difference__Table td {
-  padding: 12px 8px;
+  height: 57.25px;
+  padding: 0 2px;
   font-weight: 500;
-  font-size: 16px;
-  letter-spacing: var(--lp2-tracking-lg);
+  font-size: 12px;
+  white-space: pre-line;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
   color: var(--lp2-grey);
   background: #eaeff1;
 }
 
+.Difference__Table th:first-child,
+.Difference__Table td:first-child {
+  width: 84.5px;
+}
+
+.Difference__Table .isOurs {
+  width: 102px;
+}
+
+.Difference__Table th:nth-child(3),
+.Difference__Table td:nth-child(3) {
+  width: 83px;
+}
+
 .Difference__Table tbody th {
-  width: 21%;
   background: #39a0fa;
+  font-size: 13px;
   color: var(--lp2-white);
 }
 
 .Difference__Table thead th {
+  height: 59.5px;
   background: #9ea4a7;
+  font-size: 14px;
   color: var(--lp2-white);
 }
 
 .Difference__Table thead th:first-child {
   background: #18223d;
+  font-size: 12.5px;
+}
+
+/* SP は記号を 1 行目、本文を 2 行目に置く */
+.Difference__CellMark {
+  display: block;
+  font-size: 1.05em;
+  line-height: 1.25;
+}
+
+.Difference__CellText {
+  display: block;
+  line-height: 1.25;
 }
 
 /* 当社の列だけ強調する。PSD 実測:
      ヘッダは #5852ee → #28affd の横グラデーション
      本文は薄い水色の地(#f1f7fb)に濃紺(#093c5c)の囲み罫、文字は青のグラデーション */
 .Difference__Table .isOurs {
-  width: 37%;
-  border-left: 5px solid #093c5c;
-  border-right: 5px solid #093c5c;
+  border-left: 3px solid #093c5c;
+  border-right: 3px solid #093c5c;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 15px;
   background: #f1f7fb;
   background-image: linear-gradient(90deg, #4d7df5 0%, #36a3fb 100%);
   background-clip: text;
@@ -160,12 +244,13 @@
 }
 
 .Difference__Table tbody tr:last-child .isOurs {
-  border-bottom: 5px solid #093c5c;
+  border-bottom: 3px solid #093c5c;
 }
 
 .Difference__Table thead .isOurs {
-  border-top: 5px solid #093c5c;
-  font-size: 26px;
+  border-top: 3px solid #093c5c;
+  border-radius: 6px 6px 0 0;
+  font-size: 25.25px;
   color: #fff66d;
   background: linear-gradient(90deg, #5852ee 0%, #28affd 100%);
 }
@@ -178,46 +263,95 @@
     padding: 113px 0 0;
   }
 
+  .Difference__Inner {
+    height: auto;
+  }
+
+  .Difference__Inner > * {
+    position: static;
+  }
+
   .Difference__Title {
     margin-top: 24px;
     font-size: 55px;
+    line-height: 1.3;
+    letter-spacing: var(--lp2-tracking-md);
+    text-indent: 0;
+    background-image: none;
+    color: var(--lp2-blue);
   }
 
   .Difference__Points {
+    display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 27px;
+    height: auto;
     margin-top: 62px;
-    padding-inline: 0;
   }
 
   .Difference__Point {
+    position: relative;
+    top: auto;
     width: 334px;
+    height: 298px;
+  }
+
+  .Difference__Point:nth-child(1),
+  .Difference__Point:nth-child(2),
+  .Difference__Point:nth-child(3) {
+    top: auto;
+  }
+
+  .Difference__PointNo {
+    top: 9px;
+    left: 15px;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .Difference__PointNo span {
+    font-size: 10px;
+    letter-spacing: var(--lp2-tracking-md);
+  }
+
+  .Difference__PointNo strong {
+    position: static;
+    font-size: 38px;
+    -webkit-text-stroke: 0;
+    color: #fff66d;
   }
 
   /* PSD: カード 334x298。青い帯 48px の下、見出しは上端から 83px。
      意匠(白いカード・帯・写真)は書き出し画像側にある */
-  .Difference__PointTitle {
-    position: absolute;
+  .Difference__Point:nth-child(1) .Difference__PointTitle,
+  .Difference__Point:nth-child(2) .Difference__PointTitle,
+  .Difference__Point:nth-child(3) .Difference__PointTitle {
     top: 83px;
-    left: 0;
-    right: 0;
-    margin-top: 0;
     font-size: 20px;
     line-height: 1.35;
+    letter-spacing: var(--lp2-tracking-sm);
+    text-indent: 0;
   }
 
   .Difference__TableWrap {
     /* PSD: 表 903x588 @y690 */
+    top: auto;
+    left: auto;
+    right: auto;
     margin-top: 84px;
-    padding-inline: 0;
-    overflow-x: visible;
   }
 
   .Difference__Table {
     /* PSD: 903x588 @(268,690) */
     width: 903px;
-    min-width: 0;
+    table-layout: auto;
+    border-spacing: 1px;
+  }
+
+  .Difference__Table thead .isOurs {
+    border-radius: 0;
   }
 
   .Difference__Table th,
@@ -227,13 +361,54 @@
     padding: 4px 10px;
     font-size: 22px;
     line-height: 1.3;
+    letter-spacing: var(--lp2-tracking-lg);
+  }
+
+  .Difference__Table th:first-child,
+  .Difference__Table td:first-child,
+  .Difference__Table th:nth-child(3),
+  .Difference__Table td:nth-child(3) {
+    width: auto;
+  }
+
+  .Difference__Table th,
+  .Difference__Table td {
+    white-space: normal;
+  }
+
+  .Difference__Table tbody th {
+    width: 21%;
+  }
+
+  .Difference__Table thead th {
+    height: 84px;
+    font-size: 22px;
+  }
+
+  .Difference__Table thead th:first-child {
+    font-size: 22px;
+  }
+
+  /* PC は記号と本文を同じ行に並べる */
+  .Difference__CellMark,
+  .Difference__CellText {
+    display: inline;
+    font-size: inherit;
   }
 
   .Difference__Table .isOurs {
+    width: 37%;
+    border-left-width: 5px;
+    border-right-width: 5px;
     font-size: 28.1px;
   }
 
+  .Difference__Table tbody tr:last-child .isOurs {
+    border-bottom-width: 5px;
+  }
+
   .Difference__Table thead .isOurs {
+    border-top-width: 5px;
     font-size: 42.2px;
   }
 }

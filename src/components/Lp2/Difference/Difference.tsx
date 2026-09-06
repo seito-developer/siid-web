@@ -1,6 +1,3 @@
-import Image from 'next/image';
-
-import { LP2_IMAGE_QUALITY, lp2Asset } from '@/constants/lp2Assets';
 import { LP2_DIFFERENCE_POINTS, LP2_DIFFERENCE_TABLE } from '@/constants/lp2Difference';
 
 import SectionBg from '../SectionBg/SectionBg';
@@ -11,6 +8,22 @@ import styles from './Difference.module.css';
 // DIFFERENCE(docs/spec/lp2-sections/07-difference.md)。
 // POINT カード 3 枚と、他社との比較表(7 行 x 4 列)。
 // 表は <table> で組む。SP では横スクロールさせる。
+
+// 「◎12ヶ月+」のような値を記号と本文に分ける。SP では記号だけ 1 行目に置く
+function Cell({ value }: { value: string }) {
+  const matched = /^([◎◯△×])\s*(.*)$/.exec(value);
+
+  if (!matched) {
+    return <>{value}</>;
+  }
+
+  return (
+    <>
+      <span className={styles.Difference__CellMark}>{matched[1]}</span>
+      <span className={styles.Difference__CellText}>{matched[2]}</span>
+    </>
+  );
+}
 
 export default function Difference() {
   const { head, rows } = LP2_DIFFERENCE_TABLE;
@@ -26,20 +39,12 @@ export default function Difference() {
       />
 
       <div className={styles.Difference__Inner}>
-        <SectionLabel className={styles.Difference__Label}>DIFFERENCE</SectionLabel>
+        <SectionLabel gradient className={styles.Difference__Label}>DIFFERENCE</SectionLabel>
         <h2 className={styles.Difference__Title}>他社スクールとの違い</h2>
 
         <ul className={styles.Difference__Points}>
           {LP2_DIFFERENCE_POINTS.map((point) => (
             <li key={point.no} className={styles.Difference__Point}>
-              <Image
-                src={lp2Asset(`/images/lp-2/${point.image}.webp`)}
-                alt=""
-                width={334}
-                height={298}
-                sizes="(min-width: 768px) 334px, 100vw"
-                quality={LP2_IMAGE_QUALITY}
-              />
               <p className={styles.Difference__PointNo}>
                 <span>POINT</span>
                 <strong>{point.no}</strong>
@@ -71,9 +76,15 @@ export default function Difference() {
               {rows.map((row) => (
                 <tr key={row[0]}>
                   <th scope="row">{row[0]}</th>
-                  <td className={styles.isOurs}>{row[1]}</td>
-                  <td>{row[2]}</td>
-                  <td>{row[3]}</td>
+                  <td className={styles.isOurs}>
+                    <Cell value={row[1]} />
+                  </td>
+                  <td>
+                    <Cell value={row[2]} />
+                  </td>
+                  <td>
+                    <Cell value={row[3]} />
+                  </td>
                 </tr>
               ))}
             </tbody>

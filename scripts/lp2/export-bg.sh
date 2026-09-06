@@ -19,6 +19,8 @@ ROWS=(
   "instructor|sp/seitosama_lp_sp01|0,3102,750,4735|sp/instructor|"
   "strength|sp/seitosama_lp_sp01|0,4735,750,7857|sp/strength|"
   "about|sp/seitosama_lp_sp01|0,1473,750,2034|sp/about|"
+  "difference|sp/seitosama_lp_sp02|0,0,750,2978|sp/difference|比較表"
+  "result|sp/seitosama_lp_sp01|0,2033,750,3102|sp/result|sec_result/長方形 702:sec_result/レイヤー 29:arrow1:arrow2:page_nation"
   "step|sp/seitosama_lp_sp03|0,0,750,4620|sp/step|"
   "support|sp/seitosama_lp_sp05|0,0,750,1646|sp/support|"
   "present|sp/seitosama_lp_sp10|0,0,750,3176|sp/present|"
@@ -36,6 +38,7 @@ ROWS=(
   "pc-present|pc/pc7|0,0,1440,1083|present-bg|"
   "pc-counselling|pc/pc9|0,0,1440,1019|counselling-bg|"
   "pc-about|pc/pc1|0,781,1440,1237|about-bg|"
+  "pc-result|pc/pc1|0,1237,1440,2017|result-bg|sec_result/carousel :sec_result/page_nation"
   "pc-strength|pc/pc2|0,901,1440,1942|strength-bg|"
   "pc-difference|pc/pc2|0,1942,1440,3303|difference-bg|sec_difference/比較表"
 )
