@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   images: {
     // lp-2 は品質 90 で書き出す(src/constants/lp2Assets.ts)。Next.js 16 では
     // ここに列挙した値しか使えなくなるため、既定の 75 と合わせて明示する。
-    qualities: [75, 90],
+    qualities: [75, 80],
     remotePatterns: [
       {
         protocol: 'https',

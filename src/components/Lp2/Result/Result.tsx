@@ -26,6 +26,17 @@ import 'swiper/css/pagination';
 // Swiper の coverflow ではこの落差を出せないため、5 枚を等幅で並べたうえで
 // スライドの状態(active / prev / next)ごとに CSS で倍率を指定して再現する。
 
+// 表示中のスライドとその前後(端はループでつながる)かどうか
+function isNear(index: number, active: number) {
+  const last = LP2_RESULTS.length - 1;
+  const distance = Math.min(
+    Math.abs(index - active),
+    Math.abs(index - active + LP2_RESULTS.length),
+    Math.abs(index - active - LP2_RESULTS.length),
+  );
+  return distance <= 1 || last < 2;
+}
+
 export default function Result() {
   // キャプションはスライドの外に出す。スライドを transform で拡大するため、
   // 中に入れると文字まで拡大されてしまう。PSD でも文言が付くのは中央だけ。
@@ -75,17 +86,23 @@ export default function Result() {
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
           className={styles.Result__Swiper}
         >
-          {LP2_RESULTS.map((item) => (
+          {LP2_RESULTS.map((item, i) => (
             <SwiperSlide key={item.image} className={styles.Result__Slide}>
-              <Image
-                src={lp2Asset(`/images/lp-2/results/${item.image}.webp`)}
-                alt={`${item.from} ${item.to}`.trim()}
-                width={1316}
-                height={772}
-                sizes="(min-width: 768px) 623px, 70vw"
-                className={styles.Result__Image}
-                quality={LP2_IMAGE_QUALITY}
-              />
+              {/* スライドは横に並んでいてビューポート内に入るため loading="lazy" が効かない。
+                  表示中とその前後だけを描画して、残り 5 枚(約 130KB)の取得を止める */}
+              {isNear(i, activeIndex) ? (
+                <Image
+                  src={lp2Asset(`/images/lp-2/results/${item.image}.webp`)}
+                  alt={`${item.from} ${item.to}`.trim()}
+                  width={1316}
+                  height={772}
+                  sizes="(min-width: 768px) 623px, 70vw"
+                  className={styles.Result__Image}
+                  quality={LP2_IMAGE_QUALITY}
+                />
+              ) : (
+                <span className={styles.Result__Image} aria-hidden="true" />
+              )}
             </SwiperSlide>
           ))}
         </Swiper>

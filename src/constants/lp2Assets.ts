@@ -19,4 +19,7 @@ export const LP2_LOGO_WHITE = lp2Asset('/images/lp-1/siid-logo-w.svg');
  * 色が 20 程度ずれることを実測で確認した(例: #24A6FC → #0E9FF7)。
  * 90 まで上げると基準画像とほぼ一致する。
  */
-export const LP2_IMAGE_QUALITY = 90;
+// セクション背景の webp は psd_tool.py が q=80 で書き出したもの。
+// next/image で q=90 に再エンコードすると元より大きくなる(strength は 138KB → 171KB)。
+// リリース前チェックリストの推奨も「品質 80 前後」。
+export const LP2_IMAGE_QUALITY = 80;
