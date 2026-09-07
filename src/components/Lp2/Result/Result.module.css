@@ -166,8 +166,15 @@
 
 /* --- ページネーション ---------------------------------------------------- */
 
+/* Swiper の `.swiper-pagination-bullets.swiper-pagination-horizontal` は
+   `top: var(--swiper-pagination-top, auto)` / `bottom: var(--swiper-pagination-bottom, 8px)`
+   を詳細度 (0,2,0) で当ててくる。こちらの `.Result__Carousel .Result__Pagination`
+   も (0,2,0) で同着になり、あとから読み込まれる swiper 側が勝つ。
+   `top` / `bottom` を直接書いても効かないため、swiper が読む変数のほうを渡す。 */
 .Result__Carousel .Result__Pagination {
   position: absolute;
+  --swiper-pagination-top: 456px;
+  --swiper-pagination-bottom: auto;
   top: 456px;
   bottom: auto;
   left: 0;
@@ -383,6 +390,8 @@
   .Result__Carousel .Result__Pagination {
     position: absolute;
     gap: 10px;
+    --swiper-pagination-top: 494px;
+    --swiper-pagination-bottom: auto;
     top: 494px;
     bottom: auto;
     left: 0;

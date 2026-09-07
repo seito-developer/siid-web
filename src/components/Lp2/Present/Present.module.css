@@ -312,6 +312,14 @@
   }
 
   .Present__GiftTitle,
+  /* SP の `.Present__Gift > *` は `right: 0` と `padding-left: 107.5px`
+     (SP のサムネイル幅)を持つ。PC で打ち消さないと文字が右へ押し出され、
+     本の画像に重なる。left は要素ごとの指定に任せる */
+  .Present__Gift > * {
+    right: auto;
+    padding-left: 0;
+  }
+
   .Present__GiftHighlight {
     position: absolute;
     left: 0;

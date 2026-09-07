@@ -346,7 +346,9 @@
   .Difference__Table {
     /* PSD: 903x588 @(268,690) */
     width: 903px;
-    table-layout: auto;
+    /* auto にすると中身の文字数で列幅が決まり、PSD の
+       190 / 340 / 188 / 188 から 30px 近くずれる。列幅は固定で持つ */
+    table-layout: fixed;
     border-spacing: 1px;
   }
 
@@ -364,11 +366,17 @@
     letter-spacing: var(--lp2-tracking-lg);
   }
 
+  /* PSD 実測の列幅: 比較項目 190 / 当社 340 / 競合 188 / 転職特化 188 */
   .Difference__Table th:first-child,
-  .Difference__Table td:first-child,
+  .Difference__Table td:first-child {
+    width: 190px;
+  }
+
   .Difference__Table th:nth-child(3),
-  .Difference__Table td:nth-child(3) {
-    width: auto;
+  .Difference__Table td:nth-child(3),
+  .Difference__Table th:nth-child(4),
+  .Difference__Table td:nth-child(4) {
+    width: 187px;
   }
 
   .Difference__Table th,
@@ -376,8 +384,11 @@
     white-space: normal;
   }
 
+  /* SP の `.Difference__Table tbody th` は詳細度 (0,2,1) で、上の
+     `.Difference__Table th, .Difference__Table td`(0,2,0)より強い。
+     font-size をここで打ち消さないと左端の項目名だけ SP の 13px のまま残る */
   .Difference__Table tbody th {
-    width: 21%;
+    font-size: 22px;
   }
 
   .Difference__Table thead th {
@@ -397,7 +408,7 @@
   }
 
   .Difference__Table .isOurs {
-    width: 37%;
+    width: 340px;
     border-left-width: 5px;
     border-right-width: 5px;
     font-size: 28.1px;

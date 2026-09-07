@@ -344,8 +344,12 @@
     right: 319px;
   }
 
+  /* SP は `right` で右端を止めているので PC ではそれを外す。
+     ここで `left` まで指定すると詳細度 (0,2,0) が
+     `.Voice__Title` / `.Voice__Text` / `.Voice__Profile`(いずれも (0,1,0))を
+     打ち消してしまい、見出しと本文がカード左端に寄って写真に重なる。
+     左位置は要素ごとの指定に任せること。 */
   .Voice__Card > :not(.Voice__CardBg) {
-    left: 0;
     right: auto;
   }
 
@@ -433,12 +437,16 @@
     height: 214px;
   }
 
+  /* SP 側の `:nth-child` 指定は詳細度 (0,3,0) で `.Voice__Text` (0,1,0) より
+     強い。`left` をここで打ち消さないと 2・3 枚目だけ本文が写真に重なる */
   .Voice__Card:nth-child(2) .Voice__Text {
     top: 132px;
+    left: 319px;
   }
 
   .Voice__Card:nth-child(3) .Voice__Text {
     top: 169px;
+    left: 319px;
   }
 
   .Voice__Lead {
