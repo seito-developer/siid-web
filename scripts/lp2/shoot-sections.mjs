@@ -110,6 +110,25 @@ for (const id of SECTIONS) {
     await page.evaluate(() => { document.body.style.paddingTop = '0.5px'; });
     box = await el.boundingBox();
   }
+  // 遅延読み込みの画像は、要素をビューポートに入れてから読み込みが始まる。
+  // 読み終わる前に撮ると背景が抜けた絵になるため、必ず待つ
+  // (FREE COUNSELING の背景が抜けたまま撮れていた)。
+  await el.evaluate(async (node) => {
+    const imgs = [...node.querySelectorAll('img')];
+    await Promise.all(
+      imgs.map((img) => {
+        if (img.complete && img.naturalWidth > 0) return null;
+        return Promise.race([
+          new Promise((resolve) => {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+          }),
+          new Promise((resolve) => setTimeout(resolve, 15000)),
+        ]);
+      }),
+    );
+  });
+  await page.waitForTimeout(150);
   await el.screenshot({ path: `${outDir}/${id}.png` });
   console.log(`${id.padEnd(12)} ${Math.round(box.width)}x${Math.round(box.height)}`);
 }

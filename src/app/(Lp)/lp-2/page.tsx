@@ -50,16 +50,20 @@ export default function Lp2() {
     <div className={`lp2 ${fontVariables} ${styles.Lp2}`} id="top">
       {/* LCP 要素は FV のポスター画像。CSS の background-image から参照しているため
           ブラウザが見つけるのが遅く、実測で LCP が 15 秒台になっていた。
-          先に preload して CSS の解析を待たずに取得させる(PC / SP で別ファイル)。 */}
+          先に preload して CSS の解析を待たずに取得させる(PC / SP で別ファイル)。
+          fetchPriority が無いとフォントと帯域を取り合って LCP が 3.4s と 6.6s に
+          二極化したため、優先度を明示して先に落とし切らせる。 */}
       <link
         rel="preload"
         as="image"
+        fetchPriority="high"
         href={lp2Asset('/videos/lp-2/fv-sp-poster.webp')}
         media="(max-width: 767px)"
       />
       <link
         rel="preload"
         as="image"
+        fetchPriority="high"
         href={lp2Asset('/videos/lp-2/fv-pc-poster.webp')}
         media="(min-width: 768px)"
       />
