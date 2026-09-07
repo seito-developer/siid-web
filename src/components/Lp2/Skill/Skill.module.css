@@ -562,7 +562,8 @@
   .Skill__Tags li {
     height: auto;
     padding: 6px 12px;
-    background: #fffbdc;
+    /* カンプ実測 #fffcc7(SP と同じ) */
+    background: #fffcc7;
     font-size: 15.14px;
   }
 
