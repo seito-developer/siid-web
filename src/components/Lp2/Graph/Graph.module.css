@@ -325,6 +325,13 @@
     height: 70.4px;
   }
 
+  /* SP 用の「学習範囲」だけ高い指定(0,2,3)は PC 側の th/td(0,1,2)では
+     打ち消せないため、明示的に戻す */
+  .Graph__Table tbody tr:nth-child(12) th,
+  .Graph__Table tbody tr:nth-child(12) td {
+    height: 70.4px;
+  }
+
   .Graph__Table th,
   .Graph__Table td {
     /* 1121px を 14 行 + 見出し 103px で割ると 1 行 70.4px。

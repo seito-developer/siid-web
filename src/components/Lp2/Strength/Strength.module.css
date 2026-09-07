@@ -228,6 +228,13 @@
     width: 316px;
   }
 
+  /* SP 側の :nth-child 指定(詳細度 0,2,0)は、PC 側の .Strength__Card(0,1,0)では
+     打ち消せない。1 枚目を書き忘れてカードの文字が 191px 上にずれていた */
+  .Strength__Card:nth-child(1) {
+    top: 371px;
+    left: 192px;
+  }
+
   .Strength__Card:nth-child(2) {
     top: 371px;
     left: 562px;
@@ -236,6 +243,24 @@
   .Strength__Card:nth-child(3) {
     top: 372px;
     left: 930px;
+  }
+
+  /* 同じ理由で、カードごとの中身の位置も明示的に打ち消す */
+  .Strength__Card:nth-child(1) .Strength__Badge,
+  .Strength__Card:nth-child(2) .Strength__Badge,
+  .Strength__Card:nth-child(3) .Strength__Badge {
+    top: 200px;
+  }
+
+  .Strength__Card:nth-child(1) .Strength__CardTitle,
+  .Strength__Card:nth-child(2) .Strength__CardTitle,
+  .Strength__Card:nth-child(3) .Strength__CardTitle {
+    top: 239px;
+  }
+
+  .Strength__Card:nth-child(1) .Strength__Body,
+  .Strength__Card:nth-child(3) .Strength__Body {
+    top: 314px;
   }
 
   .Strength__Badge {

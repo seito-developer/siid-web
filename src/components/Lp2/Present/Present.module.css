@@ -282,6 +282,19 @@
     text-align: left;
   }
 
+  /* SP 側の `.Present__Gift:nth-child(N) .Present__GiftNo`(詳細度 0,3,0)は
+     `.Present__GiftNo`(0,1,0)では打ち消せず、PC でも SP の座標が効いて
+     番号が数百 px 下にずれていた。同じ詳細度で明示的に戻す */
+  .Present__Gift:nth-child(1) .Present__GiftNo,
+  .Present__Gift:nth-child(2) .Present__GiftNo,
+  .Present__Gift:nth-child(3) .Present__GiftNo,
+  .Present__Gift:nth-child(4) .Present__GiftNo,
+  .Present__Gift:nth-child(5) .Present__GiftNo,
+  .Present__Gift:nth-child(6) .Present__GiftNo,
+  .Present__Gift:nth-child(7) .Present__GiftNo {
+    top: 0;
+  }
+
   /* 帯の下地は背景画像側にあるため、文字だけを白で重ねる */
   .Present__GiftNo {
     position: absolute;
