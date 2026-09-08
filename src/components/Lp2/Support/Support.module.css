@@ -67,7 +67,7 @@
   right: 0;
   font-size: 19.5px;
   line-height: 1;
-  color: #5852ee;
+  color: transparent;
 }
 
 .Support__TitleLarge {
@@ -77,12 +77,12 @@
   right: 0;
   font-size: 28px;
   line-height: 1;
-  color: #584fee;
+  color: transparent;
 }
 
 .Support__TitleTail {
   font-size: 0.72em;
-  color: #3a9efa;
+  color: inherit;
 }
 
 /* --- 価格 ---------------------------------------------------------------- */
@@ -251,7 +251,7 @@
     right: auto;
     font-size: 46.88px;
     line-height: 1;
-    color: #5852ee;
+    color: transparent;
   }
 
   .Support__TitleLarge {
@@ -262,7 +262,7 @@
     right: auto;
     font-size: 69.57px;
     line-height: 1;
-    color: #584fee;
+    color: transparent;
   }
 
   .Support__Prices {
@@ -406,3 +406,13 @@
 .Support__PriceUnit { font-size: 0.68em; letter-spacing: 0; }
 .Support__PricePrefix { font-size: 0.8em; }
 .Support__PriceValue { letter-spacing: 0.09em; }
+
+/* 行全体に紫→水色を連続させる。入れ子の小文字も同じグラデーションで描画する。 */
+.Support__TitleSmall,
+.Support__TitleLarge {
+  width: max-content;
+  margin-inline: auto;
+  background: linear-gradient(90deg, #6150ff 0%, #24b7ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}

@@ -25,7 +25,7 @@ export default function Support() {
 
         <h2 className={styles.Support__Title}>
           <span className={styles.Support__TitleSmall}>その学び</span>
-          {/* カンプは「国が最大80%負担」が大きい紫、「します」が一回り小さい水色 */}
+          {/* カンプは行全体が紫→水色。「が」「%」「します」は一回り小さい */}
           <span className={styles.Support__TitleLarge}>
             国<span className={styles.Support__TitleParticle}>が</span>最大80<span className={styles.Support__TitleParticle}>%</span>負担<span className={styles.Support__TitleTail}>します</span>
           </span>
