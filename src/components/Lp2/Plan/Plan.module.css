@@ -692,3 +692,6 @@
 @media screen and (max-width: 767px) {
   .Plan__Card .Plan__Cta span { font-size: 20.2px; }
 }
+
+/* 小さい料金カードのCTAは、文字間を詰めて左右の矢印との余白を確保する。 */
+.Plan__Card .Plan__Cta span { letter-spacing: 0; }
