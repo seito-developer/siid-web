@@ -29,9 +29,9 @@
 .Skill__TitleLarge::after {
   content: '';
   position: absolute;
-  width: 260px; height: 1px; left: 50%; bottom: -8px;
-  background: linear-gradient(90deg, #6150ff, #24b7ff);
-  transform: translateX(-50%) rotate(-1deg);
+  width: 260px; height: 10px; left: 50%; bottom: -8px;
+  background: url('/siid/images/lp-2/skill-underline.svg') center / 100% 100% no-repeat;
+  transform: translateX(-50%);
 }
 .Skill__Lead {
   position: absolute; top: 174px; left: 0; right: 0;
@@ -114,7 +114,7 @@
   .Skill__Label { top: 86px; }
   .Skill__TitleSmall { top: 142px; font-size: 56.33px; }
   .Skill__TitleLarge { top: 226px; font-size: 60.06px; }
-  .Skill__TitleLarge::after { width: 487px; bottom: -12px; }
+  .Skill__TitleLarge::after { width: 487px; height: 18px; bottom: -12px; }
   .Skill__Lead { top: 337px; max-width: none; font-size: 30.03px; line-height: 1.6; }
   .Skill__Hint { display: none; }
   .Skill__Cards {
