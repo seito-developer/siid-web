@@ -21,7 +21,33 @@ const h0 = await p.evaluate(() => document.body.scrollHeight);
 for (let y = 0; y < h0; y += 900) { await p.evaluate((v) => scrollTo(0, v), y); await p.waitForTimeout(120); }
 await p.evaluate(() => scrollTo(0, 0));
 await p.waitForTimeout(2500);
-await p.evaluate(() => { document.querySelectorAll('video').forEach((v) => { v.pause(); v.currentTime = 0; }); });
+// 動画は再生されているとフレームが毎回変わるので止める。
+// 画面内に入ると再生を再開する実装(FvVideo.tsx)があるため、監視ごと外す。
+await p.evaluate(() => {
+  document.querySelectorAll('video').forEach((v) => {
+    v.pause();
+    v.currentTime = 0;
+    v.removeAttribute('autoplay');
+    v.addEventListener('play', () => v.pause());
+  });
+});
+// 遅延読み込みの画像が読み終わるまで待つ。待たないと背景が抜けた絵で
+// 判定してしまう(SP の背景が丸ごと落ちて 4/15 になった)。
+await p.evaluate(async () => {
+  await Promise.all(
+    [...document.images].map((img) => {
+      if (img.complete && img.naturalWidth > 0) return null;
+      return Promise.race([
+        new Promise((resolve) => {
+          img.addEventListener('load', resolve, { once: true });
+          img.addEventListener('error', resolve, { once: true });
+        }),
+        new Promise((resolve) => setTimeout(resolve, 20000)),
+      ]);
+    }),
+  );
+});
+await p.waitForTimeout(500);
 const info = await p.evaluate(() => ({
   h: document.body.scrollHeight,
   sw: document.documentElement.scrollWidth,

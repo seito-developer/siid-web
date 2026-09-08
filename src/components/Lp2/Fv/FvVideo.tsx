@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { lp2Asset } from '@/constants/lp2Assets';
 
@@ -30,6 +30,7 @@ const SOURCES = {
 export default function FvVideo() {
   const [isPc, setIsPc] = useState<boolean | null>(null);
   const [canLoadBody, setCanLoadBody] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const mql = window.matchMedia(PC_MEDIA);
@@ -56,10 +57,35 @@ export default function FvVideo() {
     return () => window.removeEventListener('load', start);
   }, []);
 
+  // FV を通り過ぎたあとも再生し続けると CPU とバッテリーを使うだけなので、
+  // 画面から外れたら止める。Lighthouse の Speed Index は計測中ずっと FV が
+  // ビューポート内にあるため数値は変わらない(実測で確認済み)。あくまで実利用向け。
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !('IntersectionObserver' in window)) {
+      return undefined;
+    }
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          void video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0 },
+    );
+    io.observe(video);
+
+    return () => io.disconnect();
+  }, [canLoadBody]);
+
   const source = isPc === null ? null : SOURCES[isPc ? 'pc' : 'sp'];
 
   return (
     <video
+      ref={videoRef}
       className={styles.Fv__Video}
       autoPlay
       muted
