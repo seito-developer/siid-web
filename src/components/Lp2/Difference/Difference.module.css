@@ -162,7 +162,7 @@
   min-width: 0;
   margin-inline: auto;
   border-collapse: separate;
-  border-spacing: 0.5px;
+  border-spacing: 0;
   table-layout: fixed;
   font-family: var(--lp2-font-body);
   font-feature-settings: normal;
@@ -174,6 +174,8 @@
    そのため th と td を明示的に並べる */
 .Difference__Table th,
 .Difference__Table td {
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
   height: 57.25px;
   padding: 0 2px;
   font-weight: 500;
@@ -231,19 +233,19 @@
 
 /* 当社の列だけ強調する。PSD 実測:
      ヘッダは #5852ee → #28affd の横グラデーション
-     本文は薄い水色の地(#f1f7fb)に濃紺(#093c5c)の囲み罫、文字は青のグラデーション */
+     本文は薄い水色の地(#f1f7fb)に濃紺(#000)の囲み罫、文字は青のグラデーション */
 .Difference__Table .isOurs {
-  border-left: 1px solid #093c5c;
-  border-right: 1px solid #093c5c;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
   font-weight: 700;
   font-size: 15px;
   background: #f1f7fb;
   color: #398bff;
-  border-bottom: 1px solid #093c5c;
+  border-bottom: 1px solid #000;
 }
 
 .Difference__Table tbody tr:last-child .isOurs {
-  border-bottom: 1px solid #093c5c;
+  border-bottom: 1px solid #000;
 }
 
 .Difference__Table thead .isOurs {
@@ -349,7 +351,7 @@
     /* auto にすると中身の文字数で列幅が決まり、PSD の
        190 / 340 / 188 / 188 から 30px 近くずれる。列幅は固定で持つ */
     table-layout: fixed;
-    border-spacing: 1px;
+    border-spacing: 0;
   }
 
   .Difference__Table thead .isOurs {
@@ -359,6 +361,8 @@
   .Difference__Table th,
   .Difference__Table td {
     /* PSD 実測: 見出し行 76px / 本文行 81〜82px */
+    border-right-width: 2px;
+    border-bottom-width: 2px;
     height: 81.5px;
     padding: 4px 10px;
     font-size: 22px;
@@ -412,6 +416,7 @@
     width: 337px;
     border-left-width: 2px;
     border-right-width: 2px;
+    border-bottom-width: 2px;
     font-size: 28.1px;
   }
 
@@ -439,8 +444,11 @@
 }
 
 @media screen and (max-width: 767px) {
-  .Difference__Table { border-spacing: 1px; }
+  .Difference__Table { border-spacing: 0; }
   .Difference__Table thead th { height: 45px; }
   .Difference__Table th, .Difference__Table td { border-bottom: 1px solid white; }
-  .Difference__Table .isOurs { border-bottom-color: #093c5c; }
+  .Difference__Table .isOurs { border-bottom-color: #000; }
 }
+
+/* 当社列の左枠と二重線にしない。その他の列間・行間は白線で区切る。 */
+.Difference__Table tbody th { border-right: 0; }
