@@ -404,7 +404,7 @@
   }
 
   .Voice__Card:nth-child(3) .Voice__Title {
-    top: 56px;
+    top: 43px;
     left: 161px;
     line-height: 2.163;
   }
@@ -501,4 +501,78 @@
     top: 1660px;
     font-size: 14px;
   }
+}
+
+.Voice__Heading {
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  background: linear-gradient(90deg, #5855ef 35%, #29aefc 65%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.Voice__Title { font-family: var(--lp2-font-body); font-weight: 700; }
+.Voice__No strong { font-family: var(--lp2-font-latin); font-weight: 400; }
+.Voice__Note { color: white; }
+.Voice__Emphasis { color: #f8026f; }
+@media screen and (max-width: 767px) {
+  .Voice__Lead { font-size: 15px; letter-spacing: 0.035em; }
+  .Voice__Card:nth-child(3) .Voice__Lead br { display: none; }
+  .Voice__Body p { font-size: 15px; letter-spacing: 0.055em; }
+}
+
+@media screen and (min-width: 768px) {
+  .Voice__Title { letter-spacing: 0.08em; }
+  .Voice__Card:first-child .Voice__Title { color: #fff66d; }
+}
+
+/* 展開時はカードを文書フローに戻す。背景の各カード領域も個別に移動させ、
+   全文が次のカードやセクションと重ならないようにする。 */
+.Voice:has(.isOpen) {
+  background: linear-gradient(110deg, #5855ef, #25aff9);
+}
+.Voice:has(.isOpen) > picture img { clip-path: inset(0 0 calc(100% - 146px)); }
+.Voice:has(.isOpen) .Voice__Inner { height: auto; min-height: 1936px; padding-bottom: 30px; }
+.Voice:has(.isOpen) .Voice__Cards { position: relative; padding-top: 179px; }
+.Voice:has(.isOpen) .Voice__Card {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  width: 323px;
+  min-height: 537px;
+  margin: 0 auto 20px;
+  isolation: isolate;
+}
+.Voice:has(.isOpen) .Voice__Card:nth-child(2) { min-height: 564px; }
+.Voice:has(.isOpen) .Voice__Card:nth-child(3) { min-height: 558px; }
+.Voice:has(.isOpen) .Voice__Card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 12px;
+  background: white url('/siid/images/lp-2/sp/voice.webp') -26px -179px / 375px 1936px no-repeat;
+}
+.Voice:has(.isOpen) .Voice__Card:nth-child(2)::before { background-position: -26px -736px; }
+.Voice:has(.isOpen) .Voice__Card:nth-child(3)::before { background-position: -26px -1320px; }
+.Voice:has(.isOpen) .isOpen { padding: 284px 20px 30px 22px; background: white; border-radius: 12px; }
+.Voice:has(.isOpen) .isOpen::before { height: 284px; border-radius: 12px 12px 0 0; }
+.Voice:has(.isOpen) .isOpen .Voice__Text { position: static; width: auto; height: auto; margin: 0; }
+.Voice:has(.isOpen) .isOpen .Voice__Body { position: static; height: auto; overflow: visible; }
+.Voice:has(.isOpen) .isOpen .Voice__More { position: static; }
+.Voice:has(.isOpen) .Voice__Note { position: static; margin-top: 32px; }
+@media screen and (min-width: 768px) {
+  .Voice:has(.isOpen) > picture img { clip-path: inset(0 0 calc(100% - 300px)); }
+  .Voice:has(.isOpen) .Voice__Inner { min-height: 1730px; padding-bottom: 56px; }
+  .Voice:has(.isOpen) .Voice__Cards { padding-top: 362px; }
+  .Voice:has(.isOpen) .Voice__Card { width: 802px; min-height: 390px; }
+  .Voice:has(.isOpen) .Voice__Card:nth-child(2) { min-height: 390px; }
+  .Voice:has(.isOpen) .Voice__Card:nth-child(3) { min-height: 429px; }
+  .Voice:has(.isOpen) .Voice__Card::before { background: white url('/siid/images/lp-2/voice-bg.webp') -319px -362px / 1440px 1730px no-repeat; }
+  .Voice:has(.isOpen) .Voice__Card:nth-child(2)::before { background-position: -319px -772px; }
+  .Voice:has(.isOpen) .Voice__Card:nth-child(3)::before { background-position: -319px -1182px; }
+  .Voice:has(.isOpen) .isOpen { padding: 132px 38px 32px 319px; }
+  .Voice:has(.isOpen) .isOpen:nth-child(3) { padding-top: 169px; }
+  .Voice:has(.isOpen) .isOpen::before { height: 345px; }
 }

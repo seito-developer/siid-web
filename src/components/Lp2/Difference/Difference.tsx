@@ -67,7 +67,7 @@ export default function Difference() {
               <tr>
                 {head.map((label, i) => (
                   <th key={label} scope="col" className={i === 1 ? styles.isOurs : undefined}>
-                    {label}
+                    <span>{label}</span>
                   </th>
                 ))}
               </tr>

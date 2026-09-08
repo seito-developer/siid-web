@@ -39,11 +39,13 @@ export default function Step() {
                 <strong>{step.no}</strong>
               </p>
 
-              <h3 className={styles.Step__CardTitle}>{step.title}</h3>
+              <h3 className={styles.Step__CardTitle}>{step.title.split(/(制作|プロデュース|その後も)/).map((part, index) => (
+                <span key={index}>{index === 1 && <br className={styles.Step__TitleBreak} />}{part}</span>
+              ))}</h3>
               <p className={styles.Step__Text}>
-                {step.body.split('\n').map((line, i) => (
+                {step.body.split(/(\n|(?=「飲食店))/).filter(Boolean).map((line, i) => (
                   <span key={line}>
-                    {i > 0 && <br />}
+                    {i > 0 && <br className={line.startsWith('「飲食店') ? styles.Step__ExampleBreak : undefined} />}
                     {line}
                   </span>
                 ))}

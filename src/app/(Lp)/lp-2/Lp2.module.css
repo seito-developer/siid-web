@@ -81,3 +81,38 @@
   white-space: nowrap;
   border: 0;
 }
+
+/* 背景へ焼き込まれた装飾と実テキストは、同じ設計幅で組んで一緒に拡縮する。
+   transform と異なり zoom はレイアウト上の高さも拡縮するため、下端に空白を残さない。
+   visualViewport は参照せず CSS viewport を使い、ピンチズームはブラウザに任せる。 */
+.Lp2 {
+  --lp2-design-width: 375px;
+  --lp2-canvas-scale: calc(100vw / 375px);
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.Lp2 > main,
+.Lp2 > footer,
+.Lp2 > header {
+  width: var(--lp2-design-width);
+  zoom: var(--lp2-canvas-scale);
+}
+
+/* fixed ヘッダーは main の外に置いたまま、本文と同じ縮尺で固定する。 */
+.Lp2 > header {
+  right: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .Lp2 {
+    --lp2-design-width: 1440px;
+    --lp2-canvas-scale: min(1, calc(100vw / 1440px));
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .Lp2 > header {
+    left: calc((100vw - 1440px) / 2);
+  }
+}

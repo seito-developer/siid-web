@@ -53,7 +53,7 @@ export default function Instructor() {
               <span className={styles.Instructor__CopyHead}>
                 採用する側を
                 <br className={styles.Instructor__CopyBreak} />
-                知る講師が、
+                知る講師<span className={styles.Instructor__CopyWhite}>が、</span>
               </span>
               <br />
               <span className={styles.Instructor__CopyLast}>市場価値を設計する</span>

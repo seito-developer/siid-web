@@ -65,8 +65,8 @@
   display: block;
   height: 82px;
   margin-top: 18.5px;
-  font-family: var(--lp2-font-latin);
-  font-weight: 700;
+  font-family: Arial, sans-serif;
+  font-weight: 400;
   line-height: 1;
   letter-spacing: 0;
 }
@@ -79,18 +79,18 @@
   font-size: 116px;
   line-height: 1;
   color: #fef579;
-  transform: scaleX(0.845);
+  transform: scaleX(0.95);
   transform-origin: left top;
 }
 
 .Step__TitleWord {
   position: absolute;
-  top: -12px;
-  left: 143px;
-  font-size: 105px;
+  top: 35px;
+  left: 148px;
+  font-size: 49px;
   line-height: 1;
   color: var(--lp2-white);
-  transform: scaleX(0.581);
+  transform: scaleX(0.99);
   transform-origin: left top;
 }
 
@@ -183,14 +183,17 @@
   font-size: 26.5px;
   line-height: 1.14;
   letter-spacing: var(--lp2-tracking-md);
-  color: #000914;
+  color: #584eff;
+  background: linear-gradient(100deg, #6550ff 30%, #19adff 70%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-align: center;
 }
 
 .Step__Text {
   top: 286px;
   left: 37px;
-  right: 37px;
+  right: 20px;
   /* カンプの本文は約物を詰めない組み。palt を効かせると 1 行に 1 文字多く入り、
      背景に焼き込まれている黄色のマーカーと行がずれる */
   font-feature-settings: normal;
@@ -233,7 +236,7 @@
     /* PSD: 枠付きの小見出し */
     display: inline-block;
     padding: 5px 24px;
-    border: 2px solid rgba(255, 255, 255, 0.8);
+    border: 0;
     font-size: 38.67px;
   }
 
@@ -257,11 +260,11 @@
 
   .Step__TitleWord {
     position: absolute;
-    top: 14px;
-    left: 657px;
-    font-weight: 500;
-    font-size: 132.5px;
-    transform: scaleX(0.694);
+    top: 70px;
+    left: 669px;
+    font-weight: 400;
+    font-size: 73px;
+    transform: scaleX(0.98);
     transform-origin: left top;
   }
 
@@ -320,8 +323,8 @@
   .Step__CardTitle {
     /* PSD: 見出し y340 = カード上端(229)から 111px、左 x501(= 相対 182) */
     top: 105px;
-    left: 160px;
-    right: 24px;
+    left: 0;
+    right: 0;
     font-size: 32px;
     line-height: 1.3;
     letter-spacing: var(--lp2-tracking-md);
@@ -331,7 +334,7 @@
     /* PSD: 本文 y420 = カード上端から 191px、左 x745 = 相対 427px */
     top: 185px;
     left: 427px;
-    right: 32px;
+    right: 36px;
     font-size: 18px;
     line-height: 1.78;
     letter-spacing: var(--lp2-tracking-md);
@@ -348,4 +351,14 @@
     width: 498px;
     height: 124px;
   }
+}
+
+@media screen and (min-width: 768px) {
+  .Step__TitleBreak { display: none; }
+}
+
+/* PCの見出し句をカンプと同じ行で区切る。SPは通常の折り返しを保つ。 */
+.Step__ExampleBreak { display: none; }
+@media screen and (min-width: 768px) {
+  .Step__ExampleBreak { display: inline; }
 }

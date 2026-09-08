@@ -67,7 +67,13 @@ function Card({ voice, index }: { voice: (typeof LP2_VOICES)[number]; index: num
 
         <div className={styles.Voice__Body} id={bodyId}>
           {voice.body.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
+            <p key={paragraph}>
+              {paragraph.split(/(SiiDの最大の魅力は、.*?磨ける点です。|結果、.*?勝ち取れました！)/).map((part) => (
+                part.startsWith('SiiDの最大の魅力') || part.startsWith('結果、')
+                  ? <span key={part} className={styles.Voice__Emphasis}><br />{part}</span>
+                  : <React.Fragment key={part}>{part}</React.Fragment>
+              ))}
+            </p>
           ))}
         </div>
 

@@ -427,3 +427,70 @@
     text-align: center;
   }
 }
+
+/* 列見出しの上端は、中央・両脇・項目列の三段。 */
+.Graph__Table thead th {
+  position: relative;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  font-family: var(--lp2-font-body);
+  letter-spacing: 0.08em;
+  vertical-align: bottom;
+  padding-bottom: 13px;
+  background: linear-gradient(transparent 10px, #1c81fe 10px);
+}
+.Graph__Table thead th:first-child {
+  background: linear-gradient(transparent 20px, #2aa8fc 20px);
+  padding-bottom: 12px;
+}
+.Graph__Table thead th:last-child {
+  background: linear-gradient(transparent 10px, #5855ef 10px);
+}
+.Graph__Table thead .isFeatured {
+  background: linear-gradient(110deg, #5855ef, #29aefc);
+  padding-top: 20px;
+}
+.Graph__Stars {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  right: 0;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+}
+.Graph__Table tbody th { border-bottom: 1px solid #2aa8fc; }
+@media screen and (min-width: 768px) {
+  .Graph__Table th, .Graph__Table td { letter-spacing: 0.055em; font-size: 21px; }
+  .Graph__Table tbody tr:nth-child(n + 11) td { font-size: 19px; }
+  .Graph__Table thead th { font-size: 28px; padding-bottom: 21px; background: linear-gradient(transparent 16px, #1c81fe 16px); }
+  .Graph__Table thead th:first-child { background: linear-gradient(transparent 32px, #2aa8fc 32px); padding-bottom: 21px; }
+  .Graph__Table thead th:last-child { background: linear-gradient(transparent 16px, #5855ef 16px); }
+  .Graph__Table thead .isFeatured { background: linear-gradient(110deg, #5855ef, #29aefc); padding-bottom: 21px; }
+  .Graph__Stars { top: 20px; font-size: 16px; }
+}
+
+@media screen and (min-width: 768px) {
+  .Graph__Table tbody tr:nth-child(13) td { font-size: 18px; letter-spacing: 0; }
+  .Graph__Table thead .isFeatured::before,
+  .Graph__Table thead .isFeatured::after {
+    content: '❧';
+    position: absolute;
+    bottom: 9px;
+    font-family: serif;
+    font-size: 52px;
+    font-weight: 400;
+  }
+  .Graph__Table thead .isFeatured::before { left: 12px; transform: rotate(-65deg); }
+  .Graph__Table thead .isFeatured::after { right: 12px; transform: scaleX(-1) rotate(-65deg); }
+}
+@media screen and (min-width: 768px) {
+  .Graph__Table thead .isFeatured::before,
+  .Graph__Table thead .isFeatured::after {
+    content: ''; width: 22px; height: 60px; bottom: 16px;
+    background: url('/siid/images/lp-2/laurel.svg') center / contain no-repeat;
+  }
+  .Graph__Table thead .isFeatured::before { left: 20px; transform: none; }
+  .Graph__Table thead .isFeatured::after { right: 20px; transform: scaleX(-1); }
+}

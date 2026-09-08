@@ -82,6 +82,10 @@
 }
 
 /* カンプでは最後の行だけ白い */
+.Instructor__CopyWhite {
+  color: var(--lp2-white);
+}
+
 .Instructor__CopyLast {
   margin-left: 17px;
   color: var(--lp2-white);
@@ -133,11 +137,12 @@
 .Instructor__Bullets li {
   position: absolute;
   left: 36px;
-  right: 20px;
+  right: 12px;
   padding-left: 0;
   font-weight: 500;
   font-size: 15px;
-  line-height: 1.24;
+  font-weight: 400;
+  line-height: 1.4;
   letter-spacing: var(--lp2-tracking-lg);
 }
 
@@ -221,9 +226,13 @@
     display: inline;
   }
 
-  .Instructor__CopyLast {
+  .Instructor__CopyWhite {
+  color: var(--lp2-white);
+}
+
+.Instructor__CopyLast {
     margin-left: 0;
-    color: var(--lp2-highlight);
+    color: var(--lp2-white);
     /* 9 文字 × 52px × (1 + 0.12em) = 524px で幅 520px をわずかに超え、
        最後の「る」だけが 4 行目に落ちて講師名に重なっていた。
        字送りの末尾アキぶんなので、折り返しを止めて 1 行に収める。 */

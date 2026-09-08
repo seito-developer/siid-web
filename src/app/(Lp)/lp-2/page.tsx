@@ -1,6 +1,7 @@
 import { Metadata, Viewport } from 'next';
 
 import About from '@/components/Lp2/About/About';
+import CanvasScale from '@/components/Lp2/CanvasScale/CanvasScale';
 import CookieBanner from '@/components/Lp2/CookieBanner/CookieBanner';
 import Counselling from '@/components/Lp2/Counselling/Counselling';
 import Difference from '@/components/Lp2/Difference/Difference';
@@ -67,6 +68,7 @@ export default function Lp2() {
         href={lp2Asset('/videos/lp-2/fv-pc-poster.webp')}
         media="(min-width: 768px)"
       />
+      <CanvasScale />
       <StructuredData />
       <Header />
       <main>

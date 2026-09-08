@@ -92,7 +92,7 @@
   left: 122.5px;
   font-size: 33.5px;
   letter-spacing: 0.087em;
-  /* SP のカンプはクリーム色(PC は水色) */
+  /* カンプのプラン見出しはクリーム色 */
   color: #fffed9;
 }
 
@@ -386,7 +386,7 @@
     left: 577px;
     font-size: 64.55px;
     letter-spacing: 0.087em;
-    color: var(--lp2-cyan-light);
+    color: #fffed9;
   }
 
   /* PSD: 179x358 @(921,34)。見出しの右に重なる */
@@ -679,4 +679,16 @@
     font-size: 10.71px;
     letter-spacing: 0.16em;
   }
+}
+
+/* カード文字は意匠の中央に合わせる。絶対配置の一括 margin を上書きする。 */
+.Plan__Tab br { display: none; }
+.Plan__MonthlyTax { font-size: 0.45em; }
+@media screen and (min-width: 768px) {
+  .isRecommended .Plan__Name { color: #fff66d; }
+  .Plan__Card .Plan__Lead { margin-inline: auto; }
+  .Plan__Card:last-child .Plan__AfterPrice { color: #333; }
+}
+@media screen and (max-width: 767px) {
+  .Plan__Card .Plan__Cta span { font-size: 20.2px; }
 }

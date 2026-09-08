@@ -21,7 +21,7 @@ export default function SectionLabel({ children, inverse, gradient, className = 
   const variant = [inverse ? styles.isInverse : '', gradient ? styles.isGradient : ''].join(' ');
 
   return (
-    <div className={`${styles.SectionLabel} ${variant} ${className}`}>
+    <div className={`${styles.SectionLabel} ${variant} ${className}`} data-label={children.trim()}>
       <span className={styles.SectionLabel__Line} aria-hidden="true" />
       <span className={styles.SectionLabel__Text}>{children}</span>
       <span className={styles.SectionLabel__Line} aria-hidden="true" />

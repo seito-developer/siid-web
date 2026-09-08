@@ -187,7 +187,7 @@
 /* カンプでは黄色 */
 .Support__Note {
   top: 646.5px;
-  color: #fff662;
+  color: var(--lp2-white);
   font-family: var(--lp2-font-body);
   font-weight: 700;
   font-size: 19.6px;
@@ -397,3 +397,12 @@
     margin: 0 auto;
   }
 }
+
+.Support__NoteAccent { color: #fff662; }
+.Support__BadgeCourse { letter-spacing: 0.12em; }
+
+/* 数字と単位を分け、カンプの大きさの強弱を保つ。 */
+.Support__TitleParticle { font-size: 0.7em; }
+.Support__PriceUnit { font-size: 0.68em; letter-spacing: 0; }
+.Support__PricePrefix { font-size: 0.8em; }
+.Support__PriceValue { letter-spacing: 0.09em; }

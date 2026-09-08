@@ -16,6 +16,7 @@ PSD_DIR="${LP2_PSD_DIR:-$HOME/Downloads/260902_seitosama}"
 
 # 名前|PSD|切り出し範囲(x0,y0,x1,y1)|出力|追加で隠すレイヤー(: 区切り)
 ROWS=(
+  "pc-cta-button|pc/pc7|468,887,970,1011|cta-button-pc|"
   "instructor|sp/seitosama_lp_sp01|0,3102,750,4735|sp/instructor|"
   "strength|sp/seitosama_lp_sp01|0,4735,750,7857|sp/strength|"
   "about|sp/seitosama_lp_sp01|0,1473,750,2034|sp/about|"
@@ -32,6 +33,7 @@ ROWS=(
 
   # PC。カード類は各コンポーネントが画像で持っているものもあるため、
   # ここでは「テキストだけを隠す」ぶんに留める(重ねて描いても同じ絵になる)。
+  "pc-fv-band|pc/pc1|0,617,1440,782|fv-band-pc|fv/video"
   "pc-instructor|pc/pc2|0,0,1440,901|instructor-bg|"
   "pc-step|pc/pc3|0,0,1440,2242|step-bg|"
   "pc-voice|pc/pc6|0,0,1440,1730|voice-bg|"
@@ -56,6 +58,7 @@ run_one() {
     --hide-kinds type "${args[@]}" \
     --box "$box" --match-reference "$ref" \
     --out "public/images/lp-2/$out.webp" || return 1
+  if [ "$name" = "pc-cta-button" ]; then node scripts/lp2/clean-cta.mjs; fi
 }
 
 target="${1:-}"

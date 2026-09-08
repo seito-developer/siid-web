@@ -7,6 +7,8 @@
 // セクションをまたぐ崩れ・ヘッダーの被り・要素の重なりを検出できない。
 // レビューでは必ずこちらの通し画像も見ること。
 // 出力先は環境変数 SPDIR(既定は tmp/shots)。
+import fs from 'node:fs/promises';
+
 import { chromium } from 'playwright';
 
 const b = await chromium.launch();
@@ -14,8 +16,9 @@ const w = Number(process.argv[2] ?? 1440);
 const p = await b.newPage({ viewport: { width: w, height: 1000 } });
 // ヘッダーは消さない。実画面での被りを見るため
 await p.addInitScript(() => { try { localStorage.setItem('lp2-cookie-consent', 'accepted'); } catch {} });
-await p.goto('http://localhost:3001/siid/lp-2', { waitUntil: 'domcontentloaded', timeout: 60000 });
-await p.waitForTimeout(3000);
+await p.goto(process.env.LP2_URL ?? 'http://localhost:3001/siid/lp-2', { waitUntil: 'domcontentloaded', timeout: 60000 });
+await p.evaluate(() => document.fonts.ready);
+await p.waitForTimeout(1000);
 // 段階スクロールで遅延読み込みを起こす
 const h0 = await p.evaluate(() => document.body.scrollHeight);
 for (let y = 0; y < h0; y += 900) { await p.evaluate((v) => scrollTo(0, v), y); await p.waitForTimeout(120); }
@@ -49,11 +52,18 @@ await p.evaluate(async () => {
 });
 await p.waitForTimeout(500);
 const info = await p.evaluate(() => ({
+  sections: Object.fromEntries([...document.querySelectorAll('section[id]')].map(el => {
+    const r = el.getBoundingClientRect();
+    return [el.id, { top: Math.round(r.top + scrollY), height: Math.round(r.height) }];
+  })),
   h: document.body.scrollHeight,
   sw: document.documentElement.scrollWidth,
   cw: document.documentElement.clientWidth,
 }));
 console.log('高さ', info.h, '/ scrollWidth', info.sw, '/ clientWidth', info.cw, info.sw > info.cw ? '← 横スクロールあり' : '');
-await p.screenshot({ path: `${process.env.SPDIR ?? 'tmp/shots'}/page-${w}.png`, fullPage: true });
+const out = process.env.SPDIR ?? 'tmp/shots';
+await fs.mkdir(out, { recursive: true });
+await fs.writeFile(`${out}/sections-${w}.json`, JSON.stringify(info, null, 2));
+await p.screenshot({ path: `${out}/page-${w}.png`, fullPage: true });
 await b.close();
 console.log('done');

@@ -34,7 +34,7 @@ function isNear(index: number, active: number) {
     Math.abs(index - active + LP2_RESULTS.length),
     Math.abs(index - active - LP2_RESULTS.length),
   );
-  return distance <= 1 || last < 2;
+  return distance <= 2 || last < 2;
 }
 
 export default function Result() {
@@ -89,7 +89,7 @@ export default function Result() {
           {LP2_RESULTS.map((item, i) => (
             <SwiperSlide key={item.image} className={styles.Result__Slide}>
               {/* スライドは横に並んでいてビューポート内に入るため loading="lazy" が効かない。
-                  表示中とその前後だけを描画して、残り 5 枚(約 130KB)の取得を止める */}
+                  PC で見える中央と左右2枚ずつを描画する */}
               {isNear(i, activeIndex) ? (
                 <Image
                   src={lp2Asset(`/images/lp-2/results/${item.image}.webp`)}
@@ -103,6 +103,9 @@ export default function Result() {
               ) : (
                 <span className={styles.Result__Image} aria-hidden="true" />
               )}
+              <p className={styles.Result__SideCaption} aria-hidden="true">
+                {item.from}<br /><span>{item.to}</span>
+              </p>
             </SwiperSlide>
           ))}
         </Swiper>

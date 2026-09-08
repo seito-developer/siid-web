@@ -239,7 +239,7 @@
 
   .Present__TitleSmall {
     position: absolute;
-    top: 127px;
+    top: 139px;
     left: 0;
     right: 0;
     font-size: 52px;
@@ -303,7 +303,7 @@
     padding: 0;
     border-radius: 0;
     /* 実測との差を打ち消す(座標は文字のインクの上端で持っている) */
-    margin-top: -9px;
+    margin-top: 0;
     font-size: 15px;
     line-height: 1;
     letter-spacing: 0.1em;
@@ -330,12 +330,12 @@
   }
 
   .Present__GiftTitle {
-    margin-top: -16px;
+    margin-top: -5px;
     color: #333;
   }
 
   .Present__GiftHighlight {
-    margin-top: -10px;
+    margin-top: -2px;
     font-weight: 700;
     color: #f8026f;
   }
@@ -379,4 +379,26 @@
     height: 124px;
     margin: 0 auto;
   }
+}
+
+.Present__GiftTitle { font-weight: 700; }
+.Present__TitleSmall { font-family: var(--lp2-font-body); font-weight: 700; }
+.Present__TitleLarge { font-family: var(--lp2-font-body); font-weight: 700; }
+@media screen and (max-width: 767px) {
+  .Present__TitleSmall { top: 72px; font-size: 25px; line-height: 1.22; }
+  .Present__TitleLarge { top: 133px; font-size: 29px; letter-spacing: 0; }
+  .Present__TitleNum { font-size: 2em; }
+  .Present__GiftNo { font-size: 18px; font-weight: 700; }
+  .Present__GiftHighlight { font-size: 16px; letter-spacing: 0; }
+  .Present__Gift:first-child .Present__GiftHighlight span:last-child { white-space: nowrap; }
+}
+@media screen and (min-width: 768px) {
+  .Present__GiftTitle { font-size: 15px; }
+  .Present__GiftNo { font-size: 19px; }
+  .Present__TitleLarge { font-size: 60px; letter-spacing: 0.035em; }
+  .Present__TitleNum { font-size: 2.2em; }
+}
+
+@media screen and (max-width: 767px) {
+  .Present__Gift:first-child .Present__GiftHighlight span:last-child br { display: none; }
 }

@@ -102,11 +102,14 @@ export default function Counselling() {
           </ul>
         </div>
 
-        <div
-          ref={widgetRef}
-          className={`jicoo-widget ${styles.Counselling__Widget}`}
-          data-url={JICOO_WIDGET_URL}
-        />
+        <div className={styles.Counselling__Booking}>
+          <h3 className={styles.Counselling__BookingTitle}>無料カウンセリング予約</h3>
+          <div
+            ref={widgetRef}
+            className={`jicoo-widget ${styles.Counselling__Widget}`}
+            data-url={JICOO_WIDGET_URL}
+          />
+        </div>
       </div>
     </section>
   );

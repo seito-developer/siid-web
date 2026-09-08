@@ -117,7 +117,7 @@ export default function Skill() {
           <span className={styles.Skill__TitleLarge}>できるようになる</span>
         </h2>
 
-        <p className={styles.Skill__Lead}>知識を集めるのではなく、仕事で使えるアウトプットへ。</p>
+        <p className={styles.Skill__Lead}>知識を集めるのではなく、<br className={styles.Skill__LeadBreak} />仕事で使えるアウトプットへ。</p>
         <p className={styles.Skill__Hint}>気になる項目をタップすると詳細が開きます。</p>
 
         <ul className={styles.Skill__Cards}>

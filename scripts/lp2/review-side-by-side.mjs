@@ -35,7 +35,7 @@ const SP = [
 const rows = side === 'pc' ? PC : SP;
 const width = side === 'pc' ? 1440 : 375;
 const shotPath = path.join(dir, `page-${width}.png`);
-const rects = JSON.parse(fs.readFileSync(`tmp/review/sections-${width}.json`, 'utf8')).sections;
+const rects = JSON.parse(fs.readFileSync(path.join(dir, `sections-${width}.json`), 'utf8')).sections;
 const shot = sharp(shotPath);
 const shotMeta = await shot.metadata();
 

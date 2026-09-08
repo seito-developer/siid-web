@@ -138,13 +138,13 @@
 }
 
 .Strength__Body {
-  padding: 0 37px;
+  padding: 0 27px 0 37px;
   /* カンプの本文は約物を詰めない組み(「や、150」の読点が全角のまま)なので、
      全体にかけている palt をここでは切る */
   font-feature-settings: normal;
   font-weight: 400;
   font-size: 15px;
-  line-height: 1.56;
+  line-height: 1.6;
   letter-spacing: var(--lp2-tracking-md);
   color: #06133d;
   text-align: left;
@@ -285,11 +285,32 @@
   .Strength__Body {
     top: 314px;
     padding: 0 24px;
-    font-size: 14.5px;
-    line-height: 1.66;
+    font-size: 18px;
+    line-height: 1.78;
   }
 
   .Strength__Card:nth-child(2) .Strength__Body {
     top: 316px;
   }
+}
+
+/* PSD の青→水色の文字グラデーションを文字領域に適用する。 */
+.Strength__TitleLarge,
+.Strength__CardTitle {
+  background: linear-gradient(100deg, #584eff 15%, #16b4ff 85%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.Strength__Label {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  color: #cadb9e;
+}
+.Strength__Badge {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 767px) {
+  .Strength__Card:nth-child(3) .Strength__Body { letter-spacing: 0.04em; }
 }

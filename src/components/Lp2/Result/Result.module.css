@@ -419,3 +419,23 @@
     height: 16px;
   }
 }
+
+.Result__SideCaption { display: none; }
+@media screen and (min-width: 768px) {
+  .Result__Title { margin-top: 0; }
+  .Result__TitleAccent, .Result__TitleAccent2 { color: inherit; }
+  .Result__Carousel { margin-top: 13px; }
+  .Result__SideCaption {
+    display: block; position: absolute; top: 100%; left: 50%;
+    width: 360px; transform: translateX(-50%);
+    font-size: 12px; font-weight: 700; line-height: 1.4;
+    color: var(--lp2-ink); text-align: center;
+  }
+  .Result__SideCaption span { color: var(--lp2-accent); }
+  :global(.swiper-slide-active) .Result__SideCaption { display: none; }
+  .Result__Slide:has(+ :global(.swiper-slide-prev)) .Result__SideCaption,
+  :global(.swiper-slide-next) + .Result__Slide .Result__SideCaption { font-size: 18px; }
+}
+
+/* 説明文の透明な領域が、同じ高さにあるSP矢印のクリックを遮らないようにする。 */
+.Result__Caption { pointer-events: none; }

@@ -27,7 +27,7 @@ export default function Support() {
           <span className={styles.Support__TitleSmall}>その学び</span>
           {/* カンプは「国が最大80%負担」が大きい紫、「します」が一回り小さい水色 */}
           <span className={styles.Support__TitleLarge}>
-            国が最大80%負担<span className={styles.Support__TitleTail}>します</span>
+            国<span className={styles.Support__TitleParticle}>が</span>最大80<span className={styles.Support__TitleParticle}>%</span>負担<span className={styles.Support__TitleTail}>します</span>
           </span>
         </h2>
 
@@ -35,15 +35,15 @@ export default function Support() {
         <div className={styles.Support__Prices}>
           <div className={styles.Support__PriceBox}>
             <p className={styles.Support__PriceLabel}>通常価格</p>
-            <p className={styles.Support__PriceValue}>528,000円</p>
+            <p className={styles.Support__PriceValue}>528,000<span className={styles.Support__PriceUnit}>円</span></p>
           </div>
 
           <div className={`${styles.Support__PriceBox} ${styles.isAfter}`}>
             <p className={`${styles.Support__PriceLabel} ${styles.isLeft}`}>給付金適用</p>
             <p className={`${styles.Support__PriceLabel} ${styles.isRight}`}>実質負担</p>
-            <p className={`${styles.Support__PriceValue} ${styles.isAccent} ${styles.isLeft}`}>最大80%</p>
+            <p className={`${styles.Support__PriceValue} ${styles.isAccent} ${styles.isLeft}`}><span className={styles.Support__PricePrefix}>最大</span>80<span className={styles.Support__PriceUnit}>%</span></p>
             <p className={`${styles.Support__PriceValue} ${styles.isAccent} ${styles.isRight}`}>
-              105,600円～
+              105,600<span className={styles.Support__PriceUnit}>円～</span>
             </p>
           </div>
         </div>
@@ -56,7 +56,7 @@ export default function Support() {
           </p>
         </div>
 
-        <p className={styles.Support__Note}>申請手続きもSiiDがサポートします。</p>
+        <p className={styles.Support__Note}><span className={styles.Support__NoteAccent}>申請手続きもSiiDがサポート</span>します。</p>
         <p className={styles.Support__Small}>
           ※Career 12ヶ月プラン対象。給付には所定の要件があります。
           <br />

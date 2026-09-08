@@ -43,6 +43,7 @@ export default function Graph() {
                     scope="col"
                     className={i === 2 ? styles.isFeatured : undefined}
                   >
+                    {i === 2 && <span className={styles.Graph__Stars} aria-hidden="true">★★★★</span>}
                     {label}
                   </th>
                 ))}

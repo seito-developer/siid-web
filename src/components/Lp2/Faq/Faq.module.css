@@ -282,3 +282,29 @@
     line-height: 1.8;
   }
 }
+
+.Faq__Heading { font-family: var(--lp2-font-body); font-weight: 700; }
+.Faq__Answer p { font-weight: 400; letter-spacing: 0.07em; }
+.Faq__Item[open] { box-shadow: 0 12px 25px #19134612; }
+@media screen and (min-width: 768px) {
+  .Faq__Answer { padding: 14px 30px 18px 74px; }
+  .Faq__Answer p { font-size: 16px; }
+}
+
+/* 展開した回答を切り取らず、後続セクションも押し下げる。 */
+.Faq__Inner { height: auto; min-height: 961.5px; padding-bottom: 50px; }
+.Faq__List { position: relative; top: auto; left: auto; right: auto; padding-top: 147.5px; margin-inline: 12.5px; }
+.Faq__Answer { height: auto; min-height: 194px; padding-bottom: 20px; }
+@media screen and (min-width: 768px) {
+  .Faq__Inner { min-height: 1168px; }
+  .Faq__Heading { letter-spacing: 0.15em; }
+  .Faq__List { padding-top: 0; margin: 45px auto 0; }
+  .Faq__Answer { min-height: 114px; }
+}
+/* 背景画像に残っている回答パネルの影は開閉に追従しないため、
+   英字ラベルの装飾だけ残し、回答部分はCSSのパネルで描く。 */
+.Faq { background: #f8f6ff; }
+.Faq > picture img { height: 961.5px; object-fit: fill; clip-path: inset(0 0 calc(100% - 125px)); }
+@media screen and (min-width: 768px) {
+  .Faq > picture img { height: 1256px; clip-path: inset(0 0 calc(100% - 260px)); }
+}

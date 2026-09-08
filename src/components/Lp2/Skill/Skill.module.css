@@ -1,588 +1,171 @@
-/*
- * SKILLS。PSD 実測(PC セクション 1440x1700)。
- *   ラベル y86 / 「学んで」y147(56.3px) / 「できるようになる」y232(60.1px)
- *   リード y346(30px) / カード 346x527 を 3 枚 + 346x421 を 2 枚
- *
- * SP のみアコーディオン。PC は常時展開。
- */
-
+/* PSD: SP 375px / PC 1440px。開閉でカードと後続セクションが自然に伸びる。 */
 .Skill {
-  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
-  min-height: 1101px;
   position: relative;
   overflow: hidden;
-  padding: 28px 0 40px;
   background: #f4f7ff;
 }
-
-.Skill__Bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .Skill__Inner {
   position: relative;
   z-index: 1;
-  max-width: var(--lp2-canvas);
+  max-width: 1440px;
   margin-inline: auto;
-  padding-inline: 16px;
+  padding: 301px 17px 49px;
 }
-
-.Skill__Title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 14px;
-  color: var(--lp2-grey);
-  text-align: center;
+.Skill__Label { position: absolute; top: 45px; left: 0; right: 0; }
+.Skill__Title { text-align: center; }
+.Skill__TitleSmall, .Skill__TitleLarge {
+  position: absolute; left: 0; right: 0; line-height: 1;
 }
-
-.Skill__TitleSmall {
-  font-size: 26px;
-}
-
+.Skill__TitleSmall { top: 73px; font-size: 26.5px; color: #333; }
 .Skill__TitleLarge {
-  font-size: 28px;
-  color: var(--lp2-blue);
-}
-
-.Skill__Lead {
-  margin-top: 12px;
-  font-size: 15px;
-  line-height: 1.6;
-  letter-spacing: var(--lp2-tracking-md);
-  color: var(--lp2-grey);
-  text-align: center;
-}
-
-.Skill__Hint {
-  margin-top: 10px;
-  font-size: 13px;
-  letter-spacing: var(--lp2-tracking-sm);
-  color: var(--lp2-grey);
-  text-align: center;
-}
-
-/* --- カード -------------------------------------------------------------- */
-
-.Skill__Cards {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: 20px;
-}
-
-.Skill__Card {
-  overflow: hidden;
-  border-radius: 10px;
-  background: var(--lp2-white);
-  box-shadow: 0 2px 14px rgba(19, 26, 62, 0.1);
-}
-
-/* 見出し要素としての既定値を打ち消し、ボタンの見た目に影響させない */
-.Skill__CardHeading {
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-}
-
-.Skill__CardHead {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 16px 18px;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  text-align: left;
-}
-
-.Skill__CardTitle {
-  position: relative;
-  padding-left: 26px;
-  font-family: var(--lp2-font-body);
-  font-weight: 700;
-  font-size: 22px;
-  letter-spacing: var(--lp2-tracking-md);
-  color: #06133d;
-}
-
-/* タイトル左のチェック印 */
-.Skill__CardTitle::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 16px;
-  height: 9px;
-  border-left: 3px solid var(--lp2-primary);
-  border-bottom: 3px solid var(--lp2-primary);
-  transform: translateY(-70%) rotate(-45deg);
-}
-
-.Skill__Chevron {
-  width: 10px;
-  height: 10px;
-  border-right: 2px solid var(--lp2-primary);
-  border-bottom: 2px solid var(--lp2-primary);
-  transform: rotate(45deg);
-  transition: transform 0.2s ease;
-}
-
-.isOpen .Skill__Chevron {
-  transform: rotate(-135deg);
-}
-
-/* 閉じているときだけ出す技術の要約 */
-.Skill__Summary {
-  margin: 0;
-  padding: 0 18px 14px;
-  font-size: 15px;
-  line-height: 1;
-  letter-spacing: var(--lp2-tracking-sm);
-  color: var(--lp2-grey);
-}
-
-.isOpen .Skill__Summary {
-  display: none;
-}
-
-/* SP では閉じた状態で中身を隠す */
-.Skill__Panel {
-  display: none;
-  padding: 0 18px 20px;
-}
-
-.isOpen .Skill__Panel {
-  display: block;
-}
-
-/* 「技術」「できるようになること」の帯 */
-.Skill__Bar {
-  padding: 4px 10px;
-  background: linear-gradient(90deg, #5a3ce4 0%, #2f9df6 100%);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: var(--lp2-tracking-lg);
-  color: var(--lp2-white);
-  text-align: center;
-}
-
-.Skill__Bar + * {
-  margin-top: 12px;
-}
-
-.Skill__Tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.Skill__Tags li {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
-  border-radius: 999px;
-  background: #fffbdc;
-  font-size: 15px;
-  letter-spacing: var(--lp2-tracking-sm);
-  color: var(--lp2-grey);
-}
-
-.Skill__Tags img {
-  width: 20px;
-  height: auto;
-}
-
-.Skill__Outcomes li {
-  position: relative;
-  padding-left: 18px;
-  font-size: 15px;
-  line-height: 1.66;
-  letter-spacing: var(--lp2-tracking-sm);
-  color: var(--lp2-grey);
-}
-
-.Skill__Outcomes li::before {
-  content: '';
-  position: absolute;
-  top: 0.6em;
-  left: 0;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--lp2-primary);
-}
-
-/* --- PC ----------------------------------------------------------------- */
-
-
-/* --- SP の実測値(PSD @2x を CSS px に換算) ------------------------------- */
-
-.Skill {
-  min-height: 1101px;
-  padding: 0;
-}
-
-.Skill__Inner {
-  height: 1101px;
-  padding-inline: 0;
-}
-
-.Skill__Inner > * {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0;
-}
-
-.Skill__Label {
-  top: 45px;
-}
-
-.Skill__Title {
-  position: static;
-  display: block;
-}
-
-.Skill__TitleSmall {
-  position: absolute;
-  top: 73px;
-  left: 0;
-  right: 0;
-  font-size: 26.5px;
-  line-height: 1;
-}
-
-.Skill__TitleLarge {
-  position: absolute;
   top: 113px;
-  left: 0;
-  right: 0;
   font-size: 28.5px;
-  line-height: 1;
+  letter-spacing: 0.06em;
+  background: linear-gradient(90deg, #6150ff 16%, #24b7ff 84%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
-
-.Skill__Lead {
-  top: 174px;
-  /* カンプは 440x81(= CSS 220x40.5)の 2 行組み。折り返し位置を合わせる */
-  max-width: 232px;
-  margin-inline: auto;
-  font-feature-settings: normal;
-  font-size: 16px;
-  line-height: 1.42;
-}
-
-.Skill__Hint {
-  top: 236px;
-  font-size: 17px;
-  line-height: 1;
-}
-
-.Skill__Cards {
-  position: static;
-  display: block;
-  gap: 0;
-  margin: 0;
-}
-
-.Skill__Card {
-  /* PSD 実測(@2x): カード 35..714 = CSS 17.5..357 */
+.Skill__TitleLarge::after {
+  content: '';
   position: absolute;
-  left: 17.5px;
-  right: 18px;
-  border-radius: 10px;
+  width: 260px; height: 1px; left: 50%; bottom: -8px;
+  background: linear-gradient(90deg, #6150ff, #24b7ff);
+  transform: translateX(-50%) rotate(-1deg);
 }
-
-/* 開いているカードは 596px(= CSS 298)、閉じているカードは 191px(= CSS 95.5) */
-.Skill__Card:nth-child(1) {
-  height: 298px;
+.Skill__Lead {
+  position: absolute; top: 174px; left: 0; right: 0;
+  max-width: 250px; margin-inline: auto;
+  font-size: 16px; line-height: 1.6; letter-spacing: 0.1em;
+  font-feature-settings: normal; color: #333; text-align: center;
 }
-
-.Skill__Card:nth-child(2),
-.Skill__Card:nth-child(3),
-.Skill__Card:nth-child(4),
-.Skill__Card:nth-child(5) {
-  height: 95.5px;
+.Skill__Hint {
+  position: absolute; top: 236px; left: 0; right: 0;
+  font-size: 15.5px; line-height: 1; letter-spacing: 0.06em;
+  color: #333; text-align: center;
 }
-
-.Skill__Card:nth-child(1) {
-  top: 301px;
+.Skill__Cards { display: flex; flex-direction: column; gap: 12px; }
+.Skill__Card {
+  min-height: 95.5px; border-radius: 11px; background: #fff;
+  box-shadow: 0 16px 18px -13px #19213730;
 }
-
-.Skill__Card:nth-child(2) {
-  top: 634px;
-}
-
-.Skill__Card:nth-child(3) {
-  top: 741.5px;
-}
-
-.Skill__Card:nth-child(4) {
-  top: 848.5px;
-}
-
-.Skill__Card:nth-child(5) {
-  top: 956px;
-}
-
+.Skill__Card:first-child { margin-bottom: 23px; }
+.Skill__CardHeading { font: inherit; }
 .Skill__CardHead {
-  height: 57px;
-  padding: 0 18px 0 22px;
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; height: 59px; padding: 0 22px;
+  border: 0; background: none; text-align: left; cursor: pointer;
 }
-
 .Skill__CardTitle {
-  padding-left: 31.5px;
-  font-size: 25px;
-  /* カンプの見出しは青紫 */
-  color: #565ff0;
+  position: relative; padding-left: 28px;
+  font-family: var(--lp2-font-body); font-weight: 700; font-size: 25.5px;
+  line-height: 1.1; letter-spacing: 0.06em;
+  background: linear-gradient(90deg, #6150ff, #24b7ff);
+  background-clip: text; -webkit-background-clip: text; color: transparent;
+  white-space: nowrap;
 }
-
 .Skill__CardTitle::before {
-  width: 18px;
-  height: 10px;
-  border-left-width: 4px;
-  border-bottom-width: 4px;
-  border-color: #565ff0;
+  content: ''; position: absolute; top: 50%; left: 0;
+  width: 20px; height: 11px; border-left: 4px solid #6262ff;
+  border-bottom: 4px solid #6262ff; transform: translateY(-70%) rotate(-45deg);
 }
-
-.Skill__Summary {
-  padding: 2.6px 0 0 22.5px;
-  font-size: 15.8px;
+.Skill__Chevron {
+  flex: none; width: 15px; height: 15px; border-right: 3px solid #ccc;
+  border-bottom: 3px solid #ccc; transform: rotate(45deg);
 }
-
-.Skill__Panel {
-  padding: 0 22px 20px;
-}
-
-/* カンプの帯は文字幅ぶんだけ(「技術」87px /「できるようになること」183px) */
+.isOpen .Skill__Chevron { transform: rotate(-135deg); }
+.Skill__Summary { padding: 0 22px 15px; font-size: 15px; line-height: 1.4; letter-spacing: 0.07em; }
+.isOpen .Skill__Summary { display: none; }
+.Skill__Panel { display: none; padding: 0 22px 23px; }
+.isOpen .Skill__Panel { display: block; }
 .Skill__Bar {
-  display: block;
-  width: fit-content;
-  height: 19.5px;
-  padding: 3.75px 31.5px;
-  font-size: 12px;
-  line-height: 1;
+  width: fit-content; min-width: 88px; height: 19.5px; padding: 0 25px;
+  background: linear-gradient(90deg, #6150ff, #24b7ff);
+  color: #fff; font-size: 13px; font-weight: 700; line-height: 19.5px;
+  letter-spacing: 0.06em; text-align: center;
 }
-
-.Skill__Bar + * {
-  margin-top: 10px;
-}
-
 .Skill__Tags {
-  gap: 5px 8px;
-  margin-bottom: 15px;
+  display: flex; flex-wrap: wrap; gap: 3px 7px;
+  margin-top: 10.5px; margin-bottom: 18px;
 }
-
 .Skill__Tags li {
-  height: 27px;
-  padding: 0 10px;
-  background: #fffcc7;
-  font-size: 12.5px;
+  display: flex; align-items: center; gap: 7px; height: 28.5px;
+  padding: 0 5px; border-radius: 4px; background: #fffcc7;
+  font-size: 15px; line-height: 1; font-weight: 500; letter-spacing: 0.06em;
+  white-space: nowrap;
 }
-
+.Skill__Tags img { flex: none; width: 22px; height: 22px; object-fit: contain; }
+.Skill__Card:first-child .Skill__Tags li { width: 151px; }
+.Skill__Card:first-child .Skill__Tags li:nth-child(even) { width: 121px; }
+.Skill__Card:first-child .Skill__Tags li:last-child { font-size: 13px; }
+.Skill__Card:nth-child(2) .Skill__Tags li { width: 100%; font-size: 13px; }
+.Skill__Outcomes { margin-top: 13px; }
 .Skill__Outcomes li {
-  padding-left: 24.5px;
-  font-size: 16.5px;
-  line-height: 1.55;
+  position: relative; padding-left: 24px; font-size: 15px; line-height: 1.8;
+  font-weight: 500; letter-spacing: 0.06em; color: #333;
+}
+.Skill__Outcomes li::before {
+  content: ''; position: absolute; top: 0.6em; left: 3px;
+  width: 10px; height: 10px; border-radius: 50%; background: #6550ff;
+}
+@media screen and (min-width: 768px) {
+  .Skill { min-height: 1700px; }
+  .Skill__Inner { padding: 449px 0 0; }
+  .Skill__Label { top: 86px; }
+  .Skill__TitleSmall { top: 142px; font-size: 56.33px; }
+  .Skill__TitleLarge { top: 226px; font-size: 60.06px; }
+  .Skill__TitleLarge::after { width: 487px; bottom: -12px; }
+  .Skill__Lead { top: 337px; max-width: none; font-size: 30.03px; line-height: 1.6; }
+  .Skill__Hint { display: none; }
+  .Skill__Cards {
+    display: grid; width: 1096px; margin-inline: auto;
+    grid-template-columns: repeat(6, 1fr); column-gap: 29px; row-gap: 42px;
+    align-items: start;
+  }
+  .Skill__Card { grid-column: span 2; min-height: 499px; border-radius: 20px; }
+  .Skill__Card:first-child { min-height: 491px; margin: 0; transform: translateY(8px); }
+  .Skill__Card:nth-child(2) { min-height: 493px; transform: translateY(1px); }
+  .Skill__Card:nth-child(4) { grid-column: 2 / span 2; min-height: 390px; transform: translateX(7.5px); }
+  .Skill__Card:nth-child(5) { grid-column: 4 / span 2; min-height: 389px; transform: translateX(-6.5px); }
+  .Skill__CardHead { height: 60px; padding: 0 22px; cursor: default; }
+  .Skill__CardTitle { font-size: 25.72px; padding-left: 28px; }
+  .Skill__Card:first-child .Skill__CardTitle { font-size: 28.24px; }
+  .Skill__CardTitle::before { width: 18px; height: 10px; border-width: 3px; }
+  .Skill__Chevron, .Skill__Summary { display: none; }
+  .Skill__Panel { display: block; padding: 0 21px 24px; }
+  .Skill__Bar { width: 100%; height: 21px; font-size: 13.11px; line-height: 21px; }
+  .Skill__Tags { gap: 2px 5px; margin-top: 9px; margin-bottom: 17px; }
+  .Skill__Tags li { height: 30px; border-radius: 15px; padding: 0 6px; font-size: 15.14px; letter-spacing: 0.07em; }
+  .Skill__Tags img { width: 22px; height: 22px; }
+  .Skill__Card:first-child .Skill__Tags li { width: 154px; }
+  .Skill__Card:first-child .Skill__Tags li:nth-child(even) { width: 124px; }
+  .Skill__Card:nth-child(2) .Skill__Tags { row-gap: 3px; }
+  .Skill__Card:nth-child(2) .Skill__Tags li { width: 276px; font-size: 15.14px; }
+  .Skill__Card:nth-child(3) .Skill__Tags { gap: 3px 5px; }
+  .Skill__Card:nth-child(3) .Skill__Tags li { width: 146px; }
+  .Skill__Card:nth-child(3) .Skill__Tags li:nth-child(5) { width: 177px; }
+  .Skill__Card:nth-child(3) .Skill__Tags li:nth-child(6) { width: 204px; }
+  .Skill__Card:nth-child(3) .Skill__Tags li:nth-child(n + 7) { width: 157px; margin-right: 100px; }
+  .Skill__Card:nth-child(4) .Skill__Tags li { width: 144px; }
+  .Skill__Card:nth-child(5) .Skill__Tags li { width: 147px; }
+  .Skill__Card:nth-child(n + 4) .Skill__Tags { margin-top: 15px; margin-bottom: 25px; }
+  .Skill__Outcomes { margin-top: 23px; }
+  .Skill__Outcomes li { padding-left: 27px; font-size: 15.14px; line-height: 27px; letter-spacing: 0.1em; }
+  .Skill__Outcomes li::before { width: 14px; height: 14px; left: 5px; }
+}
+@media screen and (min-width: 768px) {
+  .Skill__TitleLarge { letter-spacing: 0.08em; }
+  .Skill__Outcomes { margin-top: 9px; }
+  .Skill__Card:nth-child(2) .Skill__Tags { margin-top: 16px; margin-bottom: 21px; }
+  .Skill__Card:nth-child(3) .Skill__Tags { margin-top: 16px; row-gap: 4px; margin-bottom: 24px; }
+  .Skill__Card:nth-child(n + 4) .Skill__Tags { margin-bottom: 19px; }
 }
 
+.Skill__Panel { padding-bottom: 13px; }
+.Skill__Lead { max-width: none; }
+.Skill__Tags li { font-weight: 400; }
+.Skill__Summary { color: #333; }
 @media screen and (min-width: 768px) {
-  .Skill {
-    /* PSD: ラベル y86 / 学んで y147 / できるようになる y232 /
-       リード y346 / カード y449 */
-    min-height: 1700px;
-    padding: 78px 0 0;
-  }
-
-  .Skill__Inner {
-    height: auto;
-    padding-inline: 0;
-  }
-
-  .Skill__Inner > * {
-    position: static;
-  }
-
-  .Skill__Title {
-    display: flex;
-  }
-
-  .Skill__TitleSmall,
-  .Skill__TitleLarge {
-    position: static;
-  }
-
-  .Skill__Cards {
-    position: static;
-  }
-
-  .Skill__Card,
-  .Skill__Card:nth-child(1),
-  .Skill__Card:nth-child(2),
-  .Skill__Card:nth-child(3),
-  .Skill__Card:nth-child(4),
-  .Skill__Card:nth-child(5) {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    height: auto;
-  }
-
-  .Skill__Title {
-    margin-top: 34px;
-  }
-
-  /* PSD: 学んで y147 / できるようになる y232(行送り 85px) */
-  .Skill__TitleSmall {
-    font-size: 56.33px;
-    line-height: 1.5;
-  }
-
-  .Skill__TitleLarge {
-    font-size: 60.06px;
-    line-height: 1.4;
-  }
-
-  .Skill__Lead {
-    max-width: none;
-    margin-top: 26px;
-    font-feature-settings: 'palt' 1;
-    font-size: 30.03px;
-    line-height: 1.6;
-  }
-
-  /* タップの案内は SP だけのもの */
-  .Skill__Hint {
-    display: none;
-  }
-
-  /* PSD 実測: 上段 345x491 @(173,457) / 345x493 @(548,450) / 346x499 @(923,449)
-     下段 346x390 @(368,990) / 346x389 @(729,991)。
-     3 列グリッド(346px + 隙間 29px、左端 x172)を基準に、下段はずらして置く */
-  .Skill__Cards {
-    display: grid;
-    grid-template-columns: repeat(3, 346px);
-    justify-content: center;
-    align-items: start;
-    gap: 41px 29px;
-    margin-top: 74px;
-  }
-
-  .Skill__Card:nth-child(1) {
-    min-height: 491px;
-  }
-
-  .Skill__Card:nth-child(2) {
-    min-height: 493px;
-  }
-
-  .Skill__Card:nth-child(3) {
-    min-height: 499px;
-  }
-
-  .Skill__Card:nth-child(4) {
-    grid-column: 1 / 2;
-    justify-self: start;
-    width: 346px;
-    min-height: 390px;
-    margin-left: 196px;
-  }
-
-  .Skill__Card:nth-child(5) {
-    grid-column: 2 / 3;
-    justify-self: start;
-    width: 346px;
-    min-height: 389px;
-    margin-left: 182px;
-  }
-
-  /* PSD 実測(カード上端 y457 基準): 見出し y19 / 「技術」帯 y60 /
-     タグ 1 行目 y90(高さ 30、送り 32) / 「できるようになること」帯 y201 /
-     箇条書き y236 */
-  .Skill__CardHead {
-    height: auto;
-    padding: 13px 22px 0;
-    cursor: default;
-  }
-
-  .Skill__CardTitle {
-    padding-left: 26px;
-    font-size: 25.72px;
-    line-height: 1.1;
-    /* カンプ実測 #5561f1。SP と同じ青紫で、濃紺ではない */
-    color: #5561f1;
-  }
-
-  .Skill__CardTitle::before {
-    width: 16px;
-    height: 9px;
-    border-left-width: 3px;
-    border-bottom-width: 3px;
-    border-color: var(--lp2-primary);
-  }
-
-  /* PC は常時展開。開閉の矢印も要約も出さない */
-  .Skill__Chevron,
-  .Skill__Summary {
-    display: none;
-  }
-
-  .Skill__Panel {
-    display: block;
-    padding: 19px 21px 24px;
-  }
-
-  .Skill__Bar {
-    display: block;
-    width: auto;
-    height: auto;
-    padding: 4px 10px;
-    font-size: 13px;
-    line-height: 1;
-  }
-
-  .Skill__Bar + * {
-    margin-top: 9px;
-  }
-
-  .Skill__Tags {
-    gap: 2px 5px;
-    margin-bottom: 17px;
-  }
-
-  /* PSD 実測: 丸は 154x30 / 124x31、行送り 32px。
-     line-height を指定しないと本文の 1.7 を継承して 38px になっていた */
-  .Skill__Tags li {
-    height: auto;
-    padding: 6px 12px;
-    /* カンプ実測 #fffcc7(SP と同じ) */
-    background: #fffcc7;
-    font-size: 15.14px;
-    line-height: 1.2;
-  }
-
-  /* PSD 実測: 箇条書きは 1 行 17.5px 相当、行送り 27px */
-  .Skill__Outcomes li {
-    padding-left: 18px;
-    font-size: 16.5px;
-    line-height: 1.64;
-  }
-
-  .Skill__Tags li {
-    font-size: 15.14px;
-  }
-
-  .Skill__Outcomes li {
-    font-size: 15.14px;
-  }
+  .Skill__Panel { padding-bottom: 24px; }
+  .Skill__LeadBreak { display: none; }
 }

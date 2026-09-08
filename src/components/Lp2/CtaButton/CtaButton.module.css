@@ -84,10 +84,10 @@
        「予約する」4 文字で 132px = 1 文字 33px */
     min-width: 498px;
     height: 124px;
-    background-image: url('/siid/images/lp-2/cta-button.webp');
+    background-image: url('/siid/images/lp-2/cta-button-pc.webp');
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    box-shadow: 0 6px 18px rgba(43, 170, 57, 0.45);
+    box-shadow: none;
   }
 
   .is_pc .CtaButton__Label {

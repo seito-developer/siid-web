@@ -263,3 +263,45 @@
     margin-top: 0;
   }
 }
+
+.Counselling__KickerSmall,
+.Counselling__KickerMain {
+  background: linear-gradient(90deg, #5855ef, #29aefc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.Counselling__Label { color: #254d88; }
+.Counselling__Heading {
+  font-family: var(--lp2-font-body);
+  font-style: oblique 10deg;
+  font-weight: 900;
+}
+
+.Counselling__Heading { transform: skewX(-8deg); }
+@media screen and (min-width: 768px) {
+  .Counselling__Heading { line-height: 1.3; }
+}
+
+/* 外部フォームは日時選択・確認画面で高さが変わる。見本画像の上へ実フォームを
+   不透明な白いカードで重ね、読み込み後の高さを文書フローへ反映する。 */
+.Counselling > picture img { height: 1187px; }
+.Counselling__Inner { height: auto; min-height: 1187px; padding-top: 675px; padding-bottom: 45px; }
+.Counselling__Inner > .Counselling__Booking {
+  position: relative; inset: auto;
+  width: 321px; min-height: 513px; margin-inline: auto;
+  padding: 16px; border-radius: 11px; background: #fff; color: #131a3e;
+}
+.Counselling__BookingTitle { font-family: var(--lp2-font-body); font-size: 16px; line-height: 1.5; }
+.Counselling__Booking .Counselling__Widget {
+  position: relative; inset: auto; width: 100%; height: auto;
+  min-height: 440px; margin-top: 16px; border-radius: 0;
+}
+.Counselling__Widget iframe { display: block; }
+@media screen and (min-width: 768px) {
+  .Counselling > picture img { height: 1019px; }
+  .Counselling__Inner { min-height: 1019px; padding-top: 158px; padding-bottom: 80px; }
+  .Counselling__Inner > .Counselling__Booking { width: 513px; min-height: 748px; margin: 0 0 0 687px; padding: 24px; }
+  .Counselling__BookingTitle { font-size: 24px; }
+  .Counselling__Booking .Counselling__Widget { min-height: 630px; }
+}

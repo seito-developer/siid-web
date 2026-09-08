@@ -43,7 +43,9 @@ export default function Strength() {
                 </span>
               ))}
             </h3>
-            <p className={styles.Strength__Body}>{item.body}</p>
+            <p className={styles.Strength__Body}>{item.body.split('スモールステップ').map((part, index) => (
+              <span key={part}>{index > 0 && <><br />スモールステップ</>}{part}</span>
+            ))}</p>
           </li>
         ))}
       </ul>

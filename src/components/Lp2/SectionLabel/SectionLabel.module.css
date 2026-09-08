@@ -91,3 +91,96 @@
     height: 3px;
   }
 }
+
+/* カンプは前半の小ラベルと後半の大ラベルで寸法が異なる。
+   行の高さは維持し、絶対配置された見出しや後続要素を動かさない。 */
+.SectionLabel {
+  --label-font-size: 24.4px;
+  --label-tracking: 0.5em;
+  --label-line-display: none;
+  --label-line-width: 138px;
+  --label-line-height: 1px;
+  --label-dot-size: 4px;
+  height: 27.125px;
+  align-items: flex-start;
+  gap: var(--label-gap, 26px);
+}
+
+.SectionLabel__Text {
+  font-size: var(--label-font-size);
+  line-height: 1;
+  letter-spacing: var(--label-tracking);
+  text-indent: 0;
+  margin-right: calc(-1 * var(--label-tracking));
+  /* Jost の可変フォントは合成斜体が効かない環境があるため明示的に傾ける。 */
+  font-style: normal;
+  transform: translateY(-0.08em) skewX(-12deg);
+}
+
+.SectionLabel__Line {
+  display: var(--label-line-display);
+  flex: 0 0 var(--label-line-width);
+  width: var(--label-line-width);
+  height: var(--label-line-height);
+  margin-top: 9px;
+}
+
+.SectionLabel__Line::before,
+.SectionLabel__Line::after {
+  width: var(--label-dot-size);
+  height: var(--label-dot-size);
+}
+
+.SectionLabel[data-label='RESULTS'] {
+  --label-font-size: 14.6px;
+}
+
+.SectionLabel[data-label='INSTRUCTOR'] {
+  --label-font-size: 15.2px;
+}
+
+.SectionLabel[data-label='DIFFERENCE'] {
+  --label-font-size: 14.4px;
+}
+
+.SectionLabel[data-label='SKILLS'],
+.SectionLabel[data-label='FAQ'] {
+  --label-line-display: block;
+}
+
+.SectionLabel[data-label='FAQ'] {
+  --label-gap: 57px;
+}
+
+.SectionLabel[data-label='RESKILLING SUPPORT'] {
+  --label-tracking: 0.44em;
+}
+
+@media screen and (max-width: 767px) {
+  .SectionLabel {
+    --label-font-size: 12.2px;
+    --label-line-width: 69px;
+    --label-line-height: 0.5px;
+    --label-dot-size: 2px;
+    --label-gap: 13px;
+    height: 21.35px;
+  }
+
+  .SectionLabel[data-label='RESULTS'],
+  .SectionLabel[data-label='INSTRUCTOR'],
+  .SectionLabel[data-label='DIFFERENCE'] {
+    --label-font-size: 12.2px;
+  }
+
+  .SectionLabel[data-label='DIFFERENCE'] {
+    --label-tracking: 0.46em;
+  }
+
+  .SectionLabel[data-label='FAQ'] {
+    --label-line-display: none;
+  }
+
+  .SectionLabel__Line {
+    margin-top: 4.5px;
+  }
+}
