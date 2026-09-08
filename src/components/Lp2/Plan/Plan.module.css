@@ -254,7 +254,9 @@
 }
 
 .Plan__Price del {
-  text-decoration: none;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: currentColor;
 }
 
 .Plan__After {
@@ -463,7 +465,7 @@
   }
 
   .Plan__Card:first-child .Plan__Price {
-    top: 132px;
+    top: 134px;
   }
 
   .Plan__Card:first-child .Plan__AfterPrice {
@@ -496,7 +498,7 @@
   }
 
   .isRecommended .Plan__Price {
-    top: 221px;
+    top: 223px;
   }
 
   .isRecommended .Plan__AfterPrice {
@@ -525,7 +527,7 @@
   }
 
   .Plan__Card:last-child .Plan__Price {
-    top: 172px;
+    top: 174px;
   }
 
   .Plan__Card:last-child .Plan__AfterPrice {
@@ -629,7 +631,7 @@
      `margin: 0` を当てている上の一括指定(詳細度 0,2,0)に勝たせるため
      ここも 2 段にする。そうしないと left:0/right:0 のまま左寄せになる */
   .Plan__Card .Plan__Cta {
-    background-image: url('/siid/images/lp-2/plan-cta.png');
+    --cta-background: url('/siid/images/lp-2/plan-cta.png');
     width: 275px;
     min-width: 0;
     height: 66px;
@@ -696,3 +698,21 @@
 
 /* 小さい料金カードのCTAは、文字間を詰めて左右の矢印との余白を確保する。 */
 .Plan__Card .Plan__Cta span { letter-spacing: 0; }
+
+/* 背景画像内の旧打ち消し線を帯で覆い、文字と打ち消し線を一緒に中央配置する。 */
+.Plan__Card .Plan__Price {
+  width: 213px;
+  height: 21px;
+  margin-inline: auto;
+  border-radius: 2px;
+  background: #f8006f;
+}
+@media screen and (max-width: 767px) {
+  .Plan__Card .Plan__Price { top: 379px; }
+}
+@media screen and (min-width: 768px) {
+  .Plan__Card .Plan__Price { height: 25px; }
+  .Plan__Card:first-child .Plan__Price { width: 225px; }
+  .Plan__Card.isRecommended .Plan__Price { width: 210px; }
+  .Plan__Card:last-child .Plan__Price { width: 126px; }
+}

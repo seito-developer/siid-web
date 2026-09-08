@@ -113,14 +113,14 @@ PSD のレイヤーグループは `sec_*` でセマンティックに命名さ�
 - **PC**: … → VOICE(pc6) → FREE GIFTS(pc7) → FAQ(pc8) → COUNSELING(pc9)
 - **SP**: … → VOICE(sp08) → FAQ(sp09) → FREE GIFTS(sp10) → COUNSELING(sp11)
 
-→ **SP の順序を正とする**(ヒアリングで決定)。PC も以下の順序に揃えて実装する。
+→ **2026-09-09 の画面レビューで、FREE GIFTS を FAQ より前に変更**。PC・SP とも以下の順序に揃える。
 
 ```
-… → VOICE → FAQ → FREE GIFTS → FREE COUNSELING → フッター
+… → VOICE → FREE GIFTS → FAQ → FREE COUNSELING → フッター
 ```
 
 §3 の一覧表の通し番号(13: FREE GIFTS / 14: FAQ)は PC ファイルの並び順に基づくものであり、
-**実装時の DOM 順序は FAQ → FREE GIFTS** となる点に注意する。
+**実装時の DOM 順序は FREE GIFTS → FAQ** となる点に注意する。
 
 ---
 

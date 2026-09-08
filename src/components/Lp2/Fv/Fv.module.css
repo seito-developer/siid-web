@@ -517,3 +517,17 @@
 @media screen and (max-width: 767px) {
   .Fv__Copy { transform: skewX(-8deg); }
 }
+
+/* メダルの文字は淡い金色。数字は斜体とし、説明との間隔を確保する。 */
+.Fv__MedalLabel,
+.Fv__MedalValue {
+  background: linear-gradient(180deg, #fff5c5 0%, #fffde6 45%, #e8d18b 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.Fv__MedalValue { font-style: italic; padding-top: 3px; }
+.Fv__MedalValue small { font-style: normal; }
+@media screen and (min-width: 768px) {
+  .Fv__MedalValue { padding-top: 6px; }
+}

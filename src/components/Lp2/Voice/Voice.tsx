@@ -20,8 +20,18 @@ function Card({ voice, index }: { voice: (typeof LP2_VOICES)[number]; index: num
     <li className={`${styles.Voice__Card} ${isOpen ? styles.isOpen : ''}`}>
       {/* カードの枠・番号の丸・青い帯・写真はセクション背景に含まれる */}
       <p className={styles.Voice__No}>
-        <span>VOICE</span>
-        <strong>{voice.no}</strong>
+        <svg className={styles.Voice__BadgeSvg} viewBox="0 0 85 85" role="img" aria-label={`VOICE ${voice.no}`}>
+          <defs>
+            <linearGradient id={`voice-ink-${index}`} x1="0" y1="0" x2="1" y2="0">
+              <stop stopColor="#6150ff" /><stop offset="1" stopColor="#24b7ff" />
+            </linearGradient>
+            <path id={`voice-arc-${index}`} d="M44 10 A33 33 0 0 1 73 32" />
+          </defs>
+          <text className={styles.Voice__ArcText} fill={`url(#voice-ink-${index})`}>
+            <textPath href={`#voice-arc-${index}`}>VOICE</textPath>
+          </text>
+          <text className={styles.Voice__NumberText} x="42.5" y="53" textAnchor="middle" fill={`url(#voice-ink-${index})`}>{voice.no}</text>
+        </svg>
       </p>
 
       <h3 className={styles.Voice__Title}>

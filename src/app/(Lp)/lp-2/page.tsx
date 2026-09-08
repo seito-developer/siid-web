@@ -84,8 +84,8 @@ export default function Lp2() {
         <Plan />
         <Graph />
         <Voice />
-        <Faq />
         <Present />
+        <Faq />
         <Counselling />
       </main>
       <Footer />

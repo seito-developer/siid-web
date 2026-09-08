@@ -452,3 +452,18 @@
 
 /* 当社列の左枠と二重線にしない。その他の列間・行間は白線で区切る。 */
 .Difference__Table tbody th { border-right: 0; }
+
+/* POINTは数字の左半分へ重ねる。帯色の縁取りで数字との交点を抜く。 */
+.Difference__PointNo span {
+  position: relative;
+  z-index: 1;
+  color: #fff66d;
+  font-weight: 700;
+  paint-order: stroke fill;
+  -webkit-text-stroke: 3px #5958ef;
+}
+@media screen and (min-width: 768px) {
+  .Difference__PointNo { top: 9px; left: 15px; display: block; }
+  .Difference__PointNo span { display: block; top: 13px; font-size: 18px; }
+  .Difference__PointNo strong { position: absolute; top: -6px; left: 27px; font-size: 52px; }
+}

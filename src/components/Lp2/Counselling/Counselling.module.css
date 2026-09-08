@@ -111,7 +111,7 @@
   font-feature-settings: normal;
   font-size: 16px;
   line-height: 1.55;
-  letter-spacing: var(--lp2-tracking-sm);
+  letter-spacing: 0.15em;
   text-align: center;
 }
 
@@ -136,25 +136,25 @@
 }
 
 .Counselling__Points li:nth-child(1) {
-  top: 448px;
+  top: 442px;
   left: 55.5px;
   width: 128px;
 }
 
 .Counselling__Points li:nth-child(2) {
-  top: 465px;
+  top: 459px;
   left: 192px;
   width: 128px;
 }
 
 .Counselling__Points li:nth-child(3) {
-  top: 598px;
+  top: 592px;
   left: 56px;
   width: 128px;
 }
 
 .Counselling__Points li:nth-child(4) {
-  top: 578.5px;
+  top: 572.5px;
   left: 192px;
   width: 128px;
 }
@@ -231,25 +231,25 @@
   }
 
   .Counselling__Points li:nth-child(1) {
-    top: 643px;
+    top: 636px;
     left: 291px;
     width: 153px;
   }
 
   .Counselling__Points li:nth-child(2) {
-    top: 663px;
+    top: 657px;
     left: 453px;
     width: 153px;
   }
 
   .Counselling__Points li:nth-child(3) {
-    top: 822px;
+    top: 815px;
     left: 292px;
     width: 152px;
   }
 
   .Counselling__Points li:nth-child(4) {
-    top: 800px;
+    top: 793px;
     left: 453px;
     width: 153px;
   }

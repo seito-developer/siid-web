@@ -376,7 +376,7 @@
   }
 
   .Voice__Title {
-    color: var(--lp2-white);
+    color: #fff66d;
     top: 66px;
     left: 161px;
     font-feature-settings: 'palt' 1;
@@ -529,7 +529,7 @@
 /* 展開時はカードを文書フローに戻す。背景の各カード領域も個別に移動させ、
    全文が次のカードやセクションと重ならないようにする。 */
 .Voice:has(.isOpen) {
-  background: linear-gradient(110deg, #5855ef, #25aff9);
+  background: repeating-linear-gradient(135deg, #ffffff08 0 10px, transparent 10px 22px), linear-gradient(110deg, #5855ef, #25aff9);
 }
 .Voice:has(.isOpen) > picture img { clip-path: inset(0 0 calc(100% - 146px)); }
 .Voice:has(.isOpen) .Voice__Inner { height: auto; min-height: 1936px; padding-bottom: 30px; }
@@ -575,4 +575,21 @@
   .Voice:has(.isOpen) .isOpen { padding: 132px 38px 32px 319px; }
   .Voice:has(.isOpen) .isOpen:nth-child(3) { padding-top: 169px; }
   .Voice:has(.isOpen) .isOpen::before { height: 345px; }
+}
+
+.Voice__Name {
+  background: linear-gradient(90deg, #6150ff, #24b7ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.Voice__BadgeSvg { position: absolute; top: 0; left: 220px; width: 85px; height: 85px; overflow: visible; }
+.Voice__Card:nth-child(2) .Voice__BadgeSvg { left: 26px; }
+.Voice__Card:nth-child(3) .Voice__BadgeSvg { left: 212px; }
+.Voice__ArcText { font-family: var(--lp2-font-latin); font-size: 10px; font-weight: 500; }
+.Voice__NumberText { font-family: var(--lp2-font-latin); font-size: 30px; font-weight: 400; }
+@media screen and (min-width: 768px) {
+  .Voice__Card .Voice__BadgeSvg,
+  .Voice__Card:nth-child(2) .Voice__BadgeSvg,
+  .Voice__Card:nth-child(3) .Voice__BadgeSvg { left: 33px; }
 }
