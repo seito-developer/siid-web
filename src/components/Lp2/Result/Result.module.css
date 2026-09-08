@@ -259,7 +259,9 @@
     margin-top: 13px;
     font-size: 58.24px;
     line-height: 1.34;
-    letter-spacing: var(--lp2-tracking-md);
+    /* カンプ実測: 見出しのインク幅 852px。tracking-md(0.06em = 3.49px)だと
+       898px になり 46px 広い。14 箇所で割ると 3.29px なので字送りは 0 */
+    letter-spacing: 0;
   }
 
   .Result__TitleBreak {
