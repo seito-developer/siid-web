@@ -519,7 +519,8 @@
     padding-left: 26px;
     font-size: 25.72px;
     line-height: 1.1;
-    color: #06133d;
+    /* カンプ実測 #5561f1。SP と同じ青紫で、濃紺ではない */
+    color: #5561f1;
   }
 
   .Skill__CardTitle::before {
