@@ -560,18 +560,22 @@
     margin-bottom: 17px;
   }
 
+  /* PSD 実測: 丸は 154x30 / 124x31、行送り 32px。
+     line-height を指定しないと本文の 1.7 を継承して 38px になっていた */
   .Skill__Tags li {
     height: auto;
     padding: 6px 12px;
     /* カンプ実測 #fffcc7(SP と同じ) */
     background: #fffcc7;
     font-size: 15.14px;
+    line-height: 1.2;
   }
 
+  /* PSD 実測: 箇条書きは 1 行 17.5px 相当、行送り 27px */
   .Skill__Outcomes li {
     padding-left: 18px;
-    font-size: 15.14px;
-    line-height: 1.5;
+    font-size: 16.5px;
+    line-height: 1.64;
   }
 
   .Skill__Tags li {

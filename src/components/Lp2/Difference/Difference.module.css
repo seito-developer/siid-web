@@ -336,11 +336,12 @@
   }
 
   .Difference__TableWrap {
-    /* PSD: 表 903x588 @y690 */
+    /* PSD 実測: 見出しセルの上端はセクション内 705px。
+       margin 84px だと 681px になり 24px 上にずれていた */
     top: auto;
     left: auto;
     right: auto;
-    margin-top: 84px;
+    margin-top: 108px;
   }
 
   .Difference__Table {
@@ -358,8 +359,8 @@
 
   .Difference__Table th,
   .Difference__Table td {
-    /* 588px / 7 行 = 84px */
-    height: 84px;
+    /* PSD 実測: 見出し行 76px / 本文行 81〜82px */
+    height: 81.5px;
     padding: 4px 10px;
     font-size: 22px;
     line-height: 1.3;
@@ -367,6 +368,7 @@
   }
 
   /* PSD 実測の列幅: 比較項目 190 / 当社 340 / 競合 188 / 転職特化 188 */
+  /* PSD 実測: 列幅 190 / 337 / 188 / 188(表全体 903px) */
   .Difference__Table th:first-child,
   .Difference__Table td:first-child {
     width: 190px;
@@ -376,7 +378,7 @@
   .Difference__Table td:nth-child(3),
   .Difference__Table th:nth-child(4),
   .Difference__Table td:nth-child(4) {
-    width: 187px;
+    width: 188px;
   }
 
   .Difference__Table th,
@@ -392,7 +394,7 @@
   }
 
   .Difference__Table thead th {
-    height: 84px;
+    height: 76px;
     font-size: 22px;
   }
 
@@ -408,7 +410,7 @@
   }
 
   .Difference__Table .isOurs {
-    width: 340px;
+    width: 337px;
     border-left-width: 5px;
     border-right-width: 5px;
     font-size: 28.1px;
