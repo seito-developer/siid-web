@@ -629,6 +629,7 @@
      `margin: 0` を当てている上の一括指定(詳細度 0,2,0)に勝たせるため
      ここも 2 段にする。そうしないと left:0/right:0 のまま左寄せになる */
   .Plan__Card .Plan__Cta {
+    background-image: url('/siid/images/lp-2/plan-cta.png');
     width: 275px;
     min-width: 0;
     height: 66px;
