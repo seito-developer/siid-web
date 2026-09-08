@@ -272,16 +272,17 @@
     line-height: 1.24;
   }
 
+  /* 背景内の四角の中心に、フォントの実際の字面の中心を合わせる。 */
   .Instructor__Bullets li:nth-child(1) {
-    top: 570px;
+    top: 562px;
   }
 
   .Instructor__Bullets li:nth-child(2) {
-    top: 623px;
+    top: 615px;
   }
 
   .Instructor__Bullets li:nth-child(3) {
-    top: 678px;
+    top: 670px;
     left: 279px;
   }
 
