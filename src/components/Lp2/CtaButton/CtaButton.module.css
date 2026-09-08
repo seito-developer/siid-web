@@ -1,19 +1,30 @@
+/*
+ * 全セクションで使い回す CTA ボタン。
+ *
+ * 緑の角丸・二重の枠・内側の白線・両脇の二重三角は CSS / SVG では
+ * カンプの色と形に寄せきれなかったため、カンプから書き出した画像に置き換えた
+ * (`public/images/lp-2/cta-button.webp`、660x153 の RGBA)。
+ * 文字だけはテキストのまま残す(読み上げ・検索・折り返しのため)。
+ * 下の発光だけは背景によって見え方が変わるので CSS の box-shadow で足す。
+ *
+ * SP の本文中(.is_pc)は、ボタンの意匠がセクション背景に焼き込まれているため
+ * 画像を重ねない。文字だけを実測座標で置く。
+ */
+
 .CtaButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
   min-width: 246px;
-  padding: 10px 18px;
-  border: 3px solid var(--lp2-cta-border);
-  border-radius: 8px;
-  background: linear-gradient(180deg, var(--lp2-cta-from) 0%, var(--lp2-cta-to) 100%);
-  /* 内側の白い線は PSD の意匠。下端の濃い緑は立ち上がりの陰。
-     いちばん外の広い影は楕円形スマートオブジェクトによる発光 */
-  box-shadow:
-    inset 0 0 0 2px #fff,
-    0 3px 0 var(--lp2-cta-edge),
-    0 0 24px rgba(43, 170, 57, 0.55);
+  height: 59px;
+  padding: 0;
+  border: 0;
+  background-image: url('/siid/images/lp-2/cta-button.webp');
+  background-repeat: no-repeat;
+  /* 元画像は 660x153(比 4.31)。表示比 4.17〜4.24 との差は 2% 未満で
+     引き伸ばしても分からないため、要素いっぱいに敷く */
+  background-size: 100% 100%;
+  box-shadow: 0 6px 18px rgba(43, 170, 57, 0.45);
   color: var(--lp2-white);
   font-family: var(--lp2-font-display);
   font-weight: 900;
@@ -34,98 +45,53 @@
   letter-spacing: var(--lp2-tracking-xl);
 }
 
-.Arrows {
-  display: inline-flex;
-  color: var(--lp2-white);
-}
-
-.Arrows svg {
-  width: 12px;
-  height: 30px;
-}
-
-.isFlipped svg {
-  transform: scaleX(-1);
-}
-
 /* PC ヘッダー内。PSD 実測 246x59 / 15.76px */
 .is_header {
   min-width: 246px;
-  padding: 10px 18px;
+  height: 59px;
 }
 
-/* SP の本文中。PSD(@2x)実測 333x78 / 21.46px */
+/* SP の本文中。PSD(@2x)実測 666x156 → CSS 333x78 */
 .is_sp {
   min-width: 333px;
-  padding: 14px 20px;
-  border-radius: 10px;
+  height: 78px;
 }
 
 .is_sp .CtaButton__Label {
-  font-size: 21.46px;
+  font-size: 22.4px;
 }
 
-.is_sp .Arrows svg {
-  width: 14px;
-  height: 36px;
-}
-
-/* 本文中の CTA。SP はボタンの意匠(緑の角丸・枠・矢印・発光)をセクション背景に
-   焼き込んでいるので、ここでは文字だけを重ねる。
-   SP と PC で寸法が違うだけで同じ役割なので 1 つのクラスで持つ。
-   SP: PSD(@2x)実測 663x156 → CSS 331.5x78 / 文字 21.46px / 矢印 13.5x39
-   PC: PSD 実測 402x100 相当 / 文字 25.84px / 矢印 16x42 */
+/* 本文中の CTA。SP は意匠がセクション背景にあるので画像を重ねない。
+   SP: PSD(@2x)実測 663x156 → CSS 331.5x78
+       文字 448x41 @(152,1298) → 10 文字で 224px = 1 文字 22.4px
+   PC: PSD 実測 498x118 / 文字 336x31(1 文字 33.6px) */
 .is_pc {
   min-width: 331.5px;
   height: 78px;
-  padding: 0 27.5px;
-  gap: 12.5px;
+  padding: 0;
   border: 0;
-  border-radius: 10px;
-  background: none;
+  background-image: none;
   box-shadow: none;
 }
 
-/* 矢印も背景画像に含まれる */
-.is_pc .Arrows {
-  display: none;
-}
-
 .is_pc .CtaButton__Label {
-  font-size: 21.46px;
-}
-
-.is_pc .Arrows svg {
-  width: 13.5px;
-  height: 39px;
+  font-size: 22.4px;
 }
 
 @media screen and (min-width: 768px) {
-  /* PC。PSD 実測: 緑の角丸 498x118、矢印 22x59 @rel41 / 436、
-     文字 336x31 @rel81(10 文字で 336px = 1 文字 33.6px) */
   .is_pc {
+    /* カンプ実測: 緑の箱 496x124。文字は 1 行のインク高 29 / 行送り 39 /
+       「予約する」4 文字で 132px = 1 文字 33px */
     min-width: 498px;
-    height: 118px;
-    padding: 0 41px;
-    gap: 18px;
-    border: 3px solid var(--lp2-cta-border);
-    background: linear-gradient(180deg, var(--lp2-cta-from) 0%, var(--lp2-cta-to) 100%);
-    box-shadow:
-      inset 0 0 0 2px #fff,
-      0 3px 0 var(--lp2-cta-edge),
-      0 0 24px rgba(43, 170, 57, 0.55);
-  }
-
-  .is_pc .Arrows {
-    display: inline-flex;
+    height: 124px;
+    background-image: url('/siid/images/lp-2/cta-button.webp');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: 0 6px 18px rgba(43, 170, 57, 0.45);
   }
 
   .is_pc .CtaButton__Label {
-    font-size: 30.5px;
-  }
-
-  .is_pc .Arrows svg {
-    width: 22px;
-    height: 59px;
+    font-size: 32.1px;
+    line-height: 1.215;
   }
 }
