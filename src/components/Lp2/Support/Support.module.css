@@ -181,7 +181,10 @@
 
 .Support__BadgeCourse span {
   padding: 0;
-  color: #5850ee;
+  color: transparent;
+  background: linear-gradient(90deg, #6150ff 0%, #24b7ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 
 /* カンプでは黄色 */
