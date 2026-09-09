@@ -6,7 +6,7 @@ import { getCareerPathData } from '@/lib/getCareerPathData';
 import { getTotalPages } from '@/utils/pagination';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // noindex ページは除外: サンクスページ(counseling/complete, counseling-complete, counseling-complete-lp-1)・旧広告LP(lp-1)
+  // noindex ページは除外: サンクスページ(counseling/complete, counseling-complete, counseling-complete-lp-1, lp-2/complete)・旧広告LP(lp-1)
   // lp-2 は index させる方針のため含める(docs/spec/07_lp2-renewal.md §11.1)
   const staticPaths = [
     pages.index.url,

@@ -20,26 +20,26 @@ import styles from './Header.module.css';
 // SP のハンバーガーはカンプに描かれていないが、ドロワー(sp12_menu.psd)を開く導線が
 // 他に無いため追加している。
 
-export default function Header() {
+export default function Header({ lpHref = '' }: { lpHref?: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <header className={styles.Header}>
         <div className={styles.Header__Pc}>
-          <a href="#top" className={styles.Header__Logo} aria-label="SiiD">
+          <a href={`${lpHref}#top`} className={styles.Header__Logo} aria-label="SiiD">
             <Image src={LP2_LOGO} alt="SiiD" width={125} height={31} priority />
           </a>
           <nav className={styles.Header__Nav} aria-label="セクション">
             <ul className={styles.Header__Menu}>
               {LP2_MENU_ITEMS.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href}>{item.label}</a>
+                  <a href={`${lpHref}${item.href}`}>{item.label}</a>
                 </li>
               ))}
             </ul>
           </nav>
-          <CtaButton className={styles.Header__Cta} />
+          <CtaButton href={`${lpHref}#counselling`} className={styles.Header__Cta} />
         </div>
 
         <div className={styles.Header__Sp}>
@@ -59,7 +59,7 @@ export default function Header() {
         </div>
       </header>
 
-      <DrawerMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <DrawerMenu lpHref={lpHref} isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
 }

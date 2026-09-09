@@ -10,6 +10,7 @@ type Size = 'header' | 'sp' | 'pc';
 
 type Props = {
   /** 1 行目。2 行目は children ではなく sub で受ける(PSD が 2 行のテキストレイヤーのため) */
+  href?: string;
   label?: string;
   sub?: string;
   size?: Size;
@@ -18,6 +19,7 @@ type Props = {
 
 
 export default function CtaButton({
+  href = '#counselling',
   label = '無料カウンセリングを',
   sub = '予約する',
   size = 'header',
@@ -25,7 +27,7 @@ export default function CtaButton({
 }: Props) {
   return (
     <a
-      href="#counselling"
+      href={href}
       className={`${styles.CtaButton} ${styles[`is_${size}`]} ${className}`}
     >
       {/* 緑の枠・内側の白線・両脇の二重三角は背景画像に含まれる */}

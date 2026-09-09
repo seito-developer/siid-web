@@ -908,3 +908,33 @@ lp-2 でも取得されている分など)。実回線・CDN での実測は公�
 - PCは既存のカンプ座標を維持する。画像の再生成: `node scripts/lp2/export-step-visuals.mjs`。
 
 - GIFT番号のPC青帯は24px高で上下3pxの均等paddingを設定する。文字を上に押す下側だけのpaddingは使用しない（2026-09-09再指摘対応）。
+
+## 予約完了ページ（Issue #69 / 2026-09-09）
+
+### ページ設計
+
+- 公開パスは `/siid/lp-2/complete`。既存の `/siid/counseling-complete/` は他の予約導線向けに残す。
+- LP2の Header / DrawerMenu / Footer / CookieBanner を再利用する。ヘッダーには任意の `lpHref` を追加し、完了ページでは `/siid/lp-2#各セクション` を参照する。LP2本文の既定のアンカー動作は維持する。
+- 白〜淡い青紫の背景、チェックマーク、「ご予約が完了しました」の見出し、白い案内カードで受付完了を伝える。
+- 案内は「確認メール」「当日のZoom参加」の順。所要時間はLPと同じ60〜90分。メール未着時は迷惑メール確認と問い合わせを案内する。
+- 続いて受講生対談動画（YouTube）、変更・キャンセルの問い合わせ、LPに戻る導線を配置。連絡先・動画URLは既存完了ページと同じ。
+- 本文は可変幅・可変高さで実装する。ヘッダー・フッターのみLP既存のキャンバス縮尺を使用。新規本文は既存の全文字版Noto Sans JPを使用し、LP専用サブセットに未収録の文字も統一した書体で表示する。
+- metadata は `buildPageMetadata(pages.counselingCompleteLp2, { noindex: true })`。sitemapには追加しない。URLパラメータから氏名・予約情報を表示しない。
+- 新規の広告コンバージョン発火処理は追加しない。Issue #67 の計測設計と合わせて別途決定する。
+
+### Jicoo予約完了後の遷移
+
+このLPは `https://www.jicoo.com/event_types/7prAIkBVVBVF/widget` を埋め込んでいる。
+Jicoo公式スクリプト `https://www.jicoo.com/widget/event_type.js` は `redirectUrl` の通知を受けると親ページを `window.location.assign()` で遷移させる。独自の予約成功検知やタイマー転送は追加しない。
+
+公開後に、Jicoo管理画面の対象予約ページで以下を設定する。
+
+1. 「予約ページの編集 → ワークフロー → リダイレクト」を開く。
+2. 「予約完了後」を「任意のURLにリダイレクト」にする。
+3. URLに `https://bug-fix.org/siid/lp-2/complete` を設定して保存する。ゲスト情報のパラメータ付与は不要。
+4. 埋め込みフォームからテスト予約を完了し、親ページ全体が新しい完了ページに遷移することを確認する。
+
+公式ヘルプによると、この機能はTeamプラン以上が必要。現在のアカウント契約・転送先設定はリポジトリから確認できない。
+同じ予約ページIDを使うlp-1も影響を受けるため、LP2だけ転送先を分ける場合はJicoo側で予約ページを複製し、LP2の埋め込みURLをそのIDに変更する。
+
+参照：[Jicoo「予約完了ページをリダイレクトできますか」](https://help.jicoo.com/ja/articles/7155156)、[既存完了ページ](https://bug-fix.org/siid/counseling-complete/)（2026-09-09確認）。
