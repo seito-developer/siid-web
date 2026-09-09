@@ -125,6 +125,12 @@ export const pages = {
     metaDescription:
       '未経験からITエンジニア転職を目指すAIプログラミングスクールSiiD。経済産業省リスキル講座認定で、受講料は給付金により最大80%OFF。元人事部長の現役エンジニアが採用する側の目線で、学習からポートフォリオ制作・書類選考・面接対策まで総合プロデュースします。目標達成率88%・受講生満足度92%。無料カウンセリングを受付中です。',
   },
+  counselingCompleteLp2: {
+    name: { ja: '無料カウンセリングのご予約完了', en: 'Thank you' },
+    url: '/lp-2/complete',
+    metaTitle: 'ご予約完了 | SiiD 無料カウンセリング',
+    description: '無料カウンセリングのご予約ありがとうございます。確認メールと当日の参加方法をご案内します。',
+  },
   counselingComplete: {
     name: {
       ja: 'ご予約完了',

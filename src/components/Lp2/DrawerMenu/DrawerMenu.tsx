@@ -15,11 +15,12 @@ import styles from './DrawerMenu.module.css';
 // 白いバーにロゴと閉じるボタン、紺の背景に枠線だけのメニュー 5 項目と CTA。
 
 type Props = {
+  lpHref?: string;
   isOpen: boolean;
   onClose: () => void;
 };
 
-export default function DrawerMenu({ isOpen, onClose }: Props) {
+export default function DrawerMenu({ isOpen, onClose, lpHref = '' }: Props) {
   // 開いている間は背面のスクロールを止める
   useEffect(() => {
     if (!isOpen) {
@@ -60,13 +61,13 @@ export default function DrawerMenu({ isOpen, onClose }: Props) {
         <ul className={styles.DrawerMenu__List}>
           {LP2_MENU_ITEMS.map((item) => (
             <li key={item.href}>
-              <a href={item.href} onClick={onClose}>
+              <a href={`${lpHref}${item.href}`} onClick={onClose}>
                 {item.label}
               </a>
             </li>
           ))}
         </ul>
-        <CtaButton size="sp" className={styles.DrawerMenu__Cta} />
+        <CtaButton href={`${lpHref}#counselling`} size="sp" className={styles.DrawerMenu__Cta} />
       </nav>
     </div>
   );
