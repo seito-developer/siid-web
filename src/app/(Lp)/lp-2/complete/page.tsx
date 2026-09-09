@@ -58,7 +58,7 @@ export default function Complete() {
               </li>
               <li>
                 <span className={styles.Complete__Number} aria-hidden="true">02</span>
-                <div><h3>当日までに受講生の対談動画をご覧ください</h3>
+                <div><h3>当日までにできればこちらの動画をご覧ください</h3>
                   <p>お時間があれば、受講生との対談動画を2〜3本ご覧ください。学び方や転職後の姿をイメージするヒントに。</p>
                   <a className={styles.Complete__VideoLink} href="https://www.youtube.com/@programming-siid" target="_blank" rel="noopener noreferrer">SiiDのYouTubeを見る <span aria-hidden="true">↗</span><span className={baseStyles.srOnly}>（新しいタブで開きます）</span></a>
                 </div>
