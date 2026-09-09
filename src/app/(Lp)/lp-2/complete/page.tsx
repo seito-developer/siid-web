@@ -51,28 +51,19 @@ export default function Complete() {
               <li>
                 <span className={styles.Complete__Number} aria-hidden="true">01</span>
                 <div><h3>確認メールをご確認ください</h3>
-                  <p>ご予約の日時とオンライン参加用のURLをメールでお送りしました。<strong>当日まで大切に保管してください。</strong></p>
+                  <p>ご予約の日時と<strong>ZoomのURL</strong>をメールでお送りしました。メールを保管し、<strong>当日はご予約のお時間に、記載のURLからご参加ください。</strong></p>
                   <p className={styles.Complete__Note}>メールが見当たらない場合は、迷惑メールフォルダもご確認ください。</p>
+                  <ul className={styles.Complete__Tags}><li>オンライン</li><li>60〜90分</li><li>参加費無料</li></ul>
                 </div>
               </li>
               <li>
                 <span className={styles.Complete__Number} aria-hidden="true">02</span>
-                <div><h3>当日はメールに記載のURLからご参加ください</h3>
-                  <p>ご予約のお時間になりましたら、メールに記載された<strong>ZoomのURL</strong>へアクセスしてください。学習・転職・給付金・費用など、気になることをお気軽にご相談ください。</p>
-                  <ul className={styles.Complete__Tags}><li>オンライン</li><li>60〜90分</li><li>参加費無料</li></ul>
+                <div><h3>当日までに受講生の対談動画をご覧ください</h3>
+                  <p>お時間があれば、受講生との対談動画を2〜3本ご覧ください。学び方や転職後の姿をイメージするヒントに。</p>
+                  <a className={styles.Complete__VideoLink} href="https://www.youtube.com/@programming-siid" target="_blank" rel="noopener noreferrer">SiiDのYouTubeを見る <span aria-hidden="true">↗</span><span className={baseStyles.srOnly}>（新しいタブで開きます）</span></a>
                 </div>
               </li>
             </ol>
-          </section>
-
-          <section className={styles.Complete__Video} aria-labelledby="video-title">
-            <div className={styles.Complete__Play} aria-hidden="true">▶</div>
-            <div>
-              <p className={styles.Complete__Eyebrow}>BEFORE WE MEET</p>
-              <h2 id="video-title">一歩踏み出した先輩たちの声を。</h2>
-              <p>お時間があれば、受講生との対談動画を2〜3本ご覧ください。学び方や転職後の姿をイメージするヒントに。</p>
-              <a className={styles.Complete__VideoLink} href="https://www.youtube.com/@programming-siid" target="_blank" rel="noopener noreferrer">SiiDのYouTubeを見る <span aria-hidden="true">↗</span><span className={baseStyles.srOnly}>（新しいタブで開きます）</span></a>
-            </div>
           </section>
 
           <section className={styles.Complete__Help} aria-labelledby="help-title">
