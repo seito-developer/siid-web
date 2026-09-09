@@ -10,8 +10,11 @@
 #   * 音声トラックは削除する(-an)。背景動画は muted 再生のため不要で、容量の無駄になる。
 #   * WebM(VP9)は生成しない。実測で H.264 MP4 より常に大きく(PC 2.25MB vs 1.92MB、
 #     SP 1.53MB vs 1.46MB)、容量が倍になるだけで得るものが無かった。
-#   * CRF は PC 30 / SP 32。等倍で元データと比較して視覚的な差がほぼ無いことを確認済み。
+#   * CRF は PC 30 / SP 36。等倍で元データと比較して視覚的な差がほぼ無いことを確認済み。
 #     SP を強めに圧縮するのはモバイルの LCP に直結するため。
+#   * SP は 540px 幅に縮める。表示は 375 CSS px(= 750 デバイス px)だが、動画の上には
+#     不透明度 0.72〜0.86 の暗いスクリムが重なるため、拡大のぼけは視認できない。
+#     スクリム適用後の平均差は 0.7/255 で、容量は 938KB → 431KB になる。
 #   * -movflags +faststart で moov atom を先頭に置き、初回再生を早める。
 set -euo pipefail
 
@@ -29,7 +32,7 @@ OUT_DIR="$(cd "$(dirname "$0")/../.." && pwd)/public/videos/lp-2"
 mkdir -p "$OUT_DIR"
 
 encode() {
-  local name="$1" crf="$2"
+  local name="$1" crf="$2" width="${3:-}"
   local src="$SRC_DIR/$name.mov"
   if [[ ! -f "$src" ]]; then
     echo "skip: $src が見つかりません" >&2
@@ -37,8 +40,11 @@ encode() {
   fi
   echo "==> $name (crf $crf)"
 
+  local scale=()
+  [[ -n "$width" ]] && scale=(-vf "scale=$width:-2")
+
   ffmpeg -y -loglevel error -i "$src" \
-    -an -c:v libx264 -profile:v high -crf "$crf" -preset slow \
+    -an "${scale[@]}" -c:v libx264 -profile:v main -crf "$crf" -preset slow \
     -pix_fmt yuv420p -movflags +faststart \
     "$OUT_DIR/$name.mp4"
 
@@ -56,6 +62,6 @@ encode() {
 }
 
 encode fv-pc 30
-encode fv-sp 32
+encode fv-sp 36 540
 
 echo "完了: $OUT_DIR"

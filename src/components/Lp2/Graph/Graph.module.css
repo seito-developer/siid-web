@@ -1,0 +1,496 @@
+/*
+ * コース比較表。表は HTML の <table> で組む(画像にしない)。
+ *
+ * PC: セクション 1440x1374。表 1097x1121 @(172,987 = セクション上端から 124)
+ * SP: セクション 750x1725(= CSS 375x862.5)
+ *   表 707x722 @(22,80.5)。画面幅より広いので横スクロールさせる
+ *   列幅 104 / 195.5 x3、見出し行 45.5、本文行 45.5(1 行目だけ 65.5)
+ *   ＋scroll y33.5 / 注記 y815
+ */
+
+.Graph {
+  /* PSD(@2x)実測をCSS pxに換算したセクション高 */
+  min-height: 863px;
+  position: relative;
+  overflow: hidden;
+  padding: 16px 0 16px;
+  background: #0a1240;
+}
+
+.Graph__Bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Graph__Inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--lp2-canvas);
+  margin-inline: auto;
+  padding-inline: 12px;
+}
+
+.Graph__ScrollHint {
+  font-size: 15px;
+  letter-spacing: var(--lp2-tracking-xl);
+  color: var(--lp2-white);
+  text-align: right;
+}
+
+.Graph__TableWrap {
+  margin-top: 8px;
+  overflow-x: auto;
+}
+
+.Graph__Table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: separate;
+  border-spacing: 1px;
+  font-family: var(--lp2-font-body);
+  text-align: center;
+}
+
+/* PSD 実測: 表 1097x1121、行 74.7px、列は 166 / 307 / 307 / 317 */
+/* autoprefixer が `:is()` を `:-webkit-any()` に展開すると詳細度が
+   (0,2,0) に上がり、あとから書く thead / tbody の指定を潰してしまう。
+   そのため th と td を明示的に並べる */
+.Graph__Table th,
+.Graph__Table td {
+  padding: 6px 8px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.35;
+  letter-spacing: var(--lp2-tracking-sm);
+  color: #1b2453;
+  background: var(--lp2-white);
+  vertical-align: middle;
+  /* 改行位置はデータ側の \n で持つ(カンプの組みに合わせるため) */
+  white-space: pre-line;
+}
+
+/* 「◎」「—」はカンプでは本文よりずっと大きい */
+.Graph__Table td > span[aria-hidden] {
+  font-size: 1.7em;
+  line-height: 1;
+}
+
+/* 見出し列 */
+.Graph__Table tbody th {
+  width: 15.1%;
+  background: #f0f6fb;
+}
+
+/* 見出し行。PSD では列ごとに色が変わる(水色 → 青 → 青紫 → 紫) */
+.Graph__Table thead th {
+  font-size: 20px;
+  color: var(--lp2-white);
+  background: #1c81fe;
+}
+
+.Graph__Table thead th:first-child {
+  font-size: 14px;
+  background: #2aa7fd;
+}
+
+.Graph__Table thead th:last-child {
+  background: #5856ef;
+}
+
+/* FullSupport の列を強調する */
+.Graph__Table thead .isFeatured {
+  color: #ffe14d;
+  background: #4c82f6;
+}
+
+.Graph__Table tbody .isFeatured {
+  background: var(--lp2-white);
+}
+
+.Graph__SrOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.Graph__Note {
+  margin-top: 18px;
+  font-size: 12px;
+  line-height: 1.7;
+  letter-spacing: var(--lp2-tracking-lg);
+  color: var(--lp2-white);
+  text-align: center;
+}
+
+
+/* --- SP の実測値 --------------------------------------------------------- */
+
+.Graph {
+  min-height: 862.5px;
+  padding: 0;
+}
+
+.Graph__Inner {
+  height: 862.5px;
+  padding-inline: 0;
+}
+
+.Graph__ScrollHint {
+  position: absolute;
+  top: 33.5px;
+  left: 0;
+  right: 15px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1;
+  text-align: right;
+}
+
+.Graph__TableWrap {
+  position: absolute;
+  top: 90.5px;
+  left: 22px;
+  right: 0;
+  margin: 0;
+  overflow-x: auto;
+}
+
+.Graph__Table {
+  /* PSD 実測(@2x): 見出し列 44..257 / Career 258..654 = 列幅 107 / 198.5 x3 */
+  width: 702.5px;
+  min-width: 702.5px;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.Graph__Table th,
+.Graph__Table td {
+  height: 45.5px;
+  padding: 3px 5px;
+  /* 行の境目は上罫だけで引く。上下ぶんを重ねるとカンプの倍の太さになる */
+  border: 1px solid var(--col, transparent);
+  border-left-width: 2.5px;
+  border-right-width: 2.5px;
+  border-bottom-width: 0;
+  font-size: 12.5px;
+  line-height: 1.34;
+  letter-spacing: 0;
+  color: #050505;
+  white-space: pre-line;
+}
+
+/* カンプの本文は見出し行より細い */
+.Graph__Table tbody th,
+.Graph__Table tbody td {
+  font-weight: 500;
+}
+
+.Graph__Table th:first-child,
+.Graph__Table td:first-child {
+  width: 107px;
+}
+
+.Graph__Table th:nth-child(2),
+.Graph__Table td:nth-child(2),
+.Graph__Table th:nth-child(3),
+.Graph__Table td:nth-child(3),
+.Graph__Table th:nth-child(4),
+.Graph__Table td:nth-child(4) {
+  width: 198.5px;
+}
+
+.Graph__Table th:nth-child(2),
+.Graph__Table td:nth-child(2) {
+  --col: #1c81fe;
+}
+
+.Graph__Table th:nth-child(3),
+.Graph__Table td:nth-child(3) {
+  --col: #526ef3;
+}
+
+.Graph__Table th:nth-child(4),
+.Graph__Table td:nth-child(4) {
+  --col: #5855ef;
+}
+
+/* 見出し列は左右 2.5px・行の境目 1px の水色の罫で囲まれる(カンプ実測) */
+.Graph__Table tbody th {
+  border: 0;
+  border-top: 1px solid #2aa8fc;
+  border-left: 2.5px solid #2aa8fc;
+  border-right: 2.5px solid #2aa8fc;
+  font-size: 12.5px;
+  background: #f0f6fa;
+}
+
+/* 最終行だけ下罫を足して表を閉じる */
+.Graph__Table tbody tr:last-child th,
+.Graph__Table tbody tr:last-child td {
+  border-bottom: 1px solid var(--col, #2aa8fc);
+}
+
+/* 「学習範囲」の行だけ 1 行ぶん高い(カンプ実測 56px) */
+.Graph__Table tbody tr:nth-child(12) th,
+.Graph__Table tbody tr:nth-child(12) td {
+  height: 56px;
+}
+
+.Graph__Table thead th {
+  height: 55.5px;
+  font-size: 20px;
+  color: var(--lp2-white);
+  background: #1c81fe;
+}
+
+/* 「コースの違い」の帯だけ一回り低い位置から始まる */
+.Graph__Table thead th:first-child {
+  font-size: 13px;
+  background: linear-gradient(180deg, transparent 0 31.5%, #2aa8fc 31.5% 100%);
+}
+
+.Graph__Table thead .isFeatured {
+  color: #fff66d;
+  background: #526ef3;
+}
+
+.Graph__Table thead th:last-child {
+  background: #5465f1;
+}
+
+.Graph__Table td > span[aria-hidden] {
+  font-size: 1.7em;
+  line-height: 1;
+}
+
+.Graph__Note {
+  position: absolute;
+  /* カンプは 41 文字が 331.5px に収まる 1 行組み */
+  top: 815px;
+  left: 21.5px;
+  right: 0;
+  margin: 0;
+  font-feature-settings: normal;
+  font-size: 8px;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-align: left;
+}
+
+@media screen and (min-width: 768px) {
+  .Graph {
+    min-height: 1374px;
+    /* PSD: 表 1097x1121 @(172,987) = セクション上端(863)から 124px */
+    padding: 124px 0 0;
+  }
+
+  .Graph__Inner {
+    height: auto;
+    padding-inline: 0;
+  }
+
+  .Graph__ScrollHint {
+    display: none;
+  }
+
+  .Graph__TableWrap {
+    position: static;
+    margin-top: 0;
+    overflow-x: visible;
+  }
+
+  /* PSD: 表 1097x1121 @(172,987)。列幅は実測で 162 / 303 / 304 / 309、
+     見出し行 103px、本文行 70px。データ列は列ごとの色で囲み罫が付く
+     (Career #1c81fe / FullSupport #526ef3 / VIP #5855ef) */
+  .Graph__Table {
+    width: 1097px;
+    min-width: 0;
+    margin-inline: auto;
+    border-spacing: 0;
+    table-layout: fixed;
+  }
+
+  .Graph__Table tbody tr:first-child th,
+  .Graph__Table tbody tr:first-child td {
+    height: 70.4px;
+  }
+
+  /* SP 用の「学習範囲」だけ高い指定(0,2,3)は PC 側の th/td(0,1,2)では
+     打ち消せないため、明示的に戻す */
+  .Graph__Table tbody tr:nth-child(12) th,
+  .Graph__Table tbody tr:nth-child(12) td {
+    height: 70.4px;
+  }
+
+  .Graph__Table th,
+  .Graph__Table td {
+    /* 1121px を 14 行 + 見出し 103px で割ると 1 行 70.4px。
+       70px にすると最後の行までに 9px ずれる */
+    height: 70.4px;
+    padding: 6px 8px;
+    border: 1px solid var(--col, transparent);
+    border-left-width: 4px;
+    border-right-width: 4px;
+    /* PSD 実測: 2 行のセルは 1 行 280px 前後・行送り 25.5px */
+    font-size: 19px;
+    line-height: 1.34;
+    letter-spacing: 0;
+    color: #050505;
+  }
+
+  .Graph__Table th:nth-child(2),
+  .Graph__Table td:nth-child(2) {
+    --col: #1c81fe;
+  }
+
+  .Graph__Table th:nth-child(3),
+  .Graph__Table td:nth-child(3) {
+    --col: #526ef3;
+  }
+
+  .Graph__Table th:nth-child(4),
+  .Graph__Table td:nth-child(4) {
+    --col: #5855ef;
+  }
+
+  /* 見出し列。囲み罫は無く、うっすら青みがかった背景だけ */
+  /* table-layout: fixed では 1 行目(thead)の指定で列幅が決まるため、
+     見出し列の幅は tbody ではなく :first-child に指定する */
+  .Graph__Table th:first-child,
+  .Graph__Table td:first-child {
+    width: 162px;
+  }
+
+  .Graph__Table tbody th {
+    border: 0;
+    font-size: 20px;
+    background: #f0f6fa;
+  }
+
+  .Graph__Table th:nth-child(2),
+  .Graph__Table td:nth-child(2) {
+    width: 303px;
+  }
+
+  .Graph__Table th:nth-child(3),
+  .Graph__Table td:nth-child(3) {
+    width: 304px;
+  }
+
+  .Graph__Table th:nth-child(4),
+  .Graph__Table td:nth-child(4) {
+    width: 309px;
+  }
+
+  .Graph__Table thead th {
+    height: 103px;
+    font-size: 32px;
+    color: var(--lp2-white);
+    background: #1c81fe;
+  }
+
+  .Graph__Table thead th:first-child {
+    /* 「コースの違い」だけ帯が下寄せで一回り小さい */
+    vertical-align: bottom;
+    padding-bottom: 14px;
+    font-size: 21px;
+    background: linear-gradient(180deg, transparent 0 30%, #2aa7fd 30% 100%);
+  }
+
+  .Graph__Table thead .isFeatured {
+    color: #fff66d;
+    background: #526ef3;
+  }
+
+  .Graph__Table thead th:last-child {
+    background: #5855ef;
+  }
+
+  .Graph__Note {
+    position: static;
+    white-space: normal;
+    letter-spacing: var(--lp2-tracking-lg);
+    margin-top: 44px;
+    font-feature-settings: 'palt' 1;
+    font-size: 16px;
+    line-height: 1.7;
+    text-align: center;
+  }
+}
+
+/* 列見出しの上端は、中央・両脇・項目列の三段。 */
+.Graph__Table thead th {
+  position: relative;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  font-family: var(--lp2-font-body);
+  letter-spacing: 0.08em;
+  vertical-align: bottom;
+  padding-bottom: 13px;
+  background: linear-gradient(transparent 10px, #1c81fe 10px);
+}
+.Graph__Table thead th:first-child {
+  background: linear-gradient(transparent 20px, #2aa8fc 20px);
+  padding-bottom: 12px;
+}
+.Graph__Table thead th:last-child {
+  background: linear-gradient(transparent 10px, #5855ef 10px);
+}
+.Graph__Table thead .isFeatured {
+  background: linear-gradient(110deg, #5855ef, #29aefc);
+  padding-top: 20px;
+}
+.Graph__Stars {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  right: 0;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+}
+.Graph__Table tbody th { border-bottom: 1px solid #2aa8fc; }
+@media screen and (min-width: 768px) {
+  .Graph__Table th, .Graph__Table td { letter-spacing: 0.055em; font-size: 21px; }
+  .Graph__Table tbody tr:nth-child(n + 11) td { font-size: 19px; }
+  .Graph__Table thead th { font-size: 28px; padding-bottom: 21px; background: linear-gradient(transparent 16px, #1c81fe 16px); }
+  .Graph__Table thead th:first-child { background: linear-gradient(transparent 32px, #2aa8fc 32px); padding-bottom: 21px; }
+  .Graph__Table thead th:last-child { background: linear-gradient(transparent 16px, #5855ef 16px); }
+  .Graph__Table thead .isFeatured { background: linear-gradient(110deg, #5855ef, #29aefc); padding-bottom: 21px; }
+  .Graph__Stars { top: 20px; font-size: 16px; }
+}
+
+@media screen and (min-width: 768px) {
+  .Graph__Table tbody tr:nth-child(13) td { font-size: 18px; letter-spacing: 0; }
+  .Graph__Table thead .isFeatured::before,
+  .Graph__Table thead .isFeatured::after {
+    content: '❧';
+    position: absolute;
+    bottom: 9px;
+    font-family: serif;
+    font-size: 52px;
+    font-weight: 400;
+  }
+  .Graph__Table thead .isFeatured::before { left: 12px; transform: rotate(-65deg); }
+  .Graph__Table thead .isFeatured::after { right: 12px; transform: scaleX(-1) rotate(-65deg); }
+}
+@media screen and (min-width: 768px) {
+  .Graph__Table thead .isFeatured::before,
+  .Graph__Table thead .isFeatured::after {
+    content: ''; width: 22px; height: 60px; bottom: 16px;
+    background: url('/siid/images/lp-2/laurel.svg') center / contain no-repeat;
+  }
+  .Graph__Table thead .isFeatured::before { left: 20px; transform: none; }
+  .Graph__Table thead .isFeatured::after { right: 20px; transform: scaleX(-1); }
+}

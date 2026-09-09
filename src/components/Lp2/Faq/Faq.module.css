@@ -1,0 +1,310 @@
+/*
+ * FAQ。開閉で位置が動くため、帯と回答パネルは背景に焼き込まず CSS で描く。
+ *
+ * PC: セクション 1440x1256。ラベル y88 / 見出し y166
+ *   Q1 の帯 y295..343、回答 y389。以降 Q2〜Q8 は帯のみ y504 から 95px 間隔
+ * SP: セクション 750x1923(= CSS 375x961.5)
+ *   FAQ y42 / よくある質問 y76 / Q1 の帯 y149(高さ 57)
+ *   Q1 の回答 y202..397.5 / Q2 以降は y412.5 から 70px 間隔
+ */
+
+.Faq {
+  position: relative;
+  overflow: hidden;
+  min-height: 961.5px;
+  padding: 0;
+  background: #f2f2fd;
+}
+
+.Faq__Bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Faq__Inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--lp2-canvas);
+  height: 961.5px;
+  margin-inline: auto;
+  padding-inline: 0;
+}
+
+.Faq__Label {
+  position: absolute;
+  top: 42px;
+  left: 0;
+  right: 0;
+}
+
+.Faq__Heading {
+  position: absolute;
+  top: 76px;
+  left: 0;
+  right: 0;
+  margin-top: 0;
+  font-size: 28.5px;
+  line-height: 1;
+  letter-spacing: var(--lp2-tracking-md);
+  color: var(--lp2-primary);
+  text-align: center;
+}
+
+.Faq__List {
+  position: absolute;
+  top: 147.5px;
+  left: 12.5px;
+  right: 12.5px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin-top: 0;
+}
+
+.Faq__Item {
+  border-radius: 6px;
+  background: var(--lp2-white);
+  overflow: hidden;
+}
+
+.Faq__Question {
+  display: flex;
+  align-items: center;
+  /* PSD(SP): 丸 35.5px @x19、質問文 @x62、+/− @x336 */
+  gap: 7.5px;
+  /* Q4 だけ質問が 2 行になり帯が 1 行ぶん高くなる(カンプ実測 57 → 74.5px) */
+  min-height: 57px;
+  padding: 9.75px 10px 9.75px 6.5px;
+  background: var(--lp2-primary);
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 14.5px;
+  line-height: 1.28;
+  letter-spacing: var(--lp2-tracking-lg);
+  color: var(--lp2-white);
+  cursor: pointer;
+  list-style: none;
+}
+
+/* Safari の三角マーカーを消す */
+.Faq__Question::-webkit-details-marker {
+  display: none;
+}
+
+.Faq__No {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 35.5px;
+  height: 35.5px;
+  border-radius: 50%;
+  background: var(--lp2-white);
+  font-family: var(--lp2-font-body);
+  font-size: 16px;
+  color: var(--lp2-primary);
+}
+
+.Faq__QuestionText {
+  flex: 1;
+  /* 改行位置はデータ側の \n で持つ(SP だけ 2 行になる質問がある)。
+     行送り 27.5px で、2 行のとき帯が 74.5px になる */
+  line-height: 1.9;
+  white-space: pre-line;
+}
+
+/* 開閉の +/− */
+.Faq__Mark {
+  position: relative;
+  flex: none;
+  width: 14px;
+  height: 14px;
+}
+
+.Faq__Mark::before,
+.Faq__Mark::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--lp2-white);
+  transform: translateY(-50%);
+}
+
+.Faq__Mark::after {
+  transform: translateY(-50%) rotate(90deg);
+  transition: transform 0.2s ease;
+}
+
+.Faq__Item[open] .Faq__Mark::after {
+  transform: translateY(-50%) rotate(0deg);
+}
+
+.Faq__Answer {
+  /* PSD(SP): パネル 351x195.5 @(12.5,202)、本文 270px 幅 @x62、y220 と y282 */
+  height: 194px;
+  padding: 18px 31.5px 0 49.5px;
+}
+
+.Faq__Answer p {
+  font-feature-settings: normal;
+  /* カンプは 19 文字で 269px = 1 文字 14.2px */
+  font-size: 14.2px;
+  line-height: 1.75;
+  letter-spacing: 0;
+  color: var(--lp2-grey);
+}
+
+.Faq__Answer p + p {
+  margin-top: 9px;
+}
+
+.Faq__Mark {
+  width: 16.5px;
+  height: 16.5px;
+}
+
+@media screen and (min-width: 768px) {
+  .Faq {
+    min-height: 1256px;
+    padding: 30px 0 36px;
+  }
+
+  .Faq__Inner {
+    height: auto;
+    padding-inline: 16px;
+  }
+
+  .Faq__Label {
+    position: static;
+  }
+
+  .Faq__List {
+    position: static;
+    gap: 10px;
+  }
+
+  .Faq__Question {
+    min-height: 0;
+    gap: 12px;
+    padding: 0 22px;
+    line-height: 1.4;
+  }
+
+  .Faq__QuestionText {
+    line-height: 1.4;
+    white-space: normal;
+  }
+
+  .Faq__No {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  .Faq__Answer {
+    height: auto;
+    padding: 14px 26px 18px;
+  }
+
+  .Faq__Answer p {
+    font-feature-settings: 'palt' 1;
+    letter-spacing: var(--lp2-tracking-sm);
+  }
+
+  .Faq__Mark {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* カンプは左から右へ 青紫 → 水色 のグラデーション */
+  .Faq__Heading {
+    position: static;
+    background: linear-gradient(90deg, #5855ef 0%, #29aefc 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  /* カンプの回答は段落ではなく 1 かたまりの中の改行(段落間の余白が無い) */
+  .Faq__Answer p + p {
+    margin-top: 0;
+  }
+
+  .Faq {
+    /* PSD: ラベル y88 / 見出し y166 / Q1 の帯 y295 */
+    min-height: 1256px;
+    padding: 88px 0 0;
+  }
+
+  .Faq__Inner {
+    padding-inline: 0;
+  }
+
+  .Faq__Heading {
+    margin-top: 51px;
+    font-size: 60.06px;
+    line-height: 1.4;
+  }
+
+  .Faq__List {
+    /* PSD: 帯 853px @x293。Q1 は開いた状態で高さ 189(帯 75 + 回答 114)@y295、
+       Q2 以降は帯のみ 75px を 95px 間隔(= 帯 75 + 余白 20) */
+    gap: 20px;
+    width: 853px;
+    margin: 45px auto 0;
+  }
+
+  .Faq__Question {
+    height: 75px;
+    padding: 0 22px;
+    font-size: 18px;
+  }
+
+  .Faq__No {
+    width: 30px;
+    height: 30px;
+    font-size: 15.12px;
+  }
+
+  .Faq__Answer {
+    /* Q1 の開いた高さ 189 - 帯 75 = 114px */
+    padding: 14px 26px 18px;
+  }
+
+  .Faq__Answer p {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+}
+
+.Faq__Heading { font-family: var(--lp2-font-body); font-weight: 700; }
+.Faq__Answer p { font-weight: 400; letter-spacing: 0.07em; }
+.Faq__Item[open] { box-shadow: 0 12px 25px #19134612; }
+@media screen and (min-width: 768px) {
+  .Faq__Answer { padding: 14px 30px 18px 74px; }
+  .Faq__Answer p { font-size: 16px; }
+}
+
+/* 展開した回答を切り取らず、後続セクションも押し下げる。 */
+.Faq__Inner { height: auto; min-height: 961.5px; padding-bottom: 50px; }
+.Faq__List { position: relative; top: auto; left: auto; right: auto; padding-top: 147.5px; margin-inline: 12.5px; }
+.Faq__Answer { height: auto; min-height: 194px; padding-bottom: 20px; }
+@media screen and (min-width: 768px) {
+  .Faq__Inner { min-height: 1168px; }
+  .Faq__Heading { letter-spacing: 0.15em; }
+  .Faq__List { padding-top: 0; margin: 45px auto 0; }
+  .Faq__Answer { min-height: 114px; }
+}
+/* 背景画像に残っている回答パネルの影は開閉に追従しないため、
+   英字ラベルの装飾だけ残し、回答部分はCSSのパネルで描く。 */
+.Faq { background: #f8f6ff; }
+.Faq > picture img { height: 961.5px; object-fit: fill; clip-path: inset(0 0 calc(100% - 125px)); }
+@media screen and (min-width: 768px) {
+  .Faq > picture img { height: 1256px; clip-path: inset(0 0 calc(100% - 260px)); }
+}

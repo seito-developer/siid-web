@@ -1,0 +1,307 @@
+/*
+ * FREE COUNSELING。黄色い帯・4 つの特徴タイル(枠とアイコン)はセクション背景の
+ * 画像に含まれる。CSS では文字だけを実測座標で重ねる。
+ *
+ * PC: セクション 1440x1019
+ * SP: セクション 750x2374(= CSS 375x1187)
+ *   FREE COUNSELING y23 / まずは y57 / あなたの現在地を y80
+ *   一緒に整理〜 y142 / リード y272
+ *   タイル 128x127.5 @(55.5,378.5)(192,377.5)(56,515)(192,514.5)
+ *   予約フォームは y430 付近から
+ */
+
+.Counselling {
+  position: relative;
+  overflow: hidden;
+  min-height: 1187px;
+  padding: 0;
+  background: #0b1230;
+}
+
+.Counselling__Bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Counselling__Inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--lp2-canvas);
+  height: 1187px;
+  margin-inline: auto;
+  padding-inline: 0;
+  color: var(--lp2-white);
+}
+
+.Counselling__Inner > *,
+.Counselling__Text > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+.Counselling__Text {
+  position: static;
+  display: block;
+}
+
+.Counselling__Label {
+  top: 23px;
+  font-family: var(--lp2-font-latin);
+  font-weight: 700;
+  font-style: oblique 12deg;
+  font-size: 13.5px;
+  line-height: 1;
+  letter-spacing: var(--lp2-tracking-label);
+  text-indent: var(--lp2-tracking-label);
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+/* 黄色い帯は背景画像に含まれる */
+.Counselling__Kicker {
+  position: static;
+  display: block;
+}
+
+.Counselling__KickerSmall {
+  position: absolute;
+  top: 57px;
+  left: 0;
+  right: 0;
+  padding: 0;
+  background: none;
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--lp2-grey);
+  text-align: center;
+}
+
+.Counselling__KickerMain {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 27.5px;
+  line-height: 1;
+  letter-spacing: var(--lp2-tracking-md);
+  color: #0b1230;
+  text-align: center;
+}
+
+.Counselling__Heading {
+  top: 142px;
+  font-size: 43px;
+  line-height: 1.28;
+  letter-spacing: var(--lp2-tracking-md);
+  text-align: center;
+}
+
+.Counselling__Lead {
+  top: 272px;
+  font-feature-settings: normal;
+  font-size: 16px;
+  line-height: 1.55;
+  letter-spacing: 0.15em;
+  text-align: center;
+}
+
+/* タイルの枠とアイコンは背景画像に含まれる */
+.Counselling__Points {
+  position: static;
+  display: block;
+}
+
+.Counselling__Points li {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.31;
+  letter-spacing: var(--lp2-tracking-md);
+  color: var(--lp2-white);
+  text-align: center;
+}
+
+.Counselling__Points li:nth-child(1) {
+  top: 442px;
+  left: 55.5px;
+  width: 128px;
+}
+
+.Counselling__Points li:nth-child(2) {
+  top: 459px;
+  left: 192px;
+  width: 128px;
+}
+
+.Counselling__Points li:nth-child(3) {
+  top: 592px;
+  left: 56px;
+  width: 128px;
+}
+
+.Counselling__Points li:nth-child(4) {
+  top: 572.5px;
+  left: 192px;
+  width: 128px;
+}
+
+.Counselling__Widget {
+  top: 640px;
+  left: 12px;
+  right: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  /* PSD 実測(セクション上端 y0 基準):
+       FREE COUNSELING 405x18 @(518,62) / まずは 66x21 @(443,174)
+       あなたの現在地を 284x31 @(335,200) / 一緒に整理〜 351x138 @(294,277)
+       リード 323x81 @(294,446)
+       タイル 153x153 @(291,561)(453,560)(292,723)(453,723)
+       予約フォーム 513x748 @(687,158) */
+  .Counselling {
+    min-height: 1019px;
+    padding: 0;
+  }
+
+  .Counselling__Inner {
+    height: 1019px;
+    padding-inline: 0;
+  }
+
+  .Counselling__Label {
+    top: 62px;
+    font-size: 26px;
+  }
+
+  .Counselling__Text {
+    padding-top: 0;
+  }
+
+  .Counselling__KickerSmall {
+    top: 174px;
+    left: 291px;
+    right: auto;
+    width: 370px;
+    font-size: 21.48px;
+  }
+
+  .Counselling__KickerMain {
+    top: 200px;
+    left: 291px;
+    right: auto;
+    width: 370px;
+    font-size: 33.02px;
+  }
+
+  .Counselling__Heading {
+    top: 277px;
+    left: 294px;
+    right: auto;
+    font-size: 60.09px;
+    line-height: 1.13;
+    text-align: left;
+  }
+
+  .Counselling__Lead {
+    top: 446px;
+    left: 294px;
+    right: auto;
+    font-feature-settings: 'palt' 1;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .Counselling__Points li {
+    font-size: 23.76px;
+  }
+
+  .Counselling__Points li:nth-child(1) {
+    top: 636px;
+    left: 291px;
+    width: 153px;
+  }
+
+  .Counselling__Points li:nth-child(2) {
+    top: 657px;
+    left: 453px;
+    width: 153px;
+  }
+
+  .Counselling__Points li:nth-child(3) {
+    top: 815px;
+    left: 292px;
+    width: 152px;
+  }
+
+  .Counselling__Points li:nth-child(4) {
+    top: 793px;
+    left: 453px;
+    width: 153px;
+  }
+
+  .Counselling__Widget {
+    top: 158px;
+    left: 687px;
+    right: auto;
+    width: 513px;
+    height: 748px;
+    margin-top: 0;
+  }
+}
+
+.Counselling__KickerSmall,
+.Counselling__KickerMain {
+  background: linear-gradient(90deg, #5855ef, #29aefc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.Counselling__Label { color: #254d88; }
+.Counselling__Heading {
+  font-family: var(--lp2-font-body);
+  font-style: oblique 10deg;
+  font-weight: 900;
+}
+
+.Counselling__Heading { transform: skewX(-8deg); }
+@media screen and (min-width: 768px) {
+  .Counselling__Heading { line-height: 1.3; }
+}
+
+/* 外部フォームは日時選択・確認画面で高さが変わる。見本画像の上へ実フォームを
+   不透明な白いカードで重ね、読み込み後の高さを文書フローへ反映する。 */
+.Counselling > picture img { height: 1187px; }
+.Counselling__Inner { height: auto; min-height: 1187px; padding-top: 675px; padding-bottom: 45px; }
+.Counselling__Inner > .Counselling__Booking {
+  position: relative; inset: auto;
+  width: 321px; min-height: 513px; margin-inline: auto;
+  padding: 16px; border-radius: 11px; background: #fff; color: #131a3e;
+}
+.Counselling__BookingTitle { font-family: var(--lp2-font-body); font-size: 16px; line-height: 1.5; }
+.Counselling__Booking .Counselling__Widget {
+  position: relative; inset: auto; width: 100%; height: auto;
+  min-height: 440px; margin-top: 16px; border-radius: 0;
+}
+.Counselling__Widget iframe { display: block; }
+@media screen and (min-width: 768px) {
+  .Counselling > picture img { height: 1019px; }
+  .Counselling__Inner { min-height: 1019px; padding-top: 158px; padding-bottom: 80px; }
+  .Counselling__Inner > .Counselling__Booking { width: 513px; min-height: 748px; margin: 0 0 0 687px; padding: 24px; }
+  .Counselling__BookingTitle { font-size: 24px; }
+  .Counselling__Booking .Counselling__Widget { min-height: 630px; }
+}

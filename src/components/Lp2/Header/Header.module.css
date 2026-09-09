@@ -1,0 +1,100 @@
+.Header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+}
+
+/* --- SP(既定) ---------------------------------------------------------- */
+
+.Header__Pc {
+  display: none;
+}
+
+.Header__Sp {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--lp2-header-h-sp);
+  background: linear-gradient(90deg, #0b1230 0%, #12224b 50%, #0b1230 100%);
+}
+
+.Header__Tagline {
+  font-family: var(--lp2-font-display);
+  font-weight: 900;
+  font-size: 12.4px;
+  letter-spacing: 0.18em;
+  color: var(--lp2-cyan);
+}
+
+.Header__Burger {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  background: none;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.Header__Burger span {
+  display: block;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--lp2-cyan);
+}
+
+/* --- PC ----------------------------------------------------------------- */
+
+@media screen and (min-width: 768px) {
+  .Header__Sp {
+    display: none;
+  }
+
+  .Header__Pc {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: var(--lp2-header-h);
+    padding: 0 24px 0 55px;
+    background: var(--lp2-header-bg);
+  }
+
+  .Header__Logo {
+    flex: none;
+    line-height: 0;
+  }
+
+  .Header__Nav {
+    margin-left: auto;
+  }
+
+  .Header__Menu {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .Header__Menu a {
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: var(--lp2-tracking-lg);
+    color: var(--lp2-grey);
+    transition: color 0.2s ease;
+  }
+
+  .Header__Menu a:hover {
+    color: var(--lp2-primary);
+  }
+
+  .Header__Cta {
+    flex: none;
+  }
+}

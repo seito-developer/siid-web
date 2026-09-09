@@ -1,0 +1,157 @@
+/* lp-2 専用のサブセットフォント(scripts/lp2/subset-fonts.sh で生成)。
+   next/font 経由だと日本語は unicode-range で 100 以上に分割配信され、
+   この 3 書体だけで 1383KB を取得していた。実際に使う文字だけにして 632KB。
+   フォントの実体は「その字形が描画されたとき」にしか取得されないため、
+   lp-2 のトークンをサブセット側に向けるだけで next/font 側の取得は起きない。
+   lp-1 は従来どおり next/font の Noto Sans JP を使う(このファイルは lp-2 専用)。 */
+@font-face {
+  font-family: 'Noto Sans JP Subset';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/siid/fonts/lp-2/noto-sans-jp-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Sans JP Subset';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/siid/fonts/lp-2/noto-sans-jp-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Sans JP Subset';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/siid/fonts/lp-2/noto-sans-jp-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Sans JP Subset';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/siid/fonts/lp-2/noto-sans-jp-900.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Zen Kaku Gothic Antique Subset';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/siid/fonts/lp-2/zen-kaku-gothic-antique-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Zen Kaku Gothic Antique Subset';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/siid/fonts/lp-2/zen-kaku-gothic-antique-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Zen Kaku Gothic Antique Subset';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/siid/fonts/lp-2/zen-kaku-gothic-antique-900.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Shippori Mincho B1 Subset';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/siid/fonts/lp-2/shippori-mincho-b1-700.woff2') format('woff2');
+}
+
+/*
+ * lp-2 のデザイントークン。
+ *
+ * PSD の全テキストレイヤーを集計して抽出した実測値
+ * (docs/spec/07_lp2-renewal.md §5)。同系統の微差は統合している。
+ *
+ * lp-1 に影響させないため lp-2/page.tsx でのみ import し、
+ * すべて --lp2- 接頭辞を付けてスコープを明示する。
+ */
+
+.lp2 {
+  /* --- 色 --------------------------------------------------------------- */
+
+  /* 見出し・本文の濃紺。PSD の #141C3D / #06133D / #000914 / #0C1233 を統合 */
+  --lp2-ink: #131a3e;
+  /* 紫。FAQ の見出しバー・強調枠。#5856EF / #5562F1 / #3858FF を統合 */
+  --lp2-primary: #5757ef;
+  /* ピンク。実績の数値・強調。#F8026F / #F8006F / #F7006B を統合 */
+  --lp2-accent: #fd1c5c;
+  /* 黄。見出しのハイライト。#FDF263 / #FEF579 / #FFF66D / #FDF251 を統合 */
+  --lp2-highlight: #faf26e;
+  /* 青。セクション見出し */
+  --lp2-blue: #284fa9;
+  /* シアン。FV の上部ラベル・装飾 */
+  --lp2-cyan: #00d0c0;
+  --lp2-cyan-light: #1de5ff;
+  /* オレンジ。VOICE の番号 */
+  --lp2-orange: #feb325;
+
+  --lp2-white: #ffffff;
+  --lp2-grey: #333333;
+  --lp2-paper: #fdfdfd;
+  --lp2-header-bg: #ececed;
+
+  /* CTA ボタンの緑(基準画像から実測した縦グラデーション) */
+  /* CTA ボタン。PSD の縦スキャン実測: 外枠 3px #21972c → 白 2px →
+     #34ba44 から #219a2e のグラデーション → 下端に 3px の濃い緑 */
+  --lp2-cta-from: #34ba44;
+  --lp2-cta-to: #219a2e;
+  --lp2-cta-border: #21972c;
+  --lp2-cta-edge: #0b6312;
+
+  /* ABOUT セクションの背景(紫 → 水色の横グラデーション)。
+     基準画像を x 方向にサンプリングした実測値。縦方向はほぼ一定 */
+  --lp2-about-from: #5757ef;
+  --lp2-about-mid: #4a84f6;
+  --lp2-about-to: #2cb5fd;
+
+  /* FV の CTA 帯(暗紫 → 紺の横グラデーション) */
+  --lp2-fvband-from: #3a1e41;
+  --lp2-fvband-to: #00366c;
+
+  /* --- 書体 ------------------------------------------------------------- */
+
+  /* 見出し・CTA・強調(筑紫ゴシックの代替) */
+  --lp2-font-display: 'Zen Kaku Gothic Antique Subset', 'Hiragino Sans', sans-serif;
+  /* 本文・カード・表(PSD でも本文は Noto) */
+  --lp2-font-body: 'Noto Sans JP Subset', 'Hiragino Sans', sans-serif;
+  /* 英字セクションラベル・装飾数字(Futura 系の代替) */
+  --lp2-font-latin: var(--font-latin-lp2), 'Helvetica Neue', Arial, sans-serif;
+  /* STEP ラベル(DIN 2014 の代替) */
+  --lp2-font-condensed: var(--font-condensed-lp2), 'Helvetica Neue', Arial, sans-serif;
+  /* 給付金バッジ(筑紫明朝の代替) */
+  --lp2-font-mincho: 'Shippori Mincho B1 Subset', 'Hiragino Mincho ProN', serif;
+
+  /* --- 字送り ----------------------------------------------------------- */
+  /* PSD の tracking 値を tracking/1000 em に変換したもの。出現数の多い順 */
+
+  --lp2-tracking-sm: 0.04em;
+  --lp2-tracking-md: 0.06em;
+  --lp2-tracking-lg: 0.08em;
+  --lp2-tracking-xl: 0.1em;
+  --lp2-tracking-2xl: 0.12em;
+  --lp2-tracking-3xl: 0.14em;
+  /* 英字セクションラベル専用 */
+  --lp2-tracking-label: 0.5em;
+
+  /* --- レイアウト ------------------------------------------------------- */
+
+  /* PC のデザイン幅。この値を基準に実測座標を CSS に落とす */
+  --lp2-canvas: 1440px;
+  /* コンテンツの最大幅(PSD の本文まわりの左右余白から算出) */
+  --lp2-content: 1100px;
+  /* 固定ヘッダーの高さ。アンカー遷移の scroll-margin-top に使う */
+  --lp2-header-h: 83px;
+  --lp2-header-h-sp: 42px;
+}

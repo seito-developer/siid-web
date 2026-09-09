@@ -1,0 +1,595 @@
+/*
+ * VOICE。カードの枠・番号の丸・青い帯・受講生の写真はセクション背景の画像に
+ * 含まれる。CSS では文字だけを実測座標で重ねる。
+ *
+ * PC: セクション 1440x1730
+ * SP: セクション 750x3872(= CSS 375x1936)
+ *   VOICE y43.5 / 受講生の声 y81
+ *   カード 1 @(26,179) / 2 @(26,736) / 3 @(26,1320)
+ *   1 と 3 は番号の丸が右、2 は左
+ *   注記 y1898
+ */
+
+.Voice {
+  position: relative;
+  overflow: hidden;
+  min-height: 1936px;
+  padding: 0;
+  background: var(--lp2-paper);
+}
+
+.Voice__Bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Voice__Inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--lp2-canvas);
+  height: 1936px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.Voice__Inner > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+.Voice__Label {
+  top: 43.5px;
+}
+
+.Voice__Heading {
+  top: 78.5px;
+  font-size: 31.7px;
+  line-height: 1;
+  color: #5850ee;
+}
+
+.Voice__Cards {
+  position: static;
+  display: block;
+  gap: 0;
+  padding: 0;
+}
+
+.Voice__Card {
+  /* PSD(SP): カード 324px @x26 */
+  position: absolute;
+  left: 26px;
+  right: 26px;
+  min-height: 0;
+  padding: 0;
+}
+
+.Voice__Card > :not(.Voice__CardBg) {
+  position: absolute;
+  margin: 0;
+}
+
+/* カードの意匠は背景画像に含まれる */
+.Voice__CardBg {
+  display: none;
+}
+
+.Voice__Card:nth-child(1) {
+  top: 179px;
+}
+
+.Voice__Card:nth-child(2) {
+  top: 736px;
+}
+
+.Voice__Card:nth-child(3) {
+  top: 1320px;
+}
+
+/* 丸の中の「VOICE」と番号 */
+.Voice__No {
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.Voice__No span {
+  position: absolute;
+  top: 6px;
+  left: 266.5px;
+  font-size: 9px;
+  line-height: 1;
+  color: #546feb;
+}
+
+.Voice__No strong {
+  position: absolute;
+  top: 29px;
+  left: 248.5px;
+  font-size: 28px;
+  line-height: 1;
+  color: #5561f1;
+}
+
+.Voice__Card:nth-child(2) .Voice__No span {
+  left: 73px;
+}
+
+.Voice__Card:nth-child(2) .Voice__No strong {
+  left: 54px;
+}
+
+.Voice__Card:nth-child(3) .Voice__No span {
+  left: 259px;
+}
+
+.Voice__Card:nth-child(3) .Voice__No strong {
+  left: 240px;
+}
+
+.Voice__Title {
+  top: 200px;
+  left: 30.5px;
+  right: auto;
+  font-feature-settings: normal;
+  font-size: 19.5px;
+  line-height: 1.87;
+  letter-spacing: var(--lp2-tracking-md);
+  /* カンプの帯の文字は黄色 */
+  color: #faf26e;
+  text-align: left;
+}
+
+.Voice__TitleBreak {
+  display: inline;
+}
+
+/* SP だけの改行。PC では打ち消す */
+.Voice__TitleBreakSp {
+  display: inline;
+}
+
+/* 3 枚目は SP と PC で折り返し位置が違う。SP では `\n` の改行を使わない */
+.Voice__Card:nth-child(3) .Voice__TitleBreak {
+  display: none;
+}
+
+.Voice__Card:nth-child(2) .Voice__Title {
+  top: 205px;
+  left: 31px;
+}
+
+.Voice__Card:nth-child(3) .Voice__Title {
+  top: 205px;
+  left: 31.5px;
+}
+
+.Voice__Profile {
+  top: 98px;
+  left: 237.5px;
+  right: auto;
+  margin: 0;
+}
+
+.Voice__Card:nth-child(2) .Voice__Profile {
+  top: 96px;
+  left: 15.5px;
+}
+
+.Voice__Card:nth-child(3) .Voice__Profile {
+  top: 97px;
+  left: 223px;
+}
+
+.Voice__Name {
+  font-size: 15px;
+  line-height: 1.29;
+  color: #565df0;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.Voice__Text {
+  top: 284px;
+  left: 22px;
+  right: 15px;
+  width: auto;
+  height: auto;
+  margin: 0;
+}
+
+.Voice__Card:nth-child(2) .Voice__Text {
+  top: 292.5px;
+  left: 21px;
+}
+
+.Voice__Card:nth-child(3) .Voice__Text {
+  top: 292.5px;
+  left: 19.5px;
+}
+
+.Voice__Lead {
+  position: static;
+  /* PSD: リード 286.5px 幅 / 本文 273px 幅 */
+  width: 287px;
+  font-feature-settings: normal;
+  /* カンプは 18 文字で 285.5px = 1 文字 15.86px */
+  font-size: 15.8px;
+  line-height: 1.35;
+  letter-spacing: 0;
+  color: #f8026f;
+  text-align: left;
+}
+
+.Voice__Body {
+  position: absolute;
+  top: 58.5px;
+  left: 0;
+  right: 19.5px;
+  height: 122px;
+  margin: 0;
+  overflow: hidden;
+  text-align: left;
+}
+
+.Voice__Card:nth-child(2) .Voice__Body {
+  top: 83.5px;
+}
+
+.Voice__Card:nth-child(3) .Voice__Body {
+  top: 64px;
+}
+
+.Voice__Body p {
+  font-feature-settings: normal;
+  font-size: 16px;
+  line-height: 1.61;
+  letter-spacing: 0;
+  color: #333;
+}
+
+.Voice__More {
+  position: absolute;
+  top: 197.5px;
+  left: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1;
+  color: #3858ff;
+}
+
+.Voice__Card:nth-child(2) .Voice__More {
+  top: 229px;
+}
+
+.Voice__Card:nth-child(3) .Voice__More {
+  top: 216px;
+}
+
+/* 開いたときは通常のフローに戻す(カンプは閉じた状態) */
+.isOpen {
+  background: var(--lp2-white);
+  border-radius: 12px;
+}
+
+.isOpen .Voice__Body,
+.isOpen .Voice__More {
+  position: static;
+  height: auto;
+  overflow: visible;
+}
+
+.isOpen .Voice__Body {
+  margin-top: 14px;
+}
+
+.isOpen .Voice__More {
+  margin-top: 16px;
+}
+
+.Voice__Note {
+  top: 1898px;
+  font-size: 11px;
+  line-height: 1;
+}
+
+@media screen and (min-width: 768px) {
+  /* PSD 実測(セクション上端 y0 基準):
+       VOICE ラベル y91 / 受講生の声 319x56 @(560,149)
+       カード 803px @x319、上端 y362 / 772 / 1182(高さ 458 / 447 / 429)
+       カードの中身: 丸の番号 / 見出し / 氏名 / テキスト群 443x214 @(319,132)
+       注記 383x14 @(529,1660) */
+  .Voice {
+    min-height: 1730px;
+  }
+
+  .Voice__Inner {
+    height: 1730px;
+  }
+
+  .Voice__Label {
+    top: 91px;
+  }
+
+  .Voice__Heading {
+    top: 149px;
+    font-size: 60.06px;
+  }
+
+  .Voice__Card:nth-child(1) {
+    top: 362px;
+  }
+
+  .Voice__Card:nth-child(2) {
+    top: 772px;
+  }
+
+  .Voice__Card:nth-child(3) {
+    top: 1182px;
+  }
+
+  .Voice__Card {
+    left: 319px;
+    right: 319px;
+  }
+
+  /* SP は `right` で右端を止めているので PC ではそれを外す。
+     ここで `left` まで指定すると詳細度 (0,2,0) が
+     `.Voice__Title` / `.Voice__Text` / `.Voice__Profile`(いずれも (0,1,0))を
+     打ち消してしまい、見出しと本文がカード左端に寄って写真に重なる。
+     左位置は要素ごとの指定に任せること。 */
+  .Voice__Card > :not(.Voice__CardBg) {
+    right: auto;
+  }
+
+  .Voice__No span {
+    top: 7px;
+    left: 79px;
+    font-size: 9.91px;
+  }
+
+  .Voice__No strong {
+    top: 24px;
+    left: 60px;
+    font-size: 27.17px;
+  }
+
+  .Voice__Card:nth-child(2) .Voice__No span,
+  .Voice__Card:nth-child(3) .Voice__No span {
+    left: 79px;
+  }
+
+  .Voice__Card:nth-child(2) .Voice__No strong,
+  .Voice__Card:nth-child(3) .Voice__No strong {
+    left: 58px;
+  }
+
+  .Voice__Title {
+    color: #fff66d;
+    top: 66px;
+    left: 161px;
+    font-feature-settings: 'palt' 1;
+    font-size: 24.04px;
+    line-height: 1;
+  }
+
+  /* 1・2 枚目は 1 行に収まる(SP だけ 2 行に組む) */
+  .Voice__Card:nth-child(1) .Voice__TitleBreak,
+  .Voice__Card:nth-child(2) .Voice__TitleBreak {
+    display: none;
+  }
+
+  .Voice__TitleBreakSp {
+    display: none;
+  }
+
+  .Voice__Card:nth-child(3) .Voice__TitleBreak {
+    display: inline;
+  }
+
+  .Voice__Card:nth-child(2) .Voice__Title {
+    top: 66px;
+    left: 161px;
+  }
+
+  .Voice__Card:nth-child(3) .Voice__Title {
+    top: 43px;
+    left: 161px;
+    line-height: 2.163;
+  }
+
+  .Voice__Profile {
+    top: 104px;
+    left: 49px;
+  }
+
+  .Voice__Card:nth-child(2) .Voice__Profile {
+    top: 103px;
+    left: 22px;
+  }
+
+  .Voice__Card:nth-child(3) .Voice__Profile {
+    top: 102px;
+    left: 39px;
+  }
+
+  .Voice__Name {
+    font-size: 16.03px;
+    line-height: 1.21;
+  }
+
+  .Voice__Text {
+    top: 132px;
+    left: 319px;
+    right: auto;
+    width: 445px;
+    height: 214px;
+  }
+
+  /* SP 側の `:nth-child` 指定は詳細度 (0,3,0) で `.Voice__Text` (0,1,0) より
+     強い。`left` をここで打ち消さないと 2・3 枚目だけ本文が写真に重なる */
+  .Voice__Card:nth-child(2) .Voice__Text {
+    top: 132px;
+    left: 319px;
+  }
+
+  .Voice__Card:nth-child(3) .Voice__Text {
+    top: 169px;
+    left: 319px;
+  }
+
+  .Voice__Lead {
+    width: auto;
+    font-feature-settings: 'palt' 1;
+    font-size: 16.03px;
+    line-height: 1.4;
+    letter-spacing: var(--lp2-tracking-sm);
+  }
+
+  .Voice__Body,
+  .Voice__Card:nth-child(2) .Voice__Body,
+  .Voice__Card:nth-child(3) .Voice__Body {
+    top: 63px;
+    right: 0;
+    height: 112px;
+  }
+
+  .Voice__Body p {
+    font-size: 16.03px;
+    line-height: 1.75;
+    letter-spacing: var(--lp2-tracking-sm);
+  }
+
+  .Voice__More,
+  .Voice__Card:nth-child(2) .Voice__More,
+  .Voice__Card:nth-child(3) .Voice__More {
+    top: 198px;
+    font-size: 16.03px;
+  }
+
+  .isOpen {
+    background: none;
+  }
+
+  .isOpen .Voice__Text {
+    position: static;
+    width: 445px;
+    height: auto;
+    margin: 132px 0 0 319px;
+  }
+
+  .isOpen .Voice__Body {
+    margin-top: 18px;
+  }
+
+  .isOpen .Voice__More {
+    margin-top: 20px;
+  }
+
+  .Voice__Note {
+    top: 1660px;
+    font-size: 14px;
+  }
+}
+
+.Voice__Heading {
+  font-family: var(--lp2-font-body);
+  font-weight: 700;
+  background: linear-gradient(90deg, #5855ef 35%, #29aefc 65%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.Voice__Title { font-family: var(--lp2-font-body); font-weight: 700; }
+.Voice__No strong { font-family: var(--lp2-font-latin); font-weight: 400; }
+.Voice__Note { color: white; }
+.Voice__Emphasis { color: #f8026f; }
+@media screen and (max-width: 767px) {
+  .Voice__Lead { font-size: 15px; letter-spacing: 0.035em; }
+  .Voice__Card:nth-child(3) .Voice__Lead br { display: none; }
+  .Voice__Body p { font-size: 15px; letter-spacing: 0.055em; }
+}
+
+@media screen and (min-width: 768px) {
+  .Voice__Title { letter-spacing: 0.08em; }
+  .Voice__Card:first-child .Voice__Title { color: #fff66d; }
+}
+
+/* 展開時はカードを文書フローに戻す。背景の各カード領域も個別に移動させ、
+   全文が次のカードやセクションと重ならないようにする。 */
+.Voice:has(.isOpen) {
+  background: repeating-linear-gradient(135deg, #ffffff08 0 10px, transparent 10px 22px), linear-gradient(110deg, #5855ef, #25aff9);
+}
+.Voice:has(.isOpen) > picture img { clip-path: inset(0 0 calc(100% - 146px)); }
+.Voice:has(.isOpen) .Voice__Inner { height: auto; min-height: 1936px; padding-bottom: 30px; }
+.Voice:has(.isOpen) .Voice__Cards { position: relative; padding-top: 179px; }
+.Voice:has(.isOpen) .Voice__Card {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  width: 323px;
+  min-height: 537px;
+  margin: 0 auto 20px;
+  isolation: isolate;
+}
+.Voice:has(.isOpen) .Voice__Card:nth-child(2) { min-height: 564px; }
+.Voice:has(.isOpen) .Voice__Card:nth-child(3) { min-height: 558px; }
+.Voice:has(.isOpen) .Voice__Card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 12px;
+  background: white url('/siid/images/lp-2/sp/voice.webp') -26px -179px / 375px 1936px no-repeat;
+}
+.Voice:has(.isOpen) .Voice__Card:nth-child(2)::before { background-position: -26px -736px; }
+.Voice:has(.isOpen) .Voice__Card:nth-child(3)::before { background-position: -26px -1320px; }
+.Voice:has(.isOpen) .isOpen { padding: 284px 20px 30px 22px; background: white; border-radius: 12px; }
+.Voice:has(.isOpen) .isOpen::before { height: 284px; border-radius: 12px 12px 0 0; }
+.Voice:has(.isOpen) .isOpen .Voice__Text { position: static; width: auto; height: auto; margin: 0; }
+.Voice:has(.isOpen) .isOpen .Voice__Body { position: static; height: auto; overflow: visible; }
+.Voice:has(.isOpen) .isOpen .Voice__More { position: static; }
+.Voice:has(.isOpen) .Voice__Note { position: static; margin-top: 32px; }
+@media screen and (min-width: 768px) {
+  .Voice:has(.isOpen) > picture img { clip-path: inset(0 0 calc(100% - 300px)); }
+  .Voice:has(.isOpen) .Voice__Inner { min-height: 1730px; padding-bottom: 56px; }
+  .Voice:has(.isOpen) .Voice__Cards { padding-top: 362px; }
+  .Voice:has(.isOpen) .Voice__Card { width: 802px; min-height: 390px; }
+  .Voice:has(.isOpen) .Voice__Card:nth-child(2) { min-height: 390px; }
+  .Voice:has(.isOpen) .Voice__Card:nth-child(3) { min-height: 429px; }
+  .Voice:has(.isOpen) .Voice__Card::before { background: white url('/siid/images/lp-2/voice-bg.webp') -319px -362px / 1440px 1730px no-repeat; }
+  .Voice:has(.isOpen) .Voice__Card:nth-child(2)::before { background-position: -319px -772px; }
+  .Voice:has(.isOpen) .Voice__Card:nth-child(3)::before { background-position: -319px -1182px; }
+  .Voice:has(.isOpen) .isOpen { padding: 132px 38px 32px 319px; }
+  .Voice:has(.isOpen) .isOpen:nth-child(3) { padding-top: 169px; }
+  .Voice:has(.isOpen) .isOpen::before { height: 345px; }
+}
+
+.Voice__Name {
+  background: linear-gradient(90deg, #6150ff, #24b7ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.Voice__BadgeSvg { position: absolute; top: 0; left: 220px; width: 85px; height: 85px; overflow: visible; }
+.Voice__Card:nth-child(2) .Voice__BadgeSvg { left: 26px; }
+.Voice__Card:nth-child(3) .Voice__BadgeSvg { left: 212px; }
+.Voice__ArcText { font-family: var(--lp2-font-latin); font-size: 10px; font-weight: 500; }
+.Voice__NumberText { font-family: var(--lp2-font-latin); font-size: 30px; font-weight: 400; }
+@media screen and (min-width: 768px) {
+  .Voice__Card .Voice__BadgeSvg,
+  .Voice__Card:nth-child(2) .Voice__BadgeSvg,
+  .Voice__Card:nth-child(3) .Voice__BadgeSvg { left: 33px; }
+}
