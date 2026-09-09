@@ -1,7 +1,7 @@
 /*
  * 内定までの 5STEP。カードの枠・番号バッジ・黄色い帯・イラスト・下向きの三角・
- * CTA ボタンの意匠はすべてセクション背景の画像に含まれる。
- * ここでは文字だけを PSD 実測の座標で重ねる。
+ * CTA ボタンの意匠はPCではセクション背景に含まれる。
+ * SPは本文量に追従する通常フロー（末尾のSPスタイル）で描画する。
  *
  * PC: セクション 1440x2242
  *   「内定までの」y80 / 「5STEP」y142 / カード 803x380 を y229 から 346px 間隔
@@ -361,4 +361,96 @@
 .Step__ExampleBreak { display: none; }
 @media screen and (min-width: 768px) {
   .Step__ExampleBreak { display: inline; }
+}
+
+.Step__Visual { display: none; }
+
+/* SPはカード・本文・CTAを通常フローに置き、折り返しに追従する。 */
+@media screen and (max-width: 767px) {
+  .Step {
+    min-height: 0;
+    background: repeating-linear-gradient(130deg, transparent 0 5px, #ffffff04 5px 7px),
+      linear-gradient(110deg, #6550ff, #19adff);
+  }
+  .Step__SectionBg {
+    height: 2310px;
+    clip-path: inset(0 0 2160px);
+  }
+  .Step__Inner { height: auto; padding: 193.5px 17px 40px; }
+  .Step__List {
+    position: relative;
+    display: grid;
+    gap: 55px;
+    height: auto;
+    padding: 0;
+    list-style: none;
+  }
+  .Step__Item:nth-child(n) {
+    position: relative;
+    inset: auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px #19398220;
+  }
+  .Step__Item > * { position: static; }
+  .Step__Item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -32px;
+    left: calc(50% - 18px);
+    border-top: 11px solid #fff66d;
+    border-inline: 18px solid transparent;
+  }
+  .Step__Item .Step__Badge {
+    position: absolute;
+    top: -31px;
+    left: 5px;
+    right: auto;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    border: 2px solid #ffffff90;
+    border-radius: 50%;
+    background: linear-gradient(130deg, #bb86ff, #ac89fc 50%, #6f9cfa);
+    box-shadow: 0 0 0 4px #ffffff20, 0 -5px 14px #ffffff70, inset 0 0 4px #ffffff70;
+    text-align: center;
+    z-index: 1;
+  }
+  .Step__Badge span, .Step__Badge strong {
+    position: static;
+    display: block;
+    width: 100%;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+  .Step__CardTitle {
+    padding: 13px 8px;
+    border-radius: 10px 10px 0 0;
+    background: #fff66d;
+    -webkit-text-fill-color: initial;
+  }
+  .Step__CardTitle > span {
+    background: linear-gradient(100deg, #6550ff 30%, #19adff 70%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .Step__Visual { display: block; width: 100%; height: auto; }
+  .Step__Text { padding: 16px 20px 24px; }
+  .Step__Cta {
+    position: relative;
+    inset: auto;
+    display: flex;
+    margin: 30px auto 0;
+    --cta-background: url('/siid/images/lp-2/cta-button-pc.webp');
+    --cta-clip: inset(0.8% 0.8% round 3.4% / 13.7%);
+  }
+}
+
+.Step__Highlight { color: inherit; background: transparent; }
+@media screen and (max-width: 767px) {
+  .Step__Highlight { background: linear-gradient(transparent 60%, #fff66d 60%); }
 }
