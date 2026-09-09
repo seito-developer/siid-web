@@ -297,7 +297,15 @@
   position: relative; inset: auto; width: 100%; height: auto;
   min-height: 440px; margin-top: 16px; border-radius: 0;
 }
-.Counselling__Widget iframe { display: block; }
+.Counselling__Widget iframe {
+  display: block;
+  width: 100%;
+  height: 440px;
+  min-height: inherit;
+  border: 0;
+  background: #fff;
+}
+.Counselling__Booking { overflow-anchor: none; }
 @media screen and (min-width: 768px) {
   .Counselling > picture img { height: 1019px; }
   .Counselling__Inner { min-height: 1019px; padding-top: 158px; padding-bottom: 80px; }
