@@ -89,3 +89,7 @@
 - 再現用チェック: `node scripts/lp2/check-step-layout.mjs`（localhost:3100起動後）。本文の文字範囲とカード下端の距離も検証する。
 - [349pxの修正後画面](./step-mobile-sep09.webp)
 - lint・型チェック・本番ビルド成功（既存Phaser/microCMS警告は継続）。localhost:3100を修正後の本番ビルドで再起動。
+
+### GIFT番号の余白再修正
+
+ユーザーの再指摘を最新画面で確認。前回の `padding-block: 0 6px` が文字を上へ押していたため、PCのGIFT01〜07を上下3pxへ変更した。青帯に合わせた24px高の中央配置を保ち、1052px・839pxで字面の上下余白を目視確認した。

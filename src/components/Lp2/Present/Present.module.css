@@ -410,8 +410,8 @@
     display: flex;
     align-items: center;
     height: 24px;
-    padding-block: 0 6px;
-    /* 青帯の上端を基準にし、欧文フォントの字面を中央へ補正する。 */
+    padding-block: 3px;
+    /* 青帯の上端に合わせ、上下同じ余白で中央配置する。 */
     transform: translateY(-5px);
   }
   .Present__Gift:nth-child(5) .Present__GiftNo { transform: translateY(-6px); }
