@@ -406,5 +406,13 @@
 /* 青帯内の字面を中央へ。フォントの上側ベアリング分を補正する。 */
 .Present__GiftNo { transform: translateY(-3px); }
 @media screen and (min-width: 768px) {
-  .Present__GiftNo { transform: translateY(-5px); }
+  .Present__GiftNo {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    padding-block: 0 6px;
+    /* 青帯の上端を基準にし、欧文フォントの字面を中央へ補正する。 */
+    transform: translateY(-5px);
+  }
+  .Present__Gift:nth-child(5) .Present__GiftNo { transform: translateY(-6px); }
 }
