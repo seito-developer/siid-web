@@ -50,5 +50,5 @@ next-env.d.ts
 
 # LP リニューアル用スクリプトの作業ディレクトリ(PSD 基準画像・スクリーンショット・差分)
 /tmp/
-/.venv-lp2/
+/.venv-lp-career/
 __pycache__/

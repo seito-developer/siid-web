@@ -112,12 +112,12 @@ export const pages = {
     url: '/lp-1',
     description: '未経験から最短でエンジニア転職が目指せるAIプログラミングスクールSiiD。経済産業省リスキル講座認定で受講料は給付金により最大80%OFF。現役エンジニアの個別指導と就活サポートで目標達成率88%・受講生満足度92%。無料カウンセリング受付中。',
   },
-  lp2: {
+  lpCareer: {
     name: {
       ja: 'AIプログラミングスクール SiiD',
       en: 'SiiD LP',
     },
-    url: '/lp-2',
+    url: '/lp-career',
     description: 'AI時代に、選ばれるエンジニアへ。<br />元人事部長の現役エンジニアが、学習から内定まで総合プロデュースします。',
     // 「ページ内容 | サイト名」で全角 28 字前後に収める(リリース前チェックリスト)。
     // 既定の `name.ja | commonTitle` は 58 字あり、「プログラミングスクール」「SiiD」も重複する。
@@ -125,9 +125,9 @@ export const pages = {
     metaDescription:
       '未経験からITエンジニア転職を目指すAIプログラミングスクールSiiD。経済産業省リスキル講座認定で、受講料は給付金により最大80%OFF。元人事部長の現役エンジニアが採用する側の目線で、学習からポートフォリオ制作・書類選考・面接対策まで総合プロデュースします。目標達成率88%・受講生満足度92%。無料カウンセリングを受付中です。',
   },
-  counselingCompleteLp2: {
+  counselingCompleteLpCareer: {
     name: { ja: '無料カウンセリングのご予約完了', en: 'Thank you' },
-    url: '/lp-2/complete',
+    url: '/lp-career/complete',
     metaTitle: 'ご予約完了 | SiiD 無料カウンセリング',
     description: '無料カウンセリングのご予約ありがとうございます。確認メールと当日の参加方法をご案内します。',
   },
@@ -155,7 +155,7 @@ interface BuildPageMetadataOptions {
   // ページネーション等で page.url と実 URL が異なる場合に指定(例: '/career-path/2')
   canonicalPath?: string;
   noindex?: boolean;
-  // 共通 OGP 画像ではなくページ固有の画像を使う場合に指定(例: '/images/lp-2/ogp.png')
+  // 共通 OGP 画像ではなくページ固有の画像を使う場合に指定(例: '/images/lp-career/ogp.png')
   ogpImagePath?: string;
 }
 

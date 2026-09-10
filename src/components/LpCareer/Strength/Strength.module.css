@@ -1,0 +1,316 @@
+/*
+ * STRENGTH。カード(白枠・発光・写真・番号の帯)はセクション背景の画像に
+ * 含まれるため、CSS では文字だけを実測座標で重ねる。
+ *
+ * PC: PSD 原点 y898、セクション高 1041。カード 316x555 を 370px 間隔で 3 枚
+ * SP: PSD(@2x)原点 y4735、セクション高 3122(= CSS 1561)
+ *     STRENGTH y34 / 結果を生む、y52.5 / SiiDだけの3つの強み y79
+ *     box1 330x396.5 @(22.5,180) / box2 330x462.5 @(22.5,613) / box3 @(22.5,1114.5)
+ */
+
+.Strength {
+  position: relative;
+  overflow: hidden;
+  min-height: 1561px;
+  background: #101a4d;
+}
+
+/* 背景はカンプの合成結果をセクション範囲で切り出したもの */
+.Strength__Bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Strength__Head,
+.Strength__Cards {
+  position: relative;
+  z-index: 1;
+}
+
+/* 黄色い帯は背景画像に含まれるため、ここでは文字だけを置く */
+.Strength__Head {
+  position: relative;
+  padding: 0;
+  text-align: center;
+}
+
+.Strength__Label {
+  position: absolute;
+  top: 34px;
+  left: 0;
+  right: 0;
+  font-family: var(--lp-career-font-latin);
+  font-weight: 700;
+  font-style: oblique 12deg;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  color: var(--lp-career-white);
+}
+
+.Strength__Title {
+  position: absolute;
+  top: 52.5px;
+  left: 0;
+  right: 0;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: var(--lp-career-tracking-md);
+  color: var(--lp-career-blue);
+}
+
+.Strength__TitleLarge {
+  display: inline-block;
+  margin-top: 6.5px;
+  font-size: 30.5px;
+  line-height: 1;
+}
+
+/* --- カード -------------------------------------------------------------- */
+
+.Strength__Cards {
+  position: relative;
+  display: block;
+  height: 1381px;
+  margin: 0;
+  padding: 0;
+}
+
+.Strength__Card {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.Strength__Card > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+/* PSD(SP)実測: 番号の帯 / 見出し / 本文の位置はカードごとに違う */
+.Strength__Card:nth-child(1) {
+  top: 180px;
+}
+
+.Strength__Card:nth-child(2) {
+  top: 613px;
+}
+
+.Strength__Card:nth-child(3) {
+  top: 1114.5px;
+}
+
+.Strength__Badge {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 7px;
+  font-family: var(--lp-career-font-latin);
+  color: var(--lp-career-white);
+  line-height: 1;
+}
+
+.Strength__Badge span {
+  font-size: 13.5px;
+  letter-spacing: var(--lp-career-tracking-md);
+}
+
+.Strength__Badge strong {
+  font-weight: 500;
+  font-size: 16.5px;
+}
+
+.Strength__CardTitle {
+  font-family: var(--lp-career-font-body);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.24;
+  letter-spacing: var(--lp-career-tracking-md);
+  color: var(--lp-career-blue);
+}
+
+.Strength__Body {
+  padding: 0 27px 0 37px;
+  /* カンプの本文は約物を詰めない組み(「や、150」の読点が全角のまま)なので、
+     全体にかけている palt をここでは切る */
+  font-feature-settings: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: var(--lp-career-tracking-md);
+  color: #06133d;
+  text-align: left;
+}
+
+/* box1: 帯 y199 / 見出し y236 / 本文 y276(カード上端 180 からの相対) */
+.Strength__Card:nth-child(1) .Strength__Badge {
+  top: 199px;
+}
+
+.Strength__Card:nth-child(1) .Strength__CardTitle {
+  top: 236px;
+}
+
+.Strength__Card:nth-child(1) .Strength__Body {
+  top: 276px;
+}
+
+/* box2 */
+.Strength__Card:nth-child(2) .Strength__Badge {
+  top: 198.5px;
+}
+
+.Strength__Card:nth-child(2) .Strength__CardTitle {
+  top: 236px;
+}
+
+.Strength__Card:nth-child(2) .Strength__Body {
+  top: 315px;
+}
+
+/* box3 */
+.Strength__Card:nth-child(3) .Strength__Badge {
+  top: 198.5px;
+}
+
+.Strength__Card:nth-child(3) .Strength__CardTitle {
+  top: 236px;
+}
+
+.Strength__Card:nth-child(3) .Strength__Body {
+  top: 279.5px;
+}
+
+/* --- PC ----------------------------------------------------------------- */
+
+@media screen and (min-width: 768px) {
+  /* PSD 実測(セクション上端 y901 基準):
+       STRENGTH y65 / 結果を生む、y102 / SiiDだけの3つの強み y155
+       カード 316x555 を x192 / 562 / 930、上端 y371(3 枚目だけ 372)
+       カード内は 番号帯 y200 / 見出し y239 / 本文 y314(2 枚目だけ 316) */
+  .Strength {
+    min-height: 1041px;
+  }
+
+  .Strength__Label {
+    top: 65px;
+    font-size: 23.7px;
+    letter-spacing: 0.54em;
+    text-indent: 0.54em;
+  }
+
+  .Strength__Title {
+    top: 102px;
+    font-size: 41.6px;
+  }
+
+  .Strength__TitleLarge {
+    margin-top: 13px;
+    font-size: 55px;
+  }
+
+  .Strength__Cards {
+    height: 660px;
+  }
+
+  .Strength__Card {
+    top: 371px;
+    left: 192px;
+    right: auto;
+    width: 316px;
+  }
+
+  /* SP 側の :nth-child 指定(詳細度 0,2,0)は、PC 側の .Strength__Card(0,1,0)では
+     打ち消せない。1 枚目を書き忘れてカードの文字が 191px 上にずれていた */
+  .Strength__Card:nth-child(1) {
+    top: 371px;
+    left: 192px;
+  }
+
+  .Strength__Card:nth-child(2) {
+    top: 371px;
+    left: 562px;
+  }
+
+  .Strength__Card:nth-child(3) {
+    top: 372px;
+    left: 930px;
+  }
+
+  /* 同じ理由で、カードごとの中身の位置も明示的に打ち消す */
+  .Strength__Card:nth-child(1) .Strength__Badge,
+  .Strength__Card:nth-child(2) .Strength__Badge,
+  .Strength__Card:nth-child(3) .Strength__Badge {
+    top: 200px;
+  }
+
+  .Strength__Card:nth-child(1) .Strength__CardTitle,
+  .Strength__Card:nth-child(2) .Strength__CardTitle,
+  .Strength__Card:nth-child(3) .Strength__CardTitle {
+    top: 239px;
+  }
+
+  .Strength__Card:nth-child(1) .Strength__Body,
+  .Strength__Card:nth-child(3) .Strength__Body {
+    top: 314px;
+  }
+
+  .Strength__Badge {
+    top: 200px;
+    gap: 8px;
+  }
+
+  .Strength__Badge span {
+    font-size: 15.5px;
+  }
+
+  .Strength__Badge strong {
+    font-size: 17px;
+  }
+
+  .Strength__CardTitle {
+    top: 239px;
+    font-size: 24px;
+    line-height: 1.39;
+  }
+
+  .Strength__Body {
+    top: 314px;
+    padding: 0 24px;
+    font-size: 18px;
+    line-height: 1.78;
+  }
+
+  .Strength__Card:nth-child(2) .Strength__Body {
+    top: 316px;
+  }
+}
+
+/* PSD の青→水色の文字グラデーションを文字領域に適用する。 */
+.Strength__TitleLarge,
+.Strength__CardTitle {
+  background: linear-gradient(100deg, #584eff 15%, #16b4ff 85%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.Strength__Label {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  color: #cadb9e;
+}
+.Strength__Badge {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 767px) {
+  .Strength__Card:nth-child(3) .Strength__Body { letter-spacing: 0.04em; }
+}
