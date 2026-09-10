@@ -1,0 +1,11 @@
+# LP リニューアル(/siid/lp-career)用スクリプトの依存パッケージ
+#
+#   python3 -m venv .venv-lp-career
+#   ./.venv-lp-career/bin/pip install -r scripts/lp-career/requirements.txt
+#
+psd-tools==1.19.0
+Pillow>=10.0
+numpy>=1.26
+# レイヤー効果(境界線・シャドウ等)の描画に必要。無いと effects を含むレイヤーの
+# 書き出しが ImportError になり、基準画像から効果が欠落する恐れがある。
+scikit-image>=0.24

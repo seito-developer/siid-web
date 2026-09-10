@@ -1,0 +1,67 @@
+.CookieBanner {
+  position: fixed;
+  inset: auto 12px 12px;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 720px;
+  margin-inline: auto;
+  padding: 16px 18px;
+  border-radius: 10px;
+  background: rgba(19, 26, 62, 0.97);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  color: var(--lp-career-white);
+}
+
+.CookieBanner__Text {
+  font-size: 12px;
+  line-height: 1.8;
+  letter-spacing: var(--lp-career-tracking-sm);
+}
+
+.CookieBanner__Text a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.CookieBanner__Actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.CookieBanner__Actions button {
+  min-width: 104px;
+  padding: 9px 16px;
+  border-radius: 6px;
+  font-family: var(--lp-career-font-body);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.CookieBanner__Reject {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: none;
+  color: var(--lp-career-white);
+}
+
+.CookieBanner__Accept {
+  border: 0;
+  background: linear-gradient(180deg, var(--lp-career-cta-from) 0%, var(--lp-career-cta-to) 100%);
+  color: var(--lp-career-white);
+}
+
+@media screen and (min-width: 768px) {
+  .CookieBanner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .CookieBanner__Actions {
+    flex: none;
+  }
+}
