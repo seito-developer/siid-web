@@ -4,6 +4,22 @@
 
 デプロイ全体方針は [05_deploy.md](./05_deploy.md) を参照。本ドキュメントは「現行サイトからの移行」に固有の計画を扱う。
 
+> **⚠️ 2026-09-10 のヒアリングで前提が変わった（本文の §1〜§5・§8 は未改訂）**
+>
+> - **`/siid/lp-1` は維持しない。廃止して新 LP `/siid/lp-career`（旧 `lp-2`、Issue #76 / PR #77 でリネーム）に一本化する。**
+>   `src/app/(Lp)/lp-1/` は削除対象。本文中の「lp-1 は GitHub Pages に残す」「lp-1 を先に除外する評価順」は無効
+> - これにより Worker の分岐は **2 本だけ**になる: `/siid`・`/siid/*` → Vercel ／ それ以外 → GitHub Pages（コーポレート）
+> - **`/siid/lp-1` → `/siid/lp-career` の 301 が必須**（`siid-blog` の `COUNSELING_URL` が `/siid/lp-1` を指しており、
+>   Worker 切替後は旧 GitHub Pages 版に到達できなくなるため、301 が唯一の受け皿）。詳細は Issue #48 のコメント
+> - `/siid/counseling-complete-lp-1` の寄せ先（`/siid/lp-career/complete` か）は未決定
+>
+> **なぜ Cloudflare と Vercel の両方なのか**（ユーザーから質問があった点）:
+> Cloudflare は「デプロイ先」ではなく **ドメイン前段でパスを振り分ける層**。同一ドメインの `/siid/*` だけを
+> 別アプリに差し替える必要があり、GitHub Pages にはパス単位の振り分け機能が無いため（§2 の課題）。
+> Vercel は Next.js の実行環境。「Cloudflare だけ」（OpenNext で Workers 上に Next.js を載せる）も可能で、
+> **Vercel の商用利用に Pro（$20/月）が必要**な点が気になる場合の選択肢として残している。
+> 判断は **#47（Worker 実装）の直前**に行う。現時点の推奨は既にデプロイ済みの Cloudflare 前段 + Vercel の維持
+
 ---
 
 ## 1. 背景・目的
