@@ -23,7 +23,7 @@
 ## 検証
 
 - `npm run lint`、`npm run typecheck`、`npm run build` が成功。
-- `LP2_URL=http://localhost:3100/siid/lp-2 node scripts/lp2/check-layout.mjs`：5項目成功。
+- `LP_CAREER_URL=http://localhost:3100/siid/lp-career node scripts/lp-career/check-layout.mjs`：5項目成功。
   - SPカード開閉、後続カードの移動、本文がカード内に収まること。
   - SPの実績矢印を通常クリックできること。
   - PCの実績カルーセルに5枚描画されること。
@@ -62,7 +62,7 @@
 - SUPPORTの「その学び」「国が最大80%負担します」を紫から水色への連続グラデーションに修正。小さい文字の固定色も除去し、文字列全幅に色の変化を適用。
 - SUPPORTの講座名「第四次産業革命スキル習得講座」にも、文字全幅の紫→水色グラデーションを適用。隣の「認定」はカンプどおり白を維持。
 - PRICINGのCTA文字に継承されていた大きい字間を解除。文字サイズを維持し、左右の矢印との余白を3プラン共通で確保。
-- PC料金カードのCTAを、pc5.psdの専用レイヤーから書き出した `plan-cta.png` へ変更。共通画像の単色行補間で失われていた横方向の濃淡と細かな質感を維持。文字はHTML。再生成は `python scripts/lp2/export-plan-cta.py`（PSD解析用環境と `tmp/psd-ref/pc/pc5.png` が必要）。
+- PC料金カードのCTAを、pc5.psdの専用レイヤーから書き出した `plan-cta.png` へ変更。共通画像の単色行補間で失われていた横方向の濃淡と細かな質感を維持。文字はHTML。再生成は `python scripts/lp-career/export-plan-cta.py`（PSD解析用環境と `tmp/psd-ref/pc/pc5.png` が必要）。
 
 ### 追加の画面レビュー修正
 
@@ -86,7 +86,7 @@
 - STEP01〜05は円全体を基準にラベルと数字を中央配置。
 - 319 / 349 / 375 / 390pxで全5カードの本文が収まり、数字の左右中心差は0px。本文を30文増やした際もカード・次のSTEP・CTA・セクション高が約596px伸びることを確認。
 - 別担当の読み取り専用レビューで指摘なし。
-- 再現用チェック: `node scripts/lp2/check-step-layout.mjs`（localhost:3100起動後）。本文の文字範囲とカード下端の距離も検証する。
+- 再現用チェック: `node scripts/lp-career/check-step-layout.mjs`（localhost:3100起動後）。本文の文字範囲とカード下端の距離も検証する。
 - [349pxの修正後画面](./step-mobile-sep09.webp)
 - lint・型チェック・本番ビルド成功（既存Phaser/microCMS警告は継続）。localhost:3100を修正後の本番ビルドで再起動。
 

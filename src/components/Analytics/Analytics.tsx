@@ -6,8 +6,8 @@ import {
   GA_ID,
   GTM_IDS,
   KARTE_ID,
-  LP2_CONSENT_PATH,
-  LP2_CONSENT_STORAGE_KEY,
+  LP_CAREER_CONSENT_PATH,
+  LP_CAREER_CONSENT_STORAGE_KEY,
   OPENAI_ADS_PIXEL_ID,
   USERHEAT_ID,
 } from './analyticsConfig';
@@ -27,8 +27,8 @@ export default function Analytics() {
   return (
     <>
       {/*
-        Cookie 同意バナーを出している lp-2 だけ、Google Consent Mode の既定値を
-        denied にする（docs/spec/07_lp2-renewal.md §13.4）。
+        Cookie 同意バナーを出している lp-career だけ、Google Consent Mode の既定値を
+        denied にする（docs/spec/07_lp-career-renewal.md §13.4）。
         この layout は lp-1 と共有のため、パスで絞って他ページの計測は変えない。
         GTM / GA4 の読み込み（afterInteractive）より先に走らせる必要があるので
         beforeInteractive で出す。
@@ -38,10 +38,10 @@ export default function Analytics() {
         // HTML の解析時点で必ず実行させる必要があるため。
         dangerouslySetInnerHTML={{
           __html: `(function(){try{
-if(location.pathname.indexOf('${LP2_CONSENT_PATH}')!==0)return;
+if(location.pathname.indexOf('${LP_CAREER_CONSENT_PATH}')!==0)return;
 window.dataLayer=window.dataLayer||[];
 function gtag(){window.dataLayer.push(arguments);}
-var stored=null;try{stored=window.localStorage.getItem('${LP2_CONSENT_STORAGE_KEY}');}catch(e){}
+var stored=null;try{stored=window.localStorage.getItem('${LP_CAREER_CONSENT_STORAGE_KEY}');}catch(e){}
 var v=stored==='accepted'?'granted':'denied';
 gtag('consent','default',{ad_storage:v,ad_user_data:v,ad_personalization:v,analytics_storage:v,wait_for_update:500});
 }catch(e){}})();`,
