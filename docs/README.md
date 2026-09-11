@@ -11,6 +11,7 @@ AI ベース開発のための仕様書・運用ドキュメント一式。**実
 | [05_deploy.md](./spec/05_deploy.md) | Vercel デプロイ・公開計画 |
 | [06_migration.md](./spec/06_migration.md) | 現行 bug-fix.org/siid からの移行・リリース計画(Cloudflare 前段方式) |
 | [07_lp-career-renewal.md](./spec/07_lp-career-renewal.md) | LP リニューアル(`/siid/lp-career`)実装仕様・Photoshop 入稿データ対応 |
+| [08_career-path-interviews.md](./spec/08_career-path-interviews.md) | 卒業生の進路(TOP スライダー・`/career-path`)の SiiD BLOG インタビュー記事連携 |
 
 ## 更新ルール
 

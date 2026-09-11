@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit",
-    "fetch:graduates": "node scripts/fetch-graduates.mjs"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "gsap": "^3.15.0",

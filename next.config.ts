@@ -19,6 +19,12 @@ const nextConfig: NextConfig = {
         hostname: 'img.youtube.com',
         pathname: '/vi/**',
       },
+      {
+        // SiiD BLOG(microCMS)のインタビュー記事のアイキャッチ(Issue #75)
+        protocol: 'https',
+        hostname: 'images.microcms-assets.io',
+        pathname: '/assets/**',
+      },
     ],
   },
   async headers() {
