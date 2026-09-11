@@ -1,0 +1,9 @@
+{
+  "name": "siid-router",
+  "private": true,
+  "type": "module",
+  "description": "bug-fix.org の /siid 配下を Vercel の siid-web へリバースプロキシする Cloudflare Worker（Issue #47）",
+  "scripts": {
+    "test": "node --test"
+  }
+}
