@@ -925,7 +925,7 @@ lp-career でも取得されている分など)。実回線・CDN での実測�
 ### Jicoo予約完了後の遷移
 
 このLPは `https://www.jicoo.com/event_types/7prAIkBVVBVF/widget` を埋め込んでいる。
-Jicoo公式スクリプト `https://www.jicoo.com/widget/event_type.js` は `redirectUrl` の通知を受けると親ページを `window.location.assign()` で遷移させる。独自の予約成功検知やタイマー転送は追加しない。
+lp-careerの埋め込みホストは、Jicoo公式スクリプトと同じ `redirectUrl` 通知を受けて親ページを遷移させる（Issue #71）。独自の予約成功検知やタイマー転送は追加しない。
 
 公開後に、Jicoo管理画面の対象予約ページで以下を設定する。
 
@@ -954,3 +954,14 @@ Jicoo公式スクリプト `https://www.jicoo.com/widget/event_type.js` は `red
 | img_carousel06.webp | carousel-06.webp | 20代男性・公務員から | データサイエンティストに1発内定！ |
 | img_carousel07.webp | carousel-07.webp | 20代男性・物流系から | IT/Webエンジニア3社に内定！ |
 | img_carousel08.webp | carousel-08.webp | 20代女性・医療職から | 7ヶ月でエンジニア職で2社内定！ |
+
+## 予約フォームの高さ安定化（Issue #71）
+
+- 旧プレビューはフォームが絶対配置で、背景の高さを超えていた。最新の通常フローの白カードを利用し、iframe全体を白背景で包む。
+- 公式埋め込みスクリプトは `windowHeight` ごとに高さを上書きし、`scrollWidgetTop` で親ページを強制移動する。入力画面が長くなった後に短い高さが通知されるとカードが収縮することを再現した。
+- lp-careerではiframeの生成と通知処理を自前のホストに分離。Jicoo側のフォーム内容は変更しない。originが `https://www.jicoo.com` かつsourceが対象iframeの通知のみ受理する。
+- 通知の高さは正の有限値（上限20000px）に限定し、マウント中の最大値を保持。短い画面に戻っても余白を残し、入力位置を安定させる。連続通知はrequestAnimationFrameでまとめる。白カード・セクションは文書フローで伸長する。
+- `scrollWidgetTop` は無視。予約完了の `redirectUrl` はHTTPSまたは同一originのURLに限定して公式同様に遷移。アンマウント時にiframe・イベント・予約済み描画を解除する。
+- `node scripts/lp-career/check-booking-layout.cjs` で4幅の高さ通知・白背景・スクロール維持・無効通知・完了ページ転送を検証。Jicooページをfixtureに差し替えるため、実予約は送信しない。
+- 実フォーム（予約枠あり）での実測（2026-09-11、PC 1440px / SP 390px）。日付選択で Jicoo は `windowHeight` に加えて `scrollWidgetTop` を送るが、本ホストは後者を無視するため親のスクロール位置は不変。PC は 654 → 1741px へ伸長後、入力画面で 1666px の**縮小通知**が届いても 1741px を保持し、白カード内に収まる。SP は 654 → 1741 → 入力画面 1902px と伸長し、横方向のはみ出しも無い（`scrollWidth` == `clientWidth` == 390）。実予約の送信は行っていない。
+- 幅が変わった場合（SP の回転・PC のウィンドウ幅変更）は保持中の最大値をリセットする。Jicoo は幅の変化時に高さを再通知するため（実測: SP 縦の入力画面 1901px → 横向きで 1552 → 1666px を通知）、リセットしないと最大値 1901px に張り付き約 235px の空白が残る。SP のアドレスバー伸縮のような高さだけの変化ではリセットしない。
