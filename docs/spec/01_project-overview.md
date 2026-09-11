@@ -16,7 +16,7 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 | アニメーション | **GSAP** | 2026-07 ヒアリングで確定。オープニング演出・スクロール演出に使用 |
 | ホスティング | **Vercel** | 2026-07 ヒアリングで確定 |
 | ブログCMS | **microCMS** | 2026-07 確定(Issue #30)。SiiD BLOG(`blog.bug-fix.org`)のヘッドレスCMS。TOPページ News セクションが `blog` エンドポイントから「コラム」カテゴリ最新記事を取得。`microcms-js-sdk` 使用・サーバー側取得 |
-| 問い合わせフォーム | **外部フォームサービス** | サービス選定は未確定([03_pages.md](./03_pages.md) 参照) |
+| 問い合わせ・予約 | **Jicoo**(外部サービスの埋め込み) | 決定済み。`/counseling`([03_pages.md](./03_pages.md) §3-3)と `/lp-career`([07](./07_lp-career-renewal.md))で使用 |
 | Styling | CSS Modules + CSS Custom Properties | 既存。Tailwind 等は導入しない |
 | Slider | Swiper 12 | 既存 |
 | Game | **Phaser 3.90** | 2026-07 確定(Issue #24)。404ページのミニゲーム専用。`next/dynamic` + `ssr: false` で404ページ限定ロード |
@@ -25,19 +25,26 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 
 | URL | 状態 | Figma フレーム(主なもの) |
 |-----|------|------------------|
-| `/` | 実装済み(FVアニメ未実装) | `TOP_nomal` (3506:8246), `TOP` (3595:9208 / 3600:11840) |
+| `/` | 実装済み(オープニング演出 `Opening` 実装済み。News・卒業生の進路は microCMS 連携・`revalidate = 600`) | `TOP_nomal` (3506:8246), `TOP` (3595:9208 / 3600:11840) |
 | `/career-path` → `/career-path/[page]` | 実装済み(SiiD BLOG のインタビュー記事を一覧化。[08](./08_career-path-interviews.md)) | `C-1 卒業生の進路` (3506:10507), SP (3506:5977)。モーダル (3506:10655) は Issue #75 で廃止 |
-| `/courses` | **プレースホルダーのみ** | `B-1 コース一覧` (3506:9919), SP (3506:6335) |
+| `/courses` | 実装済み(比較表・プラン。プラン別アンカーは `COURSE_PLAN_ANCHOR_IDS`) | `B-1 コース一覧` (3506:9919), SP (3506:6335) |
 | `/community` | 実装済み | `E-1 コミュニティの雰囲気` (3506:11116), SP (3506:7723) |
 | `/service` | 実装済み | `D-1 サービス一覧` (3506:10951), SP (3506:7084) |
 | `/after-support` | **独立ページ無し**(Issue #11)。実体は `/service` 内 `Support` セクション。ナビは『サービス一覧』→ /service に変更 | `D-1 サービス一覧` 内(3506:10951) |
 | `/line` | 実装済み(2026-07) | `G-1 LINE登録` PC (3506:11427) / SP (3506:6128) |
-| `/contact` | **未実装**(ContactButton のリンク先は現状 `/counseling`) | ※ `G-1 LINE登録` は独立ページ `/line` として実装済み。`/contact` の実体は要確認のまま |
-| 404 | 実装済み(2026-07 / Issue #24)。dino風ミニゲーム付き | `H-1 409` (3506:11730)。H-1 410〜413 は存在しないことを確認済み(SP はPC縮小構成) |
-| `/counseling` | 未実装(meta.ts に定義のみ) | 要確認 |
-| `/lp-1` | 実装済み(2026-07 / Issue #40)。旧サイト `bug-fix.org/siid/lp-1` から移植した広告流入用の独立LP。共通クローム無し・noindex | Figma 対応なし(旧LPの忠実再現) |
+| `/counseling` | 実装済み。`ContactButton` のリンク先 | 要確認 |
+| `/counseling/complete` | 実装済み(予約完了・CV 計測、noindex) | Figma 対応なし |
+| `/counseling-complete` | 実装済み(旧 URL 互換、noindex) | Figma 対応なし |
+| `/contact` | **ルートとして存在しない**。実体は `/counseling` | — |
+| 404 | 実装済み(2026-07 / Issue #24)。dino風ミニゲーム付き。`(Main)/[...notFound]` の catch-all で未知 URL を着地させる | `H-1 409` (3506:11730)。H-1 410〜413 は存在しないことを確認済み(SP はPC縮小構成) |
+| `/lp-career` | 実装済み(2026-09 / Issue #65 ほか。#76 で `lp-2` から改名)。広告流入用の LP。index 対象。仕様は [07](./07_lp-career-renewal.md) | Photoshop 入稿データ(07 参照) |
+| `/lp-career/complete` | 実装済み(2026-09 / Issue #69)。lp-career の予約完了(noindex) | 07 参照 |
+| `/lp-1` | 実装済み(2026-07 / Issue #40)。旧サイト `bug-fix.org/siid/lp-1` から移植した広告流入用の独立LP。共通クローム無し・noindex。root layout は `(Lp)/layout.tsx`。**廃止予定**(今後は `/lp-career` を使う。`/siid/lp-1` は `/siid/lp-career` へ 301。[06](./06_migration.md) §4) | Figma 対応なし(旧LPの忠実再現) |
 | `/counseling-complete-lp-1` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した申込完了ページ(noindex)。OpenAI Ads CV計測 `appointment_scheduled` を発火 | Figma 対応なし |
 | `/white-paper` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した資料請求ページ(公式LINE誘導) | Figma 対応なし |
+
+> ルーティングの実体は `src/app/` のディレクトリ構成、URL とメタデータの実体は `src/constants/meta.ts` が唯一の情報源。
+> この表と食い違ったらコードが正で、気付いた時点でこの表を直す。
 
 ## TOPページ News セクション（microCMS 連携・Issue #30 / #55）
 
@@ -98,4 +105,4 @@ Figma 内「アニメーションについて」(3235:2345) にはデザイナ�
 
 ## 未確定事項
 
-- `/counseling` ページを作るか、`/contact` に統合するか
+- なし(2026-09-11 時点。問い合わせ導線は Jicoo 埋め込みで決定済み)
