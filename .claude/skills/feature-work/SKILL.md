@@ -12,9 +12,10 @@ SiiD Web の標準フロー。詳細ルールは `docs/spec/04_workflow.md` を�
 1. **Issue 確認**: `gh issue view <N>` で目的・完了条件を読む。Issue 本文からリンクされた `docs/spec/` の仕様書を必ず読む
 2. **ブランチ作成**: 最新 develop から切る
    ```bash
-   git checkout develop && git pull origin develop
-   git checkout -b feature/<N>-<slug>
+   git fetch origin -q
+   git switch -c feature/<N>-<slug> origin/develop
    ```
+   ローカルの `develop` へ switch しない（複数ワークツリーで並行作業しているため、別のワークツリーが `develop` を持っていると失敗する。CLAUDE.md「作業開始時の前提確認」）
    種別により `fix/` `docs/` `chore/` プレフィックスを使い分ける
 3. **実装**:
    - Figma 参照が必要な場合、ノード ID は `docs/spec/01_project-overview.md` の対応表から特定し、**最小回数**で `get_design_context` を呼ぶ(View シートのレート制限があるため)

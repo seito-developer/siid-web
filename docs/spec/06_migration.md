@@ -1,6 +1,8 @@
 # 06. 移行・リリース計画(現行 bug-fix.org/siid → 新 SiiD サービスサイト)
 
-新 Next.js 版 SiiD サービスサイト(本リポジトリ `siid-web`)が完成したのち、現行の `https://bug-fix.org/siid` を置き換えるためのリリース計画。**`/siid` のみをリニューアルし、運営会社コーポレートサイト(`/`)と既存ランディングページ(`/siid/lp-1`)はそのまま残す**ことを制約とする(Issue #22)。
+新 Next.js 版 SiiD サービスサイト(本リポジトリ `siid-web`)が完成したのち、現行の `https://bug-fix.org/siid` を置き換えるためのリリース計画。**`/siid` のみをリニューアルし、運営会社コーポレートサイト(`/`)はそのまま残す**ことを制約とする(Issue #22)。
+
+> **2026-09-10 方針変更**: 当初は既存 LP `/siid/lp-1` も GitHub Pages のまま残す計画だったが、lp-1 は Issue #40 で本アプリへ移植済みであり、さらに**廃止して今後は `/siid/lp-career` を使う**ことに決定した。これにより `/siid` 配下はすべて新アプリ(Vercel)へ向け、`/siid/lp-1` は `/siid/lp-career` へ 301 で寄せる(§3.2・§4)。
 
 デプロイ全体方針は [05_deploy.md](./05_deploy.md) を参照。本ドキュメントは「現行サイトからの移行」に固有の計画を扱う。
 
@@ -11,7 +13,8 @@
 現行の `bug-fix.org` は **1 リポジトリ・1 デプロイ**で複数の面を配信しており、`/siid` だけを単純に差し替えることができない。パス単位で新旧を分離するには、ドメイン前段にルーティング層を設ける必要がある。
 
 - 新サイト完成後、現行 SiiD サービスサイト(`/siid` 配下)のみを新 Next.js アプリへ置換する。
-- コーポレートサイト(`/`)と既存 LP(`/siid/lp-1`)は現行のまま維持し、URL も変えない。
+- コーポレートサイト(`/`)は現行のまま維持し、URL も変えない。
+- 既存 LP `/siid/lp-1` は廃止し、`/siid/lp-career` へ 301 で引き継ぐ(2026-09-10 決定)。
 - 現行 `/siid/*` の各 URL は SEO 継続のため 301 リダイレクトで新ルートへ引き継ぐ。
 
 ---
@@ -22,7 +25,7 @@
 |---|---|---|---|
 | `bug-fix.org/`(コーポレート) | `bugfix-corp`(Vite + EJS 静的サイト) | GitHub Pages | **維持** |
 | `bug-fix.org/siid`, `/siid/*` | 同上(`src/pages/siid/*`) | GitHub Pages | **新サイトへ置換** |
-| `bug-fix.org/siid/lp-1` | 同上(`src/pages/siid/lp-1/`、自己完結) | GitHub Pages | **維持** |
+| `bug-fix.org/siid/lp-1` | 同上(`src/pages/siid/lp-1/`、自己完結) | GitHub Pages | **廃止**(`/siid/lp-career` へ 301) |
 | `blog.bug-fix.org` | `siid-blog`(Next.js + microCMS) | Vercel | 対象外(`/siid` へ外部リンクするのみ) |
 | `siid.bug-fix.org` | Utage(`dns.utage-domain.com`) | 外部SaaS | 対象外(流用不可) |
 
@@ -40,20 +43,19 @@ graph TD
   BLOG -. 外部リンク .-> D
 ```
 
-**課題:** GitHub Pages はパス単位で別バックエンドへ振り分けできない。`/`(維持)・`/siid`(置換)・`/siid/lp-1`(維持)を分離するには、ドメイン前段のルーティング層が必須。
+**課題:** GitHub Pages はパス単位で別バックエンドへ振り分けできない。`/`(維持)と `/siid`(置換)を分離するには、ドメイン前段のルーティング層が必須。
 
 ---
 
 ## 3. 目標アーキテクチャ(Cloudflare 前段方式)
 
-DNS を Cloudflare 管理下に置き、`bug-fix.org` を **Cloudflare Worker** でパス分岐させる。コーポレートは GitHub Pages のまま維持し、`/siid`(lp-1 を除く)だけを新アプリ(Vercel)へ **URL を変えずにリバースプロキシ**する。
+DNS を Cloudflare 管理下に置き、`bug-fix.org` を **Cloudflare Worker** でパス分岐させる。コーポレートは GitHub Pages のまま維持し、`/siid` 配下だけを新アプリ(Vercel)へ **URL を変えずにリバースプロキシ**する。
 
 ```mermaid
 graph TD
   U[利用者] --> CF[Cloudflare<br/>apex proxied]
-  CF -->|/siid/lp-1・/siid/lp-1/*| GH[GitHub Pages<br/>bugfix-corp（現行 LP 維持）]
-  CF -->|/ ・ その他| GH
-  CF -->|/siid・/siid/*<br/>（lp-1 を除く）| V[Vercel<br/>siid-web（basePath: /siid）]
+  CF -->|/ ・ その他| GH[GitHub Pages<br/>bugfix-corp（コーポレート維持）]
+  CF -->|/siid・/siid/*| V[Vercel<br/>siid-web（basePath: /siid）]
 ```
 
 ### 3.1 DNS
@@ -67,11 +69,13 @@ graph TD
 
 Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/...` のまま保ちつつ別オリジン(Vercel)の内容を返す**リバースプロキシ**が必要なため(Redirect Rule では URL が変わってしまう)。
 
-分岐ロジック(**評価順が重要** — lp-1 の除外を一般 `/siid` ルールより先に判定する):
+分岐ロジック(lp-1 の廃止により 2 分岐。2026-09-10 改訂):
 
-1. `/siid/lp-1` および `/siid/lp-1/*` → **GitHub Pages**(現行 LP を維持)
-2. `/siid` および `/siid/*`(上記 lp-1 を除く)→ **Vercel の新アプリ**(`https://siid-web-theta.vercel.app/siid/*` を fetch して返す)
-3. それ以外(`/` 等すべて)→ **GitHub Pages**(コーポレート維持)
+1. パスが **`/siid` と完全一致、または `/siid/` で始まる** → **Vercel の新アプリ**(`https://siid-web-theta.vercel.app` に同じパスとクエリで fetch して返す)。`/siid/lp-1` もここに含まれ、新アプリの 301(§4)で `/siid/lp-career` へ転送される
+2. それ以外(`/` 等すべて)→ **GitHub Pages**(コーポレート維持。オリジンへそのまま通す)
+
+- 前方一致を `/siid` だけで判定しないこと(`/siid-xxx` のような将来のコーポレート側パスまで新アプリへ流れるため)。
+- Worker を `bug-fix.org/siid*` のルートに紐付ければ `/` などのコーポレート宛リクエストは Worker を通らない。ただしこのルートは `/siid-xxx` にも一致するため、**Worker 内でも上記の判定を必ず行い、一致しないリクエストはオリジン(GitHub Pages)へそのまま通す**こと(ルートの絞り込みだけに頼ると `/siid-xxx` が Vercel へ流れて 404 になる)。
 
 **プロキシ応答のヘッダー処理(必須)**: 新アプリは Host が `*.vercel.app` のリクエストに `X-Robots-Tag: noindex` を付与する(直 URL の重複インデックス対策、Issue #14 / [05_deploy.md](./05_deploy.md))。Worker のオリジン fetch も Host は `*.vercel.app` になるため、**Worker は `bug-fix.org` へ返す応答から `X-Robots-Tag` ヘッダーを必ず削除する**こと。削除しないと本番サイト全体が検索エンジンから noindex 扱いになる。
 
@@ -79,25 +83,28 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 
 - `next.config.ts` に `basePath: '/siid'`(必要に応じ `assetPrefix`)を設定し、内部リンク・アセットパスを `/siid` 配下へ整合させる。
 - Vercel 本番デプロイ。Worker はこのデプロイ URL の `/siid/*` を取得する。
-- 現状 `next.config.ts` は `images.remotePatterns`(img.youtube.com)のみで basePath / redirects は未設定 → 実装 Issue で追加する(本 Issue はスコープ外)。
+- `basePath: '/siid'` は設定済み(Issue #46)。`redirects()` は未設定で、§4 のマップを Issue #48 で追加する。
 
 ---
 
 ## 4. URL リダイレクトマップ(旧 `/siid/*` → 新ルート、301)
 
-旧サブページと新サイトのルートは 1:1 対応しないため、SEO 継続のための対応表を定める。実装は新アプリ `next.config.ts` の `redirects()`(basePath `/siid` 込み)で行う想定。**要確認**の対応は §9 未確定事項で確定させる。
+旧サブページと新サイトのルートは 1:1 対応しないため、SEO 継続のための対応表を定める。**Issue #48 で `next.config.ts` の `redirects()` に実装済み**(basePath `/siid` 込み、ステータス 301)。
 
-| 旧 URL | 新ルート(案) | 備考 |
+旧サイトの正規 URL は末尾スラッシュ付き(`/siid/career/`)。新アプリは末尾スラッシュを外す(308)ため、旧 URL からは「308 → 301」の 2 ホップで新ルートに着地する(クエリ文字列は保持)。
+
+| 旧 URL | 新ルート | 状態 |
 |---|---|---|
-| `/siid` | `/siid`(新トップ) | 新アプリ `/`(basePath 適用) |
-| `/siid/career` | `/siid/career-path` | 卒業生の進路 |
-| `/siid/counseling` | `/siid/counseling` | 面談。パス一致 |
-| `/siid/counseling-complete` | `/siid/counseling/complete` | 面談完了 |
-| `/siid/counseling-complete-lp-1` | 要確認 | `/siid/counseling/complete` に集約 or 維持 |
-| `/siid/tuition` | 要確認(→ `/siid/courses` 想定) | 料金 → コース一覧 |
-| `/siid/voices` | 要確認(→ `/siid/career-path` 想定) | 受講生の声 |
-| `/siid/white-paper` | 要確認 | 新サイトに該当ページなし |
-| `/siid/lp-1` | **リダイレクトしない・維持** | 現行 LP を保持 |
+| `/siid` | `/siid`(新トップ) | パス一致。リダイレクト不要 |
+| `/siid/career` | `/siid/career-path/1` | 実装済み(301)。`/career-path` は `/career-path/1` へのリダイレクトなので正規 URL へ直接送る |
+| `/siid/counseling` | 同一パスで実装済み | リダイレクト不要 |
+| `/siid/counseling-complete` | 同一パスで実装済み(旧 URL 互換ページ) | リダイレクト不要(`redirects()` はページより優先されるため、ここに 301 を置くと互換ページが死ぬ) |
+| `/siid/counseling-complete-lp-1` | `/siid/lp-career/complete` | 実装済み(301。2026-09-12 決定)。ページは削除。このページが発火していた OpenAI Ads の CV は止まる(lp-career 側の計測は #67) |
+| `/siid/white-paper` | 同一パスで実装済み(Issue #40) | リダイレクト不要 |
+| `/siid/lp-1`(および `/siid/lp-1/*`) | `/siid/lp-career` | 実装済み(301)。lp-1 は削除(2026-09-10 決定)。`siid-blog` の `COUNSELING_URL` の受け皿 |
+| `/siid/lp-2`(および `/siid/lp-2/*`) | `/siid/lp-career` | 実装済み(301)。Issue #76 の改名前 URL の保険(未公開だが外部設定・共有 URL に残っている可能性) |
+| `/siid/tuition` | `/siid/courses` | 実装済み(301。2026-09-12 決定)。料金 → コース一覧 |
+| `/siid/voices` | `/siid/career-path/1` | 実装済み(301。2026-09-12 決定)。受講生の声 → 卒業生の進路 |
 
 ---
 
@@ -109,13 +116,12 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
   - 現行 DNS の TTL を短縮 → ネームサーバを Cloudflare へ切替 → apex を proxied 化。
   - この時点では Worker 未設定 or 全パス GitHub Pages のままとし、**挙動が現行と変わらない**ことを確認。
   - **手順の詳細・現行レコード一覧・失敗しやすい点は [§10](#10-dns-移管手順書issue-45) にまとめてある。メール(Google Workspace)を止めないため必ず参照すること。**
-- **Step1. 新アプリ本番デプロイ**
-  - `siid-web` を Vercel に `basePath: '/siid'` で本番デプロイ。Vercel の直 URL / プレビューで単体動作確認。
+- **Step1. 新アプリ本番デプロイ(301 込み)**
+  - `siid-web` を Vercel に `basePath: '/siid'` で本番デプロイ(`develop` → `main` のリリース PR)。Vercel の直 URL で単体動作確認。
+  - **§4 の 301(`redirects()`)と lp-1 の削除はこの時点で入れておく**。`redirects()` は新アプリに届いたリクエストにしか効かないため、Worker 切替前に入れても本番に影響しない。切替後に入れる順序だと、lp-1 削除済みの場合 `/siid/lp-1` が切替から 301 有効化までの間 404 になる。
 - **Step2. `/siid` を新アプリへ切替**
-  - Worker を有効化し、`/siid` 配下(lp-1 除く)のみ新アプリへプロキシ。
-  - **回帰確認**: `/`(コーポレート)・`/siid/lp-1` が従来どおり GitHub Pages で表示されること。
-- **Step3. 301 リダイレクト有効化**
-  - §4 の旧 → 新リダイレクトを有効化し、全旧 URL が新ルートへ 301 で到達することを検証。
+  - Worker を有効化し、`/siid` 配下を新アプリへプロキシ。
+  - **回帰確認**: `/`(コーポレート)が従来どおり GitHub Pages で表示されること。§4 の全旧 URL が新ルートへ 301 で到達すること(`/siid/lp-1` → `/siid/lp-career` を含む)。§8 のチェックリストを実施。
 - **公開後**
   - Google Search Console でインデックス移行・クロールエラーを監視。
 
@@ -143,23 +149,23 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 
 [05_deploy.md](./05_deploy.md) の汎用チェックリストに加え、移行固有で以下を確認する。
 
-- [ ] `/siid/lp-1`(および配下)が Worker 分岐後も現行のまま無傷で表示される
+- [ ] `/siid/lp-1`(および配下)が `/siid/lp-career` へ 301 で到達する
 - [ ] コーポレート `/` に一切変化がない
 - [ ] 旧 `/siid/*` の全 URL が §4 のマップどおり 301 で新ルートへ到達する
 - [ ] 新アプリが `basePath: '/siid'` でアセット 404 を出さない(CSS/画像/フォント/JS)
-- [ ] 既存外部リンクの生存: `siid-blog` の `SIID_SITE_URL`(= `bug-fix.org/siid`)・`COUNSELING_URL`(= `bug-fix.org/siid/lp-1`)がリンク切れにならない
-- [ ] Worker のルート評価順(lp-1 除外 → `/siid` → その他)が意図どおり
+- [ ] 既存外部リンクの生存: `siid-blog` の `SIID_SITE_URL`(= `bug-fix.org/siid`)・`COUNSELING_URL`(= `bug-fix.org/siid/lp-1`、301 で `lp-career` へ)がリンク切れにならない。公開後は `COUNSELING_URL` 自体を `/siid/lp-career` に更新して 301 を経由しないようにする
+- [ ] Worker の分岐が意図どおり(`/siid` と `/siid/*` だけが新アプリへ、`/siid-xxx` や `/` はコーポレートへ)
 - [ ] `bug-fix.org/siid` の本番レスポンスに `X-Robots-Tag: noindex` が**付いていない**こと(Worker が除去)/ `*.vercel.app` 直アクセスには**付いている**こと(§3.2 参照)
+- [ ] Vercel の Production 環境変数に `MICROCMS_SERVICE_DOMAIN` / `MICROCMS_API_KEY` が入っており、TOP の News・卒業生の進路と `/siid/career-path` に記事が表示される(未設定だと「インタビュー記事を読み込めませんでした」になる。[08](./08_career-path-interviews.md) §6)
 
 ---
 
 ## 9. 未確定事項
 
-- §4 リダイレクトマップの「要確認」対応先: `/siid/tuition`(→ `/siid/courses`?)、`/siid/voices`(→ `/siid/career-path`?)、`/siid/white-paper`(該当ページなし)、`/siid/counseling-complete-lp-1`(集約 or 維持)
 - DNS(`bug-fix.org` apex)を Cloudflare へ移管することのオーナー承認
 - GA4 / GTM 各タグの SiiD 固有・共有の切り分けと引き継ぎ範囲
 - `/siid/counseling` の Jicoo ウィジェット(`event_types/dPvwnhRYxhQB`, [03_pages.md](./03_pages.md) 参照)を本番でそのまま共有してよいか
-- 実装スコープ(basePath 設定・`redirects()`・Cloudflare Worker・DNS 移管・Vercel 本番設定)を扱う後続 Issue の起票
+- ~~実装スコープを扱う後続 Issue の起票~~ → 起票済み: #45(DNS 移管)・#46(basePath、完了)・#47(Worker)・#48(301)
 
 ---
 
@@ -167,14 +173,14 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 
 カットオーバー Pre(§5)の実作業手順。**この作業はドメイン管理画面での操作であり、リポジトリのコード変更を伴わない。**
 
-### 10.1 前提情報(2026-08 時点の実測)
+### 10.1 前提情報(2026-08 実測、2026-09-12 再確認で変化なし)
 
 | 項目 | 値 |
 |---|---|
 | レジストラ | **Squarespace Domains II LLC**(https://domains.squarespace.com) — **ネームサーバ変更はここで行う** |
 | 現行 DNS ホスト | **Google Cloud DNS**(`ns-cloud-b1〜b4.googledomains.com`) — レコードの現物はここにある |
 | ドメイン有効期限 | 2027-03-13 |
-| ドメインステータス | `clientTransferProhibited`(レジストラ移管ロック)。**ネームサーバ変更にはロック解除は不要** |
+| ドメインステータス | `clientTransferProhibited`(レジストラ移管ロック)・`clientDeleteProhibited`(削除ロック)。**ネームサーバ変更にはどちらも解除不要** |
 
 > レジストラ(Squarespace)と DNS ホスト(Google Cloud DNS)が別である点に注意。**移管するのはネームサーバの向き先**であり、ドメインそのものの移管(レジストラ変更)は行わない。
 
@@ -195,6 +201,7 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 | `google._domainkey` | TXT (DKIM) | `v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAl6IKssV3gJzyz6WlqC+hX9GZNdxSgPniUH+Xpa2OB2SSm0sSC77e4CzvxLFr8eEfIU4QyQ2uaoNZaFKs5vDjFrsfcnme9DfERp9pyUXapTu1dzFrUpfUpwx8w+ZWPerYRHO+JMk/MLnYxZepbarQuDDl+y8BguXUn0aCrGlbgFkUaZEsOs2tfnnuT4zUFNq1OtqaVxTPRe5/DJGSHANDaBfQwjoJEHtHqKvjvYkRET0KwB6TzrKdQsUmVYSGBZrcNccgalm9bPuHwBSTPR00eFdJIrXwGHOa4y1OnAIVU/T9DjVzn9Mp8ecMfWUSepry8WCcrPl7zHmhYua753t6jQIDAQAB` | 14400 | DNS only |
 
 - CAA レコードは未設定。
+- 2026-09-12 に外部から再取得し、上表の全レコード(DKIM は 408 文字の全文)が一致することを確認済み。
 - 上記は外部から DNS を引いた結果。**作業前に Google Cloud DNS の管理画面でゾーンをエクスポートし、非公開・未使用のレコードが他に無いか必ず突き合わせること**(外部からは存在を知り得ないサブドメインがある可能性がある)。
 
 ### 10.3 失敗しやすい点(必読)
@@ -220,7 +227,7 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 
 ### 10.5 検証(移管前後で同一になること)
 
-移管前の実測ベースライン(2026-08 時点):
+移管前の実測ベースライン(2026-08 実測、2026-09-12 再測定で同一):
 
 | URL | 移管前の応答 |
 |---|---|

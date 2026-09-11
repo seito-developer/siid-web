@@ -41,9 +41,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-#studentData
-/data/graduates/
-
 # Claude Code local settings / browser test artifacts
 .claude/settings.local.json
 .playwright-mcp/
+
+# LP リニューアル用スクリプトの作業ディレクトリ(PSD 基準画像・スクリーンショット・差分)
+/tmp/
+/.venv-lp-career/
+__pycache__/

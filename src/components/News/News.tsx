@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import { NewsPost } from '@/types/news';
 
 import styles from './News.module.css';
@@ -22,9 +20,6 @@ export default function News({ posts }: NewsProps) {
           <p className={styles.News__Empty}>現在お知らせはありません。</p>
         )}
       </section>
-      <div className={styles.News__BlogLink}>
-        <Link href="https://blog.bug-fix.org" target="_blank" rel="noopener noreferrer">SiiD Techブログ</Link>
-      </div>
     </div>
   );
 }

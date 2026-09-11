@@ -16,7 +16,7 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 | アニメーション | **GSAP** | 2026-07 ヒアリングで確定。オープニング演出・スクロール演出に使用 |
 | ホスティング | **Vercel** | 2026-07 ヒアリングで確定 |
 | ブログCMS | **microCMS** | 2026-07 確定(Issue #30)。SiiD BLOG(`blog.bug-fix.org`)のヘッドレスCMS。TOPページ News セクションが `blog` エンドポイントから「コラム」カテゴリ最新記事を取得。`microcms-js-sdk` 使用・サーバー側取得 |
-| 問い合わせフォーム | **外部フォームサービス** | サービス選定は未確定([03_pages.md](./03_pages.md) 参照) |
+| 問い合わせ・予約 | **Jicoo**(外部サービスの埋め込み) | 決定済み。`/counseling`([03_pages.md](./03_pages.md) §3-3)と `/lp-career`([07](./07_lp-career-renewal.md))で使用 |
 | Styling | CSS Modules + CSS Custom Properties | 既存。Tailwind 等は導入しない |
 | Slider | Swiper 12 | 既存 |
 | Game | **Phaser 3.90** | 2026-07 確定(Issue #24)。404ページのミニゲーム専用。`next/dynamic` + `ssr: false` で404ページ限定ロード |
@@ -25,25 +25,34 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 
 | URL | 状態 | Figma フレーム(主なもの) |
 |-----|------|------------------|
-| `/` | 実装済み(FVアニメ未実装) | `TOP_nomal` (3506:8246), `TOP` (3595:9208 / 3600:11840) |
-| `/career-path` → `/career-path/[page]` | 実装済み | `C-1 卒業生の進路` (3506:10507), モーダル (3506:10655), SP (3506:5977) |
-| `/courses` | **プレースホルダーのみ** | `B-1 コース一覧` (3506:9919), SP (3506:6335) |
+| `/` | 実装済み(オープニング演出 `Opening` 実装済み。News・卒業生の進路は microCMS 連携・`revalidate = 600`) | `TOP_nomal` (3506:8246), `TOP` (3595:9208 / 3600:11840) |
+| `/career-path` → `/career-path/[page]` | 実装済み(SiiD BLOG のインタビュー記事を一覧化。[08](./08_career-path-interviews.md)) | `C-1 卒業生の進路` (3506:10507), SP (3506:5977)。モーダル (3506:10655) は Issue #75 で廃止 |
+| `/courses` | 実装済み(比較表・プラン。プラン別アンカーは `COURSE_PLAN_ANCHOR_IDS`) | `B-1 コース一覧` (3506:9919), SP (3506:6335) |
 | `/community` | 実装済み | `E-1 コミュニティの雰囲気` (3506:11116), SP (3506:7723) |
 | `/service` | 実装済み | `D-1 サービス一覧` (3506:10951), SP (3506:7084) |
 | `/after-support` | **独立ページ無し**(Issue #11)。実体は `/service` 内 `Support` セクション。ナビは『サービス一覧』→ /service に変更 | `D-1 サービス一覧` 内(3506:10951) |
 | `/line` | 実装済み(2026-07) | `G-1 LINE登録` PC (3506:11427) / SP (3506:6128) |
-| `/contact` | **未実装**(ContactButton のリンク先は現状 `/counseling`) | ※ `G-1 LINE登録` は独立ページ `/line` として実装済み。`/contact` の実体は要確認のまま |
-| 404 | 実装済み(2026-07 / Issue #24)。dino風ミニゲーム付き | `H-1 409` (3506:11730)。H-1 410〜413 は存在しないことを確認済み(SP はPC縮小構成) |
-| `/counseling` | 未実装(meta.ts に定義のみ) | 要確認 |
-| `/lp-1` | 実装済み(2026-07 / Issue #40)。旧サイト `bug-fix.org/siid/lp-1` から移植した広告流入用の独立LP。共通クローム無し・noindex | Figma 対応なし(旧LPの忠実再現) |
-| `/counseling-complete-lp-1` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した申込完了ページ(noindex)。OpenAI Ads CV計測 `appointment_scheduled` を発火 | Figma 対応なし |
+| `/counseling` | 実装済み。`ContactButton` のリンク先 | 要確認 |
+| `/counseling/complete` | 実装済み(予約完了・CV 計測、noindex) | Figma 対応なし |
+| `/counseling-complete` | 実装済み(旧 URL 互換、noindex) | Figma 対応なし |
+| `/contact` | **ルートとして存在しない**。実体は `/counseling` | — |
+| 404 | 実装済み(2026-07 / Issue #24)。dino風ミニゲーム付き。`(Main)/[...notFound]` の catch-all で未知 URL を着地させる | `H-1 409` (3506:11730)。H-1 410〜413 は存在しないことを確認済み(SP はPC縮小構成) |
+| `/lp-career` | 実装済み(2026-09 / Issue #65 ほか。#76 で `lp-2` から改名)。広告流入用の LP。index 対象。仕様は [07](./07_lp-career-renewal.md) | Photoshop 入稿データ(07 参照) |
+| `/lp-career/complete` | 実装済み(2026-09 / Issue #69)。lp-career の予約完了(noindex) | 07 参照 |
 | `/white-paper` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した資料請求ページ(公式LINE誘導) | Figma 対応なし |
 
-## TOPページ News セクション（microCMS 連携・Issue #30）
+> `/lp-1`(旧広告LP)と `/counseling-complete-lp-1` は Issue #48 で削除し、それぞれ `/lp-career`・`/lp-career/complete` へ 301 で寄せた(旧 URL の 301 一覧は [06](./06_migration.md) §4、実装は `next.config.ts` の `redirects()`)。
+> ルーティングの実体は `src/app/` のディレクトリ構成、URL とメタデータの実体は `src/constants/meta.ts` が唯一の情報源。
+> この表と食い違ったらコードが正で、気付いた時点でこの表を直す。
+
+## TOPページ News セクション（microCMS 連携・Issue #30 / #55）
 
 - SiiD BLOG（microCMS）の `blog` エンドポイントから「コラム」カテゴリの最新記事を取得して表示。記事クリックで該当記事（`https://blog.bug-fix.org/blog/{id}`）へ遷移。
 - 取得ロジックは `src/lib/getNews.ts`（サーバー側実行）。`categories[contains]column` で絞り込み、`publishedAt` 降順で最大3件。ISR で 600 秒ごとに再検証。カテゴリID `column` は変更予定がないため定数で固定。
-- `News.tsx` は async Server Component（取得担当）、スワイプ/矢印カルーセルUXは `NewsCarousel.tsx`（Client Component）に分離。
+- `News.tsx` は props で記事を受け取る Server Component、スワイプ/矢印カルーセルUXは `NewsCarousel.tsx`（Client Component）に分離。取得は `src/app/(Main)/page.tsx` が `getNews()` を呼んで行う。
+- 表示形式は **`yyyy/mm/dd | title`**（`NewsPost.tsx`）。`|` は `.NewsPost__date::after` の擬似要素、タイトルは 2 行で省略。
+  - 日付は `Intl.DateTimeFormat('ja-JP', { timeZone: 'Asia/Tokyo', ... })` で整形する。`publishedAt` は UTC のため、タイムゾーンを固定しないとサーバー（UTC）とクライアント（JST）で表示がズレて Hydration Error になる。
+- 「SiiD Techブログ」への導線リンクは Issue #55 で削除済み（再追加しないこと）。
 - 環境変数（サーバー専用・`.env.local` / Vercel に設定。`.env.example` 参照）:
 
   | 変数 | 説明 |
@@ -53,6 +62,14 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 
 - `blog` エンドポイントの `categories` は複数参照フィールドのため、絞り込みは `equals` ではなく `contains` を使う。
 - 環境変数未設定・取得失敗時は空配列を返し、News は「現在お知らせはありません。」を表示（ページ全体は落とさない）。
+- **切り分け方法（Issue #55）**: 失敗ケースは全て同じ「現在お知らせはありません。」になるため、`getNews()` は原因を `console.error` / `console.warn` に出力する。表示されない場合は **Vercel の Runtime Logs** を確認する。
+  | ログ | 原因 |
+  |------|------|
+  | `microCMS の環境変数が未設定` | Vercel の Environment Variables 未登録、または対象環境（Production / Preview）に未設定 |
+  | `microCMS から 0 件が返りました` | `filters` の不一致（カテゴリID・フィールド名） |
+  | `microCMS からの記事取得に失敗しました` | エンドポイント名の誤り（404）・API キーの権限不足（401）・タイムアウト |
+- **環境変数を追加・変更したら再デプロイが必要**（Vercel の環境変数は既存デプロイには反映されない）。
+- 再検証は `getNews()` 内の fetch だけでなく、`src/app/(Main)/page.tsx` の `export const revalidate = 600` でもルート単位に指定する。環境変数未設定などで fetch 自体が実行されないとページが完全な静的扱いになり二度と再生成されないため（Issue #55）。
 
 ## Figma デザインデータ
 
@@ -87,4 +104,4 @@ Figma 内「アニメーションについて」(3235:2345) にはデザイナ�
 
 ## 未確定事項
 
-- `/counseling` ページを作るか、`/contact` に統合するか
+- なし(2026-09-11 時点。問い合わせ導線は Jicoo 埋め込みで決定済み)

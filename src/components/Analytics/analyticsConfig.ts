@@ -21,3 +21,13 @@ export const GTM_IDS = (process.env.NEXT_PUBLIC_GTM_IDS ?? '')
   .split(',')
   .map((id) => id.trim())
   .filter(Boolean);
+
+/**
+ * Cookie 同意バナーを出しているページのパス（basePath 込み）。
+ * このパス配下でだけ Google Consent Mode の既定値を denied にする。
+ * Analytics は (Main) の layout とも共用のため、他ページの計測に影響させないための絞り込み。
+ */
+export const LP_CAREER_CONSENT_PATH = '/siid/lp-career';
+
+/** Cookie 同意の保存先（localStorage のキー）。バナー側と共有する。 */
+export const LP_CAREER_CONSENT_STORAGE_KEY = 'lp-career-cookie-consent';
