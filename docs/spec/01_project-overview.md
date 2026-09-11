@@ -25,8 +25,8 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 
 | URL | 状態 | Figma フレーム(主なもの) |
 |-----|------|------------------|
-| `/` | 実装済み(オープニング演出 `Opening` 実装済み。News は microCMS 連携・`revalidate = 600`) | `TOP_nomal` (3506:8246), `TOP` (3595:9208 / 3600:11840) |
-| `/career-path` → `/career-path/[page]` | 実装済み | `C-1 卒業生の進路` (3506:10507), モーダル (3506:10655), SP (3506:5977) |
+| `/` | 実装済み(オープニング演出 `Opening` 実装済み。News・卒業生の進路は microCMS 連携・`revalidate = 600`) | `TOP_nomal` (3506:8246), `TOP` (3595:9208 / 3600:11840) |
+| `/career-path` → `/career-path/[page]` | 実装済み(SiiD BLOG のインタビュー記事を一覧化。[08](./08_career-path-interviews.md)) | `C-1 卒業生の進路` (3506:10507), SP (3506:5977)。モーダル (3506:10655) は Issue #75 で廃止 |
 | `/courses` | 実装済み(比較表・プラン。プラン別アンカーは `COURSE_PLAN_ANCHOR_IDS`) | `B-1 コース一覧` (3506:9919), SP (3506:6335) |
 | `/community` | 実装済み | `E-1 コミュニティの雰囲気` (3506:11116), SP (3506:7723) |
 | `/service` | 実装済み | `D-1 サービス一覧` (3506:10951), SP (3506:7084) |
@@ -37,7 +37,9 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 | `/counseling-complete` | 実装済み(旧 URL 互換、noindex) | Figma 対応なし |
 | `/contact` | **ルートとして存在しない**。実体は `/counseling` | — |
 | 404 | 実装済み(2026-07 / Issue #24)。dino風ミニゲーム付き。`(Main)/[...notFound]` の catch-all で未知 URL を着地させる | `H-1 409` (3506:11730)。H-1 410〜413 は存在しないことを確認済み(SP はPC縮小構成) |
-| `/lp-1` | 実装済み(2026-07 / Issue #40)。旧サイト `bug-fix.org/siid/lp-1` から移植した広告流入用の独立LP。共通クローム無し・noindex。root layout は `(Lp)/layout.tsx` | Figma 対応なし(旧LPの忠実再現) |
+| `/lp-career` | 実装済み(2026-09 / Issue #65 ほか。#76 で `lp-2` から改名)。広告流入用の LP。index 対象。仕様は [07](./07_lp-career-renewal.md) | Photoshop 入稿データ(07 参照) |
+| `/lp-career/complete` | 実装済み(2026-09 / Issue #69)。lp-career の予約完了(noindex) | 07 参照 |
+| `/lp-1` | 実装済み(2026-07 / Issue #40)。旧サイト `bug-fix.org/siid/lp-1` から移植した広告流入用の独立LP。共通クローム無し・noindex。root layout は `(Lp)/layout.tsx`。**廃止予定**(今後は `/lp-career` を使う。`/siid/lp-1` は `/siid/lp-career` へ 301。[06](./06_migration.md) §4) | Figma 対応なし(旧LPの忠実再現) |
 | `/counseling-complete-lp-1` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した申込完了ページ(noindex)。OpenAI Ads CV計測 `appointment_scheduled` を発火 | Figma 対応なし |
 | `/white-paper` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した資料請求ページ(公式LINE誘導) | Figma 対応なし |
 

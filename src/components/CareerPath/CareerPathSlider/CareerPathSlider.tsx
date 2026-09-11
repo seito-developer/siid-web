@@ -8,8 +8,7 @@ import Link from 'next/link';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import type { CareerPathData } from '@/types/career';
-import { getYouTubeThumbnailUrl } from '@/utils/youtube';
+import type { InterviewCard } from '@/types/interview';
 
 import styles from './CareerPathSlider.module.css';
 import MarqueeText from './MarqueeText/MarqueeText';
@@ -19,18 +18,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-// カードデータ型（UI用）
-type CareerCard = {
-  id: number;
-  youtubeUrl: string;
-  thumbnail: string;
-  title: string;
-  tags: string[];
-};
-
-// Props型定義
+// Props型定義（記事の取得・整形はサーバー側の getInterviews で済ませて渡す）
 type Props = {
-  data: CareerPathData[];
+  data: InterviewCard[];
 };
 
 // スライダー設定の定数
@@ -39,15 +29,6 @@ const CIRCLE_RADIUS = 8; // インジケーター円の半径
 const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS; // 円周
 
 export default function CareerPathSlider({ data }: Props) {
-  // データ変換: CareerPathData → CareerCard
-  const careerCards: CareerCard[] = data.map(item => ({
-    id: parseInt(item.id, 10),
-    youtubeUrl: `https://www.youtube.com/watch?v=${item.youtubeId}`,
-    thumbnail: getYouTubeThumbnailUrl(item.youtubeId),
-    title: item.title,
-    tags: item.tags,
-  }));
-
   const [isAutoplayRunning, setIsAutoplayRunning] = useState(false); // 初期状態はfalse
   const [isVisible, setIsVisible] = useState(false); // スライダーが画面内に入ったかどうか
   const swiperRef = useRef<SwiperType | null>(null);
@@ -255,18 +236,20 @@ export default function CareerPathSlider({ data }: Props) {
               pausedProgressRef.current = validPercentage;
             }
           }}>
-          {careerCards.map(card => (
+          {data.map(card => (
             <SwiperSlide key={card.id}>
               <div className={styles.Card}>
-                <Link href={card.youtubeUrl} className={styles.CardImageLink} target="_blank" rel="noopener noreferrer">
-                  <Image src={card.thumbnail} alt={`${card.title}の動画サムネイル`} className={styles.CardImage} width={1280} height={720} />
+                <Link href={card.url} className={styles.CardImageLink} target="_blank" rel="noopener noreferrer">
+                  {card.eyecatchUrl && (
+                    <Image src={card.eyecatchUrl} alt={`${card.title}のサムネイル`} className={styles.CardImage} width={1280} height={720} />
+                  )}
                 </Link>
-                <Link href={card.youtubeUrl} className={styles.CardTitleLink} target="_blank" rel="noopener noreferrer">
+                <Link href={card.url} className={styles.CardTitleLink} target="_blank" rel="noopener noreferrer">
                   <h3 className={styles.CardTitle}>{card.title}</h3>
                 </Link>
                 <div className={styles.CardTags}>
-                  {card.tags.map((tag, index) => (
-                    <span key={index} className={styles.CardTag}>
+                  {card.tags.map((tag) => (
+                    <span key={tag} className={styles.CardTag}>
                       {tag}
                     </span>
                   ))}
