@@ -42,11 +42,13 @@ interface PageProps {
 
 export default async function CareerPath({ params }: PageProps) {
   const { page } = await params;
-  const currentPage = Number(page);
 
-  if (!Number.isInteger(currentPage) || currentPage < 1) {
+  // Number() は 01 / 1.0 / 0x1 / 1e0 も 1 にしてしまい、それぞれが自己参照 canonical を持つ
+  // 重複ページになる。正規の表記（先頭 0 なしの正の整数）以外は 1 ページ目へ寄せる。
+  if (!/^[1-9]\d*$/.test(page)) {
     redirect('/career-path/1');
   }
+  const currentPage = Number(page);
 
   const { contents, totalCount } = await getInterviews({
     limit: ITEMS_PER_PAGE,
