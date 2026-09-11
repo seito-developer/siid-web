@@ -44,6 +44,16 @@ describe('振り分け', () => {
     assert.equal(calls[0].url, `${VERCEL_ORIGIN}/siid`);
   });
 
+  it('bug-fix.org 以外のホスト（workers.dev など）ではプロキシしない', async () => {
+    for (const origin of ['https://siid-router.example.workers.dev', 'https://www.bug-fix.org', 'https://blog.bug-fix.org']) {
+      mockFetch(() => new Response('pass'));
+      const req = new Request(`${origin}/siid/career-path/1`);
+      await worker.fetch(req);
+      assert.equal(calls.length, 1, origin);
+      assert.equal(calls[0].input, req, `${origin}: Vercel へ送らずそのまま通す`);
+    }
+  });
+
   it('コーポレートのパスはオリジンへそのまま通す（Vercel へは送らない）', async () => {
     for (const path of ['/', '/company/', '/siid-blog/post', '/privacy-policy']) {
       mockFetch(() => new Response('corp'));
@@ -67,6 +77,22 @@ describe('プロキシ応答', () => {
     assert.equal(res.headers.get('Cache-Control'), 's-maxage=600');
     assert.equal(res.headers.get('Content-Type'), 'text/html');
     assert.equal(await res.text(), '<html>');
+  });
+
+  it('HSTS と x-vercel-* も削除する（HSTS はドメイン全体に 2 年効くため Worker が付けない）', async () => {
+    mockFetch(() => new Response('<html>', {
+      headers: {
+        'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
+        'x-vercel-cache': 'HIT',
+        'x-vercel-id': 'hnd1::abc',
+        'Content-Type': 'text/html',
+      },
+    }));
+    const res = await worker.fetch(new Request('https://bug-fix.org/siid'));
+    assert.equal(res.headers.get('Strict-Transport-Security'), null);
+    assert.equal(res.headers.get('x-vercel-cache'), null);
+    assert.equal(res.headers.get('x-vercel-id'), null);
+    assert.equal(res.headers.get('Content-Type'), 'text/html');
   });
 
   it('新アプリの 301 は追従せず、そのまま利用者へ返す', async () => {

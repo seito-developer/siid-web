@@ -77,6 +77,8 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 - 前方一致を `/siid` だけで判定しないこと(`/siid-xxx` のような将来のコーポレート側パスまで新アプリへ流れるため)。
 - Worker を `bug-fix.org/siid*` のルートに紐付ければ `/` などのコーポレート宛リクエストは Worker を通らない。ただしこのルートは `/siid-xxx` にも一致するため、**Worker 内でも上記の判定を必ず行い、一致しないリクエストはオリジン(GitHub Pages)へそのまま通す**こと(ルートの絞り込みだけに頼ると `/siid-xxx` が Vercel へ流れて 404 になる)。
 
+**プロキシ応答の HSTS**: Vercel は `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload` を付ける。Worker がそのまま流すと `bug-fix.org` の全サブドメインに HTTPS 強制を 2 年間ブラウザに記憶させ、ルートを外すロールバックでも取り消せないため、**Worker で削除する**(現行サイトは HSTS を出していない。導入するならドメイン全体の方針として別途決める)。Worker は `bug-fix.org` 以外のホスト(`workers.dev` 等)ではプロキシしない。
+
 **プロキシ応答のヘッダー処理(必須)**: 新アプリは Host が `*.vercel.app` のリクエストに `X-Robots-Tag: noindex` を付与する(直 URL の重複インデックス対策、Issue #14 / [05_deploy.md](./05_deploy.md))。Worker のオリジン fetch も Host は `*.vercel.app` になるため、**Worker は `bug-fix.org` へ返す応答から `X-Robots-Tag` ヘッダーを必ず削除する**こと。削除しないと本番サイト全体が検索エンジンから noindex 扱いになる。
 
 ### 3.3 新アプリ側(Vercel `siid-web`)
@@ -154,6 +156,7 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 - [ ] 新アプリが `basePath: '/siid'` でアセット 404 を出さない(CSS/画像/フォント/JS)
 - [ ] 既存外部リンクの生存: `siid-blog` の `SIID_SITE_URL`(= `bug-fix.org/siid`)・`COUNSELING_URL`(= `bug-fix.org/siid/lp-1`、301 で `lp-career` へ)がリンク切れにならない。公開後は `COUNSELING_URL` 自体を `/siid/lp-career` に更新して 301 を経由しないようにする
 - [ ] Worker の分岐が意図どおり(`/siid` と `/siid/*` だけが新アプリへ、`/siid-xxx` や `/` はコーポレートへ)
+- [ ] `bug-fix.org/siid` の本番レスポンスに `Strict-Transport-Security` が付いていないこと(Worker が除去。§3.2)
 - [ ] `bug-fix.org/siid` の本番レスポンスに `X-Robots-Tag: noindex` が**付いていない**こと(Worker が除去)/ `*.vercel.app` 直アクセスには**付いている**こと(§3.2 参照)
 - [ ] Vercel の Production 環境変数に `MICROCMS_SERVICE_DOMAIN` / `MICROCMS_API_KEY` が入っており、TOP の News・卒業生の進路と `/siid/career-path` に記事が表示される(未設定だと「インタビュー記事を読み込めませんでした」になる。[08](./08_career-path-interviews.md) §6)
 

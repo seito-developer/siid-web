@@ -10,12 +10,14 @@ URL は `bug-fix.org/siid/...` のまま、中身を `https://siid-web-theta.ver
 
 | リクエストのパス | 行き先 |
 |---|---|
-| `/siid` と完全一致、または `/siid/` で始まる | Vercel の新アプリ(同じパス・クエリ) |
-| それ以外(`/`・`/siid-xxx` など) | オリジン(GitHub Pages)へそのまま |
+| ホストが `bug-fix.org` で、パスが `/siid` と完全一致または `/siid/` で始まる | Vercel の新アプリ(同じパス・クエリ) |
+| それ以外(`/`・`/siid-xxx`・`workers.dev` など別ホスト) | オリジンへそのまま |
 
 プロキシした応答には次の処理をする。
 
 - **`X-Robots-Tag` を削除する(必須)**。新アプリは `*.vercel.app` 宛ての応答に `noindex` を付けるため、消さないと本番全体が検索エンジンから外れる
+- **`Strict-Transport-Security` を削除する**。Vercel は `max-age=63072000; includeSubDomains; preload` を付けており、流すと `bug-fix.org` の全サブドメインに HTTPS 強制を 2 年間ブラウザに記憶させる(ルートを外すロールバックでも取り消せない)。現行サイトは HSTS を出していない。ドメイン全体の方針は Worker で決めない
+- `x-vercel-*`(配信元の内部情報)も削除する
 - リダイレクト(301 / 307 / 308)は追従せずそのまま返す。vercel.app を指す絶対 URL の `Location` は `bug-fix.org` に書き換える
 
 ## テスト
@@ -39,7 +41,7 @@ npm test          # Node の組み込みテストランナー。依存パッケ�
 1. Cloudflare ダッシュボード → **Workers & Pages** → **Create** → **Create Worker**
 2. 名前を `siid-router` にして **Deploy**(雛形のまま一度作る)
 3. **Edit code** を開き、中身を `src/index.js` の全文に置き換えて **Deploy**
-4. **Settings → Domains & Routes** で `workers.dev` のサブドメインを **無効** にしておく(公開 URL を増やさないため)
+4. **Settings → Domains & Routes** で `workers.dev` のサブドメインを **無効** にしておく(公開 URL を増やさないため。Worker 自体も `bug-fix.org` 以外のホストではプロキシしないが、念のため)
 
 **wrangler で行う場合**
 
@@ -62,7 +64,7 @@ npx wrangler deploy     # wrangler.toml にルートを書いていないので�
 
 ```bash
 curl -sI https://bug-fix.org/ | grep -i '^server'                    # GitHub.com のまま(コーポレート無傷)
-curl -sI https://bug-fix.org/siid | grep -iE '^server|^x-robots-tag'  # Vercel、かつ x-robots-tag が出ないこと
+curl -sI https://bug-fix.org/siid | grep -iE '^server|^x-robots-tag|^strict-transport'  # Vercel、かつ x-robots-tag と HSTS が出ないこと
 curl -sI https://bug-fix.org/siid/lp-1 | grep -iE '^HTTP|^location'  # 301 → /siid/lp-career
 curl -sI https://siid-web-theta.vercel.app/siid | grep -i '^x-robots-tag'  # 直 URL は noindex のまま
 ```

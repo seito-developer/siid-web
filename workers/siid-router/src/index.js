@@ -5,6 +5,20 @@
 // Vercel の既定 URL は常に最新の Production デプロイ(= main)を指す(docs/spec/05_deploy.md)。
 export const VERCEL_ORIGIN = 'https://siid-web-theta.vercel.app';
 
+// プロキシするのはこのホスト宛てだけ。workers.dev など別ホストで Worker が呼ばれた場合に
+// サイト全体の複製(しかも noindex を外したもの)を公開してしまわないようにする。
+export const PUBLIC_HOST = 'bug-fix.org';
+
+// Vercel の応答から外すヘッダー。
+// - X-Robots-Tag: 新アプリは *.vercel.app 宛ての応答に noindex を付ける(Issue #14)。Worker からの fetch も
+//   Host は vercel.app になるため、消さないと本番全体が検索エンジンから外れる(必須)
+// - Strict-Transport-Security: Vercel は `max-age=63072000; includeSubDomains; preload` を付ける。
+//   そのまま流すと bug-fix.org 全サブドメインの HTTPS 強制を 2 年間ブラウザに記憶させてしまい、
+//   ルートを外すロールバックでも取り消せない。ドメイン全体の方針は Worker が勝手に決めない
+// - x-vercel-*: 配信元の内部情報(キャッシュ状態・リクエスト ID)。公開する必要がない
+const STRIPPED_HEADERS = ['x-robots-tag', 'strict-transport-security'];
+const STRIPPED_HEADER_PREFIX = 'x-vercel-';
+
 /**
  * 新アプリへ振るパスか。`/siid` と完全一致、または `/siid/` で始まるものだけ。
  * 前方一致を `/siid` だけで判定すると `/siid-xxx` のようなコーポレート側のパスまで流れてしまう。
@@ -17,7 +31,7 @@ export function isSiidPath(pathname) {
 export default {
   async fetch(request) {
     const url = new URL(request.url);
-    if (!isSiidPath(url.pathname)) {
+    if (url.hostname !== PUBLIC_HOST || !isSiidPath(url.pathname)) {
       return fetch(request);
     }
     return proxyToVercel(request, url);
@@ -44,9 +58,11 @@ async function proxyToVercel(request, url) {
 
   const response = new Response(upstream.body, upstream);
 
-  // 必須: 新アプリは Host が *.vercel.app の応答に noindex を付ける(直 URL の重複インデックス対策、Issue #14)。
-  // Worker からの fetch も Host は vercel.app になるため、ここで消さないと本番全体が検索エンジンから外れる。
-  response.headers.delete('X-Robots-Tag');
+  for (const name of [...response.headers.keys()]) {
+    if (STRIPPED_HEADERS.includes(name) || name.startsWith(STRIPPED_HEADER_PREFIX)) {
+      response.headers.delete(name);
+    }
+  }
 
   // 新アプリが絶対 URL でリダイレクトした場合に vercel.app へ飛ばさない(通常は /siid/... の相対パス)
   const location = response.headers.get('Location');
