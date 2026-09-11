@@ -28,7 +28,7 @@ echo "=== 直近の PR（open/merged 両方） ==="
 gh pr list --state all --limit 30 --json number,title,state,baseRefName,headRefName,mergedAt \
   --template '{{range .}}#{{.number}} [{{.state}}] {{.headRefName}} -> {{.baseRefName}} {{.title}}{{"\n"}}{{end}}'
 echo "=== 仕様書の未確定事項 ==="
-grep -n -A20 "^## 未確定事項" docs/spec/*.md
+grep -n -A20 -E "^#{2,3} ([0-9.]+ )?未確定事項" docs/spec/*.md   # 06 は「## 9. 未確定事項」、07 は「### 15.3 未確定事項」
 ```
 
 ### 2. 「実装済みか」はコードで判定する
@@ -70,7 +70,7 @@ Issue 本文の完了条件チェックリストと、上の実体を突き合�
 
 これらは調査済みの事実。変わったと疑う理由がない限り、コマンドで再確認しない。
 
-- ローカルのワークツリーは `main` にチェックアウトされたままのことが多く、`develop` より遅れている。基準は常に `origin/develop`
+- 複数のワークツリーで並行作業しており、ローカルのブランチは `develop` より遅れていることが多い。基準は常に `origin/develop`（ローカルの `develop` へ switch しない。CLAUDE.md「作業開始時の前提確認」）
 - 公開まわり（Cloudflare / DNS / Vercel / 旧サイトからの移行）の設計は `docs/spec/06_migration.md` と `docs/spec/05_deploy.md` に書かれている。`dig` や `curl` で調べ直す前にこの 2 つを読む
 - Vercel の Production Branch は `main`。`develop` → `main` のリリース PR が本番反映のトリガー
 - デザイナー確認待ち・ユーザーの外部作業待ちの項目は `docs/spec/03_pages.md` / `05_deploy.md` の末尾にある

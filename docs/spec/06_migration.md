@@ -73,7 +73,7 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 2. それ以外(`/` 等すべて)→ **GitHub Pages**(コーポレート維持。オリジンへそのまま通す)
 
 - 前方一致を `/siid` だけで判定しないこと(`/siid-xxx` のような将来のコーポレート側パスまで新アプリへ流れるため)。
-- Worker を `bug-fix.org/siid*` のようなパス限定ルートに紐付ければ、コーポレート宛のリクエストは Worker を通らない。
+- Worker を `bug-fix.org/siid*` のルートに紐付ければ `/` などのコーポレート宛リクエストは Worker を通らない。ただしこのルートは `/siid-xxx` にも一致するため、**Worker 内でも上記の判定を必ず行い、一致しないリクエストはオリジン(GitHub Pages)へそのまま通す**こと(ルートの絞り込みだけに頼ると `/siid-xxx` が Vercel へ流れて 404 になる)。
 
 **プロキシ応答のヘッダー処理(必須)**: 新アプリは Host が `*.vercel.app` のリクエストに `X-Robots-Tag: noindex` を付与する(直 URL の重複インデックス対策、Issue #14 / [05_deploy.md](./05_deploy.md))。Worker のオリジン fetch も Host は `*.vercel.app` になるため、**Worker は `bug-fix.org` へ返す応答から `X-Robots-Tag` ヘッダーを必ず削除する**こと。削除しないと本番サイト全体が検索エンジンから noindex 扱いになる。
 
@@ -81,7 +81,7 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 
 - `next.config.ts` に `basePath: '/siid'`(必要に応じ `assetPrefix`)を設定し、内部リンク・アセットパスを `/siid` 配下へ整合させる。
 - Vercel 本番デプロイ。Worker はこのデプロイ URL の `/siid/*` を取得する。
-- 現状 `next.config.ts` は `images.remotePatterns`(img.youtube.com)のみで basePath / redirects は未設定 → 実装 Issue で追加する(本 Issue はスコープ外)。
+- `basePath: '/siid'` は設定済み(Issue #46)。`redirects()` は未設定で、§4 のマップを Issue #48 で追加する。
 
 ---
 

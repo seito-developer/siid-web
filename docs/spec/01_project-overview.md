@@ -16,7 +16,7 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 | アニメーション | **GSAP** | 2026-07 ヒアリングで確定。オープニング演出・スクロール演出に使用 |
 | ホスティング | **Vercel** | 2026-07 ヒアリングで確定 |
 | ブログCMS | **microCMS** | 2026-07 確定(Issue #30)。SiiD BLOG(`blog.bug-fix.org`)のヘッドレスCMS。TOPページ News セクションが `blog` エンドポイントから「コラム」カテゴリ最新記事を取得。`microcms-js-sdk` 使用・サーバー側取得 |
-| 問い合わせフォーム | **外部フォームサービス** | サービス選定は未確定([03_pages.md](./03_pages.md) 参照) |
+| 問い合わせ・予約 | **Jicoo**(外部サービスの埋め込み) | 決定済み。`/counseling`([03_pages.md](./03_pages.md) §3-3)と `/lp-career`([07](./07_lp-career-renewal.md))で使用 |
 | Styling | CSS Modules + CSS Custom Properties | 既存。Tailwind 等は導入しない |
 | Slider | Swiper 12 | 既存 |
 | Game | **Phaser 3.90** | 2026-07 確定(Issue #24)。404ページのミニゲーム専用。`next/dynamic` + `ssr: false` で404ページ限定ロード |
@@ -105,4 +105,4 @@ Figma 内「アニメーションについて」(3235:2345) にはデザイナ�
 
 ## 未確定事項
 
-- 問い合わせフォームの外部サービス選定([03_pages.md](./03_pages.md) 参照)
+- なし(2026-09-11 時点。問い合わせ導線は Jicoo 埋め込みで決定済み)

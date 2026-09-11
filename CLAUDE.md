@@ -25,15 +25,16 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 
 ### 作業開始時の前提確認（毎セッション）
 
-ローカルのワークツリーは `main`（本番ブランチ）にチェックアウトされたままのことがあり、その場合 `develop` より数コミット遅れている。**調査・実装のどちらを始めるときも、まず develop を基準に揃える。**
+このリポジトリは複数のワークツリー（`~/orca/workspaces/*`・`.claude/worktrees/*` など）で並行作業しており、ローカルのブランチは `develop` より遅れていることが多い。**基準は常に `origin/develop`。** ローカルの `develop` へ switch / pull する手順は取らない（別のワークツリーが `develop` をチェックアウトしていると `already used by worktree` で失敗し、作業中の feature ブランチからも外れてしまうため）。
 
 ```bash
 git fetch origin -q
-git rev-list --left-right --count origin/main...origin/develop  # ← 乖離コミット数を先に把握
-git switch develop && git pull -q origin develop
+git rev-list --left-right --count origin/main...origin/develop  # main と develop の乖離（リリース待ちのコミット数）
+git log --oneline HEAD..origin/develop | head                   # 今いるブランチが develop から遅れている分
+git switch -c feature/<N>-<slug> origin/develop                  # 新しい作業は origin/develop から直接切る
 ```
 
-`git pull` だけを実行して「最新化した」と判断しないこと（`main` にいれば develop の変更は入らない）。
+`git pull` だけを実行して「最新化した」と判断しないこと（今いるブランチが `develop` でなければ develop の変更は入らない）。
 
 ### ドキュメントとコードが食い違ったときの優先順位
 
