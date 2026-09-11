@@ -6,7 +6,7 @@
   padding: 20px 16px;
 }
 
-.CareerCard__Modal {
+.CareerCard__Link {
   display: block;
   text-decoration: none;
   color: inherit;
@@ -32,46 +32,19 @@
 
 .CareerCard__Header {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  margin: 16px 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 16px 0 0;
   flex-shrink: 0;
   min-height: 60px;
 }
 
-.CareerCard__Voice {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 15%;
-  aspect-ratio: 1 / 1.2;
-  background: var(--main);
-  color: white;
-  clip-path: polygon(
-    50% 0%,
-    100% 25%,
-    100% 75%,
-    50% 100%,
-    0% 75%,
-    0% 25%
-  );
-  padding: 2%;
-}
-
-.CareerCard__VoiceText {
-  font-size: 8px;
-  font-weight: 800;
-  font-family: var(--font-bagor);
-  letter-spacing: 0.04em;
-}
-
-.CareerCard__VoiceNum {
+.CareerCard__Date {
+  font-family: var(--font-poppins);
   font-size: 12px;
-  font-weight: 400;
-  font-family: var(--font-bagor);
-  line-height: 1;
-  margin-top: 2px;
+  letter-spacing: 0.04em;
+  color: var(--main);
 }
 
 .CareerCard__Title {
@@ -97,21 +70,6 @@
   background-size: 8px 1px;
   background-repeat: repeat-x;
   margin: 16px 0;
-}
-
-.CareerCard__Description {
-  text-align: left;
-  letter-spacing: 0;
-  font-size: 12px;
-  line-height: 1.6;
-  margin: 16px 0;
-  flex-shrink: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  min-height: calc(1.6 * 12px * 5);
 }
 
 .CareerCard__Footer {
@@ -181,28 +139,15 @@
   }
 
   .CareerCard__Header {
-    align-items: center;
     min-height: 80px;
   }
 
-  .CareerCard__VoiceText {
-    font-size: 10px;
-  }
-
-  .CareerCard__VoiceNum {
-    font-size: 20px;
+  .CareerCard__Date {
+    font-size: 14px;
   }
 
   .CareerCard__Title {
     font-size: 20px;
-  }
-
-  .CareerCard__Description {
-    font-size: 16px;
-    -webkit-line-clamp: 4;
-    line-clamp: 4;
-    min-height: calc(1.6 * 16px * 4);
-    flex: 1;
   }
 
   .CareerCard__Tag {

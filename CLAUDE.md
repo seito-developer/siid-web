@@ -83,24 +83,25 @@ src/
 │   └── snsItems.ts              # SNSリンク（snsItems / snsFooterItems）
 ├── data/                        # 静的 JSON データ
 │   ├── books.json
-│   ├── graduates/               # 卒業生データ（student-1.json 〜 student-7.json）
 │   └── subSupporters.json
 ├── hooks/
 │   ├── useIsPc.ts               # PC/SP 判定（BREAK_POINT=1280px 基準）
 │   └── useScroll.ts             # スクロール量取得
 ├── lib/                         # データ取得ロジック
 │   ├── getBooks.ts
-│   ├── getCareerPathData.ts
+│   ├── getInterviews.ts         # SiiD BLOG(microCMS)のインタビュー記事（卒業生の進路）
+│   ├── getNews.ts               # SiiD BLOG(microCMS)のコラム記事（TOP News）
 │   └── getSubSupporters.ts
 ├── styles/
 │   └── globals.css              # グローバルスタイル・CSS変数・カスタムフォント定義
 ├── types/
-│   ├── career.ts
+│   ├── interview.ts             # インタビュー記事（microCMS）と表示用カードの型
 │   └── pagination.ts
 └── utils/
+    ├── date.ts                  # formatPublishedDate()：公開日を yyyy/mm/dd（Asia/Tokyo 固定）に整形
     ├── helper.ts                # handleStringHTML()：description の <br> タグ処理
-    ├── pagination.ts            # getTotalPages() などページネーション計算
-    └── youtube.ts
+    ├── interview.ts             # extractProfileTags()：記事タイトルからプロフィールタグを抽出
+    └── pagination.ts            # getTotalPages() などページネーション計算
 ```
 
 ---
@@ -216,7 +217,7 @@ handleStringHTML(pages.xxx.description, true)
 |-----|---------|------|
 | `/` | `src/app/page.tsx` | TOPページ |
 | `/career-path` | `src/app/(LowerPages)/career-path/page.tsx` | `/career-path/1` へリダイレクト |
-| `/career-path/[page]` | `src/app/(LowerPages)/career-path/[page]/page.tsx` | ページネーション、`?id=` でモーダル表示 |
+| `/career-path/[page]` | `src/app/(LowerPages)/career-path/[page]/page.tsx` | ページネーション。SiiD BLOG のインタビュー記事を一覧化し、記事へ別タブで遷移（`docs/spec/08_career-path-interviews.md`） |
 | `/courses` | `src/app/(LowerPages)/courses/page.tsx` | コンテンツ未実装（プレースホルダーあり） |
 | `/community` | `src/app/(LowerPages)/community/page.tsx` | |
 | `/service` | `src/app/(LowerPages)/service/page.tsx` | |
