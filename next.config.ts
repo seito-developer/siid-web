@@ -27,6 +27,27 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // 旧サイト(bug-fix.org/siid)の URL を新ルートへ引き継ぐ 301(docs/spec/06_migration.md §4、Issue #48)。
+  // source / destination には basePath('/siid')が自動で付く。旧サイトの正規 URL は末尾スラッシュ付き
+  // (/siid/career/)だが、Next.js が先に末尾スラッシュを外す(308)ため、ここでは付けずに書く。
+  // 旧 URL と同じパスで実装済みのページ(counseling・counseling-complete・white-paper)は対象外。
+  // 特に counseling-complete は旧 URL 互換ページのため、ここに書くとページより優先されて到達不能になる。
+  async redirects() {
+    const toLpCareer = ['/lp-1', '/lp-1/:path*', '/lp-2', '/lp-2/:path*'].map((source) => ({
+      source,
+      destination: '/lp-career',
+      statusCode: 301 as const,
+    }));
+    return [
+      // /career-path は /career-path/1 へのリダイレクトなので、正規 URL の /career-path/1 へ直接送る
+      { source: '/career', destination: '/career-path/1', statusCode: 301 },
+      { source: '/tuition', destination: '/courses', statusCode: 301 },
+      { source: '/voices', destination: '/career-path/1', statusCode: 301 },
+      // lp-1 は廃止(2026-09-10)。/lp-2 は Issue #76 で lp-career に改名する前の URL
+      ...toLpCareer,
+      { source: '/counseling-complete-lp-1', destination: '/lp-career/complete', statusCode: 301 },
+    ];
+  },
   async headers() {
     return [
       // Vercel の直 URL(*.vercel.app)は本番(bug-fix.org/siid)との重複インデックスを防ぐため noindex にする。

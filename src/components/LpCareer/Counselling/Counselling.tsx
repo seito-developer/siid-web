@@ -8,7 +8,7 @@ import styles from './Counselling.module.css';
 
 // FREE COUNSELING(docs/spec/lp-career-sections/16-counselling.md)。
 //
-// 予約フォームは既存 lp-1 と同じ Jicoo の埋め込みを流用する。
+// 予約フォームは Jicoo の埋め込み(予約ページ ID は旧 lp-1 と共通)。
 // 総高 17,000px 超のページで最下部のウィジェットを初期ロードしても意味がないため、
 // セクションが近づいたら予約iframeを読み込む。高さと転送の通知はこのホストで扱う。
 

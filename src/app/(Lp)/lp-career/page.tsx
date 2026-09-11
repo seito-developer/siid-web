@@ -29,8 +29,8 @@ import styles from './LpCareer.module.css';
 import './lp-career-tokens.css';
 
 // 広告流入用の独立 LP(docs/spec/07_lp-career-renewal.md)。
-// (Lp)/layout.tsx は lp-1 と共有のため、lp-career 専用のフォントとトークンは
-// このページのルート要素にだけ付与して lp-1 の描画に影響させない。
+// lp-career 専用のフォントとトークンは (Lp)/layout.tsx ではなく、
+// このページのルート要素にだけ付与する(完了ページとはトークンの適用範囲が異なるため)。
 export const metadata: Metadata = buildPageMetadata(pages.lpCareer, {
   ogpImagePath: '/images/lp-career/ogp.png',
 });

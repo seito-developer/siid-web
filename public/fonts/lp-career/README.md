@@ -7,12 +7,12 @@
 
 フォントの実体は「その字形が実際に描画されたとき」にしか取得されない。
 そのため lp-career のトークン(`--lp-career-font-body` など)をサブセット側に向けるだけで、
-next/font 側の登録はそのままでも取得は起きない。**lp-1 の設定は一切変えていない。**
+next/font 側の登録はそのままでも取得は起きない。
 
 - 生成: `./scripts/lp-career/subset-fonts.sh`
 - ライセンス: SIL Open Font License 1.1(同梱の OFL-*.txt)。
   いずれも Reserved Font Name の指定は無いため、サブセット化と再配布が可能。
-- **lp-1 は従来どおり next/font を使う。** ここのフォントは lp-career 専用。
+- ここのフォントは lp-career 専用。完了ページの本文と `(Lp)/lp-base.css` の body は next/font の Noto Sans JP(`--font-noto-sans-jp-lp`)を使う。
 
 収録文字は「描画済みの DOM から採取した文字」+「lp-career のソース中の文字列リテラルと
 JSX テキスト」の和集合。アコーディオン展開・タブ切り替え・カルーセルの各状態を

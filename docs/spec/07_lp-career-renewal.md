@@ -5,6 +5,8 @@
 
 作成日: 2026-09-06
 
+> **2026-09-12 追記(Issue #48)**: lp-1 は廃止・削除し、`/siid/lp-1` は `/siid/lp-career` へ 301 で寄せた。本書の lp-1 に関する記述(「lp-1 に影響させない」等)は実装当時の前提。削除に伴う変更は §4 のディレクトリ構成・§4.1・§15 の「あわせて見つかった、いま直していないもの」に反映済み。
+
 ---
 
 ## 1. 背景・目的
@@ -19,7 +21,7 @@
 |------|------|
 | 配置 | 既存リポジトリ `siid-web` の `src/app/(Lp)/lp-career/`。`(Main)` は変更しない |
 | URL | `/siid/lp-career`(`basePath: '/siid'` 配下) |
-| 旧 LP | `/siid/lp-1` は残す。将来の削除は別 Issue |
+| 旧 LP | `/siid/lp-1` は Issue #48 で削除済み(`/siid/lp-career` へ 301) |
 | ページ数 | **1 ページのみ**。下層ページ・ルーティングは持たない |
 | スタイル | CSS Modules(セクション単位)＋ トークン用グローバル CSS |
 | 予約フォーム | 既存 LP と同じ **Jicoo** 埋め込みを流用 |
@@ -130,10 +132,9 @@ PSD のレイヤーグループは `sec_*` でセマンティックに命名さ�
 
 ```
 src/app/(Lp)/
-├── layout.tsx          # 既存。lp-1 / lp-career 共通の root layout
-├── fonts.ts            # 既存。lp-career 用フォントを追記する
-├── lp1.css             # 既存(lp-1 専用)。変更しない
-├── lp-1/page.tsx       # 既存。変更しない
+├── layout.tsx          # (Lp) の root layout(lp-1 削除後は lp-career のみ)
+├── fonts.ts            # LP 用フォント(本文の Noto Sans JP と lp-career 用)
+├── lp-base.css         # (Lp) 共通の基本スタイル(リセット・body)。Issue #48 で lp1.css から切り出し
 └── lp-career/
     ├── page.tsx        # 新規。セクションコンポーネントを並べるだけ
     └── lp-career-tokens.css  # 新規。デザイントークン(:root)のみ
@@ -163,9 +164,9 @@ src/components/LpCareer/
 
 ### 4.1 layout の扱い
 
-`(Lp)/layout.tsx` は lp-1 と共有される。lp-career 用フォント・トークンを **layout に足すと lp-1 に影響する**ため、
 `lp-career-tokens.css` は `lp-career/page.tsx` 側で import し、フォントは `fonts.ts` に追加した変数を
-lp-career のルート要素にのみ付与する。lp-1 の描画は変更しない。
+lp-career のルート要素にのみ付与する(実装当時は layout を lp-1 と共有していたため。lp-1 削除後もこの構成を維持)。
+リセットと body の基本スタイルは layout が読み込む `lp-base.css` にある。
 
 ---
 
@@ -321,7 +322,7 @@ python3 scripts/lp-career/psd_tool.py manifest scripts/lp-career/assets.manifest
 - **クリッピングマスク前提のレイヤーは単独で書き出さない。** 100% 透明になる。
   クリップ元を含む親グループごと書き出すこと
 - 単純図形(矢印・チェック・区切り線)は **SVG か CSS で実装**する。画像にしない
-- ロゴは既存の `public/images/lp-1/siid-logo.svg` / `siid-logo-w.svg` を流用する
+- ロゴは旧 lp-1 の `siid-logo.svg` / `siid-logo-w.svg` を流用する(Issue #48 で `public/images/lp-career/` へ移動)
   (新デザインでも字形は同じ。PSD 側は等倍ラスターのため Retina で不足する)
 - `next/image` を使う(`<img>` は ESLint エラー)
 
@@ -878,15 +879,15 @@ Speed Index だけが数値上の減点であるため。
 影響しない**(計測中は FV がずっとビューポート内にあるため。実測でも
 83 / SI 7.1s のまま)。通り過ぎたあとの CPU・バッテリー消費を抑えるための実装。
 
-なお、これ以外に残っている削減余地は小さい(lp-1 用の Poppins / Barlow 77KB が
-lp-career でも取得されている分など)。実回線・CDN での実測は公開後に行う。
+なお、これ以外に残っている削減余地は小さい。lp-1 用の Poppins / Barlow(77KB)が lp-career でも
+取得されていた分は、Issue #48 の lp-1 削除で解消した。実回線・CDN での実測は公開後に行う。
 
 **あわせて見つかった、いま直していないもの**
 
-- `(Lp)/layout.tsx` が読む `lp1.css`(379KB のチャンクではなく 25KB のほう)には
-  `* { box-sizing: border-box }` などのリセットが含まれ、**lp-career もこれに依存している**。
-  lp-career から外そうとすると全セクションが崩れる。リセット部分を共有ファイルに切り出せば
-  lp-career から lp-1 固有の CSS を外せるが、切り出し方の検証が別途必要。
+- ~~`(Lp)/layout.tsx` が読む `lp1.css` のリセットに lp-career が依存している~~ → **Issue #48 で解消**。
+  lp1.css のうち全体に効くルール(`*`・`html`・`body`・`img`・`a`)だけを `(Lp)/lp-base.css` に切り出し、
+  lp1.css を削除した。切り出し前後で lp-career / lp-career/complete の全要素(1,134 / 110 要素、1440px・390px)の
+  位置・寸法・計算済みスタイル 18 項目が完全一致することを確認済み。
 
 
 ### 15.8 Issue #68 の仕上げ（2026-09-08）
@@ -935,7 +936,7 @@ lp-careerの埋め込みホストは、Jicoo公式スクリプトと同じ `redi
 4. 埋め込みフォームからテスト予約を完了し、親ページ全体が新しい完了ページに遷移することを確認する。
 
 公式ヘルプによると、この機能はTeamプラン以上が必要。現在のアカウント契約・転送先設定はリポジトリから確認できない。
-同じ予約ページIDを使うlp-1も影響を受けるため、lp-careerだけ転送先を分ける場合はJicoo側で予約ページを複製し、lp-careerの埋め込みURLをそのIDに変更する。
+予約ページ ID は `/counseling`(`dPvwnhRYxhQB`)とは別で、旧 lp-1 と共有していたもの。lp-1 は Issue #48 で廃止したため、転送先を `/siid/lp-career/complete` に設定しても他のページには影響しない。
 
 参照：[Jicoo「予約完了ページをリダイレクトできますか」](https://help.jicoo.com/ja/articles/7155156)、[既存完了ページ](https://bug-fix.org/siid/counseling-complete/)（2026-09-09確認）。
 

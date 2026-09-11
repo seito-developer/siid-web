@@ -90,7 +90,7 @@ npm run lint && npm run typecheck
 
 ## ディレクトリ構造
 
-**`src/app/` は `(Main)` と `(Lp)` の 2 つのルートグループに分かれており、それぞれが独立した root layout（`html`/`body`）を持つ。** 共通クロームを持つ通常ページは `(Main)`、広告流入用の独立 LP（`lp-career` と旧 `lp-1`）は `(Lp)`。
+**`src/app/` は `(Main)` と `(Lp)` の 2 つのルートグループに分かれており、それぞれが独立した root layout（`html`/`body`）を持つ。** 共通クロームを持つ通常ページは `(Main)`、広告流入用の独立 LP（`lp-career`）は `(Lp)`。
 
 ```
 src/
@@ -107,21 +107,19 @@ src/
 │   │       ├── community/                # SiiDコミュニティ
 │   │       ├── counseling/               # 無料カウンセリング（complete/ = 予約完了・CV計測）
 │   │       ├── counseling-complete/      # 旧 URL 互換の申込完了ページ
-│   │       ├── counseling-complete-lp-1/ # lp-1 用の申込完了ページ（noindex・OpenAI Ads CV）
 │   │       ├── courses/                  # コース一覧（比較表・プラン）
 │   │       ├── line/                     # LINE 登録
 │   │       ├── service/                  # サービス一覧（after-support の実体もここ）
 │   │       └── white-paper/              # 資料請求
 │   ├── (Lp)/                             # 広告流入用の独立LP（共通クローム・globals.css を持ち込まない）
-│   │   ├── layout.tsx                    # LP 専用 root layout（Analytics・lp1.css）
-│   │   ├── fonts.ts / lp1.css            # LP 専用フォント（lp-1 用と lp-career 用）・旧LPのスタイル
-│   │   ├── lp-career/                    # 広告流入用 LP（page.tsx・complete/・lp-career-tokens.css）
-│   │   └── lp-1/page.tsx                 # 旧広告LP（廃止予定）
+│   │   ├── layout.tsx                    # LP 専用 root layout（Analytics・lp-base.css）
+│   │   ├── fonts.ts / lp-base.css        # LP 用フォント・(Lp) 共通の基本スタイル（リセット・body。globals.css の代わり）
+│   │   └── lp-career/                    # 広告流入用 LP（page.tsx・complete/・lp-career-tokens.css）
 │   ├── sitemap.ts                        # sitemap.xml（career-path の全ページ番号を microCMS の件数から生成。robots.txt はルートドメイン側の別プロジェクトで対応）
 │   ├── manifest.ts                       # Web App Manifest
 │   ├── apple-icon.png                    # apple-touch-icon（Next.js ファイル規約で自動配線）
 │   └── favicon.ico
-├── components/                           # 再利用可能 UI コンポーネント（Opening / Hero / News / CareerPath / Courses / Counseling ほか。LP 用は LpCareer/・Lp1/）
+├── components/                           # 再利用可能 UI コンポーネント（Opening / Hero / News / CareerPath / Courses / Counseling ほか。LP 用は LpCareer/）
 ├── constants/
 │   ├── common.ts                         # BREAK_POINT(1280)、Google Fonts 設定
 │   ├── meta.ts                           # ページメタデータ・URL 定数（commonTitle、pages、SITE_URL、buildPageMetadata()）
@@ -157,7 +155,7 @@ src/
 
 - **`src/app/(Main)/layout.tsx`** — 通常ページ用の root layout。`html`/`body`・`GtmNoScript`・`Analytics`・`Icons`（SVGスプライト）・`NavigationSp`（SP用ハンバーガーメニュー）・`Footer`・フォント変数、`globals.css` / sanitize.css を提供
 - **`src/app/(Main)/(LowerPages)/layout.tsx`** — 下層ページ用。`NavigationPcLower` のみ追加
-- **`src/app/(Lp)/layout.tsx`** — 独立LP（`lp-career` / 旧 `lp-1`）用の root layout。共通クロームと `globals.css` を持ち込まず、`(Main)` と完全に隔離する（Issue #40）。フォントは `(Lp)/fonts.ts`。`lp-career` 専用のトークン・サブセットフォントは `lp-career/page.tsx` が `lp-career-tokens.css` を読み込んで適用する
+- **`src/app/(Lp)/layout.tsx`** — 独立LP（`lp-career`）用の root layout。共通クロームと `globals.css` を持ち込まず、`(Main)` と完全に隔離する（Issue #40）。リセットと body の基本スタイルは `(Lp)/lp-base.css`、フォントは `(Lp)/fonts.ts`。`lp-career` 専用のトークン・サブセットフォントは `lp-career/page.tsx` が `lp-career-tokens.css` を読み込んで適用する
 - TOPページの `Header` は `src/app/(Main)/page.tsx` 内で使用
 
 ※ グループ分割により「どのグループにも属さない URL」が 404 に落ちなくなるため、`src/app/(Main)/[...notFound]/page.tsx` の catch-all で `notFound()` を呼んで `(Main)` の 404 に着地させている。新しいルートグループを追加する場合はこの経路を壊していないか確認すること。
@@ -275,15 +273,14 @@ handleStringHTML(pages.xxx.description, true)
 | `/counseling` | `(Main)/(LowerPages)/counseling/page.tsx` | `ContactButton` のリンク先（`/contact` は存在しない） |
 | `/counseling/complete` | `(Main)/(LowerPages)/counseling/complete/page.tsx` | 予約完了・CV 計測（noindex） |
 | `/counseling-complete` | `(Main)/(LowerPages)/counseling-complete/page.tsx` | 旧 URL 互換（noindex） |
-| `/counseling-complete-lp-1` | `(Main)/(LowerPages)/counseling-complete-lp-1/page.tsx` | lp-1 用の申込完了（noindex・OpenAI Ads CV） |
 | `/line` | `(Main)/(LowerPages)/line/page.tsx` | LINE 登録 |
 | `/white-paper` | `(Main)/(LowerPages)/white-paper/page.tsx` | 資料請求（公式LINE誘導） |
 | `/lp-career` | `(Lp)/lp-career/page.tsx` | 広告流入用の LP（index 対象。`docs/spec/07_lp-career-renewal.md`） |
 | `/lp-career/complete` | `(Lp)/lp-career/complete/page.tsx` | lp-career の予約完了（noindex） |
-| `/lp-1` | `(Lp)/lp-1/page.tsx` | 旧広告LP。noindex。**廃止予定**（`/lp-career` へ 301 で寄せる。`docs/spec/06_migration.md` §4） |
 | 404 | `(Main)/not-found.tsx` + `(Main)/[...notFound]/page.tsx` | dino風ミニゲーム付き |
 
 ※ `/contact` と `/after-support` は**ルートとして存在しない**（それぞれ `/counseling` と `/service` が実体）。ナビ構成の実際の値は `src/constants/menuItems.ts` を見ること。
+※ 旧サイトの URL（`/career`・`/tuition`・`/voices`・`/lp-1`・`/lp-2`・`/counseling-complete-lp-1`）は `next.config.ts` の `redirects()` で 301。一覧は `docs/spec/06_migration.md` §4。
 
 ---
 

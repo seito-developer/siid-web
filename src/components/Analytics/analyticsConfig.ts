@@ -25,7 +25,7 @@ export const GTM_IDS = (process.env.NEXT_PUBLIC_GTM_IDS ?? '')
 /**
  * Cookie 同意バナーを出しているページのパス（basePath 込み）。
  * このパス配下でだけ Google Consent Mode の既定値を denied にする。
- * layout は lp-1 と共有のため、他ページの計測に影響させないための絞り込み。
+ * Analytics は (Main) の layout とも共用のため、他ページの計測に影響させないための絞り込み。
  */
 export const LP_CAREER_CONSENT_PATH = '/siid/lp-career';
 
