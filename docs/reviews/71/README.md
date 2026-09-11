@@ -17,6 +17,6 @@ lp-careerのホストで対象iframeからの通知のみ処理し、高さの�
 - `LP_CAREER_TEST_ORIGIN=http://localhost:3001 node scripts/lp-career/check-booking-layout.cjs` で再実行可能。Jicooページをfixtureに置換するため実予約は作成しない。
 - 独立レビューで指摘された相対URLの解決基準を修正し、再検証済み。
 
-実Jicooはこの環境で「選択できる時間がありません」と表示されたため、実際の枠選択後の入力・予約送信は未検証。下の画像は実フォームの初期表示。
+当初は実Jicooに「選択できる時間がありません」と表示され枠選択後を検証できなかったが、2026-09-11 に予約枠が復活したため実フォームで日付・時間選択から入力画面まで検証済み（結果は `docs/spec/07_lp-career-renewal.md` の Issue #71 節）。予約送信は行っていない。下の画像は実フォームの初期表示。
 
 ![予約フォーム](./booking.png)

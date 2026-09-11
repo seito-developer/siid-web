@@ -19,7 +19,14 @@ const assert = require("node:assert/strict");
     await page.waitForFunction(() =>
       document.querySelector('[data-url*="jicoo"] iframe'),
     );
-    const frame = page.frames().find((f) => f.url().includes("jicoo"));
+    // iframe要素の挿入直後はフレームがまだ about:blank のことがあるため、
+    // Jicoo の URL へ遷移したフレームが現れるまで待つ。
+    let frame;
+    for (let i = 0; i < 100 && !frame; i += 1) {
+      frame = page.frames().find((f) => f.url().includes("jicoo"));
+      if (!frame) await page.waitForTimeout(50);
+    }
+    assert.ok(frame, `${width}px: Jicoo の iframe が読み込まれない`);
     await frame.waitForLoadState();
     const measure = () =>
       widget.evaluate((el) => ({

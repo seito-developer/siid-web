@@ -63,6 +63,16 @@ export default function Counselling() {
       // scrollWidgetTopではページを強制移動しない。入力位置は利用者が操作する。
     };
 
+    // 幅が変わるとJicoo側の折り返しも変わり、高さが再通知される(実測: SP縦で入力画面 1901px →
+    // 横向きで 1666px)。保持中の最大値に張り付かないよう、幅の変化時だけ基準を戻す。
+    // SPのアドレスバー伸縮による高さだけの変化では戻さない。
+    let lastWidth = window.innerWidth;
+    const onResize = () => {
+      if (window.innerWidth === lastWidth) { return; }
+      lastWidth = window.innerWidth;
+      maximumHeight = 0;
+    };
+
     const load = () => {
       if (frame) { return; }
       frame = document.createElement('iframe');
@@ -72,8 +82,10 @@ export default function Counselling() {
     };
 
     window.addEventListener('message', onMessage);
+    window.addEventListener('resize', onResize);
     const cleanup = () => {
       window.removeEventListener('message', onMessage);
+      window.removeEventListener('resize', onResize);
       cancelAnimationFrame(animationFrame);
       frame?.remove();
     };
