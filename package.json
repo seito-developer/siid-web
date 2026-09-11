@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:worker": "npm --prefix workers/siid-router test"
   },
   "dependencies": {
     "gsap": "^3.15.0",

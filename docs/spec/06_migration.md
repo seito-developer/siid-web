@@ -67,6 +67,8 @@ graph TD
 
 Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/...` のまま保ちつつ別オリジン(Vercel)の内容を返す**リバースプロキシ**が必要なため(Redirect Rule では URL が変わってしまう)。
 
+コードは `workers/siid-router/`(テスト・デプロイ手順・有効化とロールバックの手順は同ディレクトリの README)。
+
 分岐ロジック(lp-1 の廃止により 2 分岐。2026-09-10 改訂):
 
 1. パスが **`/siid` と完全一致、または `/siid/` で始まる** → **Vercel の新アプリ**(`https://siid-web-theta.vercel.app` に同じパスとクエリで fetch して返す)。`/siid/lp-1` もここに含まれ、新アプリの 301(§4)で `/siid/lp-career` へ転送される
