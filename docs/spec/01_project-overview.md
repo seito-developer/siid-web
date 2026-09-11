@@ -39,10 +39,9 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 | 404 | 実装済み(2026-07 / Issue #24)。dino風ミニゲーム付き。`(Main)/[...notFound]` の catch-all で未知 URL を着地させる | `H-1 409` (3506:11730)。H-1 410〜413 は存在しないことを確認済み(SP はPC縮小構成) |
 | `/lp-career` | 実装済み(2026-09 / Issue #65 ほか。#76 で `lp-2` から改名)。広告流入用の LP。index 対象。仕様は [07](./07_lp-career-renewal.md) | Photoshop 入稿データ(07 参照) |
 | `/lp-career/complete` | 実装済み(2026-09 / Issue #69)。lp-career の予約完了(noindex) | 07 参照 |
-| `/lp-1` | 実装済み(2026-07 / Issue #40)。旧サイト `bug-fix.org/siid/lp-1` から移植した広告流入用の独立LP。共通クローム無し・noindex。root layout は `(Lp)/layout.tsx`。**廃止予定**(今後は `/lp-career` を使う。`/siid/lp-1` は `/siid/lp-career` へ 301。[06](./06_migration.md) §4) | Figma 対応なし(旧LPの忠実再現) |
-| `/counseling-complete-lp-1` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した申込完了ページ(noindex)。OpenAI Ads CV計測 `appointment_scheduled` を発火 | Figma 対応なし |
 | `/white-paper` | 実装済み(2026-07 / Issue #40)。旧サイトから移植した資料請求ページ(公式LINE誘導) | Figma 対応なし |
 
+> `/lp-1`(旧広告LP)と `/counseling-complete-lp-1` は Issue #48 で削除し、それぞれ `/lp-career`・`/lp-career/complete` へ 301 で寄せた(旧 URL の 301 一覧は [06](./06_migration.md) §4、実装は `next.config.ts` の `redirects()`)。
 > ルーティングの実体は `src/app/` のディレクトリ構成、URL とメタデータの実体は `src/constants/meta.ts` が唯一の情報源。
 > この表と食い違ったらコードが正で、気付いた時点でこの表を直す。
 

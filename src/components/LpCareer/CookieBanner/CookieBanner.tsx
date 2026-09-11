@@ -8,8 +8,7 @@ import styles from './CookieBanner.module.css';
 
 // Cookie 同意バナー(docs/spec/07_lp-career-renewal.md §13.4)。
 //
-// (Lp)/layout.tsx は lp-1 と共有のため、バナーは lp-career のページ側に置いて
-// lp-1 に影響させない。
+// バナーは (Lp)/layout.tsx ではなく lp-career のページ側に置く。
 //
 // 同意状態は localStorage に保持する。プライベートウィンドウやサイトデータの
 // 削除で読めなくなることがあるため、読み書きは try/catch で囲み、

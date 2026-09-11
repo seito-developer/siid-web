@@ -87,20 +87,22 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 
 ## 4. URL リダイレクトマップ(旧 `/siid/*` → 新ルート、301)
 
-旧サブページと新サイトのルートは 1:1 対応しないため、SEO 継続のための対応表を定める。実装は新アプリ `next.config.ts` の `redirects()`(basePath `/siid` 込み)で行う想定。**要確認**の対応は §9 未確定事項で確定させる。
+旧サブページと新サイトのルートは 1:1 対応しないため、SEO 継続のための対応表を定める。**Issue #48 で `next.config.ts` の `redirects()` に実装済み**(basePath `/siid` 込み、ステータス 301)。
+
+旧サイトの正規 URL は末尾スラッシュ付き(`/siid/career/`)。新アプリは末尾スラッシュを外す(308)ため、旧 URL からは「308 → 301」の 2 ホップで新ルートに着地する(クエリ文字列は保持)。
 
 | 旧 URL | 新ルート | 状態 |
 |---|---|---|
 | `/siid` | `/siid`(新トップ) | パス一致。リダイレクト不要 |
-| `/siid/career` | `/siid/career-path` | **確定**(301) |
+| `/siid/career` | `/siid/career-path/1` | 実装済み(301)。`/career-path` は `/career-path/1` へのリダイレクトなので正規 URL へ直接送る |
 | `/siid/counseling` | 同一パスで実装済み | リダイレクト不要 |
 | `/siid/counseling-complete` | 同一パスで実装済み(旧 URL 互換ページ) | リダイレクト不要(`redirects()` はページより優先されるため、ここに 301 を置くと互換ページが死ぬ) |
-| `/siid/counseling-complete-lp-1` | 同一パスで実装済み(Issue #40) | リダイレクト不要。lp-1 廃止後の扱いは §9 |
+| `/siid/counseling-complete-lp-1` | `/siid/lp-career/complete` | 実装済み(301。2026-09-12 決定)。ページは削除。このページが発火していた OpenAI Ads の CV は止まる(lp-career 側の計測は #67) |
 | `/siid/white-paper` | 同一パスで実装済み(Issue #40) | リダイレクト不要 |
-| `/siid/lp-1`(および `/siid/lp-1/*`) | `/siid/lp-career` | **確定**(301)。lp-1 廃止(2026-09-10)。`siid-blog` の `COUNSELING_URL` の受け皿 |
-| `/siid/lp-2`(および `/siid/lp-2/*`) | `/siid/lp-career` | 推奨(301)。Issue #76 の改名前 URL の保険(未公開だが外部設定・共有 URL に残っている可能性) |
-| `/siid/tuition` | 要確認(→ `/siid/courses` 想定) | 料金 → コース一覧 |
-| `/siid/voices` | 要確認(→ `/siid/career-path` 想定) | 受講生の声 |
+| `/siid/lp-1`(および `/siid/lp-1/*`) | `/siid/lp-career` | 実装済み(301)。lp-1 は削除(2026-09-10 決定)。`siid-blog` の `COUNSELING_URL` の受け皿 |
+| `/siid/lp-2`(および `/siid/lp-2/*`) | `/siid/lp-career` | 実装済み(301)。Issue #76 の改名前 URL の保険(未公開だが外部設定・共有 URL に残っている可能性) |
+| `/siid/tuition` | `/siid/courses` | 実装済み(301。2026-09-12 決定)。料金 → コース一覧 |
+| `/siid/voices` | `/siid/career-path/1` | 実装済み(301。2026-09-12 決定)。受講生の声 → 卒業生の進路 |
 
 ---
 
@@ -157,9 +159,6 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 
 ## 9. 未確定事項
 
-- §4 リダイレクトマップの「要確認」対応先: `/siid/tuition`(→ `/siid/courses`?)、`/siid/voices`(→ `/siid/career-path`?)
-- lp-1 廃止後の `/siid/counseling-complete-lp-1`(lp-1 用の申込完了ページ)の扱い: 残す / `/siid/lp-career/complete` へ 301
-- lp-1 削除時の注意(実装時に確認): `lp-career` はロゴを `public/images/lp-1/siid-logo*.svg` から読んでいる(`constants/lpCareerAssets.ts`)ため、`public/images/lp-1/` をまとめて消さないこと。また `(Lp)/layout.tsx` が読み込む `lp1.css` は `:root` の CSS 変数などを全体に定義しており、`lp-career` の表示が依存していないか確認してから外すこと
 - DNS(`bug-fix.org` apex)を Cloudflare へ移管することのオーナー承認
 - GA4 / GTM 各タグの SiiD 固有・共有の切り分けと引き継ぎ範囲
 - `/siid/counseling` の Jicoo ウィジェット(`event_types/dPvwnhRYxhQB`, [03_pages.md](./03_pages.md) 参照)を本番でそのまま共有してよいか

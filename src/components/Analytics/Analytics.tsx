@@ -29,7 +29,7 @@ export default function Analytics() {
       {/*
         Cookie 同意バナーを出している lp-career だけ、Google Consent Mode の既定値を
         denied にする（docs/spec/07_lp-career-renewal.md §13.4）。
-        この layout は lp-1 と共有のため、パスで絞って他ページの計測は変えない。
+        Analytics は (Main) の layout とも共用のため、パスで絞って他ページの計測は変えない。
         GTM / GA4 の読み込み（afterInteractive）より先に走らせる必要があるので
         beforeInteractive で出す。
       */}

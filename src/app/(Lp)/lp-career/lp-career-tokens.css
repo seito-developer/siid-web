@@ -3,7 +3,7 @@
    この 3 書体だけで 1383KB を取得していた。実際に使う文字だけにして 632KB。
    フォントの実体は「その字形が描画されたとき」にしか取得されないため、
    lp-career のトークンをサブセット側に向けるだけで next/font 側の取得は起きない。
-   lp-1 は従来どおり next/font の Noto Sans JP を使う(このファイルは lp-career 専用)。 */
+   このファイルは lp-career 専用(完了ページの本文は next/font の Noto Sans JP を使う)。 */
 @font-face {
   font-family: 'Noto Sans JP Subset';
   font-style: normal;
@@ -74,7 +74,7 @@
  * PSD の全テキストレイヤーを集計して抽出した実測値
  * (docs/spec/07_lp-career-renewal.md §5)。同系統の微差は統合している。
  *
- * lp-1 に影響させないため lp-career/page.tsx でのみ import し、
+ * lp-career/page.tsx でのみ import し、
  * すべて --lp-career- 接頭辞を付けてスコープを明示する。
  */
 
