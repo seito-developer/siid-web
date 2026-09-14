@@ -76,13 +76,13 @@ TOP の News(「コラム」記事)と卒業生の進路(「受講生様イン�
 - [x] `metadata`(title / description / OGP)が全ページ設定済み(Issue #36)
 - [x] 404 ページ実装済み(`src/app/not-found.tsx` + `(Main)/[...notFound]`)
 - [x] ナビ・フッターの全リンクが 404 にならない(現ナビは実装済みページのみ参照。コース系リンクは `/` へのプレースホルダー)
-- [ ] Lighthouse(モバイル)Performance 80+ / SEO 90+ / Accessibility 90+
-- [ ] 検索インデックス方針の確認(公開前に noindex が必要な期間はあるか → ユーザー確認)
-- [ ] 計測タグ(GA4 / GTM / UserHeat)の環境変数を Vercel に登録済み(「計測タグ(アナリティクス)」参照)
-- [ ] Google Search Console の登録要否(→ ユーザー確認)
+- [ ] Lighthouse(モバイル)Performance 80+ / SEO 90+ / Accessibility 90+ → **2026-09-15 計測: Performance 47 / Accessibility 82 / Best Practices 79 / SEO 100 相当**(計測値は 66 だが、落ちているのは Vercel 直 URL の noindex のみで本番では該当しない)。現行サイトは Performance 55 / A11y 80 で、転送量(3,159KB → 2,717KB)と FCP(11.1s → 9.1s)は改善。未達分は公開後対応として Issue #84(A11y)・#85(Performance)を起票済み
+- [x] 検索インデックス方針: noindex 期間は設けず、公開と同時に index 可とした(2026-09-15)
+- [x] 計測タグの環境変数を Vercel に登録済み。本番 HTML に GA4・GTM 3 本・UserHeat・KARTE・OpenAI Ads がすべて出力されることを確認(2026-09-15)
+- [x] Google Search Console: `bug-fix.org` のプロパティは既存(運用中)。`https://bug-fix.org/siid/sitemap.xml` を送信し「成功しました / 検出されたページ数 12」を確認(2026-09-15)。公開 1〜2 週間後に「ページ(インデックス作成)」で 404 の急増が無いか確認すること
 
 ## 未確定事項
 
-- Google Search Console 導入の要否(Analytics タグは Issue #19 で引き継ぎ済み)
+- なし(2026-09-15 時点)
 
 > 本番ドメインは `https://bug-fix.org/siid`(Cloudflare Worker プロキシ方式)で確定済み。旧 URL からのリダイレクトは [06_migration.md](./06_migration.md) §4(Issue #48)で扱う。
