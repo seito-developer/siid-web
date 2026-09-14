@@ -37,7 +37,7 @@ export default function Opening() {
     let loadHandler: (() => void) | null = null;
     const timers: ReturnType<typeof setTimeout>[] = [];
 
-    // CareerModal と同様に html / body 両方をロックする
+    // html / body 両方をロックする
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
     const unlockScroll = () => {

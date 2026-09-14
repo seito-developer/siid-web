@@ -28,7 +28,7 @@ export default function FooterMenu({ copyrightOnly = false }: { copyrightOnly?: 
         <ul className={styles.FooterMenu__SnsList}>
           {snsFooterItems.map((snsItem, index) => (
             <li key={index} className={styles.FooterMenu__SnsItem}>
-              <Link href={snsItem.url} target="_blank">
+              <Link href={snsItem.url} target="_blank" rel="noopener noreferrer">
                 <svg width={snsItem.width} height={snsItem.height}>
                   <use href={`#${snsItem.icon}`} />
                 </svg>
@@ -68,10 +68,10 @@ export default function FooterMenu({ copyrightOnly = false }: { copyrightOnly?: 
       </ul>
       <ul className={styles.FooterMenu__OtherLinks}>
         <li className={styles.FooterMenu__OtherLinkItem}>
-          <Link href="https://bug-fix.org/privacy-policy" target="_blank">プライバシーポリシー</Link>
+          <Link href="https://bug-fix.org/privacy-policy" target="_blank" rel="noopener noreferrer">プライバシーポリシー</Link>
         </li>
         <li className={styles.FooterMenu__OtherLinkItem}>
-          <Link href="https://bug-fix.org" target="_blank">運営会社</Link>
+          <Link href="https://bug-fix.org" target="_blank" rel="noopener noreferrer">運営会社</Link>
         </li>
       </ul>
       {copyright}

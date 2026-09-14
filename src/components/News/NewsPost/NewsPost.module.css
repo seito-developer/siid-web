@@ -1,23 +1,37 @@
 .NewsPost {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    /* タイトルは -webkit-box（line-clamp）のため、baseline 指定だと WebKit で
+       2行目に日付が引っ張られる。flex-start で1行目の高さに揃える */
+    align-items: flex-start;
+    gap: 8px;
 }
 
 .NewsPost__date {
     font-size: 11px;
+    flex: 0 0 auto;
+    font-family: var(--font-poppins);
+}
+
+/* 「yyyy/mm/dd | title」の区切り（装飾のため擬似要素で表現） */
+.NewsPost__date::after {
+    content: '|';
+    margin-left: 8px;
 }
 
 .NewsPost__title {
     font-size: 12px;
     margin: 0;
+    /* カルーセルの高さが記事ごとに大きく変わらないよう2行で省略 */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
 }
 
 @media screen and (min-width: 1280px) {
-    .NewsPost {
-        flex-direction: row;
-        gap: 10px;
-    }
     .NewsPost__date {
         font-size: 12px;
-    } 
+    }
 }

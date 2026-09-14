@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { formatPublishedDate } from '@/utils/date';
+
 import styles from './NewsPost.module.css';
 
 export type NewsPostProps = {
@@ -8,10 +10,14 @@ export type NewsPostProps = {
 }
 
 export default function NewsPost({ dateTime, title }: NewsPostProps) {
+  const formattedDate = formatPublishedDate(dateTime);
+
   return (
     <article className={styles.NewsPost}>
-      <time className={styles.NewsPost__date} dateTime={dateTime}>{new Date(dateTime).toLocaleDateString('ja-JP')}</time>
-      <h1 className={styles.NewsPost__title}>{title}</h1>
+      {formattedDate && (
+        <time className={styles.NewsPost__date} dateTime={dateTime}>{formattedDate}</time>
+      )}
+      <p className={styles.NewsPost__title}>{title}</p>
     </article>
   );
 }

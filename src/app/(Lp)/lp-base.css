@@ -1,0 +1,42 @@
+/* (Lp) グループ共通の基本スタイル。
+   (Lp) の root layout は globals.css / sanitize.css を持ち込まないため、ここが唯一のリセットになる。
+   lp-1 廃止(Issue #48)に伴い、lp1.css から lp-career が依存していた全体ルールだけを移した。
+   値は移行前と同一(lp-career の表示を変えない)。 */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    var(--font-noto-sans-jp-lp),
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: #342525;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

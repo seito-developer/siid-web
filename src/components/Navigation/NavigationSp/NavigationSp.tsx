@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { usePathname } from 'next/navigation';
 
@@ -13,8 +13,15 @@ import { isConversionFocusedPage } from '@/constants/conversionFocusedPages';
 import styles from './NavigationSp.module.css';
 
 function NavigationSp() {
+  const pathname = usePathname();
   const [isActive, setIsActive] = useState(false);
-  const isConversionFocused = isConversionFocusedPage(usePathname());
+  const isConversionFocused = isConversionFocusedPage(pathname);
+
+  // ルートレイアウト常駐で遷移してもアンマウントされないため、
+  // ページが変わったらメニューを閉じる(戻る/進む操作もここで拾う)
+  useEffect(() => {
+    setIsActive(false);
+  }, [pathname]);
 
   // コンバージョン特化ページ(Issue #42)ではナビゲーション自体を出さない
   if (isConversionFocused) {
@@ -28,7 +35,8 @@ function NavigationSp() {
           <ContactButton />
         </div>
         <div>
-          <Menu />
+          {/* 同一ページ内のアンカー遷移(例: /courses#plan-career)は pathname が変わらないため onNavigate でも閉じる */}
+          <Menu onNavigate={() => setIsActive(false)} />
         </div>
       </div>
       <div className={styles.NavigationSp__ButtonContainer}>

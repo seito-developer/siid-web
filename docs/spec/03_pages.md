@@ -12,8 +12,9 @@
 - **実装時判断・デザイン側への確認事項**:
   - 比較表「実施内容」の行ラベルと値の対応は Figma の見た目どおりに実装したが、内容的に 1 行ズレている疑いあり(チャット=初回のみ 等)→ デザイナー確認待ち
   - アドバイス欄の悩みバッジ番号が Figma では 01/03/03 になっている等の番号錯誤 → 01/02/03 に正規化。Career 列の悩み 02 と 03 が同一文言なのは Figma のまま
-  - LINE バナーのリンク先 URL 未確定(`LineBanner.tsx` の TODO)
+  - ~~LINE バナーのリンク先 URL 未確定~~ → **確定(Issue #51)**: `/line` ページへリンク(§3-2 の「導線」参照)
   - 「※Fullsuport,VIP Editionコースのみ」のタイポは原文ママ
+  - **グローバルナビ「コース/プラン」の遷移先(Issue #51 で確定)**: 親項目は `/courses`、下層3項目は各コースカードのアンカー `/courses#plan-career` / `#plan-full-support` / `#plan-vip`。アンカー ID は `src/constants/coursePlans.ts` の `COURSE_PLAN_ANCHOR_IDS` で一元管理し、ナビ(`menuItems.ts`)とカード(`CoursePlans.tsx`)の双方が参照する(片方だけ変更するとリンク切れになるため)
 
 ## 3-2. アフターサポート【対応済み 2026-07 / Issue #11】
 
@@ -34,7 +35,7 @@
 - **デザイン差異・要確認**:
   - PC は「Present / 10つの特典」(10 枚)、SP は「Features / ９つの特典」(9 枚)で不一致 → より完全な **PC 版(10 枚・Present)** を採用。デザイナー確認待ち
   - 特典カードのプレビュー画像は装飾的なコラージュのため、各グループを 1 枚の PNG に flatten して掲載
-  - `/line` はまだナビ・フッター・LINE バナー(`LineBanner` の `LINE_URL`)から未リンク。導線の接続方針は要確認
+- **導線(Issue #51 で確定)**: コース一覧ページ(`/courses`)の LINE バナー(`components/Courses/LineBanner`)から `/line` へリンクする。同バナーは友だち追加 URL 直リンクではなく `/line` を経由させる(CTA 文言が「詳細はこちら」であり、`/line` 内に友だち追加 CTA があるため)。グローバルナビ・フッターのメニューには `/line` を追加していない
 
 ## 3-3. 問い合わせ導線【対応済み 2026-07 / Issue #12】
 
@@ -77,19 +78,19 @@
 
 旧サイト(bugfix-corp / bug-fix.org)の 3 ページを移植。URL は `/siid/` prefix を外した(本番は `SITE_URL = bug-fix.org/siid` 配下で公開されるため、公開 URL は旧サイトと同一になる)。
 
-- **`/lp-1`** — 広告流入用の独立LP。旧LPのデザイン(navy×orange のネオブルータリズム)を忠実再現
+- **`/lp-1`【Issue #48 で削除 2026-09】** — 広告流入用の独立LP。旧LPのデザイン(navy×orange のネオブルータリズム)を忠実再現していた。lp-career への一本化により削除し、`/lp-1` は `/lp-career` へ 301。以下は実装当時の記録(root layout 分割は現在も有効。`lp1.css` は全体ルールだけを `(Lp)/lp-base.css` に切り出して削除、Poppins / Barlow と `src/components/Lp1/` も削除)
   - **root layout を分割**: `src/app/(Main)/`(既存サイト一式 + 共通クローム)と `src/app/(Lp)/`(LP専用・クローム無し)の 2 つの route group がそれぞれ root layout を持つ。未知 URL は `(Main)/[...notFound]/page.tsx`(catch-all)で dino 404 に着地させる
   - 旧 `style.css`(1662行)は `(Lp)/lp1.css` にグローバルCSSとして逐語移植(CSS Modules 規約の例外。route group 隔離により `(Main)` 側へは影響しない)
   - フォントは LP 専用に `(Lp)/fonts.ts` で定義(Noto Sans JP 400-900 / Poppins 500-800 / Barlow Semi Condensed 700)。`constants/common.ts` は変更しない
   - セクションは `src/components/Lp1/` に分割。FAQ 開閉・SP追従CTA・Jicoo ウィジェット遅延ロード(IntersectionObserver, rootMargin 600px)のみ client component
   - metadata は旧 head から移植。**noindex**(新TOPと訴求が重複するため。2026-07 オーナー決定)
-- **`/counseling-complete-lp-1` / `/counseling-complete`** — 申込完了ページ(いずれも noindex)。(LowerPages) パターンで新サイトデザインに載せ替え
+- **`/counseling-complete`**(と、Issue #48 で削除した `/counseling-complete-lp-1`) — 申込完了ページ(noindex)。(LowerPages) パターンで新サイトデザインに載せ替え。`/counseling-complete-lp-1` は `/lp-career/complete` へ 301(2026-09-12 決定。同ページが発火していた OpenAI Ads の CV は止まる)
   - 2 ページは見た目・文言とも同一で、本体は共通コンポーネント `src/components/CounselingComplete/CounselingCompleteSection.tsx` に集約(旧サイトでも両 URL がほぼ同一内容で存在。`/counseling-complete` はオーナー指示で追加 2026-07)
   - OpenAI Ads の CV 計測 `__bugfixTrackOpenAIAds('appointment_scheduled', {type:'customer_action'})` を両ページともマウント時に 1 回発火(`src/components/Analytics/TrackOpenAiAdsConversion.tsx`。発火関数は Analytics.tsx が env `NEXT_PUBLIC_OPENAI_ADS_PIXEL_ID` 設定時に定義)
-  - meta 定義は `pages.counselingCompleteLp1` / `pages.counselingCompleteFlat`(既存 `/counseling/complete` 用の `counselingComplete` キーとは別)
+  - meta 定義は `pages.counselingCompleteFlat`(既存 `/counseling/complete` 用の `counselingComplete` キーとは別。`counselingCompleteLp1` は #48 で削除)
   - ※既存 `/counseling/complete` には CV 発火なし(必要なら同コンポーネントを配置するだけで対応可能・別 Issue 推奨)
 - **`/white-paper`** — 資料請求ページ(index 可・sitemap 登録済み)。資料イメージ 2 枚 + 公式LINE誘導(`https://bit.ly/4p3SOBn`)。(LowerPages) パターン
 
 ## 未確定事項
 
-- 3-2 のデザイン所在 / 3-3 の 3 点 / `/counseling` の扱い(01 参照)
+- 3-2 のデザイン所在 / 3-3 の 3 点

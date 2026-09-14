@@ -18,10 +18,10 @@
 1. Vercel アカウントに GitHub リポジトリ `seito-developer/siid-web` を Import
 2. Framework Preset: Next.js(設定は自動検出)
 3. **Production Branch を `main` に設定**(Settings → Git。既定では GitHub のデフォルトブランチ `develop` が選ばれるため必ず変更する)
-4. Environment Variables に計測タグ ID を登録(下記「計測タグ(アナリティクス)」参照)
+4. Environment Variables に計測タグ ID と microCMS の接続情報を登録(下記「計測タグ(アナリティクス)」「microCMS(SiiD BLOG 連携)」参照)
 5. PR ごとの Preview Deploy を有効化 → 以降の PR はプレビュー URL で動作確認できる
 6. 本番ドメインの割り当ては**不要**(Cloudflare Worker が Vercel の既定 URL `https://siid-web-theta.vercel.app/siid/*` をプロキシする方式のため。[06_migration.md](./06_migration.md) §3)
-7. `next.config.ts` の `remotePatterns`(img.youtube.com)が本番でも機能することを確認
+7. `next.config.ts` の `remotePatterns`(`images.microcms-assets.io` / `img.youtube.com`)が本番でも機能することを確認
 
 ### vercel.app 直 URL の検索インデックス対策
 
@@ -31,6 +31,19 @@ Vercel の既定 URL(`*.vercel.app`)は公開されるため、本番(`bug-fix.o
 - `next.config.ts` の `headers()` で、Host が `*.vercel.app` のリクエストに `X-Robots-Tag: noindex` を付与(Issue #14)
 
 **注意(Worker 側の必須対応)**: Vercel にカスタムドメインを割り当てないため、Cloudflare Worker のプロキシ fetch も Host は `*.vercel.app` となり、**本番向けレスポンスにもこのヘッダーが付く**。Worker は `bug-fix.org` へ中継する応答から `X-Robots-Tag` を必ず除去すること([06_migration.md](./06_migration.md) §3.2、Issue #47 の実装要件)。除去し忘れると本番サイト全体が noindex になる。
+
+## microCMS(SiiD BLOG 連携)
+
+TOP の News(「コラム」記事)と卒業生の進路(「受講生様インタビュー」記事。TOP スライダー・`/career-path`)は、ビルド時・ISR 再検証時にサーバー側で microCMS から取得する(`src/lib/getNews.ts` / `getInterviews.ts`)。
+
+| 環境変数 | 値 |
+|---|---|
+| `MICROCMS_SERVICE_DOMAIN` | `https://XXXX.microcms.io` の XXXX |
+| `MICROCMS_API_KEY` | 読み取り(GET)用 API キー |
+
+- いずれもサーバー専用(`NEXT_PUBLIC_` を付けない)。値は microCMS 管理画面から取得する。
+- **Production と Preview の両方にチェックを入れる。** Preview に無いと、`develop` や PR のプレビューで News が空になり、`/career-path` が「インタビュー記事を読み込めませんでした」になる(2026-09-11、PR #78 のプレビューで発生)。リリース前の検証がプレビューで行えなくなるため必須。
+- 環境変数の追加・変更は**既存デプロイには反映されない**。追加後は該当デプロイを Redeploy する。
 
 ## 計測タグ(アナリティクス)
 

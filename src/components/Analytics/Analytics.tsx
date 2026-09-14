@@ -6,6 +6,8 @@ import {
   GA_ID,
   GTM_IDS,
   KARTE_ID,
+  LP_CAREER_CONSENT_PATH,
+  LP_CAREER_CONSENT_STORAGE_KEY,
   OPENAI_ADS_PIXEL_ID,
   USERHEAT_ID,
 } from './analyticsConfig';
@@ -24,6 +26,28 @@ import {
 export default function Analytics() {
   return (
     <>
+      {/*
+        Cookie 同意バナーを出している lp-career だけ、Google Consent Mode の既定値を
+        denied にする（docs/spec/07_lp-career-renewal.md §13.4）。
+        Analytics は (Main) の layout とも共用のため、パスで絞って他ページの計測は変えない。
+        GTM / GA4 の読み込み（afterInteractive）より先に走らせる必要があるので
+        beforeInteractive で出す。
+      */}
+      <script
+        // next/script ではなく素の script。GTM / GA4（afterInteractive）より前、
+        // HTML の解析時点で必ず実行させる必要があるため。
+        dangerouslySetInnerHTML={{
+          __html: `(function(){try{
+if(location.pathname.indexOf('${LP_CAREER_CONSENT_PATH}')!==0)return;
+window.dataLayer=window.dataLayer||[];
+function gtag(){window.dataLayer.push(arguments);}
+var stored=null;try{stored=window.localStorage.getItem('${LP_CAREER_CONSENT_STORAGE_KEY}');}catch(e){}
+var v=stored==='accepted'?'granted':'denied';
+gtag('consent','default',{ad_storage:v,ad_user_data:v,ad_personalization:v,analytics_storage:v,wait_for_update:500});
+}catch(e){}})();`,
+        }}
+      />
+
       {/* Google Tag Manager（コンテナごとに 1 回だけ読み込む） */}
       {GTM_IDS.map((id) => (
         <Script id={`gtm-init-${id}`} key={id} strategy="afterInteractive">

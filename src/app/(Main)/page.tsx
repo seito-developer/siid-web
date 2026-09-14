@@ -21,6 +21,11 @@ import { getNews } from '@/lib/getNews';
 import styles from './Home.module.css';
 export const metadata: Metadata = buildPageMetadata(pages.index, { title: commonTitle });
 
+// News（microCMS）の再検証間隔。getNews() 内の fetch にも同じ値を指定しているが、
+// 環境変数未設定などで fetch 自体が実行されないとページが完全な静的扱いになり、
+// 二度と再生成されなくなる（Issue #55）。ルート単位でも明示して ISR を保証する。
+export const revalidate = 600;
+
 export default async function Home() {
   const news = await getNews();
 

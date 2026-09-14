@@ -1,0 +1,298 @@
+/*
+ * INSTRUCTOR。写真・バッジの白地・箇条書きの■はセクション背景に含まれる。
+ * CSS では文字だけを実測座標で重ねる。
+ *
+ * PC: セクション 1440x901(PSD 原点 y-1)
+ * SP: セクション 750x1633(= CSS 375x816.5、PSD 原点 y3102)
+ *     INSTRUCTOR y35 / 見出し y74 / 氏名 y403 / バッジ y449.5, y485
+ *     箇条書き y535.5 / 598.5 / 660.5 / CTA 331.5x78 @(22.5,718.5)
+ */
+
+.Instructor {
+  position: relative;
+  overflow: hidden;
+  min-height: 816.5px;
+  padding: 0;
+  color: var(--lp-career-white);
+  background: #1b2c8a;
+}
+
+.Instructor__Bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Instructor__Inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--lp-career-canvas);
+  height: 816.5px;
+  margin-inline: auto;
+}
+
+.Instructor__Inner > *,
+.Instructor__Main > *,
+.Instructor__Text > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+.Instructor__Label {
+  top: 35px;
+}
+
+.Instructor__Main,
+.Instructor__Text {
+  position: static;
+  display: block;
+}
+
+/* 写真は背景画像に含まれるため描かない */
+.Instructor__Photo {
+  display: none;
+}
+
+.Instructor__Copy {
+  /* PSD 実測: 1 行目のインク 565x49 @(49,149)(= CSS 282.5x24.5 @(24.5,74.5))、
+     2 行目 504x49 @(137,228)。行ごとに文字の大きさが違う */
+  top: 67px;
+  font-size: 28px;
+  line-height: 1.42;
+  letter-spacing: 0.018em;
+  color: var(--lp-career-highlight);
+  text-align: center;
+}
+
+/* カンプの 1 行目は 12 文字が 282.5px に収まる長体組み(2 行目は等倍)。
+   行ごとに中央がずれている(1 行目は左寄り)ため、余白でその差を作る */
+.Instructor__CopyHead {
+  display: inline-block;
+  margin-right: 26.5px;
+  transform: scaleX(0.874);
+}
+
+.Instructor__CopyBreak {
+  display: none;
+}
+
+/* カンプでは最後の行だけ白い */
+.Instructor__CopyWhite {
+  color: var(--lp-career-white);
+}
+
+.Instructor__CopyLast {
+  margin-left: 17px;
+  color: var(--lp-career-white);
+}
+
+.Instructor__Name {
+  top: 400.5px;
+  font-family: var(--lp-career-font-body);
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: 0.127em;
+  text-align: center;
+}
+
+/* バッジの白い下地は背景画像に含まれる。
+   .Instructor__Text の中では 氏名 → バッジ → バッジ の順に <p> が並ぶため、
+   nth-of-type は 2 と 3 になる */
+.Instructor__Badge {
+  padding: 0;
+  background: none;
+  font-weight: 700;
+  font-size: 16.5px;
+  line-height: 1;
+  letter-spacing: var(--lp-career-tracking-lg);
+  color: #02396f;
+  text-align: center;
+}
+
+.Instructor__Text .Instructor__Badge:nth-of-type(2) {
+  top: 449.5px;
+}
+
+.Instructor__Text .Instructor__Badge:nth-of-type(3) {
+  top: 485px;
+  font-size: 14.5px;
+}
+
+.Instructor__Bullets {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  gap: 0;
+  margin: 0;
+}
+
+.Instructor__Bullets li {
+  position: absolute;
+  left: 36px;
+  right: 12px;
+  padding-left: 0;
+  font-weight: 500;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: var(--lp-career-tracking-lg);
+}
+
+/* SP だけ改行する(カンプの組み方) */
+.Instructor__BulletBreak {
+  display: block;
+}
+
+/* ■ の印は背景画像に含まれる */
+.Instructor__Bullets li::before {
+  content: none;
+}
+
+.Instructor__Bullets li:nth-child(1) {
+  top: 535.5px;
+}
+
+.Instructor__Bullets li:nth-child(2) {
+  top: 598.5px;
+}
+
+.Instructor__Bullets li:nth-child(3) {
+  top: 660.5px;
+}
+
+.Instructor__Bullets .isAccent {
+  font-weight: 700;
+  color: #fff66d;
+}
+
+.Instructor__Cta {
+  position: absolute;
+  top: 718.5px;
+  left: 0;
+  right: 0;
+  width: 331.5px;
+  min-width: 0;
+  height: 78px;
+  margin: 0 auto;
+}
+
+/* --- PC ----------------------------------------------------------------- */
+
+@media screen and (min-width: 768px) {
+  /* PSD 実測(セクション上端 y0 基準):
+       INSTRUCTOR y76 / 見出し 504x186 @(770,163)(3 行・行送り 62)
+       氏名 @(772,387) / バッジ @(790,439) と @(796,486)
+       箇条書き @(280,567) / (280,620) / (279,675)
+       CTA 498x118 @(473,736) */
+  .Instructor {
+    min-height: 901px;
+    padding: 0;
+  }
+
+  .Instructor__Inner {
+    height: 901px;
+  }
+
+  .Instructor__Label {
+    top: 76px;
+  }
+
+  .Instructor__Copy {
+    top: 163px;
+    left: 770px;
+    right: auto;
+    width: 520px;
+    font-size: 52px;
+    line-height: 1.192;
+    letter-spacing: var(--lp-career-tracking-2xl);
+    text-align: left;
+  }
+
+  .Instructor__CopyHead {
+    display: inline;
+    margin-right: 0;
+    transform: none;
+  }
+
+  .Instructor__CopyBreak {
+    display: inline;
+  }
+
+  .Instructor__CopyWhite {
+  color: var(--lp-career-white);
+}
+
+.Instructor__CopyLast {
+    margin-left: 0;
+    color: var(--lp-career-white);
+    /* 9 文字 × 52px × (1 + 0.12em) = 524px で幅 520px をわずかに超え、
+       最後の「る」だけが 4 行目に落ちて講師名に重なっていた。
+       字送りの末尾アキぶんなので、折り返しを止めて 1 行に収める。 */
+    white-space: nowrap;
+  }
+
+  .Instructor__Name {
+    top: 387px;
+    left: 772px;
+    right: auto;
+    font-size: 36px;
+    letter-spacing: var(--lp-career-tracking-md);
+    text-align: left;
+  }
+
+  .Instructor__Badge {
+    right: auto;
+    font-size: 19.9px;
+    text-align: left;
+  }
+
+  .Instructor__Text .Instructor__Badge:nth-of-type(2) {
+    top: 439px;
+    left: 790px;
+  }
+
+  .Instructor__Text .Instructor__Badge:nth-of-type(3) {
+    top: 486px;
+    left: 796px;
+    font-size: 19.9px;
+  }
+
+  .Instructor__Bullets li {
+    left: 280px;
+    right: 40px;
+    font-size: 25px;
+    line-height: 1.24;
+  }
+
+  /* 背景内の四角の中心に、フォントの実際の字面の中心を合わせる。 */
+  .Instructor__Bullets li:nth-child(1) {
+    top: 562px;
+  }
+
+  .Instructor__Bullets li:nth-child(2) {
+    top: 615px;
+  }
+
+  .Instructor__Bullets li:nth-child(3) {
+    top: 670px;
+    left: 279px;
+  }
+
+  .Instructor__BulletBreak {
+    display: none;
+  }
+
+  .Instructor__Cta {
+    top: 736px;
+    width: 498px;
+    height: 124px;
+  }
+}

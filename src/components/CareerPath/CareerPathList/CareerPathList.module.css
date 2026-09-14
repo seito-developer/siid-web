@@ -10,6 +10,18 @@
   justify-items: center;
 }
 
+.CareerPathList__Empty {
+  margin: 0 0 40px;
+  padding: 40px 16px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.CareerPathList__Empty a {
+  color: var(--main);
+  text-decoration: underline;
+}
+
 .CareerPathList__EmptyCard {
   visibility: hidden;
   width: 100%;

@@ -18,8 +18,8 @@ type PageMeta = {
   description: string;
 };
 
-// /counseling-complete と /counseling-complete-lp-1 で共用する申込完了ページ本体。
-// 両ページとも OpenAI Ads の CV(appointment_scheduled)を発火する。
+// /counseling-complete の申込完了ページ本体。OpenAI Ads の CV(appointment_scheduled)を発火する。
+// (旧 /counseling-complete-lp-1 は lp-1 廃止に伴い /lp-career/complete へ 301。Issue #48)
 export default function CounselingCompleteSection({ page }: { page: PageMeta }) {
   const breadcrumb: BreadcrumbProps[] = [
     { title: pages.index.name.ja, url: pages.index.url },
