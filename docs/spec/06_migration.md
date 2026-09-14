@@ -60,8 +60,12 @@ graph TD
 
 ### 3.1 DNS
 
-- `bug-fix.org`(apex)および `www` を Cloudflare 管理へ移管し、**proxied(orange-cloud)** にする。
-- `blog.bug-fix.org`(Vercel)・`siid.bug-fix.org`(Utage)は**現状維持**(DNS-only / プロキシ対象外)。既存挙動を変えない。
+**2026-09-14 実施済み(Issue #45)。** ネームサーバは `julio.ns.cloudflare.com` / `nucum.ns.cloudflare.com`。
+
+- `bug-fix.org`(apex)および `www` を Cloudflare 管理へ移管し、**proxied(orange-cloud)** にした。
+- `blog.bug-fix.org`(Vercel)・`siid.bug-fix.org`(Utage)は**現状維持**(DNS-only / プロキシ対象外)。既存挙動は変わっていない。
+
+移管の具体的な手順・現行レコード一覧・注意点は **[§10 DNS 移管手順書](#10-dns-移管手順書issue-45)** を参照。
 
 ### 3.2 Cloudflare Worker(ルーティング)
 
@@ -110,9 +114,10 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 
 各ステップ後に回帰確認を行い、問題なければ次へ進む。
 
-- **Pre. DNS 移管**
-  - 現行 DNS の TTL を短縮 → ネームサーバを Cloudflare へ切替 → apex を proxied 化。
-  - この時点では Worker 未設定 or 全パス GitHub Pages のままとし、**挙動が現行と変わらない**ことを確認。
+- **Pre. DNS 移管**(Issue #45)— **2026-09-14 完了**
+  - ネームサーバを Squarespace から Cloudflare へ切替。apex と `www` を proxied 化。
+  - Worker 未設定のため**挙動は現行と変わらない**ことを確認済み(ダウンタイム無し、メールの実送受信テストも成功)。
+  - 実施結果と手順は [§10](#10-dns-移管手順書issue-45)。
 - **Step1. 新アプリ本番デプロイ(301 込み)**
   - `siid-web` を Vercel に `basePath: '/siid'` で本番デプロイ(`develop` → `main` のリリース PR)。Vercel の直 URL で単体動作確認。
   - **§4 の 301(`redirects()`)と lp-1 の削除はこの時点で入れておく**。`redirects()` は新アプリに届いたリクエストにしか効かないため、Worker 切替前に入れても本番に影響しない。切替後に入れる順序だと、lp-1 削除済みの場合 `/siid/lp-1` が切替から 301 有効化までの間 404 になる。
@@ -159,7 +164,135 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 
 ## 9. 未確定事項
 
-- DNS(`bug-fix.org` apex)を Cloudflare へ移管することのオーナー承認
 - GA4 / GTM 各タグの SiiD 固有・共有の切り分けと引き継ぎ範囲
 - `/siid/counseling` の Jicoo ウィジェット(`event_types/dPvwnhRYxhQB`, [03_pages.md](./03_pages.md) 参照)を本番でそのまま共有してよいか
 - ~~実装スコープを扱う後続 Issue の起票~~ → 起票済み: #45(DNS 移管)・#46(basePath、完了)・#47(Worker)・#48(301)
+
+---
+
+## 10. DNS 移管手順書(Issue #45)
+
+カットオーバー Pre(§5)の実作業。**2026-09-14 に実施完了。** 以下は実施結果に基づく記録で、同種の作業を再度行う際の手順書でもある。リポジトリのコード変更は伴わない。
+
+### 10.1 前提情報(2026-09-14 実施時点)
+
+| 項目 | 値 |
+|---|---|
+| レジストラ | **Squarespace Domains II LLC**(https://domains.squarespace.com) |
+| 移管前の DNS ホスト | **Squarespace**(DNS 設定 → カスタムレコード)。ネームサーバは `ns-cloud-b1〜b4.googledomains.com` |
+| 移管後の DNS ホスト | **Cloudflare**(`julio.ns.cloudflare.com` / `nucum.ns.cloudflare.com`) |
+| ドメイン有効期限 | 2027-03-13 |
+| DNSSEC | 無効(親ゾーンに DS レコード無し)。そのまま切替可能だった |
+
+> **ネームサーバ名に注意(最初にハマった点)**: `ns-cloud-*.googledomains.com` は **Google Cloud DNS と旧 Google Domains の両方**が使う。この名前から「レコードの実体は GCP の Cloud DNS にある」と判断したが誤りで、**GCP には zone が存在しなかった**。Google Domains が Squarespace に売却された結果、ネームサーバ名はそのままで**レコードの管理画面だけが Squarespace 側に移っていた**。レジストラと DNS ホストがどちらも Squarespace という状態。
+
+### 10.2 移管前のレコード(Squarespace の DNS 設定画面の全件)
+
+**外部から DNS を引いて見つかったのは 9 件だったが、実際には 17 件あった。** 名前を知らないと引けないレコード(所有確認・DKIM 等)は外から発見できない。**必ず DNS ホストの管理画面で全件を確認すること。**
+
+| 名前 | 種別 | 値 | 移管 |
+|---|---|---|---|
+| `@` | **ALIAS** | `seito-developer.github.io` | ○(Cloudflare では A/AAAA 展開または CNAME) |
+| `www` | CNAME | `seito-developer.github.io` | ○ Proxied |
+| `blog` | CNAME | `cc021d3efa3de4c8.vercel-dns-017.com` | ○ **DNS only** |
+| `siid` | CNAME | `dns.utage-domain.com` | ○ **DNS only** |
+| `1frorysb._domainkey` | CNAME | `1frorysb.utage-dkim.com` | ○(Utage の DKIM) |
+| `k76tdbf2g3ea` | CNAME | `gv-qqm4wayl2lunbr.dv.googlehosted.com` | ○(Google の所有確認) |
+| `@` | MX ×5 | `1 aspmx` / `5 alt1` / `5 alt2` / `10 alt3` / `10 alt4`(すべて `.aspmx.l.google.com`) | ○ |
+| `@` | TXT (SPF) | `v=spf1 include:_spf.google.com +mx include:myasp.jp ~all` | ○ |
+| `_dmarc` | TXT | `v=DMARC1; p=none;` | ○ |
+| `google._domainkey` | TXT (DKIM) | `v=DKIM1; k=rsa; p=…`(408 文字) | ○ |
+| `_github-pages-challenge-seito-developer` | TXT | `6e4fab1312bd6f5cacbf9977c80b70` | ○(GitHub Pages の所有確認) |
+| `ad` | A | `34.120.240.194` | **×** 未使用(オーナー確認済み) |
+| `guide` | CNAME | `ext-sq.squarespace.com` | **×** 未使用。Squarespace のドメイン転送機能 |
+| `_domainconnect` | CNAME | `_domainconnect.domains.squarespace.com` | **×** Squarespace 専用 |
+
+移管したのは 15 件。DKIM など長い値は手入力せず `dig +short TXT google._domainkey.bug-fix.org | tr -d '" '` で取得して貼る。
+
+### 10.3 失敗しやすい点(必読)
+
+1. **Cloudflare の自動スキャンは取りこぼす。** 今回は `siid`・`1frorysb._domainkey`・`k76tdbf2g3ea`・`_github-pages-challenge-*` の 4 件が入らなかった。**外から引けないレコードは原理的に発見できない**ため、管理画面の一覧と 1 件ずつ照合する。
+2. **スキャンは `blog` を Proxied として取り込む。** そのままだと証明書を Vercel が管理しているため証明書エラーになる。**DNS only に直す。**
+3. **`siid` は絶対に Proxied にしない。** 転送先の Utage 自体が Cloudflare 配下(`104.26.x` / `172.67.x`)のため、多重プロキシとなり **Error 1000: DNS points to prohibited IP** で停止する。
+4. **apex と `www` は Proxied にする。** ここが DNS only だと後段の Worker(#47)が効かない。
+5. **SSL/TLS は「フル(Full)」。** 既定の「フレキシブル」だと GitHub Pages が HTTPS へリダイレクトするためリダイレクトループになる。「フル(厳密)」は proxy 配下で GitHub Pages の証明書更新が失敗しうるため避ける。
+6. **DKIM の TXT は分割せず 1 レコードで登録する。** DNS 上は 255 文字ごとに分かれて見えるが、分割すると DKIM 検証が失敗する。
+7. **移管元(Squarespace)のレコードは削除しない。** ネームサーバを戻すだけで復旧できる状態を保つ。
+8. **apex の ALIAS は Cloudflare に無い。** スキャンは解決結果の A×4 / AAAA×4 として取り込む。そのままでも動くが、`CNAME @ → seito-developer.github.io`(CNAME flattening)にすると GitHub 側の IP 変更に自動追従する。
+9. **TTL 短縮は今回は不要だった。** 新旧のレコード内容が完全に一致していれば、伝播中にどちらを参照しても結果は同じため。内容を変えながら移管する場合のみ、事前の TTL 短縮(現行 TTL は 4 時間)を検討する。
+
+### 10.4 作業手順(実施した順序)
+
+1. **オーナー承認**。apex を Cloudflare 配下に置くことの合意。
+2. **移管元の管理画面で全レコードを確認**(今回は Squarespace の DNS 設定)。外部から引いた結果だけを信用しない(§10.2)。
+3. **Cloudflare で「Add a site」→「Connect a domain」**。Free プランを選ぶ。「Transfer a domain」はレジストラ移管なので選ばない。
+   - 「Block training in robots.txt」は**オフ**にした。robots.txt はオリジン(GitHub Pages / 別リポジトリ)で管理しており、edge 側で書き換わると SEO の切り分けが難しくなるため。
+4. **自動スキャンの結果を §10.2 と照合**し、不足を追加・不要を削除・プロキシ状態を修正(§10.3-1〜4)。
+5. **SSL/TLS を「フル」に設定**(§10.3-5)。
+6. **切替前に Cloudflare のネームサーバへ直接問い合わせて照合する**(§10.5-1)。ここで抜けを潰しておけば、切替は「同じ内容の配布元が変わるだけ」になる。
+7. **Squarespace → DNS → 「ドメイン ネームサーバー」**でカスタムネームサーバに変更し、Cloudflare の 2 件のみにする(`ネームサーバーの登録` は glue record 用の別機能なので間違えない)。
+8. **伝播を待って §10.5-2 を実施。**
+9. この時点では **Worker を設定しない**(全パスが従来どおり GitHub Pages / Vercel / Utage へ向く状態)。
+
+### 10.5 検証
+
+#### 10.5-1 切替前(ここが最も効く)
+
+zone が有効化される前でも、**Cloudflare のネームサーバへ直接問い合わせれば設定内容を確認できる**。本番を切り替える前に答え合わせができる。
+
+```bash
+NEW=julio.ns.cloudflare.com; OLD=ns-cloud-b1.googledomains.com; D=bug-fix.org
+for spec in "$D:MX" "$D:TXT" "www.$D:CNAME" "blog.$D:CNAME" "siid.$D:CNAME" \
+            "1frorysb._domainkey.$D:CNAME" "k76tdbf2g3ea.$D:CNAME" "_dmarc.$D:TXT" \
+            "google._domainkey.$D:TXT" "_github-pages-challenge-seito-developer.$D:TXT"; do
+  n=${spec%:*}; t=${spec#*:}
+  o=$(dig +short "@$OLD" "$t" "$n" | sort | tr '\n' ' ')
+  w=$(dig +short "@$NEW" "$t" "$n" | sort | tr '\n' ' ')
+  [ "$o" = "$w" ] && echo "OK   $t $n" || echo "DIFF $t $n: 旧[$o] 新[$w]"
+done
+```
+
+> **プロキシ状態はこの方法では判定できない。** zone が有効化されるまで Cloudflare はプロキシを通さない生の値を返すため。オレンジ/グレーは管理画面で目視確認する。
+
+#### 10.5-2 切替後
+
+```bash
+D=bug-fix.org
+for r in 8.8.8.8 1.1.1.1 9.9.9.9; do dig +short "@$r" NS $D | sort | tr '\n' ' '; echo; done  # 委任先
+dig +short MX $D; dig +short TXT $D; dig +short TXT _dmarc.$D                                  # メール系
+dig +short TXT google._domainkey.$D | tr -d '" ' | wc -c                                       # DKIM は 408 文字
+for u in https://$D/ https://$D/siid https://blog.$D/ https://siid.$D/; do
+  echo "$(curl -sS -o /dev/null -w '%{http_code}' -L "$u") $u"
+done
+```
+
+移管前後で同一になること(実測値):
+
+| URL | 応答 |
+|---|---|
+| `https://bug-fix.org/` | 200 |
+| `https://bug-fix.org/siid` | 200 |
+| `https://bug-fix.org/siid/lp-1` | 200 |
+| `https://blog.bug-fix.org/` | 200 |
+| `https://siid.bug-fix.org/` | 404(移管前から 404。悪化していないことの確認用) |
+
+- **メールの実送受信テストを必ず行う**(外部アドレスとの往復)。DNS 上レコードが見えることと実際に届くことは別。
+- Google Workspace 管理コンソールでドメインの状態にエラーが出ていないか確認する。
+
+#### 10.5-3 2026-09-14 の実施結果
+
+| 項目 | 結果 |
+|---|---|
+| ネームサーバ変更の受理(whois) | 05:17 UTC |
+| `.org` TLD への反映 | **6 分後** |
+| 全公開リゾルバへの伝播 | 当日中に完了(委任の TTL は 3600 秒) |
+| メール系 8 件 | 全件正常 |
+| 実送受信テスト | 成功 |
+| HTTP 応答 | 上表と完全に一致 |
+| apex / `www` | Cloudflare 経由(`172.67.x` / `104.21.x`)に変化。`blog`・`siid` は直接配信のまま |
+| ダウンタイム | 無し |
+
+### 10.6 ロールバック
+
+- **Squarespace でネームサーバを `ns-cloud-b1〜b4.googledomains.com` に戻す。** 移管元のレコードを残してあれば復旧する(§6)。
+- ただしネームサーバの変更はレジストリの TTL(通常 24〜48 時間)に従うため、**即時には戻らない場合がある**。この意味でも §10.5-1 の「切替前の照合」を厚くしておくことが重要。
