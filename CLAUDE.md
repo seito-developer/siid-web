@@ -93,6 +93,9 @@ npm run lint && npm run typecheck
 **`src/app/` は `(Main)` と `(Lp)` の 2 つのルートグループに分かれており、それぞれが独立した root layout（`html`/`body`）を持つ。** 共通クロームを持つ通常ページは `(Main)`、広告流入用の独立 LP（`lp-career`）は `(Lp)`。
 
 ```
+workers/
+└── siid-router/                          # Cloudflare Worker（bug-fix.org/siid 配下を Vercel へプロキシ。npm run test:worker）
+
 src/
 ├── app/                                  # Next.js App Router
 │   ├── (Main)/                           # 通常ページ群（共通クロームあり）
