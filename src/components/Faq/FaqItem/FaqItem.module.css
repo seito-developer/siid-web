@@ -85,6 +85,8 @@
 
 .FaqItem__AnswerText {
   margin: 0;
+  /* 原稿の改行をそのまま表示する(Issue #82) */
+  white-space: pre-line;
   line-height: 180%;
   font-size: 11px;
   background: #eeefed;
