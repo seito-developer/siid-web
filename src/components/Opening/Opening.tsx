@@ -30,7 +30,9 @@ export default function Opening() {
     const counterBox = counterBoxRef.current;
     if (!overlay || !stroke || !fill || !logo || !counter || !counterBox) {return;}
 
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // prefers-reduced-motion による省略は行わない。演出はブランドの第一印象として
+    // 環境を問わず再生する(2026-09-15 オーナー判断、Issue #86)。
+    // 404 ページのミニゲーム側の分岐は光過敏対策のため別途維持している。
     const seen = !!sessionStorage.getItem(SESSION_KEY);
     let finished = false;
     let disposed = false;
@@ -98,12 +100,6 @@ export default function Opening() {
         sessionStorage.setItem(SESSION_KEY, '1');
 
         const tl = gsap.timeline({ onComplete: unlockScroll });
-        if (reduced) {
-          // 演出省略: オーバーレイをフェードするだけ。FV要素は隠さない
-          tl.to(overlay, { autoAlpha: 0, duration: 0.4, ease: 'power1.out' });
-          tl.set(overlay, { display: 'none' });
-          return;
-        }
 
         // FV要素の初期状態（この時点ではまだオーバーレイが画面を覆っている）
         tl.set('[data-opening="back-logo"]', {
@@ -152,14 +148,14 @@ export default function Opening() {
       });
 
       // --- Phase 1: ローディング ---
-      if (reduced || seen) {
+      if (seen) {
         // ロゴを完成状態で静止表示し、すぐリビールへ
         gsap.set(fill, { clipPath: 'inset(0% 0% 0% 0%)' });
         gsap.set(stroke, { autoAlpha: 0 });
         gsap.set(counterBox, { autoAlpha: 0 });
         // useIsPc の初期値による PC/SP コンポーネント差し替えが
         // 完了してからリビールする（差し替え前の要素を掴まないよう余裕を持つ）
-        timers.push(setTimeout(reveal, reduced ? 600 : 400));
+        timers.push(setTimeout(reveal, 400));
         return;
       }
 
