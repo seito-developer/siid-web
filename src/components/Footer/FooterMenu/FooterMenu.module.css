@@ -72,10 +72,12 @@
     text-align: center;
     display: flex;
     justify-content: center;
-    gap: 20;
+    /* 単位の無い `gap: 20` は無効値としてブラウザに無視されていた(Issue #91) */
+    gap: 10px;
     padding: 0;
 }
 .FooterMenu__OtherLinkItem {
+    list-style: none;
     font-size: 12px;
     > a {
         color: #fff;
