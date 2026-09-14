@@ -153,24 +153,37 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 
 ## 8. 公開前チェックリスト(移行固有)
 
+**2026-09-15 のカットオーバー時に全項目を実施し、全て通過した。**
+
 [05_deploy.md](./05_deploy.md) の汎用チェックリストに加え、移行固有で以下を確認する。
 
-- [ ] `/siid/lp-1`(および配下)が `/siid/lp-career` へ 301 で到達する
-- [ ] コーポレート `/` に一切変化がない
-- [ ] 旧 `/siid/*` の全 URL が §4 のマップどおり 301 で新ルートへ到達する
-- [ ] 新アプリが `basePath: '/siid'` でアセット 404 を出さない(CSS/画像/フォント/JS)
-- [ ] 既存外部リンクの生存: `siid-blog` の `SIID_SITE_URL`(= `bug-fix.org/siid`)・`COUNSELING_URL`(= `bug-fix.org/siid/lp-1`、301 で `lp-career` へ)がリンク切れにならない。公開後は `COUNSELING_URL` 自体を `/siid/lp-career` に更新して 301 を経由しないようにする
-- [ ] Worker の分岐が意図どおり(`/siid` と `/siid/*` だけが新アプリへ、`/siid-xxx` や `/` はコーポレートへ)
-- [ ] `bug-fix.org/siid` の本番レスポンスに `Strict-Transport-Security` が付いていないこと(Worker が除去。§3.2)
-- [ ] `bug-fix.org/siid` の本番レスポンスに `X-Robots-Tag: noindex` が**付いていない**こと(Worker が除去)/ `*.vercel.app` 直アクセスには**付いている**こと(§3.2 参照)
-- [ ] Vercel の Production 環境変数に `MICROCMS_SERVICE_DOMAIN` / `MICROCMS_API_KEY` が入っており、TOP の News・卒業生の進路と `/siid/career-path` に記事が表示される(未設定だと「インタビュー記事を読み込めませんでした」になる。[08](./08_career-path-interviews.md) §6)
+- [x] `/siid/lp-1`(および配下)が `/siid/lp-career` へ 301 で到達する
+- [x] コーポレート `/` に一切変化がない(200・タイトルとも従来どおり)
+- [x] 旧 `/siid/*` の全 URL が §4 のマップどおり 301 で新ルートへ到達する(6 件すべて)
+- [x] 新アプリが `basePath: '/siid'` でアセット 404 を出さない(`/siid`・`/siid/lp-career`・`/siid/career-path/1` をブラウザで走査。失敗リクエスト 0 件・JS エラー 0 件)
+- [x] 既存外部リンクの生存: `siid-blog` の `SIID_SITE_URL`・`COUNSELING_URL`。公開後に `COUNSELING_URL` と広告の出稿先 URL を `/siid/lp-career` へ更新済み(2026-09-15)
+- [x] Worker の分岐が意図どおり(`/siid-nonexistent` はコーポレート側の 404 に残る)
+- [x] `bug-fix.org/siid` の本番レスポンスに `Strict-Transport-Security` が付いていない
+- [x] `bug-fix.org/siid` の本番レスポンスに `X-Robots-Tag: noindex` が付いていない / `*.vercel.app` 直アクセスには付いている
+- [x] Vercel の Production 環境変数に microCMS の値が入っており、記事が表示される
+
+補足: `b.karte.io/event` が 400 を返すが、KARTE(計測タグ)側の応答でサイトの表示・動作には影響しない。切替前からの挙動。
+
+### 8.1 カットオーバー実施記録(2026-09-15)
+
+| 項目 | 内容 |
+|---|---|
+| 実施内容 | Cloudflare Worker `siid-router` にルート `bug-fix.org/siid*` を紐付け |
+| Failure mode | **Fail open (proceed)** を選択。この Worker は経路の振り分けのみでセキュリティ検査をしないため、障害時や上限超過時はオリジン(GitHub Pages)へ素通りさせる。ただし素通り時は旧サイトの内容が出る(新サイトにしかないパスは GitHub Pages の 404)。**この理由から旧サイトのコンテンツは当面 GitHub Pages に残す** |
+| Cloudflare Access | Worker の preview のみ保護(Scope: Previews only)。`All traffic` にすると公開サイトに認証が要求されるため選択しない |
+| ダウンタイム | 無し |
+| 公開後の作業 | 広告の出稿先 URL と Jicoo の予約完了リダイレクトを `/siid/lp-career` 系へ更新済み。Google Search Console に `https://bug-fix.org/siid/sitemap.xml` を送信し「成功しました / 検出されたページ数 12」を確認 |
 
 ---
 
 ## 9. 未確定事項
 
 - GA4 / GTM 各タグの SiiD 固有・共有の切り分けと引き継ぎ範囲
-- `/siid/counseling` の Jicoo ウィジェット(`event_types/dPvwnhRYxhQB`, [03_pages.md](./03_pages.md) 参照)を本番でそのまま共有してよいか
 - ~~実装スコープを扱う後続 Issue の起票~~ → 起票済み: #45(DNS 移管)・#46(basePath、完了)・#47(Worker)・#48(301)
 
 ---
