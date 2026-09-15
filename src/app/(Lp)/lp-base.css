@@ -18,8 +18,11 @@ body {
 }
 
 body {
+  /* 実体は各ページが読み込む lp-career-tokens.css の @font-face(サブセット)。
+     収録外の文字はシステムフォントへフォールバックする(Issue #100)。 */
   font-family:
-    var(--font-noto-sans-jp-lp),
+    'Noto Sans JP Subset',
+    'Hiragino Sans',
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",

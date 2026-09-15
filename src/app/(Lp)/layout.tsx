@@ -2,8 +2,6 @@ import Analytics from '@/components/Analytics/Analytics';
 import GtmNoScript from '@/components/Analytics/GtmNoScript';
 import SourceEasterEgg from '@/components/SourceEasterEgg/SourceEasterEgg';
 
-import { notoSansJpLp } from './fonts';
-
 import './lp-base.css';
 
 // 独立LP(lp-career)用の root layout。共通クローム(Icons / NavigationSp / Footer / NavigationPcLower)と
@@ -15,7 +13,7 @@ export default function LpLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={notoSansJpLp.variable}>
+      <body>
         <SourceEasterEgg />
         <GtmNoScript />
         <Analytics />

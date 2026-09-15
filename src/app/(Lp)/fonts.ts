@@ -1,15 +1,9 @@
-import { Barlow_Semi_Condensed, Jost, Noto_Sans_JP } from 'next/font/google';
+import { Barlow_Semi_Condensed, Jost } from 'next/font/google';
 
-// (Lp) グループの本文フォント。lp-base.css の body と lp-career/complete が参照する。
-// 既存サイト(constants/common.ts)とはウェイト構成が異なるため LP 専用の変数として定義する。
-export const notoSansJpLp = Noto_Sans_JP({
-  weight: ['400', '500', '700', '900'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-noto-sans-jp-lp',
-});
-
-
+// (Lp) の本文は lp-career-tokens.css のサブセット('Noto Sans JP Subset')を使う。
+// next/font 経由の Noto Sans JP は unicode-range で 124 チャンク × 4 ウェイトの
+// @font-face を生成し、それだけで 380KB のレンダリングブロック CSS になっていたため
+// 廃止した(Issue #100)。
 // --- lp-career(新デザイン)専用フォント ---
 //
 // デザインで使われている商用フォントは使用できないため無料 Web フォントへ置換する
