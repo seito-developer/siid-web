@@ -1,5 +1,6 @@
 import Analytics from '@/components/Analytics/Analytics';
 import GtmNoScript from '@/components/Analytics/GtmNoScript';
+import SourceEasterEgg from '@/components/SourceEasterEgg/SourceEasterEgg';
 
 import { notoSansJpLp } from './fonts';
 
@@ -15,6 +16,7 @@ export default function LpLayout({
   return (
     <html lang="ja">
       <body className={notoSansJpLp.variable}>
+        <SourceEasterEgg />
         <GtmNoScript />
         <Analytics />
         {children}

@@ -7,6 +7,7 @@ import GtmNoScript from '@/components/Analytics/GtmNoScript';
 import Footer from '@/components/Footer/Footer';
 import Icons from '@/components/Icons/Icons';
 import NavigationSp from '@/components/Navigation/NavigationSp/NavigationSp';
+import SourceEasterEgg from '@/components/SourceEasterEgg/SourceEasterEgg';
 import { notoSansJp, poppins } from '@/constants/common';
 
 export default function RootLayout({
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${poppins.variable} ${notoSansJp.variable}`}>
+        <SourceEasterEgg />
         <GtmNoScript />
         <Analytics />
         <Icons />

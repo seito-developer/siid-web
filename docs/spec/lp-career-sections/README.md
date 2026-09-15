@@ -24,5 +24,5 @@ PSD から自動生成したセクションごとの座標・サイズ・テキ�
 | 13 | [VOICE(受講生の声)](./13-voice.md) | `voice` |  |
 | 14 | [FAQ](./14-faq.md) | `faq` |  |
 | 15 | [FREE GIFTS(7 大特典)](./15-present.md) | `present` |  |
-| 16 | [FREE COUNSELING(予約フォーム)](./16-counselling.md) | `counselling` |  |
+| 16 | [FREE COUNSELING(予約フォーム)](./16-counselling.md) | `counselling` | [補足](./16-counselling.notes.md) |
 | 17 | [SP ドロワーメニュー](./17-drawer.md) | `drawer` |  |

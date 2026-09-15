@@ -11,9 +11,10 @@ export default function News({ posts }: NewsProps) {
   return (
     <div className={styles.News}>
       <section className={styles.News__Inner}>
-        <h1 className={styles.News__Title}>
+        {/* セクション見出しのため h2。TOP の h1 はメインコピーが持つ(Issue #95) */}
+        <h2 className={styles.News__Title}>
           {'\<\/ News \>'}
-        </h1>
+        </h2>
         {posts.length > 0 ? (
           <NewsCarousel posts={posts} />
         ) : (
