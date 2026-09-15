@@ -2,7 +2,9 @@ import { Metadata } from 'next';
 
 import { handleStringHTML } from '@/utils/helper';
 
-export const commonTitle = 'ITエンジニア転職 × 生成AI特化のプログラミングスクール - SiiD';
+// 検索結果に出るのは全角 30 字前後のため、サイト名は短く保つ(Issue #96)。
+// ページ名と合わせて 32 字以内に収まる長さにしている。
+export const commonTitle = 'AIプログラミングスクール SiiD';
 
 // 本番サイトの公開 URL(canonical・OGP・sitemap の絶対 URL 生成に使用)。
 // 末尾スラッシュなしで統一し、環境ごとに NEXT_PUBLIC_SITE_URL で上書きできる。
@@ -16,6 +18,8 @@ export const pages = {
       en: 'Home',
     },
     url: '/',
+    metaTitle:
+      'AIプログラミングスクール SiiD | キャリアアップやAI/ITエンジニアへの転職は我々にお任せを。',
     description: 'SiiDは、ITエンジニア転職と生成AIに特化したプログラミングスクールです。<br />実践的なカリキュラムと最新の技術を学び、あなたのキャリアを次のステージへと導きます。',
   },
   careerPath: {
@@ -24,6 +28,8 @@ export const pages = {
       en: 'Career Path',
     },
     url: '/career-path',
+    metaDescription:
+      'SiiDの卒業生がどんな企業へ、どんな経歴から転職したのかをインタビュー記事で紹介しています。未経験からのエンジニア転職、現役エンジニアの年収アップなど、実際の事例を職種・年代別にご覧いただけます。',
     description: 'SiiDは学んで終わりではなく、その先の人生もあなたと共にありたいと考えています。<br />そのためのサポートもしっかりとご用意しています。',
   },
   courses: {
@@ -32,6 +38,8 @@ export const pages = {
       en: 'Course plan',
     },
     url: '/courses',
+    metaDescription:
+      'SiiDのコース内容と料金をご案内します。経済産業省のリスキル講座認定により受講料は給付金で最大80%OFF。目的に合わせて選べる複数のプランと、それぞれのサポート範囲を比較表でご確認いただけます。',
     description: 'SiiDのコースは、実践的なスキルを身につけるために設計されています。<br />業界の最新トレンドに基づいたカリキュラムで、あなたの成長をサポートします。',
   },
   community: {
@@ -40,6 +48,10 @@ export const pages = {
       en: 'Community',
     },
     url: '/community',
+    metaDescription:
+      'SiiDのコミュニティでは、受講生・卒業生・講師が学びや転職の情報を交換しています。一人で抱え込まず、同じ目標を持つ仲間と相談し合いながら学習を続けられる環境です。卒業後も参加いただけます。',
+    metaTitle:
+      'コミュニティ | AIプログラミングスクール SiiD',
     description: 'SiiDのコミュニティでは、学んだことを実践し、<br />キャリアを展開するための情報を共有します。',
   },
   service: {
@@ -48,6 +60,8 @@ export const pages = {
       en: 'Service',
     },
     url: '/service',
+    metaTitle:
+      'サービス紹介 | AIプログラミングスクール SiiD',
     description: 'SiiDは学んで終わりではなく、その先の人生もあなたと共にありたいと考えています。<br />そのためのサポートもしっかりとご用意しています。',
     // description は Headline の表示コピーを兼ねるため、SEO 用の文面は metaDescription で上書きする
     metaDescription: 'SiiDが提供するサービスの紹介ページです。生成AI時代のITエンジニア転職に向けた実践的な学習カリキュラムと、転職・キャリア形成までを見据えたサポート体制をご案内します。',
@@ -58,6 +72,8 @@ export const pages = {
       en: 'Counseling',
     },
     url: '/counseling',
+    metaDescription:
+      'SiiDの無料カウンセリングでは、現役エンジニアの講師が学習計画やキャリアのご相談に個別でお答えします。受講を迷っている段階でも構いません。所要60〜90分・オンライン・無理な勧誘はありません。',
     description: 'SiiDの無料カウンセリングでは、あなたのキャリアや学習に関する疑問や不安を解消します。<br />経験豊富なスタッフが、あなたの目標達成をサポートします。',
   },
   line: {
