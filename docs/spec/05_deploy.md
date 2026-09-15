@@ -111,3 +111,38 @@ SEO コンサルのレポート No.14(本文の章見出しに h1)と同種の�
 - なし(2026-09-15 時点)
 
 > 本番ドメインは `https://bug-fix.org/siid`(Cloudflare Worker プロキシ方式)で確定済み。旧 URL からのリダイレクトは [06_migration.md](./06_migration.md) §4(Issue #48)で扱う。
+
+---
+
+## フォント配信(2026-09-16・Issue #100)
+
+日本語(Noto Sans JP)は **next/font を使わず、自前サブセットを配信する**。next/font 経由だと
+Google Fonts の unicode-range 分割(124 チャンク)で TOP が 801KB を取得していたため。
+
+```
+scripts/fonts/
+├── subset-noto-sans-jp.sh   # 実行するとサブセットと CSS を生成する
+├── build-charsets.py        # site.txt → core.txt / ext.txt
+├── build-css.py             # charsets → src/styles/noto-sans-jp.css(@font-face)
+├── collect-charset.mjs      # 実ページから収録文字を採取(--collect のとき)
+└── charsets/
+    ├── site.txt             # サイトに出ている文字(採取結果。これだけが入力)
+    ├── core.txt             # site + ASCII + JIS X 0208 非漢字(生成物)
+    └── ext.txt              # JIS X 0208 第1水準のうち core に無いもの(生成物)
+```
+
+**2 段構成にしている理由。** JIS 第1水準(3,601 字)を 1 ファイルにまとめると 2 ウェイトで
+1,042KB になり、**現状の 801KB より悪化する**(実測)。そこで常に読む core と、珍しい漢字が
+出たときだけ unicode-range 経由で取得される ext に分けた。
+
+| 段 | 収録 | 2 ウェイト計 | 読み込み |
+|---|---|---:|---|
+| core | 1,181 字(サイトに出ている文字 + かな・記号) | 237KB | 常に(preload あり) |
+| ext | 2,420 字(JIS 第1水準の残り) | 677KB | 該当文字が出たときだけ |
+
+microCMS の記事タイトルに第1水準の外(人名用漢字など)が出た場合は
+`'Hiragino Sans'` 以降のシステムフォントへフォールバックする。
+
+**文字を追加したくなったら** `./scripts/fonts/subset-noto-sans-jp.sh --collect` を実行する
+(本番を巡回して `site.txt` を更新し、woff2 と CSS を作り直す)。`src/styles/noto-sans-jp.css` は
+生成物なので手で編集しない。

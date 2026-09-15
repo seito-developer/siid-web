@@ -14,6 +14,11 @@
   --plan-full-support: #e0804c;
   --plan-vip: #924a8f;
   --font-bagor: 'Bagor', sans-serif;
+
+  /* 実体は noto-sans-jp.css の @font-face(自前サブセット)。next/font 経由だと
+     Google Fonts の unicode-range 124 チャンクで TOP が 801KB を取得していた(Issue #100)。
+     収録は JIS X 0208 第1水準まで。それ以外はシステムフォントへフォールバックする。 */
+  --font-noto-sans-jp: 'Noto Sans JP Site', 'Hiragino Sans', 'Yu Gothic UI', 'Meiryo', sans-serif;
 }
 
 html,
