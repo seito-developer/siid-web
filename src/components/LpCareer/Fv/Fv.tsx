@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { LP_CAREER_IMAGE_QUALITY, lpCareerAsset } from '@/constants/lpCareerAssets';
 
 import CtaButton from '../CtaButton/CtaButton';
-import SectionBg from '../SectionBg/SectionBg';
 
 import styles from './Fv.module.css';
 import FvVideo from './FvVideo';
@@ -64,37 +63,13 @@ export default function Fv() {
       </div>
 
       <div className={styles.Fv__Band}>
-        {/* SP は回路基板の背景・メダルの意匠・CTA の枠を書き出し画像に含める */}
-        <SectionBg
-          name="fv-band"
-          spOnly
-          pcWidth={750}
-          pcHeight={575}
-          spWidth={750}
-          spHeight={575}
-          className={styles.Fv__BandBg}
-        />
-
-        <ul className={styles.Fv__Medals}>
+        <ul className={styles.Fv__Medals} aria-label="受講実績">
           {MEDALS.map((medal) => (
             <li key={medal.label} className={styles.Fv__Medal}>
-              <Image
-                className={styles.Fv__MedalImage}
-                src={lpCareerAsset('/images/lp-career/fv-medal.webp')}
-                alt=""
-                width={169}
-                height={181}
-                quality={LP_CAREER_IMAGE_QUALITY}
-                priority
-              />
-              <span className={styles.Fv__MedalLabel}>
-                {medal.label}
-                <br />
-                {medal.sub}
-              </span>
-              <span className={styles.Fv__MedalValue}>
-                {medal.value}
-                <small>{medal.unit}</small>
+              {/* 文字を含むスプライト。読み上げは下のテキストにまとめる。 */}
+              <span className={styles.Fv__MedalSprite} aria-hidden="true" />
+              <span className={styles.Fv__MedalText}>
+                {medal.label}{medal.sub} {medal.value}{medal.unit}
               </span>
             </li>
           ))}

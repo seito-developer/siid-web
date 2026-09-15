@@ -156,8 +156,7 @@
 
 /* --- 実績メダルと CTA の帯 ----------------------------------------------- */
 
-/* SP: PSD 実測(@2x)で帯は 750x575 @y898(= CSS 375x287.5 @y449)。
-   回路基板の背景・メダルの意匠・CTA の枠はすべて背景画像に含める */
+/* PC/SP とも背景は装飾のみ。SP は縦横比を保って中央を切り出す。 */
 .Fv__Band {
   position: absolute;
   left: 0;
@@ -165,109 +164,50 @@
   bottom: 0;
   z-index: 1;
   height: 287.5px;
-  padding: 0;
-  background: none;
-}
-
-/* <picture> 自体もレイアウトに乗るため、位置は picture に指定する */
-.Fv__Band > picture {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.Fv__BandBg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  background: url('/siid/images/lp-career/fv-band-bg.png') center / cover no-repeat;
 }
 
 .Fv__Medals {
   position: absolute;
-  inset: 0;
+  top: 39.5px;
+  left: 8.25px;
   z-index: 1;
-  display: block;
+  display: flex;
   gap: 0;
 }
 
-/* メダルの中心は PSD 実測で x68.25 / 187.75 / 308.75 */
 .Fv__Medal {
-  position: absolute;
-  top: 0;
-  display: block;
+  position: relative;
   width: 120px;
-  text-align: center;
+  /* 切り出し要素の外側に影を描き、端で欠けないようにする。 */
+  filter: drop-shadow(0 4px 5px rgb(0 0 0 / 30%));
 }
 
-.Fv__Medal:nth-child(1) {
-  left: 8.25px;
+/* 支給画像 498×162 を、166×162 の3コマとして共有する。 */
+.Fv__MedalSprite {
+  display: block;
+  width: 100%;
+  aspect-ratio: 166 / 162;
+  background: url('/siid/images/lp-career/fv-medals.png') 0 0 / 300% 100% no-repeat;
 }
 
-.Fv__Medal:nth-child(2) {
-  left: 127.75px;
+.Fv__Medal:nth-child(2) .Fv__MedalSprite {
+  background-position-x: 50%;
 }
 
-.Fv__Medal:nth-child(3) {
-  left: 248.75px;
+.Fv__Medal:nth-child(3) .Fv__MedalSprite {
+  background-position-x: 100%;
 }
 
-/* メダルの絵は背景画像に含まれる */
-.Fv__MedalImage {
-  display: none;
-}
-
-.Fv__MedalLabel,
-.Fv__MedalValue {
+.Fv__MedalText {
   position: absolute;
-  font-family: var(--lp-career-font-mincho);
-  color: var(--lp-career-white);
-  text-align: center;
-  line-height: 1.12;
-}
-
-.Fv__MedalLabel,
-.Fv__MedalValue {
-  left: 0;
-  right: 0;
-}
-
-.Fv__MedalLabel {
-  top: 54.5px;
-  font-size: 14.5px;
-  line-height: 1.15;
-  letter-spacing: 0.16em;
-  text-indent: 0.16em;
-}
-
-.Fv__MedalValue {
-  top: 88px;
-  font-size: 38px;
-  line-height: 1;
-  letter-spacing: 0.02em;
-}
-
-.Fv__Medal:nth-child(2) .Fv__MedalLabel {
-  top: 57.5px;
-}
-
-.Fv__Medal:nth-child(2) .Fv__MedalValue {
-  top: 93px;
-}
-
-.Fv__Medal:nth-child(3) .Fv__MedalLabel {
-  top: 61.5px;
-  font-size: 13.5px;
-}
-
-.Fv__Medal:nth-child(3) .Fv__MedalValue {
-  top: 94px;
-  font-size: 35px;
-}
-
-.Fv__MedalValue small {
-  font-size: 0.42em;
-  letter-spacing: 0.08em;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /* PSD: ※当社集計 75x13 @(631,1227) = CSS 37.5x6.5 @(315.5,164.5) */
@@ -284,7 +224,8 @@
 }
 
 /* PSD: 緑の枠 663x156 @(45,1266) = CSS 331.5x78 @(22.5,184) */
-.Fv__Cta {
+.Fv__Cta.Fv__Cta {
+  --cta-background: url('/siid/images/lp-career/cta-button.webp');
   position: absolute;
   top: 184px;
   left: 22.5px;
@@ -370,73 +311,28 @@
   /* 帯は FV の下端に重ね、メダルは帯の上へはみ出す(PSD の配置)。
      基準画像の実測: 帯 y616 / メダルの金枠 x163..659・y587..743 /
      CTA 396x91 @(740,648) / 注記 @(590,750) */
-  .Fv__Band > picture {
-    display: none;
-  }
-
-  .Fv__MedalImage {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
   .Fv__Band {
-    position: absolute;
-    inset: auto 0 0;
     z-index: 2;
-    display: block;
     height: 165px;
-    padding: 0;
-    background: linear-gradient(90deg, var(--lp-career-fvband-from) 0%, #1b2a6b 50%, var(--lp-career-fvband-to) 100%);
   }
 
   .Fv__Medals {
-    position: absolute;
-    top: -46px;
+    top: -25px;
     left: 159px;
-    right: auto;
-    display: flex;
-    gap: 0;
-    justify-content: flex-start;
+    gap: 3px;
   }
 
-  .Fv__Medal,
-  .Fv__Medal:nth-child(1),
-  .Fv__Medal:nth-child(2),
-  .Fv__Medal:nth-child(3) {
-    position: relative;
-    top: auto;
-    left: auto;
-    display: grid;
-    place-items: center;
-    width: 169px;
-  }
-
-  /* 3 つのメダルはすべて同じ級数。nth-child 側に別の級数を残すと
-     詳細度で勝ってしまい、1 枚目だけ大きく見える不具合になる */
-  .Fv__MedalLabel,
-  .Fv__Medal:nth-child(2) .Fv__MedalLabel,
-  .Fv__Medal:nth-child(3) .Fv__MedalLabel {
-    top: 33px;
-    left: 0;
-    right: 0;
-    font-size: 21.2px;
-  }
-
-  .Fv__MedalValue,
-  .Fv__Medal:nth-child(2) .Fv__MedalValue,
-  .Fv__Medal:nth-child(3) .Fv__MedalValue {
-    top: 74px;
-    left: 0;
-    right: 0;
-    font-size: 73px;
+  .Fv__Medal {
+    width: 166px;
+    filter: drop-shadow(0 6px 7px rgb(0 0 0 / 30%));
   }
 
   /* FV の CTA だけカンプの寸法が他セクションと違う(396x91)。
      CtaButton 側の `.is_pc` は min-width で効いているため min-width も上書きする。
      ラベル・矢印は CtaButton 側が 2 クラスの詳細度で指定しているので、
      クラスを重ねて詳細度を合わせる */
-  .Fv__Cta {
+  .Fv__Cta.Fv__Cta {
+    --cta-background: url('/siid/images/lp-career/cta-button-pc.webp');
     position: absolute;
     top: 32px;
     left: 740px;
@@ -458,7 +354,7 @@
 
   .Fv__Note {
     position: absolute;
-    top: 134px;
+    top: 144px;
     left: 590px;
     right: auto;
     bottom: auto;
@@ -503,31 +399,10 @@
     margin-top: 14px;
   }
   .Fv__Badge { margin-top: 20px; }
-  .Fv__Medals { top: -31px; }
-  .Fv__MedalValue,
-  .Fv__Medal:nth-child(2) .Fv__MedalValue,
-  .Fv__Medal:nth-child(3) .Fv__MedalValue { font-size: 63px; }
 }
 @media screen and (min-width: 768px) {
-  .Fv__Band {
-    background: url('/siid/images/lp-career/fv-band-pc.webp') center / 100% 100% no-repeat;
-  }
   .Fv__Copy { transform: skewX(-8deg); transform-origin: left center; }
 }
 @media screen and (max-width: 767px) {
   .Fv__Copy { transform: skewX(-8deg); }
-}
-
-/* メダルの文字は淡い金色。数字は斜体とし、説明との間隔を確保する。 */
-.Fv__MedalLabel,
-.Fv__MedalValue {
-  background: linear-gradient(180deg, #fff5c5 0%, #fffde6 45%, #e8d18b 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-}
-.Fv__MedalValue { font-style: italic; padding-top: 3px; }
-.Fv__MedalValue small { font-style: normal; }
-@media screen and (min-width: 768px) {
-  .Fv__MedalValue { padding-top: 6px; }
 }
