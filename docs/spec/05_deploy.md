@@ -77,7 +77,7 @@ SEO コンサルのレポート No.1(title・description の重複)はリニュ�
 - **サイト名(`commonTitle`)は `AIプログラミングスクール SiiD`(18 字)。** 従来は `ITエンジニア転職 × 生成AI特化のプログラミングスクール - SiiD`(32 字)で、これだけで表示枠を使い切っていた
 - title は `{ページ名} | {サイト名}` で**全角 32 字以内**。`pages.<key>.name.ja` から自動生成される。`name.ja` はナビ・パンくず・見出しでも使うため、title だけ変えたい場合は **`metaTitle` を足す**(`service` → サービス紹介、`community` → コミュニティ)
 - **TOP は例外**。オーナー指定で `AIプログラミングスクール SiiD | キャリアアップやAI/ITエンジニアへの転職は我々にお任せを。`(52 字)。検索結果では後半が切れるが、ブランド名とカテゴリが先頭にあるため意味は通る
-- description は**全角 70〜120 字**。`description` は画面にも表示される(`Headline` の説明文)ため、**SEO 用の文面が必要なときは `metaDescription` を足す**(画面表示は変わらない)
+- description は**全角 70〜120 字**で、`pages.<key>.description` の**1 つだけ**を画面表示と meta の両方に使う(Issue #112)。画面用と SEO 用を分ける `metaDescription` は廃止した。ページを開いている訪問者は説明文をほとんど読まないため、**検索結果で効く文面を優先する**。文中に `<br />` を 1 つ入れて画面での改行位置を整えてよい(meta 側では `handleStringHTML(desc, false)` が除去する)
 - `commonTitle` は 404 の title・`manifest.ts` の `name`・`JsonLd` の `alternateName` でも使う。短縮によりいずれも自然な値になった
 
 ---

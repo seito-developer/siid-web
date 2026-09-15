@@ -28,9 +28,7 @@ export const pages = {
       en: 'Career Path',
     },
     url: '/career-path',
-    metaDescription:
-      'SiiDの卒業生がどんな企業へ、どんな経歴から転職したのかをインタビュー記事で紹介しています。未経験からのエンジニア転職、現役エンジニアの年収アップなど、実際の事例を職種・年代別にご覧いただけます。',
-    description: 'SiiDは学んで終わりではなく、その先の人生もあなたと共にありたいと考えています。<br />そのためのサポートもしっかりとご用意しています。',
+    description: 'SiiDの卒業生がどんな企業へ、どんな経歴から転職したのかをインタビュー記事で紹介しています。<br />未経験からのエンジニア転職、現役エンジニアの年収アップなど、実際の事例を職種・年代別にご覧いただけます。',
   },
   courses: {
     name: {
@@ -38,9 +36,7 @@ export const pages = {
       en: 'Course plan',
     },
     url: '/courses',
-    metaDescription:
-      'SiiDのコース内容と料金をご案内します。経済産業省のリスキル講座認定により受講料は給付金で最大80%OFF。目的に合わせて選べる複数のプランと、それぞれのサポート範囲を比較表でご確認いただけます。',
-    description: 'SiiDのコースは、実践的なスキルを身につけるために設計されています。<br />業界の最新トレンドに基づいたカリキュラムで、あなたの成長をサポートします。',
+    description: 'SiiDのコース内容と料金をご案内します。経済産業省のリスキル講座認定により受講料は給付金で最大80%OFF。<br />目的に合わせて選べる複数のプランと、それぞれのサポート範囲を比較表でご確認いただけます。',
   },
   community: {
     name: {
@@ -48,11 +44,9 @@ export const pages = {
       en: 'Community',
     },
     url: '/community',
-    metaDescription:
-      'SiiDのコミュニティでは、受講生・卒業生・講師が学びや転職の情報を交換しています。一人で抱え込まず、同じ目標を持つ仲間と相談し合いながら学習を続けられる環境です。卒業後も参加いただけます。',
     metaTitle:
       'コミュニティ | AIプログラミングスクール SiiD',
-    description: 'SiiDのコミュニティでは、学んだことを実践し、<br />キャリアを展開するための情報を共有します。',
+    description: 'SiiDのコミュニティでは、受講生・卒業生・講師が学びや転職の情報を交換しています。<br />一人で抱え込まず、同じ目標を持つ仲間と相談し合いながら学習を続けられる環境です。卒業後も参加いただけます。',
   },
   service: {
     name: {
@@ -62,9 +56,7 @@ export const pages = {
     url: '/service',
     metaTitle:
       'サービス紹介 | AIプログラミングスクール SiiD',
-    description: 'SiiDは学んで終わりではなく、その先の人生もあなたと共にありたいと考えています。<br />そのためのサポートもしっかりとご用意しています。',
-    // description は Headline の表示コピーを兼ねるため、SEO 用の文面は metaDescription で上書きする
-    metaDescription: 'SiiDが提供するサービスの紹介ページです。生成AI時代のITエンジニア転職に向けた実践的な学習カリキュラムと、転職・キャリア形成までを見据えたサポート体制をご案内します。',
+    description: 'SiiDが提供するサービスの紹介ページです。生成AI時代のITエンジニア転職に向けた実践的な学習カリキュラムと、<br />転職・キャリア形成までを見据えたサポート体制をご案内します。',
   },
   counseling: {
     name: {
@@ -72,9 +64,7 @@ export const pages = {
       en: 'Counseling',
     },
     url: '/counseling',
-    metaDescription:
-      'SiiDの無料カウンセリングでは、現役エンジニアの講師が学習計画やキャリアのご相談に個別でお答えします。受講を迷っている段階でも構いません。所要60〜90分・オンライン・無理な勧誘はありません。',
-    description: 'SiiDの無料カウンセリングでは、あなたのキャリアや学習に関する疑問や不安を解消します。<br />経験豊富なスタッフが、あなたの目標達成をサポートします。',
+    description: 'SiiDの無料カウンセリングでは、現役エンジニアの講師が学習計画やキャリアのご相談に個別でお答えします。<br />受講を迷っている段階でも構いません。所要60〜90分・オンライン・無理な勧誘はありません。',
   },
   line: {
     name: {
@@ -82,8 +72,7 @@ export const pages = {
       en: 'Free trial',
     },
     url: '/line',
-    description: 'SiiDは学んで終わりではなく、その先の人生もあなたと共にありたいと考えています。<br />そのためのサポートもしっかりとご用意しています。',
-    metaDescription: 'SiiDのLINE公式アカウントに登録すると、プログラミング学習やITエンジニア転職に役立つ特典を無料で受け取れます。まずはLINE登録から、お気軽にSiiDをご体験ください。',
+    description: 'SiiDのLINE公式アカウントに登録すると、プログラミング学習やITエンジニア転職に役立つ特典を無料で受け取れます。<br />まずはLINE登録から、お気軽にSiiDをご体験ください。',
   },
   notFound: {
     name: {
@@ -100,8 +89,7 @@ export const pages = {
       en: 'White Paper',
     },
     url: '/white-paper',
-    description: '公式LINEへのご登録で、<br />SiiDの紹介資料をダウンロードいただけます。',
-    metaDescription: 'SiiDのサービス紹介資料をダウンロードいただけます。公式LINEへのご登録で、コース内容・料金・転職サポートの詳細をまとめた資料をお受け取りください。',
+    description: 'SiiDのサービス紹介資料をダウンロードいただけます。<br />公式LINEへのご登録で、コース内容・料金・転職サポートの詳細をまとめた資料をお受け取りください。',
   },
   // 旧サイト由来のフラット URL 版サンクスページ。既存の /counseling/complete(counselingComplete)とは別ルート
   counselingCompleteFlat: {
@@ -118,12 +106,11 @@ export const pages = {
       en: 'SiiD LP',
     },
     url: '/lp-career',
-    description: 'AI時代に、選ばれるエンジニアへ。<br />元人事部長の現役エンジニアが、学習から内定まで総合プロデュースします。',
+    description:
+      '未経験からITエンジニア転職を目指すAIプログラミングスクールSiiD。経済産業省リスキル講座認定で、受講料は給付金により最大80%OFF。元人事部長の現役エンジニアが採用する側の目線で、学習からポートフォリオ制作・書類選考・面接対策まで総合プロデュースします。目標達成率88%・受講生満足度92%。無料カウンセリングを受付中です。',
     // 「ページ内容 | サイト名」で全角 28 字前後に収める(リリース前チェックリスト)。
     // 既定の `name.ja | commonTitle` は 58 字あり、「プログラミングスクール」「SiiD」も重複する。
     metaTitle: '未経験からITエンジニア転職 | AIプログラミングスクール SiiD',
-    metaDescription:
-      '未経験からITエンジニア転職を目指すAIプログラミングスクールSiiD。経済産業省リスキル講座認定で、受講料は給付金により最大80%OFF。元人事部長の現役エンジニアが採用する側の目線で、学習からポートフォリオ制作・書類選考・面接対策まで総合プロデュースします。目標達成率88%・受講生満足度92%。無料カウンセリングを受付中です。',
   },
   counselingCompleteLpCareer: {
     name: { ja: '無料カウンセリングのご予約完了', en: 'Thank you' },
@@ -147,7 +134,6 @@ interface PageMeta {
   description: string;
   // 既定の `name.ja | commonTitle` では長すぎる/表現を変えたいページで使う
   metaTitle?: string;
-  metaDescription?: string;
 }
 
 interface BuildPageMetadataOptions {
@@ -164,7 +150,8 @@ interface BuildPageMetadataOptions {
 // SITE_URL 起点の絶対 URL で出力する。
 export function buildPageMetadata(page: PageMeta, options: BuildPageMetadataOptions = {}): Metadata {
   const title = options.title ?? page.metaTitle ?? `${page.name.ja} | ${commonTitle}`;
-  const description = page.metaDescription ?? handleStringHTML(page.description, false);
+  // description は画面表示と meta の両方で使う。<br /> は meta では除去する(Issue #112)。
+  const description = handleStringHTML(page.description, false);
   const canonical = `${SITE_URL}${options.canonicalPath ?? page.url}`.replace(/\/$/, '');
   const ogpImage = `${SITE_URL}${options.ogpImagePath ?? OGP_IMAGE_PATH}`;
 
