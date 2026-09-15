@@ -1,6 +1,6 @@
 /*
- * FREE COUNSELING。黄色い帯・4 つの特徴タイル(枠とアイコン)はセクション背景の
- * 画像に含まれる。CSS では文字だけを実測座標で重ねる。
+ * FREE COUNSELING。特徴タイルは既存素材のスプライトで横1列に配置する。
+ * セクション背景は上部だけ表示し、元の2段タイルと見本フォームを隠す。
  *
  * PC: セクション 1440x1019
  * SP: セクション 750x2374(= CSS 375x1187)
@@ -13,7 +13,7 @@
 .Counselling {
   position: relative;
   overflow: hidden;
-  min-height: 1187px;
+  min-height: 0;
   padding: 0;
   background: #0b1230;
 }
@@ -115,48 +115,49 @@
   text-align: center;
 }
 
-/* タイルの枠とアイコンは背景画像に含まれる */
+/* 支給済みSP画像内の256px角タイルを80px角のスプライトとして再利用する。 */
 .Counselling__Points {
-  position: static;
-  display: block;
+  position: absolute;
+  top: 360px;
+  left: 17px;
+  right: 17px;
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  justify-content: space-between;
 }
 
 .Counselling__Points li {
-  position: absolute;
-  padding: 0;
-  border: 0;
-  background: none;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  padding-top: 41px;
+  background-image: url('/siid/images/lp-career/sp/counselling.webp');
+  background-size: 234.375px 741.875px;
+  background-repeat: no-repeat;
   font-family: var(--lp-career-font-body);
   font-weight: 700;
-  font-size: 18px;
-  line-height: 1.31;
-  letter-spacing: var(--lp-career-tracking-md);
+  font-size: 12px;
+  line-height: 1.3;
   color: var(--lp-career-white);
   text-align: center;
 }
 
 .Counselling__Points li:nth-child(1) {
-  top: 442px;
-  left: 55.5px;
-  width: 128px;
+  background-position: -34.6875px -236.5625px;
 }
 
 .Counselling__Points li:nth-child(2) {
-  top: 459px;
-  left: 192px;
-  width: 128px;
+  background-position: -120px -235.9375px;
+  padding-top: 54px;
 }
 
 .Counselling__Points li:nth-child(3) {
-  top: 592px;
-  left: 56px;
-  width: 128px;
+  background-position: -35px -321.875px;
+  padding-top: 54px;
 }
 
 .Counselling__Points li:nth-child(4) {
-  top: 572.5px;
-  left: 192px;
-  width: 128px;
+  background-position: -120px -321.5625px;
 }
 
 .Counselling__Widget {
@@ -226,32 +227,11 @@
     text-align: left;
   }
 
-  .Counselling__Points li {
-    font-size: 23.76px;
-  }
-
-  .Counselling__Points li:nth-child(1) {
-    top: 636px;
+  .Counselling__Points {
+    top: 560px;
     left: 291px;
-    width: 153px;
-  }
-
-  .Counselling__Points li:nth-child(2) {
-    top: 657px;
-    left: 453px;
-    width: 153px;
-  }
-
-  .Counselling__Points li:nth-child(3) {
-    top: 815px;
-    left: 292px;
-    width: 152px;
-  }
-
-  .Counselling__Points li:nth-child(4) {
-    top: 793px;
-    left: 453px;
-    width: 153px;
+    right: auto;
+    width: 342px;
   }
 
   .Counselling__Widget {
@@ -285,8 +265,12 @@
 
 /* 外部フォームは日時選択・確認画面で高さが変わる。見本画像の上へ実フォームを
    不透明な白いカードで重ね、読み込み後の高さを文書フローへ反映する。 */
-.Counselling > picture img { height: 1187px; }
-.Counselling__Inner { height: auto; min-height: 1187px; padding-top: 675px; padding-bottom: 45px; }
+/* 元の2段タイルが始まる前に背景を暗色へなじませる。素材自体は変更しない。 */
+.Counselling > picture img {
+  height: 1187px;
+  mask-image: linear-gradient(#000 300px, transparent 360px);
+}
+.Counselling__Inner { height: auto; min-height: 0; padding-top: 454px; padding-bottom: 45px; }
 .Counselling__Inner > .Counselling__Booking {
   position: relative; inset: auto;
   width: 321px; min-height: 513px; margin-inline: auto;
@@ -307,9 +291,20 @@
 }
 .Counselling__Booking { overflow-anchor: none; }
 @media screen and (min-width: 768px) {
-  .Counselling > picture img { height: 1019px; }
+  .Counselling > picture img { height: 1019px; mask-image: linear-gradient(#000 500px, transparent 550px); }
   .Counselling__Inner { min-height: 1019px; padding-top: 158px; padding-bottom: 80px; }
   .Counselling__Inner > .Counselling__Booking { width: 513px; min-height: 748px; margin: 0 0 0 687px; padding: 24px; }
   .Counselling__BookingTitle { font-size: 24px; }
   .Counselling__Booking .Counselling__Widget { min-height: 630px; }
+}
+
+/* 幅広・低いSP画面でも予約欄が見えるよう、必要な場合だけアンカー位置を下げる。
+   LP全体のzoomを戻して計算し、フォーム上部に約160px分の表示領域を確保する。 */
+@media screen and (max-width: 767px) {
+  .Counselling.Counselling[id] {
+    scroll-margin-top: min(
+      var(--lp-career-header-h-sp),
+      calc(100vh / var(--lp-career-canvas-scale) - 670px)
+    );
+  }
 }
