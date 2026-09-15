@@ -151,7 +151,7 @@ export const metadata: Metadata = buildPageMetadata(pages.xxx, { noindex: true }
 buildPageMetadata(pages.careerPath, { canonicalPath: `${pages.careerPath.url}/${page}` });
 ```
 
-- SEO 用の説明文を画面表示用の `description` と分けたい場合は `pages.xxx.metaDescription` を定義する（`buildPageMetadata` が優先使用）
+- `description` は画面表示と meta description を兼ねる**単一のフィールド**（Issue #112）。検索結果で効く文面を優先し、画面での改行位置は文中の `<br />` で調整する（meta 側では除去される）
 - canonical / OGP の絶対 URL は `SITE_URL`（環境変数 `NEXT_PUBLIC_SITE_URL`、デフォルト `https://bug-fix.org/siid`）起点で生成される
 
 `description` は `<br />` タグを含む HTML 文字列のため、JSX 表示用には `handleStringHTML()` で変換して使用：
