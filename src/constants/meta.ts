@@ -28,7 +28,7 @@ export const pages = {
       en: 'Career Path',
     },
     url: '/career-path',
-    description: 'SiiDの卒業生がどんな企業へ、どんな経歴から転職したのかをインタビュー記事で紹介しています。<br />未経験からのエンジニア転職、現役エンジニアの年収アップなど、実際の事例を職種・年代別にご覧いただけます。',
+    description: 'SiiDの卒業生がどんな企業へ、どんな経歴から転職したのかをインタビュー記事で紹介しています。未経験からのエンジニア転職、現役エンジニアの年収アップなど、実際の事例を職種・年代別にご覧いただけます。',
   },
   courses: {
     name: {
@@ -36,7 +36,7 @@ export const pages = {
       en: 'Course plan',
     },
     url: '/courses',
-    description: 'SiiDのコース内容と料金をご案内します。経済産業省のリスキル講座認定により受講料は給付金で最大80%OFF。<br />目的に合わせて選べる複数のプランと、それぞれのサポート範囲を比較表でご確認いただけます。',
+    description: 'SiiDのコース内容と料金をご案内します。経済産業省のリスキル講座認定により受講料は給付金で最大80%OFF。目的に合わせて選べる複数のプランと、それぞれのサポート範囲を比較表でご確認いただけます。',
   },
   community: {
     name: {
@@ -46,7 +46,7 @@ export const pages = {
     url: '/community',
     metaTitle:
       'コミュニティ | AIプログラミングスクール SiiD',
-    description: 'SiiDのコミュニティでは、受講生・卒業生・講師が学びや転職の情報を交換しています。<br />一人で抱え込まず、同じ目標を持つ仲間と相談し合いながら学習を続けられる環境です。卒業後も参加いただけます。',
+    description: 'SiiDのコミュニティでは、受講生・卒業生・講師が学びや転職の情報を交換しています。一人で抱え込まず、同じ目標を持つ仲間と相談し合いながら学習を続けられる環境です。卒業後も参加いただけます。',
   },
   service: {
     name: {
@@ -56,7 +56,7 @@ export const pages = {
     url: '/service',
     metaTitle:
       'サービス紹介 | AIプログラミングスクール SiiD',
-    description: 'SiiDが提供するサービスの紹介ページです。生成AI時代のITエンジニア転職に向けた実践的な学習カリキュラムと、<br />転職・キャリア形成までを見据えたサポート体制をご案内します。',
+    description: 'SiiDが提供するサービスの紹介ページです。生成AI時代のITエンジニア転職に向けた実践的な学習カリキュラムと、転職・キャリア形成までを見据えたサポート体制をご案内します。',
   },
   counseling: {
     name: {
@@ -64,7 +64,7 @@ export const pages = {
       en: 'Counseling',
     },
     url: '/counseling',
-    description: 'SiiDの無料カウンセリングでは、現役エンジニアの講師が学習計画やキャリアのご相談に個別でお答えします。<br />受講を迷っている段階でも構いません。所要60〜90分・オンライン・無理な勧誘はありません。',
+    description: 'SiiDの無料カウンセリングでは、現役エンジニアの講師が学習計画やキャリアのご相談に個別でお答えします。受講を迷っている段階でも構いません。所要60〜90分・オンライン・無理な勧誘はありません。',
   },
   line: {
     name: {
@@ -72,7 +72,7 @@ export const pages = {
       en: 'Free trial',
     },
     url: '/line',
-    description: 'SiiDのLINE公式アカウントに登録すると、プログラミング学習やITエンジニア転職に役立つ特典を無料で受け取れます。<br />まずはLINE登録から、お気軽にSiiDをご体験ください。',
+    description: 'SiiDのLINE公式アカウントに登録すると、プログラミング学習やITエンジニア転職に役立つ特典を無料で受け取れます。まずはLINE登録から、お気軽にSiiDをご体験ください。',
   },
   notFound: {
     name: {
@@ -89,7 +89,7 @@ export const pages = {
       en: 'White Paper',
     },
     url: '/white-paper',
-    description: 'SiiDのサービス紹介資料をダウンロードいただけます。<br />公式LINEへのご登録で、コース内容・料金・転職サポートの詳細をまとめた資料をお受け取りください。',
+    description: 'SiiDのサービス紹介資料をダウンロードいただけます。公式LINEへのご登録で、コース内容・料金・転職サポートの詳細をまとめた資料をお受け取りください。',
   },
   // 旧サイト由来のフラット URL 版サンクスページ。既存の /counseling/complete(counselingComplete)とは別ルート
   counselingCompleteFlat: {
