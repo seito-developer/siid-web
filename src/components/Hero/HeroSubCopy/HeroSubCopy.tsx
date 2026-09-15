@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function HeroSubCopy() {
   return (
-    <h1>
+    <p>
       <svg
         width="263"
         height="61"
@@ -224,6 +224,6 @@ export default function HeroSubCopy() {
           </clipPath>
         </defs>
       </svg>
-    </h1>
+    </p>
   );
 }

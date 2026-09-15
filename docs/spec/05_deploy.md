@@ -70,6 +70,18 @@ TOP の News(「コラム」記事)と卒業生の進路(「受講生様イン�
 - **構造化データ**: TOP に Organization の JSON-LD(`src/components/JsonLd/JsonLd.tsx`)
 - **画像**: 300KB 超の PNG/JPG を WebP 化(`courses/langs/` はディレクトリごと変換)。意味のある画像の空 alt を解消(装飾 SVG は空 alt を維持)。**例外**: `strengthcard/*.png` は APNG(アニメーション付き)のため WebP 変換対象外(変換するとアニメーションが失われる)
 
+## 見出し構造(2026-09-15・Issue #95)
+
+SEO コンサルのレポート No.14(本文の章見出しに h1)と同種の問題が本体側にもあったため、次の方針に統一した。
+
+- **h1 は 1 ページに 1 つ。日本語でページ内容を表す。**
+  - 下層ページ: `Headline` の**日本語**(`subTitle`)が h1。英語(`title`)は飾りのラベルなので `span`
+  - TOP: FV のメインコピーが h1。SVG でテキストとして読めないため、同じ文言(`人生を切り開く、あなたらしい学びと進み方を見つける`)を視覚的非表示で入れ、SVG 側は `aria-hidden` で装飾扱いにしている
+- セクション見出しは h2 以下。`News` の `</ News >` は h2
+- **タグを入れ替えても見た目を変えないこと。** 入れ替えで行ボックスが変わるため、`Headline__SubTitle` は `display: inline`、`Headline__Title` は `display: block` を明示している(この指定を外すと下層ページの高さが 6px ずれる)
+
+---
+
 ## 公開前チェックリスト
 
 - [x] OGP 画像 / favicon / apple-touch-icon の設定(Figma 4265:8754 / 4265:8761 / 4265:8766 から書き出し)(Issue #36)

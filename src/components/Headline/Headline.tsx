@@ -14,8 +14,10 @@ export default function Headline({ subTitle, title, description }: Props) {
   return (
     <div className={styles.Headline}>
       <header className={styles.Headline__Container}>
-        <span className={styles.Headline__SubTitle}>{subTitle}</span>
-        <h1 className={styles.Headline__Title}>{title}</h1>
+        {/* ページ内容を表す日本語を h1 にする。英語は飾りのラベルなので span(Issue #95)。
+            クラスは従来どおり文字に紐づけたままなので見た目は変わらない。 */}
+        <h1 className={styles.Headline__SubTitle}>{subTitle}</h1>
+        <span className={styles.Headline__Title}>{title}</span>
         <Corner top="0" left="-20px" position={CornerPosition.TOP_RIGHT} />
         <Corner
           bottom="-20px"

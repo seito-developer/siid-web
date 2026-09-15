@@ -29,9 +29,15 @@ export default function Hero({ news }: HeroProps) {
   return (
     <div className={styles.Hero}>
       <div className={styles.Hero__Copy}>
-        <div className={styles.Hero__MainCopy} data-opening="main-copy">
-          {isPc ? <HeroMainCopyPc /> : <HeroMainCopy />}
-        </div>
+        {/* TOP の h1。メインコピーは SVG でテキストとして読めないため、同じ文言を
+            視覚的非表示で入れて h1 の中身にする(Issue #95)。SVG 側は装飾扱い。
+            見た目とオープニング演出(data-opening="main-copy" 配下の path を掴む)は変えない。 */}
+        <h1 className={styles.Hero__MainCopy} data-opening="main-copy">
+          <span className={styles.Hero__VisuallyHidden}>
+            人生を切り開く、あなたらしい学びと進み方を見つける
+          </span>
+          <span aria-hidden="true">{isPc ? <HeroMainCopyPc /> : <HeroMainCopy />}</span>
+        </h1>
         <div className={styles.Hero__SubCopy} data-opening="sub-copy">
           {isPc ? <HeroSubCopyPc /> : <HeroSubCopy />}
         </div>
