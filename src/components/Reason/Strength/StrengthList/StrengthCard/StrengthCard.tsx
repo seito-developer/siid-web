@@ -9,13 +9,15 @@ interface StrengthCardProps {
 }
 
 export default function StrengthCard({ icon, title, items }: StrengthCardProps) {
-  // APNG(アニメーション付きPNG)のため WebP 変換対象外(変換するとアニメーションが失われる)
-  const animeSrc = `/siid/images/reason/strength/strengthlist/strengthcard/${icon}.png`;
+  // アニメーション WebP。元は 1080px の APNG(6 枚で計 5.9MB)だったが、表示は PC 180px /
+  // SP 100px のため 400px へ縮小して変換した(Issue #94、scripts/apng-to-webp.mjs)。
+  // next/image はアニメーション画像を最適化せず素通しするため、元ファイルの大きさがそのまま配信される。
+  const animeSrc = `/siid/images/reason/strength/strengthlist/strengthcard/${icon}.webp`;
 
   return (
     <div className={styles.StrengthCard}>
       <div className={styles.StrengthCard__Thumbnails}>
-        <Image src={animeSrc} width={540} height={540} alt={'イメージ図' + title} />
+        <Image src={animeSrc} width={400} height={400} alt={'イメージ図' + title} />
       </div>
       <h3 className={styles.StrengthCard__Title}>{title}</h3>
       <ul className={styles.StrengthCard__List}>
