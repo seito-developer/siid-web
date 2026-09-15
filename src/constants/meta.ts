@@ -11,6 +11,12 @@ export const commonTitle = 'AIプログラミングスクール SiiD';
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://bug-fix.org/siid';
 
 export const OGP_IMAGE_PATH = '/ogp.png';
+
+// サイト内パスを canonical / OGP / JSON-LD 用の絶対 URL に変換する。
+// SITE_URL は末尾スラッシュなしで統一しているため、TOP('/')の末尾スラッシュも落とす。
+export function absoluteUrl(path: string): string {
+  return `${SITE_URL}${path}`.replace(/\/$/, '');
+}
 export const pages = {
   index: {
     name: {
@@ -152,7 +158,7 @@ export function buildPageMetadata(page: PageMeta, options: BuildPageMetadataOpti
   const title = options.title ?? page.metaTitle ?? `${page.name.ja} | ${commonTitle}`;
   // description は画面表示と meta の両方で使う。<br /> は meta では除去する(Issue #112)。
   const description = handleStringHTML(page.description, false);
-  const canonical = `${SITE_URL}${options.canonicalPath ?? page.url}`.replace(/\/$/, '');
+  const canonical = absoluteUrl(options.canonicalPath ?? page.url);
   const ogpImage = `${SITE_URL}${options.ogpImagePath ?? OGP_IMAGE_PATH}`;
 
   return {
