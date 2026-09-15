@@ -14,11 +14,15 @@
     position: relative;
 }
 .Headline__SubTitle {
+    /* span から h1 に変えた(Issue #95)。従来と同じ行ボックス(親の line-height 24px)を保つため inline のままにする */
+    display: inline;
     margin: 0;
     font-size: 12px;
     font-weight: bold;
 }
 .Headline__Title {
+    /* h1 から span に変えた(Issue #95)ため、従来と同じ行ボックスになるよう block にする */
+    display: block;
     margin: 0;
     font-weight: bold;
     font-size: 32px;
