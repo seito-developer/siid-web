@@ -67,7 +67,7 @@ TOP の News(「コラム」記事)と卒業生の進路(「受講生様イン�
 - **metadata**: `buildPageMetadata()`(`src/constants/meta.ts`)が title / description / canonical / openGraph / twitter を一括生成。全ページで使用。`/counseling/complete` は noindex
 - **OGP 画像**: `public/ogp.png`(1200×630、Figma 4265:8754)。favicon は `src/app/favicon.ico`(16/32/48px、Figma 4265:8761)、apple-touch-icon は `src/app/apple-icon.png`(180px、Figma 4265:8766、Next.js のファイル規約で自動配線)
 - **sitemap**: `src/app/sitemap.ts`(`/sitemap.xml`)。GSC には sitemap URL を直接送信する。**robots.txt はドメインルート(bug-fix.org)でのみ有効なため本リポジトリでは実装せず、別プロジェクト(現行サイト側)で対応する**(PR #37 レビューでの決定)
-- **構造化データ**: TOP に Organization の JSON-LD(`src/components/JsonLd/JsonLd.tsx`)
+- **構造化データ**: TOP に Organization の JSON-LD(`src/components/JsonLd/JsonLd.tsx`)。パンくずを表示する下層ページには BreadcrumbList を `src/components/Breadcrumb/Breadcrumb.tsx` が自動出力する(Issue #97)。ページ側での追加作業は不要で、`BreadcrumbProps[]` の `url` がそのまま `SITE_URL` 起点の絶対 URL(`absoluteUrl()`)になる。`/lp-career` は独立 LP のため `LpCareer/StructuredData` が別途 `@graph` を出力する
 - **画像**: 300KB 超の PNG/JPG を WebP 化(`courses/langs/` はディレクトリごと変換)。意味のある画像の空 alt を解消(装飾 SVG は空 alt を維持)。~~**例外**: `strengthcard/*.png` は APNG のため WebP 変換対象外~~ → **2026-09-15 変更(Issue #94)**: `strengthcard/*.png`(6 枚・計 5.9MB、最大 2.6MB)は**アニメーション WebP へ変換**して計 1.28MB にした(-79%)。`next/image` はアニメーション画像を最適化せず素通しするため、1080px の原寸がそのまま配信されていた。実際の表示は PC 180px / SP 100px のため 400px へ縮小し、30fps のものは 15fps に間引いている。変換は `scripts/apng-to-webp.mjs`(ffmpeg でフレーム展開 → libwebp の img2webp で組み立て。APNG のフレームごとの表示時間を引き継ぐ)
 
 ## title / description の方針(2026-09-15・Issue #96)
