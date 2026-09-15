@@ -6,10 +6,12 @@
 }
 
 .Complete__Main {
-  /* 新規コピーの文字も同じ書体で表示するため、既存の全文字版を使う。 */
-  font-family: var(--font-noto-sans-jp-lp), sans-serif;
+  /* 見出しも本文と同じ Noto Sans JP で統一する(Zen Kaku は使わない)。
+     next/font の全文字版ではなくサブセットを使う。このページの文字は
+     scripts/lp-career/charsets/noto-sans-jp.txt に収録済み(Issue #100)。 */
+  font-family: var(--lp-career-font-body);
   font-weight: 400;
-  --lp-career-font-display: var(--font-noto-sans-jp-lp), sans-serif;
+  --lp-career-font-display: var(--lp-career-font-body);
   min-height: 80vh;
   padding: 100px 20px 64px;
   background:
