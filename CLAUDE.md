@@ -151,7 +151,8 @@ export const metadata: Metadata = buildPageMetadata(pages.xxx, { noindex: true }
 buildPageMetadata(pages.careerPath, { canonicalPath: `${pages.careerPath.url}/${page}` });
 ```
 
-- `description` は画面表示と meta description を兼ねる**単一のフィールド**（Issue #112）。検索結果で効く文面を優先し、画面での改行位置は文中の `<br />` で調整する（meta 側では除去される）
+- `description` は画面表示と meta description を兼ねる**単一のフィールド**（Issue #112）。検索結果で効く文面を優先する
+- **70 字を超える説明文に `<br />` を入れない**（Issue #115）。自動折り返しと強制改行が二重にかかり、2〜3 文字だけの行ができる。`<br />` は 404 や予約完了ページのような**短い 2 行のコピー**にだけ使う
 - canonical / OGP の絶対 URL は `SITE_URL`（環境変数 `NEXT_PUBLIC_SITE_URL`、デフォルト `https://bug-fix.org/siid`）起点で生成される
 
 `description` は `<br />` タグを含む HTML 文字列のため、JSX 表示用には `handleStringHTML()` で変換して使用：
