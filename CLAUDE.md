@@ -55,14 +55,6 @@ git switch -c feature/<N>-<slug> origin/develop                  # 新しい作�
 
 ## 開発コマンド
 
-```bash
-npm run dev        # 開発サーバー起動（Turbopack使用）
-npm run build      # 本番ビルド
-npm start          # 本番サーバー起動
-npm run lint       # ESLint チェック
-npm run typecheck  # TypeScript 型チェック（tsc --noEmit）
-```
-
 **コミット前に必ず実行：**
 ```bash
 npm run lint && npm run typecheck
@@ -70,85 +62,13 @@ npm run lint && npm run typecheck
 
 ---
 
-## 技術スタック
-
-| 項目 | 詳細 |
-|------|------|
-| Framework | Next.js 15（App Router） |
-| Language | TypeScript 5 |
-| Styling | CSS Modules + CSS Custom Properties |
-| Animation | GSAP 3.15（オープニング演出・スクロール演出） |
-| CMS | microCMS（`microcms-js-sdk`。SiiD BLOG の「コラム」記事を TOP の News に、「受講生様インタビュー」記事を卒業生の進路に表示） |
-| Game | Phaser 3.90（404ページのミニゲーム専用。`next/dynamic` + `ssr: false` で404ページ限定ロード） |
-| Slider | Swiper 12 |
-| CSS Reset | sanitize.css |
-| Font | Google Fonts (Noto Sans JP, Poppins) + カスタムフォント (Bagor) |
-| Lint | ESLint 9 (Flat Config) |
-| Node.js | 18.17+ 推奨 20.x |
-
----
-
 ## ディレクトリ構造
 
 **`src/app/` は `(Main)` と `(Lp)` の 2 つのルートグループに分かれており、それぞれが独立した root layout（`html`/`body`）を持つ。** 共通クロームを持つ通常ページは `(Main)`、広告流入用の独立 LP（`lp-career`）は `(Lp)`。
 
-```
-workers/
-└── siid-router/                          # Cloudflare Worker（bug-fix.org/siid 配下を Vercel へプロキシ。npm run test:worker）
-
-src/
-├── app/                                  # Next.js App Router
-│   ├── (Main)/                           # 通常ページ群（共通クロームあり）
-│   │   ├── layout.tsx                    # root layout（html/body・GtmNoScript・Analytics・Icons・NavigationSp・Footer）
-│   │   ├── page.tsx                      # TOPページ（Opening / Hero / News ほか。revalidate = 600）
-│   │   ├── not-found.tsx                 # 404ページ（dino風ミニゲーム付き）
-│   │   ├── [...notFound]/page.tsx        # どのグループにも一致しない URL を (Main) の 404 へ落とす catch-all
-│   │   ├── Home.module.css
-│   │   └── (LowerPages)/                 # 下層ページ（Header なし、NavigationPcLower あり）
-│   │       ├── layout.tsx
-│   │       ├── career-path/              # 卒業生の進路（page.tsx → /career-path/1 へリダイレクト、[page]/ が本体）
-│   │       ├── community/                # SiiDコミュニティ
-│   │       ├── counseling/               # 無料カウンセリング（complete/ = 予約完了・CV計測）
-│   │       ├── counseling-complete/      # 旧 URL 互換の申込完了ページ
-│   │       ├── courses/                  # コース一覧（比較表・プラン）
-│   │       ├── line/                     # LINE 登録
-│   │       ├── service/                  # サービス一覧（after-support の実体もここ）
-│   │       └── white-paper/              # 資料請求
-│   ├── (Lp)/                             # 広告流入用の独立LP（共通クローム・globals.css を持ち込まない）
-│   │   ├── layout.tsx                    # LP 専用 root layout（Analytics・lp-base.css）
-│   │   ├── fonts.ts / lp-base.css        # LP 用フォント・(Lp) 共通の基本スタイル（リセット・body。globals.css の代わり）
-│   │   └── lp-career/                    # 広告流入用 LP（page.tsx・complete/・lp-career-tokens.css）
-│   ├── sitemap.ts                        # sitemap.xml（career-path の全ページ番号を microCMS の件数から生成。robots.txt はルートドメイン側の別プロジェクトで対応）
-│   ├── manifest.ts                       # Web App Manifest
-│   ├── apple-icon.png                    # apple-touch-icon（Next.js ファイル規約で自動配線）
-│   └── favicon.ico
-├── components/                           # 再利用可能 UI コンポーネント（Opening / Hero / News / CareerPath / Courses / Counseling ほか。LP 用は LpCareer/）
-├── constants/
-│   ├── common.ts                         # BREAK_POINT(1280)、Google Fonts 設定
-│   ├── meta.ts                           # ページメタデータ・URL 定数（commonTitle、pages、SITE_URL、buildPageMetadata()）
-│   ├── menuItems.ts                      # ナビメニュー項目
-│   ├── snsItems.ts                       # SNSリンク（snsItems / snsFooterItems）
-│   ├── conversionFocusedPages.ts         # CV 重視ページの判定
-│   ├── courseData.ts / coursePlans.ts    # コース一覧の表示データ
-│   └── lpCareer*.ts                      # /lp-career 各セクションの原稿・アセット定義（lpCareerAssets.ts ほか）
-├── data/                                 # 静的 JSON データ
-│   └── books.json / coursePlans.json / linePresents.json / subSupporters.json
-├── hooks/
-│   ├── useIsPc.ts                        # PC/SP 判定（BREAK_POINT=1280px 基準）
-│   └── useScroll.ts                      # スクロール量取得
-├── lib/                                  # データ取得ロジック
-│   ├── getBooks.ts / getCoursePlans.ts / getLinePresents.ts / getSubSupporters.ts  # data/*.json の読み込み
-│   ├── getInterviews.ts                  # microCMS からインタビュー記事を取得（卒業生の進路。サーバー側実行）
-│   └── getNews.ts                        # microCMS から News を取得（サーバー側実行）
-├── styles/
-│   └── globals.css                       # グローバルスタイル・CSS変数・カスタムフォント定義
-├── types/                                # interview.ts / news.ts / pagination.ts / global.d.ts
-└── utils/
-    ├── date.ts                           # formatPublishedDate()：公開日を yyyy/mm/dd（Asia/Tokyo 固定）に整形
-    ├── helper.ts                         # handleStringHTML()：description の <br> タグ処理
-    ├── interview.ts                      # extractProfileTags()：記事タイトルからプロフィールタグを抽出
-    └── pagination.ts                     # getTotalPages() などページネーション計算
-```
+- microCMS: SiiD BLOG の「コラム」記事を TOP の News に、「受講生様インタビュー」記事を卒業生の進路に表示（`src/lib/getNews.ts` / `getInterviews.ts`、サーバー側実行）
+- Phaser は 404 ページのミニゲーム専用（`next/dynamic` + `ssr: false` で 404 ページ限定ロード）
+- `workers/siid-router/` は bug-fix.org/siid 配下を Vercel へプロキシする Cloudflare Worker（テストは `npm run test:worker`）
 
 ---
 
@@ -167,18 +87,6 @@ src/
 ---
 
 ## CSS 設計
-
-### CSS Custom Properties（globals.css）
-
-```css
-:root {
-  --background: #f1f1f1;
-  --main: #567eb4;
-  --text: #342525;
-  --maxZ: 999;
-  --font-bagor: 'Bagor', sans-serif;
-}
-```
 
 フォント変数（`--font-noto-sans-jp`、`--font-poppins`）は `constants/common.ts` で Next.js Font Optimization を使って定義し、`body` の `className` に付与しています。
 
@@ -287,43 +195,6 @@ handleStringHTML(pages.xxx.description, true)
 
 ---
 
-## インポート順序（ESLint で強制）
-
-```typescript
-// 1. React 関連
-import React, { useState } from 'react';
-
-// 2. Next.js 関連
-import Link from 'next/link';
-import { Metadata } from 'next';
-
-// 3. 外部ライブラリ
-import { Swiper } from 'swiper/react';
-
-// 4. 内部モジュール（@/ エイリアス）
-import Component from '@/components/Component/Component';
-import { CONSTANT } from '@/constants/common';
-
-// 5. 同階層・親階層
-import SubComponent from './SubComponent/SubComponent';
-
-// 6. CSS Modules（最後）
-import styles from './Component.module.css';
-```
-
----
-
-## ESLint / TypeScript ルール（主要）
-
-- `import/order`: 上記インポート順を強制
-- `@typescript-eslint/naming-convention`: コンポーネントは PascalCase、フックは `useXxx`
-- `@typescript-eslint/no-unused-vars`: 未使用変数はエラー（`_` プレフィックスは許容）
-- `@next/next/no-img-element`: `<img>` タグ禁止 → `next/image` の `<Image>` を使う
-- `react/function-component-definition`: `function` 宣言スタイルを強制
-- `prefer-const`: `let` より `const` を優先
-
----
-
 ## 画像・アセット
 
 - 画像は `public/` 直下または `public/images/` 配下に配置（LP 用は `public/{images,fonts,videos}/lp-career/`）
@@ -337,18 +208,3 @@ import styles from './Component.module.css';
 - **自動で `/siid` が付く**: `<Link href>`・`redirect()`・`router.push()`・Next.js が出力する `_next/*`
 - **自動では付かない（`/siid` を自分で書く）**: `<Image src>` の文字列パス、CSS の `url()`、`<video>` / `<source>`、Phaser 等のライブラリに渡すパス。例: `src="/siid/images/courses/xxx.svg"`、`url('/siid/fonts/lp-career/xxx.woff2')`。lp-career は `lpCareerAsset()`（`constants/lpCareerAssets.ts`）経由で付与している
 - 付け忘れはローカルでも 404 になるため、画像・フォント追加時は DevTools の Network で 404 が無いことを確認する
-
----
-
-## 外部リンク
-
-| 用途 | URL |
-|------|-----|
-| YouTube | https://www.youtube.com/@programming-siid |
-| X (Twitter) | https://x.com/seito_horiguchi |
-| TikTok | https://www.tiktok.com/@seito2020 |
-| Instagram | https://www.instagram.com/seito.ai_engineer/ |
-| Threads | https://www.threads.com/@seito.ai_engineer |
-| プライバシーポリシー | https://bug-fix.org/privacy-policy |
-| 運営会社 | https://bug-fix.org |
-| リスキル講座（経産省） | https://www.meti.go.jp/policy/economy/jinzai/reskillprograms/index.html |
