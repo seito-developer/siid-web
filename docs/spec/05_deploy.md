@@ -70,6 +70,18 @@ TOP の News(「コラム」記事)と卒業生の進路(「受講生様イン�
 - **構造化データ**: TOP に Organization の JSON-LD(`src/components/JsonLd/JsonLd.tsx`)
 - **画像**: 300KB 超の PNG/JPG を WebP 化(`courses/langs/` はディレクトリごと変換)。意味のある画像の空 alt を解消(装飾 SVG は空 alt を維持)。~~**例外**: `strengthcard/*.png` は APNG のため WebP 変換対象外~~ → **2026-09-15 変更(Issue #94)**: `strengthcard/*.png`(6 枚・計 5.9MB、最大 2.6MB)は**アニメーション WebP へ変換**して計 1.28MB にした(-79%)。`next/image` はアニメーション画像を最適化せず素通しするため、1080px の原寸がそのまま配信されていた。実際の表示は PC 180px / SP 100px のため 400px へ縮小し、30fps のものは 15fps に間引いている。変換は `scripts/apng-to-webp.mjs`(ffmpeg でフレーム展開 → libwebp の img2webp で組み立て。APNG のフレームごとの表示時間を引き継ぐ)
 
+## title / description の方針(2026-09-15・Issue #96)
+
+SEO コンサルのレポート No.1(title・description の重複)はリニューアルで解消済みだが、別途 title が長すぎる問題があった(44〜51 字)。日本語の検索結果に出るのは全角 30 字前後のため、次の方針に統一した。
+
+- **サイト名(`commonTitle`)は `AIプログラミングスクール SiiD`(18 字)。** 従来は `ITエンジニア転職 × 生成AI特化のプログラミングスクール - SiiD`(32 字)で、これだけで表示枠を使い切っていた
+- title は `{ページ名} | {サイト名}` で**全角 32 字以内**。`pages.<key>.name.ja` から自動生成される。`name.ja` はナビ・パンくず・見出しでも使うため、title だけ変えたい場合は **`metaTitle` を足す**(`service` → サービス紹介、`community` → コミュニティ)
+- **TOP は例外**。オーナー指定で `AIプログラミングスクール SiiD | キャリアアップやAI/ITエンジニアへの転職は我々にお任せを。`(52 字)。検索結果では後半が切れるが、ブランド名とカテゴリが先頭にあるため意味は通る
+- description は**全角 70〜120 字**。`description` は画面にも表示される(`Headline` の説明文)ため、**SEO 用の文面が必要なときは `metaDescription` を足す**(画面表示は変わらない)
+- `commonTitle` は 404 の title・`manifest.ts` の `name`・`JsonLd` の `alternateName` でも使う。短縮によりいずれも自然な値になった
+
+---
+
 ## 見出し構造(2026-09-15・Issue #95)
 
 SEO コンサルのレポート No.14(本文の章見出しに h1)と同種の問題が本体側にもあったため、次の方針に統一した。
