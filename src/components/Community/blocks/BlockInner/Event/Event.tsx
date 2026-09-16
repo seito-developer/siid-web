@@ -1,8 +1,13 @@
 import Image from 'next/image';
 
+import { getBooks } from '@/lib/getBooks';
+
 import styles from './Event.module.css';
 
 export default function Event() {
+  // 『セイト先生が教えるプログラミング入門』(books.json の先頭)
+  const book = getBooks()[0];
+
   return (
     <div className={styles.Event__Wrapper}>
       <div className={styles.Event__Hero}>
@@ -34,8 +39,9 @@ export default function Event() {
             プログラミング学習はインプットするだけでは不十分で、アウトプットの経験が大切です。本書は演習問題を豊富に用意しており、アウトプットの経験を積むこともできます。
           </span>
           <div className={styles.Event__Links}>
-            <span className={styles.Event__DisabledLink}>楽天ブックスで購入する（coming soon）</span>
-            <span className={styles.Event__DisabledLink}>Amazonで購入する（coming soon）</span>
+            <a href={book.amazonLink} target="_blank" rel="noopener noreferrer">
+              Amazonで購入する
+            </a>
           </div>
         </div>
       </div>
