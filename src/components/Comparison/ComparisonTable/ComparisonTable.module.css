@@ -189,10 +189,6 @@
   }
 }
 
-.ComparisonTable__Description {
-  text-align: center;
-}
-
 .ComparisonTable__Period {
   display: flex;
   flex-direction: column;

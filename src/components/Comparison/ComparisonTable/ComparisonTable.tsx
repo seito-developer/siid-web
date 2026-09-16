@@ -33,13 +33,8 @@ export default function ComparisonTable() {
           {/* 1ヶ月あたりの受講費用 - SiiD */}
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <div className={styles.ComparisonTable__Price}>
-              <span className={styles.ComparisonTable__PriceNumber}>1</span>
+              <span className={styles.ComparisonTable__PriceNumber}>1.9</span>
               <span className={styles.ComparisonTable__PriceUnit}>万円〜/月</span>
-            </div>
-            <div className={styles.ComparisonTable__Description}>
-              経産省認定のリスキル講座のため
-              <br className="br-sp" />
-              給付金適用後の実質負担額です
             </div>
           </div>
           {/* 1ヶ月あたりの受講費用 - 他社A */}
