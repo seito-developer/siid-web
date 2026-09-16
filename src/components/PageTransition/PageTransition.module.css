@@ -16,9 +16,5 @@
     }
 }
 
-/* 01_project-overview.md「品質基準」に従い reduced-motion では動かさない(組み上がり中の描画はそのまま見える) */
-@media (prefers-reduced-motion: reduce) {
-    .PageTransition {
-        animation: none;
-    }
-}
+/* prefers-reduced-motion による省略は行わない。これは演出ではなく組み上がり中のレイアウト崩れを隠すためのもので、
+   OS 設定に関係なく効かせる(2026-09-17 オーナー判断。Opening の Issue #86 と同じ扱い)。 */

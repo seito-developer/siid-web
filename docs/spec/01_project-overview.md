@@ -96,13 +96,13 @@ Figma 内「アニメーションについて」(3235:2345) にはデザイナ�
 1. オープニング(ローディング → FV)は大胆に作り込む([02_opening-animation.md](./02_opening-animation.md))
 2. ただしスクロールジャック(マウス制御で縦横に動くスクロール)や WebGL 依存の重い表現は採用しない(デザイナー方針と同じ)
 3. FV 以降のページ内アニメーションは従来どおり控えめ(fade-in 等)
-4. 下層ページ間のクライアント遷移では、ページ本体を 0.4 秒でフェードインさせる(`(LowerPages)/template.tsx` → `PageTransition`。Issue #131)。目的は演出ではなく、遷移直後にレイアウトが組み上がる数フレームを隠すこと。初回表示(SSR)では動かさず、TOP は Opening が覆うので対象外。`prefers-reduced-motion` では無効にする
+4. 下層ページ間のクライアント遷移では、ページ本体を 0.4 秒でフェードインさせる(`(LowerPages)/template.tsx` → `PageTransition`。Issue #131)。目的は演出ではなく、遷移直後にレイアウトが組み上がる数フレームを隠すこと。初回表示(SSR)では動かさず、TOP は Opening が覆うので対象外。`prefers-reduced-motion` でも省略しない(崩れを隠す目的のため OS 設定に依存させない。2026-09-17 オーナー判断、Opening の Issue #86 と同じ)
 
 ## 品質基準
 
 - コミット前に `npm run lint && npm run typecheck` を必ず通す
 - アニメーションは `transform` / `opacity` / `clip-path` のみで実装し、レイアウトリフローを起こさない
-- `prefers-reduced-motion` を尊重する
+- `prefers-reduced-motion` を尊重する(例外: Opening(Issue #86)とページ遷移のフェード(Issue #131)はオーナー判断で常に再生する)
 - Lighthouse (モバイル) Performance 80 以上を維持する(オープニング演出導入後も LCP を悪化させない)
 
 ## 未確定事項
