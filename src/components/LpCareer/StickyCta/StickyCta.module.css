@@ -5,6 +5,7 @@
  * (--lp-career-canvas-scale は .LpCareer で定義)。
  * 引っ込んでいる間は visibility で隠し、キーボード操作の対象からも外す。
  * Cookie バナー(z-index 300)とドロワー(200)より下、ヘッダー(100)と同じ層に置く。
+ * PC では出さない(SP のみ。Issue #143)。
  */
 
 .StickyCta {
@@ -39,7 +40,7 @@
 
 @media screen and (min-width: 768px) {
   .StickyCta {
-    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    display: none;
   }
 }
 
