@@ -58,8 +58,10 @@ git switch -c feature/<N>-<slug> origin/develop                  # 新しい作�
 
 **コミット前に必ず実行：**
 ```bash
-npm run lint && npm run typecheck
+npm run lint && npm run typecheck && npm run check:fonts
 ```
+
+`check:fonts` は自前サブセットの収録漏れ検査（Issue #100 / #132）。日本語の文言を追加・変更したときだけ落ちる。
 
 ---
 
@@ -205,15 +207,22 @@ handleStringHTML(pages.xxx.description, true)
 
 ### 日本語の文言を追加・変更したら（重要）
 
-日本語フォントは next/font ではなく**自前サブセット**を配信している（Issue #100、`docs/spec/05_deploy.md`）。収録文字は `scripts/fonts/charsets/site.txt` に固定されているため、**新しい漢字を含む文言を追加したら charset を作り直す**。
+日本語フォントは next/font ではなく**自前サブセット**を配信している（Issue #100、`docs/spec/05_deploy.md`）。収録文字が固定されているため、**新しい漢字を含む文言を追加したら charset を作り直す**。
 
 ```bash
-npm run build && PORT=3005 npm start &          # 変更後のサイトを立てて
+npm run check:fonts                              # まず漏れの有無を見る
+./scripts/fonts/subset-noto-sans-jp.sh           # 漏れていたら作り直す（src/ から拾う）
+```
+
+microCMS の記事タイトルなど、ソースに無い文言まで取り込みたいときは実ページを巡回する：
+
+```bash
+npm run build && PORT=3005 npm start &
 MAIN_FONT_URL=http://localhost:3005/siid \
   ./scripts/fonts/subset-noto-sans-jp.sh --collect
 ```
 
-作り直さなくても表示は崩れない（JIS 第1水準までは `ext` が肩代わりする）が、**その 1 ページだけ 338KB を余分に取得する**。実際 TOP 刷新（#120）で 13 字が漏れ、TOP が 333KB → 668KB になっていた。`src/styles/noto-sans-jp.css` と `public/fonts/noto-sans-jp/` は生成物なので手で編集しない。
+作り直さなくても表示は崩れない（JIS 第1水準までは `ext` が肩代わりする）が、**そのページだけ 330KB を余分に取得する**。実際 TOP 刷新（#120）で 13 字、文言修正（#124〜#126）で 28 字が漏れ、TOP が 360KB → 1,007KB になっていた。`src/styles/noto-sans-jp.css` と `public/fonts/noto-sans-jp/` は生成物なので手で編集しない。
 
 ### basePath（`/siid`）に注意
 

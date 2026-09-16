@@ -1,13 +1,18 @@
 """(Main) 用サブセットの収録文字を組み立てる(Issue #100)。
 
-core … サイトに出ている文字 + ASCII + JIS X 0208 の非漢字(かな・記号)
+core … サイトに出ている文字 + src/ のソースにある日本語 + ASCII + JIS X 0208 の非漢字
 ext  … JIS X 0208 第1水準のうち core に無いもの
+
+src/ を毎回読むのは、文言を変えたのに --collect を忘れる漏れを防ぐため(Issue #132)。
+実測でソース由来の追加は数文字しかなく、core のサイズにはほぼ響かない。
 
 区点コードを EUC-JP で復号して JIS X 0208 を取り出すため、外部データを持たない。
 """
 
 import argparse
+import json
 import pathlib
+import subprocess
 
 CHARSET_DIR = pathlib.Path(__file__).parent / 'charsets'
 
@@ -24,6 +29,17 @@ def jis_block(ku_from: int, ku_to: int) -> set[str]:
             except UnicodeDecodeError:
                 continue
     return out
+
+
+def source_chars() -> set[str]:
+    """src/ のソースにある日本語(コメントを除く)。判定は scripts/fonts/source-chars.mjs に寄せる。"""
+    script = 'import {collectSourceChars} from "./scripts/fonts/source-chars.mjs";' \
+             'console.log(JSON.stringify([...collectSourceChars()]))'
+    out = subprocess.run(['node', '--input-type=module', '-e', script],
+                         capture_output=True, text=True, check=True)
+    chars = set(json.loads(out.stdout))
+    print(f'  ソース由来: {len(chars)} 文字')
+    return chars
 
 
 def main() -> None:
@@ -43,7 +59,7 @@ def main() -> None:
         site = {c for c in site_path.read_text(encoding='utf-8') if not c.isspace()}
 
     ascii_ = {chr(i) for i in range(0x20, 0x7F)}
-    core = ascii_ | jis_block(1, 8) | EXTRA | site
+    core = ascii_ | jis_block(1, 8) | EXTRA | site | source_chars()
     ext = jis_block(16, 47) - core
 
     (CHARSET_DIR / 'core.txt').write_text(''.join(sorted(core)) + '\n', encoding='utf-8')

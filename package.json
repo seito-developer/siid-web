@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "check:fonts": "node scripts/fonts/check-charset.mjs",
     "test:worker": "npm --prefix workers/siid-router test"
   },
   "dependencies": {
