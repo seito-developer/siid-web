@@ -5,19 +5,19 @@ import styles from './ContentBlock.module.css';
 type Props = {
   description: string;
   alt?: string;
-  iconPass?: string;
+  iconPath?: string;
   title?: string;
   subTitle?: string;
 };
 
 export default function ContentBlock({
   description,
-  iconPass,
+  iconPath,
   alt,
   title,
   subTitle,
 }: Props) {
-  const hasIcon = Boolean(iconPass);
+  const hasIcon = Boolean(iconPath);
   const hasTitle = Boolean(title);
 
   return (
@@ -29,7 +29,7 @@ export default function ContentBlock({
         </div>
       ) : hasIcon ? (
         <Image
-          src={iconPass ?? ''}
+          src={iconPath ?? ''}
           alt={alt ?? ''}
           width={64}
           height={64}

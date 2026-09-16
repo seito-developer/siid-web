@@ -37,7 +37,7 @@ export default function CareerPathList({
           インタビュー記事を読み込めませんでした。
           <br />
           <Link href={`${BLOG_URL}/category/interview`} target="_blank" rel="noopener noreferrer">
-            SiiD BLOG の受講生様インタビュー
+            SiiD BLOGの受講生様インタビュー
           </Link>
           から直接ご覧いただけます。
         </p>

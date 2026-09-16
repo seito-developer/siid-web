@@ -49,12 +49,12 @@ export default function CounselingCompleteSection({ page }: { page: PageMeta }) 
             <p className={styles.CounselingCompleteSection__Text}>
               当日お時間になりましたら、メールに記載の
               <strong>ZoomのURL</strong>
-              にご参加下さいませ。
+              にご参加ください。
             </p>
             <p className={styles.CounselingCompleteSection__Text}>
               また、限られた時間の中で最大限有意義なサービス説明をさせていただくために、
               <br />
-              もしお時間がございましたら、弊社YouTubeチャンネルの受講生様対談動画を2,3本ほどご視聴いただけますと幸いです。
+              もしお時間がございましたら、弊社YouTubeチャンネルの受講生様対談動画を2〜3本ほどご視聴いただけますと幸いです。
             </p>
             <p className={styles.CounselingCompleteSection__LinkWrap}>
               <a
@@ -69,7 +69,7 @@ export default function CounselingCompleteSection({ page }: { page: PageMeta }) 
             <p className={styles.CounselingCompleteSection__Text}>
               キャンセル・変更に関しては、
               <br />
-              お問合せフォームからその旨をお伝えいただきますようお願いいたします。
+              お問い合わせフォームからその旨をお伝えいただきますようお願いいたします。
             </p>
             <p className={styles.CounselingCompleteSection__LinkWrap}>
               <a

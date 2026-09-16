@@ -86,7 +86,7 @@ export default function ComparisonTable() {
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <div className={styles.ComparisonTable__Period}>
               <div className={styles.ComparisonTable__PeriodTitle}>個々にパーソナライズ</div>
-              <div className={styles.ComparisonTable__PeriodDetail}>12ヶ月＋アフターサポート</div>
+              <div className={styles.ComparisonTable__PeriodDetail}>12ヶ月とアフターサポート</div>
             </div>
           </div>
           {/* 受講完了までの所要時間 - 他社A */}
@@ -344,7 +344,7 @@ export default function ComparisonTable() {
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <ul className={styles.ComparisonTable__List}>
               <li>厳選された現役エンジニア講師が少人数にきめ細かく対応</li>
-              <li>最新のAIツール（ChatGPT、GitHub Copilot、Claude Code等）の活用＋ゼミ形式で実践的に学習</li>
+              <li>最新のAIツール（ChatGPT、GitHub Copilot、Claude Code等）の活用とゼミ形式で実践的に学習</li>
               <li>セイトによる1on1の個別コンサル（Full Support以上）</li>
               <li>無制限の永久コミュニティ質問サポート</li>
               <li>半永久更新型コンテンツの利用が可能</li>

@@ -43,7 +43,7 @@ export default function Support() {
             <p className={`${styles.Support__PriceLabel} ${styles.isRight}`}>実質負担</p>
             <p className={`${styles.Support__PriceValue} ${styles.isAccent} ${styles.isLeft}`}><span className={styles.Support__PricePrefix}>最大</span>80<span className={styles.Support__PriceUnit}>%</span></p>
             <p className={`${styles.Support__PriceValue} ${styles.isAccent} ${styles.isRight}`}>
-              105,600<span className={styles.Support__PriceUnit}>円～</span>
+              105,600<span className={styles.Support__PriceUnit}>円〜</span>
             </p>
           </div>
         </div>

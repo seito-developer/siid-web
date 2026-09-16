@@ -5,7 +5,7 @@ export const COURSE_FEATURE_LABELS = {
   documentReview: '書類添削',
   mockInterview: '模擬面接',
   portfolioReview: 'ポートフォリオの添削',
-  consult: '個別コンサル(1on1)',
+  consult: '個別コンサル（1on1）',
   homeworkReview: '宿題の添削',
 } as const;
 

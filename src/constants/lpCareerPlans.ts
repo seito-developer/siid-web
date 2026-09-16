@@ -9,9 +9,9 @@ export const LP_CAREER_PLANS = [
     lead: 'まずは転職に挑戦したい方向け',
     listPrice: '528,000円',
     afterLabel: '給付金適用後',
-    afterPrice: '105,600円～',
+    afterPrice: '105,600円〜',
     monthlyLabel: '月額分割払い',
-    monthly: '月々22,000円～', monthlyTax: '（税込）',
+    monthly: '月々22,000円〜', monthlyTax: '（税込）',
     recommended: false,
   },
   {
@@ -22,9 +22,9 @@ export const LP_CAREER_PLANS = [
     lead: '本気で転職・キャリアアップを目指す方向け',
     listPrice: '698,000円',
     afterLabel: '給付金適用後',
-    afterPrice: '275,600円～',
+    afterPrice: '275,600円〜',
     monthlyLabel: '月額分割払い',
-    monthly: '月々29,083円～', monthlyTax: '（税込）',
+    monthly: '月々29,083円〜', monthlyTax: '（税込）',
     recommended: true,
   },
   {

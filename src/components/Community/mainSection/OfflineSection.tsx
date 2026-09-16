@@ -14,16 +14,16 @@ export default function OfflineSection() {
       </div>
 
       <div className={styles.Offline__Center}>
-        <div className={styles.Offline__Block}>
+        <div>
           <ContentBlock
             title="出版イベント"
-            subTitle="＠LIGinc. 御徒町オフィス"
-            description="2024年に出版した「セイト先生が教えるプログラミング入門」のリリースイベントを株式会社LIGのいいオフィス御徒町にて開催しました！"
+            subTitle="株式会社LIG いいオフィス御徒町"
+            description="2024年に出版した『セイト先生が教えるプログラミング入門』のリリースイベントを株式会社LIGのいいオフィス御徒町にて開催しました！"
           />
           <Event/>
         </div>
         <RibbonText text="OFFLINE" />
-        <div className={styles.Offline__Block}>
+        <div>
           <ContentBlock
             title="オフ会"
             description="セイト企画もあれば、有志による企画などもありオフライン上でのコミュニケーションも大切にしています！"

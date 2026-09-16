@@ -13,7 +13,7 @@ export const LP_CAREER_SKILLS: LpCareerSkillCard[] = [
     title: '生成AI',
     tags: [
       { label: 'Claude Code', icon: 'claude-code' },
-      { label: 'Figma AI', icon: 'figma-al' },
+      { label: 'Figma AI', icon: 'figma-ai' },
       { label: 'Codex', icon: 'codex' },
       { label: 'ChatGPT', icon: 'chatgpt' },
       { label: 'GitHub Copilot', icon: 'github-copilot' },
