@@ -31,7 +31,7 @@ const SUPPORTS = [
     title: 'セイトによる個別コンサル（1on1）',
     description: (
       <>
-        受講生の転職が成功するまでサポートを実施。とことん最後までサポートし結果にコミットする。セイトが覚悟を持ったアフターサポートになります。<br />※Career +Full Supportは転職成功まで最大月1回、Career +VIP Editionは無制限です。
+        受講生の転職が成功するまでサポートを実施。とことん最後までサポートし結果にコミットする。セイトが覚悟を持ったアフターサポートになります。<br />※Career +Full Supportは転職成功まで最大月1回、顧問プランは月1〜3回です。
       </>
     ),
     image: '/siid/images/service/support/supportlist/supportitem/support-3.png',
