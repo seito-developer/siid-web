@@ -32,7 +32,11 @@ import './lp-career-tokens.css';
 // 広告流入用の独立 LP(docs/spec/07_lp-career-renewal.md)。
 // lp-career 専用のフォントとトークンは (Lp)/layout.tsx ではなく、
 // このページのルート要素にだけ付与する(完了ページとはトークンの適用範囲が異なるため)。
+// 広告専用 LP のため noindex(Issue #99。docs/spec/07_lp-career-renewal.md §11.1)。
+// 検索流入は TOP(/siid)に集約し、TOP とのカニバリゼーションを避ける。
+// 広告からの流入は noindex でも影響しない。
 export const metadata: Metadata = buildPageMetadata(pages.lpCareer, {
+  noindex: true,
   ogpImagePath: '/images/lp-career/ogp.png',
 });
 
