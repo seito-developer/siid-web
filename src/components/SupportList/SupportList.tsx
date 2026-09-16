@@ -20,7 +20,7 @@ const SUPPORTS = [
     title: 'ずっと使える相談ルーム',
     description: (
       <>
-        24時間受付のチャットサポートに加え、毎週5日間、SiiDの講師陣が1日2時間のZoomミーティングを開き、受講生の質問にフランクに答えます。卒業生も使えるので、エンジニアの先生に質問し放題の環境が卒業後も続きます。
+        24時間受付のチャットサポートに加え、毎日21:00〜23:00にSiiDの講師陣がZoomミーティングを開き、受講生の質問にフランクに答えます。卒業生も使えるので、エンジニアの先生に質問し放題の環境が卒業後も続きます。
       </>
     ),
     image: '/siid/images/service/support/supportlist/supportitem/support-2.png',
@@ -28,10 +28,10 @@ const SUPPORTS = [
   {
     id: 3,
     number: 3,
-    title: 'セイトによる無制限の個別コンサル',
+    title: 'セイトによる個別コンサル（1on1）',
     description: (
       <>
-        受講生の転職が成功するまでサポートを実施。とことん最後までサポートし結果にコミットする。セイトが覚悟を持ったアフターサポートになります。
+        受講生の転職が成功するまでサポートを実施。とことん最後までサポートし結果にコミットする。セイトが覚悟を持ったアフターサポートになります。<br />※Career +Full Supportは転職成功まで最大月1回、Career +VIP Editionは無制限です。
       </>
     ),
     image: '/siid/images/service/support/supportlist/supportitem/support-3.png',

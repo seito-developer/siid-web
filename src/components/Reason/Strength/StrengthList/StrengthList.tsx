@@ -6,7 +6,7 @@ export default function StrengthList() {
     {
       icon: 'chart' as const,
       title: '「エンジニア×経営人事」視点のエッセンス',
-      items: ['エンジニア歴7年以上の開発実績', '2000人以上を選考し、150名以上のエンジニアを採用してきた経営人事経験', 'Adobe Japan等を含む内定実績'],
+      items: ['エンジニア歴14年以上の開発実績', '2000人以上を選考し、150名以上のエンジニアを採用してきた経営人事経験', 'Adobe Japan等を含む内定実績'],
     },
     {
       icon: 'gear' as const,

@@ -12,6 +12,7 @@ AI ベース開発のための仕様書・運用ドキュメント一式。**実
 | [06_migration.md](./spec/06_migration.md) | 現行 bug-fix.org/siid からの移行・リリース計画(Cloudflare 前段方式) |
 | [07_lp-career-renewal.md](./spec/07_lp-career-renewal.md) | LP リニューアル(`/siid/lp-career`)実装仕様・Photoshop 入稿データ対応 |
 | [08_career-path-interviews.md](./spec/08_career-path-interviews.md) | 卒業生の進路(TOP スライダー・`/career-path`)の SiiD BLOG インタビュー記事連携 |
+| [09_site-facts.md](./spec/09_site-facts.md) | サイト内で統一する数値・条件（Zoom 時間・アクセス期限・実績数値・コース名）と表記ルール。価格は未決定事項として整理 |
 
 ## 更新ルール
 

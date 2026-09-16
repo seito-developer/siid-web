@@ -36,7 +36,7 @@ export default function Event() {
           <span className={styles.Event__BookTitle}>『セイト先生が教えるプログラミング入門 』</span>
           <span className={styles.Event__BookDetail}>日経BP /2024年9月 発売</span>
           <span className={styles.Event__BookDesc}>
-            YouTube登録者数10万人超のインフルエンサーであり、現役エンジニアでもある著者が、効率的な学習法やコンピュータサイエンス、HTML、CSS、JavaScript、アプリケーション開発など、プログラミングにまつわるアレコレをわかりやすく解説しています。ChatGPTやAI機能を備えたエディタなど、AIツールの取り入れ方も手厚くカバーしています。<br />
+            YouTube登録者数13万人のインフルエンサーであり、現役エンジニアでもある著者が、効率的な学習法やコンピュータサイエンス、HTML、CSS、JavaScript、アプリケーション開発など、プログラミングにまつわるアレコレをわかりやすく解説しています。ChatGPTやAI機能を備えたエディタなど、AIツールの取り入れ方も手厚くカバーしています。<br />
             プログラミング学習はインプットするだけでは不十分で、アウトプットの経験が大切です。本書は演習問題を豊富に用意しており、アウトプットの経験を積むこともできます。
           </span>
           <div className={styles.Event__Links}>

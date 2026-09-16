@@ -38,7 +38,7 @@ export default function Footer() {
             </li>
           ))}
         </ul>
-        <small className={styles.Footer__Copyright}>© 2026 BugFix LLC. All rights reserved.</small>
+        <small className={styles.Footer__Copyright}>© {new Date().getFullYear()} BugFix LLC. All rights reserved.</small>
       </div>
     </footer>
   );

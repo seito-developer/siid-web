@@ -12,7 +12,7 @@ import styles from './FooterMenu.module.css';
 export default function FooterMenu({ copyrightOnly = false }: { copyrightOnly?: boolean }) {
   const copyright = (
     <small className={`${styles.FooterMenu__Copyright} ${copyrightOnly ? styles.isStatic : ''}`}>
-             Copyright (&copy;) BugFix All Rights Reserved.
+             &copy; BugFix LLC. All rights reserved.
     </small>
   );
 

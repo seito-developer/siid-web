@@ -27,7 +27,7 @@ export default function OnlineSection() {
           <ContentBlock
             iconPass="/siid/images/community/icon-zoom.svg"
             alt="Zoom"
-            description="月１回、著名なゲストを招いて対談イベントや交流会を開催しています！その他には、もくもく相談会Zoomを週５日開催！"
+            description="月１回、著名なゲストを招いて対談イベントや交流会を開催しています！その他には、もくもく相談会Zoomを毎日開催！"
           />
           <Zoom/>
         </div>

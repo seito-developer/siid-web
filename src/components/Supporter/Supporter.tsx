@@ -31,7 +31,7 @@ export default function Supporter() {
           <div className={styles.MainSupporter__Header}>
             <div className={styles.MainSupporter__HeaderContainer}>
               <div className={styles.MainSupporter__Badge}>
-                <div className={styles.MainSupporter__BadgeLabel}>サポート講師</div>
+                <div className={styles.MainSupporter__BadgeLabel}>主任講師</div>
                 <div className={styles.MainSupporter__BadgeNumber}>001</div>
                 <svg width="97" height="111" fill="none">
                   <use href="#HexagonBlack" />
@@ -49,7 +49,7 @@ export default function Supporter() {
           </div>
           <div className={styles.MainSupporter__NameContainer}>
             <h3 className={styles.MainSupporter__Name}>
-              <span className={styles.MainSupporter__NameRole}>SiiD代表講師</span>
+              <span className={styles.MainSupporter__NameRole}>SiiD主任講師</span>
               <span className={styles.MainSupporter__NameText}>堀口セイト</span>
             </h3>
 
@@ -69,7 +69,7 @@ export default function Supporter() {
                   <use href="#instagram" />
                 </svg>
               </Link>
-              <Link href="https://www.youtube.com/@webit7652" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className={styles.MainSupporter__SocialLink}>
+              <Link href="https://www.youtube.com/@programming-siid" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className={styles.MainSupporter__SocialLink}>
                 <svg width="29" height="20">
                   <use href="#youtube" />
                 </svg>
@@ -84,7 +84,7 @@ export default function Supporter() {
             <br />
             その後2021年に独立し、合同会社BugFixを設立。アプリケーション開発、技術顧問、プログラミング・ITスキル研修を行う傍ら、自身のYouTubeチャンネル「セイト先生のWeb・ITエンジニア転職ラボ」では、プログラミング講座やWeb・IT業界のキャリア情報などを幅広く発信中。
             <br />
-            総フォロワー数は約13万人で、現役エンジニアでもある。
+            YouTube登録者数は約13万人で、現役エンジニアでもある。
           </p>
 
           {/* 書籍カード */}
