@@ -4,13 +4,13 @@ import Breadcrumb, {
 } from '@/components/Breadcrumb/Breadcrumb';
 import ContentsArea from '@/components/ContentsArea/ContentsArea';
 import Headline from '@/components/Headline/Headline';
+import { CONTACT_URL } from '@/constants/externalLinks';
 import { pages } from '@/constants/meta';
 import { handleStringHTML } from '@/utils/helper';
 
 import styles from './CounselingCompleteSection.module.css';
 
 const YOUTUBE_URL = 'https://www.youtube.com/@programming-siid';
-const CONTACT_URL = 'https://bug-fix.org/contact';
 
 type PageMeta = {
   name: { ja: string; en: string };

@@ -40,7 +40,8 @@ function laneDurationSec(laneIndex: number) {
 }
 
 export default function Voice(props: Props) {
-  const { voices = DEFAULT_VOICES, laneCount = 4 } = props;
+  // 既定の声は 6 件なので 3 レーン × 2 件にする(1 件のレーンだと marquee の折り返しで空白ができる)
+  const { voices = DEFAULT_VOICES, laneCount = 3 } = props;
 
   const lanes = splitIntoLanes(voices, laneCount);
 

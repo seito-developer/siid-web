@@ -69,13 +69,6 @@
     border-bottom: 4px solid #475499;
 }
 
-.CourseComparison__GroupNote {
-    display: block;
-    margin-top: 16px;
-    font-size: 11px;
-    font-weight: 500;
-}
-
 .CourseComparison__SubHeader {
     width: 110px;
     padding: 12px;

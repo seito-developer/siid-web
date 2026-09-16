@@ -7,6 +7,7 @@ import Breadcrumb, {
 } from '@/components/Breadcrumb/Breadcrumb';
 import ContentsArea from '@/components/ContentsArea/ContentsArea';
 import Headline from '@/components/Headline/Headline';
+import { CONTACT_URL } from '@/constants/externalLinks';
 import { buildPageMetadata, pages } from '@/constants/meta';
 import { handleStringHTML } from '@/utils/helper';
 
@@ -68,6 +69,9 @@ export default function CounselingComplete() {
             <Link href={pages.index.url} className={styles.Complete__HomeLink}>
               TOPページへ戻る
             </Link>
+            <a href={CONTACT_URL} target="_blank" rel="noopener noreferrer" className={styles.Complete__ContactLink}>
+              キャンセル・変更のご連絡（お問い合わせフォーム）
+            </a>
           </div>
         </section>
       </ContentsArea>

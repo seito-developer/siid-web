@@ -76,6 +76,15 @@
 .Complete__HomeLink:hover {
   opacity: 0.85;
 }
+.Complete__ContactLink {
+  display: block;
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--main);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 @media screen and (min-width: 1280px) {
   .Complete__Lead {
     font-size: 17px;

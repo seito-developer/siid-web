@@ -18,7 +18,7 @@ export default function LinePresents({ presents }: Props) {
       <div className={styles.LinePresents__Header}>
         <Eyebrow label="Present" />
         <h2 className={styles.LinePresents__Heading}>
-          【全員対象】LINE登録でもらえる10の特典
+          【全員対象】LINE登録でもらえる{presents.length}の特典
         </h2>
       </div>
 
