@@ -201,12 +201,14 @@
 
 .Supporter__MoreButton {
   background-color: var(--text);
-  font-family: var(--font-bagor);
+  /* 日本語ラベルのため Bagor(英字のみ)ではなく Noto Sans JP を使う */
+  font-family: var(--font-noto-sans-jp);
   color: #fff;
-  padding: 15px 35px;
-  font-size: 14px;
-  font-weight: 400;
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 700;
   line-height: 100%;
+  white-space: nowrap;
   transform: rotateZ(-8deg);
   display: inline-block;
 }
@@ -324,7 +326,8 @@
   }
 
   .Supporter__MoreButton {
-    font-size: 20px;
+    font-size: 16px;
+    padding: 15px 32px;
     position: relative;
     z-index: 2;
   }

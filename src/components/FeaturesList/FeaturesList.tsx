@@ -8,7 +8,7 @@ const FEATURES = [
     image: '/siid/images/service/features/featurelist/featureitem/feature-1.jpg',
     title1: '最短ロードマップ&',
     title2: '学習カリキュラム',
-    description: '最新技術を押さえた動画やテキストのロードマップで学習をサポートし、小さな成功体験を積み重ながら進捗を可視化。アクティブ率に応じた講師からの声掛けで、ひとりで悩まず続けられます。',
+    description: '最新技術を押さえた動画やテキストのロードマップで学習をサポートし、小さな成功体験を積み重ねながら進捗を可視化。アクティブ率に応じた講師からの声掛けで、ひとりで悩まず続けられます。',
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const FEATURES = [
     image: '/siid/images/service/features/featurelist/featureitem/feature-4.jpg',
     title1: '勝ちパターンを押さえた',
     title2: '黄金テンプレート&添削',
-    description: '履歴書・職務経歴書・写真の作り方から、35〜40種以上の面接想定質問への対策、GitHubや求人サイト・SNSのプロフィール整備まで、選考突破に必要な情報発信とアピール方法をまるごとサポートします。',
+    description: '履歴書・職務経歴書・写真の作り方から、35種類以上の面接想定質問への対策、GitHubや求人サイト・SNSのプロフィール整備まで、選考突破に必要な情報発信とアピール方法をまるごとサポートします。',
   },
 ];
 

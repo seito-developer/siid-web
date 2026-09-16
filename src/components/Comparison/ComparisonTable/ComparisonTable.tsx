@@ -37,9 +37,9 @@ export default function ComparisonTable() {
               <span className={styles.ComparisonTable__PriceUnit}>万円〜/月</span>
             </div>
             <div className={styles.ComparisonTable__Description}>
-              何故こんなに安いのかを言及する
+              経産省認定のリスキル講座のため
               <br className="br-sp" />
-              ひとこと
+              給付金適用後の実質負担額です
             </div>
           </div>
           {/* 1ヶ月あたりの受講費用 - 他社A */}
@@ -344,7 +344,7 @@ export default function ComparisonTable() {
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <ul className={styles.ComparisonTable__List}>
               <li>厳選された現役エンジニア講師が少人数にきめ細かく対応</li>
-              <li>最新技術（ChatGPT等）の活用＋ゼミ形式で実践的に学習</li>
+              <li>最新のAIツール（ChatGPT、GitHub Copilot、Claude Code等）の活用＋ゼミ形式で実践的に学習</li>
               <li>セイトによる無制限の個別コンサル</li>
               <li>無制限の永久コミュニティ質問サポート</li>
               <li>半永久更新型コンテンツの利用が可能</li>

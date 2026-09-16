@@ -45,9 +45,9 @@ export default function CourseAdvice({ plans }: Props) {
             className={styles.CourseAdvice__BalloonStarRight}
           />
           <p className={styles.CourseAdvice__BalloonText}>
-            こんなお悩み
+            こんな方に
             <br className="br-sp" />
-            持っていませんか？
+            おすすめです！
           </p>
         </div>
         <Image
@@ -73,7 +73,7 @@ export default function CourseAdvice({ plans }: Props) {
                         height={43}
                       />
                       <span className={styles.CourseAdvice__WorryBadgeText}>
-                        悩み
+                        対象
                         <strong>{`0${i + 1}`}</strong>
                       </span>
                     </span>

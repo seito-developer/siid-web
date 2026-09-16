@@ -35,7 +35,7 @@ type Props = {
 export default function CourseComparison({ plans, comparison }: Props) {
   return (
     <section className={styles.CourseComparison}>
-      <SectionHeading en="Message" title="コースによる違い" invert />
+      <SectionHeading en="Comparison" title="コースによる違い" invert />
       <div className={styles.CourseComparison__Scroller}>
         <table className={styles.CourseComparison__Table}>
           <thead>
@@ -79,9 +79,6 @@ export default function CourseComparison({ plans, comparison }: Props) {
             <tr>
               <th className={styles.CourseComparison__GroupHeader} rowSpan={3} scope="rowgroup">
                 学習範囲
-                <span className={styles.CourseComparison__GroupNote}>
-                  対応一覧表は<u>こちら</u>
-                </span>
               </th>
               <th className={styles.CourseComparison__SubHeader} scope="row">
                 言語
