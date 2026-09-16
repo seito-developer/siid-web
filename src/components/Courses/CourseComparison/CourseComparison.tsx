@@ -25,6 +25,8 @@ const ADVANCED_LANGS = [
   { name: 'TypeScript', file: 'typescript' },
   { name: 'React', file: 'react' },
   { name: 'Python', file: 'python' },
+  { name: 'Codex', file: 'codex' },
+  { name: 'Claude Code', file: 'claude-code' },
 ];
 
 type Props = {
