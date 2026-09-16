@@ -21,7 +21,7 @@ Issue #122 / #123 の対応で決めた「サイト全体で 1 つに揃える�
 | 書類添削・模擬面接・ポートフォリオ添削 | Career **2 回まで**（ポートフォリオは各工程 2 回）/ Full Support 以上 **無制限** | 同上 | `courseData.ts` / `coursePlans.json` / `FeaturesList.tsx`（回数はプランにより異なる旨を注記） |
 | 回数の語 | 回数の上限が無い → **無制限**、期間の上限が無い → **無期限** | 語の意味 | 全体 |
 | YouTube 登録者数 | **約 13 万人**（YouTube 登録者として書く。「総フォロワー」とは書かない） | LP FV・講師紹介（入稿データ） | `Supporter.tsx` / `Fv.tsx` / `Instructor.tsx` / `linePresents.json` / `Event.tsx` |
-| 採用・選考実績 | **2,000 人超を選考、150 名以上を採用** | LP 講師紹介（入稿データ） | `StrengthList.tsx` / `Instructor.tsx` / `linePresents.json` |
+| 採用・選考実績 | **2,000 人超を選考、150 人以上を採用** | LP 講師紹介（入稿データ） | `StrengthList.tsx` / `Instructor.tsx` / `linePresents.json` |
 | エンジニア歴 | **14 年以上**（2012 年〜） | 講師プロフィール（2012 年卒）・カウンセリング特典画像「歴 14 年」 | `StrengthList.tsx` |
 | 講師の肩書 | **主任講師**（堀口セイト）。サブ講師は「サポート講師 002〜」 | TOP FAQ 確定原稿・LP コース表 | `Supporter.tsx` / `Faq.tsx` / `lpCareerCourseTable.ts` |
 | コース名 | **Career** / **Career +Full Support** / **顧問プラン**（ミニマム / スタンダード / チーム。コード上の id は `vip` のまま） | `courseData.ts`・`coursePlans.json` | `menuItems.ts` ほか本サイト全体（LP は入稿データの「Career + FullSupport」「顧問プラン」のまま） |
@@ -73,4 +73,4 @@ Issue #122 / #123 の対応で決めた「サイト全体で 1 つに揃える�
 - **画像の alt は画像に描かれた文字に合わせる**（例: リスキル講座バナーの「最大80%オフ！」、カウンセリング特典の「歴13年」）。画像を作り直すときにルールへ揃える
 - LP の比較表にある「◎ ◯ △ ×」は評価記号なので対象外（文末の「◎」だけが対象）
 - `/courses` の LINE バナーの `class="💡"` は HTML 風デザインの一部で意図的
-- LP の入稿データ由来の固有表記（「Career + FullSupport」「顧問プラン」）はカンプ通り
+- LP の入稿データ由来の固有表記（「Career + FullSupport」「顧問プラン」）と、LP 比較表のセル内の「＋」（「12ヶ月+」「最長＋2年」「現役＋人事部長」）はカンプ通り

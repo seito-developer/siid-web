@@ -14,7 +14,7 @@ export default function OnlineSection() {
       </div>
 
       <div className={styles.Online__Center}>
-        <div className={styles.Online__Block}>
+        <div>
           <ContentBlock
             iconPath="/siid/images/community/icon-discord.svg"
             alt="Discord"
@@ -23,7 +23,7 @@ export default function OnlineSection() {
           <Discord/>
         </div>
         <RibbonText text="ONLINE" />
-        <div className={styles.Online__Block}>
+        <div>
           <ContentBlock
             iconPath="/siid/images/community/icon-zoom.svg"
             alt="Zoom"
