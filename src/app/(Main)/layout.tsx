@@ -8,6 +8,7 @@ import GtmNoScript from '@/components/Analytics/GtmNoScript';
 import Footer from '@/components/Footer/Footer';
 import Icons from '@/components/Icons/Icons';
 import NavigationSp from '@/components/Navigation/NavigationSp/NavigationSp';
+import PageTransition from '@/components/PageTransition/PageTransition';
 import SourceEasterEgg from '@/components/SourceEasterEgg/SourceEasterEgg';
 import { poppins } from '@/constants/common';
 
@@ -38,7 +39,7 @@ export default function RootLayout({
         <Analytics />
         <Icons />
         <NavigationSp />
-        {children}
+        <PageTransition>{children}</PageTransition>
         <Footer />
       </body>
     </html>

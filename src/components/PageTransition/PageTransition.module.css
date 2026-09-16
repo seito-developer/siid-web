@@ -1,0 +1,14 @@
+/* opacity だけを動かす。transform や filter を使うと、この配下の position: fixed 要素
+   (TOP の Opening オーバーレイなど)の基準がラッパーに変わって崩れる。 */
+.PageTransition {
+    animation: PageTransition-fadeIn 0.4s ease-out both;
+}
+
+@keyframes PageTransition-fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
