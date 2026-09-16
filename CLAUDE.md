@@ -204,6 +204,7 @@ handleStringHTML(pages.xxx.description, true)
 - 画像は `public/` 直下または `public/images/` 配下に配置（LP 用は `public/{images,fonts,videos}/lp-career/`）
 - Next.js `<Image>` コンポーネントを使う（`<img>` タグは ESLint エラー）
 - 外部画像は `next.config.ts` の `remotePatterns` で許可する。現在は `images.microcms-assets.io`（SiiD BLOG のアイキャッチ）と `img.youtube.com`
+- **`next/image` を通らない画像は WebP を直に置く**（Issue #85）。CSS の `background-image`・`<picture>` の `srcSet`・SVG の `<image href>` は最適化されず元の形式のまま配信されるため。変換元は `assets/images-src/`（配信されない）に置き、`./scripts/images/to-webp.sh` で生成する
 
 ### 日本語の文言を追加・変更したら（重要）
 
