@@ -143,6 +143,22 @@ scripts/fonts/
 microCMS の記事タイトルに第1水準の外(人名用漢字など)が出た場合は
 `'Hiragino Sans'` 以降のシステムフォントへフォールバックする。
 
-**文字を追加したくなったら** `./scripts/fonts/subset-noto-sans-jp.sh --collect` を実行する
-(本番を巡回して `site.txt` を更新し、woff2 と CSS を作り直す)。`src/styles/noto-sans-jp.css` は
-生成物なので手で編集しない。
+**収録文字の入力は 2 つある。**
+
+1. `src/` のソースにある日本語(コメントを除く)。`scripts/fonts/source-chars.mjs` が抽出し、
+   **スクリプトを実行するたび自動で取り込まれる**
+2. `charsets/site.txt`。`--collect` で実ページを巡回したときだけ更新される。microCMS の
+   記事タイトルなど、ソースに無い文言を拾うためのもの
+
+```bash
+npm run check:fonts                              # 収録漏れの検査(コミット前に実行)
+./scripts/fonts/subset-noto-sans-jp.sh           # src/ から作り直す
+MAIN_FONT_URL=http://localhost:3005/siid \
+  ./scripts/fonts/subset-noto-sans-jp.sh --collect  # 実ページも巡回して作り直す
+```
+
+`src/styles/noto-sans-jp.css` と `public/fonts/noto-sans-jp/` は生成物なので手で編集しない。
+
+**漏れると 2 倍になる。** TOP 刷新(#120)で 13 字、文言修正(#124〜#126)で 28 字が漏れ、
+TOP のフォント転送量が 360KB → 1,007KB になっていた(Issue #127 / #132)。表示は崩れない
+(`ext` が肩代わりする)ぶん気付きにくいため、`npm run check:fonts` で検査する。
