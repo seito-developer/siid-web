@@ -280,9 +280,20 @@
   padding: 16px 0; border-radius: 11px; background: #fff; color: #131a3e;
 }
 .Counselling__BookingTitle { padding-inline: 16px; font-family: var(--lp-career-font-body); font-size: 16px; line-height: 1.5; }
+/* iframe だけ LP 全体の zoom を打ち消す(Issue #138)。
+   Safari(WebKit)は祖先の zoom を iframe の中身にもかける一方、iframe の表示領域は
+   拡縮前の大きさのまま扱うため、中身が縮尺ぶん(390px 幅で約 5%)はみ出して縦横に
+   スクロールバーが出ていた(実測: 表示領域 351x653 に対し中身 368x685)。
+   実効 zoom を 1 に戻し、幅・余白は縮尺を掛けた値で指定して見た目の大きさを保つ。
+   Jicoo が通知する高さもこの単位(実 px)でそのまま iframe に入る。 */
 .Counselling__Booking .Counselling__Widget {
-  position: relative; inset: auto; width: 100%; height: auto;
-  min-height: 440px; margin-top: 16px; border-radius: 0;
+  --counselling-widget-w: 351px;
+  position: relative; inset: auto; height: auto;
+  zoom: calc(1 / var(--lp-career-canvas-scale));
+  width: calc(var(--counselling-widget-w) * var(--lp-career-canvas-scale));
+  min-height: calc(440px * var(--lp-career-canvas-scale));
+  margin-top: calc(16px * var(--lp-career-canvas-scale));
+  border-radius: 0;
 }
 .Counselling__Widget iframe {
   display: block;
@@ -298,7 +309,11 @@
   .Counselling__Inner { min-height: 1019px; padding-top: 158px; padding-bottom: 80px; }
   .Counselling__Inner > .Counselling__Booking { width: 513px; min-height: 748px; margin: 0 0 0 687px; padding: 24px; }
   .Counselling__BookingTitle { padding-inline: 0; font-size: 24px; }
-  .Counselling__Booking .Counselling__Widget { min-height: 630px; }
+  .Counselling__Booking .Counselling__Widget {
+    /* カード 513px - 余白 24px x 2 */
+    --counselling-widget-w: 465px;
+    min-height: calc(630px * var(--lp-career-canvas-scale));
+  }
 }
 
 /* 幅広・低いSP画面でも予約欄が見えるよう、必要な場合だけアンカー位置を下げる。
