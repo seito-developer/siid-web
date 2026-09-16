@@ -6,8 +6,8 @@ import { getInterviews } from '@/lib/getInterviews';
 import { getTotalPages } from '@/utils/pagination';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // noindex ページは除外: サンクスページ(counseling/complete, counseling-complete, lp-career/complete)
-  // lp-career は index させる方針のため含める(docs/spec/07_lp-career-renewal.md §11.1)
+  // noindex ページは除外: サンクスページ(counseling/complete, counseling-complete,
+  // lp-career/complete)と、広告専用 LP の lp-career(Issue #99)。
   const staticPaths = [
     pages.index.url,
     pages.courses.url,
@@ -16,7 +16,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     pages.counseling.url,
     pages.line.url,
     pages.whitePaper.url,
-    pages.lpCareer.url,
   ];
 
   // 件数だけ欲しいので 1 件で問い合わせる。取得失敗時(totalCount=0)も 1 ページ目は必ず載せる

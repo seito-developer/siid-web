@@ -446,15 +446,33 @@ LP は 1 ページ完結のため、サイト内リンク(コース一覧等)は
 - canonical: `${SITE_URL}/lp-career`
 - OGP 画像: FV から書き出した WebP/PNG を `public/images/lp-career/ogp.png` に配置。
 
-### 11.1 noindex の扱い(未確定)
+### 11.1 noindex の扱い(決定: noindex。2026-09-17)
 
-現行 `lp-1` は「新 TOP ページと訴求が重複する」ため noindex(Issue #40)。
-新 LP は情報量が TOP ページを上回るため、**index させる価値がある**と考えられる。
+**`/siid/lp-career` は noindex にする。** sitemap からも除外する。
 
-一方で `(Main)` の TOP ページとのカニバリゼーションの懸念は残る。
+検討の経緯:
 
-→ **実装は `noindex` を切り替え可能な形にしておき**(`buildPageMetadata(pages.lpCareer, { noindex: true })`
-の 1 行差)、公開直前に判断する。判断には TOP ページとのキーワード整理が必要。
+- 公開時(2026-09-15)は「情報量が TOP を上回るため index させる価値がある」と判断して index 対象にした
+- しかし SEO コンサルのレポート No.1 は、広告専用 LP について **「`/siid/` との重複評価を避け、検索流入は `/siid/` に集約する」** ために noindex を推奨していた
+- 実際、旧サイトでは KW「siid」で `/siid/`(1 位)に加えて `/siid/voices/`(8 位)・`/siid/career/`(10 位・15 位)が同時にヒットしており、評価の分散が起きていた
+- 広告からの流入は noindex でも影響しない
+
+→ オーナー判断で **noindex** に決定(Issue #99)。旧 `/siid/lp-1` が noindex だったので、方針としても一貫する。
+
+実装:
+
+```ts
+// src/app/(Lp)/lp-career/page.tsx
+export const metadata: Metadata = buildPageMetadata(pages.lpCareer, {
+  noindex: true,
+  ogpImagePath: '/images/lp-career/ogp.png',
+});
+```
+
+`src/app/sitemap.ts` の `staticPaths` からも外している。
+
+**canonical・OGP はそのまま出力する。** noindex でも SNS シェア時のカードは必要で、
+canonical は将来 index に戻す場合にそのまま使えるため。
 
 ---
 
@@ -562,8 +580,8 @@ ABOUT セクションで検証した結果:
 | ○ | メタ/SEO | meta description | ページ要約＋CTA 140〜300 字 |
 | ○ | メタ/SEO | canonical | `<link rel="canonical">` に正規 URL |
 | ○ | メタ/SEO | robots.txt | `User-agent: *` / `Allow: /` / Sitemap 行 |
-| ○ | メタ/SEO | sitemap.xml | 全公開ページの URL を列挙(自動生成) |
-| ○ | メタ/SEO | noindex 確認 | `<meta name="robots">` の値。§11.1 の判断に従う |
+| ○ | メタ/SEO | sitemap.xml | 全公開ページの URL を列挙(自動生成)。lp-career は noindex のため対象外 |
+| ○ | メタ/SEO | noindex 確認 | `<meta name="robots" content="noindex,nofollow">` を出力(§11.1 の決定) |
 | ○ | メタ/SEO | html lang | `<html lang="ja">` |
 | ○ | メタ/SEO | 構造化データ | JSON-LD で Organization・BreadcrumbList |
 | ○ | OGP/SNS | og:title / og:description | title と同等 or シェア用文言 |
