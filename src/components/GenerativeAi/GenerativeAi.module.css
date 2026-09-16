@@ -146,6 +146,12 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  /* 各カードに 2 つ並ぶロゴの見た目のサイズを揃える */
+  svg {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .GenerativeAi__Example {

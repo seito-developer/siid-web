@@ -78,7 +78,7 @@ export default function GenerativeAi() {
               </div>
               <span className={styles.GenerativeAi__HeaderText}>転職活動もAIで効率化</span>
             </h3>
-            <p className={styles.GenerativeAi__Text}>「言語化が難しい自己分析・企業研究・書類作成」はAIではじめの8割を作成し、最後を人間の講師が添削・伴走支援します。</p>
+            <p className={styles.GenerativeAi__Text}>言語化が難しい自己分析・企業研究・書類作成はAIではじめの8割を作成し、最後を人間の講師が添削・伴走支援します。</p>
             <div className={styles.GenerativeAi__Example}>
               <div className={`${styles.GenerativeAi__ExampleIcon} ${styles.GenerativeAi__ExampleIconSp}`}>
                 <DocumentIcon />
