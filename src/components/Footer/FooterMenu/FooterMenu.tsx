@@ -12,7 +12,7 @@ import styles from './FooterMenu.module.css';
 export default function FooterMenu({ copyrightOnly = false }: { copyrightOnly?: boolean }) {
   const copyright = (
     <small className={`${styles.FooterMenu__Copyright} ${copyrightOnly ? styles.isStatic : ''}`}>
-             Copyright (&copy;) BugFix All Rights Reserved.
+             &copy; BugFix LLC. All rights reserved.
     </small>
   );
 
@@ -28,8 +28,8 @@ export default function FooterMenu({ copyrightOnly = false }: { copyrightOnly?: 
         <ul className={styles.FooterMenu__SnsList}>
           {snsFooterItems.map((snsItem, index) => (
             <li key={index} className={styles.FooterMenu__SnsItem}>
-              <Link href={snsItem.url} target="_blank" rel="noopener noreferrer">
-                <svg width={snsItem.width} height={snsItem.height}>
+              <Link href={snsItem.url} target="_blank" rel="noopener noreferrer" aria-label={`${snsItem.name}（別タブで開く）`}>
+                <svg width={snsItem.width} height={snsItem.height} aria-hidden="true">
                   <use href={`#${snsItem.icon}`} />
                 </svg>
               </Link> 

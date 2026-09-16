@@ -2,6 +2,8 @@
 
 import { useEffect } from 'react';
 
+import { getCanvasScale } from './getCanvasScale';
+
 /** CSS の長さ同士の除算に未対応のブラウザだけ、同じ縮尺を数値で補う。 */
 export default function CanvasScale() {
   useEffect(() => {
@@ -11,10 +13,7 @@ export default function CanvasScale() {
     if (!root) {return;}
 
     function updateScale() {
-      // visualViewport.width はピンチ操作で変わるため使用しない。
-      const viewportWidth = window.innerWidth;
-      const scale = viewportWidth < 768 ? viewportWidth / 375 : Math.min(1, viewportWidth / 1440);
-      root?.style.setProperty('--lp-career-canvas-scale', String(scale));
+      root?.style.setProperty('--lp-career-canvas-scale', String(getCanvasScale()));
     }
 
     updateScale();

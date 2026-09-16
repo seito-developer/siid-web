@@ -33,13 +33,8 @@ export default function ComparisonTable() {
           {/* 1ヶ月あたりの受講費用 - SiiD */}
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <div className={styles.ComparisonTable__Price}>
-              <span className={styles.ComparisonTable__PriceNumber}>1</span>
+              <span className={styles.ComparisonTable__PriceNumber}>1.9</span>
               <span className={styles.ComparisonTable__PriceUnit}>万円〜/月</span>
-            </div>
-            <div className={styles.ComparisonTable__Description}>
-              何故こんなに安いのかを言及する
-              <br className="br-sp" />
-              ひとこと
             </div>
           </div>
           {/* 1ヶ月あたりの受講費用 - 他社A */}
@@ -57,7 +52,7 @@ export default function ComparisonTable() {
           {/* 1ヶ月あたりの受講費用 - 他社B */}
           <div className={styles.ComparisonTable__Cell}>
             <div className={styles.ComparisonTable__Price}>
-              <span className={styles.ComparisonTable__PriceNumber}>5</span>
+              <span className={styles.ComparisonTable__PriceNumber}>7.3</span>
               <span className={styles.ComparisonTable__PriceUnit}>万円〜/月</span>
             </div>
             <span className={`${styles.ComparisonTable__StarBottom}`}>
@@ -86,7 +81,7 @@ export default function ComparisonTable() {
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <div className={styles.ComparisonTable__Period}>
               <div className={styles.ComparisonTable__PeriodTitle}>個々にパーソナライズ</div>
-              <div className={styles.ComparisonTable__PeriodDetail}>12ヶ月＋アフターサポート</div>
+              <div className={styles.ComparisonTable__PeriodDetail}>12ヶ月とアフターサポート</div>
             </div>
           </div>
           {/* 受講完了までの所要時間 - 他社A */}
@@ -343,9 +338,9 @@ export default function ComparisonTable() {
           {/* 比較ポイント - SiiD */}
           <div className={`${styles.ComparisonTable__Cell} ${styles.ComparisonTable__Cell_Highlight}`}>
             <ul className={styles.ComparisonTable__List}>
-              <li>厳選された現役エンジニア講師が少人数にきめ細かく対応</li>
-              <li>最新技術（ChatGPT等）の活用＋ゼミ形式で実践的に学習</li>
-              <li>セイトによる無制限の個別コンサル</li>
+              <li>厳選された現役エンジニア講師が対応</li>
+              <li>根底技術＋トレンド技術＋生成AIで実用的な技術学習</li>
+              <li>元人事部長による1on1</li>
               <li>無制限の永久コミュニティ質問サポート</li>
               <li>半永久更新型コンテンツの利用が可能</li>
             </ul>
@@ -371,7 +366,7 @@ export default function ComparisonTable() {
           <div className={styles.ComparisonTable__Cell}>
             <ul className={styles.ComparisonTable__List}>
               <li>約1,000時間の実践的カリキュラムで現場対応力を養成</li>
-              <li>就職率90%以上の実績と無期限のサポート体制</li>
+              <li>就職率90%以上の実績</li>
             </ul>
             <span className={`${styles.ComparisonTable__Star} ${styles.ComparisonTable__Mark_Star}`}>
               <svg width="14" height="14" fill="none" style={{ color: '#342525' }}>

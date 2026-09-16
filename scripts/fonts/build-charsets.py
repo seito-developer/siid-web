@@ -1,0 +1,71 @@
+"""(Main) 用サブセットの収録文字を組み立てる(Issue #100)。
+
+core … サイトに出ている文字 + src/ のソースにある日本語 + ASCII + JIS X 0208 の非漢字
+ext  … JIS X 0208 第1水準のうち core に無いもの
+
+src/ を毎回読むのは、文言を変えたのに --collect を忘れる漏れを防ぐため(Issue #132)。
+実測でソース由来の追加は数文字しかなく、core のサイズにはほぼ響かない。
+
+区点コードを EUC-JP で復号して JIS X 0208 を取り出すため、外部データを持たない。
+"""
+
+import argparse
+import json
+import pathlib
+import subprocess
+
+CHARSET_DIR = pathlib.Path(__file__).parent / 'charsets'
+
+# 表記ゆれ・約物・囲み数字など JIS X 0208 の非漢字に含まれない、実務で出やすい文字
+EXTRA = set('①②③④⑤⑥⑦⑧⑨⑩♪→←↑↓⇒≫≪★☆◎○●◯△▲□■◆◇※〜～－‐ー―–—‘’“”…‥・々〆')
+
+
+def jis_block(ku_from: int, ku_to: int) -> set[str]:
+    out = set()
+    for ku in range(ku_from, ku_to + 1):
+        for ten in range(1, 95):
+            try:
+                out.add(bytes([0xA0 + ku, 0xA0 + ten]).decode('euc_jp'))
+            except UnicodeDecodeError:
+                continue
+    return out
+
+
+def source_chars() -> set[str]:
+    """src/ のソースにある日本語(コメントを除く)。判定は scripts/fonts/source-chars.mjs に寄せる。"""
+    script = 'import {collectSourceChars} from "./scripts/fonts/source-chars.mjs";' \
+             'console.log(JSON.stringify([...collectSourceChars()]))'
+    out = subprocess.run(['node', '--input-type=module', '-e', script],
+                         capture_output=True, text=True, check=True)
+    chars = set(json.loads(out.stdout))
+    print(f'  ソース由来: {len(chars)} 文字')
+    return chars
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--collected', type=pathlib.Path,
+                        help='実ページから採取したテキスト。指定時は site.txt を更新する')
+    args = parser.parse_args()
+
+    site_path = CHARSET_DIR / 'site.txt'
+    if args.collected:
+        collected = {c for c in args.collected.read_text(encoding='utf-8') if not c.isspace()}
+        known = set(site_path.read_text(encoding='utf-8')) if site_path.exists() else set()
+        site = collected | known
+        site_path.write_text(''.join(sorted(site - {'\n'})) + '\n', encoding='utf-8')
+        print(f'  site.txt: {len(site)} 文字(採取 {len(collected)} / 既存 {len(known)})')
+    else:
+        site = {c for c in site_path.read_text(encoding='utf-8') if not c.isspace()}
+
+    ascii_ = {chr(i) for i in range(0x20, 0x7F)}
+    core = ascii_ | jis_block(1, 8) | EXTRA | site | source_chars()
+    ext = jis_block(16, 47) - core
+
+    (CHARSET_DIR / 'core.txt').write_text(''.join(sorted(core)) + '\n', encoding='utf-8')
+    (CHARSET_DIR / 'ext.txt').write_text(''.join(sorted(ext)) + '\n', encoding='utf-8')
+    print(f'  core {len(core)} 文字 / ext {len(ext)} 文字')
+
+
+if __name__ == '__main__':
+    main()

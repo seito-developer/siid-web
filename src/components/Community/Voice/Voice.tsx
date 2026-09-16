@@ -17,14 +17,12 @@ type Props = {
 };
 
 const DEFAULT_VOICES: Voice[] = [
-  { id: '1', text: '感動しました。笑' },
-  { id: '2', text: 'セイトさんから直接日々の雑談にコメントもらえるとは' },
-  { id: '3', text: 'セイトさんがリアルに存在して感動しました。笑' },
-  { id: '4', text: 'コーディングの沼にハマってしまった時にすぐ助けてもらえて嬉しかったです' },
-  { id: '5', text: '普段オフラインで会ってた仲間と会えて、情報交換したりと楽しい時間でした' },
-  { id: '6', text: 'おかげで本業と両立しながらなんとかやれてます！' },
-  { id: '7', text: 'みんなが頑張っている姿に、自分も負けてられないとやる気が湧いた！ありがとう' },
-  { id: '8', text: 'セイトさんから直接日々の雑談にコメントもらえるとは' },
+  { id: '1', text: 'セイトさんから直接日々の雑談にコメントもらえるとは' },
+  { id: '2', text: 'セイトさんがリアルに存在して感動しました。笑' },
+  { id: '3', text: 'コーディングの沼にハマってしまった時にすぐ助けてもらえて嬉しかったです' },
+  { id: '4', text: '普段オンラインで話していた仲間と会えて、情報交換したりと楽しい時間でした' },
+  { id: '5', text: 'おかげで本業と両立しながらなんとかやれてます！' },
+  { id: '6', text: 'みんなが頑張っている姿に、自分も負けてられないとやる気が湧いた！ありがとう' },
 ];
 
 function splitIntoLanes<T>(items: T[], laneCount: number): T[][] {
@@ -42,19 +40,20 @@ function laneDurationSec(laneIndex: number) {
 }
 
 export default function Voice(props: Props) {
-  const { voices = DEFAULT_VOICES, laneCount = 4 } = props;
+  // 既定の声は 6 件なので 3 レーン × 2 件にする(1 件のレーンだと marquee の折り返しで空白ができる)
+  const { voices = DEFAULT_VOICES, laneCount = 3 } = props;
 
   const lanes = splitIntoLanes(voices, laneCount);
 
   return (
-    <div className={styles.Voice__Wrapper} aria-label="受講者の声">
+    <div className={styles.Voice__Wrapper} aria-label="受講生の声">
       <div className={styles.Voice__Ribbon} aria-hidden="true">
         <RibbonText text="VOICE" durationSec={48} direction="left" variant="voice" />
       </div>
 
       <div className={styles.Voice__Inner}>
         <aside className={styles.Voice__LeftCard}>
-          <div className={styles.Voice__LeftCardTitle}>受講者の声</div>
+          <div className={styles.Voice__LeftCardTitle}>受講生の声</div>
           <div className={styles.Voice__LeftCardWatermark} aria-hidden="true">
             <Image
               src="/siid/images/community/logo_voice.svg"
@@ -67,7 +66,7 @@ export default function Voice(props: Props) {
           </div>
         </aside>
 
-        <div className={styles.Voice__Lanes} aria-label="受講者コメント">
+        <div className={styles.Voice__Lanes} aria-label="受講生コメント">
           {lanes.map((lane, laneIndex) => {
             const loopLane = [...lane, ...lane];
             const duration = laneDurationSec(laneIndex);

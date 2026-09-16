@@ -15,11 +15,12 @@ import Opening from '@/components/Opening/Opening';
 import Reason from '@/components/Reason/Reason';
 import ReskillBanner from '@/components/ReskillBanner/ReskillBanner';
 import Supporter from '@/components/Supporter/Supporter';
-import { buildPageMetadata, commonTitle, pages } from '@/constants/meta';
+import { buildPageMetadata, pages } from '@/constants/meta';
 import { getNews } from '@/lib/getNews';
 
 import styles from './Home.module.css';
-export const metadata: Metadata = buildPageMetadata(pages.index, { title: commonTitle });
+// title は pages.index.metaTitle を使う(Issue #96)
+export const metadata: Metadata = buildPageMetadata(pages.index);
 
 // News（microCMS）の再検証間隔。getNews() 内の fetch にも同じ値を指定しているが、
 // 環境変数未設定などで fetch 自体が実行されないとページが完全な静的扱いになり、

@@ -10,10 +10,10 @@
 - データ: `src/data/coursePlans.json` + `src/lib/getCoursePlans.ts`。コンポーネントは `src/components/Courses/` 配下
 - アセット: `public/images/courses/`(Figma から書き出した SVG / 言語ロゴ PNG。SVG は `var(--fill-0)` を実色に置換済み — img 参照では CSS 変数が解決されないため)
 - **実装時判断・デザイン側への確認事項**:
-  - 比較表「実施内容」の行ラベルと値の対応は Figma の見た目どおりに実装したが、内容的に 1 行ズレている疑いあり(チャット=初回のみ 等)→ デザイナー確認待ち
-  - アドバイス欄の悩みバッジ番号が Figma では 01/03/03 になっている等の番号錯誤 → 01/02/03 に正規化。Career 列の悩み 02 と 03 が同一文言なのは Figma のまま
+  - 比較表「実施内容」の行ラベルと値は Figma では 1 行ズレていた(チャット=初回のみ 等)。Issue #121 でプランカードの内容に合わせて修正済み(チャット=24時間、Zoom=毎日、添削・模擬面接=Career 2回/他 無制限、個別コンサル=なし/最大月1回/無制限)
+  - アドバイス欄の悩みバッジ番号が Figma では 01/03/03 になっている等の番号錯誤 → 01/02/03 に正規化。Career 列の悩み 02 と 03 が Figma では同一文言だったため、03 を「副業や個人開発など、転職以外の目的でスキルを身につけたい方」に差し替え、中身が対象者像なので見出しを「こんな方におすすめです！」・バッジを「対象 01」に変更(Issue #121)
   - ~~LINE バナーのリンク先 URL 未確定~~ → **確定(Issue #51)**: `/line` ページへリンク(§3-2 の「導線」参照)
-  - 「※Fullsuport,VIP Editionコースのみ」のタイポは原文ママ
+  - 3 枚目のカードは料金表（2026-09-16）に合わせて「Career +VIP Edition（898,000 円）」から「顧問プラン（660,000 円〜、給付金対象外）」に置き換え（Issue #122）。コード上の id・アンカー・CSS クラス・バッジ画像は `vip` のまま
   - **グローバルナビ「コース/プラン」の遷移先(Issue #51 で確定)**: 親項目は `/courses`、下層3項目は各コースカードのアンカー `/courses#plan-career` / `#plan-full-support` / `#plan-vip`。アンカー ID は `src/constants/coursePlans.ts` の `COURSE_PLAN_ANCHOR_IDS` で一元管理し、ナビ(`menuItems.ts`)とカード(`CoursePlans.tsx`)の双方が参照する(片方だけ変更するとリンク切れになるため)
 
 ## 3-2. アフターサポート【対応済み 2026-07 / Issue #11】
@@ -22,7 +22,7 @@
 - ナビ/フッターは「アフターサポート」(旧 `comingSoon: true` の無効表示 / リンク先 `/after-support` は実体なし)を廃止し、**「サービス一覧」→ `/service`** に置き換えた(`src/constants/menuItems.ts`)。既存 `Support` セクションへは `/service` 経由で到達する。
 - Figma 確認記録: §3-2 が挙げていた H-1 系候補ノードのうち実在するのは `3506:11730` = 「H-1 409」= 404 デザインのみで、アフターサポート専用フレームは存在しなかった。
 
-## 3-2b. `/line` LINE登録で無料体験【実装済み 2026-07】
+## 3-2b. `/line` LINE登録特典【実装済み 2026-07】
 
 - Figma: `G-1 LINE登録` PC (3506:11427) / SP (3506:6128)
 - ルート: `G-1 LINE登録` は `/contact` 候補フレームだったが、**独立した LINE 登録ランディングページ `/line`** として実装(ユーザー確認済み）
@@ -33,7 +33,7 @@
 - アセット: `public/images/line/`(バナー SVG 2枚、特典カードは各画像グループを 1 枚に flatten したスクリーンショット)
 - CTA(友だち追加ボタン)のリンク先: `https://siid.bug-fix.org/line/open/...`(セイト先生公式 LINE の友だち追加 URL。ユーザー提供）
 - **デザイン差異・要確認**:
-  - PC は「Present / 10つの特典」(10 枚)、SP は「Features / ９つの特典」(9 枚)で不一致 → より完全な **PC 版(10 枚・Present)** を採用。デザイナー確認待ち
+  - PC は「Present / 10つの特典」(10 枚)、SP は「Features / ９つの特典」(9 枚)で不一致 → より完全な **PC 版(10 枚・Present)** を採用。見出しの件数は `linePresents.json` の件数から出す(「10の特典」。Issue #121)
   - 特典カードのプレビュー画像は装飾的なコラージュのため、各グループを 1 枚の PNG に flatten して掲載
 - **導線(Issue #51 で確定)**: コース一覧ページ(`/courses`)の LINE バナー(`components/Courses/LineBanner`)から `/line` へリンクする。同バナーは友だち追加 URL 直リンクではなく `/line` を経由させる(CTA 文言が「詳細はこちら」であり、`/line` 内に友だち追加 CTA があるため)。グローバルナビ・フッターのメニューには `/line` を追加していない
 
@@ -54,7 +54,7 @@
 ## 3-4. 404 Not Found【実装済み 2026-07 / Issue #24】
 
 - Figma: **`H-1 409` (3506:11730)** 準拠(Issue #24 で `H-1 408` の「カードめくり」案から仕様変更)。SP 版デザイン(H-1 410〜413)はキャンバス全走査の結果 **存在しない** ことを確認 → PC デザインを縮小した構成で実装(ミニゲームのみ Issue #38 で SP は 16:9 キャンバスに変更。1440px 幅デザインの右端装飾(看板・猫・雲C)は SP の待機画面では画面外となり、走行中にスクロールで登場する)
-- 構成: 下層ナビ+青パネル「404 NOT FOUND」見出し(`NotFoundHero`。既存 `Headline` とはタイトルサイズ・破線位置が異なるため専用実装)+お詫びテキスト+**フル幅ドット絵ミニゲーム**+フッター。パンくずなし
+- 構成: 下層ナビ+青パネル「404 NOT FOUND」見出し(`NotFoundHero`。既存 `Headline` とはタイトルサイズ・破線位置が異なるため専用実装)+お詫びテキスト+TOP・無料カウンセリングへのリンク(Issue #121)+**フル幅ドット絵ミニゲーム**+フッター。パンくずなし
 - **ルーティング(重要)**: `src/app/not-found.tsx`(root not-found)で実装。前提として本リポジトリは root `layout.tsx` 不在の変則構成で `npm run build` 自体が失敗していたため、Issue #24 で **root `src/app/layout.tsx` を新設**し、旧 `homeLayout.tsx` を廃止・`(LowerPages)/layout.tsx` は `NavigationPcLower` のみ担当に変更した(共通クローム Icons / NavigationSp / Footer / フォントは root layout に集約)。
   - 検討済みの代替案: `(LowerPages)` 内 catch-all + `notFound()` は、動的レンダー時に SSR が `__next_error__` シェルになりクロームがクライアント描画になるため不採用。root not-found は静的プリレンダーされ完全な HTML + HTTP 404 + noindex を返す(`curl -sI` で検証済み)
 - **ミニゲーム**(chrome://dino 風、`src/components/NotFound/Game/`):

@@ -23,7 +23,7 @@ const benefits: { image: string; label: string }[] = [
   },
   {
     image: '/siid/images/counseling/gift-3.jpg',
-    label: '【歴13年のエンジニアが活用する】Claude Code & Codex 裏ワザ＆プロンプト９セット',
+    label: '【歴13年のエンジニアが活用する】Claude Code & Codex 裏ワザ＆プロンプト9セット',
   },
   {
     image: '/siid/images/counseling/gift-4.jpg',

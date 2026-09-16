@@ -69,13 +69,6 @@
     border-bottom: 4px solid #475499;
 }
 
-.CourseComparison__GroupNote {
-    display: block;
-    margin-top: 16px;
-    font-size: 11px;
-    font-weight: 500;
-}
-
 .CourseComparison__SubHeader {
     width: 110px;
     padding: 12px;
@@ -239,4 +232,10 @@
     .CourseComparison__Table {
         font-size: 11px;
     }
+}
+
+/* 顧問プランは日本語名のため、英字専用の Bagor ではなく Noto Sans JP の太字で出す */
+.CourseComparison__CourseHeader.is-vip {
+    font-family: var(--font-noto-sans-jp);
+    font-weight: 900;
 }

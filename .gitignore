@@ -49,3 +49,6 @@ next-env.d.ts
 /tmp/
 /.venv-lp-career/
 __pycache__/
+
+# 自前サブセットの採取一時ファイル(scripts/fonts/subset-noto-sans-jp.sh --collect)
+/scripts/fonts/charsets/.collected.txt

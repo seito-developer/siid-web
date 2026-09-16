@@ -25,6 +25,8 @@ const ADVANCED_LANGS = [
   { name: 'TypeScript', file: 'typescript' },
   { name: 'React', file: 'react' },
   { name: 'Python', file: 'python' },
+  { name: 'Codex', file: 'codex' },
+  { name: 'Claude Code', file: 'claude-code' },
 ];
 
 type Props = {
@@ -35,7 +37,7 @@ type Props = {
 export default function CourseComparison({ plans, comparison }: Props) {
   return (
     <section className={styles.CourseComparison}>
-      <SectionHeading en="Message" title="コースによる違い" invert />
+      <SectionHeading en="Comparison" title="コースによる違い" invert />
       <div className={styles.CourseComparison__Scroller}>
         <table className={styles.CourseComparison__Table}>
           <thead>
@@ -79,9 +81,6 @@ export default function CourseComparison({ plans, comparison }: Props) {
             <tr>
               <th className={styles.CourseComparison__GroupHeader} rowSpan={3} scope="rowgroup">
                 学習範囲
-                <span className={styles.CourseComparison__GroupNote}>
-                  対応一覧表は<u>こちら</u>
-                </span>
               </th>
               <th className={styles.CourseComparison__SubHeader} scope="row">
                 言語
@@ -107,7 +106,7 @@ export default function CourseComparison({ plans, comparison }: Props) {
                   <div className={styles.CourseComparison__LangAdvanced}>
                     <span className={styles.CourseComparison__LangLabel}>＋応用</span>
                     <span className={styles.CourseComparison__LangNote}>
-                      ※Full Support,VIP Editionコースのみ
+                      ※Full Support・顧問プランのみ
                     </span>
                     <ul className={styles.CourseComparison__LangIcons}>
                       {ADVANCED_LANGS.map((lang) => (

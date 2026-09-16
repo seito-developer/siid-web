@@ -1,0 +1,51 @@
+/*
+ * 画面下部に追従する CTA(Issue #138)。
+ *
+ * 本文と同じ設計幅で拡縮するため、main / header と同じ zoom をかける
+ * (--lp-career-canvas-scale は .LpCareer で定義)。
+ * 引っ込んでいる間は visibility で隠し、キーボード操作の対象からも外す。
+ * Cookie バナー(z-index 300)とドロワー(200)より下、ヘッダー(100)と同じ層に置く。
+ */
+
+.StickyCta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 0 0 calc(12px + env(safe-area-inset-bottom, 0px));
+  zoom: var(--lp-career-canvas-scale);
+  pointer-events: none;
+  transform: translateY(calc(100% + 16px));
+  visibility: hidden;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.35s;
+}
+
+.StickyCta.isVisible {
+  transform: translateY(0);
+  visibility: visible;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+
+.StickyCta__Button {
+  pointer-events: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .StickyCta {
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .StickyCta,
+  .StickyCta.isVisible {
+    transition: none;
+  }
+}

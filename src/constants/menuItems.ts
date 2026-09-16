@@ -19,11 +19,11 @@ export const menuItems: MenuItem[] = [
         url: `/courses#${COURSE_PLAN_ANCHOR_IDS.career}`,
       },
       {
-        name: 'Career+FullSupportEditionコース',
+        name: 'Career +Full Supportコース',
         url: `/courses#${COURSE_PLAN_ANCHOR_IDS.fullSupport}`,
       },
       {
-        name: 'Career+VIPEditionコース',
+        name: '顧問プラン',
         url: `/courses#${COURSE_PLAN_ANCHOR_IDS.vip}`,
       },
     ],

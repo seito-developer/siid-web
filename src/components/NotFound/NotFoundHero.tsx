@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Link from 'next/link';
+
 import { pages } from '@/constants/meta';
 import { handleStringHTML } from '@/utils/helper';
 
@@ -26,12 +28,22 @@ export default function NotFoundHero() {
           position={CornerPosition.TOP_RIGHT}
         />
       </header>
-      <p
-        className={styles.NotFoundHero__Description}
-        dangerouslySetInnerHTML={{
-          __html: handleStringHTML(pages.notFound.description, true),
-        }}
-      />
+      <div className={styles.NotFoundHero__Body}>
+        <p
+          className={styles.NotFoundHero__Description}
+          dangerouslySetInnerHTML={{
+            __html: handleStringHTML(pages.notFound.description, true),
+          }}
+        />
+        <p className={styles.NotFoundHero__Links}>
+          <Link href={pages.index.url} className={styles.NotFoundHero__Link}>
+            TOPページへ戻る
+          </Link>
+          <Link href={pages.counseling.url} className={styles.NotFoundHero__Link}>
+            無料カウンセリングを予約する
+          </Link>
+        </p>
+      </div>
       <div className={styles.NotFoundHero__Corner}>
         <Corner top="0" left="0" position={CornerPosition.TOP_LEFT} />
       </div>

@@ -20,7 +20,7 @@ const SUPPORTS = [
     title: 'ずっと使える相談ルーム',
     description: (
       <>
-        24時間サポートOKのチャットサポートに加え、毎週５日間「SiiD」の講師陣が1日2時間Zoomミーティングを開きそこで受講生さんの質問にフランクに答える仕組みがあります。卒業生も使える＝エンジニアの先生に質問し放題の環境をご用意しています
+        24時間受付のチャットサポートに加え、毎日21:00〜23:00にSiiDの講師陣がZoomミーティングを開き、受講生の質問にフランクに答えます。卒業生も使えるので、エンジニアの先生に質問し放題の環境が卒業後も続きます。
       </>
     ),
     image: '/siid/images/service/support/supportlist/supportitem/support-2.png',
@@ -28,10 +28,10 @@ const SUPPORTS = [
   {
     id: 3,
     number: 3,
-    title: 'セイトによる無制限の個別コンサル',
+    title: 'セイトによる個別コンサル（1on1）',
     description: (
       <>
-        受講生の転職が成功するまでサポートを実施。とことん最後までサポートし結果にコミットする。セイトが覚悟を持ったアフターサポートになります。
+        受講生の転職が成功するまでサポートを実施。とことん最後までサポートし結果にコミットする。セイトが覚悟を持ったアフターサポートになります。<br />※Career +Full Supportは転職成功まで最大月1回、顧問プランは月1〜3回です。
       </>
     ),
     image: '/siid/images/service/support/supportlist/supportitem/support-3.png',
@@ -50,10 +50,10 @@ const SUPPORTS = [
   {
     id: 5,
     number: 5,
-    title: '続・SiiD Passport',
+    title: '求人紹介サポート「SiiD Passport」',
     description: (
       <>
-        希望者にのみ求人を紹介するサポートを行っています。<br />パートナー会社である株式会社GIGとの提携により、Web業界のエンジニア求人を中心に面談・ご相談の上求人をご提案します。現役で受講されている方も卒業生も使えるサービスとなっていますので、ぜひ選択肢を広げるためにお使いください◎
+        希望者にのみ求人を紹介するサポートを行っています。<br />パートナー会社である株式会社GIGとの提携により、Web業界のエンジニア求人を中心に面談・ご相談の上求人をご提案します。現役で受講されている方も卒業生も使えるサービスとなっていますので、ぜひ選択肢を広げるためにお使いください。
       </>
     ),
     image: '/siid/images/service/support/supportlist/supportitem/support-5.png',

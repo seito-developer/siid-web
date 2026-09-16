@@ -1,10 +1,10 @@
 import styles from './GenerativeAi.module.css';
 import AiIllustration from './Icons/AiIllustration';
-import ChatGptIcon from './Icons/ChatGptIcon';
-import CursorIcon from './Icons/CursorIcon';
+import ClaudeIcon from './Icons/ClaudeIcon';
 import DocumentIcon from './Icons/DocumentIcon';
 import DocumentIconPc from './Icons/DocumentIconPc';
 import GithubCopilotIcon from './Icons/GithubCopilotIcon';
+import OpenAiIcon from './Icons/OpenAiIcon';
 
 export default function GenerativeAi() {
   return (
@@ -27,9 +27,7 @@ export default function GenerativeAi() {
             <p className={styles.GenerativeAi__Text}>
               生成AIの登場により、開発現場の生産性は飛躍的に向上し、エンジニアに求められるスキルレベルは急速に底上げされています。
               <br />
-              それに伴い、企業の採用基準も「生成AIを使いこなせること」が前提となりつつあります。
-              <br />
-              当スクールは、この時代の変化を先取りし、すべての受講生が生成AIを「武器」として使いこなし、市場価値の高いエンジニアになるための指導を徹底しています。
+              それに伴い、当スクールでもAIによる学習促進とAI駆動開発スキルが学べるカリキュラムをご提供します。
             </p>
 
             <div className={styles.GenerativeAi__Illustration}>
@@ -51,19 +49,20 @@ export default function GenerativeAi() {
 
             <div className={styles.GenerativeAi__Tools}>
               <div className={styles.GenerativeAi__Tool}>
-                <h4 className={styles.GenerativeAi__ToolTitle}>ChatGPT</h4>
-                <p className={styles.GenerativeAi__ToolDescription}>仕様の整理/コードの壁打ち/エラー解決など</p>
+                <h4 className={styles.GenerativeAi__ToolTitle}>ChatGPT, GitHub Copilot</h4>
+                <p className={styles.GenerativeAi__ToolDescription}>プロンプトエンジニアリングやコード補完を学ぶ</p>
                 <div className={styles.GenerativeAi__ToolIcons}>
-                  <ChatGptIcon />
+                  <OpenAiIcon />
+                  <GithubCopilotIcon />
                 </div>
               </div>
 
               <div className={styles.GenerativeAi__Tool}>
-                <h4 className={styles.GenerativeAi__ToolTitle}>GitHub Copilot & Cursor</h4>
-                <p className={styles.GenerativeAi__ToolDescription}>精度の高いコード補完による開発速度の向上</p>
+                <h4 className={styles.GenerativeAi__ToolTitle}>Codex, Claude Code</h4>
+                <p className={styles.GenerativeAi__ToolDescription}>AIエージェントによる開発手法を学ぶ</p>
                 <div className={styles.GenerativeAi__ToolIcons}>
-                  <GithubCopilotIcon />
-                  <CursorIcon />
+                  <OpenAiIcon />
+                  <ClaudeIcon />
                 </div>
               </div>
             </div>
@@ -77,9 +76,9 @@ export default function GenerativeAi() {
                 </svg>
                 <span className={styles.GenerativeAi__HeaderIconText}>CHECK</span>
               </div>
-              <span className={styles.GenerativeAi__HeaderText}>生成AIはエンジニアの「新たな常識」</span>
+              <span className={styles.GenerativeAi__HeaderText}>転職活動もAIで効率化</span>
             </h3>
-            <p className={styles.GenerativeAi__Text}>一部のカリキュラムでは当スクール独自開発の「AI先生」が、あなたの学習を強力にサポートします。</p>
+            <p className={styles.GenerativeAi__Text}>言語化が難しい自己分析・企業研究・書類作成はAIではじめの8割を作成し、最後を人間の講師が添削・伴走支援します。</p>
             <div className={styles.GenerativeAi__Example}>
               <div className={`${styles.GenerativeAi__ExampleIcon} ${styles.GenerativeAi__ExampleIconSp}`}>
                 <DocumentIcon />

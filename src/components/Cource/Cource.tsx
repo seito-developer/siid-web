@@ -12,10 +12,10 @@ export default function Cource() {
   // 未来の項目データ
   const futureItems = [
     { number: '01', text: '8-12ヶ月でITエンジニアへ' },
-    { number: '02', text: '自分が作りたいアプリを実装させられる' },
+    { number: '02', text: '自分が作りたいアプリを自分で実装できる' },
     { number: '03', text: '困った時に相談できる講師や先輩' },
     { number: '04', text: 'キャリアや経済不安からの脱却' },
-    { number: '05', text: 'さまざまなキャリアの選択肢', subText: '（リモートワーク、有名企業、フリーランス、海外、など）' },
+    { number: '05', text: 'さまざまなキャリアの選択肢' },
   ];
 
   return (
@@ -57,18 +57,14 @@ export default function Cource() {
               で手に入る未来
             </h3>
             <p className={styles.Cource__FutureDescription}>
-              Youtubeだけでは個々の課題にパーソナライズできないとセイト自身が悩んで立ち上げたプログラミングスクール。
+              SiiDは、生成AIを味方につけたITエンジニアへの転職と、その先のキャリアまでを見据えたスクールです。
               <br />
-              本物が本気で付き合います。
-              <br />
-              こんな講師から学べるスクールは他に存在し得ないと思います。
-              <br />
-              だからこそ成果を出していただく自信があります。
+              現役エンジニアの講師が一人ひとりの課題に向き合い、学習から転職活動、入社後の成長まで伴走します。
             </p>
 
             <ul className={styles.Cource__FutureList}>
               {futureItems.map((item, index) => (
-                <FutureItem key={index} number={item.number} text={item.text} subText={item.subText} />
+                <FutureItem key={index} number={item.number} text={item.text} />
               ))}
             </ul>
           </div>

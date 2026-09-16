@@ -1,8 +1,14 @@
 import Image from 'next/image';
 
+import { getBooks } from '@/lib/getBooks';
+
 import styles from './Event.module.css';
 
+
 export default function Event() {
+  // 『セイト先生が教えるプログラミング入門』(books.json の先頭)
+  const book = getBooks()[0];
+
   return (
     <div className={styles.Event__Wrapper}>
       <div className={styles.Event__Hero}>
@@ -14,7 +20,7 @@ export default function Event() {
           <Image src="/siid/images/community/seito-01.png" alt="講師登壇" width={400} height={300} className={styles.Event__DetailImg} />
           <div className={styles.Event__DetailText}>
             <p>
-              コメント記載できるスペースをこちらに配置しました。特になければトリで大丈夫です。80字程度で何かあれば入れてください。ここには４行程度の文字が入る想定です。
+              出版記念イベントではセイトが登壇し、書籍の裏話や効率的な学習法について直接お話ししました。受講生・卒業生・読者の皆さんが集まり、質疑応答や交流の時間も大いに盛り上がりました。
             </p>
           </div>
         </div>
@@ -27,15 +33,16 @@ export default function Event() {
       <div className={styles.Event__Publication}>
         <Image src="/siid/images/community/seito-book.png" alt="セイト先生が教えるプログラミング入門" width={300} height={400} className={styles.Event__PublicationImg} />
         <div className={styles.Event__PublicationText}>
-          <span className={styles.Event__BookTitle}>『セイト先生が教えるプログラミング入門 』</span>
-          <span className={styles.Event__BookDetail}>日経BP /2024年9月 発売</span>
+          <span className={styles.Event__BookTitle}>『セイト先生が教えるプログラミング入門』</span>
+          <span className={styles.Event__BookDetail}>日経BP / 2024年9月発売</span>
           <span className={styles.Event__BookDesc}>
-            YouTube登録者数10万人超のインフルエンサーであり、現役エンジニアでもある著者が、効率的な学習法やコンピュータサイエンス、HTML、CSS、JavaScript、アプリケーション開発など、プログラミングにまつわるアレコレをわかりやすく解説しています。ChatGPTや、AI機能を有するIDEであるCursorなど、AIツールの取り入れ方も手厚くカバーしています。<br />
+            YouTube登録者数13万人のインフルエンサーであり、現役エンジニアでもある著者が、効率的な学習法やコンピュータサイエンス、HTML、CSS、JavaScript、アプリケーション開発など、プログラミングにまつわるアレコレをわかりやすく解説しています。ChatGPTやAI機能を備えたエディタなど、AIツールの取り入れ方も手厚くカバーしています。<br />
             プログラミング学習はインプットするだけでは不十分で、アウトプットの経験が大切です。本書は演習問題を豊富に用意しており、アウトプットの経験を積むこともできます。
           </span>
           <div className={styles.Event__Links}>
-            <span className={styles.Event__DisabledLink}>楽天ブックスで購入する（coming soon）</span>
-            <span className={styles.Event__DisabledLink}>Amazonで購入する（coming soon）</span>
+            <a href={book.amazonLink} target="_blank" rel="noopener noreferrer">
+              Amazonで購入する
+            </a>
           </div>
         </div>
       </div>

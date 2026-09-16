@@ -16,6 +16,7 @@ import Present from '@/components/LpCareer/Present/Present';
 import Result from '@/components/LpCareer/Result/Result';
 import Skill from '@/components/LpCareer/Skill/Skill';
 import Step from '@/components/LpCareer/Step/Step';
+import StickyCta from '@/components/LpCareer/StickyCta/StickyCta';
 import Strength from '@/components/LpCareer/Strength/Strength';
 import StructuredData from '@/components/LpCareer/StructuredData/StructuredData';
 import Support from '@/components/LpCareer/Support/Support';
@@ -89,6 +90,7 @@ export default function LpCareer() {
         <Counselling />
       </main>
       <Footer />
+      <StickyCta />
       <CookieBanner />
     </div>
   );

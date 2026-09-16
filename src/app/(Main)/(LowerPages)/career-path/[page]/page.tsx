@@ -29,10 +29,14 @@ export async function generateMetadata({ params }: { params: Promise<{ page: str
   });
 }
 
-const breadcrumb: BreadcrumbProps[] = [
-  { title: pages.index.name.ja, url: pages.index.url },
-  { title: pages.careerPath.name.ja, url: pages.careerPath.url },
-];
+// /career-path は /career-path/1 へ 301 するため、JSON-LD の item が
+// リダイレクト URL にならないよう、表示中のページ番号付き URL を渡す(Issue #97)。
+function buildBreadcrumb(currentPage: number): BreadcrumbProps[] {
+  return [
+    { title: pages.index.name.ja, url: pages.index.url },
+    { title: pages.careerPath.name.ja, url: `${pages.careerPath.url}/${currentPage}` },
+  ];
+}
 
 interface PageProps {
   params: Promise<{
@@ -69,7 +73,7 @@ export default async function CareerPath({ params }: PageProps) {
         title={pages.careerPath.name.en}
         description={handleStringHTML(pages.careerPath.description, true)}
       />
-      <Breadcrumb breadcrumb={breadcrumb} />
+      <Breadcrumb breadcrumb={buildBreadcrumb(currentPage)} />
       <ContentsArea>
         <div className={styles.CareerPath__Wrapper}>
           <CareerPathList

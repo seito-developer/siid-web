@@ -50,19 +50,19 @@ export default function WhitePaper() {
             <div className={styles.WhitePaper__Images}>
               <Image
                 src="/siid/images/white-paper/page-1.jpg"
-                alt="サービス資料の画像１"
+                alt="SiiD紹介資料の表紙「学び方と進み方を見つけられるプログラミング・スクール SiiD」"
                 width={960}
                 height={540}
               />
               <Image
                 src="/siid/images/white-paper/page-2.jpg"
-                alt="サービス資料の画像２"
+                alt="SiiD紹介資料のページ「SiiDってどんなスクール？」（受講生アンケートの満足度・達成率）"
                 width={960}
                 height={540}
               />
             </div>
             <figcaption className={styles.WhitePaper__Caption}>
-              ※画像はイメージです。
+              ※資料の一部を抜粋しています。
             </figcaption>
           </figure>
           <div className={styles.WhitePaper__Actions}>

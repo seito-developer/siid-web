@@ -67,8 +67,21 @@ TOP の News(「コラム」記事)と卒業生の進路(「受講生様イン�
 - **metadata**: `buildPageMetadata()`(`src/constants/meta.ts`)が title / description / canonical / openGraph / twitter を一括生成。全ページで使用。`/counseling/complete` は noindex
 - **OGP 画像**: `public/ogp.png`(1200×630、Figma 4265:8754)。favicon は `src/app/favicon.ico`(16/32/48px、Figma 4265:8761)、apple-touch-icon は `src/app/apple-icon.png`(180px、Figma 4265:8766、Next.js のファイル規約で自動配線)
 - **sitemap**: `src/app/sitemap.ts`(`/sitemap.xml`)。GSC には sitemap URL を直接送信する。**robots.txt はドメインルート(bug-fix.org)でのみ有効なため本リポジトリでは実装せず、別プロジェクト(現行サイト側)で対応する**(PR #37 レビューでの決定)
-- **構造化データ**: TOP に Organization の JSON-LD(`src/components/JsonLd/JsonLd.tsx`)
+- **構造化データ**: TOP に Organization の JSON-LD(`src/components/JsonLd/JsonLd.tsx`)。パンくずを表示する下層ページには BreadcrumbList を `src/components/Breadcrumb/Breadcrumb.tsx` が自動出力する(Issue #97)。ページ側での追加作業は不要で、`BreadcrumbProps[]` の `url` がそのまま `SITE_URL` 起点の絶対 URL(`absoluteUrl()`)になる。`/lp-career` は独立 LP のため `LpCareer/StructuredData` が別途 `@graph` を出力する
 - **画像**: 300KB 超の PNG/JPG を WebP 化(`courses/langs/` はディレクトリごと変換)。意味のある画像の空 alt を解消(装飾 SVG は空 alt を維持)。~~**例外**: `strengthcard/*.png` は APNG のため WebP 変換対象外~~ → **2026-09-15 変更(Issue #94)**: `strengthcard/*.png`(6 枚・計 5.9MB、最大 2.6MB)は**アニメーション WebP へ変換**して計 1.28MB にした(-79%)。`next/image` はアニメーション画像を最適化せず素通しするため、1080px の原寸がそのまま配信されていた。実際の表示は PC 180px / SP 100px のため 400px へ縮小し、30fps のものは 15fps に間引いている。変換は `scripts/apng-to-webp.mjs`(ffmpeg でフレーム展開 → libwebp の img2webp で組み立て。APNG のフレームごとの表示時間を引き継ぐ)
+
+## title / description の方針(2026-09-15・Issue #96)
+
+SEO コンサルのレポート No.1(title・description の重複)はリニューアルで解消済みだが、別途 title が長すぎる問題があった(44〜51 字)。日本語の検索結果に出るのは全角 30 字前後のため、次の方針に統一した。
+
+- **サイト名(`commonTitle`)は `AIプログラミングスクール SiiD`(18 字)。** 従来は `ITエンジニア転職 × 生成AI特化のプログラミングスクール - SiiD`(32 字)で、これだけで表示枠を使い切っていた
+- title は `{ページ名} | {サイト名}` で**全角 32 字以内**。`pages.<key>.name.ja` から自動生成される。`name.ja` はナビ・パンくず・見出しでも使うため、title だけ変えたい場合は **`metaTitle` を足す**(`service` → サービス紹介、`community` → コミュニティ)
+- **TOP は例外**。オーナー指定で `AIプログラミングスクール SiiD | キャリアアップやAI/ITエンジニアへの転職は我々にお任せを。`(52 字)。検索結果では後半が切れるが、ブランド名とカテゴリが先頭にあるため意味は通る
+- description は**全角 70〜120 字**で、`pages.<key>.description` の**1 つだけ**を画面表示と meta の両方に使う(Issue #112)。画面用と SEO 用を分ける `metaDescription` は廃止した。ページを開いている訪問者は説明文をほとんど読まないため、**検索結果で効く文面を優先する**
+- **この長さの description に `<br />` を入れない**(Issue #115)。`Headline` の説明文は折り返し前提の幅しかなく、自動折り返しに強制改行が重なると「と、」「ます。」のような 2〜3 文字だけの行ができる。`<br />` が有効なのは 404・予約完了ページのような**短い 2 行のコピー**だけ
+- `commonTitle` は 404 の title・`manifest.ts` の `name`・`JsonLd` の `alternateName` でも使う。短縮によりいずれも自然な値になった
+
+---
 
 ## 見出し構造(2026-09-15・Issue #95)
 
@@ -88,13 +101,103 @@ SEO コンサルのレポート No.14(本文の章見出しに h1)と同種の�
 - [x] `metadata`(title / description / OGP)が全ページ設定済み(Issue #36)
 - [x] 404 ページ実装済み(`src/app/not-found.tsx` + `(Main)/[...notFound]`)
 - [x] ナビ・フッターの全リンクが 404 にならない(現ナビは実装済みページのみ参照。コース系リンクは `/` へのプレースホルダー)
-- [ ] Lighthouse(モバイル)Performance 80+ / SEO 90+ / Accessibility 90+ → **2026-09-15 計測: Performance 47 / Accessibility 82 / Best Practices 79 / SEO 100 相当**(計測値は 66 だが、落ちているのは Vercel 直 URL の noindex のみで本番では該当しない)。現行サイトは Performance 55 / A11y 80 で、転送量(3,159KB → 2,717KB)と FCP(11.1s → 9.1s)は改善。未達分は公開後対応として Issue #84(A11y)・#85(Performance)を起票済み
+- [x] Lighthouse(モバイル)→ 下の「Lighthouse の目標値(2026-09-17 改定)」を参照。**Performance 80+ は目標から外し、Accessibility は TOP のみ 90+ を必須とする**
 - [x] 検索インデックス方針: noindex 期間は設けず、公開と同時に index 可とした(2026-09-15)
 - [x] 計測タグの環境変数を Vercel に登録済み。本番 HTML に GA4・GTM 3 本・UserHeat・KARTE・OpenAI Ads がすべて出力されることを確認(2026-09-15)
 - [x] Google Search Console: `bug-fix.org` のプロパティは既存(運用中)。`https://bug-fix.org/siid/sitemap.xml` を送信し「成功しました / 検出されたページ数 12」を確認(2026-09-15)。公開 1〜2 週間後に「ページ(インデックス作成)」で 404 の急増が無いか確認すること
 
+## Lighthouse の目標値(2026-09-17 改定)
+
+当初は「Performance 80+ / Accessibility 90+」を公開前チェックの目標にしていたが、オーナー判断で次のとおり見直した。
+
+### Performance 80+ は目標から外す
+
+LCP の対象要素はオープニング演出のテキスト(`Opening__Tagline`)で、内訳は TTFB 7% / レンダリング遅延 93%。
+**演出を残すかぎり LCP は構造的に下がらない**。演出はブランド体験として維持すると決めたため(2026-09-17)、
+80+ は達成条件にしない。代わりに「転送量を減らす」「サードパーティを増やさない」を継続的な指標とする。
+
+計測値の推移(モバイル・3 回の中央値):
+
+| 時点 | 本番 | ローカル本番ビルド(計測タグなし) |
+|---|---:|---:|
+| 2026-09-15(公開時) | 47 | - |
+| 2026-09-17(#100 フォント対応後) | 48 | main 62 → develop 72 |
+
+本番と localhost で差が出るのは、ローカルには計測タグの環境変数が無いため。
+**サードパーティの計測タグだけで 973KB・14 ポイントぶん**落ちている(GTM 828KB / KARTE 91KB ほか)。
+ここは Issue #90(計測タグの棚卸し)の判断待ち。
+
+なお Lighthouse を localhost で回すと測定ブレが大きい(同じビルドで 53〜72)。
+**比較は必ず同一セッション内で before / after を測ること。**
+
+### Accessibility は TOP のみ 90+ を必須とする
+
+TOP は Issue #84 で 82 → 100 にした。下層ページは 91〜97 で残っているが、
+指摘の大半(38 件中 30 件前後)は**ブランド色 `--main`(#567eb4)そのもの**に起因する。
+
+| パターン | コントラスト | 必要 |
+|---|---:|---:|
+| `#567eb4` の文字 on 白 | 4.16:1 | 4.5:1 |
+| 白抜き文字 on `#567eb4` の背景 | 4.16:1 | 4.5:1 |
+| `#567eb4` の文字 on `#f1f1f1` | 3.68:1 | 4.5:1 |
+
+すべて通すにはブランド色を暗くする必要があり、サイト全体の印象が変わる。
+**オーナー判断でブランド色は変更しない(2026-09-17)**ため、下層ページの 100 は目指さない。
+小さい文字に限っては `--main-text`(#4e77af)を使って個別に解消する。
+
 ## 未確定事項
 
-- なし(2026-09-15 時点)
+- 計測タグ(GTM 3 コンテナ・KARTE)の要否。Performance に 14 ポイント効くが、事業側の確認が要る(Issue #90)
 
 > 本番ドメインは `https://bug-fix.org/siid`(Cloudflare Worker プロキシ方式)で確定済み。旧 URL からのリダイレクトは [06_migration.md](./06_migration.md) §4(Issue #48)で扱う。
+
+---
+
+## フォント配信(2026-09-16・Issue #100)
+
+日本語(Noto Sans JP)は **next/font を使わず、自前サブセットを配信する**。next/font 経由だと
+Google Fonts の unicode-range 分割(124 チャンク)で TOP が 801KB を取得していたため。
+
+```
+scripts/fonts/
+├── subset-noto-sans-jp.sh   # 実行するとサブセットと CSS を生成する
+├── build-charsets.py        # site.txt → core.txt / ext.txt
+├── build-css.py             # charsets → src/styles/noto-sans-jp.css(@font-face)
+├── collect-charset.mjs      # 実ページから収録文字を採取(--collect のとき)
+└── charsets/
+    ├── site.txt             # サイトに出ている文字(採取結果。これだけが入力)
+    ├── core.txt             # site + ASCII + JIS X 0208 非漢字(生成物)
+    └── ext.txt              # JIS X 0208 第1水準のうち core に無いもの(生成物)
+```
+
+**2 段構成にしている理由。** JIS 第1水準(3,601 字)を 1 ファイルにまとめると 2 ウェイトで
+1,042KB になり、**現状の 801KB より悪化する**(実測)。そこで常に読む core と、珍しい漢字が
+出たときだけ unicode-range 経由で取得される ext に分けた。
+
+| 段 | 収録 | 2 ウェイト計 | 読み込み |
+|---|---|---:|---|
+| core | 1,181 字(サイトに出ている文字 + かな・記号) | 237KB | 常に(preload あり) |
+| ext | 2,420 字(JIS 第1水準の残り) | 677KB | 該当文字が出たときだけ |
+
+microCMS の記事タイトルに第1水準の外(人名用漢字など)が出た場合は
+`'Hiragino Sans'` 以降のシステムフォントへフォールバックする。
+
+**収録文字の入力は 2 つある。**
+
+1. `src/` のソースにある日本語(コメントを除く)。`scripts/fonts/source-chars.mjs` が抽出し、
+   **スクリプトを実行するたび自動で取り込まれる**
+2. `charsets/site.txt`。`--collect` で実ページを巡回したときだけ更新される。microCMS の
+   記事タイトルなど、ソースに無い文言を拾うためのもの
+
+```bash
+npm run check:fonts                              # 収録漏れの検査(コミット前に実行)
+./scripts/fonts/subset-noto-sans-jp.sh           # src/ から作り直す
+MAIN_FONT_URL=http://localhost:3005/siid \
+  ./scripts/fonts/subset-noto-sans-jp.sh --collect  # 実ページも巡回して作り直す
+```
+
+`src/styles/noto-sans-jp.css` と `public/fonts/noto-sans-jp/` は生成物なので手で編集しない。
+
+**漏れると 2 倍になる。** TOP 刷新(#120)で 13 字、文言修正(#124〜#126)で 28 字が漏れ、
+TOP のフォント転送量が 360KB → 1,007KB になっていた(Issue #127 / #132)。表示は崩れない
+(`ext` が肩代わりする)ぶん気付きにくいため、`npm run check:fonts` で検査する。

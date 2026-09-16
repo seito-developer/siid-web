@@ -31,7 +31,7 @@ export default function Supporter() {
           <div className={styles.MainSupporter__Header}>
             <div className={styles.MainSupporter__HeaderContainer}>
               <div className={styles.MainSupporter__Badge}>
-                <div className={styles.MainSupporter__BadgeLabel}>サポート講師</div>
+                <div className={styles.MainSupporter__BadgeLabel}>主任講師</div>
                 <div className={styles.MainSupporter__BadgeNumber}>001</div>
                 <svg width="97" height="111" fill="none">
                   <use href="#HexagonBlack" />
@@ -49,7 +49,7 @@ export default function Supporter() {
           </div>
           <div className={styles.MainSupporter__NameContainer}>
             <h3 className={styles.MainSupporter__Name}>
-              <span className={styles.MainSupporter__NameRole}>SiiD代表講師</span>
+              <span className={styles.MainSupporter__NameRole}>SiiD主任講師</span>
               <span className={styles.MainSupporter__NameText}>堀口セイト</span>
             </h3>
 
@@ -80,11 +80,11 @@ export default function Supporter() {
           <p className={styles.MainSupporter__Bio}>
             学生時代にプログラミングに出会い、Webサイトを作るなどその面白さにハマる。
             <br />
-            2012年に大学を卒業後、株式会社LIGにてWebデザイナー・Webエンジニアを3年務めたあと、フィリピン・セブ島にて株式会社LIG Philippinesを立ち上げ、代表・VPoEとして6年間の在籍中に社員数約100名程度のテックチームへ成長させる。
+            2012年に大学を卒業後、株式会社LIGにてWebデザイナー・Webエンジニアを3年務めたあと、フィリピン・セブ島にて株式会社LIG Philippinesを立ち上げ、代表・VPoEとして6年間の在籍中に社員数約100人程度のテックチームへ成長させる。
             <br />
             その後2021年に独立し、合同会社BugFixを設立。アプリケーション開発、技術顧問、プログラミング・ITスキル研修を行う傍ら、自身のYouTubeチャンネル「セイト先生のWeb・ITエンジニア転職ラボ」では、プログラミング講座やWeb・IT業界のキャリア情報などを幅広く発信中。
             <br />
-            総フォロワー数は約13万人で、現役エンジニアでもある。
+            YouTube登録者数は約13万人で、現役エンジニアでもある。
           </p>
 
           {/* 書籍カード */}
@@ -105,7 +105,7 @@ export default function Supporter() {
         </ul>
 
         <div className={styles.Supporter__More}>
-          <span className={styles.Supporter__MoreButton}>and more...</span>
+          <span className={styles.Supporter__MoreButton}>ほかにも講師陣が在籍</span>
         </div>
 
         <div className={`${styles.Supporter__Decoration} ${styles.Supporter__DecorationEnd}`}>

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 
+import { getCanvasScale } from '../CanvasScale/getCanvasScale';
 import SectionBg from '../SectionBg/SectionBg';
 
 import styles from './Counselling.module.css';
@@ -15,7 +16,7 @@ import styles from './Counselling.module.css';
 const JICOO_WIDGET_URL = 'https://www.jicoo.com/event_types/7prAIkBVVBVF/widget';
 const JICOO_ORIGIN = new URL(JICOO_WIDGET_URL).origin;
 
-const POINTS = ['参加費\n無料', '60~90分', 'オンライン', '無理な\n勧誘なし'];
+const POINTS = ['参加費\n無料', '60〜90分', 'オンライン', '無理な\n勧誘なし'];
 
 export default function Counselling() {
   const widgetRef = useRef<HTMLDivElement>(null);
@@ -67,10 +68,22 @@ export default function Counselling() {
     // 横向きで 1666px)。保持中の最大値に張り付かないよう、幅の変化時だけ基準を戻す。
     // SPのアドレスバー伸縮による高さだけの変化では戻さない。
     let lastWidth = window.innerWidth;
+
+    // iframe だけ LP 全体の zoom を打ち消す(Issue #138。理由は Counselling.module.css)。
+    // 縮尺は CSS の calc ではなく数値で渡す。iOS 26 の Safari は
+    // `zoom: calc(1 / (100vw / 375px))` を受け付けても 1 として扱い、打ち消しが効かなかった。
+    const applyScale = () => {
+      const scale = getCanvasScale();
+      el.style.setProperty('--counselling-widget-scale', String(scale));
+      el.style.setProperty('--counselling-widget-unzoom', String(1 / scale));
+    };
+    applyScale();
+
     const onResize = () => {
       if (window.innerWidth === lastWidth) { return; }
       lastWidth = window.innerWidth;
       maximumHeight = 0;
+      applyScale();
     };
 
     const load = () => {
