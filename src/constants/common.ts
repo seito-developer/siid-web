@@ -1,13 +1,9 @@
-import { Noto_Sans_JP, Poppins } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 
 export const BREAK_POINT = 1280;
 
-export const notoSansJp = Noto_Sans_JP({
-  variable: '--font-noto-sans-jp',
-  weight: ['400', '900'],
-  subsets: ['latin'],
-  display: 'swap',
-});
+// 日本語(Noto Sans JP)は next/font を使わず、自前サブセットを src/styles/noto-sans-jp.css で
+// 読み込む(Issue #100)。CSS 変数 --font-noto-sans-jp は globals.css で定義している。
 
 export const poppins = Poppins({
   variable: '--font-poppins',
