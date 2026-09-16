@@ -202,6 +202,18 @@ handleStringHTML(pages.xxx.description, true)
 - Next.js `<Image>` コンポーネントを使う（`<img>` タグは ESLint エラー）
 - 外部画像は `next.config.ts` の `remotePatterns` で許可する。現在は `images.microcms-assets.io`（SiiD BLOG のアイキャッチ）と `img.youtube.com`
 
+### 日本語の文言を追加・変更したら（重要）
+
+日本語フォントは next/font ではなく**自前サブセット**を配信している（Issue #100、`docs/spec/05_deploy.md`）。収録文字は `scripts/fonts/charsets/site.txt` に固定されているため、**新しい漢字を含む文言を追加したら charset を作り直す**。
+
+```bash
+npm run build && PORT=3005 npm start &          # 変更後のサイトを立てて
+MAIN_FONT_URL=http://localhost:3005/siid \
+  ./scripts/fonts/subset-noto-sans-jp.sh --collect
+```
+
+作り直さなくても表示は崩れない（JIS 第1水準までは `ext` が肩代わりする）が、**その 1 ページだけ 338KB を余分に取得する**。実際 TOP 刷新（#120）で 13 字が漏れ、TOP が 333KB → 668KB になっていた。`src/styles/noto-sans-jp.css` と `public/fonts/noto-sans-jp/` は生成物なので手で編集しない。
+
 ### basePath（`/siid`）に注意
 
 `next.config.ts` で `basePath: '/siid'` を設定している（`bug-fix.org/siid` 配下で配信するため。`docs/spec/06_migration.md` §3.3）。
