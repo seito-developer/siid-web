@@ -273,13 +273,30 @@
 .Counselling__Inner { height: auto; min-height: 0; padding-top: 454px; padding-bottom: 45px; }
 .Counselling__Inner > .Counselling__Booking {
   position: relative; inset: auto;
-  width: 321px; min-height: 513px; margin-inline: auto;
-  padding: 16px; border-radius: 11px; background: #fff; color: #131a3e;
+  /* Jicoo のカレンダーは min-width: 320px。iframe の幅がそれを下回ると左右が切れるため
+     (Issue #138、旧: カード 321px - 余白 16px x 2 = 289px)、SP はカードを左右 12px まで広げ、
+     フォームの左右余白を無くす。Jicoo 側も 15px 前後の余白を持つので詰まって見えない。 */
+  width: 351px; min-height: 513px; margin-inline: auto;
+  padding: 16px 0; border-radius: 11px; background: #fff; color: #131a3e;
 }
-.Counselling__BookingTitle { font-family: var(--lp-career-font-body); font-size: 16px; line-height: 1.5; }
+.Counselling__BookingTitle { padding-inline: 16px; font-family: var(--lp-career-font-body); font-size: 16px; line-height: 1.5; }
+/* iframe だけ LP 全体の zoom を打ち消す(Issue #138)。
+   Safari(WebKit)は祖先の zoom を iframe の中身にもかける一方、iframe の表示領域は
+   拡縮前の大きさのまま扱うため、中身が縮尺ぶん(390px 幅で約 5%)はみ出して縦横に
+   スクロールバーが出ていた(実測: 表示領域 351x653 に対し中身 368x685)。
+   実効 zoom を 1 に戻し、幅・余白は縮尺を掛けた値で指定して見た目の大きさを保つ。
+   Jicoo が通知する高さもこの単位(実 px)でそのまま iframe に入る。
+   縮尺の 2 変数は Counselling.tsx が数値で入れる(CSS の型付き除算に頼ると iOS 26 で
+   打ち消しが効かないため)。iframe の読み込みより先に入るので、未設定の既定値 1 は
+   サーバー描画時だけ使われる。 */
 .Counselling__Booking .Counselling__Widget {
-  position: relative; inset: auto; width: 100%; height: auto;
-  min-height: 440px; margin-top: 16px; border-radius: 0;
+  --counselling-widget-w: 351px;
+  position: relative; inset: auto; height: auto;
+  zoom: var(--counselling-widget-unzoom, 1);
+  width: calc(var(--counselling-widget-w) * var(--counselling-widget-scale, 1));
+  min-height: calc(440px * var(--counselling-widget-scale, 1));
+  margin-top: calc(16px * var(--counselling-widget-scale, 1));
+  border-radius: 0;
 }
 .Counselling__Widget iframe {
   display: block;
@@ -294,8 +311,12 @@
   .Counselling > picture img { height: 1019px; mask-image: linear-gradient(#000 500px, transparent 550px); }
   .Counselling__Inner { min-height: 1019px; padding-top: 158px; padding-bottom: 80px; }
   .Counselling__Inner > .Counselling__Booking { width: 513px; min-height: 748px; margin: 0 0 0 687px; padding: 24px; }
-  .Counselling__BookingTitle { font-size: 24px; }
-  .Counselling__Booking .Counselling__Widget { min-height: 630px; }
+  .Counselling__BookingTitle { padding-inline: 0; font-size: 24px; }
+  .Counselling__Booking .Counselling__Widget {
+    /* カード 513px - 余白 24px x 2 */
+    --counselling-widget-w: 465px;
+    min-height: calc(630px * var(--counselling-widget-scale, 1));
+  }
 }
 
 /* 幅広・低いSP画面でも予約欄が見えるよう、必要な場合だけアンカー位置を下げる。

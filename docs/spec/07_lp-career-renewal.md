@@ -973,3 +973,29 @@ lp-careerの埋め込みホストは、Jicoo公式スクリプトと同じ `redi
 - `node scripts/lp-career/check-booking-layout.cjs` で4幅の高さ通知・白背景・スクロール維持・無効通知・完了ページ転送を検証。Jicooページをfixtureに差し替えるため、実予約は送信しない。
 - 実フォーム（予約枠あり）での実測（2026-09-11、PC 1440px / SP 390px）。日付選択で Jicoo は `windowHeight` に加えて `scrollWidgetTop` を送るが、本ホストは後者を無視するため親のスクロール位置は不変。PC は 654 → 1741px へ伸長後、入力画面で 1666px の**縮小通知**が届いても 1741px を保持し、白カード内に収まる。SP は 654 → 1741 → 入力画面 1902px と伸長し、横方向のはみ出しも無い（`scrollWidth` == `clientWidth` == 390）。実予約の送信は行っていない。
 - 幅が変わった場合（SP の回転・PC のウィンドウ幅変更）は保持中の最大値をリセットする。Jicoo は幅の変化時に高さを再通知するため（実測: SP 縦の入力画面 1901px → 横向きで 1552 → 1666px を通知）、リセットしないと最大値 1901px に張り付き約 235px の空白が残る。SP のアドレスバー伸縮のような高さだけの変化ではリセットしない。
+
+## 追従CTAと予約フォームの横幅（Issue #138 / 2026-09-17）
+
+### 追従CTA
+
+- 「無料カウンセリングを予約する」CTA（`StickyCta`）を画面下部に固定表示する。下へスクロールしている間はスライドインで出し、上へスクロールしている間は引っ込める（オーナー指示）。
+- 出さない条件: スクロール量 600px 未満（FV に CTA があるため）／予約フォーム `#counselling` が画面内にある、またはそれより下（フッター）までスクロール済み。
+- 8px 未満のスクロールは方向判定に使わない（SP のアドレスバー伸縮・慣性の揺れで出入りを繰り返さないため）。
+- 見た目は本文中の SP 用 CTA（`CtaButton size="sp"`、333x78）を流用し、本文と同じ `zoom` で拡縮する。PC も同じサイズ。下余白は SP 12px / PC 24px に `safe-area-inset-bottom` を加える。
+- 引っ込んでいる間は `visibility: hidden` でキーボード操作の対象から外す。`prefers-reduced-motion: reduce` ではアニメーションしない。
+- 重なり順はヘッダーと同じ `z-index: 100`。ドロワー（200）・Cookie バナー（300）より下。
+
+### SP で予約フォームの左右が見切れていた問題
+
+- 原因: Jicoo のカレンダー（MUI DatePicker）は `min-width: 320px` を持つ。旧実装は白カード 321px − 左右余白 16px×2 で iframe が 289px しかなく、カレンダーが左右 15px ずつ切れて日曜・土曜の列と年表示が欠けていた。
+- 対応: SP の白カードを 351px（画面左右 12px）に広げ、カードの左右余白を 0 にした（見出しだけ左右 16px を残す）。Jicoo 側が左右約 15px の余白を持つため、フォームの文字が端に張り付くことはない。PC（513px・余白 24px）は変更なし。
+- 実測（2026-09-17、SP 375 / 390 / 430px）: iframe 幅は設計値 351px（375px 幅のとき）、カレンダー左右の余白 15〜16px、ページの横はみ出し 0。
+
+### スマホ実機（Safari）で予約フォームに縦横のスクロールバーが出ていた問題
+
+- 原因: LP 全体は `main` の `zoom`（SP は `100vw / 375px`）で拡縮している。Safari（WebKit）は祖先の `zoom` を iframe の中身にもかける一方、iframe の表示領域は拡縮前の大きさのまま扱う。そのため中身が縮尺ぶんはみ出し、iframe 内に縦横のスクロールバーが出ていた（実測 393px 幅: 表示領域 351x653 に対し中身 368x685）。Chromium は表示領域も中身も同じ比率で拡縮するため再現しない。
+- 対応: 予約フォームの枠（`.Counselling__Widget`）にだけ `zoom: calc(1 / var(--lp-career-canvas-scale))` をかけて実効 zoom を 1 に戻す。幅・最小高さ・上余白は縮尺を掛けた値で指定し、見た目の大きさは変えない。Jicoo が通知する高さは実 px のまま iframe に入る。
+- 実測（2026-09-17、WebKit / Chromium、375 / 393 / 430 / 1440px）: どの幅でも iframe の中身と表示領域が一致（例: 393px で 368x654、日付選択後 368x1741）。ページの横はみ出し 0。PC の iframe 幅は 465px（カード 513px − 余白 24px×2）で変更なし。
+- 追補（同日、iPhone 14 Pro 実機で iframe が右にはみ出した）: 打ち消しの `zoom: calc(1 / var(--lp-career-canvas-scale))` は、CSS の型付き除算（`100vw / 375px`）に対応した Safari（iOS 26.4 Simulator で再現）では受理されるが算出値が `1` になり、幅の拡大だけが効いて iframe がカードより広くなっていた（402pt 幅: カード 376px に対し iframe 403px）。iOS 17 は型付き除算に未対応で、`CanvasScale` が数値を入れる経路を通るため再現しなかった。
+- 縮尺は CSS の calc に頼らず、`Counselling.tsx` が `--counselling-widget-scale` / `--counselling-widget-unzoom` を数値で入れる（幅が変わったときも更新）。式は `CanvasScale/getCanvasScale.ts` に切り出して `CanvasScale` と共用。
+- 実測（2026-09-17）: iOS 26.4 Simulator（iPhone 17 Pro, 402pt）で iframe の中身 376x652 = 表示領域、日付選択後 376x1747 = 表示領域、カードと iframe の右端が一致。iOS 17.0 Simulator（iPhone 15 Pro, 393pt）で 368x652 / 日付選択後 368x1747。Playwright WebKit / Chromium の 375 / 393 / 430 / 1440px でも中身と表示領域が一致。Simulator の Safari は safaridriver（WebDriver）で操作・計測した。
