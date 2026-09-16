@@ -11,7 +11,8 @@ URL は `bug-fix.org/siid/...` のまま、中身を `https://siid-web-theta.ver
 | リクエストのパス | 行き先 |
 |---|---|
 | ホストが `bug-fix.org` で、パスが `/siid` と完全一致または `/siid/` で始まる | Vercel の新アプリ(同じパス・クエリ) |
-| それ以外(`/`・`/siid-xxx`・`workers.dev` など別ホスト) | オリジンへそのまま |
+| ホストが `bug-fix.org` のそれ以外のパス(`/`・`/siid-xxx` など) | オリジン(GitHub Pages)へそのまま。**ただしオリジンが 404 を返したページ表示(GET で `Accept` に `text/html` を含む)には、新アプリの `/siid/404` を 404 のまま返す**(Issue #131)。画像・API・HEAD の 404、新アプリが 404 以外を返したとき、取得に失敗したときはオリジンの応答をそのまま返す |
+| `workers.dev` など別ホスト | オリジンへそのまま |
 
 プロキシした応答には次の処理をする。
 
@@ -59,18 +60,35 @@ npx wrangler deploy     # wrangler.toml にルートを書いていないので�
 ### 3. 有効化(カットオーバー = 本番切替)
 
 1. Worker `siid-router` → **Settings → Domains & Routes** → **Add** → **Route**
-2. Zone: `bug-fix.org`、Route: `bug-fix.org/siid*` を追加
+2. Zone: `bug-fix.org`、Route: `bug-fix.org/*` を追加(コーポレート側の 404 差し替えのため、2026-09 の Issue #131 で `bug-fix.org/siid*` から広げた。コーポレート宛のリクエストも Worker を通るが、404 以外はそのまま通すだけ)
 3. 06 §8 のチェックリストで確認する。最低限:
 
 ```bash
-curl -sI https://bug-fix.org/ | grep -i '^server'                    # GitHub.com のまま(コーポレート無傷)
-curl -sI https://bug-fix.org/siid | grep -iE '^server|^x-robots-tag|^strict-transport'  # Vercel、かつ x-robots-tag と HSTS が出ないこと
+# bug-fix.org は Cloudflare の proxy(orange cloud)を通るため、server ヘッダーはどのオリジンでも `cloudflare` になる。
+# 行き先の判定は本文(<title>)で行う
+curl -s https://bug-fix.org/ | grep -o '<title>[^<]*</title>'          # BugFix LLC(コーポレート無傷)
+curl -s -H 'Accept: text/html' -D - -o /tmp/nf.html https://bug-fix.org/this-page-does-not-exist | grep '^HTTP'; grep -o '<title>[^<]*</title>' /tmp/nf.html  # 404 のまま、本文は「404 NOT FOUND | AIプログラミングスクール SiiD」
+curl -sI https://bug-fix.org/this-page-does-not-exist | grep '^HTTP'  # HEAD は 404 のまま素通し(差し替え対象外)
+curl -sI https://bug-fix.org/siid | grep -iE '^x-robots-tag|^strict-transport'  # 何も出ないこと(x-robots-tag と HSTS を Worker が削除している)
 curl -sI https://bug-fix.org/siid/lp-1 | grep -iE '^HTTP|^location'  # 301 → /siid/lp-career
 curl -sI https://siid-web-theta.vercel.app/siid | grep -i '^x-robots-tag'  # 直 URL は noindex のまま
 ```
 
 `www.bug-fix.org` はルートに含めない。`www` は GitHub Pages が `bug-fix.org` へ転送するため、転送後のリクエストが上記ルートに乗る。
 
-### 4. ロールバック
+### 4. コーポレート側 404 の差し替えを有効にする(Issue #131、稼働中の Worker への反映)
 
-**手順 3 で追加したルートを削除するだけ**で、即座に現行サイト(GitHub Pages)へ戻る。DNS には触らない(06 §6)。
+1. 手順 1 と同じ方法で `src/index.js` の最新版を Worker に反映する(この時点ではルートが `bug-fix.org/siid*` のままなのでコーポレート側は変わらない)
+2. **Settings → Domains & Routes** で既存のルート `bug-fix.org/siid*` を `bug-fix.org/*` に変更する(または `/*` を追加してから `/siid*` を削除)
+3. 手順 3 の curl で確認する。`/` がコーポレート(BugFix LLC)のまま、`/this-page-does-not-exist` が 404 のまま新アプリの 404 ページ(`<title>` が `404 NOT FOUND | AIプログラミングスクール SiiD`)になること
+
+**2026-09-17 実施済み**(code の反映・ルート変更ともにオーナーがダッシュボードで実施。上記 curl で確認済み)
+
+### 5. ロールバック(2 段階。DNS には触らない、06 §6)
+
+| 戻したい範囲 | 操作 | 結果 |
+|---|---|---|
+| **コーポレート側 404 の差し替えだけ**を止める | ルートを `bug-fix.org/*` → `bug-fix.org/siid*` に戻す | `/siid` は新アプリのまま。`bug-fix.org/*` の 404 は GitHub Pages 既定に戻る。Worker のコードは `/siid` 以外を素通りさせるので戻さなくてよい |
+| **`/siid` ごと**旧サイトへ戻す | ルートを削除する | 即座に現行サイト(GitHub Pages)へ戻る。§4 の旧 URL 301 も効かなくなる |
+
+コーポレート側 404 の不具合対応でルートを**削除**しないこと。`/siid` まで旧サイトに戻ってしまう。
