@@ -53,8 +53,8 @@ export default function Menu({ modifierClass, onNavigate }: Props) {
       <ul className={styles.Menu__SnsList}>
         {snsItems.map((snsItem, index) => (
           <li key={index} className={styles.Menu__SnsItem}>
-            <Link href={snsItem.url} target="_blank" rel="noopener noreferrer">
-              <svg width={snsItem.width} height={snsItem.height}>
+            <Link href={snsItem.url} target="_blank" rel="noopener noreferrer" aria-label={`${snsItem.name}（別タブで開く）`}>
+              <svg width={snsItem.width} height={snsItem.height} aria-hidden="true">
                 <use href={`#${snsItem.icon}`} />
               </svg>
             </Link>

@@ -39,7 +39,11 @@
 .FooterMenu__SubItem {
     font-size: 13px;
     > a {
-        display: block;
+        /* タップ領域を 24px 以上確保する(Issue #84。実測 20px で不足していた) */
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        min-height: 26px;
         color: #fff;
         &:hover {
             background: #2f2323;
