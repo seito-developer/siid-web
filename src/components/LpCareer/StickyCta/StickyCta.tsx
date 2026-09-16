@@ -6,7 +6,7 @@ import CtaButton from '../CtaButton/CtaButton';
 
 import styles from './StickyCta.module.css';
 
-// 画面下部に追従する CTA(Issue #138)。
+// 画面下部に追従する CTA(Issue #138)。SP のみで、PC(768px〜)では CSS で非表示(Issue #143)。
 //
 // 下へスクロールしている間は出し、上へスクロールしている間は引っ込める。
 // FV には CTA があるため冒頭では出さず、予約フォーム(#counselling)が見えている間と
