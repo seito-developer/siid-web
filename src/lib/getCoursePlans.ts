@@ -12,7 +12,8 @@ export interface CoursePlan {
   id: CoursePlanId;
   title: string[];
   description: string;
-  price: string;
+  // 価格を出さないプラン(顧問プラン。要お問い合わせ)は省略する
+  price?: string;
   // 給付金の対象外(顧問プラン)は省略する
   subsidizedPrice?: string;
   recommend: boolean;

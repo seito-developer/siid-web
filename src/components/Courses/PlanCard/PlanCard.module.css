@@ -171,6 +171,14 @@
     }
 }
 
+/* 価格を出さないプラン(顧問プラン)の「要お問い合わせ」 */
+.PlanCard__PriceInquiry {
+    font-family: var(--font-noto-sans-jp);
+    font-weight: 900;
+    font-size: 22px;
+    line-height: 1.3;
+}
+
 /* 顧問プランは日本語名のため、英字専用の Bagor ではなく Noto Sans JP の太字で出す */
 .PlanCard--vip .PlanCard__Title {
     font-family: var(--font-noto-sans-jp);

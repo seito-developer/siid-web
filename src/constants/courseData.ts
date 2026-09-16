@@ -26,7 +26,8 @@ export type Course = {
   type: CourseType;
   title: string;
   recommend?: boolean;
-  price: string;
+  // 価格を出さないプラン(顧問プラン。要お問い合わせ)は省略する
+  price?: string;
   features: CourseFeatures;
 };
 
@@ -50,10 +51,8 @@ export const COURSES: Course[] = [
   {
     type: 'vip',
     title: '顧問プラン',
-    price: '660,000',
     features: {
       reskill: '対象外',
-      access: 'スタンダード以上',
       documentReview: 'なし',
       mockInterview: 'なし',
       portfolioReview: 'なし',
