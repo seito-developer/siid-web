@@ -11,7 +11,8 @@ URL は `bug-fix.org/siid/...` のまま、中身を `https://siid-web-theta.ver
 | リクエストのパス | 行き先 |
 |---|---|
 | ホストが `bug-fix.org` で、パスが `/siid` と完全一致または `/siid/` で始まる | Vercel の新アプリ(同じパス・クエリ) |
-| それ以外(`/`・`/siid-xxx`・`workers.dev` など別ホスト) | オリジンへそのまま |
+| ホストが `bug-fix.org` のそれ以外のパス(`/`・`/siid-xxx` など) | オリジン(GitHub Pages)へそのまま。**ただしオリジンが 404 を返したページ表示(GET で `Accept` に `text/html` を含む)には、新アプリの `/siid/404` を 404 のまま返す**(Issue #131)。画像・API・HEAD の 404、新アプリが 404 以外を返したとき、取得に失敗したときはオリジンの応答をそのまま返す |
+| `workers.dev` など別ホスト | オリジンへそのまま |
 
 プロキシした応答には次の処理をする。
 
@@ -59,17 +60,27 @@ npx wrangler deploy     # wrangler.toml にルートを書いていないので�
 ### 3. 有効化(カットオーバー = 本番切替)
 
 1. Worker `siid-router` → **Settings → Domains & Routes** → **Add** → **Route**
-2. Zone: `bug-fix.org`、Route: `bug-fix.org/siid*` を追加
+2. Zone: `bug-fix.org`、Route: `bug-fix.org/*` を追加(コーポレート側の 404 差し替えのため、2026-09 の Issue #131 で `bug-fix.org/siid*` から広げた。コーポレート宛のリクエストも Worker を通るが、404 以外はそのまま通すだけ)
 3. 06 §8 のチェックリストで確認する。最低限:
 
 ```bash
 curl -sI https://bug-fix.org/ | grep -i '^server'                    # GitHub.com のまま(コーポレート無傷)
+curl -s -H 'Accept: text/html' -o /dev/null -w '%{http_code}\n' https://bug-fix.org/this-page-does-not-exist  # 404 のまま。本文は新アプリの 404 ページ
+curl -sI https://bug-fix.org/this-page-does-not-exist | grep -i '^server'  # HEAD は GitHub.com のまま(差し替え対象外)
 curl -sI https://bug-fix.org/siid | grep -iE '^server|^x-robots-tag|^strict-transport'  # Vercel、かつ x-robots-tag と HSTS が出ないこと
 curl -sI https://bug-fix.org/siid/lp-1 | grep -iE '^HTTP|^location'  # 301 → /siid/lp-career
 curl -sI https://siid-web-theta.vercel.app/siid | grep -i '^x-robots-tag'  # 直 URL は noindex のまま
 ```
 
 `www.bug-fix.org` はルートに含めない。`www` は GitHub Pages が `bug-fix.org` へ転送するため、転送後のリクエストが上記ルートに乗る。
+
+### 5. コーポレート側 404 の差し替えを有効にする(Issue #131、稼働中の Worker への反映)
+
+1. 手順 1 と同じ方法で `src/index.js` の最新版を Worker に反映する(この時点ではルートが `bug-fix.org/siid*` のままなのでコーポレート側は変わらない)
+2. **Settings → Domains & Routes** で既存のルート `bug-fix.org/siid*` を `bug-fix.org/*` に変更する(または `/*` を追加してから `/siid*` を削除)
+3. 手順 3 の curl で確認する。`/` が GitHub.com のまま、`/this-page-does-not-exist` が新アプリの 404 ページになること
+
+戻すときはルートを `bug-fix.org/siid*` に戻すだけでよい(Worker のコードは `/siid` 以外を素通りさせるので、コードを戻す必要はない)。
 
 ### 4. ロールバック
 

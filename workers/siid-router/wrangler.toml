@@ -4,6 +4,6 @@ main = "src/index.js"
 compatibility_date = "2026-09-01"
 workers_dev = false
 
-# ルート(bug-fix.org/siid*)は意図的にここへ書いていない。
+# ルート(bug-fix.org/*。Issue #131 までは bug-fix.org/siid*)は意図的にここへ書いていない。
 # 書くと `wrangler deploy` した瞬間に本番の /siid が新アプリへ切り替わるため、
 # 紐付けはカットオーバー時に Cloudflare ダッシュボードで行う(README.md「3. 有効化」、docs/spec/06_migration.md §5 Step2)。

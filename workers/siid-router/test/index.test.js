@@ -4,7 +4,7 @@
 import assert from 'node:assert/strict';
 import { afterEach, beforeEach, describe, it } from 'node:test';
 
-import worker, { VERCEL_ORIGIN, isSiidPath } from '../src/index.js';
+import worker, { NOT_FOUND_PATH, VERCEL_ORIGIN, isSiidPath, wantsHtmlPage } from '../src/index.js';
 
 const realFetch = globalThis.fetch;
 let calls;
@@ -63,6 +63,76 @@ describe('振り分け', () => {
       assert.equal(calls[0].input, req, `${path}: 受け取ったリクエストをそのまま渡す`);
       assert.equal(await res.text(), 'corp');
     }
+  });
+});
+
+describe('コーポレート側の 404(Issue #131)', () => {
+  const HTML = { accept: 'text/html,application/xhtml+xml,*/*;q=0.8' };
+
+  // オリジン(GitHub Pages)は 404、新アプリは 404 ページを返す状況を作る
+  function mockCorp404(vercelRespond = () => new Response('<html>dino</html>', {
+    status: 404,
+    headers: { 'Content-Type': 'text/html', 'X-Robots-Tag': 'noindex', 'x-vercel-id': 'hnd1::x' },
+  })) {
+    mockFetch((req) => (req.url.startsWith(VERCEL_ORIGIN) ? vercelRespond(req) : new Response('gh 404', { status: 404 })));
+  }
+
+  it('wantsHtmlPage は GET で HTML を受け入れるリクエストだけ true', () => {
+    assert.equal(wantsHtmlPage(new Request('https://bug-fix.org/x', { headers: HTML })), true);
+    assert.equal(wantsHtmlPage(new Request('https://bug-fix.org/x', { headers: { accept: 'image/avif,image/webp,*/*' } })), false);
+    assert.equal(wantsHtmlPage(new Request('https://bug-fix.org/x')), false);
+    assert.equal(wantsHtmlPage(new Request('https://bug-fix.org/x', { method: 'HEAD', headers: HTML })), false);
+    assert.equal(wantsHtmlPage(new Request('https://bug-fix.org/x', { method: 'POST', headers: HTML, body: 'a' })), false);
+  });
+
+  it('ページ表示が 404 なら新アプリの 404 ページを 404 のまま返す(ヘッダー処理も適用)', async () => {
+    mockCorp404();
+    const req = new Request('https://bug-fix.org/this-page-does-not-exist', { headers: HTML });
+    const res = await worker.fetch(req);
+    assert.equal(calls.length, 2);
+    assert.equal(calls[0].input, req, 'まずオリジンへそのまま通す');
+    assert.equal(calls[1].url, `${VERCEL_ORIGIN}${NOT_FOUND_PATH}`);
+    assert.equal(calls[1].headers.get('host'), null);
+    assert.equal(res.status, 404);
+    assert.equal(await res.text(), '<html>dino</html>');
+    assert.equal(res.headers.get('X-Robots-Tag'), null);
+    assert.equal(res.headers.get('x-vercel-id'), null);
+  });
+
+  it('オリジンが 404 以外ならそのまま返し、新アプリへは問い合わせない', async () => {
+    mockFetch(() => new Response('corp', { status: 200 }));
+    const res = await worker.fetch(new Request('https://bug-fix.org/company/', { headers: HTML }));
+    assert.equal(calls.length, 1);
+    assert.equal(await res.text(), 'corp');
+  });
+
+  it('画像など HTML を求めないリクエストや HEAD の 404 はオリジンのまま返す', async () => {
+    for (const init of [
+      { headers: { accept: 'image/avif,image/webp,*/*' } },
+      {},
+      { method: 'HEAD', headers: HTML },
+    ]) {
+      mockCorp404();
+      const res = await worker.fetch(new Request('https://bug-fix.org/images/missing.png', init));
+      assert.equal(calls.length, 1, JSON.stringify(init));
+      assert.equal(res.status, 404);
+    }
+  });
+
+  it('新アプリが 404 以外(障害時の 5xx やリダイレクト)を返したらオリジンの 404 を返す', async () => {
+    for (const status of [500, 308, 200]) {
+      mockCorp404(() => new Response('unexpected', { status, headers: status === 308 ? { Location: '/siid' } : {} }));
+      const res = await worker.fetch(new Request('https://bug-fix.org/nope', { headers: HTML }));
+      assert.equal(res.status, 404, String(status));
+      assert.equal(await res.text(), 'gh 404', String(status));
+    }
+  });
+
+  it('新アプリの取得に失敗したらオリジンの 404 を返す(fail open)', async () => {
+    mockCorp404(() => { throw new Error('network'); });
+    const res = await worker.fetch(new Request('https://bug-fix.org/nope', { headers: HTML }));
+    assert.equal(res.status, 404);
+    assert.equal(await res.text(), 'gh 404');
   });
 });
 
