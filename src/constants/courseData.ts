@@ -26,7 +26,8 @@ export type Course = {
   type: CourseType;
   title: string;
   recommend?: boolean;
-  price: string;
+  // 価格を出さないプラン(顧問プラン。要お問い合わせ)は省略する
+  price?: string;
   features: CourseFeatures;
 };
 
@@ -36,38 +37,36 @@ export const COURSES: Course[] = [
     type: 'full-support',
     title: 'Career\n+Full Support',
     recommend: true,
-    price: '324,192',
+    price: '275,600',
     features: {
       reskill: '給付金対象コース',
-      access: '転職成功するまで',
-      documentReview: '無期限',
-      portfolioReview: '無期限',
-      mockInterview: '無期限',
+      access: '無期限',
+      documentReview: '無制限',
+      portfolioReview: '無制限',
+      mockInterview: '無制限',
       consult: '転職成功するまで\n最大月1回',
       homeworkReview: 'あり',
     },
   },
   {
     type: 'vip',
-    title: 'Career\n+VIP Edition',
-    price: '524,192',
+    title: '顧問プラン',
     features: {
-      reskill: '給付金対象コース',
-      access: '転職を含むそのほか目的が成功するまで',
-      mockInterview: '無期限',
-      portfolioReview: '無期限',
-      documentReview: '無期限',
-      consult: '目的達成するまで無制限',
-      homeworkReview: 'あり',
+      reskill: '対象外',
+      documentReview: 'なし',
+      mockInterview: 'なし',
+      portfolioReview: 'なし',
+      consult: '月1〜3回',
+      homeworkReview: 'なし',
     },
   },
   {
     type: 'career',
     title: 'Career',
-    price: '93,452',
+    price: '105,600',
     features: {
       reskill: '給付金対象コース',
-      access: '転職成功するまで',
+      access: '無期限',
       documentReview: '2回まで',
       mockInterview: '2回まで',
       portfolioReview: '各工程2回まで',

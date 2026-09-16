@@ -21,9 +21,15 @@ export default function CourseCard({ type, title, recommend, price, features }: 
 
         <div className={styles.CourseCard__Content}>
           <div className={styles.CourseCard__Price}>
-            <span className={styles.CourseCard__PriceAmount}>{price}</span>
-            <span className={styles.CourseCard__PriceUnit}>円(税込)</span>
-            <span className={styles.CourseCard__PriceFrom}>～</span>
+            {price ? (
+              <>
+                <span className={styles.CourseCard__PriceAmount}>{price}</span>
+                <span className={styles.CourseCard__PriceUnit}>円(税込)</span>
+                <span className={styles.CourseCard__PriceFrom}>～</span>
+              </>
+            ) : (
+              <span className={styles.CourseCard__PriceInquiry}>要お問い合わせ</span>
+            )}
           </div>
 
           <ul className={styles.CourseCard__Features}>

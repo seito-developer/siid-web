@@ -6,7 +6,7 @@
 // 改行位置もカンプの組みに合わせて `\n` で持つ(CSS 側は white-space: pre-line)。
 // 自動折り返しに任せると「AI活用・転職/準備」のように語中で切れてしまうため。
 export const LP_CAREER_COURSE_TABLE = {
-  head: ['コースの違い', 'Career', 'FullSupport', 'VIP'],
+  head: ['コースの違い', 'Career', 'FullSupport', '顧問'],
   rows: [
     {
       label: '目標とする\nゴール',

@@ -16,6 +16,7 @@ ITエンジニア転職 × 生成AI特化プログラミングスクール「Sii
 - `docs/spec/06_migration.md` — 旧 `bug-fix.org/siid` からの移行・Cloudflare 前段方式のリリース計画
 - `docs/spec/07_lp-career-renewal.md` — 広告流入用 LP（`/lp-career`）の実装仕様・入稿データ対応・Jicoo 予約フォーム連携
 - `docs/spec/08_career-path-interviews.md` — 卒業生の進路（TOP スライダー・`/career-path`）の SiiD BLOG インタビュー記事連携
+- `docs/spec/09_site-facts.md` — **文言を書くときの必読**。サイト内で統一する数値・条件（Zoom 時間・アクセス期限・実績数値・コース名）と表記ルール。価格は未決定事項
 
 **ワークフローのサマリ**: GitHub Issue 起票 → develop から `feature/{issue番号}-{slug}` ブランチ → 実装 → lint+typecheck → develop 向け PR（`Closes #N`）→ `/code-review` でセルフレビュー・修正 → **マージはユーザーが行う**。main / develop への直接コミット禁止。実装タスクは `/feature-work` スキルに従う。
 

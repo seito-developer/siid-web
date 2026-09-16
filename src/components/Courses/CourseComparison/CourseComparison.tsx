@@ -25,6 +25,8 @@ const ADVANCED_LANGS = [
   { name: 'TypeScript', file: 'typescript' },
   { name: 'React', file: 'react' },
   { name: 'Python', file: 'python' },
+  { name: 'Codex', file: 'codex' },
+  { name: 'Claude Code', file: 'claude-code' },
 ];
 
 type Props = {
@@ -104,7 +106,7 @@ export default function CourseComparison({ plans, comparison }: Props) {
                   <div className={styles.CourseComparison__LangAdvanced}>
                     <span className={styles.CourseComparison__LangLabel}>＋応用</span>
                     <span className={styles.CourseComparison__LangNote}>
-                      ※Full Support,VIP Editionコースのみ
+                      ※Full Support・顧問プランのみ
                     </span>
                     <ul className={styles.CourseComparison__LangIcons}>
                       {ADVANCED_LANGS.map((lang) => (

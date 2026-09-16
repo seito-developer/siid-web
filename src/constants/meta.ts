@@ -34,7 +34,7 @@ export const pages = {
       en: 'Career Path',
     },
     url: '/career-path',
-    description: 'SiiDの卒業生がどんな企業へ、どんな経歴から転職したのかをインタビュー記事で紹介しています。未経験からのエンジニア転職、現役エンジニアの年収アップなど、実際の事例を職種・年代別にご覧いただけます。',
+    description: 'SiiDの卒業生がどんな企業へ、どんな経歴から転職したのかをインタビュー記事で紹介しています。未経験からのエンジニア転職、現役エンジニアの年収アップなど、実際の事例をご覧いただけます。',
   },
   courses: {
     name: {
@@ -74,8 +74,8 @@ export const pages = {
   },
   line: {
     name: {
-      ja: 'LINE登録で無料体験',
-      en: 'Free trial',
+      ja: 'LINE登録特典',
+      en: 'LINE',
     },
     url: '/line',
     description: 'SiiDのLINE公式アカウントに登録すると、プログラミング学習やITエンジニア転職に役立つ特典を無料で受け取れます。まずはLINE登録から、お気軽にSiiDをご体験ください。',
@@ -95,7 +95,7 @@ export const pages = {
       en: 'White Paper',
     },
     url: '/white-paper',
-    description: 'SiiDのサービス紹介資料をダウンロードいただけます。公式LINEへのご登録で、コース内容・料金・転職サポートの詳細をまとめた資料をお受け取りください。',
+    description: 'SiiDのサービス紹介資料をダウンロードいただけます。公式LINEへのご登録で、SiiDの特徴や受講生アンケートの結果をまとめた紹介資料をお受け取りください。',
   },
   // 旧サイト由来のフラット URL 版サンクスページ。既存の /counseling/complete(counselingComplete)とは別ルート
   counselingCompleteFlat: {

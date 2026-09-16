@@ -22,7 +22,7 @@ const FEATURES = [
     image: '/siid/images/service/features/featurelist/featureitem/feature-3.jpg',
     title1: 'セイトによる',
     title2: '徹底1on1 Zoom',
-    description: 'エンジニア・経営・人事の視点を持つセイトによる模擬面接で、一次〜最終面接まで徹底対策。技術問題の解法レクチャーも行い、合格ラインに達するまで何度でも実施します。',
+    description: 'エンジニア・経営・人事の視点を持つセイトによる模擬面接で、一次〜最終面接まで徹底対策。技術問題の解法レクチャーも行い、合格ラインに達するまで繰り返し実施します（回数はプランにより異なります）。',
   },
   {
     id: 4,

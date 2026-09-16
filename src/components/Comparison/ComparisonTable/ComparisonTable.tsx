@@ -345,7 +345,7 @@ export default function ComparisonTable() {
             <ul className={styles.ComparisonTable__List}>
               <li>厳選された現役エンジニア講師が少人数にきめ細かく対応</li>
               <li>最新のAIツール（ChatGPT、GitHub Copilot、Claude Code等）の活用＋ゼミ形式で実践的に学習</li>
-              <li>セイトによる無制限の個別コンサル</li>
+              <li>セイトによる1on1の個別コンサル（Full Support以上）</li>
               <li>無制限の永久コミュニティ質問サポート</li>
               <li>半永久更新型コンテンツの利用が可能</li>
             </ul>
