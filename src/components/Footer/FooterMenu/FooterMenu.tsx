@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import Logo from '@/components/Logo/Logo';
 import { menuItems } from '@/constants/menuItems';
+import { pages } from '@/constants/meta';
 import { snsFooterItems } from '@/constants/snsItems';
 
 import styles from './FooterMenu.module.css';
@@ -67,6 +68,13 @@ export default function FooterMenu({ copyrightOnly = false }: { copyrightOnly?: 
         ))}
       </ul>
       <ul className={styles.FooterMenu__OtherLinks}>
+        {/* 資料請求・LINE 登録はナビのメインメニューには出さず、フッターからだけ辿れるようにする(Issue #131) */}
+        <li className={styles.FooterMenu__OtherLinkItem}>
+          <Link href={pages.whitePaper.url}>{pages.whitePaper.name.ja}</Link>
+        </li>
+        <li className={styles.FooterMenu__OtherLinkItem}>
+          <Link href={pages.line.url}>{pages.line.name.ja}</Link>
+        </li>
         <li className={styles.FooterMenu__OtherLinkItem}>
           <Link href="https://bug-fix.org/privacy-policy" target="_blank" rel="noopener noreferrer">プライバシーポリシー</Link>
         </li>

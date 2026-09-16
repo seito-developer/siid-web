@@ -76,6 +76,8 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    /* 4 件になり SP の幅では 1 行に収まらないことがあるため折り返す(Issue #131) */
+    flex-wrap: wrap;
     /* 単位の無い `gap: 20` は無効値としてブラウザに無視されていた(Issue #91) */
     gap: 10px;
     padding: 0;
