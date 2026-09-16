@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import Logo from '@/components/Logo/Logo';
-import { footerOtherLinks, menuItems } from '@/constants/menuItems';
+import { footerExtraMenuItems, footerOtherLinks, menuItems } from '@/constants/menuItems';
 import { snsFooterItems } from '@/constants/snsItems';
 
 import styles from './FooterMenu.module.css';
@@ -65,15 +65,19 @@ export default function FooterMenu({ copyrightOnly = false }: { copyrightOnly?: 
             )}
           </li>
         ))}
+        {/* フッターだけの項目(資料請求・LINE 登録)。PC ではグリッドの 3 列目に置く(Issue #131) */}
+        {footerExtraMenuItems.map((item) => (
+          <li className={styles.FooterMenu__MainItem} key={item.url}>
+            <Link href={item.url}>
+              <span className={styles.FooterMenu__Ja}>{item.nameJP}</span>
+            </Link>
+          </li>
+        ))}
       </ul>
       <ul className={styles.FooterMenu__OtherLinks}>
         {footerOtherLinks.map((link) => (
           <li key={link.url} className={styles.FooterMenu__OtherLinkItem}>
-            {link.external ? (
-              <Link href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</Link>
-            ) : (
-              <Link href={link.url}>{link.label}</Link>
-            )}
+            <Link href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</Link>
           </li>
         ))}
       </ul>

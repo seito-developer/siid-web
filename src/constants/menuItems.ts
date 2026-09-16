@@ -46,17 +46,20 @@ export const menuItems: MenuItem[] = [
   },
 ];
 
+// フッターのメインメニューにだけ追加する項目(PC では 3 列目)。ナビには出さない(Issue #131)。
+// 文言・URL は meta.ts のページ定義を参照する。
+export const footerExtraMenuItems: Pick<MenuItem, 'nameJP' | 'url'>[] = [
+  { nameJP: pages.whitePaper.name.ja, url: pages.whitePaper.url },
+  { nameJP: pages.line.name.ja, url: pages.line.url },
+];
+
 type FooterOtherLink = {
   label: string;
   url: string;
-  external?: boolean;
 };
 
-// フッター末尾の補助リンク。ナビのメインメニュー(menuItems)には出さず、フッターからだけ辿れるもの。
-// 資料請求・LINE 登録は Issue #131 で追加(文言・URL は meta.ts のページ定義を参照)。
+// フッター末尾の外部リンク。
 export const footerOtherLinks: FooterOtherLink[] = [
-  { label: pages.whitePaper.name.ja, url: pages.whitePaper.url },
-  { label: pages.line.name.ja, url: pages.line.url },
-  { label: 'プライバシーポリシー', url: 'https://bug-fix.org/privacy-policy', external: true },
-  { label: '運営会社', url: 'https://bug-fix.org', external: true },
+  { label: 'プライバシーポリシー', url: 'https://bug-fix.org/privacy-policy' },
+  { label: '運営会社', url: 'https://bug-fix.org' },
 ];
