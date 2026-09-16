@@ -1,14 +1,24 @@
-/* opacity だけを動かす。transform や filter を使うと、この配下の position: fixed 要素
-   (TOP の Opening オーバーレイなど)の基準がラッパーに変わって崩れる。 */
+/* opacity だけを動かす。transform や filter を使うと、この配下の position: fixed 要素の基準が
+   ラッパーに変わって崩れる。また opacity が 1 未満の間はこのラッパーが stacking context になり、
+   配下の fixed 要素が外側の要素(body の側面の帯など)より下に描かれる。fixed のナビは
+   (LowerPages)/layout.tsx 側にあってこのラッパーの外なので影響を受けない。 */
 .PageTransition {
-    animation: PageTransition-fadeIn 0.4s ease-out both;
+    /* backwards: 開始前だけ opacity 0 を適用し、終了後はスタイルを残さない */
+    animation: fadeIn 0.4s ease-out backwards;
 }
 
-@keyframes PageTransition-fadeIn {
+@keyframes fadeIn {
     from {
         opacity: 0;
     }
     to {
         opacity: 1;
+    }
+}
+
+/* 01_project-overview.md「品質基準」に従い reduced-motion では動かさない(組み上がり中の描画はそのまま見える) */
+@media (prefers-reduced-motion: reduce) {
+    .PageTransition {
+        animation: none;
     }
 }
