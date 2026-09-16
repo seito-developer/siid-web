@@ -41,13 +41,13 @@ export default function NewsCarousel({ posts }: NewsCarouselProps) {
       </div>
       {posts.length > 1 && (
         <div className={styles.News__Controls}>
-          <button type='button' onClick={prevArticle} className={styles.News__ButtonLeft}>
-            <svg width="10" height="10">
+          <button type='button' onClick={prevArticle} className={styles.News__ButtonLeft} aria-label="前のお知らせ">
+            <svg width="10" height="10" aria-hidden="true">
               <use href="#leftArrow" />
             </svg>
           </button>
-          <button type='button' onClick={nextArticle} className={styles.News__ButtonRight}>
-            <svg width="10" height="10">
+          <button type='button' onClick={nextArticle} className={styles.News__ButtonRight} aria-label="次のお知らせ">
+            <svg width="10" height="10" aria-hidden="true">
               <use href="#rightArrow" />
             </svg>
           </button>

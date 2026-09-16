@@ -8,6 +8,9 @@
 :root {
   --background: #f1f1f1;
   --main: #567eb4;
+  /* 白背景に小さい文字で置くとき用。--main は #fff に対して 4.17:1 で
+     WCAG AA(4.5:1)に届かないため、色相はそのままに明度だけ下げた(Issue #84)。 */
+  --main-text: #4e77af;
   --text: #342525;
   --maxZ: 999;
   --plan-career: #8dc556;
