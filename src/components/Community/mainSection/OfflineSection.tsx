@@ -9,7 +9,9 @@ import styles from './OfflineSection.module.css';
 export default function OfflineSection() {
   return (
     <div id="offline" className={styles.Offline}>
-      <div className={styles.Offline__Left}><TitleArea/></div>  
+      <div className={styles.Offline__Left}>
+        <TitleArea en="Offline" title="オフライン" lead="イベントやオフ会で直接会えるつながり" />
+      </div>
 
       <div className={styles.Offline__Center}>
         <div className={styles.Offline__Block}>

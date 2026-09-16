@@ -105,7 +105,7 @@ export default function Supporter() {
         </ul>
 
         <div className={styles.Supporter__More}>
-          <span className={styles.Supporter__MoreButton}>and more...</span>
+          <span className={styles.Supporter__MoreButton}>ほか、現役エンジニアの講師陣が在籍</span>
         </div>
 
         <div className={`${styles.Supporter__Decoration} ${styles.Supporter__DecorationEnd}`}>

@@ -4,10 +4,10 @@ import ConcernsImage from './ConcernsImage/ConcernsImage';
 
 export default function Concerns() {
   const concerns = [
-    { number: '01', title: 'マークアップやプログラミングだけで体系的に学べない' },
+    { number: '01', title: '断片的な知識ばかりで体系的に学べない' },
     { number: '02', title: 'チャットや限定的なZoomで相談・質問が気軽にできない' },
     { number: '03', title: '契約期間がきたらコミュニティへのアクセスができない' },
-    { number: '04', title: '開発者や経営人材の実績がない講師ではない' },
+    { number: '04', title: '開発や採用の実績がある講師に教わる機会がない' },
     { number: '05', title: '情報や技術だけで就活対策ができない' },
     { number: '06', title: '一方的な情報のみでフィードバックがない' },
   ];

@@ -9,7 +9,9 @@ import styles from './OnlineSection.module.css';
 export default function OnlineSection() {
   return (
     <div id="online" className={styles.Online}>
-      <div className={styles.Online__Left}><TitleArea /></div>  
+      <div className={styles.Online__Left}>
+        <TitleArea en="Online" title="オンライン" lead="DiscordやZoomを通じて常に相談できる体制" />
+      </div>
 
       <div className={styles.Online__Center}>
         <div className={styles.Online__Block}>

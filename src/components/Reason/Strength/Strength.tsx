@@ -10,9 +10,9 @@ export default function Strength() {
       title: 'サービス',
       description: (
         <>
-          他に劣らないひとつ上の
+          受講中も卒業後も使える
           <br className="br-sp" />
-          クオリティを実現
+          実践的なサービス
         </>
       ),
       linkHref: '/service',
@@ -64,7 +64,7 @@ export default function Strength() {
               のここがすごい！
             </span>
           </h3>
-          <p className={styles.Strength__Intro}>これらの悩みは9割の確率で挫折やモチベーションへ影響し、結局ITエンジニアになれないor非開発系の非正規の仕事に従事することになるケースを見てきました。</p>
+          <p className={styles.Strength__Intro}>こうした不安を解消するために、SiiDは「学ぶ内容」「相談できる環境」「就活対策」のすべてを現役エンジニアの視点で設計しています。</p>
         </div>
 
         <StrengthList />
@@ -79,7 +79,7 @@ export default function Strength() {
             </div>
             <span className={styles.Strength__ServiceTitleText}>充実したサービス</span>
           </h3>
-          <p className={styles.Strength__ServiceIntro}>これらの悩みは9割の確率で挫折やモチベーションへ影響し、結局ITエンジニアになれないor非開発系の非正規の仕事に従事することになるケースを見てきました。</p>
+          <p className={styles.Strength__ServiceIntro}>学習カリキュラムや添削などのサービスと、卒業後も続くコミュニティの両輪で、学びを転職とキャリアの成果につなげます。</p>
 
           <div className={styles.Strength__ServiceSections}>
             {serviceSections.map((section, index) => (
