@@ -49,14 +49,6 @@
   font-weight: 900;
 }
 
-.FutureItem__SubText {
-  font-size: 12px;
-  font-weight: 400;
-  display: block;
-  line-height: 140%;
-  margin-top: 4px;
-}
-
 @media screen and (min-width: 1280px) {
   .FutureItem {
     padding-block: 11px;
@@ -72,10 +64,6 @@
   .FutureItem__Text {
     font-size: 20px;
     flex-basis: 83%;
-  }
-
-  .FutureItem__SubText {
-    font-size: 13px;
   }
 
   .FutureItem__Number {

@@ -15,7 +15,7 @@ export default function Cource() {
     { number: '02', text: '自分が作りたいアプリを自分で実装できる' },
     { number: '03', text: '困った時に相談できる講師や先輩' },
     { number: '04', text: 'キャリアや経済不安からの脱却' },
-    { number: '05', text: 'さまざまなキャリアの選択肢', subText: '（リモートワーク、有名企業、フリーランス、海外、など）' },
+    { number: '05', text: 'さまざまなキャリアの選択肢' },
   ];
 
   return (
@@ -60,13 +60,11 @@ export default function Cource() {
               SiiDは、生成AIを味方につけたITエンジニアへの転職と、その先のキャリアまでを見据えたスクールです。
               <br />
               現役エンジニアの講師が一人ひとりの課題に向き合い、学習から転職活動、入社後の成長まで伴走します。
-              <br />
-              手に入るのはスキルだけではなく、自分の力でキャリアを選べる自由です。
             </p>
 
             <ul className={styles.Cource__FutureList}>
               {futureItems.map((item, index) => (
-                <FutureItem key={index} number={item.number} text={item.text} subText={item.subText} />
+                <FutureItem key={index} number={item.number} text={item.text} />
               ))}
             </ul>
           </div>
