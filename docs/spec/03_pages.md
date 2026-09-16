@@ -35,7 +35,7 @@
 - **デザイン差異・要確認**:
   - PC は「Present / 10つの特典」(10 枚)、SP は「Features / ９つの特典」(9 枚)で不一致 → より完全な **PC 版(10 枚・Present)** を採用。見出しの件数は `linePresents.json` の件数から出す(「10の特典」。Issue #121)
   - 特典カードのプレビュー画像は装飾的なコラージュのため、各グループを 1 枚の PNG に flatten して掲載
-- **導線(Issue #51 で確定)**: コース一覧ページ(`/courses`)の LINE バナー(`components/Courses/LineBanner`)から `/line` へリンクする。同バナーは友だち追加 URL 直リンクではなく `/line` を経由させる(CTA 文言が「詳細はこちら」であり、`/line` 内に友だち追加 CTA があるため)。グローバルナビ・フッターのメニューには `/line` を追加していない
+- **導線(Issue #51 で確定)**: コース一覧ページ(`/courses`)の LINE バナー(`components/Courses/LineBanner`)から `/line` へリンクする。同バナーは友だち追加 URL 直リンクではなく `/line` を経由させる(CTA 文言が「詳細はこちら」であり、`/line` 内に友だち追加 CTA があるため)。グローバルナビのメニューには `/line` を追加していない。フッター末尾の補助リンク(`footerOtherLinks`)には Issue #131(2026-09-17)で追加した
 
 ## 3-3. 問い合わせ導線【対応済み 2026-07 / Issue #12】
 
@@ -89,7 +89,7 @@
   - OpenAI Ads の CV 計測 `__bugfixTrackOpenAIAds('appointment_scheduled', {type:'customer_action'})` を両ページともマウント時に 1 回発火(`src/components/Analytics/TrackOpenAiAdsConversion.tsx`。発火関数は Analytics.tsx が env `NEXT_PUBLIC_OPENAI_ADS_PIXEL_ID` 設定時に定義)
   - meta 定義は `pages.counselingCompleteFlat`(既存 `/counseling/complete` 用の `counselingComplete` キーとは別。`counselingCompleteLp1` は #48 で削除)
   - ※既存 `/counseling/complete` には CV 発火なし(必要なら同コンポーネントを配置するだけで対応可能・別 Issue 推奨)
-- **`/white-paper`** — 資料請求ページ(index 可・sitemap 登録済み)。資料イメージ 2 枚 + 公式LINE誘導(`https://bit.ly/4p3SOBn`)。(LowerPages) パターン
+- **`/white-paper`** — 資料請求ページ(index 可・sitemap 登録済み)。資料イメージ 2 枚 + 公式LINE誘導(`https://bit.ly/4p3SOBn`)。(LowerPages) パターン。導線はフッター末尾の補助リンク(`footerOtherLinks`、Issue #131)
 
 ## 未確定事項
 
