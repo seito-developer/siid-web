@@ -3,10 +3,9 @@ import styles from './FutureItem.module.css';
 type FutureItemProps = {
   number: string;
   text: string;
-  subText?: string;
 };
 
-export default function FutureItem({ number, text, subText }: FutureItemProps) {
+export default function FutureItem({ number, text }: FutureItemProps) {
   return (
     <li className={styles.FutureItem}>
       <div className={styles.FutureItem__Number}>
@@ -16,15 +15,7 @@ export default function FutureItem({ number, text, subText }: FutureItemProps) {
           <use href="#Hexagon" />
         </svg>
       </div>
-      <p className={styles.FutureItem__Text}>
-        {text}
-        {subText && (
-          <>
-            <br />
-            <span className={styles.FutureItem__SubText}>{subText}</span>
-          </>
-        )}
-      </p>
+      <p className={styles.FutureItem__Text}>{text}</p>
     </li>
   );
 }

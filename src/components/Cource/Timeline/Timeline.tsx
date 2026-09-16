@@ -13,19 +13,19 @@ const timelineItems: TimelineItemData[] = [
   {
     title: 'ITエンジニアのキャリアを開始',
     subtitle: 'アプリ開発、チームワーク、技術で課題解決',
-    description: '本物が本気で付き合います。こんな講師から学べるスクールは他に存在し得ないと思います。だからこそ成果を出していただく自信があります。',
+    description: '未経験からITエンジニアとして現場に立ち、チームでの開発を経験する時期です。SiiDで身につけた基礎技術と生成AIの活用力を武器に、任される仕事の幅を広げていきます。',
     image: '/siid/images/cource/timeline/timelineitem/1year.jpg',
   },
   {
     title: '理想の働き方を実現',
     subtitle: 'Uターン、リモートワーク、フレックスなど',
-    description: 'Youtubeだけでは個々の課題にパーソナライズできないとセイト自身が悩んで立ち上げたプログラミングスクール。本物が本気で付き合います。こんな講師から学べるスクールは他に存在し得ないと思います。',
+    description: '実務経験を積み、設計から実装まで一人で担えるようになる頃には、働く場所や時間を自分で選べるようになります。リモートワークや地方移住など、ライフスタイルに合わせたキャリアを描けます。',
     image: '/siid/images/cource/timeline/timelineitem/3years.webp',
   },
   {
     title: 'さらなる未来への挑戦',
     subtitle: 'PM、コンサル、フリーランス、大手企業転職、海外就職など',
-    description: '本物が本気で付き合います。こんな講師から学べるスクールは他に存在し得ないと思います。だからこそ成果を出していただく自信があります。',
+    description: '技術と経験を土台に、マネジメントや独立、海外で働くなど選択肢はさらに広がります。キャリアの節目で迷ったときも、SiiDの講師とコミュニティが次の一歩を支えます。',
     image: '/siid/images/cource/timeline/timelineitem/5-8years.jpg',
   },
 ];
