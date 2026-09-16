@@ -117,20 +117,19 @@
         margin: 0;
         padding: 0;
         display: grid;
-        width: 400px;
+        /* 3 列目(資料請求・LINE 登録特典)を追加(Issue #131)。列幅は従来の 200px を維持 */
+        width: 600px;
         grid-template-rows: 1.2em 1.2em 1.2em;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: repeat(3, 200px);
         gap: 20px;
     }
     .FooterMenu__MainItem {
+        /* 1 列目: コース/プラン(サブ項目付きなので 3 行分) */
         &:nth-child(1) {
             grid-row: 1 / 4;
             grid-column: 1 / 2;
         }
-        &:nth-child(2) {
-            grid-column: 2 / 3;
-            grid-row: 1 / 2;
-        }
+        /* 2 列目: 従来どおり(自動配置で SiiDコミュニティ → 卒業生の進路 → サービス一覧の並び) */
         &:nth-child(2) {
             grid-column: 2 / 3;
             grid-row: 2 / 3;
@@ -138,6 +137,19 @@
         &:nth-child(3) {
             grid-column: 2 / 3;
             grid-row: 3 / 4;
+        }
+        &:nth-child(4) {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+        }
+        /* 3 列目: フッターだけの項目(footerExtraMenuItems) */
+        &:nth-child(5) {
+            grid-column: 3 / 4;
+            grid-row: 1 / 2;
+        }
+        &:nth-child(6) {
+            grid-column: 3 / 4;
+            grid-row: 2 / 3;
         }
     }
     .FooterMenu__MainItem {

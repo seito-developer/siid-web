@@ -44,7 +44,7 @@ git switch -c feature/<N>-<slug> origin/develop                  # 新しい作�
 | 情報 | 唯一の情報源 |
 |------|------------|
 | ページ URL / メタデータ | `src/constants/meta.ts` |
-| ナビ・フッターのメニュー構成 | `src/constants/menuItems.ts` |
+| ナビ・フッターのメニュー構成 | `src/constants/menuItems.ts`（フッターだけの項目は同ファイルの `footerExtraMenuItems` / `footerOtherLinks`） |
 | SNS リンク | `src/constants/snsItems.ts` |
 | ルーティング（実在するページ） | `src/app/` のディレクトリ構成 |
 

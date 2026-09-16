@@ -1,4 +1,5 @@
 import { COURSE_PLAN_ANCHOR_IDS } from '@/constants/coursePlans';
+import { pages } from '@/constants/meta';
 
 type MenuItem = {
   nameEN: string;
@@ -43,4 +44,22 @@ export const menuItems: MenuItem[] = [
     nameJP: 'SiiDコミュニティ',
     url: '/community',
   },
+];
+
+// フッターのメインメニューにだけ追加する項目(PC では 3 列目)。ナビには出さない(Issue #131)。
+// 文言・URL は meta.ts のページ定義を参照する。
+export const footerExtraMenuItems: Pick<MenuItem, 'nameJP' | 'url'>[] = [
+  { nameJP: pages.whitePaper.name.ja, url: pages.whitePaper.url },
+  { nameJP: pages.line.name.ja, url: pages.line.url },
+];
+
+type FooterOtherLink = {
+  label: string;
+  url: string;
+};
+
+// フッター末尾の外部リンク。
+export const footerOtherLinks: FooterOtherLink[] = [
+  { label: 'プライバシーポリシー', url: 'https://bug-fix.org/privacy-policy' },
+  { label: '運営会社', url: 'https://bug-fix.org' },
 ];
