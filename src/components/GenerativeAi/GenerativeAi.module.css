@@ -312,12 +312,6 @@
     grid-row: span 2;
     align-self: center;
     row-gap: 6px;
-    svg {
-      &:where(.GenerativeAi__Tool:first-child &) {
-        width: 100%;
-        transform: scale(1.2);
-      }
-    }
   }
 
   .GenerativeAi__ToolTitle {

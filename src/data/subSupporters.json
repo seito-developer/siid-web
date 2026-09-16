@@ -8,16 +8,16 @@
   },
   {
     "id": "003",
-    "name": "ありけん",
-    "englishName": "Ariken",
-    "role": "メガベンチャー研修講師",
-    "avatarUrl": "/siid/images/supporter/subsupportercard/ariken.png"
+    "name": "ざっきー",
+    "englishName": "Zakky",
+    "role": "Webエンジニア",
+    "avatarUrl": "/siid/images/supporter/subsupportercard/zakky.png"
   },
   {
     "id": "004",
-    "name": "たかこ",
-    "englishName": "Takako",
-    "role": "学習アドバイザー",
-    "avatarUrl": "/siid/images/supporter/subsupportercard/takako.png"
+    "name": "りょー",
+    "englishName": "Ryo",
+    "role": "Webエンジニア",
+    "avatarUrl": "/siid/images/supporter/subsupportercard/ryo.png"
   }
 ]
