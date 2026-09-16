@@ -273,10 +273,13 @@
 .Counselling__Inner { height: auto; min-height: 0; padding-top: 454px; padding-bottom: 45px; }
 .Counselling__Inner > .Counselling__Booking {
   position: relative; inset: auto;
-  width: 321px; min-height: 513px; margin-inline: auto;
-  padding: 16px; border-radius: 11px; background: #fff; color: #131a3e;
+  /* Jicoo のカレンダーは min-width: 320px。iframe の幅がそれを下回ると左右が切れるため
+     (Issue #138、旧: カード 321px - 余白 16px x 2 = 289px)、SP はカードを左右 12px まで広げ、
+     フォームの左右余白を無くす。Jicoo 側も 15px 前後の余白を持つので詰まって見えない。 */
+  width: 351px; min-height: 513px; margin-inline: auto;
+  padding: 16px 0; border-radius: 11px; background: #fff; color: #131a3e;
 }
-.Counselling__BookingTitle { font-family: var(--lp-career-font-body); font-size: 16px; line-height: 1.5; }
+.Counselling__BookingTitle { padding-inline: 16px; font-family: var(--lp-career-font-body); font-size: 16px; line-height: 1.5; }
 .Counselling__Booking .Counselling__Widget {
   position: relative; inset: auto; width: 100%; height: auto;
   min-height: 440px; margin-top: 16px; border-radius: 0;
@@ -294,7 +297,7 @@
   .Counselling > picture img { height: 1019px; mask-image: linear-gradient(#000 500px, transparent 550px); }
   .Counselling__Inner { min-height: 1019px; padding-top: 158px; padding-bottom: 80px; }
   .Counselling__Inner > .Counselling__Booking { width: 513px; min-height: 748px; margin: 0 0 0 687px; padding: 24px; }
-  .Counselling__BookingTitle { font-size: 24px; }
+  .Counselling__BookingTitle { padding-inline: 0; font-size: 24px; }
   .Counselling__Booking .Counselling__Widget { min-height: 630px; }
 }
 
