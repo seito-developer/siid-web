@@ -163,7 +163,7 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 - [x] 旧 `/siid/*` の全 URL が §4 のマップどおり 301 で新ルートへ到達する(6 件すべて)
 - [x] 新アプリが `basePath: '/siid'` でアセット 404 を出さない(`/siid`・`/siid/lp-career`・`/siid/career-path/1` をブラウザで走査。失敗リクエスト 0 件・JS エラー 0 件)
 - [x] 既存外部リンクの生存: `siid-blog` の `SIID_SITE_URL`・`COUNSELING_URL`。公開後に `COUNSELING_URL` と広告の出稿先 URL を `/siid/lp-career` へ更新済み(2026-09-15)
-- [x] Worker の分岐が意図どおり(`/siid-nonexistent` はコーポレート側の 404 に残る)
+- [x] Worker の分岐が意図どおり(`/siid-nonexistent` は Vercel ではなくオリジンへ通る。※ Issue #131(2026-09-17)以降はオリジンの 404 に新アプリの 404 ページを差し替えるため、ブラウザ表示は新アプリの 404 ページ・ステータス 404 になる。HEAD や `curl -I` では `server: GitHub.com` のまま)
 - [x] `bug-fix.org/siid` の本番レスポンスに `Strict-Transport-Security` が付いていない
 - [x] `bug-fix.org/siid` の本番レスポンスに `X-Robots-Tag: noindex` が付いていない / `*.vercel.app` 直アクセスには付いている
 - [x] Vercel の Production 環境変数に microCMS の値が入っており、記事が表示される

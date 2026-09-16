@@ -74,14 +74,17 @@ curl -sI https://siid-web-theta.vercel.app/siid | grep -i '^x-robots-tag'  # 直
 
 `www.bug-fix.org` はルートに含めない。`www` は GitHub Pages が `bug-fix.org` へ転送するため、転送後のリクエストが上記ルートに乗る。
 
-### 5. コーポレート側 404 の差し替えを有効にする(Issue #131、稼働中の Worker への反映)
+### 4. コーポレート側 404 の差し替えを有効にする(Issue #131、稼働中の Worker への反映)
 
 1. 手順 1 と同じ方法で `src/index.js` の最新版を Worker に反映する(この時点ではルートが `bug-fix.org/siid*` のままなのでコーポレート側は変わらない)
 2. **Settings → Domains & Routes** で既存のルート `bug-fix.org/siid*` を `bug-fix.org/*` に変更する(または `/*` を追加してから `/siid*` を削除)
-3. 手順 3 の curl で確認する。`/` が GitHub.com のまま、`/this-page-does-not-exist` が新アプリの 404 ページになること
+3. 手順 3 の curl で確認する。`/` が GitHub.com のまま、`/this-page-does-not-exist` が 404 のまま新アプリの 404 ページ(`<title>` が `404 NOT FOUND | AIプログラミングスクール SiiD`)になること
 
-戻すときはルートを `bug-fix.org/siid*` に戻すだけでよい(Worker のコードは `/siid` 以外を素通りさせるので、コードを戻す必要はない)。
+### 5. ロールバック(2 段階。DNS には触らない、06 §6)
 
-### 4. ロールバック
+| 戻したい範囲 | 操作 | 結果 |
+|---|---|---|
+| **コーポレート側 404 の差し替えだけ**を止める | ルートを `bug-fix.org/*` → `bug-fix.org/siid*` に戻す | `/siid` は新アプリのまま。`bug-fix.org/*` の 404 は GitHub Pages 既定に戻る。Worker のコードは `/siid` 以外を素通りさせるので戻さなくてよい |
+| **`/siid` ごと**旧サイトへ戻す | ルートを削除する | 即座に現行サイト(GitHub Pages)へ戻る。§4 の旧 URL 301 も効かなくなる |
 
-**手順 3 で追加したルートを削除するだけ**で、即座に現行サイト(GitHub Pages)へ戻る。DNS には触らない(06 §6)。
+コーポレート側 404 の不具合対応でルートを**削除**しないこと。`/siid` まで旧サイトに戻ってしまう。

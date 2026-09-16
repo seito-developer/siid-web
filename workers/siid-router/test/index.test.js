@@ -85,18 +85,36 @@ describe('コーポレート側の 404(Issue #131)', () => {
     assert.equal(wantsHtmlPage(new Request('https://bug-fix.org/x', { method: 'POST', headers: HTML, body: 'a' })), false);
   });
 
+  it('404 ページのパスは Next が予約する /404 ではなく catch-all に届くものにする', () => {
+    assert.equal(NOT_FOUND_PATH.startsWith('/siid/'), true);
+    assert.notEqual(NOT_FOUND_PATH, '/siid/404');
+  });
+
   it('ページ表示が 404 なら新アプリの 404 ページを 404 のまま返す(ヘッダー処理も適用)', async () => {
     mockCorp404();
-    const req = new Request('https://bug-fix.org/this-page-does-not-exist', { headers: HTML });
+    const req = new Request('https://bug-fix.org/this-page-does-not-exist', { headers: { ...HTML, host: 'bug-fix.org', 'accept-language': 'ja' } });
     const res = await worker.fetch(req);
     assert.equal(calls.length, 2);
     assert.equal(calls[0].input, req, 'まずオリジンへそのまま通す');
     assert.equal(calls[1].url, `${VERCEL_ORIGIN}${NOT_FOUND_PATH}`);
     assert.equal(calls[1].headers.get('host'), null);
+    assert.equal(calls[1].headers.get('accept-language'), 'ja');
     assert.equal(res.status, 404);
     assert.equal(await res.text(), '<html>dino</html>');
     assert.equal(res.headers.get('X-Robots-Tag'), null);
     assert.equal(res.headers.get('x-vercel-id'), null);
+  });
+
+  it('条件付き・Range ヘッダーは 404 ページの取得には送らない(304 / 206 で差し替えに失敗しないように)', async () => {
+    mockCorp404();
+    await worker.fetch(new Request('https://bug-fix.org/nope', {
+      headers: { ...HTML, 'If-None-Match': '"abc"', 'If-Modified-Since': 'Tue, 01 Jan 2030 00:00:00 GMT', Range: 'bytes=0-10' },
+    }));
+    const h = calls[1].headers;
+    assert.equal(h.get('if-none-match'), null);
+    assert.equal(h.get('if-modified-since'), null);
+    assert.equal(h.get('range'), null);
+    assert.equal(h.get('accept'), HTML.accept);
   });
 
   it('オリジンが 404 以外ならそのまま返し、新アプリへは問い合わせない', async () => {

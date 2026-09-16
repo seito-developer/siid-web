@@ -11,10 +11,15 @@ export const VERCEL_ORIGIN = 'https://siid-web-theta.vercel.app';
 // サイト全体の複製(しかも noindex を外したもの)を公開してしまわないようにする。
 export const PUBLIC_HOST = 'bug-fix.org';
 
-// コーポレート側の 404 の代わりに返す新アプリの 404 ページ。`/siid/404` は catch-all(src/app/(Main)/[...notFound])
-// で not-found.tsx に着地し、ステータス 404 の HTML を返す。ページ内のリンク・アセットは /siid/ 配下の
-// 絶対パスなので、bug-fix.org/ 直下で表示しても既存の /siid プロキシで配信できる。
-export const NOT_FOUND_PATH = '/siid/404';
+// コーポレート側の 404 の代わりに返す新アプリの 404 ページ。catch-all(src/app/(Main)/[...notFound])で
+// not-found.tsx(dino ゲーム付き)に着地し、ステータス 404・no-store の HTML を返す。
+// `/siid/404` にしないこと: Next が予約している静的な /404(レイアウト無しの英語ページ)に解決されてしまう。
+// ページ内のリンク・アセットは /siid/ 配下の絶対パスなので、bug-fix.org/ 直下で表示しても既存の /siid プロキシで配信できる。
+export const NOT_FOUND_PATH = '/siid/not-found';
+
+// 404 ページを取りに行くときに落とす、元リクエストの条件付き・部分取得ヘッダー。
+// 残すと新アプリが 304 / 206 を返すことがあり、404 ページを差し替えられずオリジンの 404 に戻ってしまう。
+const CONDITIONAL_HEADERS = ['if-none-match', 'if-modified-since', 'if-match', 'if-unmodified-since', 'if-range', 'range'];
 
 // Vercel の応答から外すヘッダー。
 // - X-Robots-Tag: 新アプリは *.vercel.app 宛ての応答に noindex を付ける(Issue #14)。Worker からの fetch も
@@ -29,7 +34,7 @@ const STRIPPED_HEADER_PREFIX = 'x-vercel-';
 /**
  * 新アプリへ振るパスか。`/siid` と完全一致、または `/siid/` で始まるものだけ。
  * 前方一致を `/siid` だけで判定すると `/siid-xxx` のようなコーポレート側のパスまで流れてしまう。
- * Worker のルート `bug-fix.org/siid*` も `/siid-xxx` に一致するため、ルートの絞り込みには頼らない。
+ * Worker のルートは `bug-fix.org/*`(Issue #131 で `/siid*` から拡張)なので、振り分けはこの判定だけが担う。
  */
 export function isSiidPath(pathname) {
   return pathname === '/siid' || pathname.startsWith('/siid/');
@@ -72,11 +77,15 @@ async function passThroughWithNotFound(request, url) {
 
   try {
     const notFoundUrl = new URL(NOT_FOUND_PATH, url.origin);
-    const notFound = await proxyToVercel(new Request(notFoundUrl, { headers: request.headers }), notFoundUrl);
+    const headers = new Headers(request.headers);
+    CONDITIONAL_HEADERS.forEach((name) => headers.delete(name));
+    const notFound = await proxyToVercel(new Request(notFoundUrl, { headers }), notFoundUrl);
     // 新アプリが 404 ページ以外(リダイレクトや障害時の 5xx)を返した場合は差し替えない
     if (notFound.status !== 404) {
       return origin;
     }
+    // 使わないオリジンの本文はストリームを閉じてメモリを解放する(Workers のベストプラクティス)
+    origin.body?.cancel();
     return notFound;
   } catch {
     return origin;
