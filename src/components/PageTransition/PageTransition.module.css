@@ -1,0 +1,20 @@
+/* opacity だけを動かす。transform や filter を使うと、この配下の position: fixed 要素の基準が
+   ラッパーに変わって崩れる。また opacity が 1 未満の間はこのラッパーが stacking context になり、
+   配下の fixed 要素が外側の要素(body の側面の帯など)より下に描かれる。fixed のナビは
+   (LowerPages)/layout.tsx 側にあってこのラッパーの外なので影響を受けない。 */
+.PageTransition {
+    /* backwards: 開始前だけ opacity 0 を適用し、終了後はスタイルを残さない */
+    animation: fadeIn 0.4s ease-out backwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* prefers-reduced-motion による省略は行わない。これは演出ではなく組み上がり中のレイアウト崩れを隠すためのもので、
+   OS 設定に関係なく効かせる(2026-09-17 オーナー判断。Opening の Issue #86 と同じ扱い)。 */

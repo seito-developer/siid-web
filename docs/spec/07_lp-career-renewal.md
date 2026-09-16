@@ -981,7 +981,8 @@ lp-careerの埋め込みホストは、Jicoo公式スクリプトと同じ `redi
 - 「無料カウンセリングを予約する」CTA（`StickyCta`）を画面下部に固定表示する。下へスクロールしている間はスライドインで出し、上へスクロールしている間は引っ込める（オーナー指示）。
 - 出さない条件: スクロール量 600px 未満（FV に CTA があるため）／予約フォーム `#counselling` が画面内にある、またはそれより下（フッター）までスクロール済み。
 - 8px 未満のスクロールは方向判定に使わない（SP のアドレスバー伸縮・慣性の揺れで出入りを繰り返さないため）。
-- 見た目は本文中の SP 用 CTA（`CtaButton size="sp"`、333x78）を流用し、本文と同じ `zoom` で拡縮する。PC も同じサイズ。下余白は SP 12px / PC 24px に `safe-area-inset-bottom` を加える。
+- **SP（〜767px）のみ表示する。PC（768px〜）では出さない**（Issue #143 / 2026-09-17 オーナー指示。CSS の `display: none` で隠す）。
+- 見た目は本文中の SP 用 CTA（`CtaButton size="sp"`、333x78）を流用し、本文と同じ `zoom` で拡縮する。下余白は 12px に `safe-area-inset-bottom` を加える。
 - 引っ込んでいる間は `visibility: hidden` でキーボード操作の対象から外す。`prefers-reduced-motion: reduce` ではアニメーションしない。
 - 重なり順はヘッダーと同じ `z-index: 100`。ドロワー（200）・Cookie バナー（300）より下。
 

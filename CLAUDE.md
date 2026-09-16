@@ -44,7 +44,7 @@ git switch -c feature/<N>-<slug> origin/develop                  # 新しい作�
 | 情報 | 唯一の情報源 |
 |------|------------|
 | ページ URL / メタデータ | `src/constants/meta.ts` |
-| ナビ・フッターのメニュー構成 | `src/constants/menuItems.ts` |
+| ナビ・フッターのメニュー構成 | `src/constants/menuItems.ts`（フッターだけの項目は同ファイルの `footerExtraMenuItems` / `footerOtherLinks`） |
 | SNS リンク | `src/constants/snsItems.ts` |
 | ルーティング（実在するページ） | `src/app/` のディレクトリ構成 |
 
@@ -80,7 +80,7 @@ npm run lint && npm run typecheck && npm run check:fonts
 **root layout は 2 つある**（ルートグループごとに独立。`src/app/layout.tsx` は存在しない）。
 
 - **`src/app/(Main)/layout.tsx`** — 通常ページ用の root layout。`html`/`body`・`GtmNoScript`・`Analytics`・`Icons`（SVGスプライト）・`NavigationSp`（SP用ハンバーガーメニュー）・`Footer`・フォント変数、`globals.css` / sanitize.css を提供
-- **`src/app/(Main)/(LowerPages)/layout.tsx`** — 下層ページ用。`NavigationPcLower` のみ追加
+- **`src/app/(Main)/(LowerPages)/layout.tsx`** — 下層ページ用。`NavigationPcLower` のみ追加。同階層の `template.tsx` が `PageTransition` でページを包み、クライアント遷移のたびにフェードインさせて組み上がり中のレイアウト崩れを隠す（Issue #131。TOP は `Opening` が覆うので対象外）
 - **`src/app/(Lp)/layout.tsx`** — 独立LP（`lp-career`）用の root layout。共通クロームと `globals.css` を持ち込まず、`(Main)` と完全に隔離する（Issue #40）。リセットと body の基本スタイルは `(Lp)/lp-base.css`、フォントは `(Lp)/fonts.ts`。`lp-career` 専用のトークン・サブセットフォントは `lp-career/page.tsx` が `lp-career-tokens.css` を読み込んで適用する
 - TOPページの `Header` は `src/app/(Main)/page.tsx` 内で使用
 
