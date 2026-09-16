@@ -13,7 +13,8 @@ export interface CoursePlan {
   title: string[];
   description: string;
   price: string;
-  subsidizedPrice: string;
+  // 給付金の対象外(顧問プラン)は省略する
+  subsidizedPrice?: string;
   recommend: boolean;
   features: CoursePlanFeature[];
   advice: string[];

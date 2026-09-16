@@ -69,7 +69,7 @@ export default function Supporter() {
                   <use href="#instagram" />
                 </svg>
               </Link>
-              <Link href="https://www.youtube.com/@programming-siid" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className={styles.MainSupporter__SocialLink}>
+              <Link href="https://www.youtube.com/@webit7652" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className={styles.MainSupporter__SocialLink}>
                 <svg width="29" height="20">
                   <use href="#youtube" />
                 </svg>

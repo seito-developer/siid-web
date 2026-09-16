@@ -145,3 +145,9 @@
     flex-basis: 41%;
   }
 }
+
+/* 顧問プランは日本語名のため、英字専用の Bagor ではなく Noto Sans JP の太字で出す */
+.CourseCard--vip .CourseCard__Title {
+  font-family: var(--font-noto-sans-jp);
+  font-weight: 900;
+}

@@ -23,7 +23,7 @@ export const menuItems: MenuItem[] = [
         url: `/courses#${COURSE_PLAN_ANCHOR_IDS.fullSupport}`,
       },
       {
-        name: 'Career +VIP Editionコース',
+        name: '顧問プラン',
         url: `/courses#${COURSE_PLAN_ANCHOR_IDS.vip}`,
       },
     ],

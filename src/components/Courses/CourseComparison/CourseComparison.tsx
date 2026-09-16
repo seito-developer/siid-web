@@ -104,7 +104,7 @@ export default function CourseComparison({ plans, comparison }: Props) {
                   <div className={styles.CourseComparison__LangAdvanced}>
                     <span className={styles.CourseComparison__LangLabel}>＋応用</span>
                     <span className={styles.CourseComparison__LangNote}>
-                      ※Full Support,VIP Editionコースのみ
+                      ※Full Support・顧問プランのみ
                     </span>
                     <ul className={styles.CourseComparison__LangIcons}>
                       {ADVANCED_LANGS.map((lang) => (

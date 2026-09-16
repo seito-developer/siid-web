@@ -38,11 +38,15 @@ export default function PlanCard({ plan }: Props) {
           <span className={styles.PlanCard__PriceUnit}>円(税込)</span>
           <span className={styles.PlanCard__PriceFrom}>〜</span>
         </p>
-        <p className={styles.PlanCard__Subsidized}>
-          給付金適用後
-          <strong>{plan.subsidizedPrice}</strong>
-          <span>円(税込)〜</span>
-        </p>
+        {plan.subsidizedPrice ? (
+          <p className={styles.PlanCard__Subsidized}>
+            給付金適用後
+            <strong>{plan.subsidizedPrice}</strong>
+            <span>円(税込)〜</span>
+          </p>
+        ) : (
+          <p className={styles.PlanCard__Subsidized}>内容に応じて個別見積もり（給付金対象外）</p>
+        )}
         <ul className={styles.PlanCard__Features}>
           {plan.features.map((feature) => (
             <li key={feature.text} className={styles.PlanCard__Feature}>
