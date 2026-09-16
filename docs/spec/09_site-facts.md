@@ -26,7 +26,7 @@ Issue #122 / #123 の対応で決めた「サイト全体で 1 つに揃える�
 | 講師の肩書 | **主任講師**（堀口セイト）。サブ講師は「サポート講師 002〜」 | TOP FAQ 確定原稿・LP コース表 | `Supporter.tsx` / `Faq.tsx` / `lpCareerCourseTable.ts` |
 | コース名 | **Career** / **Career +Full Support** / **Career +VIP Edition** | `courseData.ts`・`coursePlans.json` | `menuItems.ts` ほか本サイト全体（LP は入稿データの「Career + FullSupport」「顧問プラン」のまま） |
 | YouTube チャンネル URL | `https://www.youtube.com/@programming-siid` | サイト内の他箇所すべて | `snsItems.ts` / `Supporter.tsx` / 完了ページ |
-| 会社表記（コピーライト） | **© BugFix LLC. All rights reserved.**（本サイトは年を入れない。LP は入稿データ通り年付きで、年は動的に出す） | LP Footer | `FooterMenu.tsx` / `LpCareer/Footer.tsx` |
+| 会社表記（コピーライト） | **© BugFix LLC. All rights reserved.**（本サイトは年を入れない。LP は入稿データ通り「© 2026」の年付き。静的ビルドのため `new Date()` でも build 時に固定されるので、リテラルのまま毎年更新する） | LP Footer | `FooterMenu.tsx` / `LpCareer/Footer.tsx` |
 | 給付金 | 経産省リスキル講座に認定されているのは **Career コース（12 ヶ月プラン）**。「最大 80% OFF」は Career の場合。Full Support / VIP は Career 部分が対象 | TOP FAQ・LP FAQ | `ReskillBannerSection.tsx` / `meta.ts` / `courseData.ts` |
 | 受講期間 | 12 ヶ月（＋アフターサポート）。TOP の「8-12ヶ月でITエンジニアへ」は受講開始から内定までの目安なので矛盾ではない | LP コース表 | `ComparisonTable.tsx` / `Cource.tsx` |
 | カウンセリング所要時間 | 60〜90 分 | `meta.ts` | `/counseling` / `/lp-career` |
