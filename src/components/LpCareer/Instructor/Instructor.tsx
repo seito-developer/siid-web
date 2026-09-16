@@ -19,7 +19,7 @@ const BULLETS = [
   {
     accent: '約100名規模のエンジニアチーム',
     text: 'を統括。',
-    tail: '2,000人超を選考、150名以上を採用',
+    tail: '2,000人超を選考、150人以上を採用',
   },
   {
     accent: 'YouTube登録者 13万人',
@@ -59,7 +59,7 @@ export default function Instructor() {
               <span className={styles.Instructor__CopyLast}>市場価値を設計する</span>
             </h2>
 
-            <p className={styles.Instructor__Name}>堀口 セイト</p>
+            <p className={styles.Instructor__Name}>堀口セイト</p>
 
             <p className={styles.Instructor__Badge}>合同会社BugFix 代表・主任講師</p>
             <p className={styles.Instructor__Badge}>ミネルバ大学院卒</p>

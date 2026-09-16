@@ -46,14 +46,14 @@ export default function Voice(props: Props) {
   const lanes = splitIntoLanes(voices, laneCount);
 
   return (
-    <div className={styles.Voice__Wrapper} aria-label="受講者の声">
+    <div className={styles.Voice__Wrapper} aria-label="受講生の声">
       <div className={styles.Voice__Ribbon} aria-hidden="true">
         <RibbonText text="VOICE" durationSec={48} direction="left" variant="voice" />
       </div>
 
       <div className={styles.Voice__Inner}>
         <aside className={styles.Voice__LeftCard}>
-          <div className={styles.Voice__LeftCardTitle}>受講者の声</div>
+          <div className={styles.Voice__LeftCardTitle}>受講生の声</div>
           <div className={styles.Voice__LeftCardWatermark} aria-hidden="true">
             <Image
               src="/siid/images/community/logo_voice.svg"
@@ -66,7 +66,7 @@ export default function Voice(props: Props) {
           </div>
         </aside>
 
-        <div className={styles.Voice__Lanes} aria-label="受講者コメント">
+        <div className={styles.Voice__Lanes} aria-label="受講生コメント">
           {lanes.map((lane, laneIndex) => {
             const loopLane = [...lane, ...lane];
             const duration = laneDurationSec(laneIndex);

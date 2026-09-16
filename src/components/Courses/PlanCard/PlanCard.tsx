@@ -36,7 +36,7 @@ export default function PlanCard({ plan }: Props) {
         {plan.price ? (
           <p className={styles.PlanCard__Price}>
             <strong>{plan.price}</strong>
-            <span className={styles.PlanCard__PriceUnit}>円(税込)</span>
+            <span className={styles.PlanCard__PriceUnit}>円（税込）</span>
             <span className={styles.PlanCard__PriceFrom}>〜</span>
           </p>
         ) : (
@@ -46,7 +46,7 @@ export default function PlanCard({ plan }: Props) {
           <p className={styles.PlanCard__Subsidized}>
             給付金適用後
             <strong>{plan.subsidizedPrice}</strong>
-            <span>円(税込)〜</span>
+            <span>円（税込）〜</span>
           </p>
         ) : (
           <p className={styles.PlanCard__Subsidized}>※給付金対象外</p>

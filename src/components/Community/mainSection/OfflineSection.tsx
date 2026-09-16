@@ -17,8 +17,8 @@ export default function OfflineSection() {
         <div className={styles.Offline__Block}>
           <ContentBlock
             title="出版イベント"
-            subTitle="＠LIGinc. 御徒町オフィス"
-            description="2024年に出版した「セイト先生が教えるプログラミング入門」のリリースイベントを株式会社LIGのいいオフィス御徒町にて開催しました！"
+            subTitle="株式会社LIG いいオフィス御徒町"
+            description="2024年に出版した『セイト先生が教えるプログラミング入門』のリリースイベントを株式会社LIGのいいオフィス御徒町にて開催しました！"
           />
           <Event/>
         </div>

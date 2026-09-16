@@ -15,7 +15,7 @@ import styles from './Counselling.module.css';
 const JICOO_WIDGET_URL = 'https://www.jicoo.com/event_types/7prAIkBVVBVF/widget';
 const JICOO_ORIGIN = new URL(JICOO_WIDGET_URL).origin;
 
-const POINTS = ['参加費\n無料', '60~90分', 'オンライン', '無理な\n勧誘なし'];
+const POINTS = ['参加費\n無料', '60〜90分', 'オンライン', '無理な\n勧誘なし'];
 
 export default function Counselling() {
   const widgetRef = useRef<HTMLDivElement>(null);
