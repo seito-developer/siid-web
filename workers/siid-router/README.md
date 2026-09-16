@@ -64,10 +64,12 @@ npx wrangler deploy     # wrangler.toml にルートを書いていないので�
 3. 06 §8 のチェックリストで確認する。最低限:
 
 ```bash
-curl -sI https://bug-fix.org/ | grep -i '^server'                    # GitHub.com のまま(コーポレート無傷)
-curl -s -H 'Accept: text/html' -o /dev/null -w '%{http_code}\n' https://bug-fix.org/this-page-does-not-exist  # 404 のまま。本文は新アプリの 404 ページ
-curl -sI https://bug-fix.org/this-page-does-not-exist | grep -i '^server'  # HEAD は GitHub.com のまま(差し替え対象外)
-curl -sI https://bug-fix.org/siid | grep -iE '^server|^x-robots-tag|^strict-transport'  # Vercel、かつ x-robots-tag と HSTS が出ないこと
+# bug-fix.org は Cloudflare の proxy(orange cloud)を通るため、server ヘッダーはどのオリジンでも `cloudflare` になる。
+# 行き先の判定は本文(<title>)で行う
+curl -s https://bug-fix.org/ | grep -o '<title>[^<]*</title>'          # BugFix LLC(コーポレート無傷)
+curl -s -H 'Accept: text/html' -D - -o /tmp/nf.html https://bug-fix.org/this-page-does-not-exist | grep '^HTTP'; grep -o '<title>[^<]*</title>' /tmp/nf.html  # 404 のまま、本文は「404 NOT FOUND | AIプログラミングスクール SiiD」
+curl -sI https://bug-fix.org/this-page-does-not-exist | grep '^HTTP'  # HEAD は 404 のまま素通し(差し替え対象外)
+curl -sI https://bug-fix.org/siid | grep -iE '^x-robots-tag|^strict-transport'  # 何も出ないこと(x-robots-tag と HSTS を Worker が削除している)
 curl -sI https://bug-fix.org/siid/lp-1 | grep -iE '^HTTP|^location'  # 301 → /siid/lp-career
 curl -sI https://siid-web-theta.vercel.app/siid | grep -i '^x-robots-tag'  # 直 URL は noindex のまま
 ```
@@ -78,7 +80,9 @@ curl -sI https://siid-web-theta.vercel.app/siid | grep -i '^x-robots-tag'  # 直
 
 1. 手順 1 と同じ方法で `src/index.js` の最新版を Worker に反映する(この時点ではルートが `bug-fix.org/siid*` のままなのでコーポレート側は変わらない)
 2. **Settings → Domains & Routes** で既存のルート `bug-fix.org/siid*` を `bug-fix.org/*` に変更する(または `/*` を追加してから `/siid*` を削除)
-3. 手順 3 の curl で確認する。`/` が GitHub.com のまま、`/this-page-does-not-exist` が 404 のまま新アプリの 404 ページ(`<title>` が `404 NOT FOUND | AIプログラミングスクール SiiD`)になること
+3. 手順 3 の curl で確認する。`/` がコーポレート(BugFix LLC)のまま、`/this-page-does-not-exist` が 404 のまま新アプリの 404 ページ(`<title>` が `404 NOT FOUND | AIプログラミングスクール SiiD`)になること
+
+**2026-09-17 実施済み**(code の反映・ルート変更ともにオーナーがダッシュボードで実施。上記 curl で確認済み)
 
 ### 5. ロールバック(2 段階。DNS には触らない、06 §6)
 

@@ -76,7 +76,7 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 分岐ロジック(lp-1 の廃止により 2 分岐。2026-09-10 改訂):
 
 1. パスが **`/siid` と完全一致、または `/siid/` で始まる** → **Vercel の新アプリ**(`https://siid-web-theta.vercel.app` に同じパスとクエリで fetch して返す)。`/siid/lp-1` もここに含まれ、新アプリの 301(§4)で `/siid/lp-career` へ転送される
-2. それ以外(`/` 等すべて)→ **GitHub Pages**(コーポレート維持。オリジンへそのまま通す)。**ただし GitHub Pages が 404 を返したページ表示(GET で `Accept: text/html`)には、新アプリの `/siid/404` を 404 のまま返す**(Issue #131、2026-09-17 追加)。画像・API・HEAD の 404 や、新アプリが 404 以外を返した・取得に失敗した場合はオリジンの 404 をそのまま返す(fail open)
+2. それ以外(`/` 等すべて)→ **GitHub Pages**(コーポレート維持。オリジンへそのまま通す)。**ただし GitHub Pages が 404 を返したページ表示(GET で `Accept: text/html`)には、新アプリの `/siid/404` を 404 のまま返す**(Issue #131、2026-09-17 追加。同日ルートを `bug-fix.org/*` に変更して本番反映済み)。画像・API・HEAD の 404 や、新アプリが 404 以外を返した・取得に失敗した場合はオリジンの 404 をそのまま返す(fail open)
 
 - 前方一致を `/siid` だけで判定しないこと(`/siid-xxx` のような将来のコーポレート側パスまで新アプリへ流れるため)。
 - Worker のルートは **`bug-fix.org/*`**(Issue #131 で `bug-fix.org/siid*` から拡張。コーポレート側の 404 を差し替えるため、`/` などのコーポレート宛リクエストも Worker を通る)。振り分けはルートではなく **Worker 内の判定**で行い、`/siid` に一致しないリクエストはオリジン(GitHub Pages)へそのまま通す(前方一致を `/siid` だけで判定すると `/siid-xxx` が Vercel へ流れて 404 になる)。
