@@ -50,8 +50,7 @@
   - フッター(`Footer` / `FooterMenu`): コピーライトのみ表示(メニュー・SNS・プライバシーポリシー等のリンク、CONTACT ボタン、ページトップも非表示)
   - パンくずも TOP へのリンクを含むため `/counseling` からは削除(Issue 記載外だが趣旨に合わせた対応)
   - `/counseling/complete` は対象外(通常レイアウトのまま)
-- **PC 下層ナビの CONTACT ボタン【対応済み 2026-09 / Issue #148】**: TOP は `Header` の CONTACT ボタンで `/counseling` へ誘導できるが、PC の下層ページは `NavigationPcLower` にメニュー 4 項目しかなく、フッターまでスクロールしないと導線が無かった。`NavigationPcLower` の右上(青いヘッダーパネル上)に「</ CONTACT > 個別説明会へ申し込む」の 1 行ボタンを固定表示し、スクロール中も残す。配色は `ContactButton` に揃えた。グローバルメニュー(`menuItems.ts`)には追加していない(SP のハンバーガーメニューには既に `ContactButton` があり、重複するため)
-  - 404 の `NotFoundHero` は上余白が 50px でボタンと重なったため、PC の上余白を他の下層ページの `Headline` と同じ 95px に揃えた
+- **PC 下層ナビの個別説明会リンク【対応済み 2026-09 / Issue #148】**: TOP は `Header` の CONTACT ボタンで `/counseling` へ誘導できるが、PC の下層ページはナビにリンクが無く、フッターまでスクロールしないと導線が無かった。`NavigationPcLower` のメニュー末尾(「SiiDコミュニティ」の右)に「Contact / 個別説明会」を他の項目と同じ見た目で追加した。項目は `menuItems.ts` の `pcLowerNavExtraMenuItems` で管理し、`Menu` の `withContact` を指定したときだけ出す(SP のハンバーガーメニューには既に `ContactButton` があり重複するため、`menuItems` 本体には入れない)
 
 ## 3-4. 404 Not Found【実装済み 2026-07 / Issue #24】
 

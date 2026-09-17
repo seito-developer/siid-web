@@ -20,9 +20,6 @@
     .NavigationPcLower__Menu {
       transform: translateX(-150px);
     }
-    .NavigationPcLower__Contact {
-      top: 10px;
-    }
   }
 }
 
@@ -51,42 +48,6 @@
 .NavigationPcLower__Menu {
   padding-top: 15px;
   transition: transform 0.25s ease-in-out;
-}
-
-/* 配色は ContactButton に揃える */
-.NavigationPcLower__Contact {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  position: absolute;
-  top: 16px;
-  right: 40px;
-  padding: 6px 22px;
-  background: #e0804c;
-  color: var(--text);
-  border: 1px solid #342525;
-  border-radius: 40px;
-  box-shadow: 0px 0px 0px 3px #e0804c;
-  font-weight: 700;
-  text-decoration: none;
-  white-space: nowrap;
-  transform: rotate(-2deg);
-  transition: top 0.25s ease-in-out, transform 0.25s ease-in-out;
-
-  &:hover {
-    transform: rotate(-5deg);
-  }
-}
-
-.NavigationPcLower__ContactEn {
-  display: block;
-  font-family: var(--font-poppins);
-  font-size: 10px;
-}
-
-.NavigationPcLower__ContactJa {
-  display: block;
-  font-size: 13px;
 }
 
 @media screen and (min-width: 1280px) {

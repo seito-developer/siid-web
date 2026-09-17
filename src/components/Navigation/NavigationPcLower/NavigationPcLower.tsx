@@ -7,7 +7,6 @@ import { usePathname } from 'next/navigation';
 import Corner, { CornerPosition } from '@/components/Corner/Corner';
 import Logo from '@/components/Logo/Logo';
 import { isConversionFocusedPage } from '@/constants/conversionFocusedPages';
-import { pages } from '@/constants/meta';
 import useScroll from '@/hooks/useScroll';
 
 import Menu from '../Menu/Menu';
@@ -40,14 +39,9 @@ export default function NavigationPcLower() {
           </div>
         </div>
         <div className={styles.NavigationPcLower__Menu}>
-          <Menu modifierClass="isLower" />
+          <Menu modifierClass="isLower" withContact />
         </div>
       </div>
-      {/* 下層ページには TOP の Header の CONTACT ボタンが無いため、ナビに個別説明会への導線を置く(Issue #148) */}
-      <Link className={styles.NavigationPcLower__Contact} href={pages.counseling.url}>
-        <span className={styles.NavigationPcLower__ContactEn}>{'</ CONTACT >'}</span>
-        <span className={styles.NavigationPcLower__ContactJa}>個別説明会へ申し込む</span>
-      </Link>
     </nav>
   );
 }

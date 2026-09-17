@@ -50,8 +50,7 @@
 @media screen and (min-width: 1280px) {
     .NotFoundHero__Container {
         margin-left: 712px;
-        /* 上端に下層ナビの CONTACT ボタン(Issue #148)が重なるため、他の下層ページの Headline と同じ 95px を空ける */
-        padding: 95px 70px 60px;
+        padding: 50px 70px 60px;
     }
     .NotFoundHero__Title {
         font-size: 56px;
