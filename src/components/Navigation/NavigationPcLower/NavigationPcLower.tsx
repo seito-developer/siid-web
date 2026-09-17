@@ -39,7 +39,7 @@ export default function NavigationPcLower() {
           </div>
         </div>
         <div className={styles.NavigationPcLower__Menu}>
-          <Menu modifierClass="isLower" />
+          <Menu modifierClass="isLower" withContact />
         </div>
       </div>
     </nav>
