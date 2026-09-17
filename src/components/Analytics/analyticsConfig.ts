@@ -5,14 +5,14 @@
  * 現行サイト（bug-fix.org/siid）から引き継いだタグ（Issue #19）:
  * - Google Analytics 4（gtag.js）
  * - Google Tag Manager（複数コンテナ対応）
- * - UserHeat（ヒートマップ）
  * - KARTE
  * - OpenAI Ads ピクセル
+ *
+ * UserHeat は利用していないため削除した（Issue #90）。
  *
  * ID は NEXT_PUBLIC_* 環境変数で管理し、未設定のタグは出力しない。
  */
 export const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-export const USERHEAT_ID = process.env.NEXT_PUBLIC_USERHEAT_ID;
 export const KARTE_ID = process.env.NEXT_PUBLIC_KARTE_ID;
 export const OPENAI_ADS_PIXEL_ID = process.env.NEXT_PUBLIC_OPENAI_ADS_PIXEL_ID;
 

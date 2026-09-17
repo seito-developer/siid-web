@@ -47,17 +47,32 @@ TOP の News(「コラム」記事)と卒業生の進路(「受講生様イン�
 
 ## 計測タグ(アナリティクス)
 
-現行サイト(https://bug-fix.org/siid)の計測タグを**全て**引き継ぐ(Issue #19)。ID は `NEXT_PUBLIC_*` 環境変数で管理し、`src/components/Analytics/`(`Analytics` / `GtmNoScript` / `analyticsConfig`)が両ルートレイアウトで出力する。ローカルは `.env.local`、本番は Vercel の Environment Variables に同名で登録する(`.env.example` 参照)。
+現行サイト(https://bug-fix.org/siid)の計測タグを**全て**引き継いだ(Issue #19)うえで、公開後に棚卸しして不要なタグを外した(Issue #90、2026-09-18)。ID は `NEXT_PUBLIC_*` 環境変数で管理し、`src/components/Analytics/`(`Analytics` / `GtmNoScript` / `analyticsConfig`)が両ルートレイアウトで出力する。ローカルは `.env.local`、本番は Vercel の Environment Variables に同名で登録する(`.env.example` 参照)。
 
 | 種別 | ツール | 環境変数 | 値 |
 |------|--------|----------|-----|
 | Google Analytics | GA4(gtag.js) | `NEXT_PUBLIC_GA_ID` | `G-54L1JQ7Q7V` |
-| Google Tag Manager | GTM(複数コンテナ・カンマ区切り) | `NEXT_PUBLIC_GTM_IDS` | `GTM-58D75LLL,GTM-PCDDS7MV,GTM-NWT5NTNS` |
-| ヒートマップ | UserHeat | `NEXT_PUBLIC_USERHEAT_ID` | `uhR7AfnJKz` |
-| CX / 行動計測 | KARTE | `NEXT_PUBLIC_KARTE_ID` | `81f5dc95580fe42385d93c4da40b387e` |
+| Google Tag Manager | GTM(複数コンテナ・カンマ区切り) | `NEXT_PUBLIC_GTM_IDS` | `GTM-58D75LLL` |
+| CX / 行動計測・ヒートマップ | KARTE | `NEXT_PUBLIC_KARTE_ID` | `81f5dc95580fe42385d93c4da40b387e` |
 | 広告計測 | OpenAI Ads ピクセル | `NEXT_PUBLIC_OPENAI_ADS_PIXEL_ID` | `DNSeeLpdRTGGyfec5wUced` |
 
-> 現行サイトでは同一 GTM コンテナが重複読み込みされていたため、新サイトではコンテナごとに 1 回に集約した。`GTM-NWT5NTNS` は現行サイトでは noscript のみの部分的な設置だったが、計測漏れを避けるため script/noscript とも正式に読み込む(不要なら env から外す)。OpenAI Ads の `__bugfixTrackOpenAIAds` は基盤ピクセルのみ移植し、旧サイト固有のボタンイベント計測は新サイトの DOM に合わせて別途配線が必要。Search Console の登録要否は別途ユーザー確認。
+> 現行サイトでは同一 GTM コンテナが重複読み込みされていたため、新サイトではコンテナごとに 1 回に集約した。OpenAI Ads の `__bugfixTrackOpenAIAds` は基盤ピクセルのみ移植し、旧サイト固有のボタンイベント計測は新サイトの DOM に合わせて別途配線が必要。Search Console の登録要否は別途ユーザー確認。
+
+### 棚卸しの結果(Issue #90、2026-09-18)
+
+GTM コンテナの中身は公開されている `https://www.googletagmanager.com/gtm.js?id=<ID>` を取得して確認した。
+
+| タグ | 中身 | 判断 |
+|------|------|------|
+| `GTM-58D75LLL` | Google 広告 `AW-17375225426` の Google タグと CV タグ。リスティング運用コンサルの管理 | 残す |
+| `GTM-PCDDS7MV` | タグ・トリガーとも 0 件の空コンテナ | 削除(env から外す) |
+| `GTM-NWT5NTNS` | Meta Pixel `1536990024347464`。発火条件が旧 URL `/siid/lp-1/`・`/siid/counseling-complete-lp-1/` のみで、リダイレクト後は一度も発火しない | 削除(env から外す) |
+| UserHeat | ヒートマップ。利用していない(ヒートマップは KARTE を使う。オーナー判断) | 削除(コードごと除去) |
+| KARTE | ヒートマップ等の行動計測。利用中 | 残す |
+| OpenAI Ads | 予約完了の CV 計測(`TrackOpenAiAdsConversion`) | 残す |
+
+- 本番に出ている 2 つめの GA4 `G-LY4G9KRKV9` は GTM に直接入っているのではなく、`AW-17375225426` の Google タグに連携先として同梱されている GA4。`G-54L1JQ7Q7V` とは別プロパティのため同一プロパティ内の二重計測ではない
+- `GTM-58D75LLL` 内の CV タグのうち、旧 URL `/siid/counseling-complete-lp-1/` の表示(ラベル `ow0nCOOL…`)と `#cta` リンククリック(ラベル `7U_oCN2e…`)の 2 本は、該当 URL・リンクが存在せず発火しない。GTM 管理画面での削除が必要(コード側では消せない)
 
 ## SEO 実装(Issue #36)
 
@@ -103,7 +118,7 @@ SEO コンサルのレポート No.14(本文の章見出しに h1)と同種の�
 - [x] ナビ・フッターの全リンクが 404 にならない(現ナビは実装済みページのみ参照。コース系リンクは `/` へのプレースホルダー)
 - [x] Lighthouse(モバイル)→ 下の「Lighthouse の目標値(2026-09-17 改定)」を参照。**Performance 80+ は目標から外し、Accessibility は TOP のみ 90+ を必須とする**
 - [x] 検索インデックス方針: noindex 期間は設けず、公開と同時に index 可とした(2026-09-15)
-- [x] 計測タグの環境変数を Vercel に登録済み。本番 HTML に GA4・GTM 3 本・UserHeat・KARTE・OpenAI Ads がすべて出力されることを確認(2026-09-15)
+- [x] 計測タグの環境変数を Vercel に登録済み。本番 HTML に GA4・GTM 3 本・UserHeat・KARTE・OpenAI Ads がすべて出力されることを確認(2026-09-15)。その後 Issue #90 で GTM 2 本と UserHeat を削除
 - [x] Google Search Console: `bug-fix.org` のプロパティは既存(運用中)。`https://bug-fix.org/siid/sitemap.xml` を送信し「成功しました / 検出されたページ数 12」を確認(2026-09-15)。公開 1〜2 週間後に「ページ(インデックス作成)」で 404 の急増が無いか確認すること
 
 ## Lighthouse の目標値(2026-09-17 改定)
