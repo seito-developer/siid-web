@@ -77,7 +77,11 @@ export default function FooterMenu({ copyrightOnly = false }: { copyrightOnly?: 
       <ul className={styles.FooterMenu__OtherLinks}>
         {footerOtherLinks.map((link) => (
           <li key={link.url} className={styles.FooterMenu__OtherLinkItem}>
-            <Link href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</Link>
+            {link.external ? (
+              <Link href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</Link>
+            ) : (
+              <Link href={link.url}>{link.label}</Link>
+            )}
           </li>
         ))}
       </ul>
