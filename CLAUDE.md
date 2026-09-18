@@ -192,7 +192,7 @@ handleStringHTML(pages.xxx.description, true)
 | `/white-paper` | `(Main)/(LowerPages)/white-paper/page.tsx` | 資料請求（公式LINE誘導） |
 | `/lp-career` | `(Lp)/lp-career/page.tsx` | 広告流入用の LP（index 対象。`docs/spec/07_lp-career-renewal.md`） |
 | `/lp-career/complete` | `(Lp)/lp-career/complete/page.tsx` | lp-career の予約完了（noindex） |
-| 404 | `(Main)/not-found.tsx` + `(Main)/[...notFound]/page.tsx` | dino風ミニゲーム付き |
+| 404 | `(Main)/not-found.tsx` + `(Main)/[...notFound]/page.tsx` + `(Main)/404/page.tsx` | dino風ミニゲーム付き。`/404` という URL は `next build` が出力する Pages Router 由来の `404.html` に一致してしまうため、App Router 側にも `404/page.tsx` を置いて `notFound()` へ寄せている（Issue #154。dev では再現しない） |
 
 ※ `/contact` と `/after-support` は**ルートとして存在しない**（それぞれ `/counseling` と `/service` が実体）。ナビ構成の実際の値は `src/constants/menuItems.ts` を見ること。
 ※ 旧サイトの URL（`/career`・`/tuition`・`/voices`・`/lp-1`・`/lp-2`・`/counseling-complete-lp-1`）は `next.config.ts` の `redirects()` で 301。一覧は `docs/spec/06_migration.md` §4。
