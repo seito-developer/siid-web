@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 
 
-import { menuItems } from '@/constants/menuItems';
+import { menuItems, pcLowerNavExtraMenuItems } from '@/constants/menuItems';
 import { snsItems } from '@/constants/snsItems';
 
 import styles from './Menu.module.css';
@@ -12,9 +12,11 @@ type Props = {
   modifierClass?: string;
   /** メニュー内のページリンクを押したときに呼ばれる(SP のハンバーガーメニューを閉じる用途) */
   onNavigate?: () => void;
+  /** PC の下層ナビでだけ、メニュー末尾に個別説明会への項目を足す(Issue #148) */
+  withContact?: boolean;
 };
 
-export default function Menu({ modifierClass, onNavigate }: Props) {
+export default function Menu({ modifierClass, onNavigate, withContact }: Props) {
   return (
     <div className={`${styles.Menu} ${modifierClass}`}>
       <ul className={styles.Menu__MainList}>
@@ -49,6 +51,16 @@ export default function Menu({ modifierClass, onNavigate }: Props) {
             )}
           </li>
         ))}
+        {withContact &&
+          pcLowerNavExtraMenuItems.map((item) => (
+            <li className={styles.Menu__MainItem} key={item.url}>
+              <Link href={item.url} onClick={onNavigate}>
+                <span className={styles.Menu__En}>{item.nameEN}</span>
+                <span className={styles.Menu__Ja}>{item.nameJP}</span>
+                <span className={styles.Menu__Bar} />
+              </Link>
+            </li>
+          ))}
       </ul>
       <ul className={styles.Menu__SnsList}>
         {snsItems.map((snsItem, index) => (

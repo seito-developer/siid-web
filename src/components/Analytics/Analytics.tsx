@@ -9,14 +9,12 @@ import {
   LP_CAREER_CONSENT_PATH,
   LP_CAREER_CONSENT_STORAGE_KEY,
   OPENAI_ADS_PIXEL_ID,
-  USERHEAT_ID,
 } from './analyticsConfig';
 
 /**
  * 現行サイト（bug-fix.org/siid）から引き継いだ計測タグをまとめて出力する（Issue #19）。
  * - Google Analytics 4（gtag.js）
  * - Google Tag Manager（複数コンテナ対応）
- * - UserHeat（ヒートマップ）
  * - KARTE
  * - OpenAI Ads ピクセル
  *
@@ -98,13 +96,6 @@ if(!window[n]){var o=(window[n]=function(){var n=[].slice.call(arguments);return
           {`!(function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments);};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f);})(window,document,'script','https://bzrcdn.openai.com/sdk/oaiq.min.js');
 oaiq('init',{pixelId:'${OPENAI_ADS_PIXEL_ID}'});
 window.__bugfixTrackOpenAIAds=function(eventName,eventData,options){try{if(typeof window.oaiq!=='function')return;if(options){window.oaiq('measure',eventName,eventData,options);return;}window.oaiq('measure',eventName,eventData);}catch(error){}};`}
-        </Script>
-      )}
-
-      {/* UserHeat（ヒートマップ） */}
-      {USERHEAT_ID && (
-        <Script id="userheat-init" strategy="afterInteractive">
-          {`(function(add,cla){window['UserHeatTag']=cla;window[cla]=window[cla]||function(){(window[cla].q=window[cla].q||[]).push(arguments);};window[cla].l=1*new Date();var ul=document.createElement('script');var tag=document.getElementsByTagName('script')[0];ul.async=1;ul.src=add;tag.parentNode.insertBefore(ul,tag);})('//uh.nakanohito.jp/uhj2/uh.js','_uhtracker');_uhtracker({id:'${USERHEAT_ID}'});`}
         </Script>
       )}
     </>

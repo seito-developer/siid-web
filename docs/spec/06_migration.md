@@ -148,6 +148,8 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 - GA4: `G-54L1JQ7Q7V`
 - GTM: `GTM-58D75LLL` / `GTM-NWT5NTNS` / `GTM-PCDDS7MV`
 
+> 2026-09-18 追記: Issue #90 で棚卸し済み。`GTM-NWT5NTNS` / `GTM-PCDDS7MV` は不要と判断して削除した。結果は [05_deploy.md](./05_deploy.md)「計測タグ(アナリティクス)」を参照。
+
 これらのうち **SiiD 固有分**と **`bug-fix.org` 全体で共有している分**の切り分けが未確定。Analytics 移行は既存 PR ではスコープ外とされ、サイト全体の別 Issue に送られている([03_pages.md](./03_pages.md) 参照)。本計画では引き継ぎ**要件の列挙に留め**、実引き継ぎは別 Issue で扱う。
 
 ---

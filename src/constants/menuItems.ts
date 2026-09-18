@@ -46,6 +46,12 @@ export const menuItems: MenuItem[] = [
   },
 ];
 
+// PC の下層ナビ(NavigationPcLower)のメニュー末尾にだけ追加する項目(Issue #148)。
+// TOP は Header の CONTACT ボタン、SP はハンバーガーメニュー内の ContactButton が導線になるため、ほかには出さない。
+export const pcLowerNavExtraMenuItems: Pick<MenuItem, 'nameEN' | 'nameJP' | 'url'>[] = [
+  { nameEN: 'Contact', nameJP: '個別説明会', url: pages.counseling.url },
+];
+
 // フッターのメインメニューにだけ追加する項目(PC では 3 列目)。ナビには出さない(Issue #131)。
 // 文言・URL は meta.ts のページ定義を参照する。
 export const footerExtraMenuItems: Pick<MenuItem, 'nameJP' | 'url'>[] = [
@@ -56,10 +62,13 @@ export const footerExtraMenuItems: Pick<MenuItem, 'nameJP' | 'url'>[] = [
 type FooterOtherLink = {
   label: string;
   url: string;
+  external?: boolean;
 };
 
-// フッター末尾の外部リンク。
+// フッター末尾のリンク。external は別タブで開く。
 export const footerOtherLinks: FooterOtherLink[] = [
-  { label: 'プライバシーポリシー', url: 'https://bug-fix.org/privacy-policy' },
-  { label: '運営会社', url: 'https://bug-fix.org' },
+  // 404 ページのミニゲームへの導線。意図的に 404 へ飛ばして遊んでもらう
+  { label: pages.notFound.name.en, url: pages.notFound.url },
+  { label: 'プライバシーポリシー', url: 'https://bug-fix.org/privacy-policy', external: true },
+  { label: '運営会社', url: 'https://bug-fix.org', external: true },
 ];
