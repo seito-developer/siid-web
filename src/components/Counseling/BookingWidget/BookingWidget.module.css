@@ -1,0 +1,34 @@
+/*
+ * Jicoo のカレンダーは min-width: 320px に加えて左右に 15px 前後の余白を持つため、
+ * iframe が 350px 程度ないと左右が切れる(Issue #157。旧: ContentsArea の余白 32px の内側に置き、
+ * 375px 幅で iframe 318px・390px 幅で 324px だった)。
+ * SP は ContentsArea の左右余白を 12px まで詰めて広げる(375px 幅で iframe 349px。lp-career と同等)。
+ * 375px 未満の端末は余白を残す余裕がないため、画面の端まで広げる。
+ */
+.BookingWidget {
+  margin-inline: -20px;
+  border: 1px solid #e4e4e4;
+  background: #fff;
+  overflow-anchor: none;
+}
+
+.BookingWidget iframe {
+  display: block;
+  width: 100%;
+  /* 初期値。読み込み後は Jicoo の高さ通知で上書きされる */
+  height: 720px;
+  border: 0;
+}
+
+@media screen and (max-width: 374px) {
+  .BookingWidget {
+    margin-inline: -32px;
+    border-inline: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .BookingWidget {
+    margin-inline: 0;
+  }
+}

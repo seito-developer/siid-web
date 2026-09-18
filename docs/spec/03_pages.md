@@ -51,6 +51,10 @@
   - パンくずも TOP へのリンクを含むため `/counseling` からは削除(Issue 記載外だが趣旨に合わせた対応)
   - `/counseling/complete` は対象外(通常レイアウトのまま)
 - **PC 下層ナビの個別説明会リンク【対応済み 2026-09 / Issue #148】**: TOP は `Header` の CONTACT ボタンで `/counseling` へ誘導できるが、PC の下層ページはナビにリンクが無く、フッターまでスクロールしないと導線が無かった。`NavigationPcLower` のメニュー末尾(「SiiDコミュニティ」の右)に「Contact / 個別説明会」を他の項目と同じ見た目で追加した。項目は `menuItems.ts` の `pcLowerNavExtraMenuItems` で管理し、`Menu` の `withContact` を指定したときだけ出す(SP のハンバーガーメニューには既に `ContactButton` があり重複するため、`menuItems` 本体には入れない)
+- **予約フォームの左右切れ・高さの不安定を解消【対応済み 2026-09 / Issue #157】**: `/lp-career` で直した現象(#138 / #71)が `/counseling` でも起きていた。
+  - 左右切れ: `ContentsArea` の左右余白 32px の内側に `min-width: 320px` + 枠線で置いていたため、375px 幅で iframe 318px(親から 11px はみ出し)、390px 幅で 324px しかなかった。Jicoo のカレンダーは 320px + 左右 15px 前後の余白を前提にしているので、どちらの幅でも「2026年9月」の先頭や土曜の列が切れていた。SP(1279px 以下)はフォームを左右 12px の余白まで広げる(375px 幅で iframe 349px、lp-career と同等)。375px 未満は画面の端まで広げる(320px 幅でもカレンダーは収まるが、Jicoo の入力画面は 348px 必要なため、そこだけわずかに横スクロールが残る)
+  - 高さ: Jicoo 公式の埋め込みスクリプト(`event_type.js`)をやめ、lp-career と同じ自前ホストに置き換えた。高さ通知の最大値を保持し、`scrollWidgetTop` による強制スクロールは無視、予約完了の `redirectUrl` だけ親ページで開く。ホストの処理は `src/hooks/useJicooWidget.ts` に切り出して lp-career と共用し、`/counseling` 側の部品は `src/components/Counseling/BookingWidget/`
+  - 検証(WebKit / Chromium、320・375・390・412・768・1440px): 375px 以上で iframe 内の `scrollWidth` = `clientWidth`、日付選択 → 時間選択 → 入力画面まで iframe の高さが中身の高さと一致すること。lp-career の同じ検証で挙動が変わらないこと
 
 ## 3-4. 404 Not Found【実装済み 2026-07 / Issue #24】
 
