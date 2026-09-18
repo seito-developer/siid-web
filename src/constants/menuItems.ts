@@ -62,10 +62,13 @@ export const footerExtraMenuItems: Pick<MenuItem, 'nameJP' | 'url'>[] = [
 type FooterOtherLink = {
   label: string;
   url: string;
+  external?: boolean;
 };
 
-// フッター末尾の外部リンク。
+// フッター末尾のリンク。external は別タブで開く。
 export const footerOtherLinks: FooterOtherLink[] = [
-  { label: 'プライバシーポリシー', url: 'https://bug-fix.org/privacy-policy' },
-  { label: '運営会社', url: 'https://bug-fix.org' },
+  // 404 ページのミニゲームへの導線。意図的に 404 へ飛ばして遊んでもらう
+  { label: pages.notFound.name.en, url: pages.notFound.url },
+  { label: 'プライバシーポリシー', url: 'https://bug-fix.org/privacy-policy', external: true },
+  { label: '運営会社', url: 'https://bug-fix.org', external: true },
 ];
