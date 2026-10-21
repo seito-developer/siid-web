@@ -39,8 +39,8 @@ const nextConfig: NextConfig = {
       statusCode: 301 as const,
     }));
     return [
-      // /career-path は /career-path/1 へのリダイレクトなので、正規 URL の /career-path/1 へ直接送る
-      { source: '/career', destination: '/career-path/1', statusCode: 301 },
+      // 旧 Career コースのページはトップへ集約する(Issue #160)。destination の '/' は basePath 込みで /siid になる
+      { source: '/career', destination: '/', statusCode: 301 },
       { source: '/tuition', destination: '/courses', statusCode: 301 },
       { source: '/voices', destination: '/career-path/1', statusCode: 301 },
       // lp-1 は廃止(2026-09-10)。/lp-2 は Issue #76 で lp-career に改名する前の URL
