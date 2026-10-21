@@ -103,7 +103,7 @@ Redirect Rule ではなく **Worker** を用いる。URL を `bug-fix.org/siid/.
 | 旧 URL | 新ルート | 状態 |
 |---|---|---|
 | `/siid` | `/siid`(新トップ) | パス一致。リダイレクト不要 |
-| `/siid/career` | `/siid/career-path/1` | 実装済み(301)。`/career-path` は `/career-path/1` へのリダイレクトなので正規 URL へ直接送る |
+| `/siid/career` | `/siid`(新トップ) | 実装済み(301)。当初は `/siid/career-path/1` へ送っていたが、トップへ集約するよう変更(Issue #160) |
 | `/siid/counseling` | 同一パスで実装済み | リダイレクト不要 |
 | `/siid/counseling-complete` | 同一パスで実装済み(旧 URL 互換ページ) | リダイレクト不要(`redirects()` はページより優先されるため、ここに 301 を置くと互換ページが死ぬ) |
 | `/siid/counseling-complete-lp-1` | `/siid/lp-career/complete` | 実装済み(301。2026-09-12 決定)。ページは削除。このページが発火していた OpenAI Ads の CV は止まる(lp-career 側の計測は #67) |
