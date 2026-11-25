@@ -35,9 +35,9 @@ export default function Fv() {
           <br />
           <span className={styles.Fv__CopyAccent}>
             選ばれる
-            {/* SP のカンプは「選ばれる／エンジニアへ」で改行する */}
+            {/* SP は「選ばれる／AI/IT人材へ」で改行する（カンプは「選ばれる／エンジニアへ」。文言は Issue #163 で変更） */}
             <br className={styles.Fv__CopyBreak} />
-            エンジニアへ
+            AI/IT人材へ
           </span>
         </h1>
 
